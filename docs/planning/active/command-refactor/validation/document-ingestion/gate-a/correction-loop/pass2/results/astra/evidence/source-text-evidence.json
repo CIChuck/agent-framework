@@ -1,0 +1,120 @@
+[
+  {
+    "path": "packages/friday-llm/src/friday_llm/embeddings.py",
+    "sha256": "b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b",
+    "lines": {
+      "1": "\"\"\"",
+      "2": "LiteLLM Embedding Service.",
+      "3": "",
+      "4": "Wraps litellm.embedding for text embeddings with support for",
+      "5": "both cloud and local models.",
+      "6": "",
+      "7": "Ref: Batch 3 Specification, Section 3.2",
+      "8": "\"\"\"",
+      "9": "",
+      "10": "from __future__ import annotations",
+      "11": "",
+      "12": "import asyncio",
+      "13": "import hashlib",
+      "14": "import logging",
+      "15": "from collections import OrderedDict",
+      "16": "from contextlib import nullcontext",
+      "17": "from typing import TYPE_CHECKING, Any",
+      "18": "",
+      "19": "import litellm",
+      "20": "from friday_telemetry import TelemetryInterface",
+      "21": "from friday_telemetry.helpers.safe_llm import BatchTracker, RequestTracker",
+      "22": "from friday_telemetry.models.llm_events import ServiceRole"
+    }
+  },
+  {
+    "path": "uv.lock",
+    "sha256": "da69afe794ac85afce534107b5f6579514ed600ffc13e15a7c5a8b93c77ffedc",
+    "lines": {
+      "2295": "name = \"litellm\"",
+      "2296": "version = \"1.100.1\"",
+      "2297": "source = { registry = \"https://pypi.org/simple\" }"
+    }
+  },
+  {
+    "path": ".venv/lib/python3.13/site-packages/litellm/__init__.py",
+    "sha256": "5c71a49e87ab96a5967ea4c718765c1064ff3a0cb2dc2853920a2868bd4b8466",
+    "lines": {
+      "1": "### Hide pydantic namespace conflict warnings globally ###",
+      "2": "from __future__ import annotations",
+      "3": "",
+      "4": "import warnings",
+      "5": "",
+      "6": "warnings.filterwarnings(\"ignore\", message=\".*conflict with protected namespace.*\")",
+      "7": "# Suppress Pydantic 2.11+ deprecation warning about accessing model_fields on instances",
+      "8": "# This warning can accumulate during streaming and cause memory leaks",
+      "9": "warnings.filterwarnings(\"ignore\", message=\".*Accessing the.*attribute on the instance is deprecated.*\")",
+      "10": "### INIT VARIABLES #########################",
+      "11": "import threading",
+      "12": "import os",
+      "13": "",
+      "14": "# Load .env before any other litellm imports so env vars (e.g. LITELLM_UI_SESSION_DURATION) are available",
+      "15": "import dotenv as _dotenv",
+      "16": "",
+      "17": "",
+      "18": "def _dev_env_hot_reload_enabled() -> bool:",
+      "19": "    \"\"\"The proxy exports this flag when started with ``--reload``. A reloaded",
+      "20": "    worker is a fresh process that inherits the reloader's environment, so an",
+      "21": "    edited ``.env`` value stays masked by the stale inherited one unless we",
+      "22": "    let the file win; overriding makes the edit take effect on reload.\"\"\"",
+      "23": "    return os.getenv(\"LITELLM_DEV_ENV_HOT_RELOAD\") == \"True\"",
+      "24": "",
+      "25": "",
+      "26": "if os.getenv(\"LITELLM_MODE\", \"DEV\") == \"DEV\":",
+      "27": "    _dotenv.load_dotenv(override=_dev_env_hot_reload_enabled())",
+      "28": ""
+    }
+  },
+  {
+    "path": ".venv/lib/python3.13/site-packages/litellm/litellm_core_utils/get_model_cost_map.py",
+    "sha256": "f37b5f4754280f4a31e2a31e54bba943bd9351fa23485fb7511253b864047728",
+    "lines": {
+      "426": "def get_model_cost_map(url: str) -> dict:",
+      "427": "    \"\"\"",
+      "428": "    Public entry point \u2014 returns the model cost map dict.",
+      "429": "",
+      "430": "    1. If ``LITELLM_LOCAL_MODEL_COST_MAP`` is set, uses the local backup only.",
+      "431": "    2. Otherwise fetches from ``url``, validates integrity, and falls back",
+      "432": "       to the local backup on any failure.",
+      "433": "",
+      "434": "    Only the backup model count is cached (a single int) for validation.",
+      "435": "    The full backup dict is only parsed when it must be *returned* as a",
+      "436": "    fallback \u2014 it is never held in memory long-term.",
+      "437": "    \"\"\"",
+      "438": "    _cost_map_source_info.loaded_at = datetime.now(timezone.utc)",
+      "439": "    # Note: can't use get_secret_bool here \u2014 this runs during litellm.__init__",
+      "440": "    # before litellm._key_management_settings is set.",
+      "441": "    if os.getenv(\"LITELLM_LOCAL_MODEL_COST_MAP\", \"\").lower() == \"true\":",
+      "442": "        _cost_map_source_info.source = \"local\"",
+      "443": "        _cost_map_source_info.url = None",
+      "444": "        _cost_map_source_info.is_env_forced = True",
+      "445": "        _cost_map_source_info.fallback_reason = None",
+      "446": "        return _finalize_model_cost_map(GetModelCostMap.load_local_model_cost_map())",
+      "447": "",
+      "448": "    _cost_map_source_info.url = url",
+      "449": "    _cost_map_source_info.is_env_forced = False",
+      "450": "",
+      "451": "    try:",
+      "452": "        content: Final = GetModelCostMap.fetch_remote_model_cost_map(url)",
+      "453": "    except Exception as e:",
+      "454": "        verbose_logger.warning(",
+      "455": "            \"LiteLLM: Failed to fetch remote model cost map from %s: %s. Falling back to local backup.\",",
+      "456": "            url,",
+      "457": "            str(e),"
+    }
+  },
+  {
+    "path": ".venv/lib/python3.13/site-packages/litellm-1.100.1.dist-info/METADATA",
+    "sha256": "fd8dbb1ff59dc9c97aa7be89dc66eca58c7f9422329fe02c350c34e7382f331f",
+    "lines": {
+      "1": "Metadata-Version: 2.4",
+      "2": "Name: litellm",
+      "3": "Version: 1.100.1"
+    }
+  }
+]

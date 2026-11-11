@@ -1,29 +1,24 @@
-# INGEST-001 — bounded corrective harness council handoff
+# INGEST isolated readiness harness — council closeout handoff
 
-[Four-pass authorization](gate-a/correction-loop/authorization.md) follows the
-initial [changes-requested council](gate-a/council-round1/report.md). This is
-corrective pass2/4 (harness-global round3), not an extension of the old single pass.
-[Loop state](gate-a/correction-loop/loop-state.json) caps all attempted passes.
-Stop on all-seat VERIFIED/no mandatory/coverage+overall>=9.5, otherwise after pass4.
-No uncounted replacement, model substitution or question for routine corrections.
+[Pass2 reconciliation](gate-a/verified-directive-report.md) is **VERIFIED** for
+construction-document readiness/source feasibility at candidate `474479df`.
+Sol10.0/9.6, Astra10.0/9.6, Opus9.6/9.5 (coverage/overall), no mandatory findings.
+The [authorized loop](gate-a/correction-loop/authorization.md) stops early after
+two of four corrective passes; no pass3/pass4 or replacement is launched.
 
 The [directive v0.3](../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
 [execution contract](gate-a/execution-contract.md), [plan v0.5](gate-a/readiness-plan.md),
-envelope and isolation requirements are corrected drafts. [Locations](gate-a/correction-loop/pass2/corrections.json)
-are not correctness evidence; fresh reviewers close requirements independently,
-then examine the full bounded aggregate. Business/impact parents stay unchanged.
+envelope/isolation rules, nine business inputs and numeric ceilings keep their
+reviewed bytes. [Advisories](gate-a/correction-loop/pass2/results/advisory-disposition.md)
+remain visible as future implementation/activation considerations; they do not
+silently alter those rules or grant effects authority.
 
-Startup uses trusted -I/-S/-B and explicit imports; tool settings/credentials and
-source-Git exports are isolated; promotions extend an owned ledger; all exits at
-missing evidence; budget numbers stay fixed with cumulative active time. Native
-control limits and metadata evidence are honest. Shared LM Studio requires a safe
-already-loaded model and exactly selected read-only status checks within its
-operator-confirmed production-offline/restart/log-separated window. No new server,
-configuration change or actual request is made by document correction.
+**Next gate:** Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.
 
-All executable code remains future under tests/readiness/ingest and generated
-state under .friday_test. No harness/environment, store, install, conversion,
-inference, production mutation, push or implementation activation is authorized.
-Only bounded documents, current routing and read-only councils may iterate.
-After a passing final draft, return the exact construction directive for approval;
-measured readiness and later product integration/tests/guides still remain future.
+All executable harness work remains future under `tests/readiness/ingest/`, with
+runtime state under `.friday_test/`. No code, environment, dependency, conversion,
+model/service/store effect or production change was made. Separate exact approval
+precedes test-only C0 construction; real A0–A4 stages and the actual shared-LM-Studio
+production-offline/restart/log-separated window need separate activation/receipts.
+No runtime qualification, human acceptance, production resumption or delivery is
+inferred from these document reviews.

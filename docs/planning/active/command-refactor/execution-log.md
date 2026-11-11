@@ -3451,3 +3451,25 @@ for mechanism details, not local-service or upstream package qualification.
   or after pass4; no hidden replacement. Same three high-effort models.
 - No executable harness, .friday_test, environment/install, model/endpoint/service,
   Memory store or production change. Exact approved business bytes preserved.
+
+
+## 2026-11-11 — harness directive council VERIFIED, corrective loop closed early
+
+- Reviewed candidate `474479df6baf1ffab89ffab81ae3b84bb7a98ed7`:
+  Sol VERIFIED10.0/9.6, Astra VERIFIED10.0/9.6, Opus VERIFIED9.6/9.5
+  (coverage/overall), no mandatory findings. All P2/RC/HRC/HR rows pass at
+  document/design level. All eight administrative/whitespace checks pass per seat.
+- [Formal reconciliation](validation/document-ingestion/gate-a/verified-directive-report.md)
+  binds exact reports, frozen inputs, evidence archive map, limitations and
+  advisory dispositions. Controller final frozen boundary passed17941 hashes,
+  27 authority pins and nine preservation records before closeout metadata changes.
+- Stop early on success after two of four authorized corrective passes; no
+  pass3/pass4, replacement reviewer or construction is launched. All seats terminal.
+- Preserve reviewed directive v0.3, contract v0.2, plan/envelope v0.5, isolation
+  v0.4, all nine business inputs and numeric limits byte-for-byte. Remaining
+  advisories do not silently amend those bytes or qualify runtime behavior.
+- Only closeout records/navigation/board/dashboard change. Existing dirty YAMLs,
+  production/generated state and ignored exports remain unchanged; no .friday_test,
+  executable harness, installs/models/services/stores or push. Main initiative
+  stays started/design_only; separate exact construction approval is next, with
+  A0-A4 effects and actual shared-model window still separately unactivated.

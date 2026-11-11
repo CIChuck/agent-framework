@@ -1,0 +1,39 @@
+{
+  "seat": "opus",
+  "candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+  "pass": 2,
+  "outcome": "VERIFIED",
+  "coverage": 9.6,
+  "overall": 9.5,
+  "mandatory_findings": 0,
+  "report_original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/4c1349c8-4f52-4e6d-becd-86da5d35e746/scratchpad/opus-p2-seat-1794439777/report.md",
+  "report_sha256": "a4d0d6897c9b0ac4ab8c6b4980bff29ac310c61c524e39aee236dd895b1c6553",
+  "task": {
+    "taskId": "node:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p2-opus-474479df",
+    "childThreadId": "thread:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p2-opus-474479df",
+    "link": "<t3-thread://v2/6ee9d258-4414-45b2-ad28-6fe30f4adb05/thread:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p2-opus-474479df>",
+    "childRunId": "run:thread:thread%3Adelegated-task%3Acommand%253Amcp%253A7a0464e8-319e-4df4-a61b-0cb34a0e6461%253Adelegate-task%253Aingest-harness-correction-p2-opus-474479df:ordinal:1",
+    "childNodeId": "node:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p2-opus-474479df",
+    "status": "running",
+    "workState": "working",
+    "hasPendingChildRuns": false,
+    "latestTerminalRunId": null,
+    "latestTerminalStatus": null,
+    "latestTerminalSummary": null,
+    "latestTerminalResultContextTransferId": null,
+    "providerInstanceId": "claudeAgent",
+    "model": "claude-opus-5-5",
+    "options": [
+      {
+        "id": "effort",
+        "value": "high"
+      }
+    ],
+    "summary": null,
+    "resultContextTransferId": null,
+    "hasPendingQuestion": false,
+    "pendingApproval": null,
+    "waitTimedOut": false,
+    "next": "Completion wakes this thread, so end your turn. Do not wait on it or poll it."
+  }
+}

@@ -1,8 +1,8 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. Exact INGEST package impact v0.6 is approved;
-Gate-A readiness plan v0.5 and the bounded manual-harness construction draft
-is under a newly authorized four-pass corrective council loop.
+Gate-A harness directive v0.3 is council VERIFIED for design/source feasibility.
+The loop stopped after pass2; exact construction approval remains pending.
 Execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
@@ -43,23 +43,17 @@ test/architecture/guide contracts retain their reviewed bytes.
 [Round6 council](validation/document-ingestion/package-impact/current-verified-report.md)
 remains VERIFIED for that document/source-feasibility scope, not execution.
 
-The [corrected directive v0.3](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
+The [reviewed directive v0.3](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
 [execution contract](validation/document-ingestion/gate-a/execution-contract.md)
-and [plan v0.5](validation/document-ingestion/gate-a/readiness-plan.md) address the
-six initial review groups as proposed requirements, not implemented guarantees.
-Chuck [authorizes four fresh corrective council passes](validation/document-ingestion/gate-a/correction-loop/authorization.md);
-this is pass2/4 (harness-global round3), delta first then full bounded design review.
-All three seats must VERIFIED with no mandatory findings and both honest scores
-at least 9.5. Stop on success or after pass4. No hidden/replacement pass.
+and [plan v0.5](validation/document-ingestion/gate-a/readiness-plan.md) are
+[reconciled VERIFIED](validation/document-ingestion/gate-a/verified-directive-report.md)
+for design/source feasibility at `474479df`. Sol10.0/9.6, Astra10.0/9.6 and
+Opus9.6/9.5 (coverage/overall), no mandatory findings. The authorized loop stops
+after pass2/4; no further round is launched. Reviewed technical/business bytes
+and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
+remain visible for implementation/activation; none grants effects authority.
 
-Execution phase: remediation (documents only); validation state: in_review.
-All business/impact approval bytes remain intact. No production code/configuration/
-environment/store, harness construction, stage/model/server effect or delivery is
-authorized. Proposed code stays `tests/readiness/ingest/`, runtime `.friday_test/`,
-and shared LM Studio only within the operator-confirmed production-offline window.
-The [loop state](validation/document-ingestion/gate-a/correction-loop/loop-state.json)
-tracks the cap; prior [round1](validation/document-ingestion/gate-a/council-round1/report.md)
-is preserved with its original changes-requested result.
+**Next gate:** Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

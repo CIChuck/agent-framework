@@ -711,11 +711,13 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Corrective document pass2/4 (harness round3) is being frozen after committed pre-init byte binding, explicit native-tool Python classification, guarded import/read/network channels and related usability/proof clarifications. Independently review the delta then full bounded directive/readiness aggregate with Sol/Astra/Opus; require each VERIFIED, no mandatory findings, coverage and overall>=9.5 honestly. One pass completed, three remain including this one; no hidden replacements. Continue bounded corrections without intermediate questions, stop on success or after pass4. No production code/config/env/store changes, executable harness construction, stage/model/service effects or settings changes. Existing approved business inputs and numeric ceilings remain unchanged."
+  next_gate: "Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/document-ingestion/gate-a/verified-directive-report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass2/results/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/package-impact/current-verified-report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/package-impact/verified-report.md

@@ -1,0 +1,164 @@
+[
+  {
+    "path": "AGENTS.md",
+    "expected": "9c2840ea92bf5f25acd5c85d36a18d2c7d9677c0768d1e811aef5efde6fc936b",
+    "actual": "9c2840ea92bf5f25acd5c85d36a18d2c7d9677c0768d1e811aef5efde6fc936b",
+    "pass": true
+  },
+  {
+    "path": "docs/reference/policies/repository-engineering-policy.md",
+    "expected": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "actual": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "pass": true
+  },
+  {
+    "path": "docs/reference/policies/development-task-lifecycle.md",
+    "expected": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844",
+    "actual": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844",
+    "pass": true
+  },
+  {
+    "path": "docs/reference/policies/independent-validation-policy.md",
+    "expected": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "actual": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "pass": true
+  },
+  {
+    "path": ".agents/skills/council/SKILL.md",
+    "expected": "360493507c5f522d4a365f7f90f76c7eb37ad31ee36096a359c0715aae00b23c",
+    "actual": "360493507c5f522d4a365f7f90f76c7eb37ad31ee36096a359c0715aae00b23c",
+    "pass": true
+  },
+  {
+    "path": ".agents/skills/independent-code-validator/SKILL.md",
+    "expected": "578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508",
+    "actual": "578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md",
+    "expected": "bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803",
+    "actual": "bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/authorization.md",
+    "expected": "d71afa78077d4be7748b99604e058333ff740a96bf545c836c64486baa6ae851",
+    "actual": "d71afa78077d4be7748b99604e058333ff740a96bf545c836c64486baa6ae851",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/loop-state.json",
+    "expected": "e799abd86c06c740c203437d767a515be827589c8dffd821844aad24ac523116",
+    "actual": "e799abd86c06c740c203437d767a515be827589c8dffd821844aad24ac523116",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass2/criteria.md",
+    "expected": "878f063157431d6569950e1a8821d4b118ce35395e84316806159dd46fbe1046",
+    "actual": "878f063157431d6569950e1a8821d4b118ce35395e84316806159dd46fbe1046",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass2/roster.json",
+    "expected": "7e56b51df9f7e3bff2520fc6c22948716d111cc695827e70bd0da9844f7f7e93",
+    "actual": "7e56b51df9f7e3bff2520fc6c22948716d111cc695827e70bd0da9844f7f7e93",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass2/corrections.json",
+    "expected": "a8d1b223b1ef28ce2ca67eddb6bff43c8c0d604c997ad303aeb4852030600ee2",
+    "actual": "a8d1b223b1ef28ce2ca67eddb6bff43c8c0d604c997ad303aeb4852030600ee2",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+    "expected": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+    "actual": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+    "expected": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+    "actual": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/test-migration-plan.md",
+    "expected": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c",
+    "actual": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/command-architecture-update-plan.md",
+    "expected": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1",
+    "actual": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/guide-update-handoff.md",
+    "expected": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9",
+    "actual": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/embedding-compatibility-contract.md",
+    "expected": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+    "actual": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/proposals/tools-document-adoption.md",
+    "expected": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998",
+    "actual": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/review-criteria.md",
+    "expected": "0bc426c0ed16c0feab720e7b4d597c0de28f924feb58e26945637457bb9aaf62",
+    "actual": "0bc426c0ed16c0feab720e7b4d597c0de28f924feb58e26945637457bb9aaf62",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round6-authorization.json",
+    "expected": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
+    "actual": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/readiness-plan.md",
+    "expected": "94c37e845c0acc4c8f79568c57060dd65df01b20def54abf78c1cf177bba6cd2",
+    "actual": "94c37e845c0acc4c8f79568c57060dd65df01b20def54abf78c1cf177bba6cd2",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/effects-envelope.json",
+    "expected": "4b6273c2a629affd02e388574a0b1715334456c921611e55e069122f7b0b4315",
+    "actual": "4b6273c2a629affd02e388574a0b1715334456c921611e55e069122f7b0b4315",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/isolation-requirements.md",
+    "expected": "a50069c9ede478c2387ed819e15cc949223e14bd0635ee9dcc5aa14b0bb60264",
+    "actual": "a50069c9ede478c2387ed819e15cc949223e14bd0635ee9dcc5aa14b0bb60264",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/execution-contract.md",
+    "expected": "ac09cc3115640f788fba8f3c29e0b981e18e43ae29846e5fe9585a3099f24a69",
+    "actual": "ac09cc3115640f788fba8f3c29e0b981e18e43ae29846e5fe9585a3099f24a69",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/source-observations.json",
+    "expected": "bbd408be71036faef3aa5b4298232635a4dade2f2e813444df6aae3a2e63fb80",
+    "actual": "bbd408be71036faef3aa5b4298232635a4dade2f2e813444df6aae3a2e63fb80",
+    "pass": true
+  },
+  {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/consumer-readiness-matrix.md",
+    "expected": "12c2bcc68892f8b5b14023f67d34b190565b7ca22ed79c2a4a9013437c5e9e7c",
+    "actual": "12c2bcc68892f8b5b14023f67d34b190565b7ca22ed79c2a4a9013437c5e9e7c",
+    "pass": true
+  }
+]

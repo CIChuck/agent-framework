@@ -1,0 +1,60 @@
+{
+  "scratch": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-p2-controller-preflight-n26id1ot",
+  "ledger": [
+    {
+      "argv": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p2-y50d7i5p/inputs/review_tools.py",
+        "boundary",
+        "--request",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p2-y50d7i5p/inputs/request.json",
+        "--scratch",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-p2-controller-preflight-n26id1ot",
+        "--label",
+        "opening"
+      ],
+      "exit": 0,
+      "stdout": "{\"outcome\": \"PASS\", \"label\": \"opening\", \"time\": \"2026-11-11T23:28:27.942088+00:00\", \"candidate\": \"474479df6baf1ffab89ffab81ae3b84bb7a98ed7\", \"logical_before_status\": \"a7ba1c933bce5289582901fae06b6e99aa3b6e05fcf8423cc4875132b6bdc43f\", \"authority_pins\": 27, \"protected_files\": 17941, \"preserved_records\": 9, \"failures\": []}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p2-y50d7i5p/inputs/review_tools.py",
+        "admin",
+        "--request",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p2-y50d7i5p/inputs/request.json",
+        "--scratch",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-p2-controller-preflight-n26id1ot"
+      ],
+      "exit": 0,
+      "stdout": "{\"check\": \"board\", \"exit\": 0, \"stdout\": \"Development board validation passed: 36 tasks\\n\", \"stderr\": \"\"}\n{\"check\": \"dashboard\", \"exit\": 0, \"stdout\": \"Planning dashboard is current\\n\", \"stderr\": \"\"}\n{\"check\": \"documentation\", \"exit\": 0, \"stdout\": \"Documentation lifecycle validation passed: 1071 Markdown files checked\\n\", \"stderr\": \"\"}\n{\"check\": \"metadata\", \"exit\": 0, \"stdout\": \"Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\\n\", \"stderr\": \"\"}\n{\"check\": \"whitespace-worktree\", \"exit\": 0, \"stdout\": \"\", \"stderr\": \"\"}\n{\"check\": \"whitespace-staged\", \"exit\": 0, \"stdout\": \"\", \"stderr\": \"\"}\n{\"check\": \"whitespace-unit\", \"exit\": 0, \"stdout\": \"\", \"stderr\": \"\"}\n{\"check\": \"whitespace-preparation\", \"exit\": 0, \"stdout\": \"\", \"stderr\": \"\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p2-y50d7i5p/inputs/review_tools.py",
+        "boundary",
+        "--request",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-loop-p2-y50d7i5p/inputs/request.json",
+        "--scratch",
+        "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-p2-controller-preflight-n26id1ot",
+        "--label",
+        "closing"
+      ],
+      "exit": 0,
+      "stdout": "{\"outcome\": \"PASS\", \"label\": \"closing\", \"time\": \"2026-11-11T23:28:30.222636+00:00\", \"candidate\": \"474479df6baf1ffab89ffab81ae3b84bb7a98ed7\", \"logical_before_status\": \"a7ba1c933bce5289582901fae06b6e99aa3b6e05fcf8423cc4875132b6bdc43f\", \"authority_pins\": 27, \"protected_files\": 17941, \"preserved_records\": 9, \"failures\": []}\n",
+      "stderr": ""
+    }
+  ]
+}

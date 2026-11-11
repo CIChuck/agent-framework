@@ -1,0 +1,9 @@
+{
+  "request_sha256": "fa5117b2304fd185213b120fda698431e87edb2ec75e59a6fd63b0fd2412da00",
+  "helper_sha256": "7a7f2ef72d4b1e6592e6ba65d2762641865031a81e7bfdfc573b9ec5d56a11e5",
+  "candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+  "base": "23253a72ba265334e254c6a0bbad53f70cd85313",
+  "seat": "Sol / gpt-6.1-sol / high",
+  "memory_used": false,
+  "peer_reports_opened": false
+}

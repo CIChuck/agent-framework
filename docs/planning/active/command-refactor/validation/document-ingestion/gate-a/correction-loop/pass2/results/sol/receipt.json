@@ -1,0 +1,43 @@
+{
+  "seat": "sol",
+  "candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+  "pass": 2,
+  "outcome": "VERIFIED",
+  "coverage": 10.0,
+  "overall": 9.6,
+  "mandatory_findings": 0,
+  "report_original": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/report.md",
+  "report_sha256": "7984d6488da0672c49116456fb80ea8c4bb35d75ba72e9168800a775f1d10fe8",
+  "task": {
+    "taskId": "node:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p2-sol-474479df",
+    "childThreadId": "thread:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p2-sol-474479df",
+    "link": "<t3-thread://v2/6ee9d258-4414-45b2-ad28-6fe30f4adb05/thread:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p2-sol-474479df>",
+    "childRunId": "run:thread:thread%3Adelegated-task%3Acommand%253Amcp%253A7a0464e8-319e-4df4-a61b-0cb34a0e6461%253Adelegate-task%253Aingest-harness-correction-p2-sol-474479df:ordinal:1",
+    "childNodeId": "node:delegated-task:command%3Amcp%3A7a0464e8-319e-4df4-a61b-0cb34a0e6461%3Adelegate-task%3Aingest-harness-correction-p2-sol-474479df",
+    "status": "running",
+    "workState": "working",
+    "hasPendingChildRuns": false,
+    "latestTerminalRunId": null,
+    "latestTerminalStatus": null,
+    "latestTerminalSummary": null,
+    "latestTerminalResultContextTransferId": null,
+    "providerInstanceId": "codex",
+    "model": "gpt-6.1-sol",
+    "options": [
+      {
+        "id": "reasoningEffort",
+        "value": "high"
+      },
+      {
+        "id": "serviceTier",
+        "value": "default"
+      }
+    ],
+    "summary": null,
+    "resultContextTransferId": null,
+    "hasPendingQuestion": false,
+    "pendingApproval": null,
+    "waitTimedOut": false,
+    "next": "Completion wakes this thread, so end your turn. Do not wait on it or poll it."
+  }
+}

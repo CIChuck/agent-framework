@@ -1,0 +1,142 @@
+[
+  {
+    "name": "board",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:53.634645+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/board.stdout",
+    "stderr": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/board.stderr"
+  },
+  {
+    "name": "dashboard",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:53.897164+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/dashboard.stdout",
+    "stderr": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/dashboard.stderr"
+  },
+  {
+    "name": "documentation",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:54.130209+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/documentation.stdout",
+    "stderr": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/documentation.stderr"
+  },
+  {
+    "name": "metadata",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-package-metadata.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:54.907007+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/metadata.stdout",
+    "stderr": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/metadata.stderr"
+  },
+  {
+    "name": "whitespace-worktree",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:55.015758+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/whitespace-worktree.stdout",
+    "stderr": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/whitespace-worktree.stderr"
+  },
+  {
+    "name": "whitespace-staged",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:55.024277+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/whitespace-staged.stdout",
+    "stderr": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/whitespace-staged.stderr"
+  },
+  {
+    "name": "whitespace-unit",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "23253a72ba265334e254c6a0bbad53f70cd85313..474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:55.030973+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/whitespace-unit.stdout",
+    "stderr": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/whitespace-unit.stderr"
+  },
+  {
+    "name": "whitespace-preparation",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "35df1fa35162fdd70216ed47e5675a74c748139b..474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:55.042380+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/whitespace-preparation.stdout",
+    "stderr": "/private/tmp/sol-ingest-p2-review-fuVy7Orh/whitespace-preparation.stderr"
+  }
+]

@@ -1,26 +1,25 @@
-# Gate-A harness corrected draft — corrective pass 2/4
+# Gate-A harness directive — council VERIFIED, construction pending
 
-Execution phase: remediation (documents only); validation state: in_review.
-Chuck [authorizes up to four fresh corrective council passes](validation/document-ingestion/gate-a/correction-loop/authorization.md),
-without intermediate permission questions. This is pass2/4, harness-global round3;
-stop early on the full 9.5 gate or after pass4, no uncounted replacements.
+Execution phase: closeout (documents only); validation state: verified.
+[Reconciled pass2 result](validation/document-ingestion/gate-a/verified-directive-report.md)
+meets the all-seat gate: Sol10.0/9.6, Astra10.0/9.6, Opus9.6/9.5
+(coverage/overall), zero mandatory findings. Reviewed candidate `474479df`.
+The [authorized four-pass loop](validation/document-ingestion/gate-a/correction-loop/authorization.md)
+stops early after two completed passes; no pass3/pass4 is launched.
 
 The [directive v0.3](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
 [execution contract](validation/document-ingestion/gate-a/execution-contract.md),
-[plan v0.5](validation/document-ingestion/gate-a/readiness-plan.md), envelope and
-isolation requirements propose the retained six correction groups plus committed-byte, tool-child and import-channel refinements.
-[Correction locations](validation/document-ingestion/gate-a/correction-loop/pass2/corrections.json)
-are a review map, not independent finding closure. Reviewers assess delta then
-the full [criteria](validation/document-ingestion/gate-a/correction-loop/pass2/criteria.md).
+[plan v0.5](validation/document-ingestion/gate-a/readiness-plan.md), envelope,
+isolation requirements and nine business inputs retain their reviewed bytes.
+[Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
+remain visible without silently changing the reviewed contract.
 
-All nine business inputs including approved package impact remain unchanged.
-No executable harness, test environment, dependencies, model/client/store/service
-or production change is activated. Test code scope stays `tests/readiness/ingest/`,
-generated state `.friday_test/`; existing LM Studio reuse remains the controlled
-production-offline window. Budget numbers are unchanged; active-time versus human
-waiting and future promotion/resume are now explicit.
+No executable harness, .friday_test environment, dependency/model/server/store
+operation or production change was made. Separate exact construction approval
+precedes the test-only C0 slice. Actual A0–A4 effects and the shared-endpoint
+operator window remain separately gated; design review is not runtime readiness.
 
-**Next gate:** Corrective document pass2/4 (harness round3) is being frozen after committed pre-init byte binding, explicit native-tool Python classification, guarded import/read/network channels and related usability/proof clarifications. Independently review the delta then full bounded directive/readiness aggregate with Sol/Astra/Opus; require each VERIFIED, no mandatory findings, coverage and overall>=9.5 honestly. One pass completed, three remain including this one; no hidden replacements. Continue bounded corrections without intermediate questions, stop on success or after pass4. No production code/config/env/store changes, executable harness construction, stage/model/service effects or settings changes. Existing approved business inputs and numeric ceilings remain unchanged.
+**Next gate:** Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.
 
 ## Separate MAINT closeout and historical checkpoints
 

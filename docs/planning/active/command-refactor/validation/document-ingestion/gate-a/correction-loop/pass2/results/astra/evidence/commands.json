@@ -1,0 +1,142 @@
+[
+  {
+    "name": "board",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:52.279137+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/astra-p2-review-B2D4t6/board.stdout",
+    "stderr": "/private/tmp/astra-p2-review-B2D4t6/board.stderr"
+  },
+  {
+    "name": "dashboard",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:52.533989+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/astra-p2-review-B2D4t6/dashboard.stdout",
+    "stderr": "/private/tmp/astra-p2-review-B2D4t6/dashboard.stderr"
+  },
+  {
+    "name": "documentation",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:52.766678+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/astra-p2-review-B2D4t6/documentation.stdout",
+    "stderr": "/private/tmp/astra-p2-review-B2D4t6/documentation.stderr"
+  },
+  {
+    "name": "metadata",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-package-metadata.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:53.558287+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/astra-p2-review-B2D4t6/metadata.stdout",
+    "stderr": "/private/tmp/astra-p2-review-B2D4t6/metadata.stderr"
+  },
+  {
+    "name": "whitespace-worktree",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:53.651386+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/astra-p2-review-B2D4t6/whitespace-worktree.stdout",
+    "stderr": "/private/tmp/astra-p2-review-B2D4t6/whitespace-worktree.stderr"
+  },
+  {
+    "name": "whitespace-staged",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:53.659813+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/astra-p2-review-B2D4t6/whitespace-staged.stdout",
+    "stderr": "/private/tmp/astra-p2-review-B2D4t6/whitespace-staged.stderr"
+  },
+  {
+    "name": "whitespace-unit",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "23253a72ba265334e254c6a0bbad53f70cd85313..474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:53.667437+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/astra-p2-review-B2D4t6/whitespace-unit.stdout",
+    "stderr": "/private/tmp/astra-p2-review-B2D4t6/whitespace-unit.stderr"
+  },
+  {
+    "name": "whitespace-preparation",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "35df1fa35162fdd70216ed47e5675a74c748139b..474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "started": "2026-11-11T23:29:53.679876+00:00",
+    "exit": 0,
+    "stdout": "/private/tmp/astra-p2-review-B2D4t6/whitespace-preparation.stdout",
+    "stderr": "/private/tmp/astra-p2-review-B2D4t6/whitespace-preparation.stderr"
+  }
+]

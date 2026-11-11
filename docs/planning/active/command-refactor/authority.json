@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Corrective document pass2/4 (harness round3) is being frozen after committed pre-init byte binding, explicit native-tool Python classification, guarded import/read/network channels and related usability/proof clarifications. Independently review the delta then full bounded directive/readiness aggregate with Sol/Astra/Opus; require each VERIFIED, no mandatory findings, coverage and overall>=9.5 honestly. One pass completed, three remain including this one; no hidden replacements. Continue bounded corrections without intermediate questions, stop on success or after pass4. No production code/config/env/store changes, executable harness construction, stage/model/service effects or settings changes. Existing approved business inputs and numeric ceilings remain unchanged.",
+  "current_scope": "Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1895,8 +1895,8 @@
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
     "status": "revised_planning_requirements",
-    "execution_phase": "remediation",
-    "validation_state": "in_review",
+    "execution_phase": "closeout",
+    "validation_state": "verified",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Corrective document pass2/4 (harness round3) is being frozen after committed pre-init byte binding, explicit native-tool Python classification, guarded import/read/network channels and related usability/proof clarifications. Independently review the delta then full bounded directive/readiness aggregate with Sol/Astra/Opus; require each VERIFIED, no mandatory findings, coverage and overall>=9.5 honestly. One pass completed, three remain including this one; no hidden replacements. Continue bounded corrections without intermediate questions, stop on success or after pass4. No production code/config/env/store changes, executable harness construction, stage/model/service effects or settings changes. Existing approved business inputs and numeric ceilings remain unchanged.",
+    "next_gate": "Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Corrective document pass2/4 (harness round3) is being frozen after committed pre-init byte binding, explicit native-tool Python classification, guarded import/read/network channels and related usability/proof clarifications. Independently review the delta then full bounded directive/readiness aggregate with Sol/Astra/Opus; require each VERIFIED, no mandatory findings, coverage and overall>=9.5 honestly. One pass completed, three remain including this one; no hidden replacements. Continue bounded corrections without intermediate questions, stop on success or after pass4. No production code/config/env/store changes, executable harness construction, stage/model/service effects or settings changes. Existing approved business inputs and numeric ceilings remain unchanged.",
+      "next_gate": "Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2630,9 +2630,9 @@
       "source_observations_sha256": "bbd408be71036faef3aa5b4298232635a4dade2f2e813444df6aae3a2e63fb80",
       "consumer_worklist": "validation/document-ingestion/gate-a/consumer-readiness-matrix.md",
       "consumer_worklist_sha256": "12c2bcc68892f8b5b14023f67d34b190565b7ca22ed79c2a4a9013437c5e9e7c",
-      "status": "corrected_draft_in_review_pass2",
-      "independent_review": "explicitly_authorized_bounded_four_pass_loop",
-      "council_active": true,
+      "status": "directive_design_verified_construction_pending",
+      "independent_review": "reconciled_verified_corrective_pass2",
+      "council_active": false,
       "effects_activation": "not_granted",
       "model_stage": "blocked_until_confirmed_shared_endpoint_window_and_exact_model_counter_inputs",
       "research": "Public release/source metadata only; no resolver/install/model transfer/inference.",
@@ -2661,11 +2661,11 @@
         "document": "directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md",
         "version": "0.3-draft",
         "sha256": "bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803",
-        "status": "corrected_draft_in_review",
+        "status": "verified_draft_construction_pending",
         "construction_approval": "not_granted",
         "versioned_code_root": "tests/readiness/ingest/",
         "runtime_root": ".friday_test/",
-        "council_authority": "explicit_four_pass_document_loop_current_pass2"
+        "council_authority": "four_pass_loop_closed_early_after_success_pass2"
       },
       "directive_council": {
         "loop_pass": 2,
@@ -2680,10 +2680,21 @@
         "corrections": "validation/document-ingestion/gate-a/correction-loop/pass2/corrections.json",
         "corrections_sha256": "a8d1b223b1ef28ce2ca67eddb6bff43c8c0d604c997ad303aeb4852030600ee2",
         "loop_state": "validation/document-ingestion/gate-a/correction-loop/loop-state.json",
-        "status": "authorized_preparing_frozen_dispatch",
+        "status": "closed_verified",
         "design_only": true,
         "construction_authority": false,
-        "effects_authority": false
+        "effects_authority": false,
+        "reviewed_candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+        "all_seats_terminal": true,
+        "target_met": true,
+        "mandatory_findings": 0,
+        "report": "validation/document-ingestion/gate-a/verified-directive-report.md",
+        "report_sha256": "cd9610e6ecae623d6e6372de66c958bb0015c7439466d94c59e0a3bd3fee8511",
+        "reconciliation": "validation/document-ingestion/gate-a/correction-loop/pass2/results/reconciliation.json",
+        "reconciliation_sha256": "0ad00ed276cb65e496dd2e472c300ecc113f2222d4b27682bf103d71eaf3e69e",
+        "passes_completed": 2,
+        "further_automatic_review": false,
+        "claim_scope": "Document readiness/source feasibility only; no construction/effects/acceptance/delivery authority."
       },
       "directive_council_history": [
         {
@@ -2750,7 +2761,8 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "gate_a_readiness_plan_preparation"
+    "current_stage": "gate_a_readiness_plan_preparation",
+    "validation_scope": "CD-CMD-INGEST-GATE-A-001 directive/readiness design and source feasibility only; no executable or runtime qualification."
   },
   "command_refactor_publication": {
     "status": "merged_remote_branch_deleted",
