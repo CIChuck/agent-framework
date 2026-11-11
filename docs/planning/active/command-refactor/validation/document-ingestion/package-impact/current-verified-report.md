@@ -15,7 +15,8 @@ labels in those contracts do not supersede this later controller result; no
 reviewed content was altered at closeout.
 
 Controller status update: Chuck [approved the exact v0.6 impact](../../../approval/ingest-package-impact.md).
-The new [Gate-A plan](../gate-a/readiness-plan.md) is prepared for review and
+The new [Gate-A plan v0.2](../gate-a/readiness-plan.md), including
+[manual execution and production isolation](../gate-a/isolation-requirements.md), is prepared for review and
 scoped activation; its contents are not covered by the old council verdict.
 The formal reports and reviewed contract bytes remain unchanged. No
 implementation or dependency/model/store effects are authorized.

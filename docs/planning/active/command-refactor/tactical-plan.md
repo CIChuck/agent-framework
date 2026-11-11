@@ -9,13 +9,16 @@ The [Gate-A plan](validation/document-ingestion/gate-a/readiness-plan.md),
 [effects envelope](validation/document-ingestion/gate-a/effects-envelope.json),
 [metadata observations](validation/document-ingestion/gate-a/source-observations.json)
 and [consumer worklist](validation/document-ingestion/gate-a/consumer-readiness-matrix.md)
-are prepared for Chuck's review. No resolver, install, model transfer or inference
+are prepared for Chuck's review as v0.2 with the [manual harness/isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md).
+All test code, configuration, input and output must be isolated under `.friday_test/`;
+production LM Studio is excluded and a separate test service is required. These
+requirements are recorded, not implemented. No resolver, install, model transfer or inference
 has run; no new council is active or authorized. The proposal qualifies exact
 Docling/OCR/Certifi/counter inputs in a private target with numeric limits.
 Unbound served-model/counter facts stop the dependent model stage; Qwen remains
 illustrative. Reviewed contracts, existing scope and unrelated state are preserved.
 
-**Next gate:** Chuck approved exact Package Impact Assessment v0.6 (f570318f). Gate-A readiness plan v0.1, effects envelope and initial consumer worklist are prepared for his review; no council is active or newly authorized. Review and explicitly activate the bounded stages/run root/budgets before resolution, artifact installation or model calls. A3 additionally needs exact served-model/endpoint/counter facts; Qwen remains illustrative. Then use measured readiness to finalize the impact appendix and exact construction directive for separate approval. No product/test/live-guide, user-store or delivery effects are authorized now.
+**Next gate:** Exact Package Impact Assessment v0.6 remains approved. Gate-A readiness plan v0.2 now requires a manually runnable, production-isolated harness with code/config/inputs/outputs under .friday_test and an independent LM Studio test process/endpoint; production files, stores, environment and LM Studio are excluded. Requirements are recorded, not implemented or activated. Review and activate exact stages/run root/manifests/budgets before effects; A3 stays blocked until isolated test-service/model/counter facts are bound. No new council or construction authority. Measured readiness will finalize the impact appendix and exact construction directive for separate approval.
 
 ## Separate MAINT closeout and historical checkpoints
 

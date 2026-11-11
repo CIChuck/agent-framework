@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Chuck approved exact Package Impact Assessment v0.6 (f570318f). Gate-A readiness plan v0.1, effects envelope and initial consumer worklist are prepared for his review; no council is active or newly authorized. Review and explicitly activate the bounded stages/run root/budgets before resolution, artifact installation or model calls. A3 additionally needs exact served-model/endpoint/counter facts; Qwen remains illustrative. Then use measured readiness to finalize the impact appendix and exact construction directive for separate approval. No product/test/live-guide, user-store or delivery effects are authorized now."
+  next_gate: "Exact Package Impact Assessment v0.6 remains approved. Gate-A readiness plan v0.2 now requires a manually runnable, production-isolated harness with code/config/inputs/outputs under .friday_test and an independent LM Studio test process/endpoint; production files, stores, environment and LM Studio are excluded. Requirements are recorded, not implemented or activated. Review and activate exact stages/run root/manifests/budgets before effects; A3 stays blocked until isolated test-service/model/counter facts are bound. No new council or construction authority. Measured readiness will finalize the impact appendix and exact construction directive for separate approval."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3296,3 +3296,11 @@ events:
   action: recorded maintainer package-impact approval and prepared Gate-A plan
   note: "Chuck approved exact v0.6 assessment and directed continuation. Approval binds f570318f/ae813002 bytes presented at fd33d5f5; the package-impact condition is satisfied for that version. Concrete Gate-A plan/envelope/source metadata/worklist prepared for review, not activated. No new council, resolver/install, model/provider/store or product/test/live-guide effect. Current contracts and user state preserved; construction remains separately approved."
   evidence: docs/planning/active/command-refactor/approval/ingest-package-impact.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T20:49:52.318443+00:00"
+  actor: Codex
+  actor_role: agent
+  action: recorded manual harness and production isolation requirements
+  note: "Chuck requires all test code/config/input/output isolated from production. Gate-A plan v0.2 uses .friday_test, private configurations/caches and an independent LM Studio test process/endpoint; production stays untouched. Planning requirements only, no harness or environment created and no execution/council/construction activated."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/gate-a/isolation-requirements.md

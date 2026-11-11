@@ -1,8 +1,8 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/pushed. The current INGEST embedding-pool compatibility
-design now includes revised test/documentation requirements pending fresh review;
-Gate-A execution and MAINT human UAT/acceptance remain pending.
+**Status:** started/pushed. Exact INGEST package impact v0.6 is approved;
+Gate-A readiness plan v0.2 with manual-harness/production-isolation requirements
+is prepared for review. Execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -45,7 +45,12 @@ remains VERIFIED for that document/source-feasibility scope, not execution.
 The [new Gate-A plan](validation/document-ingestion/gate-a/readiness-plan.md),
 [effects envelope](validation/document-ingestion/gate-a/effects-envelope.json) and
 [consumer worklist](validation/document-ingestion/gate-a/consumer-readiness-matrix.md)
-are prepared locally for Chuck's review. Execution phase: planning; validation
+are prepared locally for Chuck's review as v0.2. The [manual harness and isolation
+requirements](validation/document-ingestion/gate-a/isolation-requirements.md) keep
+all execution code/config/input/output under `.friday_test/` and require an
+independent LM Studio test service. Production code, configuration, installation,
+stores and model service remain untouched. The harness has not been implemented.
+Execution phase: planning; validation
 state: in_review for this new plan. Public metadata/source research only has run.
 Explicit scoped activation precedes resolution/install/conversion/model effects;
 exact local deployment inputs precede model qualification. No new council, product

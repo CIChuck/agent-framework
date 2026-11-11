@@ -3265,3 +3265,36 @@ artifact installation/model transfer, conversion, inference or store operation.
 The plan is prepared for Chuck's review before scoped activation. The approved
 assessment and reviewed REM/annex/companion/criteria/authorization bytes are
 preserved; changed post-readiness impact needs a new exact-version binding.
+
+
+## Manual readiness harness and production boundary — 2026-11-11
+
+Chuck confirms local LM Studio is part of the production environment and requires
+all readiness code, configuration, test input and test output to be isolated.
+The earlier discussion also establishes manual operation, controlled generated
+fixtures plus explicitly supplied private documents, and a project-local
+`.friday_test/` workspace. [Requirements](validation/document-ingestion/gate-a/isolation-requirements.md)
+record these decisions without activating effects or product construction.
+
+[Readiness plan v0.2](validation/document-ingestion/gate-a/readiness-plan.md) and
+[the effects envelope](validation/document-ingestion/gate-a/effects-envelope.json)
+replace the v0.1 temporary-root proposal. All runtime test code, private dependency
+installation/configuration, input copies/assets, caches/logs and outputs are
+confined to the test workspace and fresh per-run roots. Path/import/environment
+and child-process controls must demonstrate the boundary before use. No current
+`.gitignore` or production package/configuration/lock/test/guide file is changed.
+
+A production LM Studio endpoint would change its request queue/logs and is
+excluded. Embedding checks require an independently owned test process/server,
+private configuration/state and manifest-bound test model assets. A separate
+port alone is insufficient. A3 stays blocked until that isolation and exact
+model/counter facts are bound. Same-host resource contention is limited, not
+claimed eliminated. No production process, settings or model lifecycle changes
+are permitted. Later integration stores are reserved fresh test paths; A0–A4
+still make no Memory store writes.
+
+This is documentation-only clarification under the current maintainer direction.
+No harness/environment/test directory has been built, no supplied documents
+selected, no package/model installed, no inference or store call made and no
+new council launched. The exact approved assessment and other reviewed inputs
+remain unchanged; construction and bounded effects retain their separate gates.

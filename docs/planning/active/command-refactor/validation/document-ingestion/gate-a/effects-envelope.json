@@ -1,8 +1,8 @@
 {
   "unit": "REM-CMD-INGEST-001-GATE-A",
-  "version": "0.1-draft",
+  "version": "0.2-draft",
   "status": "NOT_ACTIVATED",
-  "scope": "Isolated upstream dependency/converter/counter feasibility and source-linked final-directive inventory; no product implementation.",
+  "scope": "Isolated manually executable upstream dependency/converter/counter feasibility and source-linked final-directive inventory. All runtime code/config/input/output test-owned; no production mutation or product implementation.",
   "assessment_approval": {
     "record": "../../../approval/ingest-package-impact.md",
     "version": "0.6",
@@ -29,13 +29,24 @@
     "threads": 4
   },
   "paths": {
-    "run_root": "/private/tmp/friday-ingest-gate-a-001/<activation-id>",
-    "target_prefix": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/target",
-    "source_export": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/source-export",
-    "wheelhouse": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/wheelhouse",
-    "cache_root": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/cache",
-    "reports": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/reports",
-    "asset_root": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/target/share/friday/ingestion-assets/<manifest-sha256>"
+    "project_root": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "test_workspace": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test",
+    "run_root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>",
+    "harness_copy": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/harness",
+    "target_prefix": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/target",
+    "source_export": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/source-export",
+    "test_config": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/config",
+    "wheelhouse": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/wheelhouse",
+    "cache_root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/cache",
+    "fixtures": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/fixtures",
+    "generated_inputs": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/inputs/generated",
+    "supplied_inputs": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/inputs/supplied",
+    "logs": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/logs",
+    "reports": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/reports",
+    "asset_root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/assets/<manifest-sha256>",
+    "reserved_integration_vector": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/vector",
+    "reserved_integration_graph": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/graph.json",
+    "reserved_integration_state": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/state"
   },
   "budgets": {
     "metadata_bytes": 67108864,
@@ -105,13 +116,13 @@
       "id": "A2",
       "name": "manifest-owned assets and offline converter probes",
       "network": "exact promoted asset URLs during transfer; denied during conversion",
-      "effects": "Publish only verified assets; run synthetic fixtures/standalone upstream probes under limits. No user documents/stores or production command path."
+      "effects": "Publish verified assets; run generated/supplied manifest-bound fixtures and standalone probes under limits. Supplied originals unchanged; no production command/store path or external content upload."
     },
     {
       "id": "A3",
       "name": "embedding qualification",
-      "network": "none until exact dedicated local endpoint/served-artifact/counter/role record is bound",
-      "effects": "At most stated synthetic embedding calls after explicit endpoint activation. No remote/paid provider, model download/swap/load/unload or persistent store access."
+      "network": "none until independently owned local test endpoint/process/private configuration/served-artifact/counter/role record is bound; production LM Studio excluded",
+      "effects": "At most stated local test embedding calls for manifested inputs after explicit isolated-endpoint activation. No production endpoint, remote/paid provider, model download/swap/load/unload or persistent store access."
     },
     {
       "id": "A4",
@@ -126,22 +137,56 @@
     "effective_limits_and_dimensions": null,
     "selected_baseline_service_configuration": null,
     "replacement_model": null,
-    "status": "A3 blocked until activation binds exact facts; aliases do not qualify. Qwen is illustrative."
+    "status": "A3 blocked until independent test-service/process/config/model/counter facts are bound. Production endpoint excluded; Qwen remains illustrative.",
+    "test_service_process_identity": null,
+    "private_service_config_log_cache_paths": null,
+    "isolated_test_model_asset_manifest": null
   },
   "excluded_effects": [
+    "Production LM Studio requests/process/settings changes and reuse of production configuration, credentials, caches or stores",
     "Working .venv/uv.lock/pyproject or package source/test modification",
     "Dirty YAML, personal stores, .friday-old, exports or global model caches",
     "Third-party source distributions/build scripts, executable installers, new runtime services",
     "Remote OCR/VLM, automatic backend fallback, URL ingestion or extra formats",
     "Live Finance/provider tests or credential use",
     "Qwen selection, re-embedding, old-store reset/migration",
-    "Product/construction/council/push/PR/publication authority"
+    "Product/construction/council/push/PR/publication authority",
+    "Creating/resetting any Chroma store during A0\u2013A4; integration store paths are reserved for later approved work"
   ],
   "activation": {
     "maintainer_approval_of_this_plan": "PENDING",
     "activation_id_and_exact_run_root": "REQUIRED_BEFORE_EXECUTION",
     "manifest_review_record": "REQUIRED_BEFORE_EACH_STAGE_PROMOTION",
     "operator_local_model_record": "REQUIRED_BEFORE_A3",
-    "no_automatic_stage_promotion_on_missing_facts": true
+    "no_automatic_stage_promotion_on_missing_facts": true,
+    "boundary_preflight": "REQUIRED_BEFORE_EFFECTS; explicit test paths/process/endpoint, origins and negative controls"
+  },
+  "isolation": {
+    "requirements": "isolation-requirements.md",
+    "status": "REQUIRED_NOT_IMPLEMENTED",
+    "existing_production_endpoint_allowed": false,
+    "test_lm_studio_process_and_config_required": true,
+    "all_probe_writes_within_run_root": true,
+    "shared_asset_publish": "Only promoted A2 publisher; new manifest directory from verified run-local staging; never overwrite.",
+    "working_checkout_or_venv_imports_allowed": false,
+    "ambient_application_configuration_or_credentials_allowed": false,
+    "path_alias_or_production_overlap": "REFUSE_BEFORE_EFFECTS",
+    "test_workspace_git_ignore": "Required in separately approved harness scope before generation; not changed now.",
+    "production_containment_claim": "Demonstrate with negative controls and protected-state checks; Python audit is not an OS sandbox.",
+    "shared_host_resource_contention": "Limits apply; zero performance impact is not claimed.",
+    "shared_input_publish": "Only explicit fixture/supplied-input preparation; new manifest-named directory from run-local staging; never overwrite originals or existing inputs."
+  },
+  "manual_operation": {
+    "full_and_per_stage_runs": true,
+    "offline_extraction_chunking_mode": true,
+    "no_effects_preflight": true,
+    "cli_status": "NOT_IMPLEMENTED; publish actual commands only after implementation"
+  },
+  "input_policy": {
+    "baseline": "Hash-bound generated fixtures with known expected content.",
+    "supplemental": "Explicitly supplied input manifest only; read-only copies, no in-place conversion/scanning/upload.",
+    "originals": "Unchanged; content stays private unless a sanitized report is separately selected.",
+    "embedding": "Only explicitly manifested test inputs and independently activated local test service.",
+    "selection": "NONE_SELECTED"
   }
 }

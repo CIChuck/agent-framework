@@ -1,19 +1,21 @@
 {
   "outcome": "PASS",
-  "baseline_commit": "fd33d5f52277a4d5da0bc0897d97c9360f326ced",
-  "logical_before_status": "752f04cdc2e01dcdb1ee9e28c5ad369a1065722fab6e5f0ad98893b49ef70f09",
-  "assessment_approved_exact_version": "0.6/f570318f",
-  "reviewed_pins_preserved": 9,
-  "nonplanning_files_preserved": 16671,
-  "protected_local_records_preserved": 6,
-  "history_preserved": true,
-  "unrelated_status_preserved": true,
-  "source_anchors_verified": 43,
-  "initial_consumer_families": 20,
-  "baseline_config_families": 8,
-  "manifest_URL_hash_consistency": "PASS",
-  "activation": "NOT_GRANTED",
-  "admin_checks_observed": [
+  "scope": "Planning clarification only; isolation requirements not implemented or runtime-tested.",
+  "baseline_commit": "b2bfbe2c7471808bb7272c61bd71ea9a441eede8",
+  "logical_before_status": "c04e2a4a0dc837fca9936e12f4e4fd909d33147ccfe6415c1c6239708b7ee1d4",
+  "protected_files_preserved": 17755,
+  "reviewed_document_pins_preserved": 9,
+  "production_local_metadata_records_preserved": 9,
+  "test_root_created": false,
+  "history_append_only_and_historical_gate_tails": "PASS",
+  "current_navigation_authority_and_readiness_hashes": "PASS",
+  "readiness_version": "0.2-draft",
+  "effects_activation": "NOT_GRANTED",
+  "production_lm_studio_endpoint_allowed": false,
+  "independent_test_process_required": true,
+  "manual_harness_status": "REQUIRED_NOT_IMPLEMENTED",
+  "independent_review": "not requested or claimed",
+  "administrative_checks": [
     {
       "argv": [
         "uv",
@@ -28,7 +30,7 @@
         "validate"
       ],
       "exit": 0,
-      "summary": "36 tasks valid"
+      "result": "36 tasks valid"
     },
     {
       "argv": [
@@ -45,7 +47,7 @@
         "--check"
       ],
       "exit": 0,
-      "summary": "dashboard current"
+      "result": "Dashboard current"
     },
     {
       "argv": [
@@ -60,7 +62,7 @@
         "scripts/check-documentation-lifecycle.py"
       ],
       "exit": 0,
-      "summary": "1054 Markdown files"
+      "result": "1055 Markdown files valid"
     },
     {
       "argv": [
@@ -75,7 +77,7 @@
         "scripts/check-package-metadata.py"
       ],
       "exit": 0,
-      "summary": "18 manifests"
+      "result": "18 package manifests valid"
     },
     {
       "argv": [
@@ -86,19 +88,20 @@
         "docs/planning"
       ],
       "exit": 0,
-      "summary": "tracked planning whitespace clean; new files also checked in staged diff before commit"
+      "result": "Clean; staged diff is checked again before commit"
     }
   ],
   "execution_not_performed": [
-    "dependency resolution",
-    "package/model artifact downloads",
-    "installation",
-    "conversion",
-    "pytest",
-    "provider inference",
-    "store operation"
-  ],
-  "independent_review": "not requested or claimed",
-  "current_preparation_hash_consistency": "PASS",
-  "final_document_readability_review": "Completed before staged whitespace check"
+    "harness construction",
+    "test root/environment/config/input generation",
+    "dependency resolution/install",
+    "model or asset transfer",
+    "LM Studio request/process/config change",
+    "document conversion",
+    "embedding inference",
+    "Memory/Chroma operation",
+    "product test execution",
+    "new council",
+    "push"
+  ]
 }

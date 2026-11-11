@@ -1,6 +1,6 @@
 # INGEST-001 — Gate-A dependency and capability readiness plan
 
-Version: **0.1 — prepared for maintainer review**, 2026-11-11.
+Version: **0.2 — isolated manual harness requirements; prepared for maintainer review**, 2026-11-11.
 Execution status: **NOT ACTIVATED**. Public metadata/source research has been
 performed; dependency resolution, artifact installation, model transfer,
 conversion, inference and store operations have not.
@@ -28,6 +28,8 @@ paths, budgets, hosts, stages and activation prerequisites. [Source observations
 contain exact candidate wheel URLs/digests and commit-bound asset URLs. They are
 metadata observations, not downloaded-artifact or compatibility evidence.
 [The consumer matrix](consumer-readiness-matrix.md) binds the final inventory work.
+The maintainer's [production-isolation and manual-harness requirements](isolation-requirements.md)
+control test code, configuration, inputs, outputs and local model-service use.
 
 ## Selected candidates to investigate
 
@@ -52,23 +54,54 @@ stop, not permission to build arbitrary third-party source or change Python.
 
 ## Private layout and effects boundaries
 
-At activation, create one new absent directory:
-`/private/tmp/friday-ingest-gate-a-001/<activation-id>/`. Resolve its real path,
-record ownership, and refuse an existing/nonempty or aliased destination. The
-root contains `source-export/`, `target/`, `wheelhouse/`, `cache/`, `fixtures/`
-and `reports/`. Nothing is written to the working checkout or `.venv`.
+Use the explicitly selected project-local workspace `<project>/.friday_test/`.
+At activation, resolve the project root and create a new absent
+`<project>/.friday_test/runs/<activation-id>/`. This replaces v0.1's temporary-root
+proposal. Existing shared test inputs/assets need ownership/hash verification;
+an existing or aliased run destination is refused. The run contains `harness/`,
+`source-export/`, `target/`, `config/`, `wheelhouse/`, `cache/`, `fixtures/`,
+`state/`, `logs/` and `reports/`. Reserve `vector/` and `graph.json` only for later
+approved integration testing; A0–A4 do not create or write a Memory store.
 
-All UV/XDG/Hugging Face/Transformers/Torch/temp caches point into this root.
-Do not repurpose HOME or rely on a global cache. Publish verified assets under
-`target/share/friday/ingestion-assets/<manifest-sha256>/`, then make them read-only.
+All executable test code and generated configuration run from that isolated copy
+and target. Working packages/tests, `.venv`, lock/metadata, user YAML/`.env`,
+`.friday/`, `.friday-old/`, exports and production services remain unchanged.
+No live-checkout/working-environment imports, application defaults, ambient
+credentials or production configuration may enter the test process. Set all
+UV/XDG/Hugging Face/Transformers/Torch/temp/log paths explicitly under the run
+without repurposing HOME. Verify child paths and module origins too.
+
+Publish verified assets under `.friday_test/assets/<manifest-sha256>/`, then make
+them read-only. Stage and hash them in the run first; only the promoted A2 asset
+publisher may create a new shared manifest directory, never overwrite one.
+Synthetic fixtures and explicitly supplied read-only document copies reside
+under `.friday_test/inputs/`; probes read these and write only within their run.
+The future exact harness scope must add an explicit `.friday_test/` ignore rule
+before generation. No harness, test directory or ignore rule is created now.
+
 The manifest records normalized paths, revisions, licenses and per-file SHA256.
-Reject path escapes, symlinks, duplicate members and missing/different bytes.
+Reject escapes, overlapping production paths, symlinks, duplicate members and
+missing/different bytes before effects. No reset/cleanup/migration of existing
+user state is permitted. The actual containment and negative witnesses must
+support the isolation claim; a Python audit guard alone is not an OS sandbox.
 
-Only synthetic documents/text and explicitly bound local model evidence are
-inputs. Preserve dirty YAMLs, `.friday-old`, exports, user documents/stores and
-accepted historical bundles. No persistent Memory namespace, backup/restore,
-maintenance run, provider Finance test, model swap/load/unload or credential use
-is authorized by this plan. A3 remains locked until its operator facts are bound.
+Use generated fixtures for known expected results and only explicitly supplied
+real documents for supplemental coverage. Copy supplied files without changing
+the originals; no directory scanning, in-place conversion or external upload.
+Bind source hashes and expected passages/tables/questions. Current inputs remain
+unselected. The same limits apply to both classes.
+
+Embedding tests must use a separately owned LM Studio test process/server and
+private config/log/cache paths. The model identity may match production, but no
+requests, load/unload, settings changes or process actions may target production
+LM Studio. A different port alone is insufficient. If an independent instance
+cannot be established, A3 stays blocked. Shared-host resource contention is
+bounded, not claimed eliminated. The full [isolation requirements](isolation-requirements.md)
+also define manual commands, preflight, environment and boundary-failure evidence.
+
+No persistent Memory namespace, backup/restore, maintenance run, provider Finance
+test, model swap/load/unload or credential use is authorized by this plan. A3
+remains locked until its independent endpoint/model facts and effects are bound.
 
 ### Proposed hard budgets
 
@@ -79,8 +112,8 @@ is authorized by this plan. A3 remains locked until its operator facts are bound
 | Private retained disk | 16 GiB total; require at least 20 GiB free before starting. |
 | Conversion process tree | 8 GiB peak RSS, one conversion, four CPU threads. No GPU profile is qualified. |
 | Time | Two hours overall; 20 minutes installation; 300 seconds single conversion, 180 seconds warm conversion, 30 seconds cleanup/quiescence grace. |
-| Synthetic document admission | 32 MiB compressed; 128 MiB expanded; 2048 archive members; 50 PDF pages; 32 sheets; 20,000 rows/sheet; 250,000 total cells; 100 slides; 5,000 total shapes. |
-| Optional local embedding stage | At most 64 requests, 256 vectors, 131,072 aggregate input tokens; synthetic inputs only. |
+| Document admission | 32 MiB compressed; 128 MiB expanded; 2048 archive members; 50 PDF pages; 32 sheets; 20,000 rows/sheet; 250,000 total cells; 100 slides; 5,000 total shapes. |
+| Optional local embedding stage | At most 64 requests, 256 vectors, 131,072 aggregate input tokens; explicitly manifested test inputs only. |
 
 These are proposed qualification/workload ceilings, not measured performance or
 final product limits. Record cold/warm timing, peak memory, installed/download
@@ -178,7 +211,7 @@ Python audit containment is not an OS sandbox. No asset auto-fetch or global-cac
 fallback is accepted. Test missing/hash-tampered/readonly assets, plus Office
 conversion without PDF assets where its pipeline does not require them.
 
-Prepare at least 30 genuine synthetic documents: six PDF, six DOCX, ten XLSX,
+The repeatable baseline is at least 30 genuine synthetic documents: six PDF, six DOCX, ten XLSX,
 eight PPTX, plus shared malformed/limit controls. Bind fixture hashes and distinctive
 source text. Exercise:
 
@@ -220,11 +253,12 @@ of the user's selected service or served weights. The existing Nomic tokenizer
 repository snapshot is merely a candidate; it must match the actual deployment.
 Read no dirty YAML, global model cache or personal model file by inference.
 
-Before any inference, activation must bind: dedicated local endpoint and service
-selection; served artifact/revision and digest; tokenizer data/digest; supported
+Before any inference, activation must bind: independent LM Studio test process/server,
+private config/log/cache paths, dedicated local endpoint and service selection; served artifact/revision and digest; tokenizer data/digest; supported
 capacity and returned dimensions; query/document/special-token preparation;
-normalization; and an explicit synthetic-call allowance. The plan currently leaves
-those operator facts unbound, so A3 is blocked. No model load/unload, existing-store
+normalization; and an explicit call/input-manifest allowance. The plan currently leaves
+those operator facts unbound, so A3 is blocked. Production LM Studio is excluded;
+sharing its endpoint is not isolation. No model load/unload, existing-store
 access or background maintenance is permitted. Qwen 4B remains illustrative.
 
 Qualify omitted-new-field baseline fixtures B01–B08, preserving actual pool/default/
@@ -269,10 +303,13 @@ TOOLS-DOC adoption, provider/store effects, acceptance, push or publication.
 ## Activation checklist and present stop point
 
 This plan is ready for Chuck's document review, **not executed qualification**.
+The documented harness must support manual full/stage runs without an agent, an
+offline extraction/chunking mode and a no-effects preflight. Construction has not
+started; no working CLI command is advertised before implementation.
 Activation records its exact version/hash, permitted stages, fresh run root,
 manifest reviewer and limits. A0 must precede any artifact-stage promotion;
 A1/A2 require exact promoted artifact/license manifests. A3 additionally needs
-operator deployment facts and an explicit call allowance. Unknown facts stop only
+operator test-deployment facts and an explicit call allowance. Unknown facts stop only
 the dependent stage; they do not become invented defaults or an overall pass.
 
 No council, package installation, source/test/guide implementation or model call
