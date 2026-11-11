@@ -34,22 +34,24 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Current INGEST package-impact readiness — VERIFIED for v0.6:**
-[Assessment](package-impact-assessment.md), [amended REM](remediation/REM-CMD-INGEST-001-pdf-docx.md),
-[test migration](test-migration-plan.md), [canonical architecture](command-architecture-update-plan.md)
-and [guide scope](guide-update-handoff.md) retain exact reviewed bytes at `ae813002`.
-[The current council record](validation/document-ingestion/package-impact/current-verified-report.md)
-qualifies all three fresh round6 seats, zero mandatory findings and coverage/overall
-each >=9.5. Execution phase: planning; validation state: verified for documents
-only. All reviews are terminal; the bounded loop has ended.
+**Current INGEST — impact approved; Gate-A plan ready for review:**
+Chuck [approved exact assessment v0.6](approval/ingest-package-impact.md),
+SHA256 `f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176`.
+The [assessment](package-impact-assessment.md), [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md),
+test/architecture/guide contracts retain their reviewed bytes.
+[Round6 council](validation/document-ingestion/package-impact/current-verified-report.md)
+remains VERIFIED for that document/source-feasibility scope, not execution.
 
-Chuck's exact-version satisfaction with the package impact and remaining
-conditions is pending. Next comes a bounded Gate-A readiness/effects plan for
-separate activation, then the measured final appendix and exact construction
-directive for approval before code. No test, live-guide or product implementation,
-dependency installation, provider/store operation or delivery is authorized.
-Frozen pre-review labels in the contracts describe that freeze and are superseded
-by the current controller result without changing reviewed content.
+The [new Gate-A plan](validation/document-ingestion/gate-a/readiness-plan.md),
+[effects envelope](validation/document-ingestion/gate-a/effects-envelope.json) and
+[consumer worklist](validation/document-ingestion/gate-a/consumer-readiness-matrix.md)
+are prepared locally for Chuck's review. Execution phase: planning; validation
+state: in_review for this new plan. Public metadata/source research only has run.
+Explicit scoped activation precedes resolution/install/conversion/model effects;
+exact local deployment inputs precede model qualification. No new council, product
+implementation, live-guide rewrite, user-store mutation or delivery is authorized.
+Measured readiness will bind the final appendix and construction directive for
+separate approval. Prior assessment approval persists for unchanged exact bytes.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

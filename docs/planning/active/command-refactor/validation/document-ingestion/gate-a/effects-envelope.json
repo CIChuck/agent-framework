@@ -1,0 +1,147 @@
+{
+  "unit": "REM-CMD-INGEST-001-GATE-A",
+  "version": "0.1-draft",
+  "status": "NOT_ACTIVATED",
+  "scope": "Isolated upstream dependency/converter/counter feasibility and source-linked final-directive inventory; no product implementation.",
+  "assessment_approval": {
+    "record": "../../../approval/ingest-package-impact.md",
+    "version": "0.6",
+    "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+    "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+    "observed_head_before_planning": "fd33d5f52277a4d5da0bc0897d97c9360f326ced"
+  },
+  "candidate_requirements": [
+    "docling[rapidocr]==2.150.0",
+    "rapidocr==3.10.0",
+    "certifi==2026.10.23"
+  ],
+  "security_floor": {
+    "certifi": ">=2026.10.19",
+    "candidate_exact_version": "2026.10.23",
+    "no_unlocked_post_install_upgrade": true
+  },
+  "target": {
+    "os": "macOS/Darwin",
+    "arch": "arm64",
+    "python": "3.13.10",
+    "device": "CPU",
+    "parallel_conversions": 1,
+    "threads": 4
+  },
+  "paths": {
+    "run_root": "/private/tmp/friday-ingest-gate-a-001/<activation-id>",
+    "target_prefix": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/target",
+    "source_export": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/source-export",
+    "wheelhouse": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/wheelhouse",
+    "cache_root": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/cache",
+    "reports": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/reports",
+    "asset_root": "/private/tmp/friday-ingest-gate-a-001/<activation-id>/target/share/friday/ingestion-assets/<manifest-sha256>"
+  },
+  "budgets": {
+    "metadata_bytes": 67108864,
+    "metadata_requests": 500,
+    "package_download_bytes": 4294967296,
+    "asset_download_bytes": 1073741824,
+    "total_retained_disk_bytes": 17179869184,
+    "free_disk_before_start_bytes": 21474836480,
+    "peak_child_process_tree_rss_bytes": 8589934592,
+    "overall_wall_seconds": 7200,
+    "metadata_wall_seconds": 900,
+    "install_wall_seconds": 1200,
+    "single_conversion_wall_seconds": 300,
+    "warm_conversion_wall_seconds": 180,
+    "child_quiescence_seconds": 30,
+    "local_embedding_requests_max": 64,
+    "local_embedding_vectors_max": 256,
+    "local_embedding_total_input_tokens_max": 131072
+  },
+  "document_probe_limits": {
+    "compressed_file_bytes": 33554432,
+    "expanded_archive_bytes": 134217728,
+    "archive_members": 2048,
+    "pdf_pages": 50,
+    "xlsx_sheets": 32,
+    "xlsx_rows_per_sheet": 20000,
+    "xlsx_cells_total": 250000,
+    "pptx_slides": 100,
+    "pptx_shapes_total": 5000
+  },
+  "allowed_public_metadata_hosts": [
+    "pypi.org",
+    "api.github.com",
+    "raw.githubusercontent.com",
+    "github.com",
+    "huggingface.co",
+    "docling-project.github.io",
+    "spdx.org",
+    "cdla.dev"
+  ],
+  "artifact_transfer_hosts_after_manifest_promotion": [
+    "files.pythonhosted.org",
+    "huggingface.co",
+    "cdn-lfs.huggingface.co",
+    "cdn-lfs-us-1.hf.co",
+    "cas-bridge.xethub.hf.co"
+  ],
+  "permitted_artifact_urls": "Only exact hash-bound URLs in the promoted manifest. Seed candidates are in source-observations.json. New redirect hosts stop; no wildcard host or implicit mirror.",
+  "manifest_review": {
+    "owner": "Codex controller during explicitly activated readiness work",
+    "requirement": "Before each stage promotion, record full exact URL/revision/size/license/digest manifest, review it within the approved hosts/budgets, and reject unknowns. Any source build, custom model code, unlisted host or material package-impact change returns to Chuck."
+  },
+  "stages": [
+    {
+      "id": "A0",
+      "name": "metadata/graph and inventory",
+      "network": "metadata hosts only",
+      "effects": "Resolve in private exported metadata; no working-lock change, install, source build or inference. If archive payload is needed to obtain metadata, stop until an explicit archive-inspection allowance and URL manifest is recorded."
+    },
+    {
+      "id": "A1",
+      "name": "hash-pinned wheels and isolated target",
+      "network": "exact promoted wheel URLs only",
+      "effects": "Download/install approved compatible third-party wheels in fresh target. Build workspace wheels only from the exact private source export with separately pinned existing build tools; no source edits. Inspect OCR routes/keys and licenses before model-stage promotion. No global environment mutation or automatic model fetch."
+    },
+    {
+      "id": "A2",
+      "name": "manifest-owned assets and offline converter probes",
+      "network": "exact promoted asset URLs during transfer; denied during conversion",
+      "effects": "Publish only verified assets; run synthetic fixtures/standalone upstream probes under limits. No user documents/stores or production command path."
+    },
+    {
+      "id": "A3",
+      "name": "embedding qualification",
+      "network": "none until exact dedicated local endpoint/served-artifact/counter/role record is bound",
+      "effects": "At most stated synthetic embedding calls after explicit endpoint activation. No remote/paid provider, model download/swap/load/unload or persistent store access."
+    },
+    {
+      "id": "A4",
+      "name": "readiness report and final-directive handoff",
+      "network": "none",
+      "effects": "Report measured facts, unsupported rules and scope deltas. No construction or new council automatically."
+    }
+  ],
+  "unbound_model_inputs": {
+    "local_endpoint": null,
+    "served_artifact_path_and_sha256": null,
+    "effective_limits_and_dimensions": null,
+    "selected_baseline_service_configuration": null,
+    "replacement_model": null,
+    "status": "A3 blocked until activation binds exact facts; aliases do not qualify. Qwen is illustrative."
+  },
+  "excluded_effects": [
+    "Working .venv/uv.lock/pyproject or package source/test modification",
+    "Dirty YAML, personal stores, .friday-old, exports or global model caches",
+    "Third-party source distributions/build scripts, executable installers, new runtime services",
+    "Remote OCR/VLM, automatic backend fallback, URL ingestion or extra formats",
+    "Live Finance/provider tests or credential use",
+    "Qwen selection, re-embedding, old-store reset/migration",
+    "Product/construction/council/push/PR/publication authority"
+  ],
+  "activation": {
+    "maintainer_approval_of_this_plan": "PENDING",
+    "activation_id_and_exact_run_root": "REQUIRED_BEFORE_EXECUTION",
+    "manifest_review_record": "REQUIRED_BEFORE_EACH_STAGE_PROMOTION",
+    "operator_local_model_record": "REQUIRED_BEFORE_A3",
+    "no_automatic_stage_promotion_on_missing_facts": true
+  }
+}

@@ -1,0 +1,341 @@
+{
+  "observed_at": "2026-11-11T20:07:19.997953+00:00",
+  "activity": "Public release/source metadata research only; no resolver, install, model/weight transfer or provider inference.",
+  "target_observed": {
+    "os": "Darwin",
+    "architecture": "arm64",
+    "python": "3.13.10"
+  },
+  "candidate_requirements": [
+    "docling[rapidocr]==2.150.0",
+    "rapidocr==3.10.0",
+    "certifi==2026.10.23"
+  ],
+  "selected_release_commit": "6852c27fb87dafaaa1a564545a8ce78d4565b186",
+  "package_seeds": [
+    {
+      "name": "docling",
+      "version": "2.150.0",
+      "source": "https://pypi.org/pypi/docling/2.150.0/json",
+      "metadata_sha256": "fcfefef404f2ef69dca82fcaf580b2486fa2df014d75bd92b91e4dd2d647bb01",
+      "requires_python": "<4.0,>=3.10",
+      "declared_license": "MIT",
+      "candidate_wheels": [
+        {
+          "filename": "docling-2.150.0-py3-none-any.whl",
+          "url": "https://files.pythonhosted.org/packages/52/f5/fe5b938b1160b06616c61f0be7f5304298f7012cc7ccd5b885a0b72d8c18/docling-2.150.0-py3-none-any.whl",
+          "sha256": "beac71791c1eba7e1e5ef423d11ff8026887c8cae8643d99d055d447c476b662",
+          "size_bytes": 5352
+        }
+      ],
+      "artifact_status": "metadata observed only; wheel bytes NOT downloaded or verified here"
+    },
+    {
+      "name": "docling-slim",
+      "version": "2.150.0",
+      "source": "https://pypi.org/pypi/docling-slim/2.150.0/json",
+      "metadata_sha256": "e76483c6ee36131f06c1bec797b837d97e005c8b58355c96112569a6c87748c0",
+      "requires_python": "<4.0,>=3.10",
+      "declared_license": "MIT",
+      "candidate_wheels": [
+        {
+          "filename": "docling_slim-2.150.0-py3-none-any.whl",
+          "url": "https://files.pythonhosted.org/packages/e5/67/b8d662b3d9f9fce15f8db724b8e967cbffc0f4ae381d644ae2ac80e09266/docling_slim-2.150.0-py3-none-any.whl",
+          "sha256": "bf152723ea98318933e1e07dd01a15aaabdb1a4cfb5627557c839c18ddeed869",
+          "size_bytes": 1247415
+        }
+      ],
+      "artifact_status": "metadata observed only; wheel bytes NOT downloaded or verified here"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23",
+      "source": "https://pypi.org/pypi/certifi/2026.10.23/json",
+      "metadata_sha256": "546ce90e02c152f5ff565baca6bc2a8f43c355855f637756f49a0143e312bdb2",
+      "requires_python": ">=3.7",
+      "declared_license": "MPL-2.0",
+      "candidate_wheels": [
+        {
+          "filename": "certifi-2026.10.23-py3-none-any.whl",
+          "url": "https://files.pythonhosted.org/packages/32/d1/a3652fe2c19134d0d15922177821d863cbd7e842d53a21bbe7e8e3a1b5ac/certifi-2026.10.23-py3-none-any.whl",
+          "sha256": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1",
+          "size_bytes": 135082
+        }
+      ],
+      "artifact_status": "metadata observed only; wheel bytes NOT downloaded or verified here"
+    },
+    {
+      "name": "rapidocr",
+      "version": "3.10.0",
+      "source": "https://pypi.org/pypi/rapidocr/3.10.0/json",
+      "metadata_sha256": "0adb90bf70b163712e23b75ea58454f7780f60900234e13ca77a2a3bb705ba99",
+      "requires_python": "<4,>=3.8",
+      "declared_license": "Apache-2.0",
+      "candidate_wheels": [
+        {
+          "filename": "rapidocr-3.10.0-py3-none-any.whl",
+          "url": "https://files.pythonhosted.org/packages/59/07/203065283bba0c5e9c10af3602dc25ab3e59ee54dc2d1d22c8faeabf5ed8/rapidocr-3.10.0-py3-none-any.whl",
+          "sha256": "2fc34e26cd0f48514804a94f8832283039c7334076bff60768b1fed9ad068050",
+          "size_bytes": 27288134
+        }
+      ],
+      "artifact_status": "metadata observed only; wheel bytes NOT downloaded or verified here"
+    }
+  ],
+  "asset_candidates": [
+    {
+      "role": "layout",
+      "repo": "docling-project/docling-layout-heron",
+      "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+      "path": "config.json",
+      "url": "https://huggingface.co/docling-project/docling-layout-heron/resolve/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/config.json",
+      "size_bytes": 3268,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "98434d37ace2399b824d685b0795ab7a68e53dd2",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "layout",
+      "repo": "docling-project/docling-layout-heron",
+      "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+      "path": "model.safetensors",
+      "url": "https://huggingface.co/docling-project/docling-layout-heron/resolve/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/model.safetensors",
+      "size_bytes": 171658996,
+      "expected_lfs_sha256": "00333a43451945aaf89db8ca9c0a17e75d1537c17db60fdb91aa95f4c7929e0c",
+      "expected_git_blob_sha1": "fdbf7f57ab84ba924eab94530c6cabb0a5d83a5e",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "layout",
+      "repo": "docling-project/docling-layout-heron",
+      "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+      "path": "preprocessor_config.json",
+      "url": "https://huggingface.co/docling-project/docling-layout-heron/resolve/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/preprocessor_config.json",
+      "size_bytes": 444,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "fcdff16b42e5ebc51d28f59184490c6eff91a88b",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "layout",
+      "repo": "docling-project/docling-layout-heron",
+      "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+      "path": "README.md",
+      "url": "https://huggingface.co/docling-project/docling-layout-heron/resolve/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/README.md",
+      "size_bytes": 3219,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "2c5b32c47fb9789ed49606988f58bc4741a731ab",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "tableformer",
+      "repo": "docling-project/docling-models",
+      "revision": "fc0f2d45e2218ea24bce5045f58a389aed16dc23",
+      "path": "model_artifacts/tableformer/accurate/tableformer_accurate.safetensors",
+      "url": "https://huggingface.co/docling-project/docling-models/resolve/fc0f2d45e2218ea24bce5045f58a389aed16dc23/model_artifacts/tableformer/accurate/tableformer_accurate.safetensors",
+      "size_bytes": 212758388,
+      "expected_lfs_sha256": "2a7d6c924b3cd12fb99a09280ca9c33a89c5d60b93253617d2e088c1a40374d9",
+      "expected_git_blob_sha1": "fd1dc0d8a2abf0cf9f5a3b4318ba3a20d5bd37df",
+      "declared_repo_license": "cdla-permissive-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "tableformer",
+      "repo": "docling-project/docling-models",
+      "revision": "fc0f2d45e2218ea24bce5045f58a389aed16dc23",
+      "path": "model_artifacts/tableformer/accurate/tm_config.json",
+      "url": "https://huggingface.co/docling-project/docling-models/resolve/fc0f2d45e2218ea24bce5045f58a389aed16dc23/model_artifacts/tableformer/accurate/tm_config.json",
+      "size_bytes": 7060,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "5036aa114b9393f607440cb0f6cc54229b5b30e1",
+      "declared_repo_license": "cdla-permissive-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "tableformer",
+      "repo": "docling-project/docling-models",
+      "revision": "fc0f2d45e2218ea24bce5045f58a389aed16dc23",
+      "path": "config.json",
+      "url": "https://huggingface.co/docling-project/docling-models/resolve/fc0f2d45e2218ea24bce5045f58a389aed16dc23/config.json",
+      "size_bytes": 41,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "4dc84c9101238bb955158144660155da99438490",
+      "declared_repo_license": "cdla-permissive-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "tableformer",
+      "repo": "docling-project/docling-models",
+      "revision": "fc0f2d45e2218ea24bce5045f58a389aed16dc23",
+      "path": "README.md",
+      "url": "https://huggingface.co/docling-project/docling-models/resolve/fc0f2d45e2218ea24bce5045f58a389aed16dc23/README.md",
+      "size_bytes": 3413,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "887b06ffad8cc669c554c6bebd703ba7bd11a417",
+      "declared_repo_license": "cdla-permissive-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "ocr",
+      "repo": "SWHL/RapidOCR",
+      "revision": "1cfba2e90fc938db55889873735088de210cc173",
+      "path": "PP-OCRv4/en_PP-OCRv3_det_infer.onnx",
+      "url": "https://huggingface.co/SWHL/RapidOCR/resolve/1cfba2e90fc938db55889873735088de210cc173/PP-OCRv4/en_PP-OCRv3_det_infer.onnx",
+      "size_bytes": 2423224,
+      "expected_lfs_sha256": "f139598bc2af4e4b6fe98dec11574e30edfdd91fc94ac1425c18ace3bd5a866b",
+      "expected_git_blob_sha1": "c384515da357fc6f8a0eb3f7c30fa9afe9f9e2a3",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "ocr",
+      "repo": "SWHL/RapidOCR",
+      "revision": "1cfba2e90fc938db55889873735088de210cc173",
+      "path": "PP-OCRv3/en_PP-OCRv3_rec_infer.onnx",
+      "url": "https://huggingface.co/SWHL/RapidOCR/resolve/1cfba2e90fc938db55889873735088de210cc173/PP-OCRv3/en_PP-OCRv3_rec_infer.onnx",
+      "size_bytes": 8967018,
+      "expected_lfs_sha256": "ef7abd8bd3629ae57ea2c28b425c1bd258a871b93fd2fe7c433946ade9b5d9ea",
+      "expected_git_blob_sha1": "fddf7069b5a6e4d64572a12b7604327975135663",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "ocr",
+      "repo": "SWHL/RapidOCR",
+      "revision": "1cfba2e90fc938db55889873735088de210cc173",
+      "path": "PP-OCRv1/ch_ppocr_mobile_v2.0_cls_infer.onnx",
+      "url": "https://huggingface.co/SWHL/RapidOCR/resolve/1cfba2e90fc938db55889873735088de210cc173/PP-OCRv1/ch_ppocr_mobile_v2.0_cls_infer.onnx",
+      "size_bytes": 585532,
+      "expected_lfs_sha256": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c",
+      "expected_git_blob_sha1": "4c48b27bd1c5ec2c80ac6e4c31f6d11d38ff64d7",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "ocr",
+      "repo": "SWHL/RapidOCR",
+      "revision": "1cfba2e90fc938db55889873735088de210cc173",
+      "path": "README.md",
+      "url": "https://huggingface.co/SWHL/RapidOCR/resolve/1cfba2e90fc938db55889873735088de210cc173/README.md",
+      "size_bytes": 372,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "6eadc148f2dbd47a0eea5c57df561edc295123dd",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "tokenizer",
+      "repo": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+      "path": "tokenizer.json",
+      "url": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5/resolve/e9b6763023c676ca8431644204f50c2b100d9aab/tokenizer.json",
+      "size_bytes": 711396,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "688882a79f44442ddc1f60d70334a7ff5df0fb47",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "tokenizer",
+      "repo": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+      "path": "tokenizer_config.json",
+      "url": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5/resolve/e9b6763023c676ca8431644204f50c2b100d9aab/tokenizer_config.json",
+      "size_bytes": 1191,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "99ada2882080d1e1f5333a2584c433ded174795c",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "tokenizer",
+      "repo": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+      "path": "special_tokens_map.json",
+      "url": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5/resolve/e9b6763023c676ca8431644204f50c2b100d9aab/special_tokens_map.json",
+      "size_bytes": 695,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "9bbecc17cabbcbd3112c14d6982b51403b264bfa",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "tokenizer",
+      "repo": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+      "path": "vocab.txt",
+      "url": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5/resolve/e9b6763023c676ca8431644204f50c2b100d9aab/vocab.txt",
+      "size_bytes": 231508,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "fb140275c155a9c7c5a3b3e0e77a9e839594a938",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "tokenizer",
+      "repo": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+      "path": "config.json",
+      "url": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5/resolve/e9b6763023c676ca8431644204f50c2b100d9aab/config.json",
+      "size_bytes": 2538,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "785a8d58b3e2c47f9709d7ac87759a6ac96a106f",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    },
+    {
+      "role": "tokenizer",
+      "repo": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+      "path": "README.md",
+      "url": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5/resolve/e9b6763023c676ca8431644204f50c2b100d9aab/README.md",
+      "size_bytes": 71843,
+      "expected_lfs_sha256": null,
+      "expected_git_blob_sha1": "ad4a073107a2b16e1c7a8b215c5a713c1fe2559c",
+      "declared_repo_license": "apache-2.0",
+      "status": "candidate; not downloaded/qualified; OCR model/key compatibility and per-file licenses must pass manifest audit"
+    }
+  ],
+  "candidate_asset_bytes_from_metadata": 397430146,
+  "sources": [
+    {
+      "title": "Pinned Docling release",
+      "url": "https://github.com/docling-project/docling/releases/tag/v2.150.0"
+    },
+    {
+      "title": "Docling installation/extras",
+      "url": "https://docling-project.github.io/docling/getting_started/installation/"
+    },
+    {
+      "title": "Pinned RapidOCR adapter source",
+      "url": "https://github.com/docling-project/docling/blob/v2.150.0/docling/models/stages/ocr/rapid_ocr_model.py"
+    },
+    {
+      "title": "Hybrid chunking and tokenizer interface",
+      "url": "https://docling-project.github.io/docling/_generated/examples/hybrid_chunking/"
+    },
+    {
+      "title": "Offline artifacts and remote-service options",
+      "url": "https://docling-project.github.io/docling/usage/advanced_options/"
+    },
+    {
+      "title": "RapidOCR release",
+      "url": "https://github.com/RapidAI/RapidOCR/releases/tag/v3.10.0"
+    },
+    {
+      "title": "Nomic model card",
+      "url": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5"
+    }
+  ],
+  "important_limits": [
+    "PyPI and model metadata are not target wheel/installation/format proof.",
+    "Docling umbrella maps to docling-slim[standard]; rapidocr extra requests the ONNX path, standard includes docling-core[chunking] and Office backends. Freeze all resolved transitives later.",
+    "RapidAI/RapidOCR public Hugging Face metadata returned401; no authentication was attempted. The explicitly proposed SWHL model-owner candidate is separately pinned, not an automatic runtime fallback. Qualify exact custom-path/key compatibility or stop.",
+    "Nomic revision in the packaged template is a placeholder, not a verified served artifact. No user YAML or personal model assets were inspected.",
+    "Qwen remains illustrative; no alternate embedding model selected."
+  ]
+}

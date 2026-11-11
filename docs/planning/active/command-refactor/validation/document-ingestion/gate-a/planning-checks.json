@@ -1,0 +1,104 @@
+{
+  "outcome": "PASS",
+  "baseline_commit": "fd33d5f52277a4d5da0bc0897d97c9360f326ced",
+  "logical_before_status": "752f04cdc2e01dcdb1ee9e28c5ad369a1065722fab6e5f0ad98893b49ef70f09",
+  "assessment_approved_exact_version": "0.6/f570318f",
+  "reviewed_pins_preserved": 9,
+  "nonplanning_files_preserved": 16671,
+  "protected_local_records_preserved": 6,
+  "history_preserved": true,
+  "unrelated_status_preserved": true,
+  "source_anchors_verified": 43,
+  "initial_consumer_families": 20,
+  "baseline_config_families": 8,
+  "manifest_URL_hash_consistency": "PASS",
+  "activation": "NOT_GRANTED",
+  "admin_checks_observed": [
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "summary": "36 tasks valid"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "summary": "dashboard current"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "summary": "1054 Markdown files"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "summary": "18 manifests"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "summary": "tracked planning whitespace clean; new files also checked in staged diff before commit"
+    }
+  ],
+  "execution_not_performed": [
+    "dependency resolution",
+    "package/model artifact downloads",
+    "installation",
+    "conversion",
+    "pytest",
+    "provider inference",
+    "store operation"
+  ],
+  "independent_review": "not requested or claimed",
+  "current_preparation_hash_consistency": "PASS",
+  "final_document_readability_review": "Completed before staged whitespace check"
+}

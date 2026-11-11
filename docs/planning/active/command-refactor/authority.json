@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Package Impact Assessment v0.6 and amended REM independently VERIFIED at ae813002 by all three round6 seats, no mandatory findings and both scores>=9.5 each. Council closed; no active review or further round. Chuck must confirm exact-version package-impact satisfaction and remaining conditions. Then prepare a bounded Gate-A readiness/effects plan for scoped activation; use its measured results to finalize the impact appendix and exact construction directive for separate approval. No installs, product/test/live-guide changes, model/store effects or delivery are authorized now.",
+  "current_scope": "Chuck approved exact Package Impact Assessment v0.6 (f570318f). Gate-A readiness plan v0.1, effects envelope and initial consumer worklist are prepared for his review; no council is active or newly authorized. Review and explicitly activate the bounded stages/run root/budgets before resolution, artifact installation or model calls. A3 additionally needs exact served-model/endpoint/counter facts; Qwen remains illustrative. Then use measured readiness to finalize the impact appendix and exact construction directive for separate approval. No product/test/live-guide, user-store or delivery effects are authorized now.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1896,7 +1896,7 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "revised_planning_requirements",
     "execution_phase": "planning",
-    "validation_state": "verified",
+    "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Package Impact Assessment v0.6 and amended REM independently VERIFIED at ae813002 by all three round6 seats, no mandatory findings and both scores>=9.5 each. Council closed; no active review or further round. Chuck must confirm exact-version package-impact satisfaction and remaining conditions. Then prepare a bounded Gate-A readiness/effects plan for scoped activation; use its measured results to finalize the impact appendix and exact construction directive for separate approval. No installs, product/test/live-guide changes, model/store effects or delivery are authorized now.",
+    "next_gate": "Chuck approved exact Package Impact Assessment v0.6 (f570318f). Gate-A readiness plan v0.1, effects envelope and initial consumer worklist are prepared for his review; no council is active or newly authorized. Review and explicitly activate the bounded stages/run root/budgets before resolution, artifact installation or model calls. A3 additionally needs exact served-model/endpoint/counter facts; Qwen remains illustrative. Then use measured readiness to finalize the impact appendix and exact construction directive for separate approval. No product/test/live-guide, user-store or delivery effects are authorized now.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Package Impact Assessment v0.6 and amended REM independently VERIFIED at ae813002 by all three round6 seats, no mandatory findings and both scores>=9.5 each. Council closed; no active review or further round. Chuck must confirm exact-version package-impact satisfaction and remaining conditions. Then prepare a bounded Gate-A readiness/effects plan for scoped activation; use its measured results to finalize the impact appendix and exact construction directive for separate approval. No installs, product/test/live-guide changes, model/store effects or delivery are authorized now.",
+      "next_gate": "Chuck approved exact Package Impact Assessment v0.6 (f570318f). Gate-A readiness plan v0.1, effects envelope and initial consumer worklist are prepared for his review; no council is active or newly authorized. Review and explicitly activate the bounded stages/run root/budgets before resolution, artifact installation or model calls. A3 additionally needs exact served-model/endpoint/counter facts; Qwen remains illustrative. Then use measured readiness to finalize the impact appendix and exact construction directive for separate approval. No product/test/live-guide, user-store or delivery effects are authorized now.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2412,7 +2412,7 @@
       "document": "package-impact-assessment.md",
       "version": "0.6-draft",
       "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
-      "status": "independently_verified_ready_for_maintainer_review",
+      "status": "maintainer_approved_exact_version",
       "prepared_from": "b7c7b1393d6f18db3d26cc518adce2d8458f315a",
       "technical_pins_unchanged": false,
       "scope_change": "Explicit maintainable test restructuring and substantive canonical architecture/guide deliverables; no additional product feature or production-source owner.",
@@ -2424,7 +2424,7 @@
       "approval_condition": "Chuck Russell must be satisfied with the overall per-package impact before approving the construction directive.",
       "directive_binding": "One canonical referenced appendix; bind approved version, commit and SHA256.",
       "material_impact_change": "Revise assessment and obtain maintainer review before construction.",
-      "approval_of_assessment": "not_granted",
+      "approval_of_assessment": "granted",
       "gate_a_activation": "not_granted",
       "construction_authority": "not_granted",
       "validation_state": "verified",
@@ -2454,7 +2454,11 @@
       "architecture_documentation_plan": "command-architecture-update-plan.md",
       "prior_technical_reviewed_candidate": "f43368c503da19fd245730ee579806db95ed3748",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
-      "current_report": "validation/document-ingestion/package-impact/current-verified-report.md"
+      "current_report": "validation/document-ingestion/package-impact/current-verified-report.md",
+      "approval_record": "approval/ingest-package-impact.md",
+      "approval_record_sha256": "f4f4a20d6db52f2459f767ede79f2db211a4a7118d6736f40551fd00fbf1cbec",
+      "approval_version": "0.6",
+      "post_gate_a_changed_version_requires_review": true
     },
     "conditional_maintainer_approval": {
       "recorded_date": "2026-11-11",
@@ -2463,10 +2467,15 @@
       "document_sha256": "e1c90753a3e2876df0f9f6f0ca82b1893455266cee1f252276f460b48a9f2a16",
       "statement": "I approve it under a couple of conditions.",
       "known_condition": "I won't approve the construction directive unless I'm satisfied with the overall per-package impact of our planned approach.",
-      "current_authorization": "The authorized document correction/council is complete. Exact-version package-impact satisfaction and remaining conditions are pending; next is bounded Gate-A planning for separate scoped activation. No effects, implementation or additional council is implied.",
+      "current_authorization": "Exact package-impact v0.6 approved; prepare Gate-A readiness plan and present it for review. No effects activation or construction approval inferred.",
       "remaining_conditions": "May be supplied by the maintainer; not presumed complete.",
       "fully_actionable_approval": false,
-      "gate_a_or_construction_authority": false
+      "gate_a_or_construction_authority": false,
+      "package_impact_condition": {
+        "status": "satisfied_for_exact_v0.6",
+        "record": "approval/ingest-package-impact.md",
+        "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176"
+      }
     },
     "package_impact_review_history": [
       {
@@ -2596,7 +2605,48 @@
       "reviewed_bytes_unchanged": true,
       "frozen_pre_review_pending_labels_superseded_by_current_report": true,
       "implementation_or_effects_authority": false
-    }
+    },
+    "package_impact_approval": {
+      "maintainer": "Chuck Russell",
+      "recorded_date": "2026-11-11",
+      "statement": "approved, let's continue.",
+      "record": "approval/ingest-package-impact.md",
+      "record_sha256": "f4f4a20d6db52f2459f767ede79f2db211a4a7118d6736f40551fd00fbf1cbec",
+      "document": "package-impact-assessment.md",
+      "version": "0.6",
+      "document_sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+      "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+      "presented_at": "fd33d5f52277a4d5da0bc0897d97c9360f326ced",
+      "scope": "Exact current package impact and preparation of bounded Gate-A plan; no execution/construction approval.",
+      "changed_version_requires_new_binding": true
+    },
+    "readiness_preparation": {
+      "plan": "validation/document-ingestion/gate-a/readiness-plan.md",
+      "version": "0.1-draft",
+      "plan_sha256": "823a1c3bb89a98684f6933fd52fbd4f52fc251a873e7a4fc4af1ea5098df8fc8",
+      "effects_envelope": "validation/document-ingestion/gate-a/effects-envelope.json",
+      "effects_envelope_sha256": "d662813ba6560dfbf054c2e2ee6061662facc441ae865c1a6b0406db83bcb59a",
+      "source_observations": "validation/document-ingestion/gate-a/source-observations.json",
+      "source_observations_sha256": "bbd408be71036faef3aa5b4298232635a4dade2f2e813444df6aae3a2e63fb80",
+      "consumer_worklist": "validation/document-ingestion/gate-a/consumer-readiness-matrix.md",
+      "consumer_worklist_sha256": "12c2bcc68892f8b5b14023f67d34b190565b7ca22ed79c2a4a9013437c5e9e7c",
+      "status": "prepared_for_maintainer_review",
+      "independent_review": "not_requested",
+      "council_active": false,
+      "effects_activation": "not_granted",
+      "model_stage": "blocked_until_explicit_operator_inputs_and_activation",
+      "research": "Public release/source metadata only; no resolver/install/model transfer/inference.",
+      "implementation_approval": "not_granted"
+    },
+    "lightweight_planning_exemption": {
+      "maintainer": "Chuck Russell",
+      "date": "2026-11-11",
+      "record": "approval/ingest-package-impact.md",
+      "reason": "Explicitly authorized documentation-only Gate-A preparation; no runtime bytes or effects.",
+      "scope": "Approval, readiness plan/envelope/research/worklist and current routing/evidence only.",
+      "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
+    },
+    "current_stage": "gate_a_readiness_plan_preparation"
   },
   "command_refactor_publication": {
     "status": "merged_remote_branch_deleted",

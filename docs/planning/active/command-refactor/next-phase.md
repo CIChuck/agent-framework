@@ -1,18 +1,21 @@
-# Document-ingestion package impact — readiness verified, maintainer review pending
+# INGEST package impact approved — Gate-A plan prepared for review
 
-Execution phase: planning; validation state: verified for exact v0.6 documents at
-`ae813002`, not implementation. [Current reconciliation](validation/document-ingestion/package-impact/current-verified-report.md)
-records all three qualifying round6 seats; PI-01–18 and PC-10/11 pass, no
-mandatory findings, each coverage/overall >=9.5. The original4 rounds and two
-explicit single-round extensions are consumed. No active review or seventh round.
+Execution phase: planning; validation state: in_review for the new Gate-A plan.
+The exact assessment v0.6 is [approved](approval/ingest-package-impact.md);
+[its round6 readiness verification](validation/document-ingestion/package-impact/current-verified-report.md)
+remains intact and supplies no executed dependency/model/format proof.
 
-The assessment/REM/test/architecture/guide plans retain exact reviewed bytes.
-Their frozen pending-review instructions are provenance superseded by the current
-controller result; no contract is silently amended. Earlier reports remain
-candidate-specific. [Nonblocking carry-forward](validation/document-ingestion/package-impact/round6/readiness-carry-forward.md)
-binds later readiness/directive dispositions without activating them.
+The [Gate-A plan](validation/document-ingestion/gate-a/readiness-plan.md),
+[effects envelope](validation/document-ingestion/gate-a/effects-envelope.json),
+[metadata observations](validation/document-ingestion/gate-a/source-observations.json)
+and [consumer worklist](validation/document-ingestion/gate-a/consumer-readiness-matrix.md)
+are prepared for Chuck's review. No resolver, install, model transfer or inference
+has run; no new council is active or authorized. The proposal qualifies exact
+Docling/OCR/Certifi/counter inputs in a private target with numeric limits.
+Unbound served-model/counter facts stop the dependent model stage; Qwen remains
+illustrative. Reviewed contracts, existing scope and unrelated state are preserved.
 
-**Next gate:** Package Impact Assessment v0.6 and amended REM independently VERIFIED at ae813002 by all three round6 seats, no mandatory findings and both scores>=9.5 each. Council closed; no active review or further round. Chuck must confirm exact-version package-impact satisfaction and remaining conditions. Then prepare a bounded Gate-A readiness/effects plan for scoped activation; use its measured results to finalize the impact appendix and exact construction directive for separate approval. No installs, product/test/live-guide changes, model/store effects or delivery are authorized now.
+**Next gate:** Chuck approved exact Package Impact Assessment v0.6 (f570318f). Gate-A readiness plan v0.1, effects envelope and initial consumer worklist are prepared for his review; no council is active or newly authorized. Review and explicitly activate the bounded stages/run root/budgets before resolution, artifact installation or model calls. A3 additionally needs exact served-model/endpoint/counter facts; Qwen remains illustrative. Then use measured readiness to finalize the impact appendix and exact construction directive for separate approval. No product/test/live-guide, user-store or delivery effects are authorized now.
 
 ## Separate MAINT closeout and historical checkpoints
 

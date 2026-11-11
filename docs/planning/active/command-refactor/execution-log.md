@@ -3232,3 +3232,36 @@ resource effects plan for scoped activation. Measured results then finalize the
 impact appendix and exact construction directive for separate approval before
 code. No installs, providers/models/stores, implementation, acceptance or delivery
 are authorized by this document-readiness result.
+
+
+## Exact package impact approved; Gate-A plan prepared — 2026-11-11
+
+Chuck answered approved, let's continue after the next-step handoff.
+[The approval record](approval/ingest-package-impact.md) binds exact assessment
+v0.6/hash f570318f at reviewed ae813002, presented from fd33d5f5. This satisfies
+the package-impact condition for those bytes and authorizes plan preparation;
+other conditions, Gate-A effects and construction are not inferred.
+
+Prepared [readiness plan](validation/document-ingestion/gate-a/readiness-plan.md),
+[effects envelope](validation/document-ingestion/gate-a/effects-envelope.json),
+[public source observations](validation/document-ingestion/gate-a/source-observations.json)
+and [consumer worklist](validation/document-ingestion/gate-a/consumer-readiness-matrix.md).
+Proposed qualification candidates are Docling 2.150.0 with rapidocr extra,
+RapidOCR 3.10.0 CPU and Certifi 2026.10.23 above the settled 2026.10.19 floor.
+Exact upstream metadata, expected artifact hashes and model repository commits
+were inspected; this is not target installation/format/model proof. The packaged
+Nomic revision remains an unresolved example, not the live deployment identity;
+Qwen stays illustrative. A3 needs bound operator/model/counter facts.
+
+The plan defines private roots/caches, artifact/license manifest promotion,
+numeric effects limits, genuine synthetic formats, offline local counting,
+consumer/configuration trace and final directive outputs. Full actual test
+migration, architecture/guide implementation and B/N/R installed proof remain
+construction obligations. No source, tests, live guides, dependency metadata or
+lock changed; user YAML/stores/exports and old evidence remain untouched.
+
+No council was launched and no Gate-A stage was executed: no dependency resolver,
+artifact installation/model transfer, conversion, inference or store operation.
+The plan is prepared for Chuck's review before scoped activation. The approved
+assessment and reviewed REM/annex/companion/criteria/authorization bytes are
+preserved; changed post-readiness impact needs a new exact-version binding.

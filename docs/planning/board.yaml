@@ -711,11 +711,12 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Package Impact Assessment v0.6 and amended REM independently VERIFIED at ae813002 by all three round6 seats, no mandatory findings and both scores>=9.5 each. Council closed; no active review or further round. Chuck must confirm exact-version package-impact satisfaction and remaining conditions. Then prepare a bounded Gate-A readiness/effects plan for scoped activation; use its measured results to finalize the impact appendix and exact construction directive for separate approval. No installs, product/test/live-guide changes, model/store effects or delivery are authorized now."
+  next_gate: "Chuck approved exact Package Impact Assessment v0.6 (f570318f). Gate-A readiness plan v0.1, effects envelope and initial consumer worklist are prepared for his review; no council is active or newly authorized. Review and explicitly activate the bounded stages/run root/budgets before resolution, artifact installation or model calls. A3 additionally needs exact served-model/endpoint/counter facts; Qwen remains illustrative. Then use measured readiness to finalize the impact appendix and exact construction directive for separate approval. No product/test/live-guide, user-store or delivery effects are authorized now."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/document-ingestion/package-impact/current-verified-report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/package-impact/verified-report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/compatibility-verified-report.md
   - docs/planning/active/command-refactor/validation/maintenance/implementation/verified-report.md
@@ -3287,3 +3288,11 @@ events:
   action: reconciled VERIFIED package-impact v0.6 council and closed bounded loop
   note: "All fresh round6 Sol/Astra/Opus seats independently VERIFIED, PI01\u201318 PASS, no mandatory findings, coverage/overall>=9.5. Exact ae813002 technical bytes preserved. Current metadata only; history/advisories retained, no active review. Next is Chuck impact satisfaction/remaining conditions then bounded Gate-A planning and separate exact directive approval. No implementation, effects, acceptance or delivery granted."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/current-verified-report.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T20:16:39.806527+00:00"
+  actor: Codex
+  actor_role: agent
+  action: recorded maintainer package-impact approval and prepared Gate-A plan
+  note: "Chuck approved exact v0.6 assessment and directed continuation. Approval binds f570318f/ae813002 bytes presented at fd33d5f5; the package-impact condition is satisfied for that version. Concrete Gate-A plan/envelope/source metadata/worklist prepared for review, not activated. No new council, resolver/install, model/provider/store or product/test/live-guide effect. Current contracts and user state preserved; construction remains separately approved."
+  evidence: docs/planning/active/command-refactor/approval/ingest-package-impact.md
