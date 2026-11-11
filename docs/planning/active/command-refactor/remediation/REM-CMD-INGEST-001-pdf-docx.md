@@ -1,6 +1,6 @@
 # REM-CMD-INGEST-001 — document extraction, shared chunking and embedding limits
 
-Status: **PROPOSED — framework compatibility correction, authorized cycle pass2/4**. Baseline `7ad916f2`.
+Status: **PROPOSED — framework compatibility correction, authorized cycle pass3/4**. Baseline `7ad916f2`.
 This document defines a bounded repair and its dependency-readiness gate. It is
 not an approved construction directive or a completed compatibility assessment.
 Working branch: `feature/cmd-ingest-001`, based on published command-refactor head
@@ -14,7 +14,8 @@ No product edits, installs, model downloads or council invocation are authorized
 by placement in this packet. The requested planning work is authorized.
 The maintainer separately authorizes the fresh read-only Sol/Astra/Opus5.5
 round1 design council on2026-11-10; [recorded roster](../validation/document-ingestion/council-round1/roster.json).
-That review authorized no implementation or remediation. On2026-11-10 the
+Historical authority, superseded for current review routing: that review
+authorized no implementation or remediation. On2026-11-10 the
 maintainer separately directs document corrections and up to three additional
 fresh Sol/Astra/Opus councils (rounds2–4), stopping when every seat independently
 returns VERIFIED with at least9.5/10 and no mandatory finding. This is bounded
@@ -32,7 +33,7 @@ correction/review iterations: four passes total, stopping at the all-seat9.5
 gate or after pass four for guidance. See the [bounded authority](../validation/document-ingestion/compatibility-iteration-authorization.json).
 This document-only authority grants no code, Gate-A effects or data reset.
 The normative [framework compatibility contract](../embedding-compatibility-contract.md)
-is part of this REM (SHA256 `bbafc99252f746891f671961b1f684b03e8a9f36f8d4fb702f5b83a117a3ddf3`);
+is part of this REM (SHA256 `1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb`);
 FC-01–14 specialize existing requirements and named
 compatibility exceptions. Its positive B/N tests are required alongside refusals.
 
@@ -879,7 +880,9 @@ Chat/Runtime composition. When explicitly injected, selected graph-vector
 provenance is checked before a query embedding/comparison: unknown/foreign or
 invalid existing vectors fail that semantic operation, with no silent zero,
 skip, backfill or recomputation. Genuinely absent vectors keep their existing
-zero contribution. Ordinary maintained unscored recall performs no graph-vector
+zero contribution only in sync or async-without-fallback scoring. Qualified
+async fallback still embeds only missing edge/target components and scores them;
+never substitute a foreign/invalid existing vector. Ordinary maintained unscored recall performs no graph-vector
 comparison and gains no provenance preflight on that unused scorer. Actual
 query/vector/insight/summary guard failures still propagate. Graph text rendering
 does not acquire an embedding requirement. FC-06/08 bind the distinct proofs.
@@ -959,8 +962,12 @@ being swallowed as empty results, skipped pruning or successful maintenance.
 Each direct opener targets exactly the layout's normalized vector directory.
 Remove its `[memory_dir, memory_dir/vector]` probing/fall-through from guarded
 paths: a refusal ends the operation and cannot select a second namespace.
-Legacy callers without an explicit resolved directory/admission fail actionably
-instead of guessing. No model-equivalence or filename probe authorizes fallback.
+Existing BackupManager signatures use only the fixed marker-metadata selector
+in FC-03 for minimum admission and new-marker protection, not new data-layout
+discovery/default destinations or a physical-backup repair. Pre-existing partial
+legacy-copy limitations are FU-014; classify them as baseline failures without
+claiming complete recovery. Other clients lacking their required resolved
+admission fail rather than guess. No model-equivalence or filename probe authorizes fallback.
 Retain ordinary operation-specific error policy otherwise. This is identity
 admission, not a change to verification/synthesis logic or maintenance sequencing.
 
@@ -1232,19 +1239,19 @@ organization does not authorize any slice or defer cross-subsystem proof.
 | Memory new `ingestion/embedding_space.py`, `adapters/vector.py`, `adapters/simple_vector.py`, `controller/memory_controller.py`, `retrieval/collection_manager.py`, focused store/retrieval tests | Durable namespace sidecar or ephemeral identity admission and envelope propagation; correct query role, validate before client/provider I/O, preflight source/derived batch. No storage-engine replacement, migration or generic metadata redesign. |
 | Memory `maintenance/synthesizer.py`, `retrieval/graph_scorer.py`, `context/extractor.py`, `maintenance/pipeline.py`, `maintenance/reorganizer.py`, `maintenance/provider_contracts.py`, focused affected tests | Only inventoried embedding-role/capability/envelope propagation and narrow shape/refusal checks, plus FC-06 typed extraction failure aggregation, no vectorless-edge fallback after a guard refusal and stable-ID acknowledgement/retry semantics. No maintenance ordering, prompts, verification, quarantine, recovery or synthesis redesign. Correct graph edge/target document fallback roles as well as synthesizer roles. |
 | Memory `context/extraction_filter.py`, `context/consolidator.py`, `lifecycle/promotion.py`; Tools `memory/lifecycle.py`, focused existing extractor/consolidator/promotion/memory-tool tests | Only FC-01 admitted per-owner rejection sink/log-handler lifecycle, FC-06 successful-batch acknowledgement and typed failures, FC-07 truthful counts/public errors. No scheduler, prompt, lifecycle algorithm or generic Tools rewrite. |
-| Memory `ingestion/mcp.py`; Chat `src/friday_chat/memory_mcp.py`, focused Memory/Chat MCP tests and `tests/integration/test_mcp_memory_ingestion.py` | Only FC-02 shared unsplit guard/readiness handoff and real Chat publication/observer/receipt failure mapping; no new receipt schema. Preserve exact snapshot text/identity/receipts/ownership and existing opt-in. No snapshot splitting or new activation. |
-| Memory `maintenance/backup.py`, `analyzer.py`, `__main__.py`, focused existing backup/analyzer/module tests | Only FC-03 public create/verify/same-incarnation restore admission, private strict bound-backup receipt and no live-marker overwrite, safe destination/offline interpretation; FC-04 normalized read-only Chroma AND transcript SQLite analysis. Preserve existing disabled CLI mutations, public signatures and old manifest classes; no backup/maintenance engine redesign. |
+| Memory `ingestion/mcp.py`; Chat `src/friday_chat/memory_mcp.py`, focused Memory/Chat MCP tests and `tests/integration/test_mcp_memory_ingestion.py` | Only FC-02 shared unsplit guard/readiness handoff and real Chat publication/observer/receipt failure mapping; no new receipt schema. Preserve exact snapshot text/identity/receipts/ownership and existing opt-in. Trace the existing Chat prepare/verify ingester constructors to guarded CollectionManager storage; no separate MCP counter/protocol; retain pending IDs. No snapshot splitting or new activation. |
+| Memory `maintenance/backup.py`, `analyzer.py`, `__main__.py`, focused existing backup/analyzer/module tests | Only FC-03 public create/verify/same-incarnation restore admission, private minimum new-binding receipt/admission and no live-marker overwrite; existing public copy/default behavior unchanged, FU-014 separately unwaived; FC-04 normalized read-only Chroma AND transcript SQLite analysis. Preserve existing disabled CLI mutations, public signatures and old manifest classes; no backup/maintenance engine redesign. |
 | Memory `context/assembler.py`, focused assembler/Agent integration tests | Only FC-06 ownership/result consumption for the existing background extraction task, typed read-only per-turn status/wait and task/sink teardown handoff. Existing extract_context signature/return stays; no Core/Agent protocol change, scheduler or retry queue. |
 | Tools `src/friday_tools/memory/maintenance.py`, focused existing public-wrapper tests | Only shared store-only preflight and truthful failure/partial-result adaptation for existing injectable maintenance/reset wrappers. Existing confirmed-clear semantics and ordering stay; no new activation/reset engine or actual user reset. |
 | Memory `models/graph.py`, `adapters/graph.py`, `adapters/null_graph.py`, focused graph tests | Only reserved embedding-identity properties/envelope propagation and refusal at vector comparison/update. No graph schema redesign, import/migration or backfill. |
-| Memory `maintenance/recovery.py`, `recovery_models.py`, `mutation.py`, `pruner.py`, `fact_checker.py`, focused affected recovery/mutation tests | Only identity-aware direct-client admission, version2 binding capture/validation, fingerprint and same-namespace restore refusal. Preserve existing recovery/maintenance orchestration, token/quiescence, ULP, journal and rollback policies. |
+| Memory `maintenance/recovery.py`, `recovery_models.py`, `mutation.py`, `pruner.py`, `fact_checker.py`, focused affected recovery/mutation tests | Only identity-aware direct-client admission, version2 binding capture/validation, fingerprint and same-namespace restore refusal; FC-11 _collection_dimension substitution/empty collections and graph-only REEMBED only, retaining the 8192 ceiling. Preserve existing recovery/maintenance orchestration, token/quiescence, ULP, journal and rollback policies. |
 | Runtime `src/friday_runtime/di.py`, `config.py`, focused Runtime tests | Same resolved embedding/readiness and Memory factory wiring, FC-09 consistent profile persistence/ephemeral collection isolation, deferred extractor/logging, FC-06 owned-task/sink drain during existing shutdown and explicit-origin propagation; no new tool activation or runtime engine. Runtime tool_loading.py is a required source-unchanged real import-discovery witness. |
 | CLI `src/friday_cli/container.py`, `profiles.py`, focused compatibility tests | Delegation/type/readiness compatibility only if needed; preserve re-exports and no executable. No independent legacy-client fallback. |
 | `packages/friday-llm/src/friday_llm/model_library.py`, `embeddings.py`, new `embedding_limits.py` if needed, corresponding focused tests | Strict capability fields/resolution, model-based counting/preparation, per-input guards, batch shape/dimension validation and safe failures for all callers. |
 | `packages/friday-llm/pyproject.toml`, `packages/friday-memory/pyproject.toml` | FC-12 narrow LLM embedding-limits extra and Memory's existing pinned dependency requesting it. Freeze selected exact counter packages at Gate A; Runtime/CLI/Agent memory inherits support without Docling. No unrelated provider expansion. |
 | `packages/friday-chat/src/friday_chat/commands/files.py` | Four-format delegation/admission and result metadata, document-line refusal; retain text behavior. |
 | `packages/friday-chat/src/friday_chat/commands/registry.py` | Default file-handler-only raw-tail delegation, document failure/success adaptation and exact help cells. No other handlers/parser policy. |
-| Chat `src/friday_chat/config.py`, `runtime.py`, `adapters.py` | Typed ingestion config, shared-capability wiring and effective-option presentation; remove Chat character slicing from ingestion, distinguish query/document embedding calls, preserve existing store paths and metadata helper; FC-06 _extract_turns acknowledgement/requeue and owned-sink close/flush only. |
+| Chat `src/friday_chat/config.py`, `runtime.py`, `adapters.py` | Typed ingestion config, shared-capability wiring and effective-option presentation; remove Chat character slicing from ingestion, distinguish query/document embedding calls, preserve existing store paths and metadata helper; FC-06 _extract_turns acknowledgement/requeue and owned-sink close/flush; FC-02 existing guarded-storage delegation only; FC-13 existing metadata result.errors projection only. |
 | Memory `maintenance/__init__.py`, root `__init__.py`; Chat `reorganization/contracts.py`, `artifacts.py`, `coordinator.py`, `reorganization/__init__.py`, root `__init__.py`, focused aggregate/recovery tests | Strict new Memory/Chat v2 models and typed public loaders/exports, aggregate write/read/participant equality and same-namespace rollback only. Old v1 classes/bindings and generic AtomicJsonStore remain unchanged; no journal, path-layout fingerprint or maintenance-order redesign. |
 | Chat `src/friday_chat/reorganization/mutation.py`, focused provider-construction tests | Pool/non-pool embedding capability injection or explicit preflight refusal only. No reorganization sequencing/provider-role/prompt changes. |
 | Chat packaged `src/friday_chat/config_templates/config.example.yaml`, `models-config.example.yaml`, focused config tests | New default/schema examples and capability requirements bound to the verified current profile. Qwen remains illustrative; do not overwrite either dirty repository example YAML. |
@@ -1256,7 +1263,7 @@ organization does not authorize any slice or defer cross-subsystem proof.
 | `tests/integration/test_embedding_compatibility.py` (new); focused existing Agent, multi-agent, MEMQ, CLI, Runtime and Core public-consumer tests | FC-01–14 named B/N/R proofs, full extraction→store→recall→maintenance/lifecycle and minimal installed profiles, actual delayed background completion, two-kernel logging/ephemeral isolation and real MCP publication outcome witnesses. Indirect consumers may remain source-unchanged; no source edit outside explicit allowlist is inferred from a test. |
 | Package-local synthetic `tests_*/fixtures/document-ingestion/` (new) | Genuine text, table and scanned fixtures/provenance; no user documents. |
 | `uv.lock` | Deliberate Docling graph delta and requested Certifi upgrade to at least2026.10.19, inventoried at gate A. No unrelated package upgrade. |
-| This packet's document-ingestion remediation/validation/UAT/status records and embedding-compatibility-contract.md; planning board/dashboard; upgrade-log FU-012 | Planning, readiness, proof and human handoff for this unit only. |
+| This packet's document-ingestion remediation/validation/UAT/status records and embedding-compatibility-contract.md; planning board/dashboard; upgrade-log FU-012/013/014 | Planning, readiness, proof and human handoff for this unit only. |
 
 Core/Memory/LLM additions above are a deliberate planning-scope expansion over
 the earlier extraction-only draft. The narrow store-binding, query-envelope and
@@ -1311,7 +1318,7 @@ by this document update.
 
 Keep old assertion bodies unless the final approved directive lists an exact
 intentional exception: file-format/help/count outputs, source raw chunk plans,
-guarded-store setup/admission or new bound snapshot version2. Freeze each affected
+guarded-store setup/admission or new bound snapshot version2; existing MCP-reason failure adaptation. FU-013/014 remain separate failed/unwaived baseline defects, with no repair or positive-credit substitution. Freeze each affected
 test/fixture and before/after expectation at gate A; broad test rewrites or
 retroactive edits to accepted evidence are prohibited. Retain version1 snapshot
 fixtures for offline legacy inspection and add bound/version2 fixtures and
@@ -1350,7 +1357,7 @@ existing-store checkpoint is settled by the explicit recorded answer. The curren
 iterations: four total passes, global rounds6–9. Pass1/round6 is reconciled as
 changes requested, with the Opus procedural deviation separately recorded in
 [its reconciliation](../validation/document-ingestion/council-round6/report.md).
-The present correction is for fresh pass2/round7, delta first then full current
+The present correction is for fresh pass3/round8, delta first then full current
 REM/annex/companion and all-framework consumer audit. Stop early only when each
 seat is VERIFIED, no mandatory findings, and both coverage and overall scores
 are >=9.5. After pass4 stop for maintainer guidance. No Gate-A execution,

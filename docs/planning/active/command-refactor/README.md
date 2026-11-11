@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/pushed. The current INGEST embedding-pool compatibility
-revision is in compatibility-cycle pass2/4 review; Gate-A execution and MAINT human UAT/acceptance remain pending.
+revision is in compatibility-cycle pass3/4 review; Gate-A execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -37,7 +37,7 @@ is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 The [revised REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) binds the normative
 [framework compatibility contract](embedding-compatibility-contract.md): the original framework themes plus six pass1 correction themes, B01–B08
 and FC-01–14 proof, including actual extraction/MCP/logging/public-backup behavior.
-Execution phase: planning; validation state: in_review (cycle pass2/4, round7).
+Execution phase: planning; validation state: in_review (cycle pass3/4, round8).
 The [new authorization](validation/document-ingestion/compatibility-iteration-authorization.json)
 permits an initial council plus three bounded document correction/review passes,
 requiring each independent VERIFIED with coverage and overall scores >=9.5 and
@@ -92,7 +92,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
+**Next gate:** Reconcile compatibility-cycle pass3/4 (global round8) fresh Sol/Astra/Opus reviews of the corrected REM/annex/Tools and all framework consumers. Every seat must VERIFIED with coverage and overall >=9.5 and zero mandatory findings. At most one further correction/review pass remains; after pass4 stop for maintainer guidance. No Gate-A, construction, store/reset action or delivery.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -180,7 +180,7 @@ command that survives the nine selected retirements. The exact API and compatibl
 approved contract and bounded directives; removal behavior and preservation
 policy are settled by O-01–O-05. Consolidation remains backlog work.
 
-**Next gate:** Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
+**Next gate:** Reconcile fresh MAINT-001 round4 Astra/Sol document review. Proceed with bounded implementation only if BOTH return VERIFIED at least9.5/10 with no mandatory findings and exact conditional pins match; otherwise stop and report.
 See the [main checkpoint](next-phase.md).
 
 The [Friday Chat user acceptance roadmap](uat/friday-chat-user-acceptance-roadmap.md)

@@ -1,10 +1,10 @@
 {
   "unit": "REM-CMD-INGEST-001",
-  "recorded_at": "2026-11-11T02:37:55.011556+00:00",
+  "recorded_at": "2026-11-11T03:26:33.442573+00:00",
   "status": "requirements_and_proposed_dispositions_not_validation",
   "baseline": "91ac63bad5e46eceddd252d5b7727f7a1d3c623a",
   "annex": "embedding-compatibility-contract.md",
-  "annex_sha256": "bbafc99252f746891f671961b1f684b03e8a9f36f8d4fb702f5b83a117a3ddf3",
+  "annex_sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
   "mandatory": [
     {
       "theme": "INGEST-EC-01",
@@ -220,9 +220,9 @@
     "Construction approval"
   ],
   "prior_procedural_block": "Astra round5 and Opus pass1 procedural deviations remain recorded; no automatic replacement or formal credit. Technical findings rechecked from source.",
-  "cycle_pass": 2,
-  "global_round": 7,
-  "amendment_base": "8d25d53ac944ace99e3ae430364075b0c1200ff6",
+  "cycle_pass": 3,
+  "global_round": 8,
+  "amendment_base": "f1916747ad7d03e451f2b57dc00542faa6095d7c",
   "pass1_corrections": [
     {
       "id": "IC-01",
@@ -355,5 +355,120 @@
       "requirement": "Read-only transcript SQLite as well as Chroma.",
       "status": "proposed_for_fresh_review"
     }
-  ]
+  ],
+  "pass2_corrections": [
+    {
+      "id": "IC-07",
+      "sources": [
+        "SOL-R7-001"
+      ],
+      "sections": [
+        "FC-08"
+      ],
+      "requirement": "Missing vectors: zero only for sync/async without fallback; retain qualified async fallback on absent components and reject invalid present vectors first."
+    },
+    {
+      "id": "IC-08",
+      "sources": [
+        "ASTRA-R7-001",
+        "OPUS-R7-M1"
+      ],
+      "sections": [
+        "FC-02"
+      ],
+      "requirement": "Keep pending records after partial/ambiguous failure/cancellation and same-ID no-extra-embedding retry; no newly automatic discard."
+    },
+    {
+      "id": "IC-09",
+      "sources": [
+        "OPUS-R7-M1"
+      ],
+      "sections": [
+        "FC-02"
+      ],
+      "requirement": "Use existing telemetry reason literals directly in the Chat memory_mcp observer union; real processor/provider forwarding stays unchanged and is tested."
+    },
+    {
+      "id": "IC-10",
+      "sources": [
+        "OPUS-R7-M2"
+      ],
+      "sections": [
+        "EC-18"
+      ],
+      "requirement": "Restore exactly35 historical Next gate lines from8d25d53a; only current gate changes subsequently."
+    },
+    {
+      "id": "IC-11",
+      "sources": [
+        "OPUS-R7-M3"
+      ],
+      "sections": [
+        "FC-03"
+      ],
+      "requirement": "Minimum new-binding evidence/admission and marker protection while preserving old backup file/default behavior; pre-existing vector/split completeness limitations recorded as FU014, with paired baseline proofs and no complete-recovery credit."
+    }
+  ],
+  "pass2_advisories": [
+    {
+      "id": "OPUS-R7-A1",
+      "requirement": "Name scored-graph except and recall gather typed-failure seams.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A2",
+      "requirement": "Close task admission before drain; late outer Agent arrival skips unavailable, no reopened sink.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A3",
+      "requirement": "Default no-file owned sink vs standalone logger separation; both inert Chat flags remain inert.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A4",
+      "requirement": "Explicit mutation.py empty dimension/graph-only FC11 purpose.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A5",
+      "requirement": "Wired metadata factor/access/incremental consumers, unchanged algorithms and explicit error projection.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A6",
+      "requirement": "Existing VectorInspectionTool query/search mismatch gets FU013/no positive credit, no incidental repair.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A7",
+      "requirement": "Collection suffix isolation chosen; tenant/database alternative not mixed in ad hoc.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A8",
+      "requirement": "Trace existing MCP constructors to the CollectionManager shared guard; no separate MCP counter/preflight protocol and no provider requirement for store-only reuse.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A9",
+      "requirement": "Mark old round1\u20134 authority historical/superseded.",
+      "status": "proposed_for_fresh_review"
+    }
+  ],
+  "history_restoration": {
+    "baseline": "8d25d53a",
+    "historical_gate_lines_restored": 35,
+    "paths": [
+      "README.md",
+      "next-phase.md",
+      "tactical-plan.md"
+    ],
+    "future_rule": "Only current gate may change; historical gate vector byte identity is checked independently."
+  },
+  "causal_scope_correction": {
+    "status": "proposed_controller_boundary_after_maintainer_scope_question",
+    "reason": "MCP/backups are embedding compatibility surfaces, not feature projects. No new physical layouts/defaults, backup-engine/member repair, MCP cleanup/counter configuration. Minimum binding/error adaptation only; FU013/014 separately unwaived.",
+    "not_a_waiver": "Paired baseline proofs required. Newly unsafe effects block readiness."
+  }
 }

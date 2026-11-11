@@ -1,7 +1,7 @@
 # INGEST-001 — Gate-A and final-directive handoff
 
 Status: revised REM plus normative compatibility annex in independent review,
-cycle pass2/4. The [iteration authority](compatibility-iteration-authorization.json)
+cycle pass3/4. The [iteration authority](compatibility-iteration-authorization.json)
 is document-only. [Correction map](compatibility-correction-map.json) tracks nine
 technical themes and the selected high/medium advisories without claiming closure.
 Earlier round4 and [round5 results](council-round5/report.md) retain only their

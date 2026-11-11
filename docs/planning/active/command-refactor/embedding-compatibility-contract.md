@@ -41,12 +41,41 @@ authorization partitions, not independent physical embedding spaces.
 Intentional compatibility exceptions must be individually visible in the final
 directive: fresh-store-required admission; verified model-specific preparation
 and query/document role correction; explicit invalid/overflow/result refusal;
-MCP overflow/failure reporting; identity-safe physical backup/restore admission
+MCP overflow/failure reporting with existing telemetry reasons;
+identity admission at existing physical backup/restore boundaries
 in FC-03; and isolated ephemeral profile persistence. Public backup creation is
-retained, not retired. None permits a silent model change. A formerly successful supported B/N
+retained, not retired. Existing physical-backup paths, defaults and data-member behavior remain;
+FC-03 does not authorize a backup repair project. None permits a silent model change. A formerly successful supported B/N
 flow that only refuses is a failed compatibility proof unless this exact
 exception list and its operator remedy cover it. Any additional exception stops
 readiness for maintainer disposition.
+
+## Causal boundary for compatibility work
+
+The feature is document extraction/chunking plus the already proposed shared
+embedding/configuration guards. MCP and backups are existing consumers to test,
+not additional feature deliverables. For every proposed edit, identify the
+new embedding/configuration/identity change that requires it; a discovered old
+bug alone is not authority for a repair. Classify findings as a new regression,
+a direct guard/identity adaptation, or a pre-existing failed/unwaived baseline.
+No score target authorizes expanding a baseline repair into this unit.
+
+MCP keeps its exact snapshot/receipt/retry lifecycle and receives no Docling
+conversion, chunking, cleanup or new counter configuration. Its existing storage
+path inherits shared embedding checks; only direct refusal/outcome adaptation
+needed for those checks is included. Physical backups keep their public API,
+default destinations and existing data-member behavior. Only admission/evidence
+for the newly introduced binding and preventing its overwrite/rebinding during
+restore are included. No new physical-backup layout/engine, default relocation,
+segment-inventory/consistency repair or broader restore redesign.
+
+Existing incomplete legacy physical-copy forms and the inspection query defect
+are separately recorded as [FU-014 and FU-013](../../backlog/friday-chat-framework-followups/upgrade-log.md), not advertised as successful recovery/query proof.
+Use paired baseline/candidate witnesses to prove new changes add no regression
+to working flows and preserve declared failures. A baseline label never waives
+a newly introduced unsafe effect: if the guard/identity boundary cannot be
+implemented safely within this scope, stop readiness and identify the exact
+dependency for maintainer disposition instead of silently broadening construction.
 
 ## Baseline configuration and current identity
 
@@ -126,12 +155,13 @@ editing it. Report uncovered necessary scope before construction.
 | Agent archive/extraction, recall_memory/store_fact tools | Controller/context-mediated; preserve public input/output and error reporting. Exact positive/refusal witnesses are required without a new model selector. |
 | Multi-agent controller/coordinator/journal | Underlying Memory space is shared; preserve authorization visibility and honest failed/partial-commit reporting. No new transaction promise. |
 | MCP publication and transcript receipts; MEMQ inspection | Preserve receipt ownership and store-only availability; FC-02/13. No embedding initialization merely to list admitted data. |
+| Chat RetrievalFactorComputer, AccessBuffer.flush_all and IncrementalGraphMaintainer | Maintained store-only metadata consumers, not embedding callers. Compose them only after namespace admission, retain guarded adapter handles and existing result.errors/partial counts. No algorithm, WAL, quiescence or token changes; Chat must project those errors rather than report unqualified completion. FC-13. |
 | ContextAssembler inner background task and Runtime shutdown | FC-06 owns the actual extraction task and observable terminal status. The Agent outer scheduling wrapper is not completion proof; no new scheduler or retry queue. |
 | Tools MemoryMaintenanceTool/MemoryResetTool and GraphInspectionTool/VectorInspectionTool | Public injectable wrappers, no automatic activation. Retain admitted backup/maintenance/confirmed-clear and provider-offline inspection; expose typed failure/partial results. Lower-layer proof alone is insufficient. |
 | Chat FrameworkMaintenanceAdapter.reorganize/reorganize_memory | Non-dry-run legacy compatibility execution stays disabled; callable admitted dry-run remains. Maintained /reorganize still uses the coordinator with unchanged ordering. |
 | Runtime _friday_tools_catalog | Actual pkgutil.walk_packages/import_module startup is the minimal-install optional-dependency witness. |
 | Context assembly, passage routing, tool recommendation and ordinary tool registration | Preserve nonsemantic/LLM-only paths and lazy unavailable capability; no new document/embedding prerequisite. |
-| Telemetry and Transcript package contracts | Compatible unchanged unless a concrete boundary proves otherwise. Existing zero-attempt error telemetry is sufficient; transcript-v1 classes stay unchanged. |
+| Telemetry and Transcript package contracts | Existing schemas/reasons stay unchanged; FC-02 maps local observer outcomes at the actual Chat processor boundary. Existing zero-attempt error telemetry is sufficient; transcript-v1 classes stay unchanged. |
 | Commands, MCP transports, Speech, Sandbox, Finance, Moltbook, Optimization, main/scripts | Source-backed unchanged/transitive dispositions and minimal-install/import checks; no unrelated source changes inferred. Dynamic tool imports remain a documented residual risk and installed registry witnesses cover configured supported tools. |
 | Lifecycle migration.py, Chat migration/reset/reorganize compatibility stubs | Keep actual inactive/stub/disabled classifications; no migration repair, activation or integration credit. |
 
@@ -157,8 +187,16 @@ leases, not accidental global fan-out. A revoked/closed owner cannot write the
 old target; re-admit before reopening. Preserve standalone public filter and
 configure_rejection_logging call shapes and qualified independent logging; the
 final directive freezes private ownership injection without a logging redesign.
-Chat logging.extraction_rejections_file currently has no source consumer: keep
-it inert, never activate a second handler from it.
+Chat logging.extraction_rejections and logging.extraction_rejections_file have
+no source consumer: keep both inert, never activate a second handler from them.
+An owned extractor with no rejection_log_path has a no-file sink; it must not
+inherit a previously configured global file handler. Standalone public
+configure_rejection_logging retains its independent standalone logger/filter
+behavior and None return, but never attaches that logger to owned extractors.
+A standalone target claimed as a Memory namespace needs the same admission;
+it cannot use the standalone entry as a namespace-write bypass. Independent
+qualified standalone targets remain usable. Test default/no-path extraction
+after standalone setup, two owned extractors and standalone close/reconfigure.
 
 **FC-02 — active MCP snapshots and public failure mapping.** Treat
 mcp_tool_snapshot as one exact structured record, exempt from document/512
@@ -166,7 +204,8 @@ chunking. Retain opt-in, sanitization, byte ceiling, deterministic identity,
 pending/publish/discard ownership and transcript receipt protocol. Count the
 final stored record with document-role shared guards; byte-valid token overflow
 returns oversized before provider/store effects, never splits or truncates it.
-Preserve known typed refusal exceptions ahead of generic storage_failed catches.
+Preserve known typed refusal exceptions ahead of ineligible/ValueError and
+generic storage_failed/Exception catches.
 
 The actual Chat persist_mcp_interaction entry must consume the preparation
 outcome. Its narrow memory_mcp.py adaptation is required:
@@ -179,17 +218,58 @@ outcome. Its narrow memory_mcp.py adaptation is required:
 | Ownership conflict | Existing hard ownership failure; no foreign-record deletion. | Safe ownership-conflict category and existing persistence error. |
 | Prepared/published/publication pending | Existing exact snapshot, verified append/readback and pending ownership. | Preserve published/pending outcomes and truthful flags. |
 
-The observer keeps its callback shape with additional bounded safe reason
-literals. It stays optional/non-authoritative; no raw document/provider/secret
-text is reported. Keep receipt/provenance schemas unchanged. Existing skipped
-receipts cannot recover an original capacity reason: replay reports their skip,
-not a fabricated reason. Non-capacity failures are never persisted as skips.
-Retain current cancellation, readback and cleanup of newly owned, uncommitted
-snapshots; preserve existing/durably receipted pending records. Mixed ordinary/MCP
-turns keep existing partial-turn behavior, with explicit persistence failure;
-no new whole-turn rollback/atomicity is promised. Freeze exact approved error
-oracles in the final directive and test real public publication/receipt/observer,
-not only MCPMemoryIngester.
+Keep the existing callback shape. At the existing memory_mcp.py decision
+adaptation, use ONLY these existing MCPEventReason literals in the observer's
+outcome union, so the actual processor callback can continue forwarding them
+unchanged. No new telemetry enum, processor mapping feature or Runtime schema:
+
+| Preparation/outcome category | Observer literal, existing emitted reason and counter key |
+| --- | --- |
+| Existing ingestion_disabled / skipped / pending / published | Same existing value. |
+| oversized (byte or token) | capped |
+| Readiness failure | unavailable |
+| Space/provenance failure | rejected |
+| Invalid embedding result | invalid_result |
+| Storage failure | execution_error |
+| Ownership conflict | blocked |
+
+The observer intentionally uses the existing coarser vocabulary. Never forward
+a new literal such as oversized/storage_failed to the real Runtime sink. Require
+the entire observer union to be a subset of the existing strict MCPEventReason
+contract, and verify actual processor/provider counts with export disabled plus
+strict emitted event acceptance with it enabled. No raw document/provider/secret
+text. Observer failure remains non-authoritative. Receipt/provenance schemas stay
+unchanged; replay of a skipped receipt reports its established skip without
+inventing the missing original capacity reason. Non-capacity guard failures do
+not acquire successful skipped receipts.
+
+RETAIN owned pending records after failed/false/ambiguous append, failed
+readback, publication failure, cancellation, or a later call's preparation
+failure in the same turn. Current persist_mcp_interaction performs NO automatic
+discard. These records remain pending and non-retrievable until a matching
+verified receipt permits publication. Retry of the same entry/call reuses the
+exact owned record ID/content with no second embedding write; neither a new
+UUID nor a duplicate write is an acceptable oracle. Preserve receipt ambiguity
+readback and cancellation behavior. Foreign, existing and receipted records are
+never deleted. discard_mcp_memory remains an explicit existing capability, not
+new cleanup wiring. No automatic retry, pending garbage collector or whole-turn
+rollback/atomicity is added. Test mixed ordinary/MCP calls and delayed errors
+through actual public persistence, not just the lower discard method.
+
+Token counting remains at the SAME qualified shared embedding service used
+by the existing CollectionManager stage_mcp_snapshot/add_to_short_term path.
+It validates the exact final sanitized, labelled/wrapped stored text before a
+new embedding request or row write. MCPMemoryIngester(storage) keeps its current
+constructor: do not add a separate tokenizer, counter option or prepared-input
+protocol to MCP. Name the existing Chat prepare_mcp_memory/verify_mcp_memory
+constructor sites as trace points proving they use that guarded storage, and
+preserve typed overflow before generic storage_failed catches. Existing ownership
+lookup/readback can read admitted records. Matching pending/receipted reuse is
+store-only, checks namespace/ownership and makes no new embedding request; it
+does not gain a token recount/provider prerequisite merely to publish an already
+stored valid vector. A changed embedding space still refuses store admission.
+Test the actual shared guard on first stage and same-ID/no-extra-write reuse;
+do not implement new lifecycle or chunking behavior to make a snapshot fit.
 
 **FC-03 — compatible public physical backups.** Retain BackupManager
 create_backup, verify_backup and restore_backup signatures/return types and the
@@ -198,33 +278,48 @@ backup/backup_first and the injectable Tools wrapper must still succeed under
 admitted B/N. Do not retire them, disable backup_first or substitute a different
 API as proof of compatibility.
 
-Use shared store-only admission and the resolved layout before live source
-reads, destination mkdir or copy; no provider/tokenizer. Require a destination
-outside the active vector namespace and reject source/destination recursion or
-symlink escapes. Preserve an existing safe default, such as memory-root/backups
-beside vector/. If the default/explicit root is inside vector/, refuse before
-mkdir and point to the existing external backup_root/backup_dir option; do not
-silently relocate it. Copy the ready binding as immutable artifact evidence,
-without changing live source bytes/metadata. Keep the legacy manifest model;
-a separate strictly versioned bound receipt in the backup records the exact
-manifest/sidecar digests, normalized layout and incarnation. Freeze its schema
-and exact source/artifact member mapping at Gate A.
+Preserve the existing memory_dir/backup_root/backup_dir arguments, default
+destinations, old BackupManifest and data-file selection/copy semantics. This is
+not a new complete physical snapshot implementation. The existing parent form
+D/vector and vector-directory form D are identity-admission cases, not new
+layout features: inspect only fixed marker metadata at D/embedding-space.json
+and D/vector/embedding-space.json before live copying. Exactly one ready marker
+must resolve; both, pending/malformed or absent markers refuse without fallback
+to another namespace. Never infer a model from files or touch an unbound root.
+This bounded selector reconciles the old signature with OPEN_BOUND; it does not
+invent graph/split-root discovery or scan arbitrary store paths.
 
-Public restore succeeds into the SAME admitted space/incarnation/layout only,
-with validated bound receipt and permitted data inventory. Identity/target
-checks are mandatory even with verify_first=False; that flag controls the old
-optional data-checksum pass, not admission. Never copy a ready/pending marker,
-overwrite/recreate the live binding, clone another incarnation or attach an old
-artifact to a fresh namespace. Validate every path and identity before any live
-write. Identity-free artifacts retain offline manifest/checksum inspection;
-live restore remains refused by the approved fresh-store policy. Foreign,
-pending/malformed artifacts and an unsafe destination refuse before mkdir/copy.
-Preserve existing physical-copy consistency/quiescence preconditions and disclose
-limitations: no new online/crash-atomic Chroma backup engine. Prove positive
-public create/verify/same-incarnation restore on quiescent disposable B/N stores,
-including restored data and retained live identity. Maintained v2 snapshot and
-rollback remains separate proof; disabled module restore stays disabled. No
-generic bridge, migration, new command or maintenance-order change.
+For an admitted operation, preserve the old backup destination, including an
+existing safe nonrecursive vector-form default. Existing creation may change
+its backup-directory metadata; require unchanged vector payload/live binding,
+not a new promise of no directory effects at all. Add only a strictly versioned
+binding receipt beside the old manifest: canonical ready identity/digest,
+namespace incarnation/vector root and exact old-manifest digest. Capture a copy
+of the binding as evidence if needed; never make it restore data. This receipt
+is distinct from logical-v2 snapshots and does not change the old file-set rules.
+
+Before restore, require matching admitted identity/incarnation/vector root and
+valid binding receipt, even if verify_first=False. Never overwrite/recreate a
+ready/pending binding marker or clone/relabel a new root. Preserve ordinary
+data-checksum option behavior. Identity-free artifacts retain offline manifest/
+checksum inspection; they cannot be attached to a new guarded namespace. No new
+automatic cleanup, default relocation, membership repair, transaction or backup
+engine. If minimum identity admission cannot fit these paths without changing
+existing working behavior, stop the construction directive for that exact scope
+decision rather than implementing a broader solution.
+
+The old vector-directory form omits per-segment backend files and the standalone
+API cannot express Runtime's separate graph root. Those pre-existing completeness
+limits are FU-014, failed/unwaived baseline behavior, not this unit's repair or
+positive complete-recovery claim. Runtime has no maintained construction of this
+legacy BackupManager; its maintained logical-v2 participant remains the required
+complete recovery path. Keep module backup and public backup/backup_first working
+as before on admitted fixtures; keep disabled module restore disabled. Future
+paired baseline/candidate tests compare old public return types, destinations
+and file sets (apart from new binding evidence), same-incarnation binding safety
+and unchanged unrelated failure behavior. Genuine complete/queryable positives
+use an already working baseline layout; known incomplete/split cases receive
+no complete-recovery credit. Record any new failure separately from FU-014.
 
 **FC-04 — analyzer and raw SQLite.** Public ConsistencyAnalyzer uses
 the resolved exact layout and shared store-only admission before live graph or
@@ -283,7 +378,12 @@ Retain active task handles to completion, bound terminal-state retention to the
 session lifetime, and drain/cancel-and-await owned tasks before closing their
 extractor/sink during existing Runtime shutdown. Do not let the Agent's outer
 wrapper's return acknowledge the inner task. No-extractor is an explicit skip;
-failed work remains eligible for an explicit later call. No new automatic retry,
+failed work remains eligible for an explicit later call. Close first shuts
+task admission, then drains/cancels-and-awaits owned work before sink disposal.
+A late Agent outer task calling an already closing/closed assembler records
+skipped-unavailable, starts no extraction and cannot reopen a sink/resource.
+Test that delayed scheduling race explicitly; set_extractor cannot revive a
+closed instance. No new automatic retry,
 queue, scheduler, durable journal or Agent public signature is introduced.
 
 MemoryConsolidator remains public-unwired. Persist a successful batch summary
@@ -300,7 +400,9 @@ displaying completed counts. Preserve thresholds/order and generic Tools APIs.
 
 **FC-08 — actual recall and injectable graph scoring.** Typed shared
 readiness/space/provenance/overflow/invalid-vector errors propagate through actual
-recall/query, CollectionManager.get_all gather, controller priming/fetch,
+recall/query (including recall asyncio.gather return_exceptions unpacking),
+CollectionManager.get_all gather, _retrieve_graph_with_scoring exception handling,
+controller priming/fetch,
 _fetch_recent_insights, _fetch_recent_summaries and get_insights_by_author.
 Preserve unrelated partial-read warnings/degradation and cancellation. Public
 tools may adapt refusal to explicit failure/unavailable, never empty successful
@@ -313,9 +415,17 @@ graph vectors are maintained write/preserve state for extraction, REEMBED and
 recovery; guard those writes/snapshots. Both synchronous filter_paths_sync and
 async scoring/fallback are public-INJECTABLE APIs only. On explicitly injected
 comparisons, validate compatible query/stored-vector identity; an existing
-foreign/unknown/invalid vector fails the semantic operation, while a genuinely
-absent vector retains its existing zero contribution. Async fallback uses guarded
-document-role embeddings. No scorer/fallback/backfill is newly wired. Require
+foreign/unknown/invalid vector fails the semantic operation BEFORE any fallback
+or comparison; it must never be replaced. Validate every present component first.
+For genuinely absent edge/target vectors, sync scoring and async WITHOUT a
+supplied fallback keep zero contribution for that missing component. Async WITH
+the caller-supplied qualified embedding_fn retains existing on-demand document-
+role fallback for ONLY the missing components, then scores the returned vectors.
+Preserve edge/target text construction, weighting/order/thresholds and error/
+cancellation propagation. Fallback is transient scoring, not stored backfill.
+Test score_path/filter_paths AND their sync variants with edge-only/target-only/
+both absent, once-only preparation, exact fallback call counts and nonzero
+aligned component scores; R covers invalid present vectors and fallback errors. No scorer/fallback/backfill is newly wired. Require
 actual Chat/Runtime spies proving ZERO graph-vector comparisons alongside public
 injected-scorer B/N/R capability tests, clearly labelled as different proofs.
 
@@ -335,6 +445,9 @@ Per-kernel clear/close deletes only owned collections and never resets the share
 system or another kernel. Two kernels with different identities and the same
 logical names in one process must not share records/query results or dimension
 state. This is profile isolation, not a security or new profile-system promise.
+Per-kernel tenant/database isolation is a documented alternative, but this unit
+chooses incarnation-scoped collection names. Gate A freezes its exact encoding,
+backend name-length limits and cleanup checks; do not mix the approaches ad hoc.
 Transcript persistence stays independently configured; Memory profile does not
 enable/disable it. No Memory-caused graph/transcript-parent mkdir on refused or
 ephemeral Memory paths. Isolate independent transcript effects in no-disk tests.
@@ -393,10 +506,23 @@ maintenance/reset/graph/vector inspection wrappers join actual-call tests. Keep
 existing confirmed-reset semantics and scope; before any clear, shared store-only
 admission validates the whole target layout. Refusal precedes graph/vector/
 episodic effects, without a new rollback guarantee for unrelated later errors.
-Successful reset retains the namespace binding; never implement model migration
+The VectorInspectionTool no-query get_all branch receives positive coverage.
+Its query branch already calls a nonexistent vector.search method; record it as
+FU-013 under O-05, retain the pre-existing failure, give it NO positive semantic-
+query credit and do not fix it incidentally. Other working actual semantic-query
+APIs still need B/N positives. Successful reset retains the namespace binding; never implement model migration
 or erase the sidecar. Maintenance wrappers expose actual errors/partial results,
 not unconditional completed text. Legacy Chat execute methods stay disabled;
 their admitted dry-run and maintained coordinator path are separately tested.
+RetrievalFactorComputer, AccessBuffer.flush_all and IncrementalGraphMaintainer
+remain source-unchanged metadata algorithms. Construct them only after admission
+with guarded live handles, no embedding inference. Existing result.errors/partial
+counts and WAL/queue retention remain; Chat adapters must inspect/project these
+errors, including incremental maintenance, rather than emit unqualified completed
+totals. Do not add tokenizer requirements, change thresholds, refresh quiescence
+tokens or redesign WAL/commit behavior. Test real metadata-operation refusal and
+error projection through the wired Chat maintenance/exit paths. If unchanged
+algorithm code cannot preserve those contracts, stop for exact scope correction.
 No new automatic wiring or actual user reset is authorized.
 
 **FC-14 — operational compatibility versus model quality.** Record existing
@@ -421,7 +547,9 @@ installed lane, consumer and named call-phase negative witness at Gate A.
 | --- | --- | --- |
 | FC-01 | `test_rejection_logging_obeys_namespace_admission` | Real first-use startup plus two owned sinks/kernels, reconfigure/close, failed setup, repeated same-path and unchanged old-root metadata. |
 | FC-02 | `test_mcp_snapshot_embedding_compatibility` | Real persist_mcp_interaction/turn observer, snapshot receipts and ownership: B/N, overflow, typed refusal, storage/ownership failure and mixed calls. |
-| FC-03 | `test_legacy_backup_guarded_namespace_disposition` | Public BackupManager create/verify/same-incarnation restore, module backup, Reorganizer backup_first and Tools wrapper positives; receipt/sidecar/unsafe-root/clone refusals and separate maintained v2 proof. |
+| FC-02 | `test_mcp_pending_retry_and_existing_telemetry_reasons` | Actual TurnProcessor/RuntimeMCPProvider enabled/disabled export, exact existing reason/count mapping, pending ID/write-count retention after false/ambiguous append/readback/cancel/mixed-call failure. |
+| FC-03 | `test_legacy_backup_guarded_namespace_disposition` | Paired old public create/verify/restore/backup_first behavior, unchanged destinations/file sets, new binding-receipt safety and separate maintained logical-v2 proof. FU-014 stays failed/unwaived. |
+| FC-03 | `test_public_backup_identity_and_unchanged_baselines` | Baseline-known working vs incomplete forms, same old data-member/default-path oracle, actual public callers, no new marker overwrite/rebinding; no complete-recovery credit for FU-014. No segment-inventory repair. |
 | FC-04 | `test_analyzer_store_only_namespace_admission` | `tests_memory/test_maintenance/test_analyzer.py`; provider-offline success and no SQLite/graph open on refusal. |
 | FC-05 | `test_legacy_synthesis_never_uses_default_embedder` | Synthesizer and module entry; spy on absent/failed embedder plus Chroma writes/default embedding. |
 | FC-06 | `test_consolidation_acknowledges_only_stored_batches` | `tests_memory/test_context/test_consolidator.py`; positive, mixed failure and retry. |
@@ -429,7 +557,7 @@ installed lane, consumer and named call-phase negative witness at Gate A.
 | FC-06 | `test_background_extraction_status_observes_owned_task` | Actual Agent archive plus real ContextAssembler, delayed post-return failure, telemetry off, wait/status, no-extractor, cancellation and Runtime shutdown. |
 | FC-07 | `test_lifecycle_counts_and_tool_text_report_actual_effects` | `tests_memory/test_lifecycle/test_promotion.py`, Tools memory-tool tests; execute text plus structured result. |
 | FC-08 | `test_recall_propagates_embedding_refusals` | Actual vector/query/priming/insight/summary consumers and get_all/refusal propagation; unscored maintained graph route separately spied. |
-| FC-08 | `test_injected_graph_scorer_binding_and_unscored_routes` | Actual Chat/Runtime have zero graph-vector comparisons; explicitly injected sync/async scorer B/N plus same-dimension foreign R. No new maintained wiring. |
+| FC-08 | `test_injected_graph_scorer_binding_and_unscored_routes` | Actual Chat/Runtime zero-comparison spies; actual sync/async score+filter APIs, absent-component matrix with/without fallback, same-dimension foreign/invalid R before fallback and propagated capacity/result errors. |
 | FC-09 | `test_runtime_memory_profile_identity_and_persistence` | `tests_runtime/test_kernel.py`; four profiles, independent ephemeral kernels, separately controlled transcript. |
 | FC-10 | `test_existing_embedding_configuration_and_origin` | B01–B08 resolver/CLI fixtures; omitted fields, divergent hint/default, constructor/env origin. |
 | FC-11 | `test_maintenance_probe_and_empty_store_dimensions` | Pipeline/provider/mutation tests; zero provider before admission, graph-only empty fresh positive. |

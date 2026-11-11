@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Reconcile compatibility-cycle pass2/4 (global round7) fresh Sol/Astra/Opus reviews of the corrected REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery."
+  next_gate: "Reconcile compatibility-cycle pass3/4 (global round8) fresh Sol/Astra/Opus reviews of the corrected REM/annex/Tools and all framework consumers. Every seat must VERIFIED with coverage and overall >=9.5 and zero mandatory findings. At most one further correction/review pass remains; after pass4 stop for maintainer guidance. No Gate-A, construction, store/reset action or delivery."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3197,3 +3197,11 @@ events:
   action: reconciled INGEST compatibility pass1 and corrected the document scope for pass2
   note: "Pass1 scores below gate; six source-confirmed themes corrected without product edits. Opus dirty-YAML read disclosed and formal seat blocked; no replacement. Public backups retained; graph scorer correctly injectable-only; owned extraction/logging and real MCP outcome seams specified. Fresh pass2/4, round7; two later correction passes remain. No Gate-A, construction, store action or delivery."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round6/reconciliation.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T03:26:33.442573+00:00"
+  actor: Codex
+  actor_role: agent
+  action: corrected INGEST pass2 contracts and restored historical gates for pass3
+  note: "All pass2 scores below gate. Five contract/history themes plus nine advisory dispositions; no product changes. Fresh pass3/4 then one final pass maximum; no Gate-A, store or delivery authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round7/reconciliation.json

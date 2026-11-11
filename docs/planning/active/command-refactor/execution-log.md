@@ -2973,3 +2973,30 @@ bounded design and framework consumer inventory. Two further correction/review
 passes remain after it. Every seat must independently verify with coverage and
 overall >=9.5 and no mandatory findings; stop at pass4 for guidance otherwise.
 Gate-A effects, construction, MAINT acceptance and delivery remain ungranted.
+
+
+## INGEST compatibility pass2 reconciliation and pass3 correction — 2026-11-10
+
+Pass2 `f1916747` remains CHANGES_REQUESTED: Sol coverage9.4/overall9.3,
+Astra9.1/9.0, Opus8.8/8.5. [Round7](validation/document-ingestion/council-round7/report.md)
+preserves exact raw hashes and reports. No runtime/installed proof or acceptance.
+
+Corrected sync/no-fallback versus qualified async missing-vector behavior;
+retained pending snapshot IDs/no-extra-write retry, with no automatic discard;
+reused existing telemetry reason literals in the actual Chat MCP observer,
+with unchanged processor/provider forwarding. The maintainer questioned MCP and
+backup scope: the corrected boundary is causal compatibility only. New backup
+layouts/defaults/member repairs and MCP cleanup/counter protocols are excluded;
+minimum binding safety and paired old-behavior proofs remain, with pre-existing
+physical-copy limits separately recorded as FU-014.
+Exactly35 historical gate lines were restored byte-for-byte from `8d25d53a`;
+future gate edits target only the current checkpoint. Nine advisory dispositions
+name late-task admission, default/standalone logging, metadata consumers, the
+pre-existing inspection query defect and the exact mutation/counter seams.
+No product code, schema deployment, model/store operation or cleanup occurred.
+
+Fresh pass3/4 (global round8) reviews delta first then full bounded design and
+all-framework consumers. At most one later correction/review pass remains.
+Every seat must VERIFIED/no mandatory findings with coverage and overall >=9.5;
+after pass4 stop for maintainer guidance. No automatic Gate-A/construction,
+MAINT acceptance, data reset/migration, push or delivery authority.

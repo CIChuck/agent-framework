@@ -464,3 +464,35 @@ mandatory certifi>=2026.10.19 floor.
 Source Evidence: [Historical source assessment](../../active/command-refactor/validation/document-ingestion/assessment.md),
 [scope expansion](../../active/command-refactor/validation/document-ingestion/format-expansion.json)
 and [proposed remediation](../../active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md).
+
+
+## FU-013: Public VectorInspectionTool Query Uses Missing Search API
+
+- Status: recorded; separate decision required; no implementation authority.
+- Source: packages/friday-tools/src/friday_tools/memory/inspection.py query branch
+  calls controller.vector.search; maintained ChromaVectorStore/SimpleVectorStore
+  expose query, not search. Static source finding, no user-store operation run.
+- Boundary: O-05 preserves this pre-existing broken query branch during INGEST.
+  It earns no positive semantic-query coverage. The no-query get_all inspection
+  branch and actual working semantic query APIs still require B/N/R proof.
+- Future fix: separately approve a typed adapter/contract correction and prove
+  real public tool output/error behavior; no opportunistic repair or false green
+  claim in REM-CMD-INGEST-001.
+
+
+## FU-014: Legacy Physical Backup Member-Selection Limits
+
+- Status: static source finding; unwaived; separate repair decision required.
+- Evidence: BackupManager selects fixed root-level data files and recursively
+  includes only memory_dir/vector. A vector-directory argument therefore omits
+  per-segment UUID backend files; one memory_dir also cannot express Runtime's
+  independent vector and graph roots. No real store/restore was exercised here.
+- Boundary: preserve existing public copy paths/defaults under INGEST, adding
+  only minimum admission/new-binding evidence and no-marker-overwrite guard.
+  No new backup layouts, default relocation, segment-inventory/consistency
+  repair or complete-recovery claim is authorized by this record.
+- Proof: before construction, paired baseline/candidate disposable fixtures must
+  distinguish working layouts from pre-existing incomplete cases. Keep those
+  limits unwaived, award no complete-recovery credit for them, and report any
+  newly introduced failure separately. Unsafe new guard dependencies stop
+  readiness for scope disposition rather than silently fixing this item.
