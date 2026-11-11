@@ -3407,3 +3407,30 @@ text was normalized, no reviewer report or directive was changed, and no product
 file/runtime was touched. The [packaging audit](validation/document-ingestion/gate-a/council-round1/evidence/controller-archive-packaging.json)
 records the failure/correction. Final range/staged/preservation checks are rerun
 before completing the closeout; all six design correction groups remain open.
+
+
+## Corrective harness council loop authorized; pass1/4 prepared — 2026-11-11
+
+Chuck directs: proceed and execute up to four review rounds without involving him,
+stop after the fourth. [Authorization](validation/document-ingestion/gate-a/correction-loop/authorization.md)
+records four new corrective passes (harness rounds2–5), early stop only on every
+seat VERIFIED/no mandatory/both scores>=9.5, no hidden replacements or score
+inflation. This supersedes the old one-pass limit and ordinary two-cycle escalation
+only for bounded document work, not implementation or runtime permissions.
+
+Prepared directive v0.2, execution contract v0.1, readiness plan/envelope v0.4 and
+isolation requirements v0.3. The six proposed correction groups cover safe startup,
+configuration/credential isolation, read-only commit export, promotion/resume/window
+bindings, honest native/cache control evidence and safe loaded-model status. All
+seven related advisories are mapped. Their closure needs independent evidence;
+no builder claim transfers the old verdict. All numeric ceilings remain, with
+two-hour cumulative active qualification versus separately recorded human waits.
+
+[Pass1 criteria](validation/document-ingestion/gate-a/correction-loop/pass1/criteria.md)
+require delta first then full HRC01–16/HR01–18/RC01–06 review by fresh Sol/Astra/Opus
+contexts. The fixed nine business inputs, accepted impact v0.6, old review reports,
+user YAML/state and production files remain unchanged. Code stays prospective
+under tests/readiness/ingest; generated runtime state .friday_test is not created.
+No dependency/model install, conversion, inference, endpoint/store/process action,
+new provider or push is authorized. The controller used public primary references
+for mechanism details, not local-service or upstream package qualification.

@@ -2,7 +2,7 @@
 
 **Status:** started/pushed. Exact INGEST package impact v0.6 is approved;
 Gate-A readiness plan v0.3 and the bounded manual-harness construction draft
-has completed its one read-only council round with changes requested.
+is under a newly authorized four-pass corrective council loop.
 Execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
@@ -43,23 +43,23 @@ test/architecture/guide contracts retain their reviewed bytes.
 [Round6 council](validation/document-ingestion/package-impact/current-verified-report.md)
 remains VERIFIED for that document/source-feasibility scope, not execution.
 
-The [Gate-A plan v0.3](validation/document-ingestion/gate-a/readiness-plan.md),
-[isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md)
-and [draft harness directive](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
-remain unchanged. The [one-round council reconciliation](validation/document-ingestion/gate-a/council-round1/report.md)
-records CHANGES_REQUESTED from Sol, Astra and Opus. Seven mandatory IDs form six
-open groups covering startup, promotion/resume, ambient tool settings, committed
-source export, native/cache evidence and loaded-model safeguards. The 9.5 target
-is unmet. The [advisory disposition](validation/document-ingestion/gate-a/council-round1/advisory-disposition.md)
-keeps proposed corrections bounded; no directive repair is performed at closeout.
+The [corrected directive v0.2](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
+[execution contract](validation/document-ingestion/gate-a/execution-contract.md)
+and [plan v0.4](validation/document-ingestion/gate-a/readiness-plan.md) address the
+six initial review groups as proposed requirements, not implemented guarantees.
+Chuck [authorizes four fresh corrective council passes](validation/document-ingestion/gate-a/correction-loop/authorization.md);
+this is pass1/4 (harness-global round2), delta first then full bounded design review.
+All three seats must VERIFIED with no mandatory findings and both honest scores
+at least 9.5. Stop on success or after pass4. No hidden/replacement pass.
 
-Execution phase: planning; validation state: changes_requested. Versioned code
-remains proposed under `tests/readiness/ingest/`, runtime state `.friday_test/`.
-Shared LM Studio remains permitted only in the confirmed production-offline
-window after restart and separate logs. No harness/environment has been built,
-no model/store or production effect activated, and no further round is authorized.
-Next is Chuck's bounded correction/review direction. Existing exact package-impact
-approval persists; measured readiness and product construction are still future.
+Execution phase: remediation (documents only); validation state: in_review.
+All business/impact approval bytes remain intact. No production code/configuration/
+environment/store, harness construction, stage/model/server effect or delivery is
+authorized. Proposed code stays `tests/readiness/ingest/`, runtime `.friday_test/`,
+and shared LM Studio only within the operator-confirmed production-offline window.
+The [loop state](validation/document-ingestion/gate-a/correction-loop/loop-state.json)
+tracks the cap; prior [round1](validation/document-ingestion/gate-a/council-round1/report.md)
+is preserved with its original changes-requested result.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

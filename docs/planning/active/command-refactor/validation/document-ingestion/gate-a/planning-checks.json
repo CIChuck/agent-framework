@@ -1,111 +1,35 @@
 {
   "outcome": "PASS",
-  "scope": "Planning reconciliation and construction-directive draft only. No executable harness or real readiness execution.",
-  "baseline_commit": "72c5d736a7b938b499f2eb5f933d0940183fae42",
-  "logical_before_status": "d44e68552a151b0829b1166700aaf553a543ec1ab90f5ed12bd62a0f6598a598",
-  "protected_files_preserved": 17755,
-  "frozen_reviewed_document_pins_preserved": 9,
+  "scope": "Document correction and council preparation only; no harness code/tests or runtime effects.",
+  "baseline_commit": "35df1fa35162fdd70216ed47e5675a74c748139b",
+  "logical_before_status": "3939888ba41bd6bef0ca1a4f7334d00a53a599adf24c6bdfeb2e83920d7ab345",
+  "protected_files_preserved": 17840,
+  "business_pins_preserved": 9,
   "local_metadata_records_preserved": 9,
-  "directive_parent_pins_verified": 14,
-  "harness_acceptance_criteria": 12,
-  "historical_gate_tails_and_append_only_log": "PASS",
-  "current_navigation_and_authority_hashes": "PASS",
-  "readiness_version": "0.3-draft",
-  "proposed_code_root": "tests/readiness/ingest/",
-  "runtime_root": ".friday_test/",
-  "root_test_discovery": "Harness excluded; explicit selectors required.",
-  "shared_endpoint_permission": "Conditional on operator-confirmed production shutdown/server restart/log separation and exact model/window/input facts.",
-  "window_confirmed": false,
-  "harness_construction_approval": "NOT_GRANTED",
-  "harness_implemented": false,
+  "directive_parent_pins": 15,
+  "harness_acceptance_rows": 18,
+  "all_numeric_budgets_preserved": true,
+  "time_field_clarification": "overall_wall_seconds renamed overall_active_seconds, same 7200 total across invocations; human waiting separate.",
+  "current_pass": 1,
+  "maximum_new_passes": 4,
+  "harness_global_round": 2,
   "effects_activation": "NOT_GRANTED",
-  "independent_review": "not requested or claimed",
-  "administrative_checks": [
-    {
-      "argv": [
-        "uv",
-        "run",
-        "--offline",
-        "--frozen",
-        "--no-sync",
-        "--no-python-downloads",
-        "python",
-        "-B",
-        "scripts/friday-dev-board.py",
-        "validate"
-      ],
-      "exit": 0,
-      "result": "36 tasks valid"
-    },
-    {
-      "argv": [
-        "uv",
-        "run",
-        "--offline",
-        "--frozen",
-        "--no-sync",
-        "--no-python-downloads",
-        "python",
-        "-B",
-        "scripts/friday-dev-board.py",
-        "render",
-        "--check"
-      ],
-      "exit": 0,
-      "result": "Dashboard current"
-    },
-    {
-      "argv": [
-        "uv",
-        "run",
-        "--offline",
-        "--frozen",
-        "--no-sync",
-        "--no-python-downloads",
-        "python",
-        "-B",
-        "scripts/check-documentation-lifecycle.py"
-      ],
-      "exit": 0,
-      "result": "1056 Markdown files valid"
-    },
-    {
-      "argv": [
-        "uv",
-        "run",
-        "--offline",
-        "--frozen",
-        "--no-sync",
-        "--no-python-downloads",
-        "python",
-        "-B",
-        "scripts/check-package-metadata.py"
-      ],
-      "exit": 0,
-      "result": "18 manifests valid"
-    },
-    {
-      "argv": [
-        "git",
-        "diff",
-        "--check",
-        "--",
-        "docs/planning"
-      ],
-      "exit": 0,
-      "result": "Clean; staged diff checked again before commit"
-    }
-  ],
+  "model_window": "NOT_CONFIRMED",
+  "independent_correction_closure": "Pending fresh council, no builder claim.",
+  "actual_admin_results": {
+    "board": "PASS:36",
+    "dashboard": "PASS",
+    "documentation": "PASS:1066",
+    "metadata": "PASS:18"
+  },
   "execution_not_performed": [
-    "harness code/config/test generation",
-    "test-root creation",
-    "dependency resolution/install",
-    "model or asset transfer",
-    "LM Studio request/process/config change",
-    "document conversion or inference",
-    "Memory/Chroma/production store operation",
-    "product/harness test execution",
-    "new council",
+    "harness code generation",
+    "runtime tests",
+    "test directory creation",
+    "dependency/model install or transfer",
+    "conversion/inference",
+    "server/endpoint/store call",
+    "production alteration",
     "push"
   ]
 }

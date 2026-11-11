@@ -15,8 +15,8 @@ labels in those contracts do not supersede this later controller result; no
 reviewed content was altered at closeout.
 
 Controller status update: Chuck [approved exact v0.6 impact](../../../approval/ingest-package-impact.md).
-The separate [Gate-A harness directive council](../gate-a/council-round1/report.md)
-has completed one pass with CHANGES_REQUESTED from every seat. Its six correction
-groups remain open; no repair or further review is authorized automatically.
-The impact/parent report bytes retain their exact scope and approval. No harness,
-production mutation, stage/model activation, construction or acceptance follows.
+The separate harness directive is now in [corrective pass1/4](../gate-a/correction-loop/loop-state.json)
+under [new explicit authorization](../gate-a/correction-loop/authorization.md),
+following the initial changes-requested review. Its new draft is not covered by
+this parent verdict. Business/impact bytes remain unchanged; no construction,
+production mutation or stage/model activation follows.

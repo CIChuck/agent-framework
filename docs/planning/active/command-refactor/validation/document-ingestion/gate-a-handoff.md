@@ -1,38 +1,29 @@
-# INGEST-001 — harness council changes-requested handoff
+# INGEST-001 — bounded corrective harness council handoff
 
-Chuck [approved package impact v0.6](../../approval/ingest-package-impact.md).
-The parent [round6 result](package-impact/current-verified-report.md) retains its
-pinned scope. It does not qualify the new harness directive.
+[Four-pass authorization](gate-a/correction-loop/authorization.md) follows the
+initial [changes-requested council](gate-a/council-round1/report.md). This is
+corrective pass1/4 (harness-global round2), not an extension of the old single pass.
+[Loop state](gate-a/correction-loop/loop-state.json) caps all attempted passes.
+Stop on all-seat VERIFIED/no mandatory/coverage+overall>=9.5, otherwise after pass4.
+No uncounted replacement, model substitution or question for routine corrections.
 
-[Gate-A harness council round1](gate-a/council-round1/report.md) is complete:
-Sol, Astra and Opus all request changes; the target is unmet. Seven mandatory IDs
-form six groups: Python startup; promotion/resume/window lifecycle; ambient tool
-configuration; committed-source export; preventive/detective cache/native controls;
-and loaded-model/JIT/TTL/eviction checks. All remain open. [Controller boundaries
-and advisories](gate-a/council-round1/advisory-disposition.md) preserve the exact
-budgets, shared endpoint permission and test-only scope.
+The [directive v0.2](../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
+[execution contract](gate-a/execution-contract.md), [plan v0.4](gate-a/readiness-plan.md),
+envelope and isolation requirements are corrected drafts. [Locations](gate-a/correction-loop/pass1/corrections.json)
+are not correctness evidence; fresh reviewers close requirements independently,
+then examine the full bounded aggregate. Business/impact parents stay unchanged.
 
-The [directive](../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
-[plan](gate-a/readiness-plan.md), [envelope](gate-a/effects-envelope.json) and
-[isolation requirements](gate-a/isolation-requirements.md) remain frozen at their
-reviewed bytes. No fix, harness construction, dependency/model stage or new
-council is underway. No production code/configuration/environment/store change
-was made. The runtime test directory remains absent; model-window facts unbound.
+Startup uses trusted -I/-S/-B and explicit imports; tool settings/credentials and
+source-Git exports are isolated; promotions extend an owned ledger; all exits at
+missing evidence; budget numbers stay fixed with cumulative active time. Native
+control limits and metadata evidence are honest. Shared LM Studio requires a safe
+already-loaded model and exactly selected read-only status checks within its
+operator-confirmed production-offline/restart/log-separated window. No new server,
+configuration change or actual request is made by document correction.
 
-The one authorized review pass is exhausted. Next is maintainer direction for
-bounded documentation correction and any fresh review authorization, not an
-automatic iteration loop. Later construction/effect activation remains separate.
-Source/probe/generator/config/tests stay under `tests/readiness/ingest/`; generated
-state stays `.friday_test/`. Existing LM Studio reuse remains operator-controlled
-while production is stopped after restart and test-log separation; this review
-neither queried nor changed that service.
-
-All three reports, command ledgers, preserved-state receipts and selected static
-proof are archived with hashes. The controller's final frozen-candidate check
-passed before these metadata changes. The controller also checked public primary
-documentation, not the installed service. Root failures remain FAILED/UNWAIVED
-historical debt; no runtime tests or installed-format/model proof is claimed.
-
-The later [test migration](../../test-migration-plan.md), [architecture](../../command-architecture-update-plan.md)
-and [guide](../../guide-update-handoff.md) obligations remain. Unchanged impact
-approval is not reopened; any later material changed impact returns for review.
+All executable code remains future under tests/readiness/ingest and generated
+state under .friday_test. No harness/environment, store, install, conversion,
+inference, production mutation, push or implementation activation is authorized.
+Only bounded documents, current routing and read-only councils may iterate.
+After a passing final draft, return the exact construction directive for approval;
+measured readiness and later product integration/tests/guides still remain future.

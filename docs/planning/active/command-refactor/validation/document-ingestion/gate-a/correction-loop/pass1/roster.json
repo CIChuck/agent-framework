@@ -1,0 +1,43 @@
+{
+  "unit": "CD-CMD-INGEST-GATE-A-001",
+  "loop_pass": 1,
+  "maximum_new_passes": 4,
+  "harness_global_round": 2,
+  "mode": "Fresh read-only remediation delta then full bounded design/source-feasibility aggregate",
+  "seats": [
+    {
+      "seat": "Sol",
+      "providerInstanceId": "codex",
+      "model": "gpt-6.1-sol",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "Astra",
+      "providerInstanceId": "codex",
+      "model": "gpt-6-astra",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "Opus",
+      "providerInstanceId": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "options": {
+        "effort": "high"
+      }
+    }
+  ],
+  "gate": {
+    "all_seats_VERIFIED": true,
+    "mandatory_findings": 0,
+    "coverage_min": 9.5,
+    "overall_min": 9.5,
+    "score_honestly": true
+  },
+  "read_only_shared_checkout_exception": true,
+  "own_private_scratch_required": true,
+  "no_construction_or_runtime_effects": true
+}

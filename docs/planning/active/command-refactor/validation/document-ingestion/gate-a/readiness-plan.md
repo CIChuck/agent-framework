@@ -1,6 +1,6 @@
 # INGEST-001 — Gate-A dependency and capability readiness plan
 
-Version: **0.3 — shared LM Studio test window; prepared for maintainer review**, 2026-11-11.
+Version: **0.4 — corrected execution contract; prepared for council review**, 2026-11-11.
 Execution status: **NOT ACTIVATED**. Public metadata/source research has been
 performed; dependency resolution, artifact installation, model transfer,
 conversion, inference and store operations have not.
@@ -30,6 +30,10 @@ metadata observations, not downloaded-artifact or compatibility evidence.
 [The consumer matrix](consumer-readiness-matrix.md) binds the final inventory work.
 The maintainer's [production-isolation and manual-harness requirements](isolation-requirements.md)
 control test code, configuration, inputs, outputs and local model-service use.
+The [execution and evidence contract](execution-contract.md) controls startup,
+tool profiles, commit exports, promotion/resume, prevent/detect evidence and
+loaded-model checks. Its detailed rules resolve ambiguous summaries below without
+changing the approved product requirements or numerical ceilings.
 The proposed [harness construction directive](../../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
 places all versioned harness/probe/generator/config/test code under
 `tests/readiness/ingest/`. It is a draft for review, not construction approval.
@@ -62,7 +66,7 @@ At activation, resolve the project root and create a new absent
 `<project>/.friday_test/runs/<activation-id>/`. This replaces v0.1's temporary-root
 proposal. Existing shared test inputs/assets need ownership/hash verification;
 an existing or aliased run destination is refused. The run contains `harness/`,
-`source-export/`, `target/`, `config/`, `wheelhouse/`, `cache/`, `fixtures/`,
+`source-export/`, `source-git/`, `target/`, `config/`, `wheelhouse/`, `cache/`, `fixtures/`,
 `state/`, `logs/` and `reports/`. Reserve `vector/` and `graph.json` only for later
 approved integration testing; A0–A4 do not create or write a Memory store.
 
@@ -70,10 +74,15 @@ All executable test code and generated configuration run from that isolated copy
 and target. Working packages/tests, `.venv`, lock/metadata, user YAML/`.env`,
 `.friday/`, `.friday-old/` and exports remain unchanged. The only live-service
 exception is the operator-managed LM Studio test window below; no production application/store access is permitted.
+Use externally qualified interpreter/launcher identities and `-I -S -B` for
+every Python entry/worker, explicit controlled imports and manifest-owned private
+profile interpreters; do not restore ambient site processing.
 No live-checkout/working-environment imports, application defaults, ambient
 credentials or production configuration may enter the test process. Set all
 UV/XDG/Hugging Face/Transformers/Torch/temp/log paths explicitly under the run
-without repurposing HOME. Verify child paths and module origins too.
+without repurposing HOME. Per-tool no-config/discovery/credential/proxy controls
+must neutralize HOME/system settings too; environment stripping alone is insufficient.
+Verify child paths and module origins and record effective config origins.
 
 Publish verified assets under `.friday_test/assets/<manifest-sha256>/`, then make
 them read-only. Stage and hash them in the run first; only the promoted A2 asset
@@ -135,7 +144,7 @@ fresh test paths. No package/model/service effects are activated by this update.
 | Package payload / asset payload | 4 GiB / 1 GiB downloaded, counted across retries. No unbounded snapshot download. |
 | Private retained disk | 16 GiB total; require at least 20 GiB free before starting. |
 | Conversion process tree | 8 GiB peak RSS, one conversion, four CPU threads. No GPU profile is qualified. |
-| Time | Two hours overall; 20 minutes installation; 300 seconds single conversion, 180 seconds warm conversion, 30 seconds cleanup/quiescence grace. |
+| Time | Two hours cumulative active qualification across invocations; human waiting reported separately, no reset on resume; 20 minutes installation; 300 seconds single conversion, 180 seconds warm conversion, 30 seconds cleanup/quiescence grace. |
 | Document admission | 32 MiB compressed; 128 MiB expanded; 2048 archive members; 50 PDF pages; 32 sheets; 20,000 rows/sheet; 250,000 total cells; 100 slides; 5,000 total shapes. |
 | Optional local embedding stage | At most 64 requests, 256 vectors, 131,072 aggregate input tokens; explicitly manifested test inputs only. |
 
@@ -148,23 +157,35 @@ cancellation: the final directive still needs its own admission/quiescence tests
 
 ## Stage promotion and artifact manifests
 
-Plan approval must name the activated stages, exact run root, budgets and manifest
-reviewer. A bounded activation may cover conditional stages; each transition still
-requires a recorded, complete manifest before its effects. The **Codex controller**
-reviews ordinary data-only manifests against the approved envelope. Unlisted
-hosts, unknown licenses, source builds, custom model code, material package changes
-or unresolved model facts stop for Chuck; they are not delegated approvals.
-No council is launched automatically. The prior package-impact council loop ended.
+Plan approval must name activated stages, run root, numeric budgets, source/harness
+commits, protected metadata scope and authorized promoters. The immutable init
+identity and append-only promotion ledger follow [contract section 4](execution-contract.md#4-run-identity-promotion-ledger-and-resumable-stages).
+Each stage emits a candidate; an explicit receipt/hash-bound promotion authorizes
+the next effects. `all` stops with awaiting-promotion/window and exits; it neither
+waits for human input nor manufactures consent. Later manifests extend the ledger
+instead of contradicting a static init binding. Counters and active time accumulate
+across resumes. The two-hour total is not multiplied per invocation/stage.
+
+The Codex controller may review/promote ordinary manifests only within explicit
+activation. Unlisted hosts/licenses, custom model code, source builds, changed
+budgets/package impact or unknown model facts stop the dependent effects. The
+current four-pass document council is separately authorized; it grants no stage
+execution, construction, model window or automatic implementation.
 
 ### A0 — metadata resolution and final-directive inventory
 
-1. Freeze a clean export of the current source and approved document pins.
-   Rehearse only proposed package metadata in the private export: Tools' new
+1. Freeze the exact source/harness commit/tree and selection manifest, then use
+   the private read-only object view/blob export in contract section 3. Never copy
+   dirty/untracked/ignored worktree state or load production Git configuration.
+   Bind approved document pins and validate output object/file identities.
+   Keep the committed export read-only; derive a separately named, manifest-bound
+   metadata-only profile overlay (contract section 3). Rehearse proposed metadata: Tools' new
    extra, default Chat's extra request and the narrow LLM counter extra. Record
    exact before/after metadata and proposed lock diff; production source is unchanged.
 2. Resolve against current Chat/Core/Memory/LLM constraints for the target, with
    no ambient extras or project-environment sync. Use binary-only third-party
-   requirements, no executable installers/source builds/custom model code.
+   requirements, neutralized tool/config/credential/proxy/discovery profiles, no
+   executable installers/source builds/custom model code.
    Metadata may come only from the envelope's exact public hosts. If the resolver
    needs a wheel archive to obtain missing metadata, stop before that payload;
    first record the exact URL/hash/size and an explicit archive-inspection allowance.
@@ -277,19 +298,25 @@ of the user's selected service or served weights. The existing Nomic tokenizer
 repository snapshot is merely a candidate; it must match the actual deployment.
 Read no dirty YAML, global model cache or personal model file by inference.
 
+Before A3, an offline prepare-model step freezes and promotes candidate batches;
+only then can a window receipt bind existing manifest/ledger hashes.
 Before any inference, activation must bind: the operator-confirmed shared LM Studio
 test window, segregated log evidence, exact local endpoint and service selection; served artifact/revision and digest; tokenizer data/digest; supported
 capacity and returned dimensions; query/document/special-token preparation;
-normalization; and an explicit call/input-manifest allowance. The plan currently leaves
+normalization; the already-loaded model instance, safe JIT/TTL/eviction conditions
+and selected native status profile; and an explicit call/input-manifest allowance. The plan currently leaves
 those operator facts unbound, so A3 is blocked. Endpoint reuse is permitted only
 in the confirmed production-offline window. No model load/unload, existing-store
 access or background maintenance is permitted. Qwen 4B remains illustrative.
 
 Qualify omitted-new-field baseline fixtures B01–B08, preserving actual pool/default/
-non-pool/resilience/batch/cache selection. Check query/document roles, local/server
+non-pool/resilience/batch/cache selection using explicit run-owned clients/config,
+never full DI/Runtime assembly that can open default stores/caches. Check query/document roles, local/server
 count parity, effective input limits, batch index/input ordering, finite/complete
-vectors and exact dimensions. Counter parity may use an explicitly bound server
-facility as a cross-check; it never replaces offline counting for chunking.
+vectors and exact dimensions. Counter parity may use qualified usage/count observations on the already
+permitted embedding response; it never replaces offline counting. This profile
+adds no tokenizer endpoint. If required qualification needs another API, stop
+and report the exact gap instead of silently widening routes.
 Report an unattested hosted alias such as legacy text-embedding-3-small as a
 compatibility gap until immutable provider identity/counting is established;
 do not silently replace or disable a selected baseline service to call it compatible.
@@ -337,9 +364,10 @@ operator model facts, the production-offline/restart/log-separation receipt and
 an explicit call allowance. Unknown facts stop only
 the dependent stage; they do not become invented defaults or an overall pass.
 
-No council, package installation, source/test/guide implementation or model call
-has been started. The completed package-impact council supplied planning readiness,
-not evidence for the unexecuted stages above.
+No package installation, executable harness/product/test/guide implementation or
+model call is activated by this draft. The current bounded document-only council
+is separately authorized; earlier package-impact results remain pinned historical
+readiness, not evidence for the unexecuted stages above.
 
 ## Primary research sources
 

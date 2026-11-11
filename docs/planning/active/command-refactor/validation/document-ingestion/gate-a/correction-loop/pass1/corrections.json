@@ -1,0 +1,87 @@
+{
+  "purpose": "Location map of proposed corrections, not builder correctness/closure claims. Review independently.",
+  "prior_candidate": "f81453695007cacfa072fe295b8da7aa478438ba",
+  "groups": [
+    {
+      "id": "RC-01",
+      "prior_ids": [
+        "IGH-R1-SOL-001",
+        "IGH-R1-ASTRA-001"
+      ],
+      "locations": [
+        "execution-contract.md section 1",
+        "directive required behavior 1, manual interface, HR13"
+      ],
+      "proposal": "Startup -I/-S/-B, trust roots, explicit imports, no site hooks; core/profile separation and startup controls."
+    },
+    {
+      "id": "RC-02",
+      "prior_ids": [
+        "IGH-R1-OPUS-001"
+      ],
+      "locations": [
+        "execution-contract.md section 4",
+        "directive behavior 5-6, HR14",
+        "envelope promotion_policy/time_accounting"
+      ],
+      "proposal": "Immutable identity plus authorized append-only promotions, offline model batch freeze before receipt, prefix anchoring, all exits, cumulative budgets."
+    },
+    {
+      "id": "RC-03",
+      "prior_ids": [
+        "IGH-R1-OPUS-002"
+      ],
+      "locations": [
+        "execution-contract.md section 2",
+        "directive behavior 3, HR15",
+        "envelope tool_isolation"
+      ],
+      "proposal": "Qualified tool config/discovery/credential/proxy suppression, explicit roots and private validation tools."
+    },
+    {
+      "id": "RC-04",
+      "prior_ids": [
+        "IGH-R1-OPUS-003"
+      ],
+      "locations": [
+        "execution-contract.md section 3",
+        "directive behavior 2-3, HR16",
+        "envelope source_export"
+      ],
+      "proposal": "Private object-reading Git view, exact committed blob selection/export, source-index-copy collector, no source Git mutation or working-tree fallback."
+    },
+    {
+      "id": "RC-05",
+      "prior_ids": [
+        "IGH-R1-OPUS-004"
+      ],
+      "locations": [
+        "execution-contract.md section 5",
+        "directive behavior 4, HR17",
+        "envelope protected_state_policy"
+      ],
+      "proposal": "Separate preventive/detective/unknown control classes, bounded metadata observations, fail on change, fake-root proofs and no payload scan."
+    },
+    {
+      "id": "RC-06",
+      "prior_ids": [
+        "IGH-R1-OPUS-005"
+      ],
+      "locations": [
+        "execution-contract.md section 6",
+        "directive behavior 9, HR18",
+        "envelope model_window_policy"
+      ],
+      "proposal": "Already-loaded instance/safe settings attestation, exactly selected native V0/V1 status, no implicit load/evict/config calls, per-request revocation/state/budgets."
+    }
+  ],
+  "related_advisories": {
+    "A-1": "Explicit sibling loading/flags, contract1",
+    "A-2": "Private validation configs/caches, contract2",
+    "A-3": "Attested/observed in HR09",
+    "A-4": "control/run receipt/stop paths, contract4/6",
+    "A-5": "Latest loop authority labelled; older histories preserved",
+    "A-6": "Orchestrator versus profile workers, contract1",
+    "A-7": "Run-owned clients only, no DI/Runtime assembly, behavior10"
+  }
+}

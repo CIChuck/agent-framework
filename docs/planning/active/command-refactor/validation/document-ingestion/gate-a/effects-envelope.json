@@ -1,6 +1,6 @@
 {
   "unit": "REM-CMD-INGEST-001-GATE-A",
-  "version": "0.3-draft",
+  "version": "0.4-draft",
   "status": "NOT_ACTIVATED",
   "scope": "Isolated manually executable upstream dependency/converter/counter feasibility and source-linked final-directive inventory. All runtime code/config/input/output test-owned; no production mutation or product implementation.",
   "assessment_approval": {
@@ -46,7 +46,13 @@
     "asset_root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/assets/<manifest-sha256>",
     "reserved_integration_vector": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/vector",
     "reserved_integration_graph": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/graph.json",
-    "reserved_integration_state": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/state"
+    "reserved_integration_state": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/state",
+    "control_inputs": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/control/<activation-id>",
+    "source_git_view": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/source-git",
+    "binding_ledger": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/state/bindings.jsonl",
+    "revocation": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/state/stop.json",
+    "window_receipts": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/config/windows/<digest>.json",
+    "profile_overlays": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/profile-overlays/<profile>"
   },
   "budgets": {
     "metadata_bytes": 67108864,
@@ -56,7 +62,6 @@
     "total_retained_disk_bytes": 17179869184,
     "free_disk_before_start_bytes": 21474836480,
     "peak_child_process_tree_rss_bytes": 8589934592,
-    "overall_wall_seconds": 7200,
     "metadata_wall_seconds": 900,
     "install_wall_seconds": 1200,
     "single_conversion_wall_seconds": 300,
@@ -64,7 +69,8 @@
     "child_quiescence_seconds": 30,
     "local_embedding_requests_max": 64,
     "local_embedding_vectors_max": 256,
-    "local_embedding_total_input_tokens_max": 131072
+    "local_embedding_total_input_tokens_max": 131072,
+    "overall_active_seconds": 7200
   },
   "document_probe_limits": {
     "compressed_file_bytes": 33554432,
@@ -96,7 +102,7 @@
   ],
   "permitted_artifact_urls": "Only exact hash-bound URLs in the promoted manifest. Seed candidates are in source-observations.json. New redirect hosts stop; no wildcard host or implicit mirror.",
   "manifest_review": {
-    "owner": "Codex controller during explicitly activated readiness work",
+    "owner": "Chuck or the delegated Codex controller explicitly named by stage activation",
     "requirement": "Before each stage promotion, record full exact URL/revision/size/license/digest manifest, review it within the approved hosts/budgets, and reject unknowns. Any source build, custom model code, unlisted host or material package-impact change returns to Chuck."
   },
   "stages": [
@@ -122,7 +128,7 @@
       "id": "A3",
       "name": "embedding qualification",
       "network": "Only exact local LM Studio endpoint after the bound production-offline/restart/log-separation receipt and model/counter facts pass; none otherwise.",
-      "effects": "At most stated embedding/capability calls for manifested test inputs in the confirmed window. No remote/paid provider, server/process management, model download/swap/load/unload or persistent store access."
+      "effects": "Manifest/batch promotion and a valid production-offline/restart/log-separation/preloaded-safe-policy receipt before any status/embedding call. Only chosen native GET status plus POST /v1/embeddings; all calls count, no model load/evict/settings/service/credential/store effects."
     },
     {
       "id": "A4",
@@ -139,24 +145,27 @@
     "replacement_model": null,
     "status": "A3 blocked until confirmed production-offline/restart/log-separation window and exact endpoint/model/counter/input facts are bound. Existing local endpoint may be reused. Qwen remains illustrative.",
     "operator_window_receipt": null,
-    "test_log_separation_evidence": null
+    "test_log_separation_evidence": null,
+    "loaded_model_and_safe_loading_policy": null,
+    "selected_native_status_profile": null,
+    "protected_cache_metadata_scope": null
   },
   "excluded_effects": [
     "Model requests outside confirmed shared-LM-Studio test window; harness service/process/settings management or production application/config/store access",
     "Working .venv/uv.lock/pyproject or package source/test modification",
-    "Dirty YAML, personal stores, .friday-old, exports or global model caches",
+    "Dirty YAML/personal-store/model-cache payload inspection or mutation; only explicit metadata-only boundary observations may be activated",
     "Third-party source distributions/build scripts, executable installers, new runtime services",
     "Remote OCR/VLM, automatic backend fallback, URL ingestion or extra formats",
     "Live Finance/provider tests or credential use",
     "Qwen selection, re-embedding, old-store reset/migration",
-    "Product/construction/council/push/PR/publication authority",
+    "Product/harness construction, push/PR/publication authority; council permissions come only from their separate authorization",
     "Creating/resetting any Chroma store during A0\u2013A4; integration store paths are reserved for later approved work"
   ],
   "activation": {
     "maintainer_approval_of_this_plan": "PENDING",
     "activation_id_and_exact_run_root": "REQUIRED_BEFORE_EXECUTION",
     "manifest_review_record": "REQUIRED_BEFORE_EACH_STAGE_PROMOTION",
-    "operator_local_model_record": "REQUIRED_BEFORE_A3, including confirmed production-offline/restart/log-separation window",
+    "operator_local_model_record": "REQUIRED after model-batch promotion: confirmed window, already-loaded model, safe JIT/TTL/eviction, exact selected status/profile facts and budgets.",
     "no_automatic_stage_promotion_on_missing_facts": true,
     "boundary_preflight": "REQUIRED_BEFORE_EFFECTS; explicit test paths/origins and negative controls; model window checked before every batch."
   },
@@ -169,13 +178,14 @@
     "shared_asset_publish": "Only promoted A2 publisher; new manifest directory from verified run-local staging; never overwrite.",
     "working_checkout_or_venv_imports_allowed": false,
     "ambient_application_configuration_or_credentials_allowed": false,
-    "path_alias_or_production_overlap": "REFUSE_BEFORE_EFFECTS",
+    "path_alias_or_production_overlap": "REFUSE_CONTROLLED_OPERATIONS_BEFORE_EFFECTS; classify and prove native/child limits separately.",
     "test_workspace_git_ignore": "Required in separately approved harness scope before generation; not changed now.",
-    "production_containment_claim": "Demonstrate with negative controls and protected-state checks; Python audit is not an OS sandbox.",
+    "production_containment_claim": "Bounded demonstrated preventive controls plus declared detective metadata evidence; Python audit is not native/OS containment. Outside changes fail isolation; no unknown-root or universal-filesystem guarantee.",
     "shared_host_resource_contention": "Limits apply; zero performance impact is not claimed.",
     "shared_input_publish": "Only explicit fixture/supplied-input preparation; new manifest-named directory from run-local staging; never overwrite originals or existing inputs.",
     "endpoint_reuse_condition": "Only confirmed operator-managed test window: production stopped, server restarted, test logs separated, exact endpoint/model/input/config/manifest hashes and expiry bound.",
-    "shared_lm_studio_exception": "Existing service/model assets may be reused under the window; no harness service management or model-directory mutation. Working application/env/config/store isolation remains mandatory."
+    "shared_lm_studio_exception": "Existing service/model assets may be reused under the window; no harness service management or model-directory mutation. Working application/env/config/store isolation remains mandatory.",
+    "cache_observation": "Activation names specific default tool/cache/config roots and finite metadata-only enumeration limits; no payload/whole-HOME/model-dir scan, no silent truncation."
   },
   "manual_operation": {
     "full_and_per_stage_runs": true,
@@ -202,6 +212,79 @@
     "expiry_and_revocation_required": true,
     "check_before_each_batch": true,
     "harness_service_management_allowed": false,
-    "production_resumption": "Operator responsibility; never automatic."
+    "production_resumption": "Operator responsibility; never automatic.",
+    "loaded_model_required": true,
+    "unsafe_or_unknown_jit_ttl_eviction": "BLOCK",
+    "selected_status_profiles": {
+      "LMS_NATIVE_V1": "GET /api/v1/models: exact embedding key and loaded instance ID",
+      "LMS_NATIVE_V0": "GET /api/v0/models: exact embeddings ID, state loaded; instance facts labelled attested"
+    },
+    "status_profile_selection": "Exactly one operator-selected/version-qualified profile; no fallback probe or server upgrade.",
+    "request_routes": "Only selected GET status and POST /v1/embeddings; exact loaded identifier, no management/TTL override.",
+    "status_and_embedding_share_request_budget": true,
+    "check_before_and_after_each_batch": true,
+    "authentication": "Ambient/production credentials forbidden; required authentication blocks current profile.",
+    "server_settings_changes_allowed": false
+  },
+  "execution_contract": "execution-contract.md",
+  "time_accounting": {
+    "overall_seconds": 7200,
+    "meaning": "Cumulative active qualification execution across resumed invocations; not per-stage reset.",
+    "human_waiting": "Between processes only; excluded and separately reported. all exits rather than waits.",
+    "crash_accounting": "Reserve/charge effects before execution; unknown interrupted usage conservatively charged.",
+    "existing_subcaps_and_numeric_budgets": "Unchanged; no automatic increase.",
+    "legacy_field": "v0.3 overall_wall_seconds is replaced by overall_active_seconds, same 7200 numeric cap; human-wait semantics now explicit.",
+    "stage_subcaps": "Metadata/install subcaps cumulative across invocations/profiles; single/warm conversion caps remain per conversion."
+  },
+  "startup_policy": {
+    "required_flags": [
+      "-I",
+      "-S",
+      "-B"
+    ],
+    "optimized_additional_flag": "-O",
+    "trusted_roots": "Externally qualified interpreter/stdlib/launcher; no self-authentication claim.",
+    "imports": "Explicit frozen harness and manifest-owned private profile roots after guards; no site.main/addsitedir/pth/startup-hook guard injection.",
+    "orchestrator": "Qualified base interpreter, stdlib/harness only.",
+    "workers": "Separate private profile interpreters, explicit guard first; do not derive Python 3.13 -S site paths from sys.prefix."
+  },
+  "source_export": {
+    "selection": "Recorded source/harness commit/tree and explicit regular-blob selection; no dirty/untracked/ignored copy.",
+    "mechanism": "Run-owned minimal bare object-reading view and blob export; explicit declared read-only alternate objects, empty private Git config, no remotes/config discovery/filter/archive transformations.",
+    "allowed_git_object_operations": [
+      "rev-parse",
+      "cat-file",
+      "ls-tree"
+    ],
+    "boundary_collection": "Stable read-only source index copy; private view ls-files -s -z --cached against the copy, not production index/status.",
+    "production_git_mutation": false,
+    "uncommitted_harness_fallback": false,
+    "metadata_rehearsal": "Read-only base export plus explicit metadata-only derived overlay, with base/patch/result hashes and code-byte equality; promotion binds the profile.",
+    "split_index": "Read-only copy of declared dependencies when qualified; otherwise stop, never change source index settings.",
+    "git_environment": "Explicit private GIT_DIR/OBJECT_DIRECTORY, declared alternates, GIT_OPTIONAL_LOCKS=0, no system/global config, no prompts/replace objects/hooks/fsmonitor/credentials/maintenance/network; index collector uses private copy only."
+  },
+  "promotion_policy": {
+    "init": "Immutable run/source/harness/config/envelope/seed binding.",
+    "ledger": "Versioned strict canonical hash-chained append-only records with explicit authorized promotion receipts; chain is consistency evidence, not authentication of a malicious local owner.",
+    "all": "Ready consecutive stages only, then exit AWAITING_PROMOTION or AWAITING_WINDOW; no interactive waiting/auto-promotion.",
+    "prepare_model": "Offline exact candidate model/counter/input batch freeze after A2; promotion precedes window receipt.",
+    "model_receipt": "Binds existing promoted manifest/batch hashes and ledger tip; revocation rechecked before requests."
+  },
+  "tool_isolation": {
+    "requirements": "execution-contract.md sections 2-3",
+    "HOME": "Unchanged; every relevant user/system/config/credential/proxy channel explicitly neutralized and qualified.",
+    "uv": "No config/dotenv/discovery fallback; explicit target/interpreter, run-owned NETRC/config/credentials/data/cache roots; keyring/ambient auth disabled.",
+    "pip_executable_allowed": false,
+    "HTTP": "Direct clients; no automatic env/macOS proxy/netrc/keyring; explicit TLS roots and exact destinations.",
+    "validation_tools": "Explicit config/project and private/no caches.",
+    "unknown_channels": "Block profile, do not guess or modify production settings."
+  },
+  "protected_state_policy": {
+    "scope": "Declared checkout/source/lock/config/.venv/.env/.friday*/exports, production Git logical state and exact default tool/library cache/config roots.",
+    "cache_content_reads": false,
+    "metadata_coverage": "Declared bounded path/type/size/mode/mtime records, absent roots included, no symlink traversal/truncation.",
+    "detected_change": "Fail isolation and stop, no cleanup/repair; detection is not prevention.",
+    "unknown_native_channel": "Block qualification until covered within approved boundary.",
+    "shared_service_exception": "Only the explicit LM Studio test window, not general tool caches."
   }
 }

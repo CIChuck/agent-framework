@@ -1,28 +1,26 @@
-# Gate-A harness council — changes requested
+# Gate-A harness corrected draft — corrective pass 1/4
 
-Execution phase: planning; validation state: changes_requested.
-[Round1 reconciliation](validation/document-ingestion/gate-a/council-round1/report.md)
-records all three terminal CHANGES_REQUESTED results. The target is unmet; seven
-reported mandatory IDs form six distinct open correction groups:
+Execution phase: remediation (documents only); validation state: in_review.
+Chuck [authorizes up to four fresh corrective council passes](validation/document-ingestion/gate-a/correction-loop/authorization.md),
+without intermediate permission questions. This is pass1/4, harness-global round2;
+stop early on the full 9.5 gate or after pass4, no uncounted replacements.
 
-1. Trusted Python startup before guards.
-2. Promotion/resume/window lifecycle and preserved time budgets.
-3. Ambient tool settings/credentials/proxies and upward discovery.
-4. Committed-source export and source-Git non-mutation.
-5. Prevented versus detected native/cache effects and bounded evidence.
-6. Loaded-model/JIT/TTL/eviction conditions for shared LM Studio.
+The [directive v0.2](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
+[execution contract](validation/document-ingestion/gate-a/execution-contract.md),
+[plan v0.4](validation/document-ingestion/gate-a/readiness-plan.md), envelope and
+isolation requirements propose the six bounded corrections and related advisories.
+[Correction locations](validation/document-ingestion/gate-a/correction-loop/pass1/corrections.json)
+are a review map, not independent finding closure. Reviewers assess delta then
+the full [criteria](validation/document-ingestion/gate-a/correction-loop/pass1/criteria.md).
 
-The [directive](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md), plan,
-envelope and all pinned parents remain unchanged; none of these findings is
-remediated. [Advisories and controller boundaries](validation/document-ingestion/gate-a/council-round1/advisory-disposition.md)
-retain the additional recommendations without widening effects or budgets.
-The exact approved [package impact](approval/ingest-package-impact.md) persists.
-No harness, environment, fixture conversion, model call, production mutation or
-new review was started. Reviewers used private external scratch; the controller
-consulted public documentation only. All protected-source checks passed before
-this metadata closeout. The one authorized council pass is exhausted.
+All nine business inputs including approved package impact remain unchanged.
+No executable harness, test environment, dependencies, model/client/store/service
+or production change is activated. Test code scope stays `tests/readiness/ingest/`,
+generated state `.friday_test/`; existing LM Studio reuse remains the controlled
+production-offline window. Budget numbers are unchanged; active-time versus human
+waiting and future promotion/resume are now explicit.
 
-**Next gate:** Gate-A harness directive council round1 is CLOSED with CHANGES_REQUESTED from Sol, Astra and Opus on f8145369. Seven mandatory IDs form six open correction groups; the 9.5 target is unmet. Directive e44d4e4b and all pinned parents remain unchanged. Await Chuck direction for bounded document correction and any fresh review authorization; no automatic repair/replacement/extra round, harness construction or stage/model activation. Test-only code scope remains tests/readiness/ingest/, generated state .friday_test/, and shared LM Studio only in the confirmed production-offline/restart/log-separation window. Production code/configuration/environment/stores remain untouched; exact package-impact v0.6 approval persists.
+**Next gate:** Four fresh corrective document council passes are authorized; pass1/4 (harness round2) is being frozen after scoped corrections to startup, promotion/resume, ambient tools, committed export, prevent/detect evidence and loaded-model safeguards. Review remediation delta then full bounded aggregate with all three seats; target VERIFIED/no mandatory findings and coverage/overall>=9.5 each, score honestly. Continue bounded document correction/review without asking Chuck, stop early on success or after pass4. No hidden replacements, production code/config/env/store change, executable harness construction or stage/model/service effects. Versioned code remains tests/readiness/ingest/, runtime state .friday_test/, shared LM Studio only in its confirmed production-offline window. Exact package-impact approval persists.
 
 ## Separate MAINT closeout and historical checkpoints
 
