@@ -1,0 +1,45 @@
+{
+  "unit": "CD-CMD-INGEST-GATE-A-001",
+  "round": 1,
+  "maximum_authorized_rounds": 1,
+  "mode": "fresh read-only complete design/source-feasibility review",
+  "construction_source": "494eed4f1c15d79d29cf0acc5e2203d7c7ebe5ef",
+  "directive_sha256": "e44d4e4b28736d66a1de1e66314cb6da25343430dec0933be4ac9f1645ec91ad",
+  "seats": [
+    {
+      "seat": "Sol",
+      "providerInstanceId": "codex",
+      "model": "gpt-6.1-sol",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "Astra",
+      "providerInstanceId": "codex",
+      "model": "gpt-6-astra",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "Opus",
+      "providerInstanceId": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "options": {
+        "effort": "high"
+      }
+    }
+  ],
+  "threshold": {
+    "coverage": 9.5,
+    "overall": 9.5,
+    "mandatory_findings": 0,
+    "all_seats_required": true,
+    "score_honestly": true
+  },
+  "reviewer_effects": "Only fresh external private scratch and read-only Git/admin/source inspection; no tests, installs, services, models, stores or checkout edits.",
+  "shared_checkout_exception": "Explicit controller-approved read-only shared checkout; every seat uses its own scratch/cache/output roots and opening/closing protected checks.",
+  "implementation_effects_authority": false,
+  "automatic_remediation_or_replacement_authority": false
+}

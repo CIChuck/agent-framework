@@ -3330,3 +3330,28 @@ dependency/model installation, document conversion, inference, Chroma/Memory
 operation, production process/configuration change, new council or push occurred.
 The exact approved impact and all other frozen reviewed contracts are preserved;
 product construction, stage effects and model-window activation remain separate.
+
+
+## Gate-A harness directive council authorized — 2026-11-11
+
+Chuck explicitly requests council review of the construction directive, emphasizing
+no production-code change and an isolated test environment. Recorded the [one-round
+authorization](validation/document-ingestion/gate-a/council-round1/authorization.md),
+[full criteria](validation/document-ingestion/gate-a/council-round1/criteria.md)
+and [resolved roster](validation/document-ingestion/gate-a/council-round1/roster.json).
+The seats are GPT-6.1 Sol, GPT-6 Astra and Claude Opus 5.5, high effort, each reviewing
+the whole scope with an honest coverage/overall target of 9.5 and no mandatory findings.
+
+Directive e44d4e4b from construction source 494eed4f and all 14 pinned parent bytes
+remain unchanged. The controller freezes an exact documentation-only candidate
+and external request/protected manifest before dispatch. Reviewers use the approved
+shared-checkout read-only exception and private external scratch/caches. Required
+checks are read-only administration, identity and source/design inspection only.
+No implementation/runtime test, install, LM Studio/server operation or store access
+is authorized. Future model qualification still requires the operator-confirmed
+production-offline/restart/log-separation window and exact model/counter facts.
+
+This new explicit council authorization supersedes only the earlier no-council
+routing. It does not approve the draft for construction, activate stages, grant
+acceptance/delivery or renew a prior iteration loop. One complete council round
+then controller reconciliation; no automatic repair/replacement or further round.

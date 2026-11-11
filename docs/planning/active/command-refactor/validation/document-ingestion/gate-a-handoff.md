@@ -4,7 +4,8 @@ Chuck [approved exact package impact v0.6](../../approval/ingest-package-impact.
 [Round6](package-impact/current-verified-report.md) remains VERIFIED only for its
 unchanged pinned documents/source feasibility.
 
-Prepared for review, not construction/effects activation:
+Prepared for one explicitly authorized read-only [directive council](gate-a/council-round1/authorization.md),
+not construction/effects activation:
 
 - [Gate-A plan v0.3](gate-a/readiness-plan.md) and [effects envelope](gate-a/effects-envelope.json).
 - [Manual harness and isolation requirements](gate-a/isolation-requirements.md).
@@ -25,11 +26,13 @@ run-specific window, endpoint/model/counter facts, manifests, budgets and actual
 log-separation mechanism are bound. Reachability is not shutdown/restart evidence.
 No such window is currently confirmed; A3 remains unactivated.
 
-The next gate is review of the exact bounded harness directive before code, then
+The next gate is reconciliation of all three fresh council reports against
+[HRC-01–16](gate-a/council-round1/criteria.md), with both scores at least 9.5 and
+no mandatory findings from every seat. The single authorized round grants no
+automatic remediation/replacement loop. Later comes exact directive approval, then
 separately recorded stage activation and manifest promotion before dependencies,
 conversion or model effects. Public metadata/source research is the only completed
-upstream work. No new council, production mutation, store operation or delivery
-is authorized. The operator's server-restart permission does not grant the harness
+upstream work. This council authorizes no production mutation, store operation or delivery. The operator's server-restart permission does not grant the harness
 service-management rights.
 
 Preserve the [test migration](../../test-migration-plan.md), [canonical architecture](../../command-architecture-update-plan.md)

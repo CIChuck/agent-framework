@@ -2,7 +2,8 @@
 
 **Status:** started/pushed. Exact INGEST package impact v0.6 is approved;
 Gate-A readiness plan v0.3 and the bounded manual-harness construction draft
-is prepared for review. Execution and MAINT human UAT/acceptance remain pending.
+is in one authorized read-only council round. Execution and MAINT human
+UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -54,8 +55,10 @@ configuration and stores remain untouched.
 The existing LM Studio endpoint may be reused only while production is stopped,
 after operator-confirmed server restart and separated test logs. This supersedes
 the earlier independent-server requirement. Actual window/model evidence is still
-pending. Execution phase: planning; validation state: in_review. No harness or
-test environment has been built and no effects/council/construction activated.
+pending. Execution phase: planning; validation state: in_review. Chuck explicitly
+authorizes [one fresh read-only Sol/Astra/Opus directive council](validation/document-ingestion/gate-a/council-round1/authorization.md),
+with production isolation as the central requirement. No harness or test environment
+has been built and no runtime effects or construction activated.
 Measured readiness will bind the final product directive for separate approval.
 Prior assessment approval persists for unchanged exact bytes.
 

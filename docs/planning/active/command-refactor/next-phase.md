@@ -15,11 +15,12 @@ selectors are required because root pytest discovery excludes `tests/`.
 Chuck permits reuse of the existing LM Studio endpoint after production shutdown,
 server restart and test-log separation. No independent server or served-weight
 copy is required. The operator must confirm the actual test window/model facts;
-that confirmation has not been supplied. No code/test environment has been built,
-no package/model effects activated and no new council authorized. Production
+that confirmation has not been supplied. No code/test environment has been built or package/model effects activated.
+One [read-only directive council round](validation/document-ingestion/gate-a/council-round1/authorization.md)
+is now explicitly authorized; all three complete reviews precede reconciliation. Production
 application/configuration/stores and unrelated dirty state remain unchanged.
 
-**Next gate:** Exact Package Impact Assessment v0.6 remains approved. Gate-A plan v0.3 and draft CD-CMD-INGEST-GATE-A-001 place versioned harness/probe/generator/config/test code in tests/readiness/ingest/ and generated state in .friday_test/. Review the bounded harness directive before construction; no code/environment has been built or effects activated. Existing LM Studio endpoint may be reused only after operator-confirmed production shutdown, server restart and separated test logs; that window/model/counter evidence is not yet supplied. No independent server is required and no new council is authorized. Production application/configuration/stores stay unchanged. Measured readiness will finalize the later product directive.
+**Next gate:** One explicit read-only Sol/Astra/Opus council round is authorized for draft CD-CMD-INGEST-GATE-A-001, unchanged directive bytes e44d4e4b from 494eed4f. Review all HRC-01–16/HR-01–12, especially zero production-code/config/store/environment edits, code only under tests/readiness/ingest/, generated state under .friday_test/, and shared LM Studio only in the confirmed production-offline/restart/log-separation window. Target coverage and overall>=9.5 from every seat, no mandatory findings. Reconcile all three reports; no automatic loop, harness construction, stage/model activation or delivery authority.
 
 ## Separate MAINT closeout and historical checkpoints
 

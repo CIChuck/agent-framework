@@ -16,7 +16,7 @@ reviewed content was altered at closeout.
 
 Controller status update: Chuck [approved exact v0.6 impact](../../../approval/ingest-package-impact.md).
 The [Gate-A plan v0.3](../gate-a/readiness-plan.md) and [draft harness directive](../../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
-are prepared for review. Code is scoped to `tests/readiness/ingest/`, runtime
+are in one explicitly requested read-only directive council round. Code is scoped to `tests/readiness/ingest/`, runtime
 state to `.friday_test/`, with operator-confirmed shared-LM-Studio testing while
 production is offline. Those new documents are not covered by the old council
 verdict. Formal reports/reviewed bytes remain unchanged; no construction or
