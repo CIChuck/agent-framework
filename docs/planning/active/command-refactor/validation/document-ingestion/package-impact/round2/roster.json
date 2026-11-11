@@ -1,0 +1,61 @@
+{
+  "round": 2,
+  "candidate": "1a040de397c08f2045d696ecff75fefcb836a050",
+  "seats": [
+    {
+      "seat": "sol",
+      "model": "gpt-6.1-sol",
+      "provider": "codex",
+      "options": [
+        {
+          "id": "reasoningEffort",
+          "value": "high"
+        },
+        {
+          "id": "serviceTier",
+          "value": "default"
+        }
+      ],
+      "taskId": "node:delegated-task:command%3Amcp%3Ae05e1e6d-cd07-43c6-98d1-6cbba8c1bf21%3Adelegate-task%3Aingest-package-impact-r2-sol-1a040de3",
+      "threadId": "thread:delegated-task:command%3Amcp%3Ae05e1e6d-cd07-43c6-98d1-6cbba8c1bf21%3Adelegate-task%3Aingest-package-impact-r2-sol-1a040de3",
+      "link": "<t3-thread://v2/6ee9d258-4414-45b2-ad28-6fe30f4adb05/thread:delegated-task:command%3Amcp%3Ae05e1e6d-cd07-43c6-98d1-6cbba8c1bf21%3Adelegate-task%3Aingest-package-impact-r2-sol-1a040de3>",
+      "terminal_result_read": true
+    },
+    {
+      "seat": "astra",
+      "model": "gpt-6-astra",
+      "provider": "codex",
+      "options": [
+        {
+          "id": "reasoningEffort",
+          "value": "high"
+        }
+      ],
+      "taskId": "node:delegated-task:command%3Amcp%3Ae05e1e6d-cd07-43c6-98d1-6cbba8c1bf21%3Adelegate-task%3Aingest-package-impact-r2-astra-1a040de3",
+      "threadId": "thread:delegated-task:command%3Amcp%3Ae05e1e6d-cd07-43c6-98d1-6cbba8c1bf21%3Adelegate-task%3Aingest-package-impact-r2-astra-1a040de3",
+      "link": "<t3-thread://v2/6ee9d258-4414-45b2-ad28-6fe30f4adb05/thread:delegated-task:command%3Amcp%3Ae05e1e6d-cd07-43c6-98d1-6cbba8c1bf21%3Adelegate-task%3Aingest-package-impact-r2-astra-1a040de3>",
+      "terminal_result_read": true
+    },
+    {
+      "seat": "opus",
+      "model": "claude-opus-5-5",
+      "provider": "claudeAgent",
+      "options": [
+        {
+          "id": "effort",
+          "value": "high"
+        },
+        {
+          "id": "fastMode",
+          "value": false
+        }
+      ],
+      "taskId": "node:delegated-task:command%3Amcp%3Ae05e1e6d-cd07-43c6-98d1-6cbba8c1bf21%3Adelegate-task%3Aingest-package-impact-r2-opus-1a040de3",
+      "threadId": "thread:delegated-task:command%3Amcp%3Ae05e1e6d-cd07-43c6-98d1-6cbba8c1bf21%3Adelegate-task%3Aingest-package-impact-r2-opus-1a040de3",
+      "link": "<t3-thread://v2/6ee9d258-4414-45b2-ad28-6fe30f4adb05/thread:delegated-task:command%3Amcp%3Ae05e1e6d-cd07-43c6-98d1-6cbba8c1bf21%3Adelegate-task%3Aingest-package-impact-r2-opus-1a040de3>",
+      "terminal_result_read": true
+    }
+  ],
+  "all_terminal_results_read": true,
+  "no_active_council": true
+}

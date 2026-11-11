@@ -1,6 +1,6 @@
 # Document-ingestion remediation — compatibility design verified
 
-Execution phase: validation; validation state: in_review for Package Impact Assessment round2/4.
+Execution phase: planning; validation state: verified for Package Impact Assessment v0.2 at 1a040de3; maintainer approval pending.
 The underlying technical design remains verified at f43368c5 (prior cycle pass3/4, round8).
 The [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and normative
 [compatibility contract](embedding-compatibility-contract.md) incorporate the
@@ -12,7 +12,7 @@ iterations, four total. Require independent coverage and overall scores >=9.5
 and VERIFIED/no mandatory findings. Stop at success or after pass4 for guidance.
 No Gate-A, product code, model/store actions, acceptance or delivery follows.
 
-**Next gate:** Package Impact Assessment v0.2 council round2/4: review correction delta then complete table; every Sol/Astra/Opus seat VERIFIED/no mandatory findings and coverage/overall >=9.5. Chuck reviews in parallel; his exact-version satisfaction and remaining conditions precede directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action.
+**Next gate:** Review Package Impact Assessment v0.2 (council VERIFIED at 1a040de3; every seat >=9.5/no mandatory findings), the proposed guide-update handoff and remaining REM approval conditions. The council loop is complete after 2/4 rounds. Then separately activate bounded Gate-A readiness and approve a final construction directive binding exact accepted package impact and explicit guide coverage. No automatic installs, product work, model/store action or delivery.
 
 ## Separate MAINT closeout and historical checkpoints
 

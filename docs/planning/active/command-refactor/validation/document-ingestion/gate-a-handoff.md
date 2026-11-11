@@ -16,17 +16,19 @@ Gate-A activation, construction, personal-store or delivery authority is granted
 
 ## Package impact review before construction approval
 
-[Package Impact Assessment v0.2](../../package-impact-assessment.md) is the
-canonical package-level review input. Chuck has conditionally approved the REM
-and explicitly requires satisfaction with the overall package impact before
-approving the construction directive. The assessment is drafted and now in a separately authorized four-round
-independent council, with Chuck reviewing the linked draft in parallel; it is
-not yet approved or verified. Round 1 findings are reconciled; current round
-2/4 reviews the v0.2 correction delta and complete assessment. Capture any remaining conditions before
-readiness activation. Refine measured details at Gate A; return material scope
-changes for review. The final directive binds the approved version, commit and
-SHA256 as a required referenced appendix. The original technical pins remain
-unchanged.
+[Package Impact Assessment v0.2](../../package-impact-assessment.md) is independently
+VERIFIED at `1a040de3`: all three seats pass both 9.5 thresholds, no mandatory
+findings, loop complete after 2/4 rounds. Its exact bytes remain unchanged; see
+[reconciliation](package-impact/verified-report.md) and
+[optional carry-forward](package-impact/readiness-carry-forward.md).
+
+Chuck's own review and remaining conditions are still pending. His initial
+impact/conditions review now is distinct from final binding satisfaction with
+the exact post-Gate-A version, commit and SHA256 incorporated into the directive.
+The [guide handoff](../../guide-update-handoff.md) is a subsequent proposed
+documentation input: name the affected docs/guides files and validation in the
+final allowlist. It was not part of the council's verdict and changes no guide
+or reviewed technical text now. No readiness activation follows automatically.
 
 ## Before readiness execution
 
@@ -71,9 +73,8 @@ exists. Record measured dependencies/model/counter/Office behavior separately
 from model cards or doubles, with explicit stop conditions.
 
 All future tests, build/replay, normal/optimized installed proofs and human UAT
-remain future obligations. The compatibility council loop completed successfully
-at pass 3/4. The new, separately authorized Package Impact Assessment council
-is limited to four total rounds and does not reopen that completed cycle.
-Package-impact review, remaining approval conditions, Gate-A activation and the
-exact construction directive remain pending. Acceptance and delivery remain
-ungranted.
+remain future obligations. The technical compatibility council finished at pass
+3/4 and the separate Package Impact Assessment council finished at round 2/4.
+No council is active. Chuck's impact review, guide-coverage reconciliation,
+remaining conditions, Gate-A activation and exact construction directive remain
+pending. Acceptance and delivery remain ungranted.

@@ -1,0 +1,286 @@
+{
+  "unit": "INGEST-PACKAGE-IMPACT-001",
+  "round": 2,
+  "maximum_total_rounds": 4,
+  "reviewed_candidate": "1a040de397c08f2045d696ecff75fefcb836a050",
+  "assessment_version": "0.2-draft",
+  "assessment_sha256": "c20f4bc8fdc05c77092c1f01c1943c639fd1c163859f1eaad7575bc7ab049501",
+  "request_sha256": "979d4f207e93a412e5ae78c8905a89e8b0781486c70b114b5edd644e26af6a9a",
+  "outcome": "VERIFIED",
+  "all_seats_threshold_met": true,
+  "mandatory_findings": [],
+  "seats": {
+    "sol": {
+      "seat": "sol",
+      "round": 2,
+      "candidate": "1a040de397c08f2045d696ecff75fefcb836a050",
+      "outcome": "VERIFIED",
+      "coverage": 9.7,
+      "overall": 9.6,
+      "mandatory_findings": [],
+      "original_mandatory_findings_independently_closed": 7,
+      "report": "/tmp/pi-r2-sol-a4v81f1b/report.md",
+      "report_sha256": "a67a646e3454d8a210ee0fa8458a4c56853e00d4c837bd52314a44966c972eae",
+      "all_PI_01_through_16": "PASS",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "reviewed_without_mutating_frozen_candidate": true,
+      "readable_report": "sol-report.md",
+      "readable_sha256": "a67a646e3454d8a210ee0fa8458a4c56853e00d4c837bd52314a44966c972eae",
+      "raw_archive": "sol-report.md.gz",
+      "raw_archive_sha256": "8cd5a8793e4c9a7d1ffe7e431be05d2cc31d02a8f4282d82a945b6411859ffd8"
+    },
+    "astra": {
+      "seat": "astra",
+      "round": 2,
+      "candidate": "1a040de397c08f2045d696ecff75fefcb836a050",
+      "outcome": "VERIFIED",
+      "coverage": 9.65,
+      "overall": 9.6,
+      "mandatory_findings": [],
+      "original_mandatory_findings_independently_closed": 7,
+      "report": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/pi-r2-astra-independent-19rgi7zi/formal-report.md",
+      "report_sha256": "d376afcbdebe5e75b93fe60afa92e376d9c3a955e653a892514b5c7682e4d5a4",
+      "all_PI_01_through_16": "PASS",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "reviewed_without_mutating_frozen_candidate": true,
+      "readable_report": "astra-report.md",
+      "readable_sha256": "d376afcbdebe5e75b93fe60afa92e376d9c3a955e653a892514b5c7682e4d5a4",
+      "raw_archive": "astra-report.md.gz",
+      "raw_archive_sha256": "34e1bbe8f2391208005360cdb8fd144936db43d5042ce8864782fe29a65851c8"
+    },
+    "opus": {
+      "seat": "opus",
+      "round": 2,
+      "candidate": "1a040de397c08f2045d696ecff75fefcb836a050",
+      "outcome": "VERIFIED",
+      "coverage": 9.65,
+      "overall": 9.6,
+      "mandatory_findings": [],
+      "original_mandatory_findings_independently_closed": 7,
+      "report": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/c9e1408d-25a1-40fb-b900-4b692d1307fa/scratchpad/pi-r2-opus-1794405207/PI-R2-OPUS-report.md",
+      "report_sha256": "f5e6b30e35436948b3d6184c31865f5302eb66af4cc81ca0ca59a346c2ab39fb",
+      "all_PI_01_through_16": "PASS",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "reviewed_without_mutating_frozen_candidate": true,
+      "readable_report": "opus-report.md",
+      "readable_sha256": "f5e6b30e35436948b3d6184c31865f5302eb66af4cc81ca0ca59a346c2ab39fb",
+      "raw_archive": "opus-report.md.gz",
+      "raw_archive_sha256": "d432289a4970fc8eacdd05228224b4f2bfcefdc022ecf086396c2862607610c5"
+    }
+  },
+  "criterion_outcomes": {
+    "PI-01": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-02": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-03": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-04": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-05": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-06": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-07": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-08": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-09": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-10": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-11": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-12": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-13": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-14": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-15": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-16": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    }
+  },
+  "original_mandatory_closure": {
+    "PI-R1-ASTRA-001": {
+      "closed_by_each": [
+        "sol",
+        "astra",
+        "opus"
+      ],
+      "scope": "document requirement only"
+    },
+    "PI-R1-SOL-001": {
+      "closed_by_each": [
+        "sol",
+        "astra",
+        "opus"
+      ],
+      "scope": "document requirement only"
+    },
+    "PI-R1-OPUS-003": {
+      "closed_by_each": [
+        "sol",
+        "astra",
+        "opus"
+      ],
+      "scope": "document requirement only"
+    },
+    "PI-R1-ASTRA-002": {
+      "closed_by_each": [
+        "sol",
+        "astra",
+        "opus"
+      ],
+      "scope": "document requirement only"
+    },
+    "PI-R1-OPUS-002": {
+      "closed_by_each": [
+        "sol",
+        "astra",
+        "opus"
+      ],
+      "scope": "document requirement only"
+    },
+    "PI-R1-OPUS-001": {
+      "closed_by_each": [
+        "sol",
+        "astra",
+        "opus"
+      ],
+      "scope": "document requirement only"
+    },
+    "PI-R1-OPUS-004": {
+      "closed_by_each": [
+        "sol",
+        "astra",
+        "opus"
+      ],
+      "scope": "document requirement only"
+    }
+  },
+  "advisories": [
+    {
+      "id": "PI-R2-ASTRA-A01",
+      "source": "Astra advisory A-01",
+      "topic": "Dense rows/readability and granular pointers",
+      "disposition": "Preserve reviewed bytes; a later approved revision may shorten rows/add exact section pointers."
+    },
+    {
+      "id": "PI-R2-SOL-A01",
+      "source": "Sol PI-R2-SOL-A01",
+      "topic": "Precise dimension identifier",
+      "disposition": "For source lookup use VectorCollectionDimension with le=8192; the compressed VectorCollectionDimension8192 label in the assessment is not a class name. Numerical requirement is correct. Carry exact spelling into final directive."
+    },
+    {
+      "id": "PI-R2-OPUS-A01",
+      "source": "Opus PI-R2-OPUS-A01",
+      "topic": "Per-package proof ranges",
+      "disposition": "Inclusive DI/FC binding is sufficient here; final directive should map each owned assertion precisely, including Core/Runtime/CLI admission proofs."
+    },
+    {
+      "id": "PI-R2-OPUS-A02",
+      "source": "Opus PI-R2-OPUS-A02",
+      "topic": "Plain operator refusal effects",
+      "disposition": "Final operator/guide text should name memory-dependent chat, recall, compaction and background/exit maintenance refusal, while help, /read and exit remain usable."
+    },
+    {
+      "id": "PI-R2-OPUS-A03",
+      "source": "Opus PI-R2-OPUS-A03",
+      "topic": "Preparation baseline",
+      "disposition": "8390f368 identifies unchanged source/declarations; v0.2 was corrected from 72ef265a and reviewed at 1a040de3. Preserve that distinction in final provenance."
+    },
+    {
+      "id": "PI-R2-OPUS-A04",
+      "source": "Opus PI-R2-OPUS-A04",
+      "topic": "Optimization declared-only dependency",
+      "disposition": "Memory inheritance is through the package declaration; inspected Optimization source has no Memory import. No algorithm change or active runtime route claim."
+    },
+    {
+      "id": "PI-R2-OPUS-A05",
+      "source": "Opus PI-R2-OPUS-A05",
+      "topic": "Separate current status labels",
+      "disposition": "Clarify only current README/routing labels: frozen f43368c5 technical design vs 1a040de3 assessment review. Reviewed assessment unchanged."
+    },
+    {
+      "id": "PI-R2-OPUS-A06",
+      "source": "Opus PI-R2-OPUS-A06",
+      "topic": "Initial review versus final exact-version satisfaction",
+      "disposition": "Handoff distinguishes current impact/conditions review from later binding post-Gate-A sign-off on exact version/commit/hash. No satisfaction inferred now."
+    }
+  ],
+  "integrity": "All opening/closing identities PASS: index before status, candidate/branch/empty staging, 17704 protected files, six metadata records and all pins. Controller repeated the freeze check before metadata closeout.",
+  "checks": "Every seat independently ran all five required administrative checks with exit0. Opus duplicated one permitted board invocation; no extra proof credit.",
+  "loop": {
+    "completed_rounds": 2,
+    "maximum_rounds": 4,
+    "unused_rounds": 2,
+    "iteration_complete": true,
+    "stop_reason": "every_seat_VERIFIED_no_mandatory_both_scores_at_least9.5",
+    "no_further_automatic_dispatch": true,
+    "no_active_council": true
+  },
+  "review_limits": "Static assessment/source feasibility; no runtime/format/model/provider/store proof. Existing root/formatting/MAINT debt remains unwaived.",
+  "unchanged_reviewed_bytes": "Assessment plus original REM/annex/Tools technical pins. Current status/report metadata only changes after review.",
+  "maintainer_condition": "Satisfaction with package impact and remaining REM conditions pending; exact final post-Gate-A version/commit/hash binds directive.",
+  "subsequent_guide_question": "guide-update-handoff.md is a new proposed construction input, not covered by this council verdict. Current guide files are untouched.",
+  "authority_not_granted": [
+    "Gate-A effects",
+    "product or guide implementation",
+    "model/store actions",
+    "maintainer satisfaction/acceptance",
+    "push/PR/delivery"
+  ]
+}

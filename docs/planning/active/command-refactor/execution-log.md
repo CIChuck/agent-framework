@@ -3075,3 +3075,29 @@ preserves each mandatory ID and recheck; closure remains pending fresh
 round 2/4, delta first then full PI-01–16 review. Technical REM/annex/Tools
 pins, source, dependencies, user YAML and state are unchanged. Chuck reviews
 in parallel; satisfaction/conditions, Gate-A and construction remain pending.
+
+
+## Package Impact Assessment council VERIFIED; guide coverage question recorded — 2026-11-11
+
+All three fresh round-2 seats VERIFIED unchanged v0.2 at 1a040de3: Sol
+coverage/overall 9.70/9.60, Astra 9.65/9.60, Opus 9.65/9.60. No mandatory
+findings; all seven original IDs independently closed and all PI-01–16 pass.
+[Reconciliation](validation/document-ingestion/package-impact/round2/reconciliation.json)
+and exact raw report archives preserve evidence, limits and eight optional
+advisories. Every opening/closing identity and required administrative check
+passed. The loop ends after 2/4; no third council or further automatic dispatch.
+
+The assessment remains SHA256
+`c20f4bc8fdc05c77092c1f01c1943c639fd1c163859f1eaad7575bc7ab049501`.
+Only current routing and closeout metadata change. Chuck's package-impact
+satisfaction and remaining conditions still precede final directive approval.
+No Gate-A, source/tests/metadata/lock/config implementation, provider/model/store
+operation, live-guide rewrite, acceptance or push occurred.
+
+Chuck subsequently asked whether the Friday guides are included. The current
+REM names package READMEs/templates but not exact docs/guides paths; current
+guides describe released alpha3 behavior. The proposed [guide-update handoff](guide-update-handoff.md)
+maps scoped installation, architecture, Memory, tools, commands, configuration
+and troubleshooting coverage into the future directive. It was not reviewed
+by the assessment council, changes none of its frozen bytes and supplies no
+new execution authority. Reconcile its exact paths/criteria before construction.

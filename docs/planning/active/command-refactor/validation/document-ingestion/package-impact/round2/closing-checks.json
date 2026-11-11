@@ -1,0 +1,105 @@
+{
+  "outcome": "PASS",
+  "recorded_at": "2026-11-11T14:12:24.812432+00:00",
+  "reviewed_candidate": "1a040de397c08f2045d696ecff75fefcb836a050",
+  "reviewed_assessment_sha256": "c20f4bc8fdc05c77092c1f01c1943c639fd1c163859f1eaad7575bc7ab049501",
+  "logical_index_before_status": "e451bc501c8753c89cfcef5b3ea4eab296c8645aefe5d45bdeb567baa3d4d4ee",
+  "protected_members_unchanged": 17695,
+  "preserved_metadata_records_unchanged": 6,
+  "historical_gate_lines_unchanged": 36,
+  "current_gate_files_updated_only": [
+    "next-phase.md",
+    "tactical-plan.md"
+  ],
+  "execution_log_append_only": true,
+  "all_seat_archives_and_thresholds_verified": true,
+  "seven_mandatory_findings_closed": true,
+  "eight_nonblocking_advisories_recorded": true,
+  "no_active_council_or_further_automatic_dispatch": true,
+  "loop_complete_after_round": 2,
+  "maximum_rounds": 4,
+  "maintainer_satisfaction_and_remaining_conditions_pending": true,
+  "guide_handoff": "New proposed construction input, not part of council verification; live guides unchanged.",
+  "administrative_checks": [
+    {
+      "label": "board",
+      "chunk_id": "3b194c",
+      "wall_time_seconds": 0.008387125,
+      "exit_code": 0,
+      "original_token_count": 12,
+      "output": "Development board validation passed: 36 tasks\n"
+    },
+    {
+      "label": "dashboard",
+      "chunk_id": "8c27d6",
+      "wall_time_seconds": 0.010410708,
+      "exit_code": 0,
+      "original_token_count": 8,
+      "output": "Planning dashboard is current\n"
+    },
+    {
+      "label": "documentation",
+      "chunk_id": "38a6f7",
+      "wall_time_seconds": 0.626158334,
+      "exit_code": 0,
+      "original_token_count": 18,
+      "output": "Documentation lifecycle validation passed: 1031 Markdown files checked\n"
+    },
+    {
+      "label": "metadata",
+      "chunk_id": "5e1aee",
+      "wall_time_seconds": 7.25e-06,
+      "exit_code": 0,
+      "original_token_count": 31,
+      "output": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n"
+    },
+    {
+      "label": "whitespace",
+      "chunk_id": "33b8e3",
+      "wall_time_seconds": 7.625e-06,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    }
+  ],
+  "expected_staged_paths": [
+    "docs/planning/README.md",
+    "docs/planning/active/command-refactor/README.md",
+    "docs/planning/active/command-refactor/authority.json",
+    "docs/planning/active/command-refactor/execution-log.md",
+    "docs/planning/active/command-refactor/guide-update-handoff.md",
+    "docs/planning/active/command-refactor/next-phase.md",
+    "docs/planning/active/command-refactor/tactical-plan.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a-handoff.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/readiness-carry-forward.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/astra-report.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/astra-report.md.gz",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/closing-checks.json",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/opus-report.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/opus-report.md.gz",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/reconciliation.json",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/report.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/roster.json",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/sol-report.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/sol-report.md.gz",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/verified-report.md",
+    "docs/planning/board.yaml"
+  ],
+  "new_report_artifact_hashes": {
+    "docs/planning/active/command-refactor/guide-update-handoff.md": "300304bdb8b427e52af42bc5d49a0ce2344f6b0a57f68e80618a976b8464eed3",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/readiness-carry-forward.md": "9eb4fe41fe4af08f9c3d9e9f7f2970e6e5aa06c9ecd15507e796000b6a2b6853",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/astra-report.md": "d376afcbdebe5e75b93fe60afa92e376d9c3a955e653a892514b5c7682e4d5a4",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/astra-report.md.gz": "34e1bbe8f2391208005360cdb8fd144936db43d5042ce8864782fe29a65851c8",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/opus-report.md": "f5e6b30e35436948b3d6184c31865f5302eb66af4cc81ca0ca59a346c2ab39fb",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/opus-report.md.gz": "d432289a4970fc8eacdd05228224b4f2bfcefdc022ecf086396c2862607610c5",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/reconciliation.json": "fe59028f9adf6f92391bff8d2bd6b71788814864f4befc72d4f1f9ca841e852c",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/report.md": "ef0c7e6fac75e199116b1d8f215b31a66ff0bce73d406363226085e3fdb96996",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/roster.json": "d265fd3caa30978dc56982e1b2809990f7d098291d26fbfd53f6963dab800556",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/sol-report.md": "a67a646e3454d8a210ee0fa8458a4c56853e00d4c837bd52314a44966c972eae",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round2/sol-report.md.gz": "8cd5a8793e4c9a7d1ffe7e431be05d2cc31d02a8f4282d82a945b6411859ffd8",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/verified-report.md": "344fc04507aea8ba007bcf26ace199ae3052dea060758a3f1acfaa1eefaf4855"
+  },
+  "controller_metadata_only_after_review": true,
+  "no_gate_a_product_guide_implementation_or_delivery": true
+}

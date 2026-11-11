@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Package Impact Assessment v0.2 council round2/4: review correction delta then complete table; every Sol/Astra/Opus seat VERIFIED/no mandatory findings and coverage/overall >=9.5. Chuck reviews in parallel; his exact-version satisfaction and remaining conditions precede directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action.",
+  "current_scope": "Review Package Impact Assessment v0.2 (council VERIFIED at 1a040de3; every seat >=9.5/no mandatory findings), the proposed guide-update handoff and remaining REM approval conditions. The council loop is complete after 2/4 rounds. Then separately activate bounded Gate-A readiness and approve a final construction directive binding exact accepted package impact and explicit guide coverage. No automatic installs, product work, model/store action or delivery.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1895,8 +1895,8 @@
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
     "status": "proposed",
-    "execution_phase": "validation",
-    "validation_state": "in_review",
+    "execution_phase": "planning",
+    "validation_state": "verified",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "e1c90753a3e2876df0f9f6f0ca82b1893455266cee1f252276f460b48a9f2a16",
@@ -1968,7 +1968,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Package Impact Assessment v0.2 council round2/4: review correction delta then complete table; every Sol/Astra/Opus seat VERIFIED/no mandatory findings and coverage/overall >=9.5. Chuck reviews in parallel; his exact-version satisfaction and remaining conditions precede directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action.",
+    "next_gate": "Review Package Impact Assessment v0.2 (council VERIFIED at 1a040de3; every seat >=9.5/no mandatory findings), the proposed guide-update handoff and remaining REM approval conditions. The council loop is complete after 2/4 rounds. Then separately activate bounded Gate-A readiness and approve a final construction directive binding exact accepted package impact and explicit guide coverage. No automatic installs, product work, model/store action or delivery.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2104,7 +2104,7 @@
       "prior_review_applies": true,
       "new_council_active": false,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Package Impact Assessment v0.2 council round2/4: review correction delta then complete table; every Sol/Astra/Opus seat VERIFIED/no mandatory findings and coverage/overall >=9.5. Chuck reviews in parallel; his exact-version satisfaction and remaining conditions precede directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action.",
+      "next_gate": "Review Package Impact Assessment v0.2 (council VERIFIED at 1a040de3; every seat >=9.5/no mandatory findings), the proposed guide-update handoff and remaining REM approval conditions. The council loop is complete after 2/4 rounds. Then separately activate bounded Gate-A readiness and approve a final construction directive binding exact accepted package impact and explicit guide coverage. No automatic installs, product work, model/store action or delivery.",
       "reviewed_candidate": "f43368c503da19fd245730ee579806db95ed3748",
       "review_applies_to_frozen_technical_pins": true,
       "controller_bookkeeping_after_review": true
@@ -2386,7 +2386,7 @@
       "document": "package-impact-assessment.md",
       "version": "0.2-draft",
       "sha256": "c20f4bc8fdc05c77092c1f01c1943c639fd1c163859f1eaad7575bc7ab049501",
-      "status": "draft_for_maintainer_review",
+      "status": "council_verified_awaiting_maintainer_review",
       "prepared_from": "72ef265a981ef968a773172661bb512ddfd7da5e",
       "technical_reviewed_candidate": "f43368c503da19fd245730ee579806db95ed3748",
       "technical_pins_unchanged": true,
@@ -2395,27 +2395,60 @@
       "proposed_implementation_packages": 8,
       "cli_source_edits_conditional": true,
       "source_unchanged_compatibility_packages": 9,
-      "new_assessment_council_review": "round2_of_maximum4_correction_delta_then_full_assessment",
+      "new_assessment_council_review": "completed_verified_at_round2",
       "approval_condition": "Chuck Russell must be satisfied with the overall per-package impact before approving the construction directive.",
       "directive_binding": "One canonical referenced appendix; bind approved version, commit and SHA256.",
       "material_impact_change": "Revise assessment and obtain maintainer review before construction.",
       "approval_of_assessment": "not_granted",
       "gate_a_activation": "not_granted",
       "construction_authority": "not_granted",
-      "validation_state": "in_review",
+      "validation_state": "verified",
       "council": {
         "authorization": "validation/document-ingestion/package-impact/iteration-authorization.json",
         "criteria": "validation/document-ingestion/package-impact/review-criteria.md",
         "round": 2,
         "maximum_total_rounds": 4,
-        "status": "in_review",
+        "status": "reconciled_verified",
         "minimum_each_coverage_and_overall": 9.5,
         "mandatory_findings_allowed": 0,
         "prior_technical_council_loop_remains_complete": true,
         "no_gate_a_or_construction_authority": true,
-        "completed_rounds": 1,
-        "correction_requirements": "validation/document-ingestion/package-impact/correction-cycle1.json"
-      }
+        "completed_rounds": 2,
+        "correction_requirements": "validation/document-ingestion/package-impact/correction-cycle1.json",
+        "unused_rounds": 2,
+        "iteration_complete": true,
+        "stop_reason": "all_seats_VERIFIED_no_mandatory_each_coverage_and_overall_at_least9.5",
+        "no_further_automatic_dispatch": true,
+        "no_active_council": true,
+        "reviewed_candidate": "1a040de397c08f2045d696ecff75fefcb836a050",
+        "report": "validation/document-ingestion/package-impact/round2/report.md",
+        "reconciliation": "validation/document-ingestion/package-impact/round2/reconciliation.json",
+        "results": {
+          "sol": {
+            "outcome": "VERIFIED",
+            "coverage": 9.7,
+            "overall": 9.6,
+            "mandatory_findings": []
+          },
+          "astra": {
+            "outcome": "VERIFIED",
+            "coverage": 9.65,
+            "overall": 9.6,
+            "mandatory_findings": []
+          },
+          "opus": {
+            "outcome": "VERIFIED",
+            "coverage": 9.65,
+            "overall": 9.6,
+            "mandatory_findings": []
+          }
+        },
+        "threshold_met_each": true,
+        "mandatory_findings": []
+      },
+      "reviewed_candidate": "1a040de397c08f2045d696ecff75fefcb836a050",
+      "report": "validation/document-ingestion/package-impact/verified-report.md",
+      "controller_closeout_metadata_after_review": true
     },
     "conditional_maintainer_approval": {
       "recorded_date": "2026-11-11",
@@ -2424,7 +2457,7 @@
       "document_sha256": "e1c90753a3e2876df0f9f6f0ca82b1893455266cee1f252276f460b48a9f2a16",
       "statement": "I approve it under a couple of conditions.",
       "known_condition": "I won't approve the construction directive unless I'm satisfied with the overall per-package impact of our planned approach.",
-      "current_authorization": "Draft/link assessment; independently review and make bounded documentation corrections in a fresh three-seat council up to four rounds. Maintainer reviews in parallel; no Gate-A or construction.",
+      "current_authorization": "Document drafting and bounded council complete. Await maintainer package-impact satisfaction and remaining conditions; no Gate-A or construction authorized.",
       "remaining_conditions": "May be supplied by the maintainer; not presumed complete.",
       "fully_actionable_approval": false,
       "gate_a_or_construction_authority": false
@@ -2438,7 +2471,18 @@
         "reconciliation": "validation/document-ingestion/package-impact/round1/reconciliation.json",
         "applies_to_current_revision": false
       }
-    ]
+    ],
+    "documentation_guide_coverage": {
+      "document": "guide-update-handoff.md",
+      "sha256": "300304bdb8b427e52af42bc5d49a0ce2344f6b0a57f68e80618a976b8464eed3",
+      "status": "proposed_final_directive_input_after_maintainer_question",
+      "gap": "Current REM explicitly names package READMEs/templates but no docs/guides paths.",
+      "current_guides_baseline": "0.1.0a3",
+      "guide_files_edited": false,
+      "covered_by_package_impact_council": false,
+      "final_allowlist_and_acceptance_criteria_required": true,
+      "implementation_authority": "not_granted"
+    }
   },
   "command_refactor_publication": {
     "status": "merged_remote_branch_deleted",

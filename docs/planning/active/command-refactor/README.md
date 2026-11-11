@@ -45,26 +45,27 @@ are unchanged; this current status is controller reconciliation only.
 and [nonblocking carry-forward](validation/document-ingestion/council-round8/readiness-carry-forward.md)
 define the next readiness/directive boundaries. Round4 and rounds5–7 reports
 remain immutable and candidate-specific. MCP/backups remain compatibility
-surfaces; unrelated FU013/014 repairs are separate and unwaived. Execution phase:
-planning; validation state: verified; construction authority: not granted.
+surfaces; unrelated FU013/014 repairs are separate and unwaived. Technical-design
+status at `f43368c5`: planning / verified; construction authority: not granted.
 No Gate-A effects, product code, user-store reset/migration, MAINT acceptance
 or delivery follows this result.
 
-**Package impact review — 2026-11-11:** Chuck conditionally approves the REM
-and requires satisfaction with the per-package impact before construction
-directive approval. The [Package Impact Assessment](package-impact-assessment.md)
-v0.2 is ready for his review: eight proposed implementation packages (CLI
-conditional) and nine source-unchanged compatibility packages. It summarizes
-the frozen design. A separately authorized Sol/Astra/Opus council now reviews
-this assessment in up to four total rounds, requiring each seat VERIFIED with
-coverage and overall scores at least 9.5 and no mandatory findings. Chuck
-reviews the linked draft in parallel. Execution phase: validation; validation
-state: in_review for this document. His satisfaction, remaining approval
-conditions, Gate-A activation and construction remain pending. The
-final directive must bind the approved assessment as a referenced appendix.
-Round 1 requested completeness corrections; [reconciliation](validation/document-ingestion/package-impact/round1/report.md)
-retains every finding. Current document round 2/4 reviews the correction delta
-then the complete assessment; prior scores are not carried forward.
+**Package Impact Assessment — council VERIFIED, maintainer review pending:**
+[Assessment v0.2](package-impact-assessment.md) covers all 17 packages and keeps
+the eight proposed implementation owners (CLI conditional) distinct from nine
+source-unchanged compatibility packages. [All three round-2 seats](validation/document-ingestion/package-impact/round2/report.md)
+independently VERIFIED it at `1a040de3`, with both scores at least 9.5 and no
+mandatory findings. All seven original findings are closed; the loop ended after
+2/4 rounds. No third council is active. The exact reviewed assessment is unchanged.
+
+Chuck's satisfaction with the package impact and remaining REM conditions are
+pending. The [verified handoff](validation/document-ingestion/package-impact/verified-report.md)
+distinguishes this current review from later exact post-readiness version/hash
+sign-off and construction-directive approval. INGEST remains in planning with
+validation state verified; Gate-A execution and product work are not granted.
+The subsequent [guide coverage handoff](guide-update-handoff.md) is a proposed
+final-directive input, not covered by the assessment council's scores. Current
+guide pages still describe their released baseline and have not been rewritten.
 
 **Working home:** `agent-framework`, branch `feature/cmd-ingest-001`.
 **Board ID:** `friday-command-refactor`.

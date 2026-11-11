@@ -711,11 +711,12 @@ tasks:
   condition: normal
   implementation_authority: design_only
   packet: docs/planning/active/command-refactor/
-  next_gate: "Package Impact Assessment v0.2 council round2/4: review correction delta then complete table; every Sol/Astra/Opus seat VERIFIED/no mandatory findings and coverage/overall >=9.5. Chuck reviews in parallel; his exact-version satisfaction and remaining conditions precede directive approval. Technical design remains VERIFIED at f43368c5; no Gate-A, construction, model/store or delivery action."
+  next_gate: "Review Package Impact Assessment v0.2 (council VERIFIED at 1a040de3; every seat >=9.5/no mandatory findings), the proposed guide-update handoff and remaining REM approval conditions. The council loop is complete after 2/4 rounds. Then separately activate bounded Gate-A readiness and approve a final construction directive binding exact accepted package impact and explicit guide coverage. No automatic installs, product work, model/store action or delivery."
   delivery_state: pushed
   branch: feature/cmd-ingest-001
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/document-ingestion/package-impact/verified-report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/compatibility-verified-report.md
   - docs/planning/active/command-refactor/validation/maintenance/implementation/verified-report.md
   - docs/planning/active/command-refactor/validation/step3/correction-report.md
@@ -3238,3 +3239,11 @@ events:
   action: reconciled Package Impact Assessment round1 and prepared v0.2 for round2
   note: "Seven mandatory findings in four document themes and all13 advisories dispositioned. Fresh round2/4, delta first then full assessment; no current closure claim. Technical pins/product/user state unchanged. Maintainer reviews linked v0.2 in parallel; no Gate-A or construction."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round1/reconciliation.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T14:07:59.832831+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled Package Impact Assessment VERIFIED and recorded guide handoff
+  note: "All three round2 seats independently VERIFIED v0.2 at 1a040de3 with both scores>=9.5 and zero mandatory findings; seven original IDs closed. Loop stopped after2/4, no active council. Reviewed assessment/technical pins unchanged. Maintainer impact satisfaction and remaining conditions pending. New guide-coverage handoff is a proposed unreviewed final-directive input; no live guide, Gate-A, construction or delivery action."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/verified-report.md
