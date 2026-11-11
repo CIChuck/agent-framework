@@ -1896,18 +1896,18 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "proposed",
     "execution_phase": "planning",
-    "validation_state": "verified",
+    "validation_state": "pending",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
-    "sha256": "61d93548eeae52be1b273e8ae985860d869cceac6a88868eb9396e7a2adf1804",
+    "sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Docling proposed; exact release/dependency/model compatibility not yet validated",
     "scope": "PDF/DOCX/XLSX/PPTX extraction/local PDF OCR; shared all-source document/512 chunking with document/recursive/fixed overrides; shared LLM limits/dimension checks; retained fetching, admission, metadata/protection/storage semantics",
     "implementation_approval": "not_granted",
     "council": {
       "round": 4,
-      "status": "reconciled_verified",
-      "scope": "full bounded document/design readiness only",
+      "status": "historical_reconciled_verified_current_revision_pending",
+      "scope": "full bounded readiness at728cba77 only; changed REM not reviewed",
       "roster": "validation/document-ingestion/council-round4/roster.json",
       "reviewed_candidate": "728cba77e816e5618a06262dd4aa1cbc6e50a376",
       "report": "validation/document-ingestion/council-round4/report.md",
@@ -1936,7 +1936,9 @@
       },
       "round_budget_complete": true,
       "no_active_council": true,
-      "no_construction_or_gate_a_authority": true
+      "no_construction_or_gate_a_authority": true,
+      "applies_to_current_revision": false,
+      "new_dispatch_authorized": false
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
@@ -2010,7 +2012,15 @@
       "illustrative_max_input_tokens": 32768,
       "illustrative_expected_dimensions": 2560,
       "active_model_change": "none by this planning task",
-      "test_store": "fresh/disposable automated proof; no migration/reset"
+      "test_store": "fresh/disposable automated proof; no migration/reset",
+      "backward_compatibility": {
+        "configuration": "Retain embedding_pool and maintained non-pool configurations, existing bindings/default/profile selection and embedding APIs; no required ingestion-specific model service.",
+        "omitted_new_fields": "Qualified artifact-bound readiness may supply capabilities without mandatory user YAML edits; missing field syntax alone does not disable a qualified service.",
+        "readiness": "Qualify maintained baseline configurations operationally. Inability to establish required capabilities is a readiness stop for maintainer disposition, not a compatibility pass or authority for unguarded fallback.",
+        "namespace": "Services may differ in name and resilience while sharing a compatible embedding space; different spaces remain possible for independent namespaces.",
+        "existing_exceptions": "Explicit fresh-store policy, preparation/role corrections, strict overflow/vector checks and identity refusal remain. No guarantee of unchanged vectors or identity-free legacy-store use.",
+        "proof": "DI-18 plus DI-33: unchanged configuration fixtures and cross-subsystem extraction/graph/recall/maintenance/lifecycle/compaction/ingestion operations; source and representative normal/optimized installed proofs remain future work."
+      }
     },
     "discussion_decisions": "validation/document-ingestion/discussion-decisions.json",
     "branch": "feature/cmd-ingest-001",
@@ -2039,14 +2049,14 @@
       "actual_store_operation": "none; design choice only"
     },
     "correction_cycle3": {
-      "status": "independently verified at728cba77; technical bytes unchanged",
+      "status": "historically verified at728cba77; later embedding-pool compatibility amendment pending",
       "brief": "validation/document-ingestion/council-round4/correction-brief.json",
       "final_pass": true,
       "round3_report": "validation/document-ingestion/council-round3/report.md",
       "past_procedural_block_retained": true
     },
     "design_readiness": {
-      "outcome": "VERIFIED",
+      "outcome": "historical_VERIFIED_at728cba77_current_revision_pending",
       "candidate": "728cba77e816e5618a06262dd4aa1cbc6e50a376",
       "technical_pins": {
         "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "61d93548eeae52be1b273e8ae985860d869cceac6a88868eb9396e7a2adf1804",
@@ -2055,6 +2065,17 @@
       "advisories": "six nonblocking, carried without changing reviewed artifacts",
       "handoff": "validation/document-ingestion/gate-a-handoff.md",
       "runtime_or_installed_proof": "not performed for INGEST"
+    },
+    "current_revision": {
+      "kind": "embedding_pool_backward_compatibility",
+      "validation_state": "pending",
+      "record": "validation/document-ingestion/embedding-pool-compatibility.json",
+      "record_sha256": "3f17db1cb4a96918903548335ff6bff07741c1484e4ebca676050d887973c4e6",
+      "rem_sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
+      "prior_review_applies": false,
+      "new_council_active": false,
+      "gate_a_or_construction_authority": false,
+      "next_gate": "Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary."
     }
   },
   "command_refactor_publication": {

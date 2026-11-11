@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/pushed. Ingestion extraction/chunking and embedding-limit
-design readiness is VERIFIED; Gate-A execution and MAINT human UAT/acceptance remain pending.
+**Status:** started/pushed. The current INGEST embedding-pool compatibility
+revision awaits review; Gate-A execution and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -33,18 +33,20 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Document-ingestion design — VERIFIED:**
-The [proposed REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and
-[Tools companion](proposals/tools-document-adoption.md) pass the
-[final council](validation/document-ingestion/council-round4/report.md) at
-`728cba77`: Sol9.6, Astra9.6, Opus9.5, each VERIFIED with all30 criteria passing
-and no mandatory findings. Execution phase: planning; validation state: verified
-for design readiness only. The reviewed technical bytes remain unchanged.
+**Document-ingestion design — embedding-pool compatibility revision:**
+The [current REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) now makes existing
+pool/service configuration and operational compatibility explicit, with omitted
+new YAML fields supplied through qualified readiness. DI-33 requires cross-
+subsystem proof. Execution phase: planning; validation state: pending.
+The [round4 council](validation/document-ingestion/council-round4/report.md) at
+`728cba77` remains historical VERIFIED evidence (Sol9.6/Astra9.6/Opus9.5) for its
+exact earlier bytes; it does not cover this amendment. The Tools companion is
+unchanged. [Revision record](validation/document-ingestion/embedding-pool-compatibility.json).
 
 The [existing-store policy](approval/ingest-existing-store-policy.md) requires
 explicit fresh selection, preserves old files and `/read`, and adds no legacy
-mode/reset/migration. [Verified design](validation/document-ingestion/verified-design-report.md)
-pins the result; [handoff](validation/document-ingestion/gate-a-handoff.md) carries
+mode/reset/migration. [Historical verified design](validation/document-ingestion/verified-design-report.md)
+pins the earlier result; [handoff](validation/document-ingestion/gate-a-handoff.md) carries
 six nonblocking advisories to future Gate-A/final-directive preparation.
 The authorized iteration is complete and no council is active. Gate-A execution,
 model/package operations, code, store mutations, acceptance and delivery remain
@@ -94,7 +96,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.
+**Next gate:** Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.

@@ -1,20 +1,19 @@
-# Document-ingestion remediation — design VERIFIED, readiness execution pending
+# Document-ingestion remediation — embedding-pool compatibility revision
 
-Execution phase: planning; validation state: verified (document/design only).
-[Final round4](validation/document-ingestion/council-round4/report.md) is
-unanimously VERIFIED: Sol9.6, Astra9.6, Opus9.5; all30 criteria pass and no
-mandatory finding remains. The all-seat9.5 gate is met on candidate728cba77.
-The three additional rounds are complete; no council remains active.
+Execution phase: planning; validation state: pending.
+The maintainer requests backward compatibility for existing embedding-pool and
+maintained non-pool configurations. The [revised REM](remediation/REM-CMD-INGEST-001-pdf-docx.md)
+requires qualified readiness to supply omitted new fields, retained service
+selection/APIs and explicit cross-subsystem operational proof in DI-33.
+[Revision record](validation/document-ingestion/embedding-pool-compatibility.json).
 
-The reviewed [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md) and
-[companion](proposals/tools-document-adoption.md) are unchanged after review.
-[Verified design](validation/document-ingestion/verified-design-report.md) pins
-the result; [Gate-A/directive handoff](validation/document-ingestion/gate-a-handoff.md)
-carries six nonblocking advisories and future proof. This is no installed or
-implementation success claim. No dependency/model/store operation, construction,
-human acceptance or delivery is activated. MAINT human UAT/acceptance is separate.
+The round4 VERIFIED scores9.6/9.6/9.5 apply only to the earlier candidate728cba77.
+The changed REM is pending review; exact prior council evidence and the Tools
+companion are preserved. No new council, Gate-A execution or construction is
+activated. The approved fresh-store policy, six advisory carry-forwards and
+separate MAINT human UAT/acceptance boundary remain.
 
-**Next gate:** Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.
+**Next gate:** Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary.
 
 ## Separate MAINT closeout and historical checkpoints
 

@@ -1,12 +1,15 @@
 # INGEST-001 — Gate-A and final-directive handoff
 
-Status: controller handoff from [VERIFIED design](verified-design-report.md).
-This organizational carry-forward is not an independently reviewed amendment
-to the frozen technical REM, construction approval or Gate-A activation.
+Status: current embedding-pool compatibility amendment pending review;
+[earlier VERIFIED design](verified-design-report.md) retained as history.
+The maintainer requested the REM update recorded in
+[the compatibility record](embedding-pool-compatibility.json). This is not
+construction approval or Gate-A activation.
 
-The reviewed source of authority remains the exact REM/companion at
-`728cba77e816e5618a06262dd4aa1cbc6e50a376`, with final seats9.6/9.6/9.5.
-All mandatory findings are closed **at design level**. Future feasibility and
+The prior reviewed REM/companion at
+`728cba77e816e5618a06262dd4aa1cbc6e50a376` received seats9.6/9.6/9.5.
+Those verdicts do not cover the changed REM; the companion remains unchanged.
+All prior mandatory findings were closed **at design level**. Future feasibility and
 installed behavior remain unproved; no new dependency/model version is selected.
 
 ## Before readiness execution
@@ -41,6 +44,11 @@ Use the REM's required caller/consumer table to join normalized destination and
 raw origin, open intent, store/embedding readiness, role/envelope, raw/derived
 policy, exact test node, installed lane, negative witness and oracle exception.
 Include all direct clients and Chat aggregate participants, not only `/ingest`.
+Include the REM's explicit extraction, compaction, graph scoring, stored-vector
+maintenance and lifecycle rows. DI-33 proves unchanged baseline pool/non-pool
+configurations remain operational without the new fields when readiness is
+qualified. Missing baseline qualification stops readiness; it is not a passing
+compatibility result. The approved fresh-store boundary remains unchanged.
 The table organizes already-required proof; it is not an extra implementation
 unit or permission to add routes. Do not claim missing web/automatic-tool wiring
 exists. Record measured dependencies/model/counter/Office behavior separately

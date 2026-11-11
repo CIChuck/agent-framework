@@ -37,7 +37,9 @@ The canonical initiative remains started, delivery pushed, with current
 `implementation_authority: design_only`. This narrows authority for the new
 planning slice; it does not rewrite earlier unit approvals or grant acceptance.
 No product implementation, merge or release is authorized. The later explicit
-iteration authority permits fresh Sol/Astra/Opus document councils only.
+iteration authority covered the now-completed Sol/Astra/Opus rounds1–4 only.
+The current maintainer-requested embedding-pool compatibility amendment awaits
+review and does not launch another council or grant Gate-A authority.
 
 ## Preserved local state
 
@@ -45,4 +47,4 @@ The two edited Chat example YAML files remain uncommitted and unstaged;
 `.friday-old/` and ignored exports remain untouched. Historical receipts retain
 their original branch/source identities. Do not broad-stage or clean this checkout.
 
-**Next gate:** Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.
+**Next gate:** Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary.

@@ -1,6 +1,6 @@
 # REM-CMD-INGEST-001 — document extraction, shared chunking and embedding limits
 
-Status: **PROPOSED — correction cycle3, final authorized design council round4**. Baseline `7ad916f2`.
+Status: **PROPOSED — post-council embedding-pool compatibility revision; validation pending**. Baseline `7ad916f2`.
 This document defines a bounded repair and its dependency-readiness gate. It is
 not an approved construction directive or a completed compatibility assessment.
 Working branch: `feature/cmd-ingest-001`, based on published command-refactor head
@@ -19,6 +19,12 @@ maintainer separately directs document corrections and up to three additional
 fresh Sol/Astra/Opus councils (rounds2–4), stopping when every seat independently
 returns VERIFIED with at least9.5/10 and no mandatory finding. This is bounded
 document-readiness work, not gate-A execution, installation or construction.
+
+That iteration completed at `728cba77`, with all three seats VERIFIED at
+9.6/9.6/9.5. The maintainer subsequently requests the embedding-pool and backward-
+compatibility premise below. This changed revision is not covered by those
+candidate-specific verdicts; no further council or readiness execution is started
+by this document update.
 
 **Maintainer scope expansion — 2026-11-10:** include XLSX workbooks and PPTX
 presentations alongside PDF and DOCX. Existing text and web **reading** capabilities
@@ -219,8 +225,9 @@ Prepare this evidence in an isolated environment, without modifying the working
    unrelated upgrade, unsupported wheel, external executable, unbounded model
    fetch or conflicting dependency requires scope beyond this proposal.
 6. Freeze a source-linked ingestion **and embedding** inventory: file/text,
-   smart_read small/large/cache, explicit ToolOutputIngester capability, retrieval,
-   lifecycle/promotion and maintenance. Classify active/public-not-wired/absent
+   smart_read small/large/cache, explicit ToolOutputIngester capability, conversation
+   extraction and compaction, graph scoring, retrieval, lifecycle/promotion and
+   maintenance. Classify active/public-not-wired/absent
    routes using the table above; absent routes earn no integration credit.
    Prove headless injection at existing storage handoffs. Inventory roles, legacy
    constructors, precomputed vectors and caches; asymmetric preparation cannot
@@ -613,17 +620,75 @@ adding ignored keys to YAML. The profile's proposed `embedding_options` gains:
 - `max_input_tokens`: strict positive integer declaring supported input capacity.
 - `expected_dimensions`: strict positive integer for validating returned vectors.
 
-These keys are optional for parsing an existing catalog, but **both verified
-capabilities are required for any embedding operation in this guarded stack**.
-An unselected old profile does not break application/config loading. A selected
-profile missing either value yields an actionable readiness error when its
-embedding service is used, before provider I/O; no silent unguarded mode.
-Packaged selected-profile examples receive measured values only after gate A.
-User-edited YAML is never overwritten. Legacy non-catalog Chat, Runtime and maintenance
-constructors must accept the same resolved capability from an explicit,
-artifact-bound built-in readiness record or refuse at operation preflight. They
-must not infer dimensions/capacity from an arbitrary alias or bypass the guard.
-Read-only `/read` needs no embedding capability and remains available.
+Both keys remain optional in existing YAML. **Both verified capabilities are
+required in the resolved embedding service, not necessarily in the user's
+configuration.** The shared resolver may obtain omitted values from an explicit,
+artifact-bound readiness record qualified at gate A; this applies equally to
+catalog-backed and legacy non-catalog Chat, Runtime and maintenance construction.
+An omitted new YAML field alone must not disable an otherwise qualified existing
+service or require editing every subsystem's configuration. Explicit dimensions
+must match the qualified deployment; an explicit token cap may select a smaller
+supported limit under the overflow rules below. No guessing from an arbitrary
+alias, hidden default dimension or silent unguarded mode is allowed.
+
+Gate A must qualify the maintained baseline configurations with the new fields
+omitted. If equivalent verified readiness cannot be established for a selected
+baseline deployment, stop and report the compatibility gap for a maintainer
+decision before claiming readiness or freezing construction. Do not treat
+successful parsing followed by a newly unusable service as backward compatibility.
+An actually unresolved or contradictory capability still refuses before provider
+I/O. Unselected profiles do not break application/config loading, and a failure
+in an independent unused service does not disable a qualified service. Packaged
+examples receive measured values only after gate A; user-edited YAML is never
+overwritten. Read-only `/read` needs no embedding capability and remains available.
+
+### Existing pool and subsystem compatibility
+
+The maintainer's premise is an acceptance requirement: retain the existing
+embedding configuration mechanism and keep its existing consumers operational
+under an admitted compatible namespace. Extend the shared resolver/adapter;
+do not introduce a parallel embedding configuration for document ingestion.
+
+- Keep existing service names, `embedding_pool.default_service`, profile
+  references, endpoints/credentials, batch/cache options and resilience overrides
+  meaningful. Preserve maintained non-pool configuration shapes and the existing
+  `embed_query` / `embed_documents` call interfaces. No automatic model selection,
+  vector resizing or requirement to add an `ingestion` embedding service.
+- `/ingest` inherits the memory service selected by the existing composition.
+  Other consumers retain their explicit pool bindings; no subsystem is silently
+  redirected to the default. Service names and timeouts/retries may differ while
+  resolving to a compatible embedding space.
+- Enforce one embedding space per Memory namespace, including the graph vectors
+  compared with that namespace's query vectors. Compare resolved model/artifact,
+  dimension, normalization and query/document preparation identity, not pool
+  names or dimensions alone. Independent namespaces may use different models;
+  this is not a global single-model requirement.
+- Keep model/counter preparation and request/result checks in shared LLM
+  infrastructure and namespace admission in Memory. Consumers delegate through
+  those contracts; they do not each implement tokenization, prefixes or guards.
+  The document/512-token ingestion default does not re-chunk conversation turns,
+  graph relationships, extracted insights, compaction summaries or maintenance
+  records. Those unsplit inputs still obey the selected model's effective limit.
+- Configuration compatibility does not authorize identity-free legacy stores,
+  mixed-space comparisons, silent truncation or bypassing invalid results. The
+  separately approved explicit-fresh-store policy and declared preparation/role
+  corrections still apply. Preserve old files and disclose these intentional
+  exceptions instead of promising unchanged vectors or unrestricted legacy use.
+
+Freeze each of these consumers as an explicit readiness trace row, including
+indirect consumers of already stored vectors:
+
+| Consumer | Compatibility proof required |
+| --- | --- |
+| Conversation extraction | Retain its extraction LLM binding; relationship embeddings and stored insights/summaries use their existing embedding bindings with compatible identity. Qualify Runtime's optional extraction-service selection separately from Chat's current wiring. |
+| Graph scoring and semantic recall | Shared query vectors and stored/on-demand graph vectors have compatible identities and correct query/document roles; configuration drift produces a typed refusal, not zero scores or silently empty recall. |
+| Synthesis, re-embedding, pruning and clustering | Retain the maintenance binding. New vectors and existing-vector comparisons respect the destination namespace even when no new embedding call is made. |
+| Promotion, decay, reactivation and session compaction | Indirect embedding/storage handoffs retain service selection and record semantics; oversized records fail actionably without silent truncation or document re-chunking. |
+| Command/tool ingestion and derived summaries | Reuse the existing memory binding and shared policy; retained opt-in and source/derived boundaries apply. |
+| Headless Runtime, Core factories and CLI compatibility | Catalog and non-pool paths preserve existing configuration and embedding interfaces; no independent fallback or unqualified direct client. |
+
+These are required compatibility proofs, not permission to redesign the
+subsystems or a claim that the current implementation already passes them.
 
 Retain the endpoint, model identity/revision and existing batch/cache options.
 No operator tokenizer setting or arbitrary query/document-instruction setting
@@ -1163,7 +1228,7 @@ by this document update.
 | DI-15 | Every positive format has actual offline normal/optimized installed extraction/chunking and stored-chunk proof, plus corrupt/missing-backend/partial/empty and quoted-path tests. Existing text/web extraction and safety contracts remain; intentional chunking/count deltas are exact and reviewed. Do not infer new web-fetch support. |
 | DI-16 | All strategies/defaults/independent CLI and YAML overrides on actual file/text routes, explicit supplied web/tool payloads and public ingester capability. Distinguish capability proof from absent maintained routes. Verify precedence and no I/O on usage errors. Text document-default works with no Docling extra or Chat; Commands stays stdlib-only/API54. |
 | DI-17 | Real model-matched token counts on Unicode, headings, repeated table headers, long rows/cells, sections/slides and plain web/text blocks. Final inputs stay within requested budget and effective capacity; no lost tail, fabricated text, split Unicode, second chunking pass or hidden character-estimate fallback. |
-| DI-18 | Catalog schema/resolver plus pool/non-pool actual guard paths: absent fields refuse at embedding-operation preflight, unselected profiles/load/read-only paths remain usable, smaller loaded/batch limit wins, identity/counter refuses, boundary inputs and once-only role formatting. Wrong count/dimension/nonfinite or shuffled-invalid indices fail before storage; valid shuffled indices reorder exactly. Call-phase bypass witnesses required. |
+| DI-18 | Catalog schema/resolver plus pool/non-pool actual guard paths: omitted new YAML fields with qualified artifact-bound readiness pass; missing resolved capabilities or contradictory explicit values refuse at embedding-operation preflight. Unselected profiles/load/read-only paths remain usable, smaller loaded/batch limit wins, identity/counter refuses, boundary inputs and once-only role formatting. Wrong count/dimension/nonfinite or shuffled-invalid indices fail before storage; valid shuffled indices reorder exactly. Call-phase bypass witnesses required. |
 | DI-19 | Source-linked active/public-not-wired/absent route inventory with separate proofs. Actual text/smart_read storage and explicitly called ToolOutputIngester share options; absent web/automatic wiring is documented, earns no route-test credit and is not newly activated. Retain fetching/opt-in/quarantine/provenance. Strategy/budget/model/preparation drift invalidates ingestion caches; context-only hits cannot satisfy new storage. |
 | DI-20 | Fresh disposable stores only; no reset of current state or legacy migration. Qwen4B example never activates/downloads a model. Installed normal/optimized guard and source-to-store proofs use verified counter assets, realistic exact-dimension test vectors, canonical origins and post-install Certifi checks. Real backend readiness evidence is explicitly distinguished from doubles/model-card metadata. |
 | DI-21 | Fresh persistent/ephemeral binding; matching close/reopen passes; same-dimension changed artifact/preparation, missing/malformed/pending sidecar, collection attachment from a mismatched namespace and identity-free precomputed vectors refuse before provider/client/write I/O. No store-byte/mtime change on refusal. Exclusive/race/interrupted creation controls; no automatic repair. Matching identity envelope passes. |
@@ -1178,6 +1243,7 @@ by this document update.
 | DI-30 | Storage receipts are destination/incarnation/collection-specific: same-space new destination or different collection, lost record IDs/provenance and disabled→enabled storage cannot skip ingestion. Extraction cache reuse is distinct from completed-storage evidence. Unwired Chat smart_read storage remains unwired and explicitly refuses requested storage. |
 | DI-31 | Plain CSV/TSV keeps all source spans/late rows and reports missing supplied table structure; structured tables repeat known headers. No inferred/fabricated header. Hosted mutable identity/missing offline BPE refuses operation; qualified pinned deployment passes only after real gate-A proof. Inactive migration/stub earns no integration credit. |
 | DI-32 | Actual Chat bound Memory-v2 snapshot → aggregate-v2 writer/read/participant reparse → same-namespace restore/automatic rollback. Accept only bundle1/memory1/transcript1 for offline inspection and bundle2/memory2/transcript1 for active use; reject mixed/unknown versions, binding/incarnation/participant digest tamper and v1 bound restore before live effects. Verify old v1 validators/exports remain strict, Memory v2 fingerprint is distinct from unchanged Chat path fingerprint, and generic AtomicJsonStore needs no bypass. |
+| DI-33 | Preserve pre-change catalog/pool and maintained non-pool configuration fixtures with both new fields omitted. Assert unchanged service/profile/default/endpoint selection and existing embedding call interfaces, batch/cache/resilience settings, and successful operations using qualified readiness plus fresh admitted namespaces. Exercise extraction → graph and insight/summary storage → recall, compaction/lifecycle, maintenance synthesis/re-embedding and stored-vector comparisons. Same-space different service names pass; same-dimension different-space bindings to one namespace refuse before incompatible provider/storage effects; independent namespaces may use different spaces. Include overflow and typed error propagation without silent partial-success claims. Missing baseline readiness is a gate-A stop, not a waived compatibility test. Repeat representative cross-subsystem proofs in actual normal/optimized installed lanes. |
 
 
 Keep old assertion bodies unless the final approved directive lists an exact

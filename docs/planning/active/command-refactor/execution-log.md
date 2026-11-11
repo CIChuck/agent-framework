@@ -2871,3 +2871,25 @@ has been executed or accepted through this documentation change.
   No dependency/model, product/test/build, store, MAINT acceptance or delivery
   action follows automatically. User-edited/generated state remains preserved.
 - **Next gate:** Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.
+
+
+## 2026-11-11T00:46:21.895426+00:00 — INGEST embedding-pool compatibility premise recorded
+
+- Chuck Russell requests explicit backward compatibility for existing embedding
+  configurations and their consumers. The REM retains pool/non-pool shapes,
+  service/profile/default selection and embedding interfaces. Omitted new YAML
+  fields may resolve from qualified artifact-bound readiness; inability to
+  qualify a baseline deployment stops readiness, not a silent compatibility pass.
+- Added subsystem trace rows and DI-33 proof for extraction/graph/recall,
+  maintenance including stored-vector consumers, lifecycle/compaction and
+  ingestion. Shared LLM guards and Memory admission remain the policy owners.
+- The explicit fresh-store policy and safety/preparation exceptions remain;
+  configuration compatibility does not authorize legacy-unbound stores or mixed
+  spaces. No actual configuration, model or store changed.
+- Exact prior council inputs/reports remain unchanged. Their VERIFIED scores
+  cover728cba77 only; the current amendment has validation_state pending.
+  No further council is launched or inferred. Document-only authorization and
+  scope are recorded in validation/document-ingestion/embedding-pool-compatibility.json.
+- Execution phase: planning; validation state: pending. No product generation,
+  package/model operations, user-store reads/reset, acceptance or delivery.
+- **Next gate:** Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary.
