@@ -3597,3 +3597,14 @@ retain the full HR01–18 obligations. All43 original test bodies are AST-equal;
 passed before the final source freeze; formal committed-source checks and a fresh
 read-only independent review remain required. A private resolver standards-parser
 proposal is pending separate activation. No upstream/model/store effects occurred.
+
+
+## 2026-11-12 — C1 source and current execution evidence frozen
+
+Committed source e07892f0 is exported by Git blob identity. Both54-case lanes and
+two frozen manual fixture workflows pass; private25-source static checks pass.
+[Builder evidence](validation/document-ingestion/gate-a/construction/c1/builder-evidence.md)
+records exact receipts, retained43 bodies, limits and preserved state. A fresh
+read-only CI01–10 delta plus retained-controls aggregate review follows under
+repository policy. The resolver-tool activation request remains unanswered; no
+real upstream or model effects, full readiness, acceptance or delivery is implied.

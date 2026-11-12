@@ -1,0 +1,62 @@
+[
+  {
+    "path": "evidence/formal-commands.json.gz",
+    "raw_sha256": "c22641938db1d3a1062cad036543ede202b1b02832d7665a0206d0117945ec36",
+    "gzip_sha256": "16276fbdea4f3d7950f5e8234b32eb18bbcd7f4f7d37fac682ca073ab5639ae5"
+  },
+  {
+    "path": "evidence/formal-summary.json.gz",
+    "raw_sha256": "6d1dc12b6f921b26f0da94796df05bf6bc7870e1218c2491699204c5b7486774",
+    "gzip_sha256": "143e22c90507bf79bc6e7bf8845abe90b4c260e51aea9bab5341ba9b7a10fcc9"
+  },
+  {
+    "path": "evidence/mypy.json.gz",
+    "raw_sha256": "3c8d173ad95a8b46915f591c8a9d18984bc75417b9e578aac828aca3c4a56769",
+    "gzip_sha256": "e08654abfe24c8e76c7d3b0e532e80b3c3382a3c7287cb2edb2b33a96df308c8"
+  },
+  {
+    "path": "evidence/private-mypy-launcher.py.txt.gz",
+    "raw_sha256": "402fcbd0547da35db0dd06d90c11f9006fdda73c4312d3245943fcc4d6db3dd0",
+    "gzip_sha256": "fdabc939a697a63b9b532c4722e22f86f35221cce640a00fd6f82f142347cf88"
+  },
+  {
+    "path": "evidence/formal-driver.py.txt.gz",
+    "raw_sha256": "81c7e8f240d4fe778722884e8ee6e3d922491e3cfbeba18d12d815ebe110bda6",
+    "gzip_sha256": "ff9762e51d9d3985eef591d560e96781bdc49f07d0fd7dd1a4e0a22f013ccb77"
+  },
+  {
+    "path": "evidence/formal-static-driver.py.txt.gz",
+    "raw_sha256": "6f97abfd2094a993741224a17242bf288177dd3cab461b33052ea321888f34be",
+    "gzip_sha256": "536a9726a53fd146f776147b93f1d134bb637f55413c475729ac674b8a7ea1dc"
+  },
+  {
+    "path": "evidence/protected-baseline.json.gz",
+    "raw_sha256": "89fc1ebdc27d10249bbda75f819c970e0b980bec6f8eee661d02cb038df5e60d",
+    "gzip_sha256": "9299f29012f7c3b55f58525b4a494698f2d669d91a33e55f28ce16a06270b86d"
+  },
+  {
+    "path": "evidence/preservation-post-formal.json.gz",
+    "raw_sha256": "b4e8ed253ac11c7d19b25d150a9c91048e3d59f2551ca3e339209414da5e0e11",
+    "gzip_sha256": "f37a2923ffadda1c798a81846f2d9f6200e4f57180aced00f9e7283713105f6b"
+  },
+  {
+    "path": "evidence/retained-test-bodies.json.gz",
+    "raw_sha256": "d13315a042b2c81f9082ef5c4c72b679f589302187fde4de8767d636545be2ca",
+    "gzip_sha256": "f1cb53e320a8dfef08af1bc36611c940194d15546555272310abfee06ddb4ed7"
+  },
+  {
+    "path": "evidence/private-tools-inventory.json.gz",
+    "raw_sha256": "42080c45bc8eba17794de093aecc51815bface423e7d8b7e281392b7b5125dcb",
+    "gzip_sha256": "9648ffecaa62620b6e942ab73451715241eb07ecaf31eef78e42e69e2d96846c"
+  },
+  {
+    "path": "evidence/static-whitespace.json.gz",
+    "raw_sha256": "0236ac93144213fd871e6fa032eab8bc653e2c6d5f6972a88c992368cc7f981e",
+    "gzip_sha256": "68261e9e5971402d6421249f90cedf4a17f7fcbe147b107107faa8ca117dbdc7"
+  },
+  {
+    "path": "evidence/administration.json.gz",
+    "raw_sha256": "9029e2c14a612b31d8c739302a3522e5bf9dd520af5f9701e59c45286d6c4cae",
+    "gzip_sha256": "5b0559763f7844d08e76d1242cc29c20d9fdd0da5ff161e28293a07b77dc5547"
+  }
+]

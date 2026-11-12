@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Continue approved test-only harness construction: genuine30-format fixtures, bounded source/dependency preparation and manifest-bound A0-A4 adapters. Validate offline normal/-O and root-rule private static tools, freeze and independently review each changed candidate. Prepare exact stage activation inputs before actual downloads/installs/conversion/model effects. Production and business parents unchanged; full readiness and >=9.5 advancement remain unclaimed. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh independent CI-01-10 review of the committed C1 fixture/input-preparation delta and retained offline controls; actual A0-A4 remain unqualified and unactivated. Resume remaining adapter construction after bounded review and exact required private-tool/stage activation; production unchanged, no full readiness or delivery claim. |
 
 ## Completed
 

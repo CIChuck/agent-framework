@@ -6,7 +6,7 @@ is started with bounded implementation authority; new C0 work is local/unpushed.
 Product INGEST construction and real A0–A4 effects remain unapproved/unactivated.
 [Current C0 evidence](gate-a/construction/c0/correction-evidence.md).
 
-**Next gate:** Continue approved test-only harness construction: genuine30-format fixtures, bounded source/dependency preparation and manifest-bound A0-A4 adapters. Validate offline normal/-O and root-rule private static tools, freeze and independently review each changed candidate. Prepare exact stage activation inputs before actual downloads/installs/conversion/model effects. Production and business parents unchanged; full readiness and >=9.5 advancement remain unclaimed.
+**Next gate:** Fresh independent CI-01-10 review of the committed C1 fixture/input-preparation delta and retained offline controls; actual A0-A4 remain unqualified and unactivated. Resume remaining adapter construction after bounded review and exact required private-tool/stage activation; production unchanged, no full readiness or delivery claim.
 
 ## Historical branch/design preparation (superseded for current C0 routing)
 
