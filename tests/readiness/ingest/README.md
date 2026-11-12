@@ -39,6 +39,25 @@ license, installed-profile and execution permissions explicitly false. It is
 neither a package resolver nor a download/install adapter. Real A0 metadata
 collection/resolution and A1–A4 remain open; no actual stage is enabled by it.
 
+The C3 explicit engine selector is
+`ingest.tests.test_manifests.catalog_cases()`, using only the approved private
+resolvelib1.2.1 and packaging24.2 targets under the recorded guarded worker.
+`resolve_catalog` solves a supplied closed catalog; it never contacts an index,
+fetches a missing candidate, builds a package or installs a result. It snapshots
+bounded JSON before caller callbacks, uses the standard backtracking engine,
+and rechecks the chosen complete closure through the C2 consistency checker.
+Known Python/platform/yanked/size-ineligible candidates are reported as excluded;
+malformed or unknown declarations refuse instead of becoming a fallback.
+
+The controls cap candidate count, graph edges, rounds and per-call time; the
+profile worker also owns its total qualification time and external cumulative
+stage budgets. A caller stop/budget callback is checked before engine work and
+between operations. Successful output is `SOLVED_CATALOG_DECLARATIONS`, with
+artifact/license/installed/execution qualifications false and no actual index
+resolution. Only synthetic catalogs are qualified by this increment. Full A0
+metadata collection and real Docling/embedding stages remain unimplemented or
+unqualified; the normal stage CLI continues to refuse them.
+
 ## Trust and preparation
 
 1. Select the recorded CPython 3.13.10 base binary (not a `.venv` symlink) and

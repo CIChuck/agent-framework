@@ -7,7 +7,7 @@ C0 is independently verified; the full harness remains incomplete. Production
 and real A0–A4 effects remain excluded; actual `.friday_test/` is not created by
 builder tests. Dependency/model qualification and effects activation stay later.
 
-**Next gate:** C2 corrected offline component VERIFIED only (CD01-08 plus retained controls; score9.3, full9.5 readiness open). Await exact private resolver-engine profile approval for the next offline solver construction step; actual A0-A4 resolution/install/conversion/model effects remain unactivated and production unchanged.
+**Next gate:** C3 offline closed-catalog solver prepared: freeze current source, rerun minimal/parser/engine normal/-O and private root-rule checks, then fresh CS01-10 delta plus full bounded retained aggregate. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open.
 
 ## Separate MAINT closeout and historical checkpoints
 

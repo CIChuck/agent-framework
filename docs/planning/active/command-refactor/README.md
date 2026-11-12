@@ -53,7 +53,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** C2 corrected offline component VERIFIED only (CD01-08 plus retained controls; score9.3, full9.5 readiness open). Await exact private resolver-engine profile approval for the next offline solver construction step; actual A0-A4 resolution/install/conversion/model effects remain unactivated and production unchanged.
+**Next gate:** C3 offline closed-catalog solver prepared: freeze current source, rerun minimal/parser/engine normal/-O and private root-rule checks, then fresh CS01-10 delta plus full bounded retained aggregate. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

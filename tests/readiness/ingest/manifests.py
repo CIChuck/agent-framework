@@ -6,8 +6,17 @@ import hashlib
 import json
 import math
 import re
+from collections.abc import Callable, Iterable, Iterator, Mapping, Sequence
+from dataclasses import dataclass, field
 from pathlib import Path
+from time import monotonic
+from typing import TYPE_CHECKING
 from urllib.parse import urlsplit
+
+if TYPE_CHECKING:
+    from packaging.requirements import Requirement
+    from packaging.tags import Tag
+    from packaging.version import Version
 
 RECORD_LIMIT = 1024 * 1024
 SHA256 = re.compile(r"[0-9a-f]{64}\Z")
@@ -134,18 +143,20 @@ def artifact(value: object, hosts: set[str]) -> dict[str, object]:
     return result
 
 
-def dependency_selection(value: object) -> dict[str, object]:
-    """Check a proposed wheel closure without resolving, downloading or installing.
+@dataclass(frozen=True)
+class _DependencyInput:
+    data: dict[str, object]
+    roots: list[object]
+    rows: list[object]
+    environment: dict[str, str]
+    tags: list[str]
 
-    The caller must use the separately activated, hash-bound private packaging
-    target under the worker guard. A consistent declaration is not artifact,
-    license, installed-profile or source-provenance qualification.
-    """
-    data = fields(value, {"schema", "roots", "environment", "tags", "wheels"})
+
+def _dependency_input(value: object, row_key: str = "wheels") -> _DependencyInput:
+    data = fields(value, {"schema", "roots", "environment", "tags", row_key})
     require(type(data["schema"]) is int and data["schema"] == 1, "Selection schema")
-    roots = sequence(data["roots"])
-    wheels = sequence(data["wheels"])
-    require(1 <= len(roots) <= 64 and 1 <= len(wheels) <= 512, "Selection count")
+    roots, rows = sequence(data["roots"]), sequence(data[row_key])
+    require(1 <= len(roots) <= 64 and 1 <= len(rows) <= 512, "Selection count")
     declared = fields(
         data["environment"],
         {
@@ -173,157 +184,193 @@ def dependency_selection(value: object) -> dict[str, object]:
         all(WHEEL_TAG.fullmatch(item) for item in tags),
         "Malformed explicit target wheel tag",
     )
+    return _DependencyInput(data, roots, rows, environment, tags)
 
-    # Deliberately lazy: C0/core loading and selftests remain standard-library only.
+
+def _dependency_target(control: _DependencyInput) -> tuple[Version, frozenset[Tag]]:
     import packaging
-    from packaging.requirements import Requirement
-    from packaging.specifiers import SpecifierSet
     from packaging.tags import parse_tag
-    from packaging.utils import canonicalize_name, parse_wheel_filename
     from packaging.version import Version
 
     require(packaging.__version__ == "24.2", "Unqualified standards-parser version")
-    try:
-        python_version = Version(environment["python_full_version"])
-        require(
-            environment["python_version"]
-            == ".".join(str(part) for part in python_version.release[:2]),
-            "Inconsistent explicit Python version",
+    python_version = Version(control.environment["python_full_version"])
+    require(
+        control.environment["python_version"]
+        == ".".join(str(part) for part in python_version.release[:2]),
+        "Inconsistent explicit Python version",
+    )
+    return python_version, frozenset(
+        tag for item in control.tags for tag in parse_tag(item)
+    )
+
+
+def _dependency_requirement(raw: object) -> Requirement:
+    from packaging.requirements import Requirement
+
+    value = text(raw)
+    require(0 < len(value) <= 4096, "Requirement size")
+    parsed = Requirement(value)
+    require(parsed.url is None, "Direct-reference dependency refused")
+    require(len(parsed.extras) <= 32, "Dependency extra count")
+    return parsed
+
+
+def _dependency_active(
+    parsed: Requirement, environment: dict[str, str], extra: str
+) -> bool:
+    return parsed.marker is None or parsed.marker.evaluate(
+        {**environment, "extra": extra}
+    )
+
+
+@dataclass(frozen=True)
+class _DependencyWheel:
+    name: str
+    version: Version
+    key: str
+    row: dict[str, object] = field(compare=False, repr=False)
+    requirements: tuple[Requirement, ...] = field(compare=False, repr=False)
+    extras: frozenset[str] = field(compare=False)
+    tags: frozenset[Tag] = field(compare=False, repr=False)
+    excluded: tuple[str, ...] = field(compare=False)
+
+
+def _dependency_wheel(
+    value: object, python_version: Version, allowed_tags: frozenset[Tag], strict: bool
+) -> _DependencyWheel:
+    from packaging.specifiers import SpecifierSet
+    from packaging.utils import canonicalize_name, parse_wheel_filename
+    from packaging.version import Version
+
+    row = fields(
+        value,
+        {
+            "name",
+            "version",
+            "filename",
+            "url",
+            "sha256",
+            "size",
+            "license",
+            "requires_python",
+            "requires_dist",
+            "provides_extra",
+            "yanked",
+        },
+    )
+    name, version = canonicalize_name(text(row["name"])), Version(text(row["version"]))
+    filename = text(row["filename"])
+    require(Path(filename).name == filename, "Wheel filename path")
+    wheel_name, wheel_version, _, tags = parse_wheel_filename(filename)
+    require(
+        bool(tags) and all(WHEEL_TAG.fullmatch(str(tag)) for tag in tags),
+        "Malformed selected wheel tag",
+    )
+    require(
+        wheel_name == name and wheel_version == version,
+        "Wheel/metadata identity mismatch",
+    )
+    if strict:
+        require(bool(tags & allowed_tags), "No matching target wheel tag")
+        require(row["yanked"] is False, "Yanked/unknown candidate refused")
+    require(type(row["yanked"]) is bool, "Yanked/unknown candidate refused")
+    checked = artifact(
+        {key: row[key] for key in ("url", "sha256", "size", "license")},
+        {"files.pythonhosted.org"},
+    )
+    url = urlsplit(text(checked["url"]))
+    require(url.path.rsplit("/", 1)[-1] == filename, "Wheel URL/filename mismatch")
+    require(url.port in {None, 443} and not url.query, "Unqualified wheel URL")
+    requires_python = text(row["requires_python"])
+    require(bool(requires_python.strip()), "Unknown Requires-Python")
+    python_matches = python_version in SpecifierSet(requires_python)
+    if strict:
+        require(python_matches, "Requires-Python excludes explicit target")
+    requires_dist = sequence(row["requires_dist"])
+    require(len(requires_dist) <= 256, "Distribution dependency count")
+    requirements = tuple(_dependency_requirement(item) for item in requires_dist)
+    provided = sequence(row["provides_extra"])
+    require(len(provided) <= 64, "Provided extra count")
+    extras = frozenset(canonicalize_name(text(item)) for item in provided)
+    require(
+        len(extras) == len(provided)
+        and all(re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", item) for item in extras),
+        "Invalid/duplicate provided extra",
+    )
+    excluded = tuple(
+        reason
+        for reason, applies in (
+            ("platform", not bool(tags & allowed_tags)),
+            ("python", not python_matches),
+            ("yanked", row["yanked"] is True),
+            ("bytes", integer(row["size"], 1) > 4 * 1024**3),
         )
-        try:
-            allowed_tags = {tag for item in tags for tag in parse_tag(item)}
-        except ValueError as exc:
-            raise Refusal("Invalid explicit target wheel tags") from exc
-        selected: dict[str, dict[str, object]] = {}
-        versions: dict[str, Version] = {}
-        dependencies: dict[str, list[Requirement]] = {}
-        available_extras: dict[str, set[str]] = {}
-        total_bytes = 0
-        declared_dependencies = 0
+        if applies
+    )
+    return _DependencyWheel(
+        name, version, digest(canonical(row)), row, requirements, extras, tags, excluded
+    )
 
-        def requirement(raw: object) -> Requirement:
-            value = text(raw)
-            require(0 < len(value) <= 4096, "Requirement size")
-            parsed = Requirement(value)
-            require(parsed.url is None, "Direct-reference dependency refused")
-            require(len(parsed.extras) <= 32, "Dependency extra count")
-            return parsed
 
-        def active(parsed: Requirement, extra: str) -> bool:
-            # Every standard marker field is supplied; no target is inferred
-            # from the machine on which this consistency checker happens to run.
-            return parsed.marker is None or parsed.marker.evaluate(
-                {**environment, "extra": extra}
-            )
+def dependency_selection(value: object) -> dict[str, object]:
+    """Check declared wheel closure; optional parser requires its guarded profile."""
+    control = _dependency_input(value)
+    try:
+        from packaging.utils import canonicalize_name
 
-        for item in wheels:
-            row = fields(
-                item,
-                {
-                    "name",
-                    "version",
-                    "filename",
-                    "url",
-                    "sha256",
-                    "size",
-                    "license",
-                    "requires_python",
-                    "requires_dist",
-                    "provides_extra",
-                    "yanked",
-                },
-            )
-            name = canonicalize_name(text(row["name"]))
-            require(name not in selected, "Duplicate selected distribution")
-            version = Version(text(row["version"]))
-            filename = text(row["filename"])
-            require(Path(filename).name == filename, "Wheel filename path")
-            wheel_name, wheel_version, _, wheel_tags = parse_wheel_filename(filename)
-            require(
-                bool(wheel_tags)
-                and all(WHEEL_TAG.fullmatch(str(tag)) for tag in wheel_tags),
-                "Malformed selected wheel tag",
-            )
-            require(
-                wheel_name == name and wheel_version == version,
-                "Wheel/metadata identity mismatch",
-            )
-            require(bool(wheel_tags & allowed_tags), "No matching target wheel tag")
-            require(row["yanked"] is False, "Yanked/unknown candidate refused")
-            checked = artifact(
-                {key: row[key] for key in ("url", "sha256", "size", "license")},
-                {"files.pythonhosted.org"},
-            )
-            require(
-                urlsplit(text(checked["url"])).path.rsplit("/", 1)[-1] == filename,
-                "Wheel URL/filename mismatch",
-            )
-            url = urlsplit(text(checked["url"]))
-            require(url.port in {None, 443} and not url.query, "Unqualified wheel URL")
-            requires_python = text(row["requires_python"])
-            require(bool(requires_python.strip()), "Unknown Requires-Python")
-            require(
-                python_version in SpecifierSet(requires_python),
-                "Requires-Python excludes explicit target",
-            )
-            requires_dist = sequence(row["requires_dist"])
-            require(len(requires_dist) <= 256, "Distribution dependency count")
-            declared_dependencies += len(requires_dist)
+        python_version, allowed_tags = _dependency_target(control)
+        selected: dict[str, _DependencyWheel] = {}
+        total_bytes = declared_dependencies = 0
+        for item in control.rows:
+            wheel = _dependency_wheel(item, python_version, allowed_tags, True)
+            require(wheel.name not in selected, "Duplicate selected distribution")
+            declared_dependencies += len(wheel.requirements)
             require(declared_dependencies <= 8192, "Declared dependency graph limit")
-            dependencies[name] = [requirement(item) for item in requires_dist]
-            provided = sequence(row["provides_extra"])
-            require(len(provided) <= 64, "Provided extra count")
-            available_extras[name] = {
-                canonicalize_name(text(item)) for item in provided
-            }
-            require(
-                len(available_extras[name]) == len(provided)
-                and all(
-                    re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", item)
-                    for item in available_extras[name]
-                ),
-                "Invalid/duplicate provided extra",
-            )
-            total_bytes += integer(row["size"], 1)
+            total_bytes += integer(wheel.row["size"], 1)
             require(total_bytes <= 4 * 1024**3, "Selected package byte ceiling")
-            selected[name], versions[name] = row, version
-
-        pending = [parsed for item in roots if active(parsed := requirement(item), "")]
+            selected[wheel.name] = wheel
+        pending = [
+            parsed
+            for item in control.roots
+            if _dependency_active(
+                parsed := _dependency_requirement(item), control.environment, ""
+            )
+        ]
         require(bool(pending), "No active root requirements")
         seen: set[str] = set()
         requested: dict[str, set[str]] = {}
-        checked_requirements = 0
         while pending:
             parsed = pending.pop()
             identity = str(parsed)
             if identity in seen:
                 continue
             seen.add(identity)
-            checked_requirements += 1
-            require(checked_requirements <= 8192, "Dependency graph expansion limit")
+            require(len(seen) <= 8192, "Dependency graph expansion limit")
             name = canonicalize_name(parsed.name)
             require(name in selected, "Missing selected dependency: " + name)
+            wheel = selected[name]
             require(
-                versions[name] in parsed.specifier,
+                wheel.version in parsed.specifier,
                 "Selected version violates requirement: " + identity,
             )
             previous = requested.setdefault(name, set())
-            requested_names = {canonicalize_name(extra) for extra in parsed.extras}
-            require(
-                requested_names <= available_extras[name],
-                "Unknown requested extra: " + name,
-            )
-            added = {"", *requested_names} - previous
+            extras = {canonicalize_name(extra) for extra in parsed.extras}
+            require(extras <= wheel.extras, "Unknown requested extra: " + name)
+            added = {"", *extras} - previous
             previous.update(added)
             for extra in sorted(added):
-                pending.extend(dep for dep in dependencies[name] if active(dep, extra))
+                pending.extend(
+                    dep
+                    for dep in wheel.requirements
+                    if _dependency_active(dep, control.environment, extra)
+                )
         require(set(requested) == set(selected), "Unreachable selected distribution")
         return {
             "schema": 1,
             "status": "CONSISTENT_CANDIDATE_DECLARATIONS",
-            "selection_sha256": digest(canonical(data)),
+            "selection_sha256": digest(canonical(control.data)),
             "distribution_count": len(selected),
-            "checked_requirements": checked_requirements,
+            "checked_requirements": len(seen),
             "selected_bytes": total_bytes,
             "requested_extras": {
                 name: sorted(extras - {""})
@@ -338,3 +385,241 @@ def dependency_selection(value: object) -> dict[str, object]:
         raise
     except (ValueError, KeyError) as exc:
         raise Refusal("Invalid dependency declaration: " + type(exc).__name__) from exc
+
+
+@dataclass(frozen=True)
+class _ResolutionCandidate:
+    wheel: _DependencyWheel
+    extras: frozenset[str]
+
+
+def resolve_catalog(
+    value: object,
+    *,
+    max_rounds: int = 500,
+    timeout_seconds: int = 300,
+    before_step: Callable[[], None] | None = None,
+) -> dict[str, object]:
+    """Solve only an explicit closed catalogue. Never fetch, build or install.
+
+    The qualified private worker owns optional imports and external cumulative
+    budgets. This call has stricter local bounds and never retries a refusal.
+    """
+    require(integer(max_rounds, 1) <= 500, "Solver round ceiling")
+    require(integer(timeout_seconds, 1) <= 300, "Solver time ceiling")
+    started = monotonic()
+    require(math.isfinite(started), "Invalid solver clock")
+
+    def checkpoint() -> None:
+        now = monotonic()
+        require(math.isfinite(now) and now >= started, "Invalid/backward solver clock")
+        require(now - started < timeout_seconds, "Solver time exhausted")
+        if before_step is not None:
+            before_step()
+        # A caller callback cannot reopen the time window.
+        now = monotonic()
+        require(
+            math.isfinite(now) and now >= started and now - started < timeout_seconds,
+            "Solver time exhausted",
+        )
+
+    _dependency_input(value, "candidates")  # Validate shape before optional imports.
+    try:
+        # Snapshot plain bounded control bytes before a callback can mutate them.
+        data = decode(canonical(value))
+        control = _dependency_input(data, "candidates")
+        checkpoint()
+        import packaging
+        import resolvelib
+        from packaging.requirements import Requirement
+        from packaging.utils import canonicalize_name
+        from resolvelib import (
+            AbstractProvider,
+            BaseReporter,
+            ResolutionImpossible,
+            ResolutionTooDeep,
+            Resolver,
+        )
+        from resolvelib.structs import RequirementInformation
+
+        require(
+            packaging.__version__ == "24.2" and resolvelib.__version__ == "1.2.1",
+            "Unqualified private solver/parser version",
+        )
+        python_version, allowed_tags = _dependency_target(control)
+        groups: dict[str, list[_DependencyWheel]] = {}
+        identities: set[str] = set()
+        files: set[str] = set()
+        edges = 0
+        exclusions: list[dict[str, object]] = []
+        for item in control.rows:
+            checkpoint()
+            wheel = _dependency_wheel(item, python_version, allowed_tags, False)
+            require(
+                wheel.key not in identities
+                and text(wheel.row["filename"]) not in files,
+                "Duplicate catalogue wheel",
+            )
+            identities.add(wheel.key)
+            files.add(text(wheel.row["filename"]))
+            edges += len(wheel.requirements)
+            require(edges <= 8192, "Declared dependency graph limit")
+            if wheel.excluded:
+                exclusions.append(
+                    {
+                        "name": wheel.name,
+                        "version": str(wheel.version),
+                        "filename": wheel.row["filename"],
+                        "reasons": list(wheel.excluded),
+                    }
+                )
+            else:
+                groups.setdefault(wheel.name, []).append(wheel)
+        for name in groups:
+            groups[name].sort(
+                key=lambda wheel: (wheel.version, wheel.key), reverse=True
+            )
+        roots = [_dependency_requirement(raw) for raw in control.roots]
+        active_roots = [
+            req for req in roots if _dependency_active(req, control.environment, "")
+        ]
+        require(bool(active_roots), "No active root requirements")
+
+        class Provider(AbstractProvider[Requirement, _ResolutionCandidate, str]):
+            def identify(
+                self, requirement_or_candidate: Requirement | _ResolutionCandidate
+            ) -> str:
+                checkpoint()
+                if isinstance(requirement_or_candidate, _ResolutionCandidate):
+                    return requirement_or_candidate.wheel.name
+                return canonicalize_name(requirement_or_candidate.name)
+
+            def get_preference(
+                self,
+                identifier: str,
+                resolutions: Mapping[str, _ResolutionCandidate],
+                candidates: Mapping[str, Iterator[_ResolutionCandidate]],
+                information: Mapping[
+                    str,
+                    Iterator[RequirementInformation[Requirement, _ResolutionCandidate]],
+                ],
+                backtrack_causes: Sequence[
+                    RequirementInformation[Requirement, _ResolutionCandidate]
+                ],
+            ) -> str:
+                checkpoint()
+                return identifier
+
+            def find_matches(
+                self,
+                identifier: str,
+                requirements: Mapping[str, Iterator[Requirement]],
+                incompatibilities: Mapping[str, Iterator[_ResolutionCandidate]],
+            ) -> list[_ResolutionCandidate]:
+                checkpoint()
+                constraints = tuple(requirements[identifier])
+                extras = frozenset(
+                    canonicalize_name(extra)
+                    for req in constraints
+                    for extra in req.extras
+                )
+                require(len(extras) <= 64, "Combined solver extra count")
+                excluded = set(incompatibilities[identifier])
+                result: list[_ResolutionCandidate] = []
+                for wheel in groups.get(identifier, []):
+                    checkpoint()
+                    candidate = _ResolutionCandidate(wheel, extras)
+                    if (
+                        candidate not in excluded
+                        and extras <= wheel.extras
+                        and all(wheel.version in req.specifier for req in constraints)
+                    ):
+                        result.append(candidate)
+                return result
+
+            def is_satisfied_by(
+                self, requirement: Requirement, candidate: _ResolutionCandidate
+            ) -> bool:
+                checkpoint()
+                return (
+                    canonicalize_name(requirement.name) == candidate.wheel.name
+                    and candidate.wheel.version in requirement.specifier
+                    and {canonicalize_name(extra) for extra in requirement.extras}
+                    <= candidate.extras
+                )
+
+            def get_dependencies(
+                self, candidate: _ResolutionCandidate
+            ) -> Iterable[Requirement]:
+                checkpoint()
+                return tuple(
+                    req
+                    for req in candidate.wheel.requirements
+                    if any(
+                        _dependency_active(req, control.environment, extra)
+                        for extra in {"", *candidate.extras}
+                    )
+                )
+
+        class Reporter(BaseReporter[Requirement, _ResolutionCandidate, str]):
+            def __init__(self) -> None:
+                self.rounds = 0
+                self.rejections = 0
+
+            def starting_round(self, index: int) -> None:
+                checkpoint()
+                self.rounds += 1
+                require(
+                    index < max_rounds and self.rounds <= max_rounds,
+                    "Solver round ceiling",
+                )
+
+            def rejecting_candidate(
+                self, criterion: object, candidate: _ResolutionCandidate
+            ) -> None:
+                checkpoint()
+                self.rejections += 1
+
+        reporter = Reporter()
+        try:
+            solved = Resolver(Provider(), reporter).resolve(
+                active_roots, max_rounds=max_rounds
+            )
+        except ResolutionImpossible as exc:
+            raise Refusal("Offline catalogue has no compatible solution") from exc
+        except ResolutionTooDeep as exc:
+            raise Refusal("Solver round ceiling exhausted") from exc
+        checkpoint()
+        selection: dict[str, object] = {
+            "schema": 1,
+            "roots": control.data["roots"],
+            "environment": control.data["environment"],
+            "tags": control.data["tags"],
+            "wheels": [
+                candidate.wheel.row for _, candidate in sorted(solved.mapping.items())
+            ],
+        }
+        consistent = dependency_selection(selection)
+        checkpoint()
+        return {
+            "schema": 1,
+            "status": "SOLVED_CATALOG_DECLARATIONS",
+            "catalog_sha256": digest(canonical(control.data)),
+            "candidate_count": len(control.rows),
+            "selection": selection,
+            "consistency": consistent,
+            "rounds": reporter.rounds,
+            "rejected_candidates": reporter.rejections,
+            "excluded_candidates": sorted(
+                exclusions, key=lambda row: text(row["filename"])
+            ),
+            "artifact_bytes_verified": False,
+            "licenses_qualified": False,
+            "installed_profile_qualified": False,
+            "execution_permitted": False,
+            "actual_index_resolution": False,
+        }
+    except Refusal:
+        raise
+    except (ValueError, KeyError, TypeError, RecursionError) as exc:
+        raise Refusal("Invalid catalogue declaration: " + type(exc).__name__) from exc

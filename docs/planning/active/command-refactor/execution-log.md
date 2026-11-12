@@ -3685,3 +3685,30 @@ pins one18737-byte resolvelib wheel for offline solving; approval is requested
 and pending. No transfer/import, real stage activation, production effect,
 acceptance or delivery is inferred. All actual A0–A4 construction/qualification
 remains open; task stays started/local.
+
+
+## 2026-11-12 — exact private resolver-engine activation
+
+Chuck directs “Approve private resolver-engine profile”, binding a9c64ca1.
+Exactly one18737-byte resolvelib1.2.1 wheel was transferred to the declared private
+cache. Every15 member/RECORD hash, ISC material and startup-hook absence passed
+inspection. All8 declared extra dependencies are inactive without extras; no
+additional download occurred. Approved packaging was reused by verified copy.
+Six guarded checks pass per Python mode, including genuine synthetic backtracking,
+impossible constraints, cycles, round bounds and private origins/unchanged targets.
+[Exact approval/evidence](validation/document-ingestion/gate-a/construction/c3/private-resolver-engine-approval.json)
+permits offline construction only. Continue bounded source and fresh review.
+Production files/venv/config/locks/stores/model services remain unchanged; no real
+A0–A4/model/index activation,9.5 readiness, acceptance or delivery is inferred.
+
+
+## 2026-11-12 — C3 offline solver source prepared
+
+Added a closed-catalog API backed by the activated standard engine, shared strict
+declaration parsing, bounded callbacks/rounds/time and immutable control snapshot.
+No live metadata lookup/fallback, build, install or permission claim is added.
+Development minimal57, parser6positive39refusal and engine7positive24refusal
+cases pass per mode; root-rule private typing25 sources and lint pass.
+[CS01–10 scope](validation/document-ingestion/gate-a/construction/c3/implementation-scope.md)
+requires committed current proof and fresh delta/full bounded aggregate review.
+Production and protected state remain unchanged; full HR/A0–A4 readiness stays open.

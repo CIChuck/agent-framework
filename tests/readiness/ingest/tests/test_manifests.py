@@ -17,6 +17,7 @@ from ingest.manifests import (
     integer,
     object_value,
     read,
+    resolve_catalog,
     sequence,
 )
 
@@ -33,6 +34,21 @@ def unit() -> Path:
 
 
 class Manifests(unittest.TestCase):
+    def test_catalog_controls_refuse_before_optional_engine_import(self) -> None:
+        before = {name for name in sys.modules if name in {"packaging", "resolvelib"}}
+        values: list[object] = [{}, {"schema": 1}, {"candidates": []}]
+        for raw in values:
+            with self.assertRaises(Refusal):
+                resolve_catalog(raw)
+        with self.assertRaises(Refusal):
+            resolve_catalog({}, max_rounds=True)
+        with self.assertRaises(Refusal):
+            resolve_catalog({}, timeout_seconds=301)
+        self.assertEqual(
+            {name for name in sys.modules if name in {"packaging", "resolvelib"}},
+            before,
+        )
+
     def test_empty_target_tag_components_refuse_before_parser_import(self) -> None:
         before = "packaging" in sys.modules
         environment = {
@@ -320,5 +336,233 @@ def dependency_cases() -> dict[str, object]:
         "positive_cases": positives,
         "refusal_cases": len(negatives) + 1,
         "actual_resolution": False,
+        "execution_permitted": False,
+    }
+
+
+def catalog_cases() -> dict[str, object]:
+    """Explicit guarded engine-profile assertions; no registry or artifact calls."""
+    from unittest.mock import patch
+
+    case = unittest.TestCase()
+    positives = refusals = 0
+
+    def wheel(
+        name: str, version: str, requires: list[str], extras: list[str] | None = None
+    ) -> dict[str, object]:
+        filename = name.replace("-", "_") + "-" + version + "-py3-none-any.whl"
+        return {
+            "name": name,
+            "version": version,
+            "filename": filename,
+            "url": "https://files.pythonhosted.org/synthetic/" + filename,
+            "sha256": "a" * 64,
+            "size": 100,
+            "license": "MIT",
+            "requires_python": ">=3.10,<3.14",
+            "requires_dist": requires,
+            "provides_extra": extras or [],
+            "yanked": False,
+        }
+
+    def catalog() -> dict[str, object]:
+        return {
+            "schema": 1,
+            "roots": ["alpha>=1", "beta<2"],
+            "environment": {
+                "implementation_name": "cpython",
+                "implementation_version": "3.13.10",
+                "os_name": "posix",
+                "platform_machine": "arm64",
+                "platform_release": "test",
+                "platform_system": "Darwin",
+                "platform_version": "test",
+                "python_full_version": "3.13.10",
+                "platform_python_implementation": "CPython",
+                "python_version": "3.13",
+                "sys_platform": "darwin",
+            },
+            "tags": ["py3-none-any", "cp313-cp313-macosx_11_0_arm64"],
+            "candidates": [
+                wheel("alpha", "2", ["beta>=2"]),
+                wheel("alpha", "1", ["beta>=1"]),
+                wheel("beta", "2", []),
+                wheel("beta", "1", []),
+            ],
+        }
+
+    def chosen(result: dict[str, object]) -> dict[str, str]:
+        selection = object_value(result["selection"])
+        return {
+            str(object_value(row)["name"]): str(object_value(row)["version"])
+            for row in sequence(selection["wheels"])
+        }
+
+    value = catalog()
+    solved = resolve_catalog(value)
+    case.assertEqual(chosen(solved), {"alpha": "1", "beta": "1"})
+    case.assertGreaterEqual(integer(solved["rejected_candidates"]), 1)
+    case.assertEqual(solved["status"], "SOLVED_CATALOG_DECLARATIONS")
+    for field in (
+        "artifact_bytes_verified",
+        "licenses_qualified",
+        "installed_profile_qualified",
+        "execution_permitted",
+        "actual_index_resolution",
+    ):
+        case.assertIs(solved[field], False)
+    case.assertEqual(
+        object_value(solved["consistency"])["status"],
+        "CONSISTENT_CANDIDATE_DECLARATIONS",
+    )
+    case.assertEqual(solved, resolve_catalog(value))
+    positives += 1
+    reverse = catalog()
+    reverse["candidates"] = list(reversed(sequence(reverse["candidates"])))
+    reverse["roots"] = list(reversed(sequence(reverse["roots"])))
+    case.assertEqual(chosen(resolve_catalog(reverse)), chosen(solved))
+    positives += 1
+
+    cycle = catalog()
+    cycle["roots"] = ["Alpha.File[speed]>=1"]
+    cycle["candidates"] = [
+        wheel(
+            "alpha-file",
+            "1",
+            [
+                "beta>=1",
+                "gamma; extra == 'speed'",
+                "WindowsOnly; sys_platform == 'win32'",
+            ],
+            ["speed"],
+        ),
+        wheel("beta", "1", ["Alpha.File>=1"]),
+        wheel("gamma", "1", []),
+    ]
+    case.assertEqual(
+        chosen(resolve_catalog(cycle)), {"alpha-file": "1", "beta": "1", "gamma": "1"}
+    )
+    positives += 1
+    late = decode(canonical(cycle))
+    late["roots"] = ["beta[speed]", "alpha-file"]
+    rows = sequence(late["candidates"])
+    rows[1] = object_value(rows[1]) | {
+        "provides_extra": ["speed"],
+        "requires_dist": ["alpha-file>=1", "alpha-file[speed]; extra == 'speed'"],
+    }
+    late["candidates"] = rows
+    case.assertEqual(
+        chosen(resolve_catalog(late)), {"alpha-file": "1", "beta": "1", "gamma": "1"}
+    )
+    positives += 1
+
+    filtered = catalog()
+    windows_filename = "alpha-4-cp313-cp313-win_amd64.whl"
+    filtered["candidates"] = sequence(filtered["candidates"]) + [
+        wheel("alpha", "3", []) | {"requires_python": ">=3.14"},
+        wheel("alpha", "4", [])
+        | {
+            "filename": windows_filename,
+            "url": "https://files.pythonhosted.org/" + windows_filename,
+        },
+        wheel("alpha", "5", []) | {"yanked": True},
+        wheel("alpha", "6", []) | {"size": 4 * 1024**3 + 1},
+    ]
+    result = resolve_catalog(filtered)
+    case.assertEqual(chosen(result), {"alpha": "1", "beta": "1"})
+    case.assertEqual(
+        {
+            str(object_value(row)["version"]): object_value(row)["reasons"]
+            for row in sequence(result["excluded_candidates"])
+        },
+        {"3": ["python"], "4": ["platform"], "5": ["yanked"], "6": ["bytes"]},
+    )
+    positives += 1
+    compressed = catalog()
+    rows = sequence(compressed["candidates"])
+    name = "alpha-1-py2.py3-none-any.whl"
+    rows[1] = object_value(rows[1]) | {
+        "filename": name,
+        "url": "https://files.pythonhosted.org/" + name,
+    }
+    compressed["candidates"] = rows
+    case.assertEqual(chosen(resolve_catalog(compressed)), {"alpha": "1", "beta": "1"})
+    positives += 1
+
+    frozen = catalog()
+    original_sha = digest(canonical(frozen))
+    mutated = False
+
+    def mutate_original() -> None:
+        nonlocal mutated
+        if not mutated:
+            frozen["candidates"] = []
+            mutated = True
+
+    result = resolve_catalog(frozen, before_step=mutate_original)
+    case.assertEqual(result["catalog_sha256"], original_sha)
+    case.assertEqual(chosen(result), {"alpha": "1", "beta": "1"})
+    positives += 1
+
+    negatives: list[dict[str, object]] = [
+        catalog() | {"roots": ["alpha==2", "beta<2"]},
+        catalog() | {"roots": ["Missing"]},
+        catalog() | {"roots": ["alpha[unknown]"]},
+        catalog() | {"roots": ["alpha @ https://unapproved.invalid/a.whl"]},
+        catalog() | {"roots": ["alpha; sys_platform == 'win32'"]},
+        catalog() | {"tags": ["py3--any"]},
+        catalog() | {"candidates": [wheel("a", "1", [])] * 513},
+        catalog() | {"candidates": [wheel("a", "1", [])] * 2},
+        catalog() | {"candidates": [wheel("a", "1", []) | {"yanked": "unknown"}]},
+        catalog() | {"candidates": [wheel("a", "1", []) | {"requires_python": ""}]},
+        catalog()
+        | {"candidates": [wheel("a", "1", ["b @ https://unapproved.invalid/b.whl"])]},
+        catalog() | {"candidates": [wheel("a", "1", ["b"] * 257)]},
+        catalog()
+        | {"candidates": [wheel("a", str(index), ["b"] * 256) for index in range(33)]},
+        catalog()
+        | {"candidates": [wheel("a", "1", []) | {"license": "", "yanked": True}]},
+    ]
+    for index, negative in enumerate(negatives):
+        with case.subTest(negative=index), case.assertRaises(Refusal):
+            resolve_catalog(negative)
+        refusals += 1
+    for rounds, seconds in ((1, 300), (501, 300), (500, 301), (500, 0)):
+        with case.assertRaises(Refusal):
+            resolve_catalog(catalog(), max_rounds=rounds, timeout_seconds=seconds)
+        refusals += 1
+    for clocks in ([0.0, 301.0], [2.0, 1.0], [float("nan")], [0.0, 0.0, 301.0]):
+        with (
+            patch("ingest.manifests.monotonic", side_effect=clocks),
+            case.assertRaises(Refusal),
+        ):
+            resolve_catalog(catalog())
+        refusals += 1
+
+    calls = 0
+
+    def stop() -> None:
+        nonlocal calls
+        calls += 1
+        if calls == 8:
+            raise Refusal("Synthetic caller stop")
+
+    with case.assertRaisesRegex(Refusal, "Synthetic caller stop"):
+        resolve_catalog(catalog(), before_step=stop)
+    case.assertEqual(calls, 8)
+    refusals += 1
+    large = catalog()
+    large["candidates"] = [
+        wheel("alpha", "1", ["beta"]) | {"size": 2200000000},
+        wheel("beta", "1", []) | {"size": 2200000000},
+    ]
+    with case.assertRaisesRegex(Refusal, "Selected package byte ceiling"):
+        resolve_catalog(large)
+    refusals += 1
+    return {
+        "positive_cases": positives,
+        "refusal_cases": refusals,
+        "synthetic_catalog_resolution": True,
+        "actual_index_resolution": False,
         "execution_permitted": False,
     }
