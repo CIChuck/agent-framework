@@ -629,10 +629,11 @@ def convert_case(
             record["structural_audit"] = audit
             reasons = admission_reasons(audit)
             if enforce_admission and reasons:
-                expected_structural_refusal = filename in {
-                    "xlsx-hidden-row.xlsx",
-                    "xlsx-hidden-column.xlsx",
-                }
+                expected_structural_refusal = reasons == {
+                    "xlsx-hidden-row.xlsx": ["unsupported_hidden_rows"],
+                    "xlsx-hidden-column.xlsx": ["unsupported_hidden_columns"],
+                    "pptx-external.pptx": ["external_relationship_requires_no_fetch"],
+                }.get(filename)
                 raise ValueError("Structural admission refused: " + ",".join(reasons))
         record["phase"] = "setup"
         from docling.datamodel.accelerator_options import (
