@@ -2871,8 +2871,9 @@
         "base": "73fbda9b7f4e90da9912be442e1eb05b494a13b5",
         "scope": "validation/document-ingestion/gate-a/construction/c2/implementation-scope.md",
         "scope_sha256": "b1a71e754c60d33c972743c76ac632b28c36307285fc34ce6f9ed7db607c6b0a",
-        "status": "prepared_for_committed_source_freeze",
-        "actual_A0_A4": false
+        "status": "committed_source_and_execution_evidence_prepared",
+        "actual_A0_A4": false,
+        "source_candidate": "f931db992746619aec6bc2a834c731555047dab8"
       }
     },
     "lightweight_planning_exemption": {

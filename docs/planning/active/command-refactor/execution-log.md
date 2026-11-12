@@ -3633,3 +3633,15 @@ consistency withholds artifact/license/installed/execution qualification.
 [CD01–08 criteria](validation/document-ingestion/gate-a/construction/c2/implementation-scope.md)
 require fresh committed checks plus bounded retained-controls aggregate review.
 No actual resolver/metadata/download/install/Docling/model/store stage is activated.
+
+
+## 2026-11-12 — C2 source and current offline profile evidence frozen
+
+Source f931db99 passes55 minimal cases per mode and retains54 prior test bodies.
+Explicit guarded parser profile passes5 positives and31 refusal assertions per
+mode. Both manual fixture workflows, private25-source static and administration
+pass; preservation covers18283 tracked hashes plus26 symlinks and9 local records.
+[Builder receipts](validation/document-ingestion/gate-a/construction/c2/builder-evidence.md)
+separate candidate consistency from unqualified A0–A4. Fresh read-only CD01–08
+delta then bounded retained-controls aggregate review follows. No actual stage,
+production change, whole-repo-green, readiness advancement or delivery is claimed.

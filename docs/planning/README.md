@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | C1 fixture component VERIFIED only (CI01-10; bounded score9.2, no full-readiness advancement). Continue approved test-only dependency/stage construction using the now activated private parser. Actual A0-A4 resolution/install/conversion/model effects require exact later activation; production untouched. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh independent CD-01-08 review of C2 offline dependency-selection checks plus full bounded retained C0/C1 controls; private parser activated, no real A0-A4 effects. Continue remaining adapter construction after current proof; production unchanged, full readiness/9.5 advancement open. |
 
 ## Completed
 
