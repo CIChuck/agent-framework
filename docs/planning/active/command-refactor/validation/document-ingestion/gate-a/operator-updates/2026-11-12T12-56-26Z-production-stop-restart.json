@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-12T12:56:26.232522+00:00",
+  "kind": "partial_operator_attestation_not_effects_activation",
+  "operator": "Chuck Russell",
+  "operator_statement": ";Production has stopped, and LM Studio has been restarted.",
+  "confirmed_by_operator": {
+    "production_stopped": true,
+    "lm_studio_restarted": true
+  },
+  "embedding_client_direction": "Use friday_llm for the test communication with LM Studio and the Nomic embedding model.",
+  "model_family_named_by_operator": "nomic",
+  "exact_loaded_model_identity": "not_yet_bound",
+  "log_separation": "not_yet_confirmed",
+  "full_run_window_receipt": "not_created; requires promoted exact input/profile hashes",
+  "effects_activation": "not_granted_by_this_status_record",
+  "network_or_endpoint_calls_performed": 0,
+  "scope_note": "Existing A3 already qualifies the real Friday-LLM embedding service using an explicit test-owned client. Offline converter/chunker tests remain independent. No technical parent, production code/configuration, endpoint/model setting, or store is changed by recording this statement."
+}

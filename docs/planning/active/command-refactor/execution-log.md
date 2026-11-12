@@ -3552,3 +3552,15 @@ readiness advancement, full directive completion or effects activation. Exact
 raw report and all linked evidence are durably retained, with navigation-only
 link copies distinguished. Full harness remains not_ready; no automatic score
 loop, product implementation, acceptance or delivery is inferred.
+
+
+## 2026-11-12 — operator production-stop / LM Studio restart statement
+
+Chuck confirms production is stopped and LM Studio restarted; names a Nomic
+embedding model and directs use of Friday-LLM for test communication.
+[Partial operator record](validation/document-ingestion/gate-a/operator-updates/2026-11-12T12-56-26Z-production-stop-restart.json) preserves those facts.
+This is not the promoted run-specific A3 window/activation: exact loaded model,
+model/counter/input manifests and log separation remain unbound. No endpoint call,
+package import/install, setting/store change or production activity is performed.
+The existing A3 client requirement already covers Friday-LLM; no technical parent
+is revised while discussing the value of that integration check.

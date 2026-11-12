@@ -2654,7 +2654,16 @@
         "production_offline_statement": "We'll shut down the production environment for this testing.",
         "requirements": "Operator-managed server restart and separate test logs; no harness service management; exact model/window facts remain unbound.",
         "supersedes": "v0.2 independent process/endpoint and copied served-weight requirement only.",
-        "window_confirmed": false
+        "window_confirmed": false,
+        "latest_operator_update": {
+          "record": "validation/document-ingestion/gate-a/operator-updates/2026-11-12T12-56-26Z-production-stop-restart.json",
+          "sha256": "9e77488e604d36f50a1a297767c5a9972f79995a99f999ed0a31fe91ae230f11",
+          "production_stopped_attested": true,
+          "server_restarted_attested": true,
+          "nomic_family_named": true,
+          "full_window_confirmed": false
+        },
+        "embedding_client": "friday_llm.LiteLLMEmbeddingService via explicit test-owned configuration; unchanged package qualified in private profile"
       },
       "harness_construction_directive": {
         "unit": "CD-CMD-INGEST-GATE-A-001",
