@@ -1,25 +1,13 @@
-# Gate-A harness directive — council VERIFIED, construction pending
+# Isolated readiness harness — approved C0 construction
 
-Execution phase: closeout (documents only); validation state: verified.
-[Reconciled pass2 result](validation/document-ingestion/gate-a/verified-directive-report.md)
-meets the all-seat gate: Sol10.0/9.6, Astra10.0/9.6, Opus9.6/9.5
-(coverage/overall), zero mandatory findings. Reviewed candidate `474479df`.
-The [authorized four-pass loop](validation/document-ingestion/gate-a/correction-loop/authorization.md)
-stops early after two completed passes; no pass3/pass4 is launched.
+Execution phase: validation; validation state: pending.
+Chuck [approves exact directive v0.3](validation/document-ingestion/gate-a/construction-approval.md)
+after the [verified council](validation/document-ingestion/gate-a/verified-directive-report.md).
+The test-owned C0 foundation is built; fresh independent validation is pending. Production
+and real A0–A4 effects remain excluded; actual `.friday_test/` is not created by
+builder tests. Dependency/model qualification and effects activation stay later.
 
-The [directive v0.3](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
-[execution contract](validation/document-ingestion/gate-a/execution-contract.md),
-[plan v0.5](validation/document-ingestion/gate-a/readiness-plan.md), envelope,
-isolation requirements and nine business inputs retain their reviewed bytes.
-[Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
-remain visible without silently changing the reviewed contract.
-
-No executable harness, .friday_test environment, dependency/model/server/store
-operation or production change was made. Separate exact construction approval
-precedes the test-only C0 slice. Actual A0–A4 effects and the shared-endpoint
-operator window remain separately gated; design review is not runtime readiness.
-
-**Next gate:** Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.
+**Next gate:** Freeze and independently validate the test-only C0 foundation under tests/readiness/ingest against CC-01–10; reconcile committed-export normal/-O and approved private static-tool evidence. Keep full A0–A4 construction/qualification open and all upstream/model effects unactivated; preserve production, dirty YAMLs and generated state. No product implementation, human acceptance or delivery follows.
 
 ## Separate MAINT closeout and historical checkpoints
 

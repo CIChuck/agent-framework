@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "C0": {
+    "seeds": ["seed.pdf", "seed.docx"],
+    "distinctive_text": "INGEST-C0-DISTINCTIVE-LATE-TEXT",
+    "claim": "Deterministic structural seeds only; no extraction or OCR qualification"
+  },
+  "A2": {
+    "status": "NOT_ACTIVATED_NOT_QUALIFIED",
+    "minimum_genuine_fixture_counts": {"pdf": 6, "docx": 6, "xlsx": 10, "pptx": 8},
+    "oracles": ["late distinctive text", "body and table order", "hidden content", "formula cached-value audit", "notes versus comments", "limits and corrupt or empty extraction"],
+    "qualification": "Requires exact promoted Docling/OCR/counter profile; C0 seed tests earn no A2 credit"
+  }
+}

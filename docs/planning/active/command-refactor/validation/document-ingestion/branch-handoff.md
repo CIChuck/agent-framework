@@ -48,7 +48,7 @@ The two edited Chat example YAML files remain uncommitted and unstaged;
 `.friday-old/` and ignored exports remain untouched. Historical receipts retain
 their original branch/source identities. Do not broad-stage or clean this checkout.
 
-**Next gate:** Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.
+**Next gate:** Freeze and independently validate the test-only C0 foundation under tests/readiness/ingest against CC-01–10; reconcile committed-export normal/-O and approved private static-tool evidence. Keep full A0–A4 construction/qualification open and all upstream/model effects unactivated; preserve production, dirty YAMLs and generated state. No product implementation, human acceptance or delivery follows.
 
 
 ## Current harness directive council closeout
@@ -59,3 +59,8 @@ technical document bytes remain frozen; no construction or A0–A4 effects follo
 Exact directive approval is next, followed only by its authorized test-only slice.
 Earlier preparation labels above describe their freezes; this closeout controls
 current readiness status, with no acceptance or production mutation.
+
+
+Current construction authority: [exact C0 approval](gate-a/construction-approval.md).
+It supersedes earlier pending-construction routing only. Real A0–A4 effects and
+production/model/store operations remain unactivated.

@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.",
+  "current_scope": "Freeze and independently validate the test-only C0 foundation under tests/readiness/ingest against CC-01\u201310; reconcile committed-export normal/-O and approved private static-tool evidence. Keep full A0\u2013A4 construction/qualification open and all upstream/model effects unactivated; preserve production, dirty YAMLs and generated state. No product implementation, human acceptance or delivery follows.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1895,8 +1895,8 @@
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
     "status": "revised_planning_requirements",
-    "execution_phase": "closeout",
-    "validation_state": "verified",
+    "execution_phase": "validation",
+    "validation_state": "pending",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.",
+    "next_gate": "Freeze and independently validate the test-only C0 foundation under tests/readiness/ingest against CC-01\u201310; reconcile committed-export normal/-O and approved private static-tool evidence. Keep full A0\u2013A4 construction/qualification open and all upstream/model effects unactivated; preserve production, dirty YAMLs and generated state. No product implementation, human acceptance or delivery follows.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.",
+      "next_gate": "Freeze and independently validate the test-only C0 foundation under tests/readiness/ingest against CC-01\u201310; reconcile committed-export normal/-O and approved private static-tool evidence. Keep full A0\u2013A4 construction/qualification open and all upstream/model effects unactivated; preserve production, dirty YAMLs and generated state. No product implementation, human acceptance or delivery follows.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2630,17 +2630,17 @@
       "source_observations_sha256": "bbd408be71036faef3aa5b4298232635a4dade2f2e813444df6aae3a2e63fb80",
       "consumer_worklist": "validation/document-ingestion/gate-a/consumer-readiness-matrix.md",
       "consumer_worklist_sha256": "12c2bcc68892f8b5b14023f67d34b190565b7ca22ed79c2a4a9013437c5e9e7c",
-      "status": "directive_design_verified_construction_pending",
+      "status": "C0_foundation_pending_independent_validation",
       "independent_review": "reconciled_verified_corrective_pass2",
       "council_active": false,
       "effects_activation": "not_granted",
       "model_stage": "blocked_until_confirmed_shared_endpoint_window_and_exact_model_counter_inputs",
       "research": "Public release/source metadata only; no resolver/install/model transfer/inference.",
-      "implementation_approval": "not_granted",
+      "implementation_approval": "granted_C0_harness_only",
       "isolation_requirements": "validation/document-ingestion/gate-a/isolation-requirements.md",
       "isolation_requirements_sha256": "a50069c9ede478c2387ed819e15cc949223e14bd0635ee9dcc5aa14b0bb60264",
       "production_isolation": "Production application/configuration/stores unchanged; shared LM Studio permitted only in operator-confirmed production-offline/restart/log-separation window. All harness code/config/inputs/outputs test-owned.",
-      "manual_harness": "Required; versioned code/config/probes/generators/tests under tests/readiness/ingest/; generated state under .friday_test/; not implemented.",
+      "manual_harness": "C0 control-plane foundation constructed under tests/readiness/ingest; real A0-A4 adapters and complete fixture matrix remain unimplemented/unqualified.",
       "requirements_authority": {
         "maintainer": "Chuck Russell",
         "date": "2026-11-11",
@@ -2661,8 +2661,8 @@
         "document": "directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md",
         "version": "0.3-draft",
         "sha256": "bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803",
-        "status": "verified_draft_construction_pending",
-        "construction_approval": "not_granted",
+        "status": "C0_foundation_pending_independent_validation",
+        "construction_approval": "granted_C0_harness_only",
         "versioned_code_root": "tests/readiness/ingest/",
         "runtime_root": ".friday_test/",
         "council_authority": "four_pass_loop_closed_early_after_success_pass2"
@@ -2751,7 +2751,11 @@
         }
       ],
       "execution_contract": "validation/document-ingestion/gate-a/execution-contract.md",
-      "execution_contract_sha256": "ac09cc3115640f788fba8f3c29e0b981e18e43ae29846e5fe9585a3099f24a69"
+      "execution_contract_sha256": "ac09cc3115640f788fba8f3c29e0b981e18e43ae29846e5fe9585a3099f24a69",
+      "construction_approval": "validation/document-ingestion/gate-a/construction-approval.json",
+      "construction_approval_sha256": "dc3b4a1d20054256310cc0b6464d18c782b04326fe315b09ea5f96911e66845f",
+      "C0_scope": "validation/document-ingestion/gate-a/construction/c0/implementation-scope.md",
+      "private_typecheck_approval": "validation/document-ingestion/gate-a/construction/c0/private-typecheck-approval.json"
     },
     "lightweight_planning_exemption": {
       "maintainer": "Chuck Russell",
@@ -2761,8 +2765,8 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "gate_a_readiness_plan_preparation",
-    "validation_scope": "CD-CMD-INGEST-GATE-A-001 directive/readiness design and source feasibility only; no executable or runtime qualification."
+    "current_stage": "gate_a_C0_foundation_validation",
+    "validation_scope": "Standalone isolated harness C0 construction only; production/upstream qualification excluded."
   },
   "command_refactor_publication": {
     "status": "merged_remote_branch_deleted",

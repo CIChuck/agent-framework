@@ -2,8 +2,8 @@
 
 **Status:** started/pushed. Exact INGEST package impact v0.6 is approved;
 Gate-A harness directive v0.3 is council VERIFIED for design/source feasibility.
-The loop stopped after pass2; exact construction approval remains pending.
-Execution and MAINT human UAT/acceptance remain pending.
+The loop stopped after pass2; Chuck now approves test-only C0 harness construction.
+C0 implementation validation, full pipeline construction/qualification and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -53,7 +53,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Harness directive v0.3 is reconciled VERIFIED for design/source feasibility at candidate474479df: Sol coverage10.0/overall9.6, Astra10.0/9.6, Opus9.6/9.5, no mandatory findings. The four-pass corrective loop stops early after pass2; no pass3/pass4. Chuck separately reviews/approves exact directive SHA256 bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803 before test-only C0 construction. A0-A4 effects, actual model/server facts and confirmed shared-LM-Studio production-offline window remain separately unactivated. No production code/config/env/store change, executable harness, settings/service operation, acceptance or delivery authority. Nine business inputs, reviewed technical bytes and numeric ceilings are unchanged.
+**Next gate:** Freeze and independently validate the test-only C0 foundation under tests/readiness/ingest against CC-01–10; reconcile committed-export normal/-O and approved private static-tool evidence. Keep full A0–A4 construction/qualification open and all upstream/model effects unactivated; preserve production, dirty YAMLs and generated state. No product implementation, human acceptance or delivery follows.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)
@@ -286,3 +286,13 @@ SESSION-001 construction was [approved](approval/session-views.md), independentl
 VERIFIED and [accepted by Chuck Russell](approval/session-acceptance.md).
 The [remaining council roster](approval/council-roster.md) is Sol/Astra/Claude.
 The post-SESSION instruction “Await separate maintainer direction and approved scope for a next unit” is historical and superseded by the current MEMQ next gate above.
+
+
+## Current harness construction approval
+
+[Exact approval](validation/document-ingestion/gate-a/construction-approval.md) binds
+the reviewed directive and activates only standalone construction/offline C0,
+not dependency/model execution or production changes. [C0 implementation scope](validation/document-ingestion/gate-a/construction/c0/implementation-scope.md)
+and fresh implementation validation remain separate from full A0–A4 construction.
+The [private typing approval](validation/document-ingestion/gate-a/construction/c0/private-typecheck-approval.json)
+permits five pinned static-tool wheels only.

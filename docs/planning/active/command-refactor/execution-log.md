@@ -3473,3 +3473,32 @@ for mechanism details, not local-service or upstream package qualification.
   executable harness, installs/models/services/stores or push. Main initiative
   stays started/design_only; separate exact construction approval is next, with
   A0-A4 effects and actual shared-model window still separately unactivated.
+
+
+## 2026-11-12 — exact harness construction approved
+
+Chuck directs “proceed” after the reviewed directive handoff.
+[Approval](validation/document-ingestion/gate-a/construction-approval.json) binds
+v0.3/SHA bb5453f9… to test-only harness construction and offline stdlib C0.
+Production and actual A0–A4 effects remain excluded; no dependency install,
+model/server call or working-store operation is performed. Build in foundation,
+controls and CLI/fixture stages; fresh independent implementation validation
+remains required. Dirty configuration and generated state are preserved.
+
+
+## 2026-11-12 — C0 foundation prepared for independent validation
+
+Standalone committed-byte startup, typed controls, private paths/environment,
+ledger/export/metadata/fake-window controls, manual C0 CLI and two structural seeds
+are implemented under `tests/readiness/ingest/`. This is the explicitly bounded
+[C0 slice](validation/document-ingestion/gate-a/construction/c0/implementation-scope.md),
+not completion of the full reviewed directive. Real A0–A4 adapters, full thirty-format
+fixtures and upstream/model qualification remain open.
+
+Chuck separately approves the five-wheel private typing profile; exact wheels,
+RECORD/license/startup inspection and private extraction are recorded. Private mypy
+checks all25 new sources; setup refusals earn no correctness credit. Root typing
+rules and package/lock bytes are unchanged. Development-fixture normal/-O tests
+pass37 each; formal committed-export receipts and fresh independent review remain
+pending. All18023 protected tracked hashes,26 symlink targets and9 preserved local
+metadata records match. Actual repository `.friday_test/` remains absent.
