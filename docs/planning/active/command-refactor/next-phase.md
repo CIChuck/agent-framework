@@ -7,7 +7,7 @@ C0 is independently verified; the full harness remains incomplete. Production
 and real A0–A4 effects remain excluded; actual `.friday_test/` is not created by
 builder tests. Dependency/model qualification and effects activation stay later.
 
-**Next gate:** C3 source75d880e8 and current evidence frozen for fresh CS01-10 delta then full bounded C0-C3 aggregate review. Minimal57, parser6/39, engine7/24 per normal/-O and private root-rule static checks pass. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open.
+**Next gate:** C3 offline solver component VERIFIED only (CS01-10 and retained C0-C2; advisory9.0, full9.5/HR readiness open). Continue approved test-only A0 metadata adapter construction and offline proof before separate exact actual-stage activation. Real index/Docling/model/store effects remain unactivated; production unchanged.
 
 ## Separate MAINT closeout and historical checkpoints
 

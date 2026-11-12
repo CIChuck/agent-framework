@@ -1,0 +1,12 @@
+[
+  {
+    "path": "closeout-admin-last.json.gz",
+    "raw_sha256": "b5c4d880aa6b62daf6f4c613061f19dfcffadb665eaa1171e8107ed34d1591d5",
+    "gzip_sha256": "650c1aa7136acd64cb40710a30917d47a4405e361000bad537cffb0bd7af5d33"
+  },
+  {
+    "path": "closeout-preservation-closeout.json.gz",
+    "raw_sha256": "32ca62d7d9ca05827e4cae3f32e3688bbb108304d8a4f173c0c4a6c0d69e8d88",
+    "gzip_sha256": "4cc8eeb07815c907013250827d28daf602dc65b8f1edfc12f4cb85487b0726f0"
+  }
+]

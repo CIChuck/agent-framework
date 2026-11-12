@@ -1,0 +1,19 @@
+{
+  "unit": "INGEST-C3-OFFLINE-SOLVER",
+  "reviewed_candidate": "5c37bf0382699cda2234e73407065f1a6455e2a6",
+  "source_candidate": "75d880e8b2d7ceb855f7497b2639b6d6b8effb98",
+  "base": "ba5a41f80d446f9bebb87053fb5b21eb441e6e2c",
+  "verdict": "VERIFIED",
+  "mandatory_findings": [],
+  "advisory_component_score": 9.0,
+  "criteria": "CS01-10 and full bounded retained CC01-10/CI01-10/CD01-08",
+  "report": "review1/report.md",
+  "raw_report_sha256": "491efe6dd5aa46eaf18ae8157dcf2b063c760692ff112020ad0d8f5b2e277bf4",
+  "evidence_manifest_sha256": "6e50ae8c06dac74a6d1581ec424fee7a41108352d84a73bdc4083c2d23b0f67f",
+  "independence_disclosure": "Historical authority summary labels displayed in early overbroad extraction; no peer/historical reports opened and no old outcomes used for correctness. An initial expanded git status listed untracked .friday-old filenames, no payload read; corrected default status and terminal identity match. Disclosed in report; no source/protected-state mutation.",
+  "full_HR_readiness": false,
+  "full_9_5_gate_met": false,
+  "actual_A0_A4_activated": false,
+  "human_acceptance": false,
+  "delivery": "local_unpushed"
+}

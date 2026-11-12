@@ -3717,3 +3717,17 @@ Production and protected state remain unchanged; full HR/A0–A4 readiness stays
 ### 2026-11-12 — C3 private resolver engine and offline solver freeze
 
 Recorded Chuck's exact private-engine approval; one18737-byte resolvelib1.2.1 wheel transferred and inspected with no other dependency transfer. Stable source `75d880e8b2d7ceb855f7497b2639b6d6b8effb98` adds only closed-catalog solving. Committed29-file export passes57 minimal cases,6 positive/39 refusal parser cases and7 positive/24 refusal engine cases per normal/-O, retained56 bodies,30 deterministic fixture inputs and root-rule private Ruff/format/mypy25. Protected18498 regular hashes,26 symlinks and9 local records match. Current [builder evidence](validation/document-ingestion/gate-a/construction/c3/builder-evidence.md) is frozen for fresh read-only CS01-10 delta then full bounded retained aggregate. All actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open; no acceptance or delivery.
+
+
+### 2026-11-12 — C3 independent component result retained
+
+Fresh candidate5c37bf03 source75d880e8 review returns VERIFIED, no mandatory
+findings. CS01-10 and retained CC/CI/CD all pass on current source. Fresh both-mode
+57minimal,6/39parser,7/24engine,27independent checks, manual/static/admin and
+terminal identities match. [Report and reconciliation](validation/document-ingestion/gate-a/construction/c3/verified-report.md)
+retain advisory9.0, the historical-label/expanded-status procedural disclosures,
+raw bytes and exact receipts. No old outcome supplied correctness evidence.
+The full9.5/HR gate stays open; this incremental result grants no actual stage,
+acceptance or delivery. Production and all protected state remain unchanged.
+Continue already approved test-only actual A0 adapter construction, offline first;
+separate exact A0-A4 effects activation is still absent.
