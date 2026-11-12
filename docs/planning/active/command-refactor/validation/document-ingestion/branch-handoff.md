@@ -6,7 +6,7 @@ is started with bounded implementation authority; new C0 work is local/unpushed.
 Product INGEST construction and real A0–A4 effects remain unapproved/unactivated.
 [Current C0 evidence](gate-a/construction/c0/correction-evidence.md).
 
-**Next gate:** C0 foundation is independently VERIFIED for CC-01–10 with all four findings closed (advisory9.2); full readiness remains not_ready and no >=9.5 readiness advancement is claimed. Prepare remaining test-owned A0–A4 adapters, full fixture matrix and exact activation inputs under the unchanged harness directive; obtain fresh review for changed construction and separate exact activation before any real dependency/conversion/model effect. Keep production, dirty/generated state and all business parents unchanged; no product implementation, acceptance or delivery follows.
+**Next gate:** Continue approved test-only harness construction: genuine30-format fixtures, bounded source/dependency preparation and manifest-bound A0-A4 adapters. Validate offline normal/-O and root-rule private static tools, freeze and independently review each changed candidate. Prepare exact stage activation inputs before actual downloads/installs/conversion/model effects. Production and business parents unchanged; full readiness and >=9.5 advancement remain unclaimed.
 
 ## Historical branch/design preparation (superseded for current C0 routing)
 

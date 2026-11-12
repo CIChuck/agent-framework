@@ -27,15 +27,22 @@ class Ledger:
     def __init__(self, state: Path) -> None:
         self.state = state
         self.path = state / "bindings.jsonl"
+        self._lease_token: object | None = None
+        self._lease_pid: int | None = None
 
     @contextmanager
-    def lease(self) -> Iterator[None]:
+    def lease(self) -> Iterator[object]:
         lock = self.state / "writer.lock"
         fd = os.open(lock, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
         try:
             os.write(fd, str(os.getpid()).encode())
-            yield
+            token = object()
+            self._lease_token = token
+            self._lease_pid = os.getpid()
+            yield token
         finally:
+            self._lease_token = None
+            self._lease_pid = None
             os.close(fd)
             lock.unlink()
 
@@ -89,27 +96,38 @@ class Ledger:
         self, event: str, payload: dict[str, object], expected_tip: str
     ) -> dict[str, object]:
         require(event in EVENTS, "Unknown ledger event")
-        with self.lease():
-            records = self.records()
-            tip = text(records[-1]["sha256"]) if records else ZERO
-            require(tip == expected_tip, "Stale ledger tip")
-            require((not records) == (event == "init"), "Invalid init transition")
-            row: dict[str, object] = {
-                "schema": 1,
-                "sequence": len(records),
-                "event": event,
-                "previous": tip,
-                "payload": payload,
-                "timestamp": datetime.now(UTC).isoformat(),
-            }
-            row["sha256"] = digest(canonical(row))
-            encoded = canonical(row) + b"\n"
-            require(len(encoded) <= RECORD_LIMIT, "Ledger record too large")
-            with self.path.open("ab") as target:
-                target.write(encoded)
-                target.flush()
-                os.fsync(target.fileno())
-            return row
+        with self.lease() as token:
+            return self.append_held(event, payload, expected_tip, token)
+
+    def append_held(
+        self, event: str, payload: dict[str, object], expected_tip: str, token: object
+    ) -> dict[str, object]:
+        """Stage owner appends without dropping/reacquiring its exclusive lease."""
+        require(
+            token is self._lease_token and self._lease_pid == os.getpid(),
+            "Run writer lease is not owned",
+        )
+        require(event in EVENTS, "Unknown ledger event")
+        records = self.records()
+        tip = text(records[-1]["sha256"]) if records else ZERO
+        require(tip == expected_tip, "Stale ledger tip")
+        require((not records) == (event == "init"), "Invalid init transition")
+        row: dict[str, object] = {
+            "schema": 1,
+            "sequence": len(records),
+            "event": event,
+            "previous": tip,
+            "payload": payload,
+            "timestamp": datetime.now(UTC).isoformat(),
+        }
+        row["sha256"] = digest(canonical(row))
+        encoded = canonical(row) + b"\n"
+        require(len(encoded) <= RECORD_LIMIT, "Ledger record too large")
+        with self.path.open("ab") as target:
+            target.write(encoded)
+            target.flush()
+            os.fsync(target.fileno())
+        return row
 
     def tip(self) -> str:
         records = self.records()

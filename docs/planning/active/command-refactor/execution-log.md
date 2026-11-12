@@ -3573,3 +3573,27 @@ model. [Operator identity record](validation/document-ingestion/gate-a/operator-
 statement only; it is not a verified tokenizer/artifact/server-limit or completed
 A3 window receipt. No model call, package import/install, configuration, store or
 technical-parent change is made while explaining local preflight token counting.
+
+
+## 2026-11-12 — remaining test-only harness construction continued
+
+Chuck directs “ok proceed” after model/tokenizer clarification.
+[Continuation](validation/document-ingestion/gate-a/construction/c1/continuation.json)
+records test-only source/offline construction under the unchanged approved directive.
+No actual stage dependency, converter, model or server effects are activated.
+Baseline2920d0dd preserves18188 protected tracked hashes and9 local metadata records.
+Build genuine format fixtures and bounded stage preparation/adapters, with explicit
+remaining qualifications and fresh validation; no C0 result carries to changed code.
+
+
+## 2026-11-12 — C1 synthetic fixture component prepared
+
+Prepared thirty original PDF/DOCX/XLSX/PPTX candidate containers and literal
+independent oracles, bounded structural facts, exclusive run-local publication,
+held ledger append, manual preparation and truthful incomplete reports.
+[Component criteria](validation/document-ingestion/gate-a/construction/c1/implementation-scope.md)
+retain the full HR01–18 obligations. All43 original test bodies are AST-equal;
+11 new cases are appended. Development-only normal/-O and private static checks
+passed before the final source freeze; formal committed-source checks and a fresh
+read-only independent review remain required. A private resolver standards-parser
+proposal is pending separate activation. No upstream/model/store effects occurred.

@@ -1,6 +1,6 @@
-# Isolated INGEST readiness — C0 control-plane foundation
+# Isolated INGEST readiness — offline controls and synthetic input preparation
 
-This is the first construction slice of CD-CMD-INGEST-GATE-A-001 v0.3. It uses
+These are incremental construction slices of CD-CMD-INGEST-GATE-A-001 v0.3. They use
 **CPython 3.13.10 and its standard library**, with `-I -S -B` on every entry and
 `-O` on optimized lanes. It imports no Friday application package and never uses
 the working `.venv`. Versioned files belong here; all unit inputs and outputs
@@ -10,18 +10,24 @@ C0 implements committed-byte startup, strict controls, physical paths, private
 child settings, a promotion/budget ledger, read-only Git object export, metadata
 detection, fake model-window/transport controls, structural PDF/DOCX seeds and
 manual control-run operations. It is **not the completed A0–A4 pipeline**. Real
-resolution, installs, conversion/chunking, model calls, the full thirty-document
-matrix and implementation of their qualified execution adapters remain later
+resolution, installs, conversion/chunking, model calls, qualification of the full
+thirty-document matrix and their qualified execution adapters remain later
 construction/activation. A successful C0 test or report does not qualify Docling,
 OCR, an embedding model, a vector store or production `/ingest`.
+
+The C1 input-preparation increment adds thirty format candidates and independent
+synthetic-text oracles: 6 PDF, 6 DOCX, 10 XLSX and 8 PPTX. This is a complete proposed
+input matrix, not evidence of real reader/OCR/chunker acceptance. The original
+C0 two structural seeds remain separately available; they do not earn A2 credit.
 
 ## Trust and preparation
 
 1. Select the recorded CPython 3.13.10 base binary (not a `.venv` symlink) and
    verify its SHA256 against the construction receipt. Site processing stays off.
-2. Use the frozen harness selection manifest supplied with the C0 construction
+2. Use the frozen harness selection manifest supplied with the current construction
    evidence. It binds the code commit/tree and every regular file's Git blob and
-   SHA256. Verify the manifest digest and the single `bootstrap.py` digest
+   SHA256. C1 commands require the C1 manifest; the old C0 selection cannot load
+   newly added behavior. Verify the manifest digest and the single `bootstrap.py` digest
    externally before launch. A path or a self-generated dirty manifest is not
    approval. The post-init frozen `run.py` remains a ledger-bound entry and an
    accidental-change check; it cannot authenticate malicious replacement of itself.
@@ -88,6 +94,40 @@ Refusals exit **2**; selftest success/failure exit **0/1**. Refusals/setup failu
 are not semantic negative-test credit unless the expected control assertion runs.
 
 ## Evidence and limits
+
+### Prepare the thirty-document candidates
+
+After exact-byte startup and C0 control-run init, use the frozen entrypoint with
+the same manifest/configuration paths and approved digests:
+
+    <base-python> -I -S -B <run-root>/harness/run.py prepare-fixtures --harness-manifest <frozen-manifest> --harness-manifest-sha256 <digest> --config <frozen-control.json> --config-sha256 <digest>
+
+This explicit offline operation writes new inputs only to the owned run's
+fixtures/generated directory. It reports PREPARED_INPUTS and does not run A2,
+install anything, call a converter/tokenizer/model, open a store or promote a
+manifest. All thirty names, content hashes, lengths and literal oracle hashes
+are recorded. Inputs become read-only; verification rejects changed/extra files,
+aliases and count/format drift. Generation uses the qualified standard library
+only, including original minimal OOXML/PDF writers and raster glyphs. The PDF
+encrypted fixture uses the public test-only password fixture-password.
+
+The input set covers native/page/table/scanned/blank/encrypted PDFs; Word body
+order/Unicode/tables/omitted parts/long/empty cases; workbook order/visibility/
+merged cells/typed values/formula cache controls; slide order/hidden shapes/
+tables/notes/comments/external media/long/empty cases. Office structural audits
+return scope/count/refusal facts only, never document text; Docling remains the
+sole planned text supplier. This increment does not establish complete OOXML
+schema conformance, reader compatibility, typed output/provenance mapping or
+OCR accuracy. Those require the activated A1/A2 profiles and real conversions.
+
+Preparation holds the run writer lease, checks stop before each publication
+write, refuses an existing destination and never cleans partial output. If stopped
+partway, no ready manifest is published; keep the evidence and use a fresh run.
+The report labels completed preparation as ledger evidence only and does not
+revalidate current input bytes or claim conversion success. Run verification
+again at future admission. Real A0–A4 still return a blocked result.
+
+### Guard and qualification limits
 
 The guard intercepts declared Python-visible reads/probes/writes/process/network
 operations; ancestor metadata needed for physical path checks does not allow

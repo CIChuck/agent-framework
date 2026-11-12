@@ -80,3 +80,20 @@ class Ledgers(unittest.TestCase):
             log.promote(sha, receipt)
         with self.assertRaises(Refusal):
             log.promote(sha, receipt | {"schema": True})
+
+    def test_operation_append_requires_live_same_instance_writer_lease(self) -> None:
+        log = ledger()
+        tip = log.tip()
+        with self.assertRaises(Refusal):
+            log.append_held("finish", {}, tip, object())
+        with log.lease() as token:
+            with self.assertRaises(Refusal):
+                Ledger(log.state).append_held("finish", {}, tip, token)
+            with self.assertRaises(FileExistsError):
+                Ledger(log.state).append("finish", {}, tip)
+            log.append_held("finish", {"operation": "owned"}, tip, token)
+            with self.assertRaises(Refusal):
+                log.append_held("finish", {}, tip, token)
+        with self.assertRaises(Refusal):
+            log.append_held("finish", {}, log.tip(), token)
+        self.assertFalse((log.state / "writer.lock").exists())

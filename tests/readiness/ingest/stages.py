@@ -1,4 +1,4 @@
-"""Manual C0 control plane. Upstream adapters are deliberately NOT activated."""
+"""Offline controls/input preparation. Actual upstream adapters remain unqualified."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from pathlib import Path
 
 from ingest.config import Config
 from ingest.ledger import ZERO, Ledger
-from ingest.manifests import canonical, digest, read, require
+from ingest.manifests import canonical, decode, digest, object_value, read, require
 from ingest.paths import physical
 from ingest.reports import report
 
@@ -70,6 +70,7 @@ def main(argv: list[str]) -> int:
             "run",
             "promote",
             "prepare-model",
+            "prepare-fixtures",
             "stop",
             "report",
         ],
@@ -173,7 +174,7 @@ def main(argv: list[str]) -> int:
             json.dumps(
                 {
                     "status": "PASS" if result.wasSuccessful() else "FAIL",
-                    "scope": "stdlib C0 only",
+                    "scope": "offline controls and synthetic input preparation only",
                     "cases": result.testsRun,
                     "optimized": bool(sys.flags.optimize),
                     "upstream_qualified": False,
@@ -259,6 +260,49 @@ def main(argv: list[str]) -> int:
             "effect_resume": "new_run_required",
             "report_available": True,
         }
+    elif args.command == "prepare-fixtures":
+        from ingest.fixtures import publish_matrix
+        from ingest.startup import harness_state
+
+        require(not ledger.stopped(), "Run stopped; effects require new run")
+        _, buffers = harness_state()
+        oracle = object_value(
+            object_value(decode(buffers["fixtures/expectations.json"])["A2"])[
+                "fixture_oracles"
+            ]
+        )
+        destination = config.layout.destination("fixtures/generated")
+        with ledger.lease() as token:
+            require(not ledger.stopped(), "Run stopped; effects require new run")
+            tip = ledger.tip()
+            published = publish_matrix(
+                destination,
+                oracle,
+                lambda: require(
+                    not ledger.stopped(), "Run stopped during fixture preparation"
+                ),
+            )
+            manifest_sha = digest(canonical(published))
+            ledger.append_held(
+                "finish",
+                {
+                    "operation": "prepare_fixtures",
+                    "manifest_sha256": manifest_sha,
+                    "fixture_count": 30,
+                    "converter_qualified": False,
+                },
+                tip,
+                token,
+            )
+        output = {
+            "status": "PREPARED_INPUTS",
+            "scope": "generated synthetic inputs only",
+            "fixture_count": 30,
+            "manifest": str(destination / "manifest.json"),
+            "manifest_sha256": manifest_sha,
+            "converter_qualified": False,
+            "full_readiness": False,
+        }
     elif args.command == "report":
         output = report(ledger)
     elif args.command == "promote":
@@ -275,9 +319,9 @@ def main(argv: list[str]) -> int:
         require(not ledger.stopped(), "Run stopped; effects require new run")
         output = {
             "status": "BLOCKED_NOT_ACTIVATED",
-            "scope": "C0 only",
+            "scope": "offline construction only",
             "requested_stage": args.stage if args.command == "run" else "prepare-model",
-            "reason": "A0-A4 exact source/profile/tool/model activation is not part of this C0 construction slice",
+            "reason": "Actual A0-A4 adapters/profiles remain unimplemented or unqualified in this offline component; no stage activation is inferred",
             "ledger_tip": ledger.tip(),
             "full_readiness": False,
             "effects_performed": False,

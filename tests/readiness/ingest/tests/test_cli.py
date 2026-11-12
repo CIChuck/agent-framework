@@ -85,3 +85,30 @@ class Cli(unittest.TestCase):
         with self.assertRaises(ValueError):
             command("selftest", args + ["--scratch", str(scratch)])
         self.assertEqual([path.name for path in scratch.iterdir()], ["existing"])
+
+    def test_manual_fixture_preparation_is_explicit_and_does_not_qualify_a2(
+        self,
+    ) -> None:
+        from pathlib import Path
+
+        from ingest.fixtures import verify_matrix
+
+        args = controls()
+        command("init", args)
+        code, output = command("prepare-fixtures", args)
+        self.assertEqual(code, 0)
+        self.assertEqual(output["status"], "PREPARED_INPUTS")
+        self.assertEqual(output["fixture_count"], 30)
+        self.assertIs(output["converter_qualified"], False)
+        self.assertIs(output["full_readiness"], False)
+        manifest = Path(text(output["manifest"]))
+        self.assertEqual(
+            len(verify_matrix(manifest.parent, text(output["manifest_sha256"]))), 30
+        )
+        with self.assertRaises(ValueError):
+            command("prepare-fixtures", args)
+        self.assertEqual(command("run", args)[0], 3)
+        self.assertEqual(command("report", args)[0], 3)
+        command("stop", args)
+        with self.assertRaises(ValueError):
+            command("prepare-fixtures", args)
