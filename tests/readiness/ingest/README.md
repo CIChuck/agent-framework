@@ -18,8 +18,15 @@ window, already-loaded exact Nomic model, JIT disabled, private dependencies and
 a shared request/vector/token budget. Each mode creates a fresh store; reruns
 do not reset the budget. Corrupt and structurally refused inputs never enter
 the embedding corpus. Completion is bound to immutable per-run evidence;
-failed or changed evidence cannot reuse an earlier success. Offline regression
-tests use fake vectors solely to exercise validation, with no live proof credit.
+reporting also requires valid, consistent conversion runner digests in the saved
+corpus to match the current physical `behavior.py`, alongside its own `e2e.py`
+identity. Missing or aliased bindings/source, source changes, failed runs and
+changed evidence cannot reuse an earlier success. A later conversion attempt
+does not invalidate an earlier mode when its saved runner digest still matches.
+The original actual experiment remains evidence of its original committed source;
+synthetic corrected-report fixtures do not establish new live execution. Offline
+regression tests use fake vectors solely to exercise validation, with no live
+proof credit.
 This evaluates the proposed flow; production `/ingest` integration comes later.
 
 ## Current direct document evaluation

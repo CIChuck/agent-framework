@@ -1,0 +1,34 @@
+{
+  "baseline": "c97777366671006f56866aa92898aaffcec524d6",
+  "unchanged_e2e_definitions": [
+    "Budget",
+    "array",
+    "corpus",
+    "embed",
+    "integer",
+    "main",
+    "model_state",
+    "obj",
+    "private_root",
+    "read",
+    "reopen",
+    "require",
+    "run",
+    "runtime",
+    "sha",
+    "store_path",
+    "text",
+    "validated_vectors",
+    "window",
+    "write"
+  ],
+  "unchanged_definition_count": 20,
+  "changed_definitions": [
+    "report"
+  ],
+  "added_definitions": [
+    "report_conversion_source"
+  ],
+  "behavior_byte_equal": true,
+  "behavior_sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a"
+}

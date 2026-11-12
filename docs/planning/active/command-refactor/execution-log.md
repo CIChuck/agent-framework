@@ -3813,3 +3813,29 @@ Certifi2026.10.23.74 tests/mode,29-source typing, focused lint/format and admin
 checks pass;18574 files/26 symlinks/8 local records preserved. Freeze these
 receipts for fresh independent EE-01–08 validation. No production integration,
 whole9.5 readiness, acceptance or delivery claim.
+
+## 2026-11-12 — Independent end-to-end review; reporting correction
+
+[Round1](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round1/report.md)
+requests E2E-IV-001: canonical report accepts a changed copied behavior runner.
+The reviewer independently verified162 stored rows and10 reopened retrieval lists,
+367 evidence members,149 wheel payload members,74 tests/mode and29 new controls.
+Actual c977 inference remains attributable; there is no new live-execution claim.
+[EE-REM-001](validation/document-ingestion/gate-a/end-to-end-evaluation/EE-REM-001.md)
+assigns reporting-source binding to a separate data-integrity remediator, with
+offline-only positive/tamper proof and a fresh full bounded review. Preserve all
+original live receipts, stores and behavior.py. Chroma's prevented cache-open
+attempts are disclosed separately from successful outside access. No new model,
+production, acceptance or delivery authority.
+
+## 2026-11-12 — Reporting correction complete; fresh review pending
+
+The separate remediator corrected only e2e reporting, its tests and local README.
+Exact verified corpus bytes supply nonempty consistent runner digests; current
+physical source must match. All20 other definitions and behavior.py are unchanged.
+Full offline79 cases/mode and29-source typing pass; canonical CLI5 controls/mode
+remain distinct synthetic-reporting proof. An initial aggregate attempt rejected
+the unit test's unapproved subprocess launch; the test was changed to real in-
+process CLI dispatch, without loosening startup/stage guards. Genuine subprocess
+CLI proof remains separate. Preserve original c977 live experiment without
+rewriting or relabeling it. Freeze for fresh E2E-IV-001 delta plus full EE review.

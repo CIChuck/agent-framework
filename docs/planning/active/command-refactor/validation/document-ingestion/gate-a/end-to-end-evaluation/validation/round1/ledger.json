@@ -1,0 +1,38 @@
+{
+  "verdict": "CHANGES_REQUESTED",
+  "reviewer": "/root/ingest_e2e_independent_validation",
+  "review_date_utc": "2026-11-12T22:31:56.771249+00:00",
+  "candidate": "cae6aa4c183f013c19d10af4358dcf93fd189367",
+  "source_candidate": "c97777366671006f56866aa92898aaffcec524d6",
+  "base": "96f752d64ead1c98bd900891aaa94edfe4ebe5d3",
+  "request_sha256": "4748408644b616c28a9f739f96f9ef47567ed84b347fe8b286000e62465e26c4",
+  "criteria": {
+    "EE-01": "PASS",
+    "EE-02": "PASS",
+    "EE-03": "PASS",
+    "EE-04": "PASS",
+    "EE-05": "PASS",
+    "EE-06": "PASS",
+    "EE-07": "FAIL",
+    "EE-08": "PASS"
+  },
+  "mandatory_findings": [
+    {
+      "id": "E2E-IV-001",
+      "severity": "medium",
+      "criterion": "EE-07",
+      "source": "tests/readiness/ingest/e2e.py:872",
+      "witnesses": [
+        "canonical-stale-source-normal.json",
+        "canonical-stale-source-optimized.json"
+      ],
+      "fix": "Bind current behavior runner source to immutable per-run identities before report PASS; add normal/-O canonical positive/tamper controls; preserve c977 actual evidence."
+    }
+  ],
+  "overall_score": 8.4,
+  "private_mypy": "inspected receipt exit0;29 identical source files;not rerun",
+  "fresh_inference": false,
+  "scratch": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+  "integrity": "opening and closing matched all pins",
+  "command_ledger": "command-ledger.json"
+}

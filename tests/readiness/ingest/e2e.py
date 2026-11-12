@@ -869,6 +869,32 @@ def run(root: Path, modes: list[str]) -> int:
     return 0
 
 
+def report_conversion_source(root: Path, corpus_data: dict[str, object]) -> None:
+    attempts = corpus_data.get("conversion_attempts")
+    require(
+        isinstance(attempts, dict) and bool(attempts),
+        "Report conversion source binding missing",
+    )
+    digests: set[str] = set()
+    for attempt in obj(attempts).values():
+        require(isinstance(attempt, dict), "Report conversion binding malformed")
+        digest = obj(attempt).get("runner_sha256")
+        if (
+            not isinstance(digest, str)
+            or len(digest) != 64
+            or any(ch not in "0123456789abcdef" for ch in digest)
+        ):
+            raise ValueError("Report conversion source binding malformed")
+        digests.add(digest)
+    require(len(digests) == 1, "Report conversion source bindings conflict")
+    source = root / "source/ingest/behavior.py"
+    require(
+        source.is_file() and source.resolve() == source and source.stat().st_nlink == 1,
+        "Report conversion source missing/aliased",
+    )
+    require(sha(source.read_bytes()) in digests, "Report conversion source changed")
+
+
 def report(root: Path) -> int:
     results = []
     for mode in ("normal", "optimized"):
@@ -895,17 +921,28 @@ def report(root: Path) -> int:
         )
         for suffix, expected in obj(result["evidence"]).items():
             require(
-                suffix in {"corpus", "stored", "reopened", "http"}
-                and sha(
-                    (
-                        root
-                        / "reports/e2e"
-                        / (text(pointer["run_id"]) + "." + suffix + ".json")
-                    ).read_bytes()
-                )
-                == expected,
+                suffix in {"corpus", "stored", "reopened", "http"},
                 "End-to-end evidence changed",
             )
+            path = (
+                root
+                / "reports/e2e"
+                / (text(pointer["run_id"]) + "." + suffix + ".json")
+            )
+            if suffix == "corpus":
+                require(
+                    path.is_file()
+                    and path.resolve() == path
+                    and path.stat().st_nlink == 1,
+                    "Report conversion binding missing/aliased",
+                )
+            raw = path.read_bytes()
+            require(
+                sha(raw) == expected,
+                "End-to-end evidence changed",
+            )
+            if suffix == "corpus":
+                report_conversion_source(root, obj(json.loads(raw)))
         results.append(result)
     print(
         json.dumps(

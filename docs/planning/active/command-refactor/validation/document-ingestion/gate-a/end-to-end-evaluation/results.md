@@ -1,8 +1,21 @@
 # Docling → embeddings → storage: actual end-to-end results
 
-Builder execution **PASS in normal and optimized Python**; fresh independent
-review pending. Test source is committed at `c9777736`. Production source,
+Actual execution **PASS in normal and optimized Python** at `c9777736`.
+Independent [round1](validation/round1/report.md) requests a reporting-only
+source-binding correction, **E2E-IV-001**; [EE-REM-001](EE-REM-001.md) governs it.
+The original actual experiment remains attributable and frozen. Production source,
 configuration, working environment and stores remain unchanged.
+
+The reporting correction is implemented; fresh independent closure is pending.
+It validates nonempty, consistent conversion-runner digests from the exact corpus
+buffer whose saved hash passed, and rejects changed/missing/aliased source or
+binding. [Correction proof](correction/summary.json) uses synthetic reporting
+fixtures only. Full offline suite: **79 cases per mode**, plus 5 genuine canonical
+CLI controls per mode and 29-source typing/lint/format. All 20 live-run definitions
+are AST-identical to `c9777736`; `behavior.py` bytes are unchanged. Original live
+data, stores and source remain immutable, with **no new inference replay** and no
+claim that corrected code performed the historical live run. The 74-case table
+below describes the original experiment's checks.
 
 | Check | Normal | Optimized |
 | --- | --- | --- |
@@ -70,7 +83,19 @@ are excluded. The test runner's [manual commands](../../../../../../../../tests/
 require a prepared private run and current operator window. A new complete run
 needs sufficient separately reserved budget; do not reset this consumed ledger.
 
-The next gate is a fresh bounded independent review against [EE-01–08](criteria.md),
-then reconcile these readiness findings into the product construction directive.
+The independent reviewer checked every stored row and all 10 retrieval ID lists
+using copied disposable stores with no network or embedding. Its guard prevented
+two Chroma telemetry-ID cache opens before payload access; telemetry=false alone
+does not suppress those attempts. No production cache read or mutation succeeded.
+It also verified all 367 archive members and 149 Friday wheel payload members.
+
+E2E-IV-001: `report()` checked its own source but not the current `behavior.py`
+bytes already pinned in corpus attempts. A changed copied helper incorrectly kept
+the old report PASS. Correct this check and test it offline in canonical normal/-O
+CLI fixtures, preserving the original live receipts/stores without relabeling.
+All unchanged live functions will be AST-compared to `c9777736`. No more inference
+is authorized or needed for the reporting correction. Whole bounded conformance
+requires a new independent review against [EE-01–08](criteria.md), then readiness
+findings can inform the product construction directive.
 This is not production `/ingest` execution, whole Gate-A 9.5 qualification,
 maintainer acceptance or delivery.
