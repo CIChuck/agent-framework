@@ -3771,3 +3771,16 @@ data-integrity correction: a timed-out rerun leaves earlier output eligible.
 assigns this named test-runner correction to a separate remediator as policy requires.
 Measured extraction remains retained; corrected admission and fresh review are pending.
 No product, model, store, acceptance or delivery authority changes.
+
+
+## 2026-11-12 — Direct Docling behavior candidate and measurements
+
+Corrected test-only runner at `1ebc1690`. Standard private Docling2.150.0 /
+RapidOCR3.10.0 / Certifi2026.10.23 profile and all18 local assets verified.
+The [behavior results](validation/document-ingestion/gate-a/behavior-evaluation/behavior-results.md)
+distinguish raw defaults, fail-closed structural admission, configured extraction
+and actual chunk content/token checks. Early setup/comparison attempts are retained
+as history without correctness credit. Retained minimal controls, parser/engine
+selectors, focused Ruff/format and private typing pass; no production source,
+configuration, lock, store or model-service change. Freeze evidence and dispatch
+the policy-required fresh read-only validator; whole Gate A and product work remain open.

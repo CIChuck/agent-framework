@@ -1,9 +1,7 @@
 # Docling behavior evaluation — measured results
 
-Initial execution measurements retained. **Independent review found BE-REV-001**
-(stale admission after an interrupted rerun); see the [bounded correction](BE-REM-001.md)
-and [original review](validation/round1/report.md). Corrected validation is pending.
-Source candidate `24d15ab5`. This is a standalone document-behavior result,
+Builder execution complete; **independent implementation review pending**.
+Source candidate `1ebc1690`. This is a standalone document-behavior result,
 not full Friday installed-profile, embedding/storage or production qualification.
 
 Actual private stack: **Docling 2.150.0, RapidOCR 3.10.0, Certifi 2026.10.23**.
@@ -65,6 +63,17 @@ tokens without truncation. No LM Studio counter agreement or vector quality is
 claimed. Refused, empty, failed, partial and stale outputs cannot enter the
 admitted matrix.
 
+## Interrupted-run correction
+
+BE-REV-001 is corrected in the test runner; independent closure is pending. Each
+conversion revokes old admission before setup/launch and records an immutable
+attempt tied to input, oracle/settings, runner and output. Supervised attempts
+require a successful terminal receipt. Missing, failed, timed-out or superseded
+attempts cannot feed chunks or reporting; old reports require conversion again.
+The separate remediator reproduced real PDF success → timeout → stale refusal →
+fresh retry in both modes. [Builder evidence](remediation/BE-REV-001/index.json)
+is retained separately from the [original failed review](validation/round1/report.md).
+
 ## Repeating the behavior pipeline
 
 The disposable run is `.friday_test/runs/docling-behavior-20261112/`. The code
@@ -86,7 +95,7 @@ separate command logs remain. Preserve a report copy first when comparing runs.
 
 ## Validation and limits
 
-- 57 retained minimal tests plus 8 behavior tests: **65 pass per mode**.
+- 57 retained minimal tests plus 11 behavior/lifecycle cases: **68 pass per mode**.
 - Existing parser selector 6 positive/39 refusal and engine 7 positive/24 refusal
   controls pass per mode. They remain offline historical capabilities, not
   prerequisites for direct Docling evaluation.

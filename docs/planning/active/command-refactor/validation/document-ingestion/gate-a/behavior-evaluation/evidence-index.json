@@ -1,18 +1,18 @@
 {
   "schema": 1,
   "runtime_root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/docling-behavior-20261112",
-  "source_candidate": "24d15ab5a82c662bcbf3a49d0603184d5fba748b",
-  "files": 5247,
-  "raw_bytes": 57745989,
+  "source_candidate": "1ebc16905300ba6d946383c05cdf686ac8ff7d36",
+  "files": 8148,
+  "raw_bytes": 67376725,
   "archive": {
     "path": "behavior-evidence.tar.gz",
-    "sha256": "44bcbadc510c7c7a9dc80ab28db51f4c7c377ad0693c7a2f227f58bb4af6a297",
-    "size": 1126012
+    "sha256": "0e29ddb46ac16e5d8f38c0c29273c7cb22175a079fdd3cb5ba58b12afa414f30",
+    "size": 1552088
   },
   "index": {
     "path": "evidence-members.json.gz",
-    "sha256": "081260cf048ef1ad8a77d8313d462f07436ff58e1787c8ecda81dcc35f7b32d1",
-    "raw_sha256": "1f2bbdd580ec62587363370c418fcfbdacb2d65a5fcbc8bd57dda1c69493c59b"
+    "sha256": "4e041b3943fd886745a72085cca2387e20364e8b4911f46fe75c630edca4e6ee",
+    "raw_sha256": "5b7f6925fa01eed866597be413b32f54a4666bced489a4e4c46081fcebc34e7f"
   },
   "excluded": "No third-party wheels, installed target, model assets, personal documents or production state; selected public asset digests and package versions/lock retained."
 }
