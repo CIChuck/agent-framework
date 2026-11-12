@@ -1,0 +1,11 @@
+{
+  "maintainer": "Chuck Russell",
+  "verbatim_instruction": "Approve private resolver-tool profile",
+  "profile": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/gate-a/construction/c1/private-resolver-tool-profile.json",
+  "profile_sha256": "f81bc1edc54635a51dcb720fe6cc82e990affd85b73fc75c5b69be91698bffe6",
+  "scope": "Only the one exact wheel and private target described by the profile; synthetic/offline resolver validation. No actual A0-A4, Docling/model/store effects.",
+  "activation_status": "activated_exact_wheel_and_qualified_private_parser_only",
+  "execution": "resolver-tool/execution.json.gz",
+  "inspection": "resolver-tool/inspection.json.gz",
+  "qualification": "15 offline parser checks each normal/optimized; not an actual dependency resolver"
+}

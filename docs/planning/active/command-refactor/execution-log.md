@@ -3608,3 +3608,17 @@ records exact receipts, retained43 bodies, limits and preserved state. A fresh
 read-only CI01–10 delta plus retained-controls aggregate review follows under
 repository policy. The resolver-tool activation request remains unanswered; no
 real upstream or model effects, full readiness, acceptance or delivery is implied.
+
+
+## 2026-11-12 — bounded C1 review and separate parser activation recorded
+
+Fresh read-only CI01–10 review of48bc7c97 returns VERIFIED, no mandatory findings;
+bounded advisory9.2 is not full HR readiness or9.5 advancement. Runtime source
+remains e07892f0. All54 cases per mode, both manual flows, independent8 cases
+and28 refusal witnesses per mode, private static/admin and preservation passed.
+[Closeout](validation/document-ingestion/gate-a/construction/c1/verified-report.md)
+retains exact reports and evidence. After the frozen review ended, Chuck approved
+the unchanged private parser profile f81bc1ed. Exactly one65451-byte wheel was
+downloaded/RECORD/license/startup inspected and privately extracted;15 guarded
+checks per mode pass. No Docling/model/A0–A4 activation or production change follows.
+Continue remaining test-only construction; broader task stays started/local.

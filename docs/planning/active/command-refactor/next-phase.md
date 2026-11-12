@@ -7,7 +7,7 @@ C0 is independently verified; the full harness remains incomplete. Production
 and real A0–A4 effects remain excluded; actual `.friday_test/` is not created by
 builder tests. Dependency/model qualification and effects activation stay later.
 
-**Next gate:** Fresh independent CI-01-10 review of the committed C1 fixture/input-preparation delta and retained offline controls; actual A0-A4 remain unqualified and unactivated. Resume remaining adapter construction after bounded review and exact required private-tool/stage activation; production unchanged, no full readiness or delivery claim.
+**Next gate:** C1 fixture component VERIFIED only (CI01-10; bounded score9.2, no full-readiness advancement). Continue approved test-only dependency/stage construction using the now activated private parser. Actual A0-A4 resolution/install/conversion/model effects require exact later activation; production untouched.
 
 ## Separate MAINT closeout and historical checkpoints
 

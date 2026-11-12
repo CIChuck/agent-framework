@@ -1,0 +1,16 @@
+{
+  "unit": "INGEST-C1-INPUTS",
+  "candidate": "48bc7c973a8de00ec79117ece4792455e7164ccd",
+  "source": "e07892f0f3ca3291d91dd7686dd77d8f05425417",
+  "verdict": "VERIFIED",
+  "criteria": "CI01-10 bounded component only",
+  "mandatory_findings": [],
+  "advisory_score": 9.2,
+  "report": "review1/report.md",
+  "report_sha256": "504a33a26e222e26994ce8d695c0acfc370260d814b13b362aa3a710eb1f2c26",
+  "full_HR_readiness": false,
+  "advancement_at_9_5_claimed": false,
+  "actual_A0_A4_activated": false,
+  "production_effects": false,
+  "human_acceptance": false
+}
