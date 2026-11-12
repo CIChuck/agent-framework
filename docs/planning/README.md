@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | pushed | Freeze and freshly validate correction cycle1 for C0-F01–04, delta first then full bounded CC-01–10 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0–A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Freeze and freshly validate correction cycle1 for C0-F01–04, delta first then full bounded CC-01–10 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0–A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows. |
 
 ## Completed
 

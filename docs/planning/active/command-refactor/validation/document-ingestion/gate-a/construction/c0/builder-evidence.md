@@ -1,3 +1,7 @@
+Historical initial-source receipt for f6ef8649. For the changed source use
+[correction cycle1 evidence](correction-evidence.md). The initial candidate was
+CHANGES_REQUESTED; these old passes do not verify current code or close findings.
+
 # C0 foundation — builder evidence, independent validation pending
 
 This receipt applies only to [CC-01–10](implementation-scope.md). It does not

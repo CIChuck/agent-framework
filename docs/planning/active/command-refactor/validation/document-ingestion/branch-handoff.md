@@ -1,5 +1,15 @@
 # INGEST-001 — scoped branch handoff
 
+Current: test-only C0 construction is approved; correction cycle1 has committed
+source proof and awaits fresh independent CC-01–10 validation. The initiative
+is started with bounded implementation authority; new C0 work is local/unpushed.
+Product INGEST construction and real A0–A4 effects remain unapproved/unactivated.
+[Current C0 evidence](gate-a/construction/c0/correction-evidence.md).
+
+**Next gate:** Freeze and freshly validate correction cycle1 for C0-F01–04, delta first then full bounded CC-01–10 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0–A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows.
+
+## Historical branch/design preparation (superseded for current C0 routing)
+
 Status: **planning/design only; no construction approval**.
 Working branch: `feature/cmd-ingest-001`. Created from `df62b77d551491cfb33ad2492c711036b09c9d4c` on 2026-11-10.
 
@@ -48,7 +58,6 @@ The two edited Chat example YAML files remain uncommitted and unstaged;
 `.friday-old/` and ignored exports remain untouched. Historical receipts retain
 their original branch/source identities. Do not broad-stage or clean this checkout.
 
-**Next gate:** Freeze and freshly validate correction cycle1 for C0-F01–04, delta first then full bounded CC-01–10 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0–A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows.
 
 
 ## Current harness directive council closeout

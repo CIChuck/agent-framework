@@ -3527,3 +3527,15 @@ Initial incorrect convenience-probe assertions/type/lint attempts are retained a
 not credited as a clean result. Bootstrap/run and all frozen business inputs stay
 unchanged. Formal committed source proof and fresh delta/full CC review remain
 pending; prior CHANGES_REQUESTED report is historical for the changed candidate.
+
+
+## 2026-11-12 — C0 cycle1 committed proof
+
+Source f90367e6 has43/43 normal/-O passes from exact committed export and again
+from frozen post-init run.py,25-source private static passes, and the original
+call-phase probes now refuse before effects. Corrected tests on unfixed source
+produce19 assertion witnesses per mode; the additional FileExistsError receives
+no credit. [Current receipt](validation/document-ingestion/gate-a/construction/c0/correction-evidence.md)
+keeps formal/development/counterexample attempts separate. All protected production
+state matches. New implementation delivery is local/unpushed. A fresh context
+will assess the delta first, then the full bounded C0 aggregate.

@@ -2775,7 +2775,7 @@
       },
       "C0_correction_cycle1": {
         "directive": "remediation/REM-CMD-INGEST-C0-001-controls.md",
-        "status": "corrected_source_prepared; formal_freeze_and_fresh_validation_pending",
+        "status": "committed_export_checks_complete; fresh_independent_validation_pending",
         "findings": [
           "C0-F01",
           "C0-F02",
@@ -2783,8 +2783,13 @@
           "C0-F04"
         ],
         "development_cases": 43,
-        "independent_verification": "not_yet_granted"
-      }
+        "independent_verification": "not_yet_granted",
+        "source_commit": "f90367e6c296b99799ff3e752fcc9d8a26c3aa6d",
+        "manifest": "validation/document-ingestion/gate-a/construction/c0/correction-harness-manifest.json",
+        "manifest_sha256": "3040aaf82e769c73e817126dc4e181f700fabb2dfff4114171db81f2d86404a9",
+        "evidence": "validation/document-ingestion/gate-a/construction/c0/correction-evidence.md"
+      },
+      "C0_delivery": "local_unpushed"
     },
     "lightweight_planning_exemption": {
       "maintainer": "Chuck Russell",

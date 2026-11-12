@@ -1,6 +1,6 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/pushed. Exact INGEST package impact v0.6 is approved;
+**Status:** started/local (new C0 implementation is unpushed). Exact INGEST package impact v0.6 is approved;
 Gate-A harness directive v0.3 is council VERIFIED for design/source feasibility.
 The loop stopped after pass2; Chuck now approves test-only C0 harness construction.
 C0 implementation validation, full pipeline construction/qualification and MAINT human UAT/acceptance remain pending.
@@ -35,7 +35,7 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Current INGEST — impact approved; Gate-A plan ready for review:**
+**Current INGEST — C0 correction cycle1 awaiting fresh validation:**
 Chuck [approved exact assessment v0.6](approval/ingest-package-impact.md),
 SHA256 `f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176`.
 The [assessment](package-impact-assessment.md), [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md),
