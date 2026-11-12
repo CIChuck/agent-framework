@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | C3 offline solver component VERIFIED only (CS01-10 and retained C0-C2; advisory9.0, full9.5/HR readiness open). Continue approved test-only A0 metadata adapter construction and offline proof before separate exact actual-stage activation. Real index/Docling/model/store effects remain unactivated; production unchanged. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Direct Docling behavior evaluation under the latest maintainer focus amendment: standard private106-package install and Certifi2026.10.23 verified; genuine30-file extraction and token-bound chunking measured. Finish failure/admission controls, retain evidence and freeze test-only runner for fresh independent review. Custom metadata expansion parked; production and LM Studio unchanged; full9.5/product acceptance remains open. |
 
 ## Completed
 

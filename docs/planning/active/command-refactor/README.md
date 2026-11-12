@@ -53,7 +53,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** C3 offline solver component VERIFIED only (CS01-10 and retained C0-C2; advisory9.0, full9.5/HR readiness open). Continue approved test-only A0 metadata adapter construction and offline proof before separate exact actual-stage activation. Real index/Docling/model/store effects remain unactivated; production unchanged.
+**Next gate:** Direct Docling behavior evaluation under the latest maintainer focus amendment: standard private106-package install and Certifi2026.10.23 verified; genuine30-file extraction and token-bound chunking measured. Finish failure/admission controls, retain evidence and freeze test-only runner for fresh independent review. Custom metadata expansion parked; production and LM Studio unchanged; full9.5/product acceptance remains open.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

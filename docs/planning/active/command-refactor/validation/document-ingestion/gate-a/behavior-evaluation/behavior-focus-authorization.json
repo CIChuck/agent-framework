@@ -1,0 +1,39 @@
+{
+  "unit": "INGEST-DOCLING-BEHAVIOR",
+  "maintainer": "Chuck Russell",
+  "instruction": "Yeah, you need to focus more on the important stuff. Proceed with extreme prejudice",
+  "context": "Direct response to controller proposal to pause custom packaging machinery, simplify standard private setup, and prioritize real Docling conversion/chunking results.",
+  "recorded_at_utc": "2026-11-12T19:02:04.876550+00:00",
+  "base": "11e8fccc23981b5449a51f2ef3f7d3ea565a062c",
+  "scope": "Standard uv resolution and wheel-only isolated install of the selected Docling/RapidOCR/Certifi profile; selected document/OCR/tokenizer assets into this owned run; genuine synthetic document conversion and chunking; retained production isolation and honest results. This is controller implementation of the latest instruction, not a new user hash approval.",
+  "run_root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/docling-behavior-20261112",
+  "source_root": "tests/readiness/ingest/",
+  "allowed_new_files": [
+    "tests/readiness/ingest/behavior.py",
+    "tests/readiness/ingest/tests/test_behavior.py"
+  ],
+  "requirements": [
+    "docling[rapidocr]==2.150.0",
+    "rapidocr==3.10.0",
+    "certifi==2026.10.23"
+  ],
+  "supersedes": "Custom resolver/metadata implementation as a prerequisite; separate micro-activations for ordinary standard dependency setup and these isolated document-behavior tests. Preserve historical directive and evidence bytes.",
+  "retained": "No production source/config/tests/venv/lock/store/model-service changes; no personal-document scanning/upload; no embedding calls or LM Studio changes. No third-party source builds; Certifi floor after installation. Existing payload/disk/time/process/document limits remain caps.",
+  "limits": {
+    "setup_seconds": 1200,
+    "conversion_seconds_each": 300,
+    "rss_bytes": 8589934592,
+    "run_disk_bytes": 17179869184,
+    "package_cache_bytes": 4294967296,
+    "asset_bytes": 1073741824,
+    "cpu_threads": 4,
+    "cumulative_active_seconds": 7200
+  },
+  "endpoint_effects_activated": false,
+  "acceptance_or_delivery": false,
+  "allowed_modified_files": [
+    "tests/readiness/ingest/stages.py (add behavior selftests)",
+    "tests/readiness/ingest/README.md (manual behavior commands)",
+    "docs/planning/** (current authority/routing, append-only log and behavior evidence)"
+  ]
+}

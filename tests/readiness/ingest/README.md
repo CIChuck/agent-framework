@@ -1,4 +1,51 @@
-# Isolated INGEST readiness — offline controls and synthetic input preparation
+# Isolated INGEST readiness — Docling behavior and retained offline controls
+
+## Current direct document evaluation
+
+The maintainer's [focus amendment](../../../docs/planning/active/command-refactor/validation/document-ingestion/gate-a/behavior-evaluation/behavior-focus-amendment.md)
+prioritizes actual conversion/chunking over custom package machinery. `behavior.py`
+uses an ordinary private wheel installation of Docling 2.150.0, RapidOCR 3.10.0 and
+Certifi 2026.10.23. It is test code; no Friday product package is modified.
+The remainder of this README describes the retained C0–C3 controls and their
+historical qualification boundaries, not prerequisites for this direct evaluation.
+
+The prepared disposable run is
+`<repository>/.friday_test/runs/docling-behavior-20261112/`. Packages, local model
+assets, Nomic tokenizer files, generated inputs, logs and reports all live there.
+The frozen runner is copied to `<run>/source/ingest/behavior.py`. Use the qualified
+base Python 3.13.10 binary, not the working `.venv`:
+
+```text
+<base-python> -I -S -B <run>/source/ingest/behavior.py evaluate --run-root <absolute-run> --chunk-tokens 64 128 512 1024
+<base-python> -I -S -B -O <run>/source/ingest/behavior.py evaluate --run-root <absolute-run> --chunk-tokens 64 128 512 1024
+<base-python> -I -S -B <run>/source/ingest/behavior.py report --run-root <absolute-run>
+```
+
+With no override the chunk budget is **512 tokens**. The explicit profile tests
+all three strategies: Docling's `document` HybridChunker and test-only `recursive`
+and `fixed` prototypes. Counts include the Nomic document prefix and special
+tokens. No embedding request is made; agreement with LM Studio's counter remains
+unqualified. This evaluates chunkability, not vector quality or storage.
+
+`evaluate` repeats the genuine four-format matrix plus corrupt/size/format controls,
+checks source text in chunks against independent fixture oracles and records
+time/resource limits. Each conversion has its own log. Recommended settings retain
+body and furniture, emit isolated headings, include unambiguous PPTX notes, and
+refuse unsafe spreadsheet structure before conversion. `--raw-defaults` measures
+the unconfigured behavior separately; expected raw limitations stay visible.
+Admission refusals, native reader refusals and setup errors are distinct.
+Empty, partial, failed or stale converted documents cannot enter the admitted
+chunk matrix. Network access is denied during Python-visible conversion work.
+Native containment is not an OS sandbox; that limit is reported explicitly.
+
+Reruns do not install packages, start services or contact LM Studio. They replace
+owned semantic reports and retain separate command logs; copy reports to a new
+owned result folder first when comparing modes/runs. No personal document is
+discovered automatically. User-provided documents and embedding/storage tests are
+later explicit additions. The user-facing results are retained in the
+[behavior evaluation packet](../../../docs/planning/active/command-refactor/validation/document-ingestion/gate-a/behavior-evaluation/).
+
+## Retained C0–C3 controls
 
 These are incremental construction slices of CD-CMD-INGEST-GATE-A-001 v0.3. They use
 **CPython 3.13.10 and its standard library**, with `-I -S -B` on every entry and

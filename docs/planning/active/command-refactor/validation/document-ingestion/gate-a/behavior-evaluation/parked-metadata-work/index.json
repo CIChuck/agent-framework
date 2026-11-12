@@ -1,0 +1,12 @@
+[
+  {
+    "path": "changes.patch.gz",
+    "raw_sha256": "631989b995cb15e6addb8a4fdfc4f5069ae780ce104663c11ae5b8db0c14eafb",
+    "gzip_sha256": "e589dd95f3f355cbcc957b265d4b168e1caa459e8290b2ecc68058a6ff621a31"
+  },
+  {
+    "path": "manifest.json.gz",
+    "raw_sha256": "f4f0eb950b39c3503ae1ba9fcbdea8daebf6e9e2c4a5bd88970faf8596934e6d",
+    "gzip_sha256": "10d586971ffa97d81c368e0edd2a369a7ff44f54278f41d7572117d553fee41e"
+  }
+]

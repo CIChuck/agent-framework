@@ -3731,3 +3731,19 @@ The full9.5/HR gate stays open; this incremental result grants no actual stage,
 acceptance or delivery. Production and all protected state remain unchanged.
 Continue already approved test-only actual A0 adapter construction, offline first;
 separate exact A0-A4 effects activation is still absent.
+
+
+## 2026-11-12 — Maintainer refocuses readiness on actual Docling behavior
+
+Chuck directs “focus more on the important stuff” and “Proceed with extreme
+prejudice” after the proposal to simplify package setup and test documents.
+The [focus amendment](validation/document-ingestion/gate-a/behavior-evaluation/behavior-focus-amendment.md)
+records the bounded private evaluation and retained production boundaries.
+Uncommitted C4 custom metadata code is archived and its three files restored
+to reviewed C3 bytes. Standard uv resolves106 packages and installs Docling2.150.0,
+RapidOCR3.10.0, Certifi2026.10.23 into `.friday_test`; Certifi floor passes.
+All18 selected local assets hash-verify. The original30 genuine formats execute,
+including real PDF/OCR and Office conversion. Raw defaults expose header-layer,
+hidden-row/column and formula-cache limitations; explicit public Docling options
+restore required header/heading/note chunk content. Formal result/controls/review
+remain pending; no full9.5, production/LM Studio effect, acceptance or delivery.
