@@ -3657,3 +3657,15 @@ Python mode; corrected development fixtures refuse both. Current parser selector
 passes6 positives/39 refusal cases per mode. Commit current source, rerun formal
 checks, then obtain fresh delta and bounded aggregate review. Production and all
 real stages remain untouched/unactivated; no prior conclusion carries forward.
+
+
+## 2026-11-12 — C2 correction1 source and current evidence frozen
+
+Corrected source8cb32e31 passes56 minimal cases per mode,6 positive/39 refusal
+parser cases per mode, both exact tag regressions, both manual workflows and
+private root-rule static checks. Actual unfixed120def source yields2 call-phase
+assertion witnesses per mode under the same qualified worker.
+[Current evidence](validation/document-ingestion/gate-a/construction/c2/correction-evidence.md)
+retains origins/commands and historical failures separately. Fresh read-only
+finding-delta then full bounded aggregate review follows. No actual stage,
+production change,9.5 advancement, acceptance or delivery is claimed.
