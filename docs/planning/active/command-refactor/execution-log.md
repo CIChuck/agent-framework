@@ -3747,3 +3747,16 @@ including real PDF/OCR and Office conversion. Raw defaults expose header-layer,
 hidden-row/column and formula-cache limitations; explicit public Docling options
 restore required header/heading/note chunk content. Formal result/controls/review
 remain pending; no full9.5, production/LM Studio effect, acceptance or delivery.
+
+
+## 2026-11-12 — Direct Docling behavior candidate and measurements
+
+Committed test-only runner at `24d15ab5`. Standard private Docling2.150.0 /
+RapidOCR3.10.0 / Certifi2026.10.23 profile and all18 local assets verified.
+The [behavior results](validation/document-ingestion/gate-a/behavior-evaluation/behavior-results.md)
+distinguish raw defaults, fail-closed structural admission, configured extraction
+and actual chunk content/token checks. Early setup/comparison attempts are retained
+as history without correctness credit. Retained minimal controls, parser/engine
+selectors, focused Ruff/format and private typing pass; no production source,
+configuration, lock, store or model-service change. Freeze evidence and dispatch
+the policy-required fresh read-only validator; whole Gate A and product work remain open.

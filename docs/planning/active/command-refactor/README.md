@@ -53,7 +53,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Direct Docling behavior evaluation under the latest maintainer focus amendment: standard private106-package install and Certifi2026.10.23 verified; genuine30-file extraction and token-bound chunking measured. Finish failure/admission controls, retain evidence and freeze test-only runner for fresh independent review. Custom metadata expansion parked; production and LM Studio unchanged; full9.5/product acceptance remains open.
+**Next gate:** Fresh independent implementation review of the committed direct Docling behavior slice and retained controls. Standalone extraction/chunking evidence is retained; full Friday installed-profile, live Friday-LLM embedding and storage readiness remain open. Production and LM Studio unchanged; no product integration, acceptance or delivery.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

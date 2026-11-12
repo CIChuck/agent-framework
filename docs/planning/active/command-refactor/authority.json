@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Direct Docling behavior evaluation under the latest maintainer focus amendment: standard private106-package install and Certifi2026.10.23 verified; genuine30-file extraction and token-bound chunking measured. Finish failure/admission controls, retain evidence and freeze test-only runner for fresh independent review. Custom metadata expansion parked; production and LM Studio unchanged; full9.5/product acceptance remains open.",
+  "current_scope": "Fresh independent implementation review of the committed direct Docling behavior slice and retained controls. Standalone extraction/chunking evidence is retained; full Friday installed-profile, live Friday-LLM embedding and storage readiness remain open. Production and LM Studio unchanged; no product integration, acceptance or delivery.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1895,8 +1895,8 @@
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
     "status": "revised_planning_requirements",
-    "execution_phase": "implementation",
-    "validation_state": "not_ready",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Direct Docling behavior evaluation under the latest maintainer focus amendment: standard private106-package install and Certifi2026.10.23 verified; genuine30-file extraction and token-bound chunking measured. Finish failure/admission controls, retain evidence and freeze test-only runner for fresh independent review. Custom metadata expansion parked; production and LM Studio unchanged; full9.5/product acceptance remains open.",
+    "next_gate": "Fresh independent implementation review of the committed direct Docling behavior slice and retained controls. Standalone extraction/chunking evidence is retained; full Friday installed-profile, live Friday-LLM embedding and storage readiness remain open. Production and LM Studio unchanged; no product integration, acceptance or delivery.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Direct Docling behavior evaluation under the latest maintainer focus amendment: standard private106-package install and Certifi2026.10.23 verified; genuine30-file extraction and token-bound chunking measured. Finish failure/admission controls, retain evidence and freeze test-only runner for fresh independent review. Custom metadata expansion parked; production and LM Studio unchanged; full9.5/product acceptance remains open.",
+      "next_gate": "Fresh independent implementation review of the committed direct Docling behavior slice and retained controls. Standalone extraction/chunking evidence is retained; full Friday installed-profile, live Friday-LLM embedding and storage readiness remain open. Production and LM Studio unchanged; no product integration, acceptance or delivery.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2630,7 +2630,7 @@
       "source_observations_sha256": "bbd408be71036faef3aa5b4298232635a4dade2f2e813444df6aae3a2e63fb80",
       "consumer_worklist": "validation/document-ingestion/gate-a/consumer-readiness-matrix.md",
       "consumer_worklist_sha256": "12c2bcc68892f8b5b14023f67d34b190565b7ca22ed79c2a4a9013437c5e9e7c",
-      "status": "direct_Docling_behavior_evaluation_in_progress",
+      "status": "direct_Docling_behavior_slice_in_review",
       "independent_review": "reconciled_verified_corrective_pass2",
       "council_active": false,
       "effects_activation": "latest_maintainer_focus_amendment_private_Docling_only",
@@ -2914,7 +2914,9 @@
         "LM_Studio_calls": 0,
         "custom_C4_metadata": "parked_uncommitted_code_restored_to_C3",
         "whole_framework_profiles": "not_yet_qualified",
-        "full_9_5_gate_met": false
+        "full_9_5_gate_met": false,
+        "source_candidate": "24d15ab5",
+        "results": "validation/document-ingestion/gate-a/behavior-evaluation/behavior-results.md"
       }
     },
     "lightweight_planning_exemption": {

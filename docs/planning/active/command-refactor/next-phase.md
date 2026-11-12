@@ -7,7 +7,7 @@ C0 is independently verified; the full harness remains incomplete. Production
 and real A0–A4 effects remain excluded; actual `.friday_test/` is not created by
 builder tests. Dependency/model qualification and effects activation stay later.
 
-**Next gate:** Direct Docling behavior evaluation under the latest maintainer focus amendment: standard private106-package install and Certifi2026.10.23 verified; genuine30-file extraction and token-bound chunking measured. Finish failure/admission controls, retain evidence and freeze test-only runner for fresh independent review. Custom metadata expansion parked; production and LM Studio unchanged; full9.5/product acceptance remains open.
+**Next gate:** Fresh independent implementation review of the committed direct Docling behavior slice and retained controls. Standalone extraction/chunking evidence is retained; full Friday installed-profile, live Friday-LLM embedding and storage readiness remain open. Production and LM Studio unchanged; no product integration, acceptance or delivery.
 
 ## Separate MAINT closeout and historical checkpoints
 
