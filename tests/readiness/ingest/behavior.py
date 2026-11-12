@@ -1181,8 +1181,9 @@ def summarize(root: Path) -> int:
             }
         else:
             expected = oracles[name.removesuffix(".json")]
+        separator = "\n" if row["strategy"] == "document" else ""
         comparison = compare_text(
-            "\n".join(chunk["text"] for chunk in chunks), expected, False
+            separator.join(chunk["text"] for chunk in chunks), expected, False
         )
         passed = (
             not comparison["missing"]
