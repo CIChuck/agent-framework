@@ -53,7 +53,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** C1 fixture component VERIFIED only (CI01-10; bounded score9.2, no full-readiness advancement). Continue approved test-only dependency/stage construction using the now activated private parser. Actual A0-A4 resolution/install/conversion/model effects require exact later activation; production untouched.
+**Next gate:** Fresh independent CD-01-08 review of C2 offline dependency-selection checks plus full bounded retained C0/C1 controls; private parser activated, no real A0-A4 effects. Continue remaining adapter construction after current proof; production unchanged, full readiness/9.5 advancement open.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

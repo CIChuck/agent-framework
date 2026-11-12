@@ -20,6 +20,23 @@ synthetic-text oracles: 6 PDF, 6 DOCX, 10 XLSX and 8 PPTX. This is a complete pr
 input matrix, not evidence of real reader/OCR/chunker acceptance. The original
 C0 two structural seeds remain separately available; they do not earn A2 credit.
 
+The C2 dependency-selection checker accepts explicit target marker fields, wheel
+tags, root requirements and a proposed complete wheel closure. Its optional
+`packaging==24.2` import occurs only when that API is called inside the separately
+activated private parser worker. Minimal core loading/selftests remain stdlib-only.
+The explicit parser-profile test selector is
+`ingest.tests.test_manifests.dependency_cases()`, invoked by the recorded guarded
+private worker with verified code/tool inventories, in normal and optimized modes.
+It does not run under bare pytest or implicitly borrow an installed parser.
+
+This checker refuses incompatible Python/platform/version declarations, missing
+or unreachable dependencies, unknown extras, direct references, yanked candidates
+and unapproved wheel hosts. It accounts for additive base/extra requirements and
+cycles. Successful output is `CONSISTENT_CANDIDATE_DECLARATIONS`, with artifact,
+license, installed-profile and execution permissions explicitly false. It is
+neither a package resolver nor a download/install adapter. Real A0 metadata
+collection/resolution and A1–A4 remain open; no actual stage is enabled by it.
+
 ## Trust and preparation
 
 1. Select the recorded CPython 3.13.10 base binary (not a `.venv` symlink) and

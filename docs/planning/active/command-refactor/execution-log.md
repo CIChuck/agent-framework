@@ -3622,3 +3622,14 @@ the unchanged private parser profile f81bc1ed. Exactly one65451-byte wheel was
 downloaded/RECORD/license/startup inspected and privately extracted;15 guarded
 checks per mode pass. No Docling/model/A0–A4 activation or production change follows.
 Continue remaining test-only construction; broader task stays started/local.
+
+
+## 2026-11-12 — C2 offline dependency-selection checks prepared
+
+Within the unchanged construction directive and activated private parser profile,
+added a declaration-only wheel-closure consistency checker and explicit guarded
+parser-profile cases. Core loading remains standard-library only. Candidate
+consistency withholds artifact/license/installed/execution qualification.
+[CD01–08 criteria](validation/document-ingestion/gate-a/construction/c2/implementation-scope.md)
+require fresh committed checks plus bounded retained-controls aggregate review.
+No actual resolver/metadata/download/install/Docling/model/store stage is activated.

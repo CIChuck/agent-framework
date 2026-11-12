@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "C1 fixture component VERIFIED only (CI01-10; bounded score9.2, no full-readiness advancement). Continue approved test-only dependency/stage construction using the now activated private parser. Actual A0-A4 resolution/install/conversion/model effects require exact later activation; production untouched.",
+  "current_scope": "Fresh independent CD-01-08 review of C2 offline dependency-selection checks plus full bounded retained C0/C1 controls; private parser activated, no real A0-A4 effects. Continue remaining adapter construction after current proof; production unchanged, full readiness/9.5 advancement open.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1895,8 +1895,8 @@
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
     "status": "revised_planning_requirements",
-    "execution_phase": "implementation",
-    "validation_state": "not_ready",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "C1 fixture component VERIFIED only (CI01-10; bounded score9.2, no full-readiness advancement). Continue approved test-only dependency/stage construction using the now activated private parser. Actual A0-A4 resolution/install/conversion/model effects require exact later activation; production untouched.",
+    "next_gate": "Fresh independent CD-01-08 review of C2 offline dependency-selection checks plus full bounded retained C0/C1 controls; private parser activated, no real A0-A4 effects. Continue remaining adapter construction after current proof; production unchanged, full readiness/9.5 advancement open.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "C1 fixture component VERIFIED only (CI01-10; bounded score9.2, no full-readiness advancement). Continue approved test-only dependency/stage construction using the now activated private parser. Actual A0-A4 resolution/install/conversion/model effects require exact later activation; production untouched.",
+      "next_gate": "Fresh independent CD-01-08 review of C2 offline dependency-selection checks plus full bounded retained C0/C1 controls; private parser activated, no real A0-A4 effects. Continue remaining adapter construction after current proof; production unchanged, full readiness/9.5 advancement open.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2630,7 +2630,7 @@
       "source_observations_sha256": "bbd408be71036faef3aa5b4298232635a4dade2f2e813444df6aae3a2e63fb80",
       "consumer_worklist": "validation/document-ingestion/gate-a/consumer-readiness-matrix.md",
       "consumer_worklist_sha256": "12c2bcc68892f8b5b14023f67d34b190565b7ca22ed79c2a4a9013437c5e9e7c",
-      "status": "C1_fixture_component_verified_remaining_stages_in_construction",
+      "status": "C2_dependency_selection_component_in_review",
       "independent_review": "reconciled_verified_corrective_pass2",
       "council_active": false,
       "effects_activation": "not_granted",
@@ -2866,6 +2866,13 @@
         "report": "validation/document-ingestion/gate-a/construction/c1/verified-report.md",
         "reconciliation": "validation/document-ingestion/gate-a/construction/c1/reconciliation.json",
         "private_resolver_approval": "validation/document-ingestion/gate-a/construction/c1/private-resolver-tool-approval.json"
+      },
+      "C2_construction": {
+        "base": "73fbda9b7f4e90da9912be442e1eb05b494a13b5",
+        "scope": "validation/document-ingestion/gate-a/construction/c2/implementation-scope.md",
+        "scope_sha256": "b1a71e754c60d33c972743c76ac632b28c36307285fc34ce6f9ed7db607c6b0a",
+        "status": "prepared_for_committed_source_freeze",
+        "actual_A0_A4": false
       }
     },
     "lightweight_planning_exemption": {
