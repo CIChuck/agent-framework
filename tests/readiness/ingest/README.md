@@ -38,8 +38,20 @@ Empty, partial, failed or stale converted documents cannot enter the admitted
 chunk matrix. Network access is denied during Python-visible conversion work.
 Native containment is not an OS sandbox; that limit is reported explicitly.
 
+Every conversion revokes its case/profile's prior eligibility before setup or
+supervised launch. Immutable attempt/completion records and successful JSON copies
+remain under the profile's `attempts/`; the latest pointer alone selects the
+eligible attempt. Admitted chunks require that attempt's completed success and
+matching current input, oracle/settings, runner and output. Supervised attempts
+also require the parent's successful terminal receipt. Interrupted or
+never-started attempts remain ineligible; a successful fresh retry restores them.
+`report` also refuses chunk evidence from a superseded admitted attempt. If no
+current document remains, `chunks` records its skips and fails before adding
+supplemental payloads. Legacy reports without attempt identities need conversion
+again before admitted chunking.
+
 Reruns do not install packages, start services or contact LM Studio. They replace
-owned semantic reports and retain separate command logs; copy reports to a new
+owned semantic report views and retain separate command logs; copy reports to a new
 owned result folder first when comparing modes/runs. No personal document is
 discovered automatically. User-provided documents and embedding/storage tests are
 later explicit additions. The user-facing results are retained in the

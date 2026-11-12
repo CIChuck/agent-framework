@@ -14,6 +14,7 @@ import sys
 import time
 import unicodedata
 import urllib.request
+import uuid
 import zipfile
 from collections.abc import Callable
 from http.client import HTTPMessage
@@ -86,6 +87,35 @@ def environment(root: Path) -> dict[str, str]:
 
 def supervise(root: Path, name: str, argv: list[str], seconds: int) -> int:
     """Only terminate this command's own process group; keep logs on failure."""
+    argv = list(argv)
+    supervised_attempt: Path | None = None
+    # Revoke before Popen, including a child that cannot start or is killed before
+    # importing this module. The child completes this same immutable attempt.
+    if "convert" in argv:
+        index = argv.index("convert")
+        if index > 0 and Path(argv[index - 1]).resolve() == Path(__file__).resolve():
+            require("--attempt-id" not in argv, "Supervisor owns attempt identity")
+            require(
+                "--run-root" in argv
+                and Path(argv[argv.index("--run-root") + 1]).resolve() == root,
+                "Conversion run mismatch",
+            )
+            filename = argv[argv.index("--case") + 1]
+            attempt = begin_attempt(
+                root,
+                filename,
+                "--include-furniture" in argv,
+                "--enforce-admission" in argv,
+                supervised=True,
+            )
+            supervised_attempt = (
+                conversion_root(
+                    root, "--include-furniture" in argv, "--enforce-admission" in argv
+                )
+                / "attempts"
+                / str(attempt["attempt_id"])
+            )
+            argv += ["--attempt-id", str(attempt["attempt_id"])]
     started = time.monotonic()
     used = 0.0
     for path in [
@@ -184,6 +214,18 @@ def supervise(root: Path, name: str, argv: list[str], seconds: int) -> int:
         "runner_sha256": source_sha,
         "prior_active_seconds": used,
     }
+    if supervised_attempt is not None:
+        with supervised_attempt.with_suffix(".supervision.json").open("x") as receipt:
+            receipt.write(
+                json.dumps(
+                    {
+                        "attempt_id": supervised_attempt.name,
+                        "exit": child.returncode,
+                        "reason": reason,
+                    }
+                )
+                + "\n"
+            )
     commands = root / "reports/commands"
     commands.mkdir(exist_ok=True)
     write_json(commands / (name + ".json"), record)
@@ -588,12 +630,145 @@ def admission_reasons(facts: dict[str, object]) -> list[str]:
     return sorted(set(result))
 
 
+def conversion_root(
+    root: Path, include_furniture: bool, enforce_admission: bool
+) -> Path:
+    return (
+        root
+        / "reports"
+        / (
+            "admitted"
+            if enforce_admission
+            else "body-furniture"
+            if include_furniture
+            else "."
+        )
+    )
+
+
+def conversion_identity(
+    root: Path,
+    filename: str,
+    include_furniture: bool,
+    enforce_admission: bool,
+    supervised: bool = False,
+) -> dict[str, object]:
+    require(Path(filename).name == filename, "Conversion case refused")
+    expected = next(
+        row
+        for row in json.loads((root / "config/oracles.json").read_bytes())["cases"]
+        if row["file"] == filename
+    )
+    group = expected.get("input_group", "generated")
+    require(group in {"generated", "supplemental"}, "Unknown input group")
+    path = root / "inputs" / group / filename
+    require(path.is_file() and path.resolve() == path, "Unknown input")
+    return {
+        "file": filename,
+        "supervised": supervised,
+        "source_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        "runner_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "settings": {
+            "include_furniture": include_furniture,
+            "enforce_admission": enforce_admission,
+            "oracle_sha256": hashlib.sha256(
+                json.dumps(expected, sort_keys=True, ensure_ascii=False).encode()
+            ).hexdigest(),
+        },
+    }
+
+
+def begin_attempt(
+    root: Path,
+    filename: str,
+    include_furniture: bool,
+    enforce_admission: bool,
+    supervised: bool = False,
+) -> dict[str, object]:
+    require(Path(filename).name == filename, "Conversion case refused")
+    destination = conversion_root(root, include_furniture, enforce_admission)
+    attempts = destination / "attempts"
+    attempts.mkdir(parents=True, exist_ok=True)
+    require(attempts.resolve() == attempts, "Attempt directory alias refused")
+    attempt_id = uuid.uuid4().hex
+    # Publish the revocation first: even a missing/changed input cannot expose an
+    # earlier success. An absent completion always means ineligible.
+    write_json(destination / (filename + ".attempt.json"), {"attempt_id": attempt_id})
+    try:
+        identity = conversion_identity(
+            root, filename, include_furniture, enforce_admission, supervised
+        )
+    except (OSError, ValueError, KeyError, TypeError, StopIteration) as exc:
+        with (attempts / (attempt_id + ".json")).open("x") as output:
+            output.write(
+                json.dumps(
+                    {
+                        "attempt_id": attempt_id,
+                        "file": filename,
+                        "identity_error": str(exc),
+                    }
+                )
+                + "\n"
+            )
+        raise
+    attempt = {"attempt_id": attempt_id, **identity}
+    with (attempts / (attempt_id + ".json")).open("x") as output:
+        output.write(json.dumps(attempt, indent=2, ensure_ascii=False) + "\n")
+    return attempt
+
+
+def current_attempt(
+    root: Path, filename: str, include_furniture: bool, enforce_admission: bool
+) -> dict[str, object]:
+    destination = conversion_root(root, include_furniture, enforce_admission)
+    attempt_id = json.loads((destination / (filename + ".attempt.json")).read_bytes())[
+        "attempt_id"
+    ]
+    require(
+        isinstance(attempt_id, str)
+        and re.fullmatch(r"[0-9a-f]{32}", attempt_id) is not None,
+        "Invalid attempt identity",
+    )
+    attempt: dict[str, object] = json.loads(
+        (destination / "attempts" / (attempt_id + ".json")).read_bytes()
+    )
+    require(isinstance(attempt, dict), "Invalid conversion attempt")
+    supervised = attempt.get("supervised")
+    if not isinstance(supervised, bool):
+        raise ValueError("Invalid conversion supervision identity")
+    require(
+        attempt
+        == {
+            "attempt_id": attempt_id,
+            **conversion_identity(
+                root, filename, include_furniture, enforce_admission, supervised
+            ),
+        },
+        "Conversion input/settings/runner changed",
+    )
+    return attempt
+
+
 def convert_case(
     root: Path,
     filename: str,
     include_furniture: bool = False,
     enforce_admission: bool = False,
+    attempt_id: str | None = None,
 ) -> int:
+    attempt = (
+        begin_attempt(root, filename, include_furniture, enforce_admission)
+        if attempt_id is None
+        else current_attempt(root, filename, include_furniture, enforce_admission)
+    )
+    require(
+        attempt_id is None or attempt["attempt_id"] == attempt_id, "Superseded attempt"
+    )
+    result_root = conversion_root(root, include_furniture, enforce_admission)
+    completion = (
+        result_root / "attempts" / (str(attempt["attempt_id"]) + ".result.json")
+    )
+    require(not completion.exists(), "Conversion attempt already completed")
     offline(root)
     sys.path.insert(0, str(root / "source"))
     from ingest.fixtures import audit_office
@@ -617,6 +792,7 @@ def convert_case(
         "source_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         "expected": expected,
         "runner_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "attempt": attempt,
     }
     record["phase"] = "admission"
     record["native_docling_called"] = False
@@ -782,18 +958,14 @@ def convert_case(
             error=str(exc),
         )
     record["seconds"] = time.monotonic() - started
-    result_root = (
-        root
-        / "reports"
-        / (
-            "admitted"
-            if enforce_admission
-            else "body-furniture"
-            if include_furniture
-            else "."
-        )
-    )
-    result_root.mkdir(exist_ok=True)
+    if "output_json_sha256" in record:
+        raw = (result_root / "documents" / (filename + ".json")).read_bytes()
+        with (completion.with_suffix(".document.json")).open("xb") as output:
+            output.write(raw)
+    # Historical completions are immutable; the conventional report remains a
+    # convenience view and cannot grant eligibility without the latest attempt.
+    with completion.open("x") as output:
+        output.write(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
     write_json(result_root / (filename + ".result.json"), record)
     print(
         json.dumps(
@@ -883,10 +1055,20 @@ def recursive_chunks(
     return packed
 
 
-def document_ready(record: dict[str, object], raw: bytes) -> bool:
+def document_ready(
+    record: dict[str, object],
+    raw: bytes,
+    attempt: dict[str, object],
+    identity: dict[str, object],
+) -> bool:
     comparison = record.get("comparison")
     return (
-        record.get("status") in {"pass", "characterized"}
+        attempt == {"attempt_id": attempt.get("attempt_id"), **identity}
+        and isinstance(attempt.get("attempt_id"), str)
+        and record.get("attempt") == attempt
+        and record.get("source_sha256") == identity.get("source_sha256")
+        and record.get("runner_sha256") == identity.get("runner_sha256")
+        and record.get("status") in {"pass", "characterized"}
         and record.get("native_docling_called") is True
         and record.get("conversion_status") == "success"
         and record.get("errors") == []
@@ -894,6 +1076,59 @@ def document_ready(record: dict[str, object], raw: bytes) -> bool:
         and comparison.get("meaningful") is True
         and record.get("output_json_sha256") == hashlib.sha256(raw).hexdigest()
     )
+
+
+def admitted_document(root: Path, filename: str, raw: bytes) -> dict[str, object]:
+    """Return current evidence or refuse; never search earlier completions."""
+    destination = root / "reports/admitted"
+    pointer = json.loads((destination / (filename + ".attempt.json")).read_bytes())
+    attempt_id = pointer["attempt_id"]
+    require(
+        isinstance(attempt_id, str)
+        and re.fullmatch(r"[0-9a-f]{32}", attempt_id) is not None,
+        "Invalid attempt identity",
+    )
+    attempts = destination / "attempts"
+    attempt = json.loads((attempts / (attempt_id + ".json")).read_bytes())
+    require(
+        isinstance(attempt, dict) and attempt.get("attempt_id") == attempt_id,
+        "Attempt identity mismatch",
+    )
+    require(
+        type(attempt.get("supervised")) is bool,
+        "Invalid conversion supervision identity",
+    )
+    settings = attempt.get("settings")
+    require(
+        isinstance(settings, dict)
+        and type(settings["include_furniture"]) is bool
+        and settings["enforce_admission"] is True,
+        "Admission settings mismatch",
+    )
+    identity = conversion_identity(
+        root, filename, settings["include_furniture"], True, attempt["supervised"]
+    )
+    if attempt["supervised"]:
+        receipt = json.loads(
+            (attempts / (attempt_id + ".supervision.json")).read_bytes()
+        )
+        require(
+            isinstance(receipt, dict)
+            and type(receipt.get("exit")) is int
+            and receipt == {"attempt_id": attempt_id, "exit": 0, "reason": None},
+            "Supervised conversion did not complete successfully",
+        )
+    record: dict[str, object] = json.loads(
+        (destination / (filename + ".result.json")).read_bytes()
+    )
+    completion = json.loads((attempts / (attempt_id + ".result.json")).read_bytes())
+    require(isinstance(record, dict), "Invalid conversion result")
+    require(record == completion, "Latest attempt incomplete or result mismatched")
+    require(
+        document_ready(record, raw, attempt, identity),
+        "Not current admitted meaningful output",
+    )
+    return record
 
 
 def chunk_cases(
@@ -970,21 +1205,38 @@ def chunk_cases(
         root / "reports" / ("." if document_profile == "raw" else document_profile)
     )
     skipped: list[dict[str, str]] = []
+    conversion_attempts: dict[str, object] = {}
     for path in sorted((profile_root / "documents").glob("*.json")):
         raw = path.read_bytes()
         result_path = profile_root / (path.name.removesuffix(".json") + ".result.json")
-        if document_profile == "admitted" and (
-            not result_path.is_file()
-            or not document_ready(json.loads(result_path.read_bytes()), raw)
-        ):
-            skipped.append(
-                {"file": path.name, "reason": "not current admitted meaningful output"}
-            )
-            continue
+        if document_profile == "admitted":
+            try:
+                record = admitted_document(root, path.name.removesuffix(".json"), raw)
+                conversion_attempts[path.name] = record["attempt"]
+            except (OSError, ValueError, KeyError, TypeError, StopIteration) as exc:
+                skipped.append(
+                    {
+                        "file": path.name,
+                        "reason": "Latest admission refused: " + str(exc),
+                    }
+                )
+                continue
         document = DoclingDocument.model_validate_json(raw)
         if any(item.text.strip() for item in document.texts) or document.tables:
             sources.append((path.name, document))
-    require(bool(sources), "No current converted documents available for chunking")
+    if not sources:
+        write_json(
+            root / "reports/chunking.json",
+            {
+                "document_profile": document_profile,
+                "actual_document_sources": [],
+                "conversion_attempts": {},
+                "skipped": skipped,
+                "results": [],
+                "error": "No current converted documents available for chunking",
+            },
+        )
+        raise ValueError("No current converted documents available for chunking")
     document_sources = [name for name, _ in sources]
     for kind in ("text", "markdown", "code-json", "csv", "tsv", "web-tool-payload"):
         document = DoclingDocument(name=kind)
@@ -1083,6 +1335,7 @@ def chunk_cases(
             "raw_docling_defaults": raw_defaults,
             "document_profile": document_profile,
             "actual_document_sources": document_sources,
+            "conversion_attempts": conversion_attempts,
             "skipped": skipped,
             "configured_document": "emit isolated headings; preserve body/furniture and unambiguous PPTX notes through Docling serializer",
             "recursive_fixed": "test-only policy prototypes, not production implementations",
@@ -1146,6 +1399,19 @@ def check_isolation(root: Path) -> int:
 def summarize(root: Path) -> int:
     """Check chunk content against independent source oracles and print results."""
     data = json.loads((root / "reports/chunking.json").read_bytes())
+    if data["document_profile"] == "admitted":
+        require(
+            bool(data["actual_document_sources"]),
+            "No current converted documents in chunk report",
+        )
+        for name in data["actual_document_sources"]:
+            require(Path(name).name == name, "Unsafe chunk source identity")
+            raw = (root / "reports/admitted/documents" / name).read_bytes()
+            record = admitted_document(root, name.removesuffix(".json"), raw)
+            require(
+                data.get("conversion_attempts", {}).get(name) == record["attempt"],
+                "Chunk report belongs to a superseded conversion attempt",
+            )
     oracles = {
         row["file"]: row
         for row in json.loads((root / "config/oracles.json").read_bytes())["cases"]
@@ -1292,6 +1558,7 @@ def main() -> int:
     parser.add_argument("--chunk-tokens", type=int, nargs="+", default=[512])
     parser.add_argument("--raw-chunker-defaults", action="store_true")
     parser.add_argument("--enforce-admission", action="store_true")
+    parser.add_argument("--attempt-id", help=argparse.SUPPRESS)
     parser.add_argument(
         "--document-profile",
         choices=["raw", "admitted", "body-furniture"],
@@ -1350,7 +1617,11 @@ def main() -> int:
     if args.command == "convert":
         require(args.case is not None, "Explicit generated case required")
         return convert_case(
-            root, args.case, args.include_furniture, args.enforce_admission
+            root,
+            args.case,
+            args.include_furniture,
+            args.enforce_admission,
+            args.attempt_id,
         )
     if args.command == "chunks":
         return chunk_cases(
