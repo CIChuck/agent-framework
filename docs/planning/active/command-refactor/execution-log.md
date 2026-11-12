@@ -3669,3 +3669,19 @@ assertion witnesses per mode under the same qualified worker.
 retains origins/commands and historical failures separately. Fresh read-only
 finding-delta then full bounded aggregate review follows. No actual stage,
 production change,9.5 advancement, acceptance or delivery is claimed.
+
+
+## 2026-11-12 — C2 corrected review recorded; next private tool pending
+
+Fresh review of3985edc2 returns VERIFIED, closing INGEST-C2-VAL-001 with no new
+findings. CD01–08 and bounded retained CC/CI controls pass; component9.3 does not
+claim broader9.5/HR readiness. Source remains8cb32e31. The reviewer freshly ran
+56 minimal,6positive39refusal selector and9positive43refusal independent cases
+per mode, actual unfixed/corrected witnesses, manual/static/admin and integrity.
+[Closeout](validation/document-ingestion/gate-a/construction/c2/verified-report.md)
+retains exact raw reports and the disclosed unrelated-authority-field exposure.
+The next [private resolver-engine proposal](validation/document-ingestion/gate-a/construction/c3/private-resolver-engine-profile.md)
+pins one18737-byte resolvelib wheel for offline solving; approval is requested
+and pending. No transfer/import, real stage activation, production effect,
+acceptance or delivery is inferred. All actual A0–A4 construction/qualification
+remains open; task stays started/local.

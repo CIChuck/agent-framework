@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "status": "PROPOSED_NOT_ACTIVATED",
+  "purpose": "Use the standard pure-Python resolvelib engine for bounded synthetic/offline dependency solving with the already qualified packaging parser; avoid implementing a new backtracking resolver or introducing unqualified native uv resolver channels.",
+  "source": "https://pypi.org/pypi/resolvelib/1.2.1/json",
+  "source_kind": "Official release metadata, pinned new private validation tool; not present in workspace lock and no workspace dependency edit.",
+  "artifacts": [
+    {
+      "name": "resolvelib",
+      "version": "1.2.1",
+      "url": "https://files.pythonhosted.org/packages/e2/23/c941a0d0353681ca138489983c4309e0f5095dfd902e1357004f2357ddf2/resolvelib-1.2.1-py3-none-any.whl",
+      "sha256": "fb06b66c8da04172d9e72a21d7d06186d8919e32ae5ab5cdf5b9d920be805ac2",
+      "bytes": 18737,
+      "requires_python": ">=3.9",
+      "license_metadata": "ISC"
+    }
+  ],
+  "requests": 1,
+  "maximum_payload_bytes": 18737,
+  "retries": 0,
+  "redirects": "refused",
+  "transport": "Direct standard-library HTTPS with the previously qualified exact bootstrap CA, no ambient proxy/netrc/auth; one exact URL.",
+  "target": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-resolver-engine-fsiunmow/validation-tools/resolver-target",
+  "cache": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-resolver-engine-fsiunmow/validation-tools/resolver-cache",
+  "existing_inputs": "Reuse hash-verified approved packaging24.2; no new transfer or ambient fallback.",
+  "interpreter": "Qualified CPython3.13.10 -I -S -B, plus -O; guard before private library imports, no site/pyc/startup hooks.",
+  "inspection": "Verify exact wheel bytes and every RECORD member; inspect metadata, unconditional dependencies, ISC license and startup hooks before extraction/execution. Unknown facts block; no extras or source build.",
+  "execution": "Only offline synthetic resolver development/qualification under the approved harness edit scope, private targets and cumulative limits. No actual PyPI metadata resolution, Docling package/model download, A0-A4 activation or production use.",
+  "bounds": {
+    "resolver_rounds": 500,
+    "synthetic_candidates": 512,
+    "synthetic_graph_edges": 8192,
+    "qualification_wall_seconds": 300
+  },
+  "preserved": "All production packages/configs/.venv/locks/stores/services, .friday*, ignored exports and current frozen candidate. No service changes, real model calls or credential reads."
+}

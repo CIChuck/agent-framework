@@ -1,0 +1,13 @@
+{
+  "unit": "INGEST-C3-OFFLINE-SOLVER",
+  "status": "private_tool_activation_pending",
+  "profile": "private-resolver-engine-profile.json",
+  "sha256": "a9c64ca1ccc63ebe54c26108bc58c033792905394736fe048f29e84d74103a0f",
+  "tool": "resolvelib1.2.1",
+  "source": "https://pypi.org/pypi/resolvelib/1.2.1/json",
+  "downloaded": false,
+  "imported": false,
+  "production_changes": false,
+  "actual_A0_A4_activated": false,
+  "approval_question": "Requested asynchronously during C2 corrected review; no answer recorded."
+}

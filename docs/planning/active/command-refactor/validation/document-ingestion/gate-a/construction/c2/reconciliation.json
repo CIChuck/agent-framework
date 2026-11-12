@@ -1,0 +1,22 @@
+{
+  "unit": "INGEST-C2-SELECTION",
+  "reviewed_candidate": "3985edc21474a86fce0bb29794ff52315c12ad5c",
+  "source_candidate": "8cb32e314860825f6d521e97306e7c8e1a100f70",
+  "base": "73fbda9b7f4e90da9912be442e1eb05b494a13b5",
+  "verdict": "VERIFIED",
+  "closed_findings": [
+    "INGEST-C2-VAL-001"
+  ],
+  "new_findings": [],
+  "criteria": "CD01-08 plus bounded retained CC01-10 and CI01-10",
+  "advisory_component_score": 9.3,
+  "report": "review2/report.md",
+  "raw_report_sha256": "1ab2e63cbfd8cb23f73063c630bf41cd71dee8011a6c0cba3af0a1f4026df76f",
+  "readable_report_sha256": "94855cae573e0b6ad33d82ca38d18f1a06a64f19a15edd0ce2c4402157014adf",
+  "independence_disclosure": "Unrelated historical authority fields printed during extraction; no same-unit historical/peer reports or prior conclusions used for correctness. Disclosed and assessed in report.",
+  "full_HR_readiness": false,
+  "advancement_at_9_5_claimed": false,
+  "actual_A0_A4_activated": false,
+  "human_acceptance": false,
+  "delivery": "local_unpushed"
+}

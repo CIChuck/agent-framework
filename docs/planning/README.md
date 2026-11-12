@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | C2 correction1 for INGEST-C2-VAL-001: explicit tag-component/compressed-member validation, unfixed/corrected call assertions, then fresh CD01-08 delta and full bounded C0/C1/C2 aggregate. No actual A0-A4 effects or full-readiness advancement; production unchanged. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | C2 corrected offline component VERIFIED only (CD01-08 plus retained controls; score9.3, full9.5 readiness open). Await exact private resolver-engine profile approval for the next offline solver construction step; actual A0-A4 resolution/install/conversion/model effects remain unactivated and production unchanged. |
 
 ## Completed
 
