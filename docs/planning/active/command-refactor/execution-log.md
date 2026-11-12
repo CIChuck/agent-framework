@@ -3564,3 +3564,12 @@ model/counter/input manifests and log separation remain unbound. No endpoint cal
 package import/install, setting/store change or production activity is performed.
 The existing A3 client requirement already covers Friday-LLM; no technical parent
 is revised while discussing the value of that integration check.
+
+
+## 2026-11-12 — loaded Nomic model ID supplied
+
+Chuck reports `text-embedding-nomic-embed-text-v1.5` as the loaded LM Studio
+model. [Operator identity record](validation/document-ingestion/gate-a/operator-updates/2026-11-12T13-08-58Z-nomic-model-id.json) binds that
+statement only; it is not a verified tokenizer/artifact/server-limit or completed
+A3 window receipt. No model call, package import/install, configuration, store or
+technical-parent change is made while explaining local preflight token counting.

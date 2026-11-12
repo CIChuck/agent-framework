@@ -2663,7 +2663,13 @@
           "nomic_family_named": true,
           "full_window_confirmed": false
         },
-        "embedding_client": "friday_llm.LiteLLMEmbeddingService via explicit test-owned configuration; unchanged package qualified in private profile"
+        "embedding_client": "friday_llm.LiteLLMEmbeddingService via explicit test-owned configuration; unchanged package qualified in private profile",
+        "reported_loaded_model_id": "text-embedding-nomic-embed-text-v1.5",
+        "latest_model_update": {
+          "record": "validation/document-ingestion/gate-a/operator-updates/2026-11-12T13-08-58Z-nomic-model-id.json",
+          "sha256": "0f294fb5223e8d4104b15f75677445ca5fcc9598ea6298cfc55b7bf332faeb73",
+          "qualification": "operator-reported ID only; counter/artifact/effective limits remain unqualified"
+        }
       },
       "harness_construction_directive": {
         "unit": "CD-CMD-INGEST-GATE-A-001",
