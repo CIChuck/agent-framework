@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import unittest
 
-from ingest.manifests import Refusal, object_value
+from ingest.ledger import Ledger
+from ingest.manifests import Refusal, integer, object_value, text
 from ingest.tests.test_ledger import ledger
+from ingest.tests.test_manifests import unit
 from ingest.window import FakeTransportGate, Window
 
 
@@ -172,3 +174,104 @@ class Windows(unittest.TestCase):
             unqualified.send(
                 "POST", "/v1/embeddings", {"model": gate.window.model, "input": ["x"]}
             )
+
+    def test_counter_and_reservation_changes_refuse_before_handoff_keep_charges(
+        self,
+    ) -> None:
+        for phase in ("counter", "reservation"):
+            for control in ("expiry", "stop"):
+                with self.subTest(phase=phase, control=control):
+                    self._assert_callback_change_refuses(phase, control)
+
+    def _assert_callback_change_refuses(self, phase: str, control: str) -> None:
+        log = ledger()
+        log.reserve("requests", 1, 64)
+        stop = unit() / "stop.json"
+        now = [2]
+        sent: list[object] = []
+        callbacks: list[str] = []
+
+        def publish() -> None:
+            if control == "expiry":
+                now[0] = 20
+            else:
+                stop.write_text('{"schema":1}')
+
+        def counter(value: str) -> int:
+            callbacks.append("counter")
+            if phase == "counter":
+                publish()
+            return len(value)
+
+        def reserve(resource: str, amount: int, ceiling: int) -> None:
+            # The budget ledger and revocation callback are independent
+            # fake seams: ledger refusal must not hide the gate check.
+            log.reserve(resource, amount, ceiling)
+            callbacks.append(resource)
+            if phase == "reservation" and resource == "requests":
+                publish()
+
+        def fake(method: str, path: str, payload: dict[str, object]) -> object:
+            sent.append(payload)
+            return {}
+
+        gate = FakeTransportGate(
+            window(),
+            lambda: now[0],
+            stop.exists,
+            reserve,
+            fake,
+            counter=counter,
+            max_input_tokens=4,
+        )
+        payload: dict[str, object] = {
+            "model": gate.window.model,
+            "input": ["1234"],
+        }
+        with self.assertRaisesRegex(Refusal, "before transport"):
+            gate.send("POST", "/v1/embeddings", payload)
+        self.assertEqual(callbacks, ["counter", "vectors", "tokens", "requests"])
+        self.assertEqual(sent, [])
+        self.assertEqual(gate.attempts, 0)
+        records = Ledger(log.state).records()
+        totals: dict[str, int] = {}
+        for row in records:
+            if row["event"] == "reserve":
+                data = object_value(row["payload"])
+                resource = text(data["resource"])
+                totals[resource] = totals.get(resource, 0) + integer(data["amount"])
+        self.assertEqual(totals, {"requests": 2, "vectors": 1, "tokens": 4})
+        with self.assertRaises(Refusal):
+            gate.send("POST", "/v1/embeddings", payload)
+        self.assertEqual(Ledger(log.state).records(), records)
+        self.assertEqual(gate.attempts, 0)
+
+    def test_control_changes_after_fake_acceptance_bound_in_flight_work(self) -> None:
+        for control in ("expiry", "stop"):
+            with self.subTest(control=control):
+                self._assert_in_flight_boundary(control)
+
+    def _assert_in_flight_boundary(self, control: str) -> None:
+        log = ledger()
+        now = [2]
+        seen: list[str] = []
+
+        def fake(method: str, path: str, payload: dict[str, object]) -> object:
+            seen.append(path)  # Fake accepted this attempt at handoff.
+            if control == "expiry":
+                now[0] = 20
+            else:
+                (log.state / "stop.json").write_text('{"schema":1}')
+            return {"accepted": True}
+
+        gate = FakeTransportGate(
+            window(), lambda: now[0], log.stopped, log.reserve, fake
+        )
+        self.assertEqual(
+            gate.send("GET", gate.window.status_path, {}), {"accepted": True}
+        )
+        with self.assertRaises(Refusal):
+            gate.send("GET", gate.window.status_path, {})
+        self.assertEqual(seen, [gate.window.status_path])
+        self.assertEqual(gate.attempts, 1)
+        self.assertEqual(len(log.records()), 2)

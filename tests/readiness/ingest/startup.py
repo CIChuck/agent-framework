@@ -17,8 +17,12 @@ from ingest.manifests import Refusal, digest, require
 
 _original_stat = os.stat
 _original_lstat = os.lstat
+_original_fstat = os.fstat
+_original_access = os.access
 _original_open = os.open
 _original_readlink = os.readlink
+_original_mkfifo = os.mkfifo
+_original_mknod = os.mknod
 _original_thread = _thread.start_new_thread
 _active: contextvars.ContextVar[Guard | None] = contextvars.ContextVar(
     "guard", default=None
@@ -44,7 +48,7 @@ class Guard:
         token = _checking.set(True)
         try:
             if isinstance(value, int):
-                info = os.fstat(value)
+                info = _original_fstat(value)
                 require(
                     stat.S_ISFIFO(info.st_mode) or value in {0, 1, 2},
                     "Unclassified regular file descriptor",
@@ -59,8 +63,8 @@ class Guard:
             allowed = any(
                 canonical == root or root in canonical.parents for root in roots
             )
-            # Ancestor metadata is required for canonicalizing a declared root.
-            # It never permits payload reads, listing or writes on those ancestors.
+            # Only path-canonicalization metadata may inspect exact ancestors.
+            # Access/existence-permission probes do not receive this exception.
             if probe and not write:
                 allowed = allowed or any(canonical in root.parents for root in roots)
             require(allowed, "Undeclared write" if write else "Undeclared read/probe")
@@ -83,6 +87,10 @@ def _audit(event: str, args: tuple[object, ...]) -> None:
     guard = _active.get()
     if guard is None or _checking.get():
         return
+    if event in {"_thread.start_new_thread", "_thread.start_joinable_thread"}:
+        # CPython audits both launch paths, including saved builtin aliases and
+        # threading's imported joinable-thread entrypoint, before the worker starts.
+        raise Refusal("Unpropagated worker thread refused in C0")
     if event == "ctypes.dlopen":
         raise Refusal("Unqualified native library load")
     if event == "open":
@@ -100,23 +108,28 @@ def _audit(event: str, args: tuple[object, ...]) -> None:
         "os.remove",
         "os.rmdir",
         "os.chmod",
+        "os.chown",
         "os.truncate",
         "os.utime",
     }:
-        if event in {"os.mkdir", "os.remove", "os.rmdir"}:
-            position = 2 if event == "os.mkdir" else 1
+        positions = {
+            "os.mkdir": 2,
+            "os.remove": 1,
+            "os.rmdir": 1,
+            "os.chmod": 2,
+            "os.chown": 3,
+            "os.utime": 3,
+        }
+        if event in positions:
+            position = positions[event]
             require(
-                len(args) <= position or args[position] in {None, -1},
+                len(args) > position and args[position] in {None, -1},
                 "dir_fd operation refused",
             )
         guard.path(args[0], True)
     elif event in {"os.rename", "os.link", "os.symlink"}:
         require(
-            all(
-                item in {None, -1}
-                for item in args[2:]
-                if isinstance(item, (int, type(None)))
-            ),
+            all(item in {None, -1} for item in args[2:]),
             "dir_fd rename/link refused",
         )
         guard.path(args[0], True)
@@ -223,6 +236,34 @@ def _lstat(path: FilePath, *, dir_fd: int | None = None) -> os.stat_result:
     return _original_lstat(path, dir_fd=dir_fd)
 
 
+def _fstat(fd: int) -> os.stat_result:
+    guard = _active.get()
+    if guard is not None and not _checking.get():
+        guard.path(fd)
+    return _original_fstat(fd)
+
+
+def _access(
+    path: FilePath,
+    mode: int,
+    *,
+    dir_fd: int | None = None,
+    effective_ids: bool = False,
+    follow_symlinks: bool = True,
+) -> bool:
+    guard = _active.get()
+    if guard is not None and not _checking.get():
+        require(dir_fd is None, "dir_fd access refused")
+        guard.path(path)
+    return _original_access(
+        path,
+        mode,
+        dir_fd=dir_fd,
+        effective_ids=effective_ids,
+        follow_symlinks=follow_symlinks,
+    )
+
+
 def _open(
     path: FilePath, flags: int, mode: int = 0o777, *, dir_fd: int | None = None
 ) -> int:
@@ -246,6 +287,28 @@ def _readlink(path: FilePath, *, dir_fd: int | None = None) -> str | bytes:
     return _original_readlink(raw, dir_fd=dir_fd)
 
 
+def _mkfifo(path: FilePath, mode: int = 0o666, *, dir_fd: int | None = None) -> None:
+    guard = _active.get()
+    if guard is not None and not _checking.get():
+        require(dir_fd is None, "dir_fd mkfifo refused")
+        guard.path(path, True)
+    _original_mkfifo(path, mode, dir_fd=dir_fd)
+
+
+def _mknod(
+    path: FilePath,
+    mode: int = 0o600,
+    device: int = 0,
+    *,
+    dir_fd: int | None = None,
+) -> None:
+    guard = _active.get()
+    if guard is not None and not _checking.get():
+        require(dir_fd is None, "dir_fd mknod refused")
+        guard.path(path, True)
+    _original_mknod(path, mode, device, dir_fd=dir_fd)
+
+
 def _thread_start(
     function: Callable[..., object],
     args: tuple[object, ...],
@@ -261,7 +324,16 @@ def guarded(policy: Guard) -> Iterator[None]:
     if not _installed:
         sys.addaudithook(_audit)
         # Instrument the declared dynamic stdlib API boundary without weakening types.
-        vars(os).update(stat=_stat, lstat=_lstat, open=_open, readlink=_readlink)
+        vars(os).update(
+            stat=_stat,
+            lstat=_lstat,
+            fstat=_fstat,
+            access=_access,
+            open=_open,
+            readlink=_readlink,
+            mkfifo=_mkfifo,
+            mknod=_mknod,
+        )
         vars(_thread)["start_new_thread"] = _thread_start
         _installed = True
     parent = _active.get()

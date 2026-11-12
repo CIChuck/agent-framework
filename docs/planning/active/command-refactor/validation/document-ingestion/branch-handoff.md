@@ -48,7 +48,7 @@ The two edited Chat example YAML files remain uncommitted and unstaged;
 `.friday-old/` and ignored exports remain untouched. Historical receipts retain
 their original branch/source identities. Do not broad-stage or clean this checkout.
 
-**Next gate:** Freeze and independently validate the test-only C0 foundation under tests/readiness/ingest against CC-01–10; reconcile committed-export normal/-O and approved private static-tool evidence. Keep full A0–A4 construction/qualification open and all upstream/model effects unactivated; preserve production, dirty YAMLs and generated state. No product implementation, human acceptance or delivery follows.
+**Next gate:** Freeze and freshly validate correction cycle1 for C0-F01–04, delta first then full bounded CC-01–10 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0–A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows.
 
 
 ## Current harness directive council closeout

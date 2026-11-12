@@ -3502,3 +3502,28 @@ rules and package/lock bytes are unchanged. Development-fixture normal/-O tests
 pass37 each; formal committed-export receipts and fresh independent review remain
 pending. All18023 protected tracked hashes,26 symlink targets and9 preserved local
 metadata records match. Actual repository `.friday_test/` remains absent.
+
+
+## 2026-11-12 — C0 independent findings / cycle1
+
+Fresh bounded C0 validation returns CHANGES_REQUESTED on ecfa38bb: four findings
+C0-F01–04 cover standard-thread escape, dir_fd metadata mutation, access probes
+and stale pre-send stop/expiry admission.37 normal/-O selftests and static/admin
+checks pass but do not override those reproduced failures. All reviewer effects
+stay private and closing protected state matches. Separate security remediation
+is limited to the [numbered directive](remediation/REM-CMD-INGEST-C0-001-controls.md);
+new source freeze and fresh delta/full C0 validation are required. No upstream or
+production activity is activated.
+
+
+## 2026-11-12 — C0 cycle1 source correction prepared
+
+Separate remediator changes only startup/window, their two existing test modules
+and the source README. Qualified thread audit events cover standard/saved aliases;
+dir_fd mutation shapes and supported probe wrappers refuse; fake transport rechecks
+control state after reservation. Six regressions bring the suite to43. Normal/-O
+development snapshots, private lint/format/mypy and direct call-phase probes pass.
+Initial incorrect convenience-probe assertions/type/lint attempts are retained and
+not credited as a clean result. Bootstrap/run and all frozen business inputs stay
+unchanged. Formal committed source proof and fresh delta/full CC review remain
+pending; prior CHANGES_REQUESTED report is historical for the changed candidate.

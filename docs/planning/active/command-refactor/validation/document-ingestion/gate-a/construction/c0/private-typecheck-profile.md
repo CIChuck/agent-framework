@@ -1,5 +1,11 @@
 # Proposed private C0 type-check profile
 
+Subsequent status: Chuck [approved this exact manifest](private-typecheck-approval.json).
+The [execution receipt](private-typecheck-execution.json) records its five private
+wheel transfers and qualification. The original proposal below is retained as
+history; its NOT ACTIVATED label does not describe current activation. The
+approved JSON manifest and its digest are unchanged.
+
 Status: **NOT ACTIVATED**. [Exact manifest](private-typecheck-profile.json),
 SHA256 `329f572b587c5998a4b8e96e6cfda8605a69f2bce6cbe4637fa191394300a568`.
 

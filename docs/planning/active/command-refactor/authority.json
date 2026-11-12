@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Freeze and independently validate the test-only C0 foundation under tests/readiness/ingest against CC-01\u201310; reconcile committed-export normal/-O and approved private static-tool evidence. Keep full A0\u2013A4 construction/qualification open and all upstream/model effects unactivated; preserve production, dirty YAMLs and generated state. No product implementation, human acceptance or delivery follows.",
+  "current_scope": "Freeze and freshly validate correction cycle1 for C0-F01\u201304, delta first then full bounded CC-01\u201310 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0\u2013A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Freeze and independently validate the test-only C0 foundation under tests/readiness/ingest against CC-01\u201310; reconcile committed-export normal/-O and approved private static-tool evidence. Keep full A0\u2013A4 construction/qualification open and all upstream/model effects unactivated; preserve production, dirty YAMLs and generated state. No product implementation, human acceptance or delivery follows.",
+    "next_gate": "Freeze and freshly validate correction cycle1 for C0-F01\u201304, delta first then full bounded CC-01\u201310 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0\u2013A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Freeze and independently validate the test-only C0 foundation under tests/readiness/ingest against CC-01\u201310; reconcile committed-export normal/-O and approved private static-tool evidence. Keep full A0\u2013A4 construction/qualification open and all upstream/model effects unactivated; preserve production, dirty YAMLs and generated state. No product implementation, human acceptance or delivery follows.",
+      "next_gate": "Freeze and freshly validate correction cycle1 for C0-F01\u201304, delta first then full bounded CC-01\u201310 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0\u2013A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2630,7 +2630,7 @@
       "source_observations_sha256": "bbd408be71036faef3aa5b4298232635a4dade2f2e813444df6aae3a2e63fb80",
       "consumer_worklist": "validation/document-ingestion/gate-a/consumer-readiness-matrix.md",
       "consumer_worklist_sha256": "12c2bcc68892f8b5b14023f67d34b190565b7ca22ed79c2a4a9013437c5e9e7c",
-      "status": "C0_foundation_pending_independent_validation",
+      "status": "C0_correction_cycle1_pending_fresh_validation",
       "independent_review": "reconciled_verified_corrective_pass2",
       "council_active": false,
       "effects_activation": "not_granted",
@@ -2755,7 +2755,36 @@
       "construction_approval": "validation/document-ingestion/gate-a/construction-approval.json",
       "construction_approval_sha256": "dc3b4a1d20054256310cc0b6464d18c782b04326fe315b09ea5f96911e66845f",
       "C0_scope": "validation/document-ingestion/gate-a/construction/c0/implementation-scope.md",
-      "private_typecheck_approval": "validation/document-ingestion/gate-a/construction/c0/private-typecheck-approval.json"
+      "private_typecheck_approval": "validation/document-ingestion/gate-a/construction/c0/private-typecheck-approval.json",
+      "C0_implementation_review": {
+        "candidate": "ecfa38bb71854bb3174ceb9ee82cbb87ef110e69",
+        "status": "CHANGES_REQUESTED",
+        "report": "validation/document-ingestion/gate-a/construction/c0/review1/report.md",
+        "report_sha256": "6e9e85a43d9f3c9ad434d117c98692283de90f68735862779215f6b6966e2612",
+        "mandatory_findings": [
+          "C0-F01",
+          "C0-F02",
+          "C0-F03",
+          "C0-F04"
+        ],
+        "remediation": "remediation/REM-CMD-INGEST-C0-001-controls.md",
+        "cycle": 1,
+        "decision_state": "superseded_for_changed_candidate; retained historical",
+        "raw_report_sha256": "1f89fd079af6e089bed629c41861674e5587ceb58befef72a57f443bde9804f0",
+        "raw_archive": "validation/document-ingestion/gate-a/construction/c0/review1/report.md.gz"
+      },
+      "C0_correction_cycle1": {
+        "directive": "remediation/REM-CMD-INGEST-C0-001-controls.md",
+        "status": "corrected_source_prepared; formal_freeze_and_fresh_validation_pending",
+        "findings": [
+          "C0-F01",
+          "C0-F02",
+          "C0-F03",
+          "C0-F04"
+        ],
+        "development_cases": 43,
+        "independent_verification": "not_yet_granted"
+      }
     },
     "lightweight_planning_exemption": {
       "maintainer": "Chuck Russell",

@@ -208,5 +208,13 @@ class FakeTransportGate:
             self.reserve("vectors", len(inputs), 256)
             self.reserve("tokens", sum(counts), 131072)
         self.reserve("requests", 1, 64)
+        # Preparation and reservation callbacks may observe or publish stop/expiry.
+        # Prior reservations remain charged even when this final admission refuses.
+        require(
+            not self.stopped() and self.now() < self.window.expires,
+            "Window stopped or expired before transport",
+        )
         self.attempts += 1
+        # Entering the fake is the bounded accepted-in-flight handoff. A control
+        # change inside that callback cannot cancel work it has already accepted.
         return self.fake(method, path, payload)
