@@ -1,5 +1,30 @@
 # Isolated INGEST readiness — Docling behavior and retained offline controls
 
+## Larger-context document corpus
+
+`large_documents.py` generates20 genuine PDF/DOCX/XLSX/PPTX documents at five
+controlled lengths, plus5 UTF-8 reference texts and retrieval oracles. Fictional
+procedures contain unique section IDs, early/middle/tail facts, superseded policy
+and cross-section questions. Words are measured; Qwen token counts remain unset
+until its exact tokenizer/serving profile is qualified. These assets do not select
+a production model or establish that the loaded Qwen MLX instance serves vectors.
+
+Run from an explicitly prepared committed source copy with base Python:
+
+```sh
+<python> -I -S -B <run>/source/ingest/large_documents.py generate --run-root <run>
+<python> -I -S -B <run>/source/ingest/large_documents.py verify --run-root <run>
+<python> -I -S -B <run>/source/ingest/large_documents.py validate --run-root <run> --target <existing-private-target>
+```
+
+The run is a new physical `.friday_test/runs/large-documents-<id>` directory with
+source/inputs/reports/config/cache/tmp folders. Existing corpora are refused;
+manifest is written last. Native format validation uses the already-installed
+private PDF/Word/Excel/PowerPoint readers with network/child effects denied; it
+does not claim Docling conversion, chunking, embeddings or storage. All files,
+oracles and generator bindings are checked before validation. No install or model
+request is needed. See the [scope](../../../docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents-scope.md).
+
 ## Complete isolated ingestion evaluation
 
 `e2e.py` adds genuine document extraction, document/512-token chunks (and a

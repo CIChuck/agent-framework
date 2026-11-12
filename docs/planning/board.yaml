@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Prepare findings-to-implementation addendum and INGEST product construction directive for maintainer review. Isolated Docling/Nomic flow and reporting correction are independently verified; Qwen MLX is classified llm and needs embedding-serving qualification. Whole readiness9.5 and production construction remain open."
+  next_gate: "Prepare and independently verify a new isolated large-document corpus for future Qwen context tests.20 native-format documents plus5 reference texts; no model/store/production effects. Exact Qwen tokens and embedding serving remain unqualified; product directive remains pending."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

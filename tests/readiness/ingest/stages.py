@@ -151,6 +151,7 @@ def main(argv: list[str]) -> int:
             "test_reports.py",
             "test_behavior.py",
             "test_e2e.py",
+            "test_large_documents.py",
         }
         require(
             {

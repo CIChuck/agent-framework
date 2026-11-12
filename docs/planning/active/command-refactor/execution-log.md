@@ -3854,3 +3854,14 @@ qwen3-embedding-4b-mlx twice loaded with40960 reported context but type llm.
 [Assessment](validation/document-ingestion/gate-a/end-to-end-evaluation/qwen-read-only-assessment.md)
 records the serving qualification needed, official32K/2560 capability and separate
 read-only accounting. No model/production change or Qwen inference was performed.
+
+## 2026-11-12 — Controlled long-document corpus requested
+
+Chuck requests larger documents for future Qwen context testing. The bounded
+[scope](validation/document-ingestion/gate-a/large-documents-scope.md) adds only
+test generator/regressions, selector/README and fresh isolated assets:20 genuine
+PDF/DOCX/XLSX/PPTX plus5 reference texts at five lengths, with source facts and
+truncation/retrieval oracles. Qwen tokens remain unset and serving unqualified.
+No model request, production update or store operation is included. Frozen source,
+native-format validation and fresh independent review follow. Earlier real Nomic
+evidence and approved directives remain unchanged.
