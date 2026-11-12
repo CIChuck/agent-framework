@@ -1,0 +1,13 @@
+{
+  "candidate": "4fd5f8252cd5d89924e0e01527dadca3ea1ee3b3",
+  "outcome": "CHANGES_REQUESTED",
+  "mandatory": [
+    "BE-REV-001"
+  ],
+  "pins": {
+    "report.md": "2583423c79f4a74c592500420714d86bfc4b7eeb37e1fd52d0d3841da823e659",
+    "command-ledger.jsonl": "d30fedd43e7d5a6f3043aeb9fe1e76945e33ef2f6db1df0b2242dbd5eb972177",
+    "review-evidence.tar.gz": "dcc5044922dcbc680f84d91943a236646a7bbbe8517583f7f10129e2af7514ee"
+  },
+  "disposition": "Retained original independent report; correction and fresh bounded review required."
+}

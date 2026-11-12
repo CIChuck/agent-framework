@@ -6,7 +6,7 @@ is started with bounded implementation authority; new C0 work is local/unpushed.
 Product INGEST construction and real A0–A4 effects remain unapproved/unactivated.
 [Current C0 evidence](gate-a/construction/c0/correction-evidence.md).
 
-**Next gate:** Fresh independent implementation review of the committed direct Docling behavior slice and retained controls. Standalone extraction/chunking evidence is retained; full Friday installed-profile, live Friday-LLM embedding and storage readiness remain open. Production and LM Studio unchanged; no product integration, acceptance or delivery.
+**Next gate:** Bounded test-only remediation of BE-REV-001: prevent a failed conversion rerun from reusing old admission evidence, then freeze and freshly review the corrected direct Docling behavior slice. Production and LM Studio unchanged; broader readiness remains open.
 
 ## Historical branch/design preparation (superseded for current C0 routing)
 

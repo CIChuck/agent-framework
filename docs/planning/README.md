@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh independent implementation review of the committed direct Docling behavior slice and retained controls. Standalone extraction/chunking evidence is retained; full Friday installed-profile, live Friday-LLM embedding and storage readiness remain open. Production and LM Studio unchanged; no product integration, acceptance or delivery. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Bounded test-only remediation of BE-REV-001: prevent a failed conversion rerun from reusing old admission evidence, then freeze and freshly review the corrected direct Docling behavior slice. Production and LM Studio unchanged; broader readiness remains open. |
 
 ## Completed
 

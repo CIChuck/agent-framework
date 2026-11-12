@@ -3760,3 +3760,14 @@ as history without correctness credit. Retained minimal controls, parser/engine
 selectors, focused Ruff/format and private typing pass; no production source,
 configuration, lock, store or model-service change. Freeze evidence and dispatch
 the policy-required fresh read-only validator; whole Gate A and product work remain open.
+
+
+## 2026-11-12 — Independent Docling review identifies BE-REV-001
+
+The fresh bounded [review](validation/document-ingestion/gate-a/behavior-evaluation/validation/round1/report.md)
+reproduces real conversion/chunking and preserved state but requests one medium
+data-integrity correction: a timed-out rerun leaves earlier output eligible.
+[BE-REM-001](validation/document-ingestion/gate-a/behavior-evaluation/BE-REM-001.md)
+assigns this named test-runner correction to a separate remediator as policy requires.
+Measured extraction remains retained; corrected admission and fresh review are pending.
+No product, model, store, acceptance or delivery authority changes.

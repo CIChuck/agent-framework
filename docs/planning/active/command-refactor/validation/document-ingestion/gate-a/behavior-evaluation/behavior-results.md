@@ -1,6 +1,8 @@
 # Docling behavior evaluation — measured results
 
-Builder execution complete; **independent implementation review pending**.
+Initial execution measurements retained. **Independent review found BE-REV-001**
+(stale admission after an interrupted rerun); see the [bounded correction](BE-REM-001.md)
+and [original review](validation/round1/report.md). Corrected validation is pending.
 Source candidate `24d15ab5`. This is a standalone document-behavior result,
 not full Friday installed-profile, embedding/storage or production qualification.
 
