@@ -1,13 +1,13 @@
-# Isolated readiness harness — C0 correction cycle1
+# Isolated readiness harness — C0 verified; full construction open
 
-Execution phase: validation; validation state: pending.
+Execution phase: implementation; full-readiness validation state: not_ready. C0 component: verified.
 Chuck [approves exact directive v0.3](validation/document-ingestion/gate-a/construction-approval.md)
 after the [verified council](validation/document-ingestion/gate-a/verified-directive-report.md).
-The four C0 controls are corrected; committed proof and fresh validation are pending. Production
+C0 is independently verified; the full harness remains incomplete. Production
 and real A0–A4 effects remain excluded; actual `.friday_test/` is not created by
 builder tests. Dependency/model qualification and effects activation stay later.
 
-**Next gate:** Freeze and freshly validate correction cycle1 for C0-F01–04, delta first then full bounded CC-01–10 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0–A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows.
+**Next gate:** C0 foundation is independently VERIFIED for CC-01–10 with all four findings closed (advisory9.2); full readiness remains not_ready and no >=9.5 readiness advancement is claimed. Prepare remaining test-owned A0–A4 adapters, full fixture matrix and exact activation inputs under the unchanged harness directive; obtain fresh review for changed construction and separate exact activation before any real dependency/conversion/model effect. Keep production, dirty/generated state and all business parents unchanged; no product implementation, acceptance or delivery follows.
 
 ## Separate MAINT closeout and historical checkpoints
 

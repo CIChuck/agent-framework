@@ -2,7 +2,7 @@
 
 The [C0 scope](implementation-scope.md) and [correction evidence](correction-evidence.md)
 cover only offline controls. This version cannot run actual A0–A4 qualification.
-Independent implementation validation is pending. Do not use an application YAML,
+[Independent bounded C0 validation](verified-report.md) is VERIFIED (advisory9.2/10); full readiness remains incomplete. Do not use an application YAML,
 existing store or production project as the private unit project.
 
 The exact source is `f90367e6c296b99799ff3e752fcc9d8a26c3aa6d`.

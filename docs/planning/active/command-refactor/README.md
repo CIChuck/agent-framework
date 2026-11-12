@@ -3,7 +3,7 @@
 **Status:** started/local (new C0 implementation is unpushed). Exact INGEST package impact v0.6 is approved;
 Gate-A harness directive v0.3 is council VERIFIED for design/source feasibility.
 The loop stopped after pass2; Chuck now approves test-only C0 harness construction.
-C0 implementation validation, full pipeline construction/qualification and MAINT human UAT/acceptance remain pending.
+C0 component validation is verified; full pipeline construction/qualification and MAINT human UAT/acceptance remain pending.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -35,7 +35,7 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Current INGEST — C0 correction cycle1 awaiting fresh validation:**
+**Current INGEST — C0 verified; full readiness construction open:**
 Chuck [approved exact assessment v0.6](approval/ingest-package-impact.md),
 SHA256 `f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176`.
 The [assessment](package-impact-assessment.md), [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md),
@@ -53,7 +53,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Freeze and freshly validate correction cycle1 for C0-F01–04, delta first then full bounded CC-01–10 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0–A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows.
+**Next gate:** C0 foundation is independently VERIFIED for CC-01–10 with all four findings closed (advisory9.2); full readiness remains not_ready and no >=9.5 readiness advancement is claimed. Prepare remaining test-owned A0–A4 adapters, full fixture matrix and exact activation inputs under the unchanged harness directive; obtain fresh review for changed construction and separate exact activation before any real dependency/conversion/model effect. Keep production, dirty/generated state and all business parents unchanged; no product implementation, acceptance or delivery follows.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

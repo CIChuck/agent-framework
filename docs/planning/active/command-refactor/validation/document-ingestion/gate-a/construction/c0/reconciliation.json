@@ -1,0 +1,47 @@
+{
+  "unit": "INGEST-C0-FOUNDATION",
+  "outcome": "VERIFIED",
+  "scope": "CC-01\u201310 bounded component only; full HR/A0\u2013A4 readiness remains not_ready",
+  "reviewed_candidate": "fbe8201dc7829c5e6464f57566875660a3ea0c99",
+  "source_commit": "f90367e6c296b99799ff3e752fcc9d8a26c3aa6d",
+  "report": "review2/report.md",
+  "readable_sha256": "28f68ffdd24afaf7f579ce001a8aba7ac109241d54a1971d8eb7b55c660be6d6",
+  "raw_report": "review2/report.md.gz",
+  "raw_report_sha256": "619d0d9b44c67e25a6eb53db2aa2abbc11d56574505946b3daca645bba211208",
+  "reviewer_manifest_sha256": "24c784275277e54c946ac7ab57e95401753a2063ca7a2b597c1298a5f2b3a6ff",
+  "reviewer_manifest_files_verified": 3706,
+  "mandatory_findings": [],
+  "closed_findings": [
+    "C0-F01",
+    "C0-F02",
+    "C0-F03",
+    "C0-F04"
+  ],
+  "criteria_passed": [
+    "CC-01",
+    "CC-02",
+    "CC-03",
+    "CC-04",
+    "CC-05",
+    "CC-06",
+    "CC-07",
+    "CC-08",
+    "CC-09",
+    "CC-10"
+  ],
+  "advisory_score": 9.2,
+  "score_handling": "Record honestly. This component review does not establish the requested >=9.5 broader readiness/council target or authorize stage advancement. No new score-seeking loop is inferred.",
+  "fresh_execution": {
+    "selftests_each_mode": 43,
+    "independent_delta_checks_each_mode": 62,
+    "root_rule_private_static": "passed25",
+    "administrative": "passed",
+    "original_corrected_and_unfixed_probes": "reproduced",
+    "unfixed_suite_assertion_failures_each_mode": 19,
+    "incidental_unfixed_error_rejection_credit": 0
+  },
+  "higher_directive_open": true,
+  "A0_A4_effects_activated": false,
+  "human_acceptance": false,
+  "delivery": "local_unpushed"
+}

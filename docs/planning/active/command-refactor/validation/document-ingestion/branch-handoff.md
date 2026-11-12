@@ -1,12 +1,12 @@
 # INGEST-001 — scoped branch handoff
 
-Current: test-only C0 construction is approved; correction cycle1 has committed
-source proof and awaits fresh independent CC-01–10 validation. The initiative
+Current: test-only C0 construction has fresh independent CC-01–10 verification
+with all four findings closed; full readiness remains incomplete/unactivated. The initiative
 is started with bounded implementation authority; new C0 work is local/unpushed.
 Product INGEST construction and real A0–A4 effects remain unapproved/unactivated.
 [Current C0 evidence](gate-a/construction/c0/correction-evidence.md).
 
-**Next gate:** Freeze and freshly validate correction cycle1 for C0-F01–04, delta first then full bounded CC-01–10 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0–A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows.
+**Next gate:** C0 foundation is independently VERIFIED for CC-01–10 with all four findings closed (advisory9.2); full readiness remains not_ready and no >=9.5 readiness advancement is claimed. Prepare remaining test-owned A0–A4 adapters, full fixture matrix and exact activation inputs under the unchanged harness directive; obtain fresh review for changed construction and separate exact activation before any real dependency/conversion/model effect. Keep production, dirty/generated state and all business parents unchanged; no product implementation, acceptance or delivery follows.
 
 ## Historical branch/design preparation (superseded for current C0 routing)
 

@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Freeze and freshly validate correction cycle1 for C0-F01–04, delta first then full bounded CC-01–10 conformance of the test-only foundation. Reconcile committed-export normal/-O controls and private static checks; full A0–A4 construction/qualification remains open, all upstream/model effects unactivated and production/dirty/generated state preserved. No human acceptance or delivery follows. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | C0 foundation is independently VERIFIED for CC-01–10 with all four findings closed (advisory9.2); full readiness remains not_ready and no >=9.5 readiness advancement is claimed. Prepare remaining test-owned A0–A4 adapters, full fixture matrix and exact activation inputs under the unchanged harness directive; obtain fresh review for changed construction and separate exact activation before any real dependency/conversion/model effect. Keep production, dirty/generated state and all business parents unchanged; no product implementation, acceptance or delivery follows. |
 
 ## Completed
 
