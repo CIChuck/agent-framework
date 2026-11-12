@@ -1,5 +1,27 @@
 # Isolated INGEST readiness — Docling behavior and retained offline controls
 
+## Complete isolated ingestion evaluation
+
+`e2e.py` adds genuine document extraction, document/512-token chunks (and a
+128-token override), actual Friday-LLM requests to the reserved Nomic endpoint,
+shared Memory Chroma storage, retrieval and a network-free persistence reopen.
+Run it only from its committed copy in the explicitly prepared end-to-end run:
+
+```sh
+<base-python> -I -S -B <run>/source/ingest/e2e.py run --run-root <absolute-run>
+<base-python> -I -S -B <run>/source/ingest/e2e.py report --run-root <absolute-run>
+```
+
+The [scope amendment](../../../docs/planning/active/command-refactor/validation/document-ingestion/gate-a/end-to-end-evaluation/scope-amendment.md)
+adds only disposable test-store writes. Requests require the current operator
+window, already-loaded exact Nomic model, JIT disabled, private dependencies and
+a shared request/vector/token budget. Each mode creates a fresh store; reruns
+do not reset the budget. Corrupt and structurally refused inputs never enter
+the embedding corpus. Completion is bound to immutable per-run evidence;
+failed or changed evidence cannot reuse an earlier success. Offline regression
+tests use fake vectors solely to exercise validation, with no live proof credit.
+This evaluates the proposed flow; production `/ingest` integration comes later.
+
 ## Current direct document evaluation
 
 The maintainer's [focus amendment](../../../docs/planning/active/command-refactor/validation/document-ingestion/gate-a/behavior-evaluation/behavior-focus-amendment.md)

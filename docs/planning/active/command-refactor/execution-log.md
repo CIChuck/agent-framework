@@ -3784,3 +3784,16 @@ as history without correctness credit. Retained minimal controls, parser/engine
 selectors, focused Ruff/format and private typing pass; no production source,
 configuration, lock, store or model-service change. Freeze evidence and dispatch
 the policy-required fresh read-only validator; whole Gate A and product work remain open.
+
+
+## 2026-11-12 — Docling slice verified; maintainer requests end-to-end proof
+
+Fresh [bounded validation](validation/document-ingestion/gate-a/behavior-evaluation/validation/round2/report.md)
+closes BE-REV-001 and verifies all BE criteria:68 minimal,37 document/control,324
+chunk/content and81 default512 cases per mode; independent2017-chunk recount.
+Scores coverage9.3/overall9.2 do not close the whole9.5 readiness gate.
+Chuck requests complete end-to-end proof and confirms stopped production/loaded
+Nomic. The [scope amendment](validation/document-ingestion/gate-a/end-to-end-evaluation/scope-amendment.md)
+adds only isolated model requests and fresh test-store writes. Read-only server
+status reports context2048; CLI ttlMs=null and configuration JIT=false. No setting
+was changed and no embedding request has yet been sent. Product work remains later.

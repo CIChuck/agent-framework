@@ -1,0 +1,29 @@
+[
+  {
+    "source": "/Users/chuckrussell/.lmstudio/.internal/http-server-config.json",
+    "sha256": "02fa05eb17723fb5aa0f0ba341e7ec81a9ce3b50212c79ef8b048f52232157bd",
+    "size": 265,
+    "selected_nonsecret_settings": {
+      "$.justInTimeModelLoading": false
+    }
+  },
+  {
+    "source": "/Users/chuckrussell/.lmstudio/.internal/http-server.json",
+    "sha256": "f80024d7f23851e062b857af7edd514ad52705bbfae0c4daf2d1034e37816246",
+    "size": 59,
+    "selected_nonsecret_settings": {}
+  },
+  {
+    "source": "/Users/chuckrussell/Library/Application Support/LM Studio/settings.json",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0,
+    "parse": "not plain JSON; not inspected further",
+    "selected_nonsecret_settings": {}
+  },
+  {
+    "source": "/Users/chuckrussell/Library/Application Support/LM Studio/config.json",
+    "sha256": "837e509978d239bff6f646ce22cd97d48f3be2ac55f41dce400aa6c4523bcb42",
+    "size": 58,
+    "selected_nonsecret_settings": {}
+  }
+]

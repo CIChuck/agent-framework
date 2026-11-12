@@ -1,6 +1,8 @@
 # Docling behavior evaluation — measured results
 
-Builder execution complete; **independent implementation review pending**.
+**Standalone behavior slice independently VERIFIED.** [Formal report](validation/round2/report.md).
+Coverage9.3/10, overall9.2/10; these bounded scores do not satisfy or replace the
+whole-readiness9.5 gate. Whole Gate A and product acceptance remain open.
 Source candidate `1ebc1690`. This is a standalone document-behavior result,
 not full Friday installed-profile, embedding/storage or production qualification.
 
@@ -65,7 +67,7 @@ admitted matrix.
 
 ## Interrupted-run correction
 
-BE-REV-001 is corrected in the test runner; independent closure is pending. Each
+BE-REV-001 is corrected in the test runner and independently CLOSED. Each
 conversion revokes old admission before setup/launch and records an immutable
 attempt tied to input, oracle/settings, runner and output. Supervised attempts
 require a successful terminal receipt. Missing, failed, timed-out or superseded
