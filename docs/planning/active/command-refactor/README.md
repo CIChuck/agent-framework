@@ -53,7 +53,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Prepare and independently verify a new isolated large-document corpus for future Qwen context tests.20 native-format documents plus5 reference texts; no model/store/production effects. Exact Qwen tokens and embedding serving remain unqualified; product directive remains pending.
+**Next gate:** Fresh independent review of the isolated long-document corpus:20 genuine documents plus5 references, native complete-text validation and87 tests per mode. Qwen token counts/serving and larger-context inference remain pending; no production or model/default change.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

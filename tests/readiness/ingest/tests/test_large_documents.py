@@ -150,7 +150,7 @@ class LargeDocuments(unittest.TestCase):
             folder = root()
             corpus.publish(folder, (16,))
             path = folder / "inputs/corpus/orion-016.pdf"
-            renamed = path.with_name("physical.pdf")
+            renamed = folder / "physical.pdf"
             path.rename(renamed)
             if alias == "symlink":
                 path.symlink_to(renamed)

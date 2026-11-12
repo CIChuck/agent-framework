@@ -9,7 +9,7 @@ MAINT UAT/acceptance and delivery remain separate open gates.
 See [actual results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Prepare and independently verify a new isolated large-document corpus for future Qwen context tests.20 native-format documents plus5 reference texts; no model/store/production effects. Exact Qwen tokens and embedding serving remain unqualified; product directive remains pending.
+**Next gate:** Fresh independent review of the isolated long-document corpus:20 genuine documents plus5 references, native complete-text validation and87 tests per mode. Qwen token counts/serving and larger-context inference remain pending; no production or model/default change.
 
 ## Separate MAINT closeout and historical checkpoints
 

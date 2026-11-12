@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Prepare and independently verify a new isolated large-document corpus for future Qwen context tests.20 native-format documents plus5 reference texts; no model/store/production effects. Exact Qwen tokens and embedding serving remain unqualified; product directive remains pending."
+  next_gate: "Fresh independent review of the isolated long-document corpus:20 genuine documents plus5 references, native complete-text validation and87 tests per mode. Qwen token counts/serving and larger-context inference remain pending; no production or model/default change."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

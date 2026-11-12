@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Prepare and independently verify a new isolated large-document corpus for future Qwen context tests.20 native-format documents plus5 reference texts; no model/store/production effects. Exact Qwen tokens and embedding serving remain unqualified; product directive remains pending. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh independent review of the isolated long-document corpus:20 genuine documents plus5 references, native complete-text validation and87 tests per mode. Qwen token counts/serving and larger-context inference remain pending; no production or model/default change. |
 
 ## Completed
 

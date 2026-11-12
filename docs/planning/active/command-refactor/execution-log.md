@@ -3865,3 +3865,15 @@ truncation/retrieval oracles. Qwen tokens remain unset and serving unqualified.
 No model request, production update or store operation is included. Frozen source,
 native-format validation and fresh independent review follow. Earlier real Nomic
 evidence and approved directives remain unchanged.
+
+## 2026-11-12 — Long-document corpus generated and natively validated
+
+Source3bf25f4e generates20 PDF/DOCX/XLSX/PPTX assets and5 references at five
+lengths,1358 to31534 canonical words. Largest:46 PDF pages,6 workbook sheets,
+96 slides. Normal/-O corpora are byte-identical. Native readers recover every
+section body/ID and all anchor facts in25 files/mode; representative PDF renders
+are legible.87 regressions/mode and31-source typing/lint/format pass. No Docling,
+model, chunking or store pass is claimed for these new files.
+[Results](validation/document-ingestion/gate-a/large-documents/results.md) retain
+the controlled inputs and oracles; exact Qwen tokens remain unset. Freeze for
+fresh LD-01–08 review. Production and earlier evaluated state are preserved.
