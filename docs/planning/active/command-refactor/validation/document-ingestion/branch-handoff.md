@@ -1,14 +1,16 @@
 # INGEST-001 — scoped branch handoff
 
-Current: test-only C0 construction has fresh independent CC-01–10 verification
-with all four findings closed; full readiness remains incomplete/unactivated. The initiative
-is started with bounded implementation authority; new C0 work is local/unpushed.
-Product INGEST construction and real A0–A4 effects remain unapproved/unactivated.
-[Current C0 evidence](gate-a/construction/c0/correction-evidence.md).
+Current: bounded test-only Docling behavior and actual Nomic end-to-end flow are
+independently verified, including the reporting-source correction. Original live
+receipts remain attributed to c977; corrected reporting proof is offline-only.
+The branch is started/local. Production source/configuration/stores are unchanged.
+Whole Gate-A9.5 and product construction/acceptance remain open.
+[Measured results](gate-a/end-to-end-evaluation/results.md) and
+[independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Fresh independent E2E-IV-001 reporting-correction delta and full EE-01–08 review. Offline79-case normal/optimized suite and typing pass; all20 live-run definitions and behavior bytes unchanged. Original c977 inference/stores remain frozen; no new live or production effect.
+**Next gate:** Prepare findings-to-implementation addendum and INGEST product construction directive for maintainer review. Isolated Docling/Nomic flow and reporting correction are independently verified; Qwen MLX is classified llm and needs embedding-serving qualification. Whole readiness9.5 and production construction remain open.
 
-## Historical branch/design preparation (superseded for current C0 routing)
+## Historical branch/design preparation (superseded for current evaluation routing)
 
 Status: **planning/design only; no construction approval**.
 Working branch: `feature/cmd-ingest-001`. Created from `df62b77d551491cfb33ad2492c711036b09c9d4c` on 2026-11-10.

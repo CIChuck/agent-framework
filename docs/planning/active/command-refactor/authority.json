@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Fresh independent E2E-IV-001 reporting-correction delta and full EE-01\u201308 review. Offline79-case normal/optimized suite and typing pass; all20 live-run definitions and behavior bytes unchanged. Original c977 inference/stores remain frozen; no new live or production effect.",
+  "current_scope": "Prepare findings-to-implementation addendum and INGEST product construction directive for maintainer review. Isolated Docling/Nomic flow and reporting correction are independently verified; Qwen MLX is classified llm and needs embedding-serving qualification. Whole readiness9.5 and production construction remain open.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1895,8 +1895,8 @@
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
     "status": "revised_planning_requirements",
-    "execution_phase": "validation",
-    "validation_state": "in_review",
+    "execution_phase": "planning",
+    "validation_state": "pending",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Fresh independent E2E-IV-001 reporting-correction delta and full EE-01\u201308 review. Offline79-case normal/optimized suite and typing pass; all20 live-run definitions and behavior bytes unchanged. Original c977 inference/stores remain frozen; no new live or production effect.",
+    "next_gate": "Prepare findings-to-implementation addendum and INGEST product construction directive for maintainer review. Isolated Docling/Nomic flow and reporting correction are independently verified; Qwen MLX is classified llm and needs embedding-serving qualification. Whole readiness9.5 and production construction remain open.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Fresh independent E2E-IV-001 reporting-correction delta and full EE-01\u201308 review. Offline79-case normal/optimized suite and typing pass; all20 live-run definitions and behavior bytes unchanged. Original c977 inference/stores remain frozen; no new live or production effect.",
+      "next_gate": "Prepare findings-to-implementation addendum and INGEST product construction directive for maintainer review. Isolated Docling/Nomic flow and reporting correction are independently verified; Qwen MLX is classified llm and needs embedding-serving qualification. Whole readiness9.5 and production construction remain open.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2926,7 +2926,7 @@
       },
       "end_to_end": {
         "scope": "validation/document-ingestion/gate-a/end-to-end-evaluation/scope-amendment.md",
-        "state": "in_review",
+        "state": "verified",
         "production_changes": false,
         "model": "text-embedding-nomic-embed-text-v1.5",
         "context_length_observed": 2048,
@@ -2934,15 +2934,16 @@
         "source_candidate": "c97777366671006f56866aa92898aaffcec524d6",
         "results": "validation/document-ingestion/gate-a/end-to-end-evaluation/results.md",
         "facts": "validation/document-ingestion/gate-a/end-to-end-evaluation/facts.json",
-        "mandatory_findings": [
-          "E2E-IV-001"
-        ],
+        "mandatory_findings": [],
         "review_round1": "validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round1/report.md",
         "remediation": "validation/document-ingestion/gate-a/end-to-end-evaluation/EE-REM-001.md",
-        "mandatory_findings_status": "E2E-IV-001 corrected; independent closure pending",
+        "mandatory_findings_status": "E2E-IV-001 independently closed",
         "reporter_sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
         "original_live_source": "c97777366671006f56866aa92898aaffcec524d6",
-        "new_live_execution": false
+        "new_live_execution": false,
+        "reviewed_candidate": "1f5f86dcd8315eaf9a7508c44c65b4637766c323",
+        "review_round2": "validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md",
+        "whole_readiness_9_5": false
       }
     },
     "lightweight_planning_exemption": {

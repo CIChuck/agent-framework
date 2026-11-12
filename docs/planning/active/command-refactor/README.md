@@ -1,9 +1,9 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/local (new C0 implementation is unpushed). Exact INGEST package impact v0.6 is approved;
-Gate-A harness directive v0.3 is council VERIFIED for design/source feasibility.
-The loop stopped after pass2; Chuck now approves test-only C0 harness construction.
-C0 component validation is verified; full pipeline construction/qualification and MAINT human UAT/acceptance remain pending.
+**Status:** started/local. Package impact v0.6 is approved. Isolated Docling
+behavior and bounded Nomic end-to-end conformance are independently verified,
+including the reporting correction. Whole Gate-A9.5, product construction and
+MAINT human UAT/acceptance remain open. Production source and state are unchanged.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -35,7 +35,7 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Current INGEST — C0 verified; full readiness construction open:**
+**Current INGEST — isolated evaluation verified; product construction open:**
 Chuck [approved exact assessment v0.6](approval/ingest-package-impact.md),
 SHA256 `f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176`.
 The [assessment](package-impact-assessment.md), [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md),
@@ -53,7 +53,12 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Fresh independent E2E-IV-001 reporting-correction delta and full EE-01–08 review. Offline79-case normal/optimized suite and typing pass; all20 live-run definitions and behavior bytes unchanged. Original c977 inference/stores remain frozen; no new live or production effect.
+**Next gate:** Prepare findings-to-implementation addendum and INGEST product construction directive for maintainer review. Isolated Docling/Nomic flow and reporting correction are independently verified; Qwen MLX is classified llm and needs embedding-serving qualification. Whole readiness9.5 and production construction remain open.
+
+[Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
+and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
+cover the test-only slice. The historical harness/design material below does not
+claim full Gate-A or product conformance.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

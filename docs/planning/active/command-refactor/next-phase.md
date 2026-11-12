@@ -1,13 +1,15 @@
-# Isolated readiness harness — C0 verified; full construction open
+# INGEST isolated evaluation verified; product construction open
 
-Execution phase: implementation; full-readiness validation state: not_ready. C0 component: verified.
-Chuck [approves exact directive v0.3](validation/document-ingestion/gate-a/construction-approval.md)
-after the [verified council](validation/document-ingestion/gate-a/verified-directive-report.md).
-C0 is independently verified; the full harness remains incomplete. Production
-and real A0–A4 effects remain excluded; actual `.friday_test/` is not created by
-builder tests. Dependency/model qualification and effects activation stay later.
+Execution phase: planning; product validation: pending. Bounded test-only
+Docling behavior and end-to-end conformance are independently verified. The
+actual c977 Nomic experiment stored162 chunks across two modes; its reporter
+correction at1f5f86dc is verified through fresh offline proof. Production source,
+configuration and stores are unchanged. Whole Gate-A9.5, product construction,
+MAINT UAT/acceptance and delivery remain separate open gates.
+See [actual results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
+and [independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Fresh independent E2E-IV-001 reporting-correction delta and full EE-01–08 review. Offline79-case normal/optimized suite and typing pass; all20 live-run definitions and behavior bytes unchanged. Original c977 inference/stores remain frozen; no new live or production effect.
+**Next gate:** Prepare findings-to-implementation addendum and INGEST product construction directive for maintainer review. Isolated Docling/Nomic flow and reporting correction are independently verified; Qwen MLX is classified llm and needs embedding-serving qualification. Whole readiness9.5 and production construction remain open.
 
 ## Separate MAINT closeout and historical checkpoints
 

@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh independent E2E-IV-001 reporting-correction delta and full EE-01–08 review. Offline79-case normal/optimized suite and typing pass; all20 live-run definitions and behavior bytes unchanged. Original c977 inference/stores remain frozen; no new live or production effect. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Prepare findings-to-implementation addendum and INGEST product construction directive for maintainer review. Isolated Docling/Nomic flow and reporting correction are independently verified; Qwen MLX is classified llm and needs embedding-serving qualification. Whole readiness9.5 and production construction remain open. |
 
 ## Completed
 

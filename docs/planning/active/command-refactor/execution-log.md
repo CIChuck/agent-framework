@@ -3839,3 +3839,18 @@ the unit test's unapproved subprocess launch; the test was changed to real in-
 process CLI dispatch, without loosening startup/stage guards. Genuine subprocess
 CLI proof remains separate. Preserve original c977 live experiment without
 rewriting or relabeling it. Freeze for fresh E2E-IV-001 delta plus full EE review.
+
+## 2026-11-12 — End-to-end reporting independently closed; Qwen discovery
+
+Fresh [round2](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
+VERIFIES1f5f86dc: E2E-IV-001 CLOSED, full bounded EE-01–08 pass. Fresh79 cases/mode,
+30 canonical controls, archive/origin checks and copied-store reopen cover162 rows
+and10 retrieval lists. Actual inference remains exclusively c977 evidence; all20
+other definitions and behavior bytes unchanged.No new model calls in review.
+Whole Gate-A9.5 and product construction/acceptance remain open. Current navigation
+now distinguishes verified test work from historical C0-only headers.
+Chuck proposes larger-context Qwen testing. Read-only CLI/native status shows
+qwen3-embedding-4b-mlx twice loaded with40960 reported context but type llm.
+[Assessment](validation/document-ingestion/gate-a/end-to-end-evaluation/qwen-read-only-assessment.md)
+records the serving qualification needed, official32K/2560 capability and separate
+read-only accounting. No model/production change or Qwen inference was performed.

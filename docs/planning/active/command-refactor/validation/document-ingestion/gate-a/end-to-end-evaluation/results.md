@@ -1,12 +1,14 @@
 # Docling → embeddings → storage: actual end-to-end results
 
 Actual execution **PASS in normal and optimized Python** at `c9777736`.
-Independent [round1](validation/round1/report.md) requests a reporting-only
-source-binding correction, **E2E-IV-001**; [EE-REM-001](EE-REM-001.md) governs it.
+Fresh independent [round2](validation/round2/report.md) **VERIFIES** the reporting
+correction and full bounded EE-01–08 conformance; **E2E-IV-001 is CLOSED**.
+[Round1](validation/round1/report.md) and [EE-REM-001](EE-REM-001.md) retain the
+finding and its bounded correction history.
 The original actual experiment remains attributable and frozen. Production source,
 configuration, working environment and stores remain unchanged.
 
-The reporting correction is implemented; fresh independent closure is pending.
+The reporting correction at `1f5f86dc` is independently verified.
 It validates nonempty, consistent conversion-runner digests from the exact corpus
 buffer whose saved hash passed, and rejects changed/missing/aliased source or
 binding. [Correction proof](correction/summary.json) uses synthetic reporting
@@ -93,9 +95,10 @@ E2E-IV-001: `report()` checked its own source but not the current `behavior.py`
 bytes already pinned in corpus attempts. A changed copied helper incorrectly kept
 the old report PASS. Correct this check and test it offline in canonical normal/-O
 CLI fixtures, preserving the original live receipts/stores without relabeling.
-All unchanged live functions will be AST-compared to `c9777736`. No more inference
-is authorized or needed for the reporting correction. Whole bounded conformance
-requires a new independent review against [EE-01–08](criteria.md), then readiness
-findings can inform the product construction directive.
+All 20 unchanged definitions are independently AST-compared to `c9777736`.
+No inference replay occurred for the reporting correction. Fresh round2 verifies
+the correction and full bounded [EE-01–08](criteria.md). These measured findings
+can now inform the product construction directive, with remaining readiness
+obligations explicitly open.
 This is not production `/ingest` execution, whole Gate-A 9.5 qualification,
 maintainer acceptance or delivery.

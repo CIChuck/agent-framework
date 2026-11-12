@@ -1,0 +1,857 @@
+[
+  {
+    "name": "selftest-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-e2e-corrected/harness/bootstrap.py",
+      "selftest",
+      "--harness-manifest",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-e2e-corrected/manifest.json",
+      "--harness-manifest-sha256",
+      "04f9c1975fa22eae3fddb9cc3af0961a682f285f106d897697cc855ffe02bde1",
+      "--scratch",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/selftest-normal"
+    ],
+    "exit": 0,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/normal.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/normal.stderr",
+    "seconds": 2.2819528579711914
+  },
+  {
+    "name": "selftest-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-e2e-corrected/harness/bootstrap.py",
+      "selftest",
+      "--harness-manifest",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-e2e-corrected/manifest.json",
+      "--harness-manifest-sha256",
+      "04f9c1975fa22eae3fddb9cc3af0961a682f285f106d897697cc855ffe02bde1",
+      "--scratch",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/selftest-optimized"
+    ],
+    "exit": 0,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/optimized.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/optimized.stderr",
+    "seconds": 2.360990047454834
+  },
+  {
+    "name": "canonical-normal-valid",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-valid/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-valid/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 0,
+    "expected_pass": true,
+    "verified": true,
+    "stderr_tail": ""
+  },
+  {
+    "name": "canonical-normal-advanced-pointer",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-advanced-pointer/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-advanced-pointer/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 0,
+    "expected_pass": true,
+    "verified": true,
+    "stderr_tail": ""
+  },
+  {
+    "name": "canonical-normal-missing-binding",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-missing-binding/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-missing-binding/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "ion source binding missing\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-missing-binding/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source binding missing\n"
+  },
+  {
+    "name": "canonical-normal-malformed-digest",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-malformed-digest/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-malformed-digest/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-malformed-digest/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 887, in report_conversion_source\n    raise ValueError(\"Report conversion source binding malformed\")\nValueError: Report conversion source binding malformed\n"
+  },
+  {
+    "name": "canonical-normal-conflicting-digest",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-conflicting-digest/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-conflicting-digest/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "conflict\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-conflicting-digest/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source bindings conflict\n"
+  },
+  {
+    "name": "canonical-normal-changed-behavior",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-changed-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-changed-behavior/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "urce changed\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-changed-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source changed\n"
+  },
+  {
+    "name": "canonical-normal-missing-behavior",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-missing-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-missing-behavior/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "on source missing/aliased\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-missing-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source missing/aliased\n"
+  },
+  {
+    "name": "canonical-normal-symlink-behavior",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-symlink-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-symlink-behavior/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "on source missing/aliased\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-symlink-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source missing/aliased\n"
+  },
+  {
+    "name": "canonical-normal-hardlink-behavior",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-hardlink-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-hardlink-behavior/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "n source missing/aliased\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-hardlink-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source missing/aliased\n"
+  },
+  {
+    "name": "canonical-normal-parent-symlink",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-parent-symlink/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-parent-symlink/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "^^^^^^^^^^^^^^^^^^^^^^\n        \"Execute frozen run source\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-parent-symlink/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Execute frozen run source\n"
+  },
+  {
+    "name": "canonical-normal-aliased-corpus",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-aliased-corpus/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-aliased-corpus/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "n binding missing/aliased\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-aliased-corpus/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion binding missing/aliased\n"
+  },
+  {
+    "name": "canonical-normal-changed-e2e",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-changed-e2e/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-changed-e2e/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        \"Report runner changed\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-changed-e2e/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report runner changed\n"
+  },
+  {
+    "name": "canonical-normal-failed-result",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-failed-result/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-failed-result/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "..\n        \"End-to-end run incomplete/failed\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-failed-result/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: End-to-end run incomplete/failed\n"
+  },
+  {
+    "name": "canonical-normal-changed-http",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-changed-http/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-changed-http/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "^^^^^^^^^^^^^^^^^^\n        \"End-to-end evidence changed\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-changed-http/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: End-to-end evidence changed\n"
+  },
+  {
+    "name": "canonical-normal-missing-evidence",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-missing-evidence/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-missing-evidence/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "de, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/normal-missing-evidence/.friday_test/runs/docling-behavior-e2e-independent/reports/e2e/11111111111111111111111111111111.stored.json'\n"
+  },
+  {
+    "name": "canonical-optimized-valid",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-valid/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-valid/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 0,
+    "expected_pass": true,
+    "verified": true,
+    "stderr_tail": ""
+  },
+  {
+    "name": "canonical-optimized-advanced-pointer",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-advanced-pointer/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-advanced-pointer/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 0,
+    "expected_pass": true,
+    "verified": true,
+    "stderr_tail": ""
+  },
+  {
+    "name": "canonical-optimized-missing-binding",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-missing-binding/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-missing-binding/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": " source binding missing\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-missing-binding/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source binding missing\n"
+  },
+  {
+    "name": "canonical-optimized-malformed-digest",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-malformed-digest/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-malformed-digest/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-malformed-digest/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 887, in report_conversion_source\n    raise ValueError(\"Report conversion source binding malformed\")\nValueError: Report conversion source binding malformed\n"
+  },
+  {
+    "name": "canonical-optimized-conflicting-digest",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-conflicting-digest/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-conflicting-digest/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "flict\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-conflicting-digest/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source bindings conflict\n"
+  },
+  {
+    "name": "canonical-optimized-changed-behavior",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-changed-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-changed-behavior/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "e changed\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-changed-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source changed\n"
+  },
+  {
+    "name": "canonical-optimized-missing-behavior",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-missing-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-missing-behavior/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "source missing/aliased\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-missing-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source missing/aliased\n"
+  },
+  {
+    "name": "canonical-optimized-symlink-behavior",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-symlink-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-symlink-behavior/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "source missing/aliased\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-symlink-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source missing/aliased\n"
+  },
+  {
+    "name": "canonical-optimized-hardlink-behavior",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-hardlink-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-hardlink-behavior/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "ource missing/aliased\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-hardlink-behavior/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion source missing/aliased\n"
+  },
+  {
+    "name": "canonical-optimized-parent-symlink",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-parent-symlink/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-parent-symlink/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "^^^^^^^^^^^^^^^^^^^\n        \"Execute frozen run source\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-parent-symlink/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Execute frozen run source\n"
+  },
+  {
+    "name": "canonical-optimized-aliased-corpus",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-aliased-corpus/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-aliased-corpus/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "inding missing/aliased\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-aliased-corpus/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report conversion binding missing/aliased\n"
+  },
+  {
+    "name": "canonical-optimized-changed-e2e",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-changed-e2e/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-changed-e2e/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        \"Report runner changed\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-changed-e2e/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: Report runner changed\n"
+  },
+  {
+    "name": "canonical-optimized-failed-result",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-failed-result/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-failed-result/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "        \"End-to-end run incomplete/failed\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-failed-result/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: End-to-end run incomplete/failed\n"
+  },
+  {
+    "name": "canonical-optimized-changed-http",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-changed-http/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-changed-http/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": "^^^^^^^^^^^^^^^\n        \"End-to-end evidence changed\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-changed-http/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py\", line 40, in require\n    raise ValueError(message)\nValueError: End-to-end evidence changed\n"
+  },
+  {
+    "name": "canonical-optimized-missing-evidence",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-missing-evidence/.friday_test/runs/docling-behavior-e2e-independent/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-missing-evidence/.friday_test/runs/docling-behavior-e2e-independent"
+    ],
+    "exit": 1,
+    "expected_pass": false,
+    "verified": true,
+    "stderr_tail": " buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report-controls/optimized-missing-evidence/.friday_test/runs/docling-behavior-e2e-independent/reports/e2e/11111111111111111111111111111111.stored.json'\n"
+  },
+  {
+    "name": "ruff",
+    "argv": [
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/ruff",
+      "check",
+      "--config",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/pyproject.toml",
+      "--cache-dir",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/ruff-cache",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/tests/readiness/ingest"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "format",
+    "argv": [
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/ruff",
+      "format",
+      "--check",
+      "--config",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/pyproject.toml",
+      "--cache-dir",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/ruff-format-cache",
+      "/Users/chuckrussell/Dev/gendev/agent-framework/tests/readiness/ingest"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "admin-board",
+    "argv": [
+      "/opt/homebrew/bin/uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "exit": 0,
+    "UV_CACHE_DIR": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/uv-cache",
+    "PATH_prefix": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/admin-bin",
+    "docs_note": null
+  },
+  {
+    "name": "admin-dashboard",
+    "argv": [
+      "/opt/homebrew/bin/uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "exit": 0,
+    "UV_CACHE_DIR": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/uv-cache",
+    "PATH_prefix": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/admin-bin",
+    "docs_note": null
+  },
+  {
+    "name": "admin-docs-tracked",
+    "argv": [
+      "/opt/homebrew/bin/uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    "exit": 0,
+    "UV_CACHE_DIR": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/uv-cache",
+    "PATH_prefix": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/admin-bin",
+    "docs_note": "git --others omitted to avoid protected .friday-old enumeration; frozen status proves no untracked documentation"
+  },
+  {
+    "name": "admin-metadata",
+    "argv": [
+      "/opt/homebrew/bin/uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-package-metadata.py"
+    ],
+    "exit": 0,
+    "UV_CACHE_DIR": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/uv-cache",
+    "PATH_prefix": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/admin-bin",
+    "docs_note": null
+  },
+  {
+    "name": "whitespace-correction",
+    "argv": [
+      "/opt/homebrew/bin/git",
+      "diff",
+      "--check",
+      "cae6aa4c183f013c19d10af4358dcf93fd189367",
+      "1f5f86dcd8315eaf9a7508c44c65b4637766c323"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "whitespace-staged",
+    "argv": [
+      "/opt/homebrew/bin/git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "whitespace-owned",
+    "argv": [
+      "/opt/homebrew/bin/git",
+      "diff",
+      "--check",
+      "--",
+      "tests/readiness/ingest",
+      "docs/planning"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "reviewer-attribution-order-assumption",
+    "exit": 1,
+    "attribution": "reviewer-owned check assumed corpus ordering matched budget-grouped storage order; corrected to exact ID mapping; no candidate failure"
+  },
+  {
+    "name": "old-live-receipts-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/old-receipt-control/.friday_test/runs/docling-behavior-e2e-original/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/old-receipt-control/.friday_test/runs/docling-behavior-e2e-original"
+    ],
+    "exit": 1,
+    "expected_refusal": "Report runner changed"
+  },
+  {
+    "name": "old-live-receipts-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/old-receipt-control/.friday_test/runs/docling-behavior-e2e-original/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/old-receipt-control/.friday_test/runs/docling-behavior-e2e-original"
+    ],
+    "exit": 1,
+    "expected_refusal": "Report runner changed"
+  },
+  {
+    "name": "independent-store-reopen-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/independent_reopen.py",
+      "normal"
+    ],
+    "exit": 0,
+    "result": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/reopen-normal.json"
+  },
+  {
+    "name": "independent-store-reopen-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/independent_reopen.py",
+      "optimized"
+    ],
+    "exit": 0,
+    "result": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/reopen-optimized.json"
+  },
+  {
+    "name": "independent-store-vector-token-reopen-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/independent_reopen.py",
+      "normal"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "independent-store-vector-token-reopen-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/independent_reopen.py",
+      "optimized"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "independent-report-response-budget",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/independent_controls.py"
+    ],
+    "exit": 0,
+    "script_sha256": "a12386250f20866428c569f7c8a7c8a9c7f9fde2f361008e2718a893aa80e27f"
+  },
+  {
+    "name": "static-integrity",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/static_integrity.py"
+    ],
+    "exit": 0,
+    "script_sha256": "c2bb31c284f847c2c7a2f5ade194cecde8f425276c5e00949efc3af24ee08988"
+  },
+  {
+    "name": "closing-integrity",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/closing_integrity.py"
+    ],
+    "exit": 0,
+    "script_sha256": "41ed4ef1cdef86b06e3d6ecd1a1449e9ed68649fed68d04c074aaef5e3855df7"
+  },
+  {
+    "name": "exploratory-json-glob",
+    "exit": 1,
+    "attribution": "Reviewer inspection glob included non-JSON checksum sidecar; corrected selector to *.json. No candidate test or product failure."
+  },
+  {
+    "name": "historical-source-conversion-transport-reproduction",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/historical_check.py"
+    ],
+    "exit": 0,
+    "script_sha256": "24ba724504f1d79b75c9dc24788fa3e27042f61441db6c265df3b82317097534"
+  },
+  {
+    "name": "final-closing-integrity",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/closing_integrity.py"
+    ],
+    "exit": 0
+  }
+]
