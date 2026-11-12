@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | C3 exact private engine approved and qualified; continue test-only bounded offline dependency-solving adapter and explicit guarded cases. Freeze current source, run normal/-O/root-rule private checks and fresh independent delta plus retained aggregate. No actual A0-A4/network/Docling/model/store effects or full9.5 readiness advancement. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | C3 source75d880e8 and current evidence frozen for fresh CS01-10 delta then full bounded C0-C3 aggregate review. Minimal57, parser6/39, engine7/24 per normal/-O and private root-rule static checks pass. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open. |
 
 ## Completed
 

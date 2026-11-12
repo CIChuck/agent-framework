@@ -3712,3 +3712,8 @@ cases pass per mode; root-rule private typing25 sources and lint pass.
 [CS01–10 scope](validation/document-ingestion/gate-a/construction/c3/implementation-scope.md)
 requires committed current proof and fresh delta/full bounded aggregate review.
 Production and protected state remain unchanged; full HR/A0–A4 readiness stays open.
+
+
+### 2026-11-12 — C3 private resolver engine and offline solver freeze
+
+Recorded Chuck's exact private-engine approval; one18737-byte resolvelib1.2.1 wheel transferred and inspected with no other dependency transfer. Stable source `75d880e8b2d7ceb855f7497b2639b6d6b8effb98` adds only closed-catalog solving. Committed29-file export passes57 minimal cases,6 positive/39 refusal parser cases and7 positive/24 refusal engine cases per normal/-O, retained56 bodies,30 deterministic fixture inputs and root-rule private Ruff/format/mypy25. Protected18498 regular hashes,26 symlinks and9 local records match. Current [builder evidence](validation/document-ingestion/gate-a/construction/c3/builder-evidence.md) is frozen for fresh read-only CS01-10 delta then full bounded retained aggregate. All actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open; no acceptance or delivery.

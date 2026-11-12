@@ -6,7 +6,7 @@ is started with bounded implementation authority; new C0 work is local/unpushed.
 Product INGEST construction and real A0–A4 effects remain unapproved/unactivated.
 [Current C0 evidence](gate-a/construction/c0/correction-evidence.md).
 
-**Next gate:** C3 offline closed-catalog solver prepared: freeze current source, rerun minimal/parser/engine normal/-O and private root-rule checks, then fresh CS01-10 delta plus full bounded retained aggregate. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open.
+**Next gate:** C3 source75d880e8 and current evidence frozen for fresh CS01-10 delta then full bounded C0-C3 aggregate review. Minimal57, parser6/39, engine7/24 per normal/-O and private root-rule static checks pass. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open.
 
 ## Historical branch/design preparation (superseded for current C0 routing)
 

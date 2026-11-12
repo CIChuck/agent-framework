@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "C3 offline closed-catalog solver prepared: freeze current source, rerun minimal/parser/engine normal/-O and private root-rule checks, then fresh CS01-10 delta plus full bounded retained aggregate. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open.",
+  "current_scope": "C3 source75d880e8 and current evidence frozen for fresh CS01-10 delta then full bounded C0-C3 aggregate review. Minimal57, parser6/39, engine7/24 per normal/-O and private root-rule static checks pass. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "C3 offline closed-catalog solver prepared: freeze current source, rerun minimal/parser/engine normal/-O and private root-rule checks, then fresh CS01-10 delta plus full bounded retained aggregate. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open.",
+    "next_gate": "C3 source75d880e8 and current evidence frozen for fresh CS01-10 delta then full bounded C0-C3 aggregate review. Minimal57, parser6/39, engine7/24 per normal/-O and private root-rule static checks pass. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "C3 offline closed-catalog solver prepared: freeze current source, rerun minimal/parser/engine normal/-O and private root-rule checks, then fresh CS01-10 delta plus full bounded retained aggregate. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open.",
+      "next_gate": "C3 source75d880e8 and current evidence frozen for fresh CS01-10 delta then full bounded C0-C3 aggregate review. Minimal57, parser6/39, engine7/24 per normal/-O and private root-rule static checks pass. Private engine alone activated; actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2630,7 +2630,7 @@
       "source_observations_sha256": "bbd408be71036faef3aa5b4298232635a4dade2f2e813444df6aae3a2e63fb80",
       "consumer_worklist": "validation/document-ingestion/gate-a/consumer-readiness-matrix.md",
       "consumer_worklist_sha256": "12c2bcc68892f8b5b14023f67d34b190565b7ca22ed79c2a4a9013437c5e9e7c",
-      "status": "C3_offline_solver_prepared_for_freeze",
+      "status": "C3_frozen_pending_independent_review",
       "independent_review": "reconciled_verified_corrective_pass2",
       "council_active": false,
       "effects_activation": "not_granted",
@@ -2886,7 +2886,7 @@
         "report": "validation/document-ingestion/gate-a/construction/c2/verified-report.md"
       },
       "C3_construction": {
-        "status": "source_prepared_for_freeze",
+        "status": "in_review",
         "profile": "validation/document-ingestion/gate-a/construction/c3/private-resolver-engine-profile.json",
         "profile_sha256": "a9c64ca1ccc63ebe54c26108bc58c033792905394736fe048f29e84d74103a0f",
         "downloaded": true,
@@ -2895,7 +2895,11 @@
         "tool_qualified": "6 checks per normal/-O; not actual index resolution",
         "source_baseline": "ba5a41f80d446f9bebb87053fb5b21eb441e6e2c",
         "scope": "validation/document-ingestion/gate-a/construction/c3/implementation-scope.md",
-        "scope_sha256": "0481f1ecb424e7c3911796525b8315215921c82ee2f824bd008822cd3ce3d041"
+        "scope_sha256": "0481f1ecb424e7c3911796525b8315215921c82ee2f824bd008822cd3ce3d041",
+        "source_candidate": "75d880e8b2d7ceb855f7497b2639b6d6b8effb98",
+        "source_manifest": "validation/document-ingestion/gate-a/construction/c3/harness-manifest.json",
+        "source_manifest_sha256": "688c258e9772403fde49bd646dc43f52613dc820ff4e70602ef2b02c0491c80e",
+        "builder_evidence": "validation/document-ingestion/gate-a/construction/c3/builder-evidence.md"
       }
     },
     "lightweight_planning_exemption": {

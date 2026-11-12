@@ -1,6 +1,6 @@
 {
   "unit": "INGEST-C3-OFFLINE-SOLVER",
-  "status": "private_engine_activated_and_qualified_offline_construction_in_progress",
+  "status": "in_review",
   "profile": "private-resolver-engine-profile.json",
   "sha256": "a9c64ca1ccc63ebe54c26108bc58c033792905394736fe048f29e84d74103a0f",
   "tool": "resolvelib1.2.1",
@@ -10,5 +10,7 @@
   "production_changes": false,
   "actual_A0_A4_activated": false,
   "approval_question": "Answered: Approve private resolver-engine profile",
-  "approval": "private-resolver-engine-approval.json"
+  "approval": "private-resolver-engine-approval.json",
+  "source_candidate": "75d880e8b2d7ceb855f7497b2639b6d6b8effb98",
+  "actual_A0_A4": false
 }
