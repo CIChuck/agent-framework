@@ -1,0 +1,158 @@
+{
+  "source_candidate": "c97777366671006f56866aa92898aaffcec524d6",
+  "run_root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/docling-behavior-e2e-20261112",
+  "model": "text-embedding-nomic-embed-text-v1.5",
+  "origin": "http://127.0.0.1:1234",
+  "loaded_context": 2048,
+  "dimensions": 768,
+  "modes": [
+    {
+      "mode": "normal",
+      "run_id": "b30fc98907624550ae98706e847de03d",
+      "status": "PASS",
+      "collections": [
+        {
+          "budget": 512,
+          "rows": 41,
+          "sources": [
+            "docx-long.docx.json",
+            "pdf-native.pdf.json",
+            "pdf-scanned.pdf.json",
+            "pptx-notes.pptx.json",
+            "supplemental-code-json",
+            "supplemental-csv",
+            "supplemental-markdown",
+            "supplemental-text",
+            "supplemental-tsv",
+            "supplemental-web-tool-payload",
+            "xlsx-values.xlsx.json"
+          ],
+          "query_ranks": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "budget": 128,
+          "rows": 40,
+          "sources": [
+            "docx-long.docx.json"
+          ],
+          "query_ranks": [
+            1
+          ]
+        }
+      ],
+      "broker_calls": {
+        "embed_documents": 4,
+        "embed_query": 5
+      },
+      "http_requests": 27,
+      "embedding_requests": 9,
+      "vectors": 86,
+      "local_prepared_tokens": 20778,
+      "server_usage": [
+        "{\"prompt_tokens\": 0, \"total_tokens\": 0}"
+      ],
+      "reopen": {
+        "status": "PASS",
+        "run_id": "b30fc98907624550ae98706e847de03d",
+        "queries": 5,
+        "network_requests": 0
+      },
+      "evidence": {
+        "corpus": "ef432bd39bf3ee62441847d9e698b64fb0cbd65fab07ba46c0bf84d703559cdc",
+        "stored": "f821792e50d6e5991ee2e8e42c236b6b70ff61d5d70b2fbede53b20c58f64005",
+        "reopened": "90bb25993d1e071680dfb98d385076907b92ccead8ad1f80cd77c52845fcfac8",
+        "http": "88261edebbb43f01a93119c6c51169d2c268eeb9054aa6801168c3c996b05ff2"
+      }
+    },
+    {
+      "mode": "optimized",
+      "run_id": "287706eaf2ab44469dccc2eb2961a511",
+      "status": "PASS",
+      "collections": [
+        {
+          "budget": 512,
+          "rows": 41,
+          "sources": [
+            "docx-long.docx.json",
+            "pdf-native.pdf.json",
+            "pdf-scanned.pdf.json",
+            "pptx-notes.pptx.json",
+            "supplemental-code-json",
+            "supplemental-csv",
+            "supplemental-markdown",
+            "supplemental-text",
+            "supplemental-tsv",
+            "supplemental-web-tool-payload",
+            "xlsx-values.xlsx.json"
+          ],
+          "query_ranks": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "budget": 128,
+          "rows": 40,
+          "sources": [
+            "docx-long.docx.json"
+          ],
+          "query_ranks": [
+            1
+          ]
+        }
+      ],
+      "broker_calls": {
+        "embed_documents": 4,
+        "embed_query": 5
+      },
+      "http_requests": 27,
+      "embedding_requests": 9,
+      "vectors": 86,
+      "local_prepared_tokens": 20778,
+      "server_usage": [
+        "{\"prompt_tokens\": 0, \"total_tokens\": 0}"
+      ],
+      "reopen": {
+        "status": "PASS",
+        "run_id": "287706eaf2ab44469dccc2eb2961a511",
+        "queries": 5,
+        "network_requests": 0
+      },
+      "evidence": {
+        "corpus": "654fcdaa778fdfd9915e819868b28adc692a21ff0f7f384b95177b8c9ebf6644",
+        "stored": "c3217483960fcd8a1169f3e042544fb4a06e455e13eca1e79f0f5278bcd67833",
+        "reopened": "6d8e617aa6177174ede974fddce97887cfa0c2e09105b751bd8e30595bba9c86",
+        "http": "ae021cece6c2f60fa116d88c9498e765d9e23dcc212ddf41f4fbe59cb0c782b6"
+      }
+    }
+  ],
+  "window_budget": {
+    "requests": 57,
+    "vectors": 172,
+    "tokens": 41556
+  },
+  "production_changes": false,
+  "upstream_usage_tokens_qualified": false,
+  "packages": {
+    "rapidocr": "3.10.0",
+    "docling-core": "2.106.0",
+    "friday-framework-memory": "0.1.0a4",
+    "tokenizers": "0.23.3",
+    "friday-framework-core": "0.1.0a4",
+    "litellm": "1.100.1",
+    "certifi": "2026.10.23",
+    "chromadb": "1.4.0",
+    "friday-framework-telemetry": "0.1.0a4",
+    "docling-ibm-models": "4.0.4",
+    "python-dateutil": "2.9.0.post0",
+    "friday-framework-llm": "0.1.0a4",
+    "docling": "2.150.0"
+  }
+}

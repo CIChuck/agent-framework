@@ -3797,3 +3797,19 @@ Nomic. The [scope amendment](validation/document-ingestion/gate-a/end-to-end-eva
 adds only isolated model requests and fresh test-store writes. Read-only server
 status reports context2048; CLI ttlMs=null and configuration JIT=false. No setting
 was changed and no embedding request has yet been sent. Product work remains later.
+
+## 2026-11-12 — Actual isolated ingestion path complete
+
+Source `c9777736` completed actual normal/optimized Docling conversion, document
+chunks, Friday-LLM/Nomic inference and shared Memory Chroma storage/retrieval.
+Each mode stored81 chunks, retrieved5 expected sources at rank1 and reopened
+network-free with identical text/provenance and retrieval IDs. The two refusal
+cases never entered model inputs or stores. Across both modes:18 embedding POSTs,
+172 vectors,41556 local prepared tokens; window57/64 requests including status.
+LM Studio reports zero usage tokens, so counter equivalence remains unqualified.
+[Results and evidence](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
+retain the actual disposable stores. Private combined packages include required
+Certifi2026.10.23.74 tests/mode,29-source typing, focused lint/format and admin
+checks pass;18574 files/26 symlinks/8 local records preserved. Freeze these
+receipts for fresh independent EE-01–08 validation. No production integration,
+whole9.5 readiness, acceptance or delivery claim.

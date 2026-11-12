@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Execute the requested isolated end-to-end document -> Docling/chunks -> Friday-LLM/Nomic -> fresh Chroma -> retrieval proof, then review it. Standalone Docling behavior VERIFIED; whole readiness9.5 and product /ingest construction remain open. Production stays untouched. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh independent review of committed isolated Docling -> Friday-LLM/Nomic -> Chroma end-to-end proof. Normal/optimized extraction, 162 stored chunks and network-free reopen passed; product /ingest construction and whole readiness9.5 remain open. Production unchanged. |
 
 ## Completed
 
