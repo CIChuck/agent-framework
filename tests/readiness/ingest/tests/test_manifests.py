@@ -33,6 +33,37 @@ def unit() -> Path:
 
 
 class Manifests(unittest.TestCase):
+    def test_empty_target_tag_components_refuse_before_parser_import(self) -> None:
+        before = "packaging" in sys.modules
+        environment = {
+            key: "test"
+            for key in (
+                "implementation_name",
+                "implementation_version",
+                "os_name",
+                "platform_machine",
+                "platform_release",
+                "platform_system",
+                "platform_version",
+                "python_full_version",
+                "platform_python_implementation",
+                "python_version",
+                "sys_platform",
+            )
+        }
+        for tag in ("py3--any", "py3-none-", "-none-any", "py3..py2-none-any"):
+            with self.assertRaisesRegex(Refusal, "Malformed explicit target wheel tag"):
+                dependency_selection(
+                    {
+                        "schema": 1,
+                        "roots": ["a"],
+                        "environment": environment,
+                        "tags": [tag],
+                        "wheels": [{}],
+                    }
+                )
+        self.assertEqual("packaging" in sys.modules, before)
+
     def test_dependency_schema_refuses_before_optional_parser_import(self) -> None:
         before = "packaging" in sys.modules
         values: list[object] = [{}, [], {"schema": 2}, {"schema": True}]
@@ -212,6 +243,30 @@ def dependency_cases() -> dict[str, object]:
             | {"python_version": "3.12"}
         },
     ]
+    malformed_tags = (
+        "-none-any",
+        "py3--any",
+        "py3-none-",
+        "py3..py2-none-any",
+        "py3-.none-any",
+        "py3-none.-any",
+        "py3-none-.any",
+        "py3-none-any.",
+    )
+    for tag in malformed_tags:
+        filename = "alpha_file-2.4-" + tag + ".whl"
+        malformed = changed_wheel(
+            {
+                "filename": filename,
+                "url": "https://files.pythonhosted.org/" + filename,
+                "requires_dist": [],
+            }
+        )
+        # A bad target must not match an equally bad wheel. These are actual
+        # call refusals in the guarded parser profile, including the two reports.
+        malformed["tags"] = [tag]
+        malformed["wheels"] = sequence(malformed["wheels"])[:1]
+        negatives.append(malformed)
     for index, negative in enumerate(negatives):
         with case.subTest(negative=index), case.assertRaises(Refusal):
             dependency_selection(negative)
@@ -245,6 +300,15 @@ def dependency_cases() -> dict[str, object]:
         ],
         ["speed"],
     )
+    positives += 1
+    compressed_filename = "alpha_file-2.4-py2.py3-none-any.whl"
+    compressed = changed_wheel(
+        {
+            "filename": compressed_filename,
+            "url": "https://files.pythonhosted.org/" + compressed_filename,
+        }
+    )
+    case.assertEqual(dependency_selection(compressed)["distribution_count"], 3)
     positives += 1
     prerelease = {**wheel("alpha-file", "2.4rc1", [], []), "requires_python": ">=3.13"}
     rc_selection = value | {"roots": ["alpha-file==2.4rc1"], "wheels": [prerelease]}

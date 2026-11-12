@@ -28,6 +28,8 @@ The explicit parser-profile test selector is
 `ingest.tests.test_manifests.dependency_cases()`, invoked by the recorded guarded
 private worker with verified code/tool inventories, in normal and optimized modes.
 It does not run under bare pytest or implicitly borrow an installed parser.
+Each target and wheel tag has three nonempty identifier components; compressed
+tag groups must contain no empty member. Parsing alone is not syntax validation.
 
 This checker refuses incompatible Python/platform/version declarations, missing
 or unreachable dependencies, unknown extras, direct references, yanked candidates

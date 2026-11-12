@@ -1,0 +1,7 @@
+{
+  "raw_path": "report.md.gz",
+  "raw_sha256": "d349c5b0540777cce052a29331b50bb8afc1c3fa7dd8c06213f25d22a5432f1b",
+  "readable_path": "report.md",
+  "readable_sha256": "7a459f314291aa9b7854d5975dd082921f9ba695be2cfb1603b8de9d6e6031db",
+  "normalization": "Trailing blank lines removed for repository whitespace; exact original retained gzip."
+}

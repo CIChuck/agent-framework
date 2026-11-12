@@ -53,7 +53,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Fresh independent CD-01-08 review of C2 offline dependency-selection checks plus full bounded retained C0/C1 controls; private parser activated, no real A0-A4 effects. Continue remaining adapter construction after current proof; production unchanged, full readiness/9.5 advancement open.
+**Next gate:** C2 correction1 for INGEST-C2-VAL-001: explicit tag-component/compressed-member validation, unfixed/corrected call assertions, then fresh CD01-08 delta and full bounded C0/C1/C2 aggregate. No actual A0-A4 effects or full-readiness advancement; production unchanged.
 
 **Historical design evidence:** the technical-design report at `f43368c5` and
 [assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)

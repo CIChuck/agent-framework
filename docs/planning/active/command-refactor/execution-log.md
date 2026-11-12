@@ -3645,3 +3645,15 @@ pass; preservation covers18283 tracked hashes plus26 symlinks and9 local records
 separate candidate consistency from unqualified A0–A4. Fresh read-only CD01–08
 delta then bounded retained-controls aggregate review follows. No actual stage,
 production change, whole-repo-green, readiness advancement or delivery is claimed.
+
+
+## 2026-11-12 — C2 tag finding and bounded correction
+
+Fresh review of120def19 requests INGEST-C2-VAL-001: parsing accepted empty tag
+components. [Bounded correction](validation/document-ingestion/gate-a/construction/c2/remediation-001.md)
+adds explicit target/wheel syntax checks and tests, preserving the first report.
+Actual unfixed source reproduces both reported call-assertion failures in each
+Python mode; corrected development fixtures refuse both. Current parser selector
+passes6 positives/39 refusal cases per mode. Commit current source, rerun formal
+checks, then obtain fresh delta and bounded aggregate review. Production and all
+real stages remain untouched/unactivated; no prior conclusion carries forward.

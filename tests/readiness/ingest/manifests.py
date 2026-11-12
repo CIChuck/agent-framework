@@ -12,6 +12,11 @@ from urllib.parse import urlsplit
 RECORD_LIMIT = 1024 * 1024
 SHA256 = re.compile(r"[0-9a-f]{64}\Z")
 GIT_ID = re.compile(r"(?:[0-9a-f]{40}|[0-9a-f]{64})\Z")
+WHEEL_TAG = re.compile(
+    r"[a-zA-Z0-9_]+(?:\.[a-zA-Z0-9_]+)*-"
+    r"[a-zA-Z0-9_]+(?:\.[a-zA-Z0-9_]+)*-"
+    r"[a-zA-Z0-9_]+(?:\.[a-zA-Z0-9_]+)*\Z"
+)
 
 
 class Refusal(ValueError):
@@ -164,6 +169,10 @@ def dependency_selection(value: object) -> dict[str, object]:
     )
     tags = [text(item) for item in sequence(data["tags"])]
     require(1 <= len(tags) <= 2048 and len(set(tags)) == len(tags), "Target tags")
+    require(
+        all(WHEEL_TAG.fullmatch(item) for item in tags),
+        "Malformed explicit target wheel tag",
+    )
 
     # Deliberately lazy: C0/core loading and selftests remain standard-library only.
     import packaging
@@ -230,6 +239,11 @@ def dependency_selection(value: object) -> dict[str, object]:
             filename = text(row["filename"])
             require(Path(filename).name == filename, "Wheel filename path")
             wheel_name, wheel_version, _, wheel_tags = parse_wheel_filename(filename)
+            require(
+                bool(wheel_tags)
+                and all(WHEEL_TAG.fullmatch(str(tag)) for tag in wheel_tags),
+                "Malformed selected wheel tag",
+            )
             require(
                 wheel_name == name and wheel_version == version,
                 "Wheel/metadata identity mismatch",
