@@ -1,0 +1,20 @@
+{
+  "scope": "Frozen controller round2 close before any repository metadata writes",
+  "candidate": "0144c53908afb6f8288425c58c7a3bbff651faef",
+  "request_sha256": "eb0d88149a5b8bf3413b81ff9a2303e9baeb55063e14398c1af303fca7df09fe",
+  "target_sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1",
+  "git_identity": {
+    "head": "0144c53908afb6f8288425c58c7a3bbff651faef",
+    "branch": "feature/cmd-ingest-001",
+    "logical_index_before_status": "5dca109fa1fc88aa868e5efd2d9c761a810e994cb24840c181cffea33dab4f5b",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+    "staged": ""
+  },
+  "required_inputs_match": 9,
+  "optional_references_match": 6,
+  "protected_nonplanning_files_match": 16690,
+  "symlinks_match": 26,
+  "preserved_entries_match": 8,
+  "result": "PASS",
+  "product_tests_or_new_effects": false
+}

@@ -1,0 +1,17 @@
+index: 5dca109fa1fc88aa868e5efd2d9c761a810e994cb24840c181cffea33dab4f5b
+head: 0144c53908afb6f8288425c58c7a3bbff651faef
+branch: feature/cmd-ingest-001
+status:
+ M packages/friday-chat/config.example.yaml
+ M packages/friday-chat/models-config.example.yaml
+?? .friday-old/
+staged: []
+packages/friday-chat/config.example.yaml MATCH
+packages/friday-chat/models-config.example.yaml MATCH
+.friday MATCH
+.friday-old MATCH
+.venv MATCH
+exports MATCH
+exports/friday_context.txt MATCH
+exports/friday_prompt.txt MATCH
+preserved all match: True

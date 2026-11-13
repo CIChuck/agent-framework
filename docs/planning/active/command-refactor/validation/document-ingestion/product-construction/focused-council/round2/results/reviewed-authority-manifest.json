@@ -1,0 +1,184 @@
+{
+  "version": 7,
+  "initiative": "friday-command-refactor",
+  "unit": "INGEST-PRODUCT-DIRECTIVE-PREPARATION",
+  "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "branch": "feature/cmd-ingest-001",
+  "state": "Conditional draft v0.7; focused round2 review only",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "9c2840ea92bf5f25acd5c85d36a18d2c7d9677c0768d1e811aef5efde6fc936b"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+      "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/embedding-compatibility-contract.md",
+      "sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/proposals/tools-document-adoption.md",
+      "sha256": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+      "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/approval/ingest-package-impact.md",
+      "sha256": "f4f4a20d6db52f2459f767ede79f2db211a4a7118d6736f40551fd00fbf1cbec"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/test-migration-plan.md",
+      "sha256": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/command-architecture-update-plan.md",
+      "sha256": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/guide-update-handoff.md",
+      "sha256": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/behavior-evaluation/behavior-results.md",
+      "sha256": "92cc218e4addde573cb2784ddaec83332c84fece637cfa721187d98c387a302a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/behavior-evaluation/evidence-index.json",
+      "sha256": "316e913a407f012e69d1b26118f6604667eddda09a2eba6305f240b7dcdf7f1a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/end-to-end-evaluation/results.md",
+      "sha256": "afef85cfe26141dd2ff9cc3cb0e63a4a4423c2e12aa975a42fef9b4f9497fe88"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/end-to-end-evaluation/facts.json",
+      "sha256": "3461b01f117cf03cf9878c91705ca986cf30945fbccaca958e35c2942b36fa1f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/end-to-end-evaluation/evidence-index.json",
+      "sha256": "afc977ff29ffd74699c843de0804d246a54ad897fbcc11883272659450cdd1f6"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/results.md",
+      "sha256": "2eaa1f967edddeb8c8c6e40528d0fb9ad52ff2a2ae39e30245f31bed278448f3"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/facts-v2.json",
+      "sha256": "9a5d5159a9b1402cfaac16c197fd8ad2d5354ac92b97eb3538a33c216200d1ba"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/evidence-index-v2.json",
+      "sha256": "cc34541ed79606bcd18c37094288833d5036f7a1fd880695b1ecc795481765f7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
+      "sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-test-summary.json",
+      "sha256": "42e49adf099e5daaf39c3dc127a0bc6c97a9219286fc1c0d363b75d2d5c458f6"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/test-migration-seed.json",
+      "sha256": "d986b613ad8e87c0aaaab87379e0e5ff63b052e63c7830e436ce96d64e32c53a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/preparation-authorization.json",
+      "sha256": "d57c864b280230ae7f0a351a6bedae1bfe83c843b81176619758c838c0636e0d"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
+      "sha256": "601babef2d35c11b65d5c224e082b191b3212b973e287d16740be604b54ccbc4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
+      "sha256": "e7b3b3afa0ad3ab46313f180ac3b23a62c90fe3cc5a26da6b91bcd7b90d3e909"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/approval/ingest-existing-store-policy.md",
+      "sha256": "3a9343e77d97e2d8b94ebab2d2fa8fb3c3c339b1c4a37c32899de86e58139668"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
+      "sha256": "efb22a3c61fc7aa9f22f73b25a4bbfbe75db6f40624ae187d845599626261267"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md",
+      "sha256": "fc681e1c483b3acb400b5a5854b9208b66c4401fc4a7455d778ca80b7b475f7f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/replacement-qualification-plan.json",
+      "sha256": "5616c80516f79d47d1ed5e2f18f1f8cd7b4154460a73f34ea799bf2cda870798"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-helper-inventory.json",
+      "sha256": "8bd13dc913f9c2295e3ee766efa5dac1c53a4bf7c7ea816e8aa3b1725a38d266"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/preparation-checks-metadata.json",
+      "sha256": "bfe9838110801f129c86b193566980b38dd06dfb5d58ccd49fc2b5bafdcb05d7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-fixture-supplement.json",
+      "sha256": "04b5860567b1abf96744e1ec38c5fd2d24554bd353c67237ab32b3181ad1e778"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-support-role-map.json",
+      "sha256": "57900f1bd7b2e546d0911f9e21ba9ab00d1b5b42664e3802c6177d10d054a3d8"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/authorization.json",
+      "sha256": "4b7435d516830347409cc7204936f3e7f3a1343f37026646c9c525df626e53a3"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/criteria.md",
+      "sha256": "f6772d98dec630005e6e7a9d4ff1007e1fab809399cd8fa917768be74170afcb"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/review-context.md",
+      "sha256": "34b9bc82755e60ad3c266afb5a7f0fe6596e25c14cc8eadf2ad7144c09d1d170"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/round2/correction-brief.json",
+      "sha256": "747c62569065d33900158f29a5b88a96fbb09cca5dbe5d7b07bf3457ac0a1ef5"
+    }
+  ],
+  "required_final_activation_appendices": [
+    "aggregate readiness disposition with threshold evidence",
+    "exact shared contracts/signatures/serialization/vectors/assets/limits",
+    "per-slice exact file allowlist and case-level migration exceptions",
+    "exact post-readiness impact binding and maintainer approval",
+    "prepared validation environment and effects/window record",
+    "Actual B/N-DIM/N-SPACE/N-CAP qualification identity/counter/asset/parity manifest before I1, not merely node definitions"
+  ],
+  "all_technical_parent_bytes_preserved": true,
+  "correction_base": "8c847e72b6ab260a2fc618f74390f39d599cb6e7",
+  "review_input_exclusions": {
+    "preparation-checks.json": "Raw historical stdout/stderr is excluded and hash-only; metadata projection above supplies command/exit/digests.",
+    "authority_navigation_log_and_old_councils": "Hash-only or safe current controls; no payload/history/peer report reads."
+  },
+  "prior_broad_review_closeout": {
+    "candidate": "b6a62742e89951679f338e46f34c4650a5e0dbc7",
+    "reviewed_manifest_sha256": "53170a97b3f9be971fee41648c874db948419658878ed9e4f4433eb95f77bc93",
+    "reviewed_original": "correction-loop/pass3/results/reviewed-authority-manifest.json",
+    "changes": "Current status and branch-handoff routing pin only. All technical parent/input/target bytes remain as reviewed; this is not a new qualifying verdict.",
+    "report": "correction-loop/pass3/results/report.md"
+  },
+  "review_scope_note": "Input identity is not a demand to reread/rederive all historical evidence. Focused brief controls this council; standalone Docling efficacy/provenance audits are out of scope. Construction parent requirements and future integration proofs remain binding."
+}

@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Focused INGEST directive council round2/3: correct document /read owned async conversion/cancellation/shutdown and acceptance, plus related headless/planner/dispatch/capacity/asset/default clarifications; then reassess full F1–F8 completeness/buildability. Completed Docling evaluation remains input. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5. No product work or new effects. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01–07 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects. |
 
 ## Completed
 

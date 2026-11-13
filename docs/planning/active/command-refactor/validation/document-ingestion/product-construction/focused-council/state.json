@@ -3,9 +3,9 @@
   "workflow": "focused directive council",
   "maximum_rounds": 3,
   "rounds_started": 2,
-  "rounds_completed": 1,
+  "rounds_completed": 2,
   "current_round": 2,
-  "status": "round2_in_review",
+  "status": "closed_verified",
   "stop_on_gate_or_round3": true,
   "construction_approved": false,
   "history": [
@@ -29,6 +29,31 @@
           "overall": 9.34
         }
       }
+    },
+    {
+      "round": 2,
+      "candidate": "0144c53908afb6f8288425c58c7a3bbff651faef",
+      "outcome": "VERIFIED",
+      "report": "round2/results/report.md",
+      "assessment_complete": true,
+      "scores": {
+        "sol": {
+          "coverage": 10.0,
+          "overall": 9.6
+        },
+        "astra": {
+          "coverage": 10.0,
+          "overall": 9.6
+        },
+        "opus": {
+          "coverage": 9.6,
+          "overall": 9.57
+        }
+      },
+      "mandatory_findings": []
     }
-  ]
+  ],
+  "target_met": true,
+  "further_automatic_review": false,
+  "round3_started": false
 }

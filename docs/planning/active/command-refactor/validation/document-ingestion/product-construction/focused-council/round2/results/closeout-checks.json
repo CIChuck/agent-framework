@@ -1,0 +1,96 @@
+{
+  "scope": "Planning-only focused round2 closeout; no renewed semantic review",
+  "administration": [
+    {
+      "name": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "name": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "name": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1172 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "name": "planning-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "reviewed_technical_inputs_unchanged": true,
+  "original_reports_unchanged": true,
+  "current_pins_match": true,
+  "execution_log_append_only": true,
+  "frozen_preservation_before_closeout": "controller-closing.json",
+  "product_tests_run": false,
+  "new_effects": false
+}

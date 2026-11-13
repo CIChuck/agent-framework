@@ -711,11 +711,12 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Focused INGEST directive council round2/3: correct document /read owned async conversion/cancellation/shutdown and acceptance, plus related headless/planner/dispatch/capacity/asset/default clarifications; then reassess full F1–F8 completeness/buildability. Completed Docling evaluation remains input. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5. No product work or new effects."
+  next_gate: "Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01–07 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/round2/results/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/round1/results/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/results/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md

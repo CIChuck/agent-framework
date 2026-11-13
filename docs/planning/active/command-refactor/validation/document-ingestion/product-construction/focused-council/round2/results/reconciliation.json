@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "workflow": "focused INGEST implementation-directive review",
+  "round": 2,
+  "maximum_rounds": 3,
+  "candidate": "0144c53908afb6f8288425c58c7a3bbff651faef",
+  "directive_version": "0.7",
+  "target_sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1",
+  "outcome": "VERIFIED",
+  "all_seats_terminal": true,
+  "all_assessments_complete": true,
+  "threshold_met_each": true,
+  "results": {
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "outcome": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "coverage": 10.0,
+      "overall": 9.6,
+      "mandatory_findings": [],
+      "report": "sol/report.md",
+      "report_sha256": "89952ff70c382878e8c3c5c33c772c1f31f86567b4a8c0bfd752bd9d85ecaef2",
+      "boundary_checks": "matched",
+      "qualifies_for_gate": true
+    },
+    "astra": {
+      "model": "gpt-6-astra",
+      "outcome": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "coverage": 10.0,
+      "overall": 9.6,
+      "mandatory_findings": [],
+      "report": "astra/report.md",
+      "report_sha256": "6ae75e6ea18cc855500fc7103b62c14a4d605d92bf6574b512f46e37f70d7b5c",
+      "boundary_checks": "matched",
+      "qualifies_for_gate": true
+    },
+    "opus": {
+      "model": "claude-opus-5-5",
+      "outcome": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "coverage": 9.6,
+      "overall": 9.57,
+      "mandatory_findings": [],
+      "report": "opus/report.md",
+      "report_sha256": "662f43cd29d9d4f91886f9c99e16c3e6e7b0bc17c53fe1deea2805047c2d27f5",
+      "boundary_checks": "matched",
+      "qualifies_for_gate": true
+    }
+  },
+  "mandatory_findings": [],
+  "closed_at_design_level": [
+    "FOCUSED-R1-OPUS-M1",
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5"
+  ],
+  "controller_frozen_closing_boundary": "PASS",
+  "reviewed_technical_bytes_unchanged_at_closeout": true,
+  "review_loop_closed": true,
+  "rounds_completed": 2,
+  "further_automatic_review": false,
+  "construction_approved": false,
+  "effects_approved": false,
+  "gate_A_readiness_closed": false,
+  "advisory_handoff": "implementation-handoff.md",
+  "authority": "Focused directive document readiness only. Complete exact A1-A5 activation records before product generation. Existing Docling evaluation remains established input."
+}

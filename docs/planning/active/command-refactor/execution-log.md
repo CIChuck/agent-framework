@@ -4169,3 +4169,33 @@ new RuntimeConfig document YAML or affecting existing MCP ingestion settings).
 No product/test source, dependencies, user config, store, model or converter
 evaluation changes occur. Fresh round2 reviews this delta then all F1–F8; no
 standalone Docling test or mechanical inventory/archive audit is assigned.
+
+
+## 2026-11-13 — focused INGEST directive VERIFIED; loop closed at round2
+
+[Round2 reconciliation](validation/document-ingestion/product-construction/focused-council/round2/results/report.md)
+records three complete fresh F1–F8 assessments on `0144c539`, directive v0.7
+SHA256 `3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1`.
+Sol10.0/9.60, Astra10.0/9.60 and Opus9.6/9.57 (coverage/overall) each return
+VERIFIED with no mandatory finding. All C1–C5 corrections, including prior /read
+worker/cancellation/shutdown acceptance, are closed at design level. Original
+reports, rubric scores and limits remain unchanged. The requested gate is met
+and this authorization closes after two of at most three rounds; no third round
+or replacement is launched.
+
+Reviewer entry/exit identities and the controller frozen closing check pass
+before metadata writes. Reviewed directive, phase maps, REM/annex/companion,
+approved impact/readiness, all non-planning files and preserved user state remain
+unchanged. This is targeted static integration-plan review, not executed product
+proof, repeated Docling evaluation, inventory/archive audit or whole-framework
+runtime validation. No installs, network/model/store effects or delivery occur.
+
+[Implementation handoff](validation/document-ingestion/product-construction/focused-council/round2/results/implementation-handoff.md)
+records existing A2 duties for actual application read lifecycle, repeat-cancel/
+timeout/synchronous-reader semantics, retained document/planner identity, asset
+ownership and destination cache witnesses. The approved impact remains v0.6;
+its required post-readiness revision must preserve that history and obtain exact
+maintainer satisfaction. Current authority/board/navigation now route to the
+existing Q/RD-01–07 and A1–A5 activation records. This focused document verdict
+closes neither whole Gate A nor product construction approval, UAT, acceptance
+or delivery. No product generation follows.

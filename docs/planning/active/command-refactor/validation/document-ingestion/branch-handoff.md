@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Focused INGEST directive council round2/3. Assess /read lifecycle correction first, then full eight-area integration plan. Completed Docling evaluation remains input; no product work or new effects.
+**Next gate:** Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01–07 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects.
 
 ## Historical branch/design preparation (superseded for current evaluation routing)
 

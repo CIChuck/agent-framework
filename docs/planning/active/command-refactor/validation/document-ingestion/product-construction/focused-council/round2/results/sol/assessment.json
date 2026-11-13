@@ -1,0 +1,25 @@
+{
+  "seat": "SOL",
+  "round": 2,
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "areas_total": 8,
+  "verdict": "VERIFIED",
+  "mandatory_findings": [],
+  "coverage": 10.0,
+  "overall": 9.6,
+  "weighted_contributions": {
+    "F1": 1.9,
+    "F2": 1.0,
+    "F3": 1.45,
+    "F4": 1.9,
+    "F5": 0.95,
+    "F6": 0.7,
+    "F7": 1.0,
+    "F8": 0.7
+  },
+  "report_path": "/private/tmp/sol-ingest-r2-review-jj7ffjrq/report.md",
+  "report_sha256": "89952ff70c382878e8c3c5c33c772c1f31f86567b4a8c0bfd752bd9d85ecaef2",
+  "boundary_checks": "matched",
+  "authority_granted": []
+}

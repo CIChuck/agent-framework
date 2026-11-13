@@ -1,7 +1,9 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/local; execution phase: validation; validation state: in_review
-for the focused implementation-directive council, round2/3. Earlier broad review loops remain closed. Package impact v0.6 is approved.
+**Status:** started/local; execution phase: planning; validation state: verified
+for the focused implementation directive only. Its council closed after round2/3;
+all seats meet the 9.5 gate. Product activation remains pending. Earlier broad
+review loops remain closed. Package impact v0.6 is approved.
 Bounded Docling/Nomic/corpus evaluations remain independently verified. Whole
 Gate-A9.5, exact product construction approval and MAINT human UAT/acceptance
 remain open. Production source and state are unchanged.
@@ -62,8 +64,11 @@ assesses the ingestion implementation plan; Docling evaluations remain establish
 input. [Focused round1](validation/document-ingestion/product-construction/focused-council/round1/results/report.md)
 completed all eight areas: Sol/Astra VERIFIED, Opus identified the document /read
 lifecycle/acceptance gap. Directive v0.7 clarifies it and related integration
-duties before a fresh full round2. Conditional status and review rounds remain
-separate; no construction is activated. The [phase map](validation/document-ingestion/product-construction/phase-evidence-map.md)
+duties. [Focused round2](validation/document-ingestion/product-construction/focused-council/round2/results/report.md)
+completes all eight areas in every seat, with zero mandatory findings and both
+scores at least 9.5. The loop closes after two rounds; no third is launched.
+[Implementation advisories](validation/document-ingestion/product-construction/focused-council/round2/results/implementation-handoff.md)
+feed the existing activation appendices. No construction is activated. The [phase map](validation/document-ingestion/product-construction/phase-evidence-map.md)
 separates Q qualification, scoped I1/I2/I3 exits, final AG and human UAT.
 Product generation has not started. The earlier proceed
 is recorded as documentation-only preparation, with protected state preserved.
@@ -86,7 +91,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Focused INGEST directive council round2/3: correct document /read owned async conversion/cancellation/shutdown and acceptance, plus related headless/planner/dispatch/capacity/asset/default clarifications; then reassess full F1–F8 completeness/buildability. Completed Docling evaluation remains input. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5. No product work or new effects.
+**Next gate:** Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01–07 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

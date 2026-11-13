@@ -1,0 +1,73 @@
+{
+  "seat": "SOL",
+  "round": 2,
+  "candidate": "0144c53908afb6f8288425c58c7a3bbff651faef",
+  "request_sha256": "eb0d88149a5b8bf3413b81ff9a2303e9baeb55063e14398c1af303fca7df09fe",
+  "inputs": [
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+      "sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1",
+      "matched": true
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/criteria.md",
+      "sha256": "f6772d98dec630005e6e7a9d4ff1007e1fab809399cd8fa917768be74170afcb",
+      "matched": true
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/review-context.md",
+      "sha256": "34b9bc82755e60ad3c266afb5a7f0fe6596e25c14cc8eadf2ad7144c09d1d170",
+      "matched": true
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/authorization.json",
+      "sha256": "4b7435d516830347409cc7204936f3e7f3a1343f37026646c9c525df626e53a3",
+      "matched": true
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
+      "sha256": "601babef2d35c11b65d5c224e082b191b3212b973e287d16740be604b54ccbc4",
+      "matched": true
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+      "sha256": "b7d93caf2d302e0802b3c6b7f523de42d2ab98f625b5a8a02326f21a8fec2f9f",
+      "matched": true
+    },
+    {
+      "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+      "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+      "matched": true
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/readiness-decision.md",
+      "sha256": "3f31544c6c49ea03665d9899eae410b4a510c6078bb3c19f5e974e5b3693c8e0",
+      "matched": true
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/round2/correction-brief.json",
+      "sha256": "747c62569065d33900158f29a5b88a96fbb09cca5dbe5d7b07bf3457ac0a1ef5",
+      "matched": true
+    }
+  ],
+  "entry_exit_equal": true,
+  "declared_boundary_match": true,
+  "source_scopes": {
+    "packages/friday-chat/src/friday_chat/commands/registry.py": "CommandRegistry registration/execute, read/ingest/exit handlers, raw parser",
+    "packages/friday-chat/src/friday_chat/commands/files.py": "SmartFileReader, line parsing and rendering",
+    "packages/friday-chat/src/friday_chat/app.py": "command dispatch/output, maintenance shutdown/client close",
+    "packages/friday-chat/src/friday_chat/runtime.py": "embedding/client/memory protocols and fake ingestion",
+    "packages/friday-chat/src/friday_chat/adapters.py": "async client lifecycle and actual ingestion character slicer",
+    "packages/friday-tools/src/friday_tools/filesystem/smart_read.py": "constructor, processor wiring, cache and small/large routing",
+    "packages/friday-cli/src/friday_cli/container.py": "configuration default and to_runtime_config origin forwarding",
+    "packages/friday-core/src/friday_core/profiles.py": "targeted factory signatures search",
+    "packages/friday-llm/src/friday_llm/embeddings.py": "embed_documents/embed_query and cache/batch seams"
+  },
+  "optional_input": {
+    "path": "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+    "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+    "scope": "targeted source-boundary search and proposed exact implementation paths"
+  },
+  "executed_product_checks": [],
+  "excluded_material_read": false
+}

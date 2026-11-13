@@ -4,7 +4,7 @@
   "unit": "INGEST-PRODUCT-DIRECTIVE-PREPARATION",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "branch": "feature/cmd-ingest-001",
-  "state": "Conditional draft v0.7; focused round2 review only",
+  "state": "Conditional draft v0.7; focused directive review VERIFIED, activation pending",
   "inputs": [
     {
       "path": "AGENTS.md",
@@ -116,7 +116,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
-      "sha256": "efb22a3c61fc7aa9f22f73b25a4bbfbe75db6f40624ae187d845599626261267"
+      "sha256": "f53723bccfc731803c553278ab233442b0d61eb5ae290f6334c56054eeaeb3e3"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md",
@@ -180,5 +180,14 @@
     "changes": "Current status and branch-handoff routing pin only. All technical parent/input/target bytes remain as reviewed; this is not a new qualifying verdict.",
     "report": "correction-loop/pass3/results/report.md"
   },
-  "review_scope_note": "Input identity is not a demand to reread/rederive all historical evidence. Focused brief controls this council; standalone Docling efficacy/provenance audits are out of scope. Construction parent requirements and future integration proofs remain binding."
+  "review_scope_note": "Input identity is not a demand to reread/rederive all historical evidence. Focused brief controls this council; standalone Docling efficacy/provenance audits are out of scope. Construction parent requirements and future integration proofs remain binding.",
+  "focused_review_closeout": {
+    "candidate": "0144c53908afb6f8288425c58c7a3bbff651faef",
+    "reviewed_original": "focused-council/round2/results/reviewed-authority-manifest.json",
+    "reviewed_manifest_sha256": "32225e8d0ef07c63e0bbb2482995e2f2b0f6e2724c579555fd4411fdb80ae4dd",
+    "target_sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1",
+    "report": "focused-council/round2/results/report.md",
+    "technical_inputs_and_directive_unchanged": true,
+    "current_change": "Status and branch-handoff routing pin only; no technical requirement change."
+  }
 }

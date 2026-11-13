@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Focused INGEST directive council round2/3: correct document /read owned async conversion/cancellation/shutdown and acceptance, plus related headless/planner/dispatch/capacity/asset/default clarifications; then reassess full F1\u2013F8 completeness/buildability. Completed Docling evaluation remains input. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5. No product work or new effects.",
+  "current_scope": "Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01\u201307 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1894,9 +1894,9 @@
   },
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
-    "status": "focused_implementation_directive_review",
-    "execution_phase": "validation",
-    "validation_state": "in_review",
+    "status": "focused_directive_verified_activation_pending",
+    "execution_phase": "planning",
+    "validation_state": "verified",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Focused INGEST directive council round2/3: correct document /read owned async conversion/cancellation/shutdown and acceptance, plus related headless/planner/dispatch/capacity/asset/default clarifications; then reassess full F1\u2013F8 completeness/buildability. Completed Docling evaluation remains input. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5. No product work or new effects.",
+    "next_gate": "Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01\u201307 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2954,8 +2954,8 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "focused_directive_council_round2",
-    "validation_scope": "Focused F1\u2013F8 completeness/coherence/buildability of the implementation directive; accepted Docling evaluation as input, targeted integration source checks only, no vendor retest or whole-framework audit.",
+    "current_stage": "product_activation_preparation_pending",
+    "validation_scope": "Verified focused F1\u2013F8 construction-plan completeness/buildability only; Q/Gate A and product activation remain open.",
     "large_document_corpus": {
       "state": "verified",
       "scope": "validation/document-ingestion/gate-a/large-documents-scope.md",
@@ -2971,7 +2971,7 @@
     },
     "product_construction_preparation": {
       "version": "0.7",
-      "status": "focused_directive_council_round2_in_review",
+      "status": "focused_directive_verified_activation_pending",
       "date": "2026-11-12",
       "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
       "files": {
@@ -2989,7 +2989,7 @@
         },
         "authority_manifest": {
           "path": "validation/document-ingestion/product-construction/authority-manifest.json",
-          "sha256": "32225e8d0ef07c63e0bbb2482995e2f2b0f6e2724c579555fd4411fdb80ae4dd"
+          "sha256": "4e3b7382e6440890e253aff93660377ac5ffd4fec20ec351732051e86c081127"
         },
         "baseline_test_inventory": {
           "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
@@ -3037,7 +3037,7 @@
         }
       },
       "implementation_approval": "not_granted",
-      "council_active": true,
+      "council_active": false,
       "new_model_or_store_effects": false,
       "production_changes": false,
       "gate_a_threshold_met": false,
@@ -3061,12 +3061,67 @@
         "criteria": "validation/document-ingestion/product-construction/focused-council/criteria.md",
         "criteria_sha256": "f6772d98dec630005e6e7a9d4ff1007e1fab809399cd8fa917768be74170afcb",
         "correction_brief": "validation/document-ingestion/product-construction/focused-council/round2/correction-brief.json",
-        "status": "in_review",
+        "status": "closed_verified",
         "threshold_each": 9.5,
         "assessment_scope": "C1\u2013C5 correction first, then complete same focused F1\u2013F8 directive assessment. No vendor/AST/archive reevaluation.",
         "construction_authority": false,
         "new_effects": false,
-        "correction_brief_sha256": "747c62569065d33900158f29a5b88a96fbb09cca5dbe5d7b07bf3457ac0a1ef5"
+        "correction_brief_sha256": "747c62569065d33900158f29a5b88a96fbb09cca5dbe5d7b07bf3457ac0a1ef5",
+        "outcome": "VERIFIED",
+        "all_seats_terminal": true,
+        "all_assessments_complete": true,
+        "reviewed_candidate": "0144c53908afb6f8288425c58c7a3bbff651faef",
+        "target_sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1",
+        "target_met_each": true,
+        "mandatory_findings": [],
+        "report": "validation/document-ingestion/product-construction/focused-council/round2/results/report.md",
+        "report_sha256": "3f4e41a460977c7d3a8972df11f48273d164a71140038a97d8cd99d57fd997ed",
+        "reconciliation": "validation/document-ingestion/product-construction/focused-council/round2/results/reconciliation.json",
+        "reconciliation_sha256": "52e16d09e70004f31690ed49941b581dae71f0b4bcfdb76a09f87a567a5898c5",
+        "implementation_handoff": "validation/document-ingestion/product-construction/focused-council/round2/results/implementation-handoff.md",
+        "further_automatic_review": false,
+        "claim_scope": "Focused directive document readiness only; no Gate-A qualification, product construction/effects/UAT/acceptance/delivery.",
+        "results": {
+          "sol": {
+            "model": "gpt-6.1-sol",
+            "outcome": "VERIFIED",
+            "assessment_complete": true,
+            "areas_assessed": 8,
+            "coverage": 10.0,
+            "overall": 9.6,
+            "mandatory_findings": [],
+            "report": "validation/document-ingestion/product-construction/focused-council/round2/results/sol/report.md",
+            "report_sha256": "89952ff70c382878e8c3c5c33c772c1f31f86567b4a8c0bfd752bd9d85ecaef2",
+            "boundary_checks": "matched",
+            "qualifies_for_gate": true
+          },
+          "astra": {
+            "model": "gpt-6-astra",
+            "outcome": "VERIFIED",
+            "assessment_complete": true,
+            "areas_assessed": 8,
+            "coverage": 10.0,
+            "overall": 9.6,
+            "mandatory_findings": [],
+            "report": "validation/document-ingestion/product-construction/focused-council/round2/results/astra/report.md",
+            "report_sha256": "6ae75e6ea18cc855500fc7103b62c14a4d605d92bf6574b512f46e37f70d7b5c",
+            "boundary_checks": "matched",
+            "qualifies_for_gate": true
+          },
+          "opus": {
+            "model": "claude-opus-5-5",
+            "outcome": "VERIFIED",
+            "assessment_complete": true,
+            "areas_assessed": 8,
+            "coverage": 9.6,
+            "overall": 9.57,
+            "mandatory_findings": [],
+            "report": "validation/document-ingestion/product-construction/focused-council/round2/results/opus/report.md",
+            "report_sha256": "662f43cd29d9d4f91886f9c99e16c3e6e7b0bc17c53fe1deea2805047c2d27f5",
+            "boundary_checks": "matched",
+            "qualifies_for_gate": true
+          }
+        }
       },
       "council_history": [
         {
@@ -3425,8 +3480,8 @@
         }
       ],
       "correction_groups": {
-        "FOCUSED-R1-OPUS-M1": "Document correction prepared; independently verify full read-only worker/admission/cancel/shutdown duties and tests, then aggregate focused directive.",
-        "related_advisories": "Headless document witness, injection direction, exact dispatch seam, no clamp, asset and headless/default duties made explicit."
+        "FOCUSED-R1-OPUS-M1": "Closed at design level by all three fresh completed round2 assessments; actual worker behavior remains future acceptance.",
+        "related_advisories": "C2-C5 complete at design level; non-blocking exact-contract/qualification duties carried in implementation handoff."
       },
       "bounded_correction_loop": {
         "authorization": "validation/document-ingestion/product-construction/correction-loop/authorization.json",
@@ -3444,8 +3499,12 @@
         "state": "validation/document-ingestion/product-construction/focused-council/state.json",
         "maximum_rounds": 3,
         "rounds_started": 2,
-        "rounds_completed": 1
-      }
+        "rounds_completed": 2,
+        "status": "closed_verified",
+        "target_met": true,
+        "further_automatic_review": false
+      },
+      "verification_date": "2026-11-13"
     }
   },
   "command_refactor_publication": {
