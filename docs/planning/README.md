@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Shared ingestion worker is a frontend-neutral Tools process service, Memory orchestration and Core progress/cancel/result contracts, reusable by Chat, CLI/Runtime and future TUI. Bind headless/resource/lifecycle acceptance and exact construction approval before I1. Workbook rejection policy is settled; separate model/parity prerequisite remains removed. No product code or live effects authorized by this planning discussion. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Chuck reviews the proposed activation-package council instructions before any reviewer launch. Planned roster Sol/Astra/Opus at high effort, at most three rounds, each complete/VERIFIED with no mandatory findings and overall >=9.5; after round3 await feedback. Zero rounds started. Product construction and live effects remain unapproved. |
 
 ## Completed
 

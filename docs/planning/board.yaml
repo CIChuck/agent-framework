@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Shared ingestion worker is a frontend-neutral Tools process service, Memory orchestration and Core progress/cancel/result contracts, reusable by Chat, CLI/Runtime and future TUI. Bind headless/resource/lifecycle acceptance and exact construction approval before I1. Workbook rejection policy is settled; separate model/parity prerequisite remains removed. No product code or live effects authorized by this planning discussion."
+  next_gate: "Chuck reviews the proposed activation-package council instructions before any reviewer launch. Planned roster Sol/Astra/Opus at high effort, at most three rounds, each complete/VERIFIED with no mandatory findings and overall >=9.5; after round3 await feedback. Zero rounds started. Product construction and live effects remain unapproved."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

@@ -4274,3 +4274,20 @@ product/test implementation, process spawn, model/store call, install or council
 is authorized or executed by this planning clarification. Existing runtime checks
 and actual implementation acceptance remain; prior frozen reviews keep their
 original scope, and model/parity prequalification remains removed.
+
+
+## 2026-11-13 — activation council brief prepared for maintainer review
+
+Chuck requests an activation-package council with a9.5 target and a three-round
+limit, then explicitly directs that he review the instructions before invocation.
+[The exact proposed brief](validation/document-ingestion/product-construction/activation/council/review-instructions.md)
+uses Sol/Astra/Opus at high effort, eight focused design areas and one honest
+overall score per complete seat. It preserves current model-qualification removal,
+workbook refusal and shared headless process-worker decisions. It excludes repeated
+Docling evaluation, AST/archive/dependency audits and product/live operations.
+
+No reviewer has been launched; rounds started/completed are0. The controller
+waits for Chuck's review/direction. Fresh read-only seats, bounded document
+corrections and at most three rounds are proposed; no fourth/replacement/code
+activation follows. Current authority and routing record that hold, leaving the
+actual activation target/contracts and previous frozen evidence unchanged.

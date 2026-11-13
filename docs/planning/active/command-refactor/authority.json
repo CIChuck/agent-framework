@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Shared ingestion worker is a frontend-neutral Tools process service, Memory orchestration and Core progress/cancel/result contracts, reusable by Chat, CLI/Runtime and future TUI. Bind headless/resource/lifecycle acceptance and exact construction approval before I1. Workbook rejection policy is settled; separate model/parity prerequisite remains removed. No product code or live effects authorized by this planning discussion.",
+  "current_scope": "Chuck reviews the proposed activation-package council instructions before any reviewer launch. Planned roster Sol/Astra/Opus at high effort, at most three rounds, each complete/VERIFIED with no mandatory findings and overall >=9.5; after round3 await feedback. Zero rounds started. Product construction and live effects remain unapproved.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Shared ingestion worker is a frontend-neutral Tools process service, Memory orchestration and Core progress/cancel/result contracts, reusable by Chat, CLI/Runtime and future TUI. Bind headless/resource/lifecycle acceptance and exact construction approval before I1. Workbook rejection policy is settled; separate model/parity prerequisite remains removed. No product code or live effects authorized by this planning discussion.",
+    "next_gate": "Chuck reviews the proposed activation-package council instructions before any reviewer launch. Planned roster Sol/Astra/Opus at high effort, at most three rounds, each complete/VERIFIED with no mandatory findings and overall >=9.5; after round3 await feedback. Zero rounds started. Product construction and live effects remain unapproved.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2954,7 +2954,7 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "activation_package_maintainer_review",
+    "current_stage": "activation_council_instructions_maintainer_review",
     "validation_scope": "New proposed exact appendices have structural checks only; focused directive remains independently VERIFIED at 0144c539, Q/activation open.",
     "large_document_corpus": {
       "state": "verified",
@@ -2989,7 +2989,7 @@
         },
         "authority_manifest": {
           "path": "validation/document-ingestion/product-construction/authority-manifest.json",
-          "sha256": "eb2fe60d3c377ea0f547bd87d56935d8745a37dbc8f25882d361760a64037270"
+          "sha256": "4e6a8dfea2533c18741587ef41dce479a378f1bb2a17ff33e238c4428dfee61d"
         },
         "baseline_test_inventory": {
           "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
@@ -3508,12 +3508,20 @@
       "activation_preparation": {
         "package": "validation/document-ingestion/product-construction/activation/README.md",
         "binding": "validation/document-ingestion/product-construction/activation/approval-binding.json",
-        "binding_sha256": "512c7d8511433f3e441cc23b326ad87e5719a5a8dcb3a9c51556d5c14fa08442",
+        "binding_sha256": "b5cd52ece0958166d45df91ef832bf5cfb7e00334cc79a21973884d2740ede45",
         "authority": "validation/document-ingestion/product-construction/activation/preparation-authorization.json",
         "status": "proposed_not_approved",
         "new_council_authorized": false,
         "construction_approved": false,
         "new_effects": false
+      },
+      "activation_council": {
+        "status": "awaiting_maintainer_instruction_review",
+        "active": false,
+        "rounds_started": 0,
+        "maximum_rounds": 3,
+        "instructions": "validation/document-ingestion/product-construction/activation/council/review-instructions.md",
+        "instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894"
       }
     },
     "model_qualification_prerequisite_decision": {
@@ -3545,6 +3553,26 @@
         "future TUI"
       ],
       "new_frontend_implementation": false
+    },
+    "activation_council_request": {
+      "date": "2026-11-13",
+      "target": "validation/document-ingestion/product-construction/activation/README.md",
+      "instructions": "validation/document-ingestion/product-construction/activation/council/review-instructions.md",
+      "instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
+      "status": "awaiting_maintainer_instruction_review",
+      "reviewer_launch_permitted_now": false,
+      "roster": [
+        "gpt-6.1-sol",
+        "gpt-6-astra",
+        "claude-opus-5-5"
+      ],
+      "effort": "high",
+      "maximum_rounds": 3,
+      "rounds_started": 0,
+      "rounds_completed": 0,
+      "overall_target_each": 9.5,
+      "completion": "8 of 8 areas; zero mandatory findings; no separate numerical coverage grade",
+      "bounded_corrections": "Planning-only findings within current scope between fresh rounds, after brief review/direction. No code, effects or fourth round."
     }
   },
   "command_refactor_publication": {

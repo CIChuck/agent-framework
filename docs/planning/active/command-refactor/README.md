@@ -93,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Shared ingestion worker is a frontend-neutral Tools process service, Memory orchestration and Core progress/cancel/result contracts, reusable by Chat, CLI/Runtime and future TUI. Bind headless/resource/lifecycle acceptance and exact construction approval before I1. Workbook rejection policy is settled; separate model/parity prerequisite remains removed. No product code or live effects authorized by this planning discussion.
+**Next gate:** Chuck reviews the proposed activation-package council instructions before any reviewer launch. Planned roster Sol/Astra/Opus at high effort, at most three rounds, each complete/VERIFIED with no mandatory findings and overall >=9.5; after round3 await feedback. Zero rounds started. Product construction and live effects remain unapproved.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

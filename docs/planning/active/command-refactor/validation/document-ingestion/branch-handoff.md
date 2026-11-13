@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Shared ingestion worker is a frontend-neutral Tools process service, Memory orchestration and Core progress/cancel/result contracts, reusable by Chat, CLI/Runtime and future TUI. Bind headless/resource/lifecycle acceptance and exact construction approval before I1. Workbook rejection policy is settled; separate model/parity prerequisite remains removed. No product code or live effects authorized by this planning discussion.
+**Next gate:** Chuck reviews the proposed activation-package council instructions before any reviewer launch. Planned roster Sol/Astra/Opus at high effort, at most three rounds, each complete/VERIFIED with no mandatory findings and overall >=9.5; after round3 await feedback. Zero rounds started. Product construction and live effects remain unapproved.
 
 [Proposed activation package](product-construction/activation/README.md) contains exact draft contracts, slice/case maps and unresolved Q dispositions; it is not construction approval.
 
