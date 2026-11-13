@@ -4,8 +4,9 @@
 
 Review two current documents together for completeness, consistency, feasibility
 and decision readiness: final-approval/README.md and the canonical package-impact-
-assessment.md v0.7. This is the final additional council round2/2, explicitly authorized after round1.
-No third round or replacement is authorized. The maintainer is reviewing the same frozen documents in parallel.
+assessment.md v0.8. This is the final additional council round2/2, explicitly
+authorized after round1. No third round or replacement is authorized. The maintainer
+is reviewing the same frozen documents in parallel.
 Review is authorized; construction and effects are not. Report findings only.
 
 This is approval-document review, not product conformance, a vendor evaluation,

@@ -3547,9 +3547,9 @@
         "active": true,
         "maximum_rounds": 2,
         "authorization": "validation/document-ingestion/product-construction/final-approval/council/round2/authorization.json",
-        "authorization_sha256": "8c4d8e38fd6ad95895e1d7f947c01432ab29a3c8fca847b27f6e7b4c3e62d66d",
+        "authorization_sha256": "1d940de3407b29b32669ea96edf65b0a01cc47e2a4c0457105635902a93522f5",
         "instructions": "validation/document-ingestion/product-construction/final-approval/council/round2/review-instructions.md",
-        "instructions_sha256": "d5b5fd793e59bb54f5db1a4c3606872508a5f82dd9f14a2312a888be06da8aa9",
+        "instructions_sha256": "9f8cf7d6812717e6f1993e2e92604a2febecc54a78f0bb0dba560c54d44dbdfe",
         "state": "validation/document-ingestion/product-construction/final-approval/council/state.json",
         "targets": [
           "validation/document-ingestion/product-construction/final-approval/README.md",

@@ -111,5 +111,7 @@
   ],
   "no_product_import_tests_installs_models_or_stores": true,
   "construction_approved": false,
-  "result": "PASS"
+  "result": "PASS",
+  "review_brief_current_impact_version": "0.8",
+  "review_brief_and_authorization_pins_match": true
 }

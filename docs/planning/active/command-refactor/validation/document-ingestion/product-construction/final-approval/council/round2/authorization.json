@@ -34,7 +34,7 @@
     "overall_minimum": 9.5
   },
   "instructions": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/review-instructions.md",
-  "instructions_sha256": "d5b5fd793e59bb54f5db1a4c3606872508a5f82dd9f14a2312a888be06da8aa9",
+  "instructions_sha256": "9f8cf7d6812717e6f1993e2e92604a2febecc54a78f0bb0dba560c54d44dbdfe",
   "construction_approved": false,
   "effects_approved": false,
   "lightweight_documentation_scope": "Planning text/profile/hash/current routing only; no package/test/guide/lock or runtime effects."
