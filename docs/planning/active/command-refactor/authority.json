@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery.",
+  "current_scope": "Product directive council round1 closed CHANGES_REQUESTED; all three overall scores are below9.5. Review the three reconciled document corrections and advisories, then obtain direction for bounded revision and a fresh council. No further round/remediation or product construction is activated.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1896,7 +1896,7 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "conditional_product_construction_draft",
     "execution_phase": "validation",
-    "validation_state": "in_review",
+    "validation_state": "changes_requested",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery.",
+    "next_gate": "Product directive council round1 closed CHANGES_REQUESTED; all three overall scores are below9.5. Review the three reconciled document corrections and advisories, then obtain direction for bounded revision and a fresh council. No further round/remediation or product construction is activated.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery.",
+      "next_gate": "Product directive council round1 closed CHANGES_REQUESTED; all three overall scores are below9.5. Review the three reconciled document corrections and advisories, then obtain direction for bounded revision and a fresh council. No further round/remediation or product construction is activated.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2954,8 +2954,8 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "product_directive_preparation",
-    "validation_scope": "Current product/companion directive drafts pending document review; prior bounded behavior/E2E/corpus conformance retained; whole Gate-A and product conformance remain unqualified.",
+    "current_stage": "product_directive_council_complete",
+    "validation_scope": "Round1 conditional document readiness/source feasibility council reconciled CHANGES_REQUESTED; no whole Gate-A or product-conformance result.",
     "large_document_corpus": {
       "state": "verified",
       "scope": "validation/document-ingestion/gate-a/large-documents-scope.md",
@@ -2971,7 +2971,7 @@
     },
     "product_construction_preparation": {
       "version": "0.1",
-      "status": "document_council_in_review",
+      "status": "council_closed_changes_requested",
       "date": "2026-11-12",
       "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
       "files": {
@@ -3005,7 +3005,7 @@
         }
       },
       "implementation_approval": "not_granted",
-      "council_active": true,
+      "council_active": false,
       "new_model_or_store_effects": false,
       "production_changes": false,
       "gate_a_threshold_met": false,
@@ -3029,10 +3029,54 @@
         "criteria_sha256": "7a7536c12becca40541c3b2368217c0ce47f7d3101365a273001bc007db7b9ce",
         "roster": "validation/document-ingestion/product-construction/council-round1/roster.json",
         "threshold_each": 9.5,
-        "status": "in_review",
+        "status": "closed_changes_requested",
         "scope": "document readiness and selected-source feasibility only",
         "automatic_remediation": false,
-        "construction_authority": false
+        "construction_authority": false,
+        "outcome": "CHANGES_REQUESTED",
+        "all_seats_terminal": true,
+        "formal_council_complete": true,
+        "reviewed_candidate": "fb587e7a12f48ef0d6937e008045de1de2dd8cd2",
+        "report": "validation/document-ingestion/product-construction/council-round1/report.md",
+        "report_sha256": "07018412ebc8a6a9e0faea8e189da118f37a8abad422dd14968d527adba547a8",
+        "reconciliation": "validation/document-ingestion/product-construction/council-round1/reconciliation.json",
+        "reconciliation_sha256": "cd9e1e294b4bde0270897fc54f627aaf93b0299cbd43999fb99168f6ceca3474",
+        "threshold_met_each": false,
+        "mandatory_correction_groups": [
+          "INGEST-PD-R1-001",
+          "INGEST-PD-R1-002",
+          "INGEST-PD-R1-003"
+        ],
+        "results": {
+          "sol": {
+            "model": "gpt-6.1-sol",
+            "outcome": "CHANGES_REQUESTED",
+            "coverage": 9.6,
+            "overall": 9.2,
+            "report": "validation/document-ingestion/product-construction/council-round1/sol/report.md",
+            "report_sha256": "ca9e5fa60d0a66bd7639eaa0ff60a6b7b4054a52088b98fa4e659134c3f4768c",
+            "conduct": "Accepted fresh independent read-only evidence; preserved scope and boundaries."
+          },
+          "astra": {
+            "model": "gpt-6-astra",
+            "outcome": "CHANGES_REQUESTED",
+            "coverage": 9.6,
+            "overall": 9.1,
+            "report": "validation/document-ingestion/product-construction/council-round1/astra/report.md",
+            "report_sha256": "b8b06ce0108a867e6253aa78844ee2470a81609d7de522253d38ab894ee79f74",
+            "conduct": "Accepted fresh independent read-only evidence; preserved scope and boundaries."
+          },
+          "opus": {
+            "model": "claude-opus-5-5",
+            "outcome": "CHANGES_REQUESTED",
+            "coverage": 9.4,
+            "overall": 8.6,
+            "report": "validation/document-ingestion/product-construction/council-round1/opus/report.md",
+            "report_sha256": "ac0956b36f78ba8eaae30178fc4b9aa2eff22836f9a3214e61ecec222038c220",
+            "conduct": "Accepted with disclosed incidental delegate-inventory exposure: first400 bytes contained only a seat/status/opaque task ID, no peer review reasoning/findings/scores. This violates the requested inventory exclusion but not its substantive peer-reasoning BLOCKED trigger. Findings corroborated independently; scores and CHANGES_REQUESTED outcome are retained unchanged. No replacement or extra round."
+          }
+        },
+        "further_automatic_review": false
       }
     }
   },

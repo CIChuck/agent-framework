@@ -1,14 +1,14 @@
 # INGEST product construction drafts — maintainer review
 
-Execution phase: validation; validation state: in_review for the document council.
+Execution phase: validation; validation state: changes_requested after the document council.
 [INGEST](directives/CD-CMD-INGEST-001-product.md) and
 [TOOLS-DOC](directives/CD-CMD-TOOLS-DOC-001-adoption.md) remain separately
 conditional, with [RD-01–07](validation/document-ingestion/product-construction/readiness-decision.md)
 activation requirements. Prior bounded evaluations remain verified at their
 frozen sources. Whole Gate-A9.5 and product construction approval remain open.
-The latest request authorizes one read-only three-seat council round. No model/store/production effect is authorized.
+The authorized round is complete: [three-seat reconciliation](validation/document-ingestion/product-construction/council-round1/report.md) requests changes. No further round or model/store/production effect is activated.
 
-**Next gate:** One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery.
+**Next gate:** Product directive council round1 closed CHANGES_REQUESTED; all three overall scores are below9.5. Review the three reconciled document corrections and advisories, then obtain direction for bounded revision and a fresh council. No further round/remediation or product construction is activated.
 
 ## Separate MAINT closeout and historical checkpoints
 

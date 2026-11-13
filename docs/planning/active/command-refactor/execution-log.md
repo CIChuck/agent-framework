@@ -3941,3 +3941,25 @@ test/documentation and activation gates against pinned context. Missing unbuilt
 implementation is not itself a document defect; real contradictions or unsafe
 unknown authority are findings. Earlier before-council routing is satisfied by
 this explicit request. No product, model, store or delivery authority is granted.
+
+## 2026-11-12 — Product directive council round 1 reconciled; gate unmet
+
+All three fresh seats return CHANGES_REQUESTED on frozen fb587e7a. Coverage/
+overall: Sol9.6/9.2, Astra9.6/9.1, Opus9.4/8.6. No averaging or threshold
+inflation. [Reconciliation](validation/document-ingestion/product-construction/council-round1/report.md)
+retains verbatim reports/hashes, ledgers and compact reviewer evidence. Mandatory
+findings consolidate into three groups: downstream proof incorrectly required
+at earlier phase exits; actual installed-product proof made a preconstruction
+prerequisite; wrong DI/seed tags and unclear preservation of the required final
+three-seat review. The controller's draft contains these sequencing/traceability
+errors; no reviewed directive or seed bytes are repaired during closeout.
+Applicable advisories remain visible for a bounded later revision. Opus disclosed
+incidental delegate-inventory metadata exposure with no peer reasoning/findings/
+scores. Retain this conduct exception, unchanged scores and independently
+corroborated finding; no replacement or extra round. All reviewer and controller
+frozen closing checks pass:18715 tracked files,26 symlinks,8 preserved entries,
+37 pins and unchanged logical index measured before status. Seven admin checks
+per seat pass; historical behavior/model/store results were inspected, not rerun.
+One authorized round is closed with no active council. Obtain maintainer direction
+before bounded document correction/new review. Gate-A qualification, product
+construction, effects, UAT, acceptance and delivery remain separate open gates.

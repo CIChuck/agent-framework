@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Product directive council round1 closed CHANGES_REQUESTED; all three overall scores are below9.5. Review the three reconciled document corrections and advisories, then obtain direction for bounded revision and a fresh council. No further round/remediation or product construction is activated. |
 
 ## Completed
 

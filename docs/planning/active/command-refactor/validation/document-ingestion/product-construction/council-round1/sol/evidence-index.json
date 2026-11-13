@@ -1,0 +1,66 @@
+{
+  "archive_sha256": "543b288f1ee357b73811e0a0b5e077d24a902942a2c26dbcde1e3d3e22cc3764",
+  "members": [
+    {
+      "path": "SHA256SUMS.json",
+      "size": 1010,
+      "sha256": "87d513c277e6d8d0ca68d645b7dc78bea1aa1fb9e064c384f24398d44b7a3a4b"
+    },
+    {
+      "path": "admin-commands.json",
+      "size": 2533,
+      "sha256": "764d438970de75c6f8431332d08c8e3ae73a4f9007b219bec4868f3b1765a674"
+    },
+    {
+      "path": "closing-integrity.json",
+      "size": 492,
+      "sha256": "1f15f0aebe8a98a9ec3c9cc0fb1617395c650406f4b89064939591a6a2771768"
+    },
+    {
+      "path": "commands.md",
+      "size": 5345,
+      "sha256": "5d1551cd7f6af0a83e112158ddb62fd0e7f4813edbef3ace30afe5aa78be0d65"
+    },
+    {
+      "path": "measured-evidence.json",
+      "size": 31640,
+      "sha256": "46f3ced4060c30aa28fc18ee3fd2c38b7c7ca39ba4babe7039a122bb9c73699c"
+    },
+    {
+      "path": "opening-integrity.json",
+      "size": 492,
+      "sha256": "1f15f0aebe8a98a9ec3c9cc0fb1617395c650406f4b89064939591a6a2771768"
+    },
+    {
+      "path": "read-manifest.json",
+      "size": 14820,
+      "sha256": "84cdf9ac7a07cb3f3340c814d0f030829d104e32e249b875c699f3731ad820a7"
+    },
+    {
+      "path": "read_manifest.py",
+      "size": 1050,
+      "sha256": "ff769d1a674f35d388eef4e3cbfc5206f7ffe41d1b95e4d1018bdaa118ac433c"
+    },
+    {
+      "path": "report.md",
+      "size": 17129,
+      "sha256": "ca9e5fa60d0a66bd7639eaa0ff60a6b7b4054a52088b98fa4e659134c3f4768c"
+    },
+    {
+      "path": "source-excerpts.txt",
+      "size": 21143,
+      "sha256": "369222169c3c4a7e79454cbab4ec692f6eda52f9d19fc58f9e8015ebe4040dfe"
+    },
+    {
+      "path": "static-evidence.json",
+      "size": 4662,
+      "sha256": "5c6eb576ab7074b9ce5f11ab3e7e81da1b75a93a1a577afa616435856dc1998a"
+    },
+    {
+      "path": "static_audit.py",
+      "size": 2741,
+      "sha256": "9b0e5308de89e837b78e1ab304bf35547d77ab27596f6885f89363b3e21708a3"
+    }
+  ],
+  "excluded": "Reviewer caches and tmp; no test/model/store replay."
+}

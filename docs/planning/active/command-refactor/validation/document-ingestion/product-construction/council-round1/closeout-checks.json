@@ -1,0 +1,146 @@
+{
+  "scope": "Post-review closeout metadata only; no governed deliverable or technical parent edits.",
+  "admin": [
+    {
+      "name": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "name": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "name": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1135 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "name": "range-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "8c36d8e26c618032c1ff536004a582c07ec56a5b..fb587e7a12f48ef0d6937e008045de1de2dd8cd2",
+        "--",
+        "docs/planning"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "owned-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "staged-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "preservation": {
+    "passed": true,
+    "errors": [],
+    "protected_nonplanning_files": 16690,
+    "symlinks": 26,
+    "preserved_entries": 8,
+    "logical_index_before_status": "61ca95946a69b30db60625e88ce8ed3a16c48cfd5815a89dcd8d089f4fc2cf4e",
+    "reviewed_target_unchanged": true,
+    "technical_inputs_unchanged": 24
+  },
+  "controller_frozen_boundary": {
+    "passed": true,
+    "errors": [],
+    "head": "fb587e7a12f48ef0d6937e008045de1de2dd8cd2",
+    "branch": "feature/cmd-ingest-001",
+    "logical_index_before_status": "61ca95946a69b30db60625e88ce8ed3a16c48cfd5815a89dcd8d089f4fc2cf4e",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+    "staged": "",
+    "tracked_files_checked": 18715,
+    "symlinks_checked": 26,
+    "preserved_entries_checked": 8,
+    "pins_checked": 37
+  },
+  "all_three_review_reports_hash_verified": true
+}

@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery."
+  next_gate: "Product directive council round1 closed CHANGES_REQUESTED; all three overall scores are below9.5. Review the three reconciled document corrections and advisories, then obtain direction for bounded revision and a fresh council. No further round/remediation or product construction is activated."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

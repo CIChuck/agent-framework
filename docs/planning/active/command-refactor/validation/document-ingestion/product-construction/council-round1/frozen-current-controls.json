@@ -1,0 +1,67 @@
+{
+  "authority_sha256": "50ce693a1b00e64c06e139b075b21f0f89f5c59a34a19fed8f1873fe07064363",
+  "initiative": "friday-command-refactor",
+  "branch": "feature/cmd-ingest-001",
+  "work_state": "started",
+  "delivery_state": "local",
+  "execution_phase": "validation",
+  "validation_state": "in_review",
+  "current_next_gate": "One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery.",
+  "product_implementation_approval": "not_granted",
+  "whole_gate_a_threshold_met": false,
+  "council": {
+    "round": 1,
+    "maximum_authorized_rounds": 1,
+    "authorization": "validation/document-ingestion/product-construction/council-round1/authorization.json",
+    "authorization_sha256": "0250f72f4fc512710680103d33f7f79e420aa2c63346de39c4f4a2afd973a749",
+    "criteria": "validation/document-ingestion/product-construction/council-round1/criteria.md",
+    "criteria_sha256": "7a7536c12becca40541c3b2368217c0ce47f7d3101365a273001bc007db7b9ce",
+    "roster": "validation/document-ingestion/product-construction/council-round1/roster.json",
+    "threshold_each": 9.5,
+    "status": "in_review",
+    "scope": "document readiness and selected-source feasibility only",
+    "automatic_remediation": false,
+    "construction_authority": false
+  },
+  "open_readiness_items": [
+    "RD-01",
+    "RD-02",
+    "RD-03",
+    "RD-04",
+    "RD-05",
+    "RD-06",
+    "RD-07"
+  ],
+  "test_exception_map_approved": false,
+  "governed_draft_files": {
+    "ingest_directive": {
+      "path": "directives/CD-CMD-INGEST-001-product.md",
+      "sha256": "da911b7e6f052ab27b0e37ee939e52a0555ca177c047f84b475c9fc72b5414c1"
+    },
+    "tools_directive": {
+      "path": "directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+      "sha256": "fccf7b46f7ecd7074e920e3744c9f09f00bae779d0b7ca54eb7a10034edc2168"
+    },
+    "readiness_decision": {
+      "path": "validation/document-ingestion/product-construction/readiness-decision.md",
+      "sha256": "c1c16e2cff874c64534e47e8286422583ec6e6af4969aef1680b972f5d81ae2c"
+    },
+    "authority_manifest": {
+      "path": "validation/document-ingestion/product-construction/authority-manifest.json",
+      "sha256": "5ff24a7bd21a54596a2191a097fc8abea2c9f2eabfccbbeb3dd29c37b6a5ad43"
+    },
+    "baseline_test_inventory": {
+      "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
+      "sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4"
+    },
+    "test_migration_seed": {
+      "path": "validation/document-ingestion/product-construction/test-migration-seed.json",
+      "sha256": "e9408e0216892f5b165189b5e34eeee4502b12974f9e8e137a9b7c0d8f8f605c"
+    },
+    "preparation_authorization": {
+      "path": "validation/document-ingestion/product-construction/preparation-authorization.json",
+      "sha256": "d57c864b280230ae7f0a351a6bedae1bfe83c843b81176619758c838c0636e0d"
+    }
+  },
+  "scope_note": "Formal result only concerns current conditional directive readiness/source feasibility; activation prerequisites remain open. Older navigation/authority histories are hash-only and not peer-review inputs."
+}
