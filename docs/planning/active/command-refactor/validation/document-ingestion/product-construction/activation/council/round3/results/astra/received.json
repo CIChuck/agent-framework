@@ -1,0 +1,14 @@
+{
+  "seat": "astra",
+  "round": 3,
+  "candidate": "fd7d9f5d429857906d53da8fc053dc85b901a635",
+  "report_sha256": "7003f9ccdb6068d8ac4c55ab1707c2b5a4cf77d9287667479b84677df50238cc",
+  "verdict": "VERIFIED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.595,
+  "mandatory_findings": [],
+  "report_hash_verified": true,
+  "common_boundary_fields_match": true,
+  "repo_unchanged_by_collection": true
+}

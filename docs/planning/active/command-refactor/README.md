@@ -93,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** FINAL activation-package council round3/3 under unchanged user-reviewed instructions: fresh Sol/Astra/Opus, complete Review A1–A8, zero mandatory findings and overall>=9.5 each. Review bounded worker launch/IPC, read-test timing and manifest discovery corrections plus the full activation package. Stop after this council for maintainer feedback regardless of outcome; no replacement/fourth round. No product generation, model campaign or live effects.
+**Next gate:** STOPPED for maintainer feedback after activation council round3/3. Final complete scores: Sol 9.53 VERIFIED; Astra 9.595 VERIFIED; Opus 9.27 CHANGES_REQUESTED with converter deployment-binding gap. The 9.5-per-seat/no-mandatory-findings gate is unmet. No further technical corrections, replacement/fourth round, product generation or live effects without new direction. Reviewed activation design remains frozen at fd7d9f5d.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
@@ -341,3 +341,5 @@ not dependency/model execution or production changes. [C0 implementation scope](
 and fresh implementation validation remain separate from full A0–A4 construction.
 The [private typing approval](validation/document-ingestion/gate-a/construction/c0/private-typecheck-approval.json)
 permits five pinned static-tool wheels only.
+
+Final activation council: [outcome and remaining converter-binding issue](validation/document-ingestion/product-construction/activation/council/round3/results/report.md). Three-round review authorization is exhausted; awaiting maintainer direction.

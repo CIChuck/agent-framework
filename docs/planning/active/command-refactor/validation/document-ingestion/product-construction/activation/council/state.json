@@ -3,9 +3,9 @@
   "workflow": "activation_package_council",
   "maximum_rounds": 3,
   "rounds_started": 3,
-  "rounds_completed": 2,
-  "current_round": 3,
-  "status": "final_round3_frozen_for_review",
+  "rounds_completed": 3,
+  "current_round": null,
+  "status": "stopped_for_maintainer_feedback",
   "instructions_approved": true,
   "history": [
     {
@@ -23,8 +23,20 @@
       "gate_met": false,
       "results": "round2/results/index.json",
       "reconciliation": "round2/reconciliation.md"
+    },
+    {
+      "round": 3,
+      "candidate": "fd7d9f5d429857906d53da8fc053dc85b901a635",
+      "result": "CHANGES_REQUESTED",
+      "gate_met": false,
+      "results": "round3/results/index.json",
+      "report": "round3/results/report.md"
     }
   ],
   "construction_approved": false,
-  "effects_approved": false
+  "effects_approved": false,
+  "active": false,
+  "gate_met": false,
+  "overall_result": "CHANGES_REQUESTED",
+  "remaining_rounds": 0
 }

@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** FINAL activation-package council round3/3 under unchanged user-reviewed instructions: fresh Sol/Astra/Opus, complete Review A1–A8, zero mandatory findings and overall>=9.5 each. Review bounded worker launch/IPC, read-test timing and manifest discovery corrections plus the full activation package. Stop after this council for maintainer feedback regardless of outcome; no replacement/fourth round. No product generation, model campaign or live effects.
+**Next gate:** STOPPED for maintainer feedback after activation council round3/3. Final complete scores: Sol 9.53 VERIFIED; Astra 9.595 VERIFIED; Opus 9.27 CHANGES_REQUESTED with converter deployment-binding gap. The 9.5-per-seat/no-mandatory-findings gate is unmet. No further technical corrections, replacement/fourth round, product generation or live effects without new direction. Reviewed activation design remains frozen at fd7d9f5d.
 
 [Proposed activation package](product-construction/activation/README.md) contains exact draft contracts, slice/case maps and unresolved Q dispositions; it is not construction approval.
 

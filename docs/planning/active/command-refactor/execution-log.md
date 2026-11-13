@@ -4337,3 +4337,16 @@ profile deadlines, lazy Chat composition, public headless destination access and
 raw text hashing. Only planning documents changed. The common brief is unchanged.
 Round 3 is final: stop for maintainer feedback afterwards, with no replacement,
 fourth council, construction, installs, models/stores or production effects.
+
+
+## 2026-11-13 — Final INGEST activation council closed; stop for maintainer
+
+All three final seats completed Review A1–A8. Sol 9.53 and Astra 9.595 are VERIFIED;
+Opus 9.27 is CHANGES_REQUESTED with one converter-settings discovery/binding gap.
+All D1–D3 corrections are satisfied; the per-seat 9.5/no-mandatory gate is unmet.
+Exact originals, request and frozen closing evidence are retained under
+activation/council/round3/results. The reviewed activation design is unchanged.
+Only outcome/state/navigation metadata is added. The authorized three-round
+budget is exhausted: no further technical correction, replacement, fourth review,
+construction or effects. Await Chuck's guidance. Product source/tests/dependencies,
+production configuration, stores and preserved state remain unchanged.

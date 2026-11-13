@@ -1,0 +1,90 @@
+{
+  "boundary": {
+    "logical_index_before_status": "8524b5db3a84d1d5faa42b52c0550b453cee522d454e44152a473a3f5828af46",
+    "head": "fd7d9f5d429857906d53da8fc053dc85b901a635",
+    "branch": "feature/cmd-ingest-001",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+    "staged": ""
+  },
+  "preserved": {
+    "packages/friday-chat/config.example.yaml": {
+      "mode": 33188,
+      "size": 30129,
+      "mtime_ns": 1794334784972093361,
+      "ctime_ns": 1794334784972093361,
+      "birthtime": 1788446389.467035,
+      "sha256": "7c31a9ad3f6a7ff1cfc891cace6c4b3cde21d10202770c374a38c6cc28620f32"
+    },
+    "packages/friday-chat/models-config.example.yaml": {
+      "mode": 33188,
+      "size": 3962,
+      "mtime_ns": 1794264005521487739,
+      "ctime_ns": 1794264005521487739,
+      "birthtime": 1788446389.4671795,
+      "sha256": "5cf3d15ec469d3b8e495248d3aec9ed7bcdb48b68243668b6dbbbb3e0b0326c9"
+    },
+    ".friday": {
+      "mode": 16877,
+      "size": 224,
+      "mtime_ns": 1794335780595591896,
+      "ctime_ns": 1794335780595591896,
+      "birthtime": 1794312889.6114945
+    },
+    ".friday-old": {
+      "mode": 16877,
+      "size": 256,
+      "mtime_ns": 1794312848481691252,
+      "ctime_ns": 1794312880963718202,
+      "birthtime": 1793062680.0546615
+    },
+    ".venv": {
+      "mode": 16877,
+      "size": 288,
+      "mtime_ns": 1772940967050495003,
+      "ctime_ns": 1772940967050495003,
+      "birthtime": 1772940965.7368934
+    },
+    "exports": {
+      "mode": 16877,
+      "size": 128,
+      "mtime_ns": 1794172873430987983,
+      "ctime_ns": 1794172873430987983,
+      "birthtime": 1794172873.430393
+    },
+    "exports/friday_context.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419969663853,
+      "ctime_ns": 1794173419969663853,
+      "birthtime": 1794172873.4304848,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    },
+    "exports/friday_prompt.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419970166478,
+      "ctime_ns": 1794173419970166478,
+      "birthtime": 1794172873.4309843,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    }
+  },
+  "pins": {
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md": "c2d6a38dc938b00208ab35d91a8a73c6dcb2f79d44428d127eb6744de2a82608",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md": "903b206a36ccb33da7c8e0027a9a1cb37dc76f39b8ce7c92c7da5a1de7453622",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md": "d4ddd07648349c6693e92172d089b842ee5d4c549d8defda17c5c6c55218bde4",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md": "1105e592135e5bc907c9017e1d957d537d5251e71fcf30038c9f7a74c72b0e5f",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/approval-binding.json": "d62da63eaf86a8fb1e4093bfa22d64a62a7dd7dd0a0929aa803b8b264ecf7cb1",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/model-qualification-decision.md": "b2503902db78f9d01909c4d2c9d20a03dd4cdc772421c1ec100d5b614ed22d26",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/office-visibility-decision.md": "7eb7bf3224036d61f28059d8a1ab4c21d66b9deb4964e013de6a780b381775c7",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-worker-decision.md": "a828b757b213acc9481ba3053873f4d2243f3a106927ddade71eb97631bf938b",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json": "59a0b01fed31f2c614933fa7a566f3a918519321535007c36bdb5901fcc4bdd3",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json": "b1a53ffc92dea43a6c2e481243a50b969ff15850b0da471bfeb8e319dea05bff",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/digest-vectors.json": "4b5bef7daf3400dca0c7058d967a66653d1c5e3aa59a7b0c9fe5770e3bd436e4",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/review-instructions.md": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/authorization.json": "63e64263cbcc6fe887b6c01995ccab133fdca03ed9f8a78c8e628d3b0e4a0efc",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md": "caa24adaf7866ca2429460147801be4892f6de1f201b0206360b2e021944c158",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round3/correction-requirements.json": "8252654f303ede68ce9352159e28efc9c7fb321f18f7c716ef7bcb7dca43679e",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-activation-council-mo36ef_q/round3-inputs/current-controls.json": "192441454b80aa45f18665d0743235e08348f84affac2e7801647fbd4821e9c1",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round3/controller-checks.json": "6e2a12d9e0de0c10009d0009129804a2880a774da16aeb931696f5d329385e1c"
+  }
+}

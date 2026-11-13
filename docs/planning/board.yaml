@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "FINAL activation-package council round3/3 under unchanged user-reviewed instructions: fresh Sol/Astra/Opus, complete Review A1–A8, zero mandatory findings and overall>=9.5 each. Review bounded worker launch/IPC, read-test timing and manifest discovery corrections plus the full activation package. Stop after this council for maintainer feedback regardless of outcome; no replacement/fourth round. No product generation, model campaign or live effects."
+  next_gate: "STOPPED for maintainer feedback after activation council round3/3. Final complete scores: Sol 9.53 VERIFIED; Astra 9.595 VERIFIED; Opus 9.27 CHANGES_REQUESTED with converter deployment-binding gap. The 9.5-per-seat/no-mandatory-findings gate is unmet. No further technical corrections, replacement/fourth round, product generation or live effects without new direction. Reviewed activation design remains frozen at fd7d9f5d."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []
