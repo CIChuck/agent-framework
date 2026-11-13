@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01–07 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Review the proposed INGEST activation appendices and resolve existing Q gaps: immutable B/N serving/counter evidence, Office coverage mapping, worker/resource qualification and exact asset/dependency binding. Then bind the canonical impact revision and A1–A5 approval before I1. Focused directive council is closed VERIFIED; no product code, live effects or new council is authorized by this preparation. |
 
 ## Completed
 

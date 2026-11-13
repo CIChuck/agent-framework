@@ -1,9 +1,11 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/local; execution phase: planning; validation state: verified
-for the focused implementation directive only. Its council closed after round2/3;
-all seats meet the 9.5 gate. Product activation remains pending. Earlier broad
-review loops remain closed. Package impact v0.6 is approved.
+**Status:** started/local; execution phase: planning; validation state: not_ready
+for product activation. The new [activation package](validation/document-ingestion/product-construction/activation/README.md)
+contains proposed exact contracts, slice/case maps and Q dispositions for review.
+The unchanged focused directive remains VERIFIED after round2/3 with every seat
+meeting 9.5; its council is closed. Earlier broad loops remain closed. Package
+impact v0.6 remains the approved historical baseline.
 Bounded Docling/Nomic/corpus evaluations remain independently verified. Whole
 Gate-A9.5, exact product construction approval and MAINT human UAT/acceptance
 remain open. Production source and state are unchanged.
@@ -91,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01–07 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects.
+**Next gate:** Review the proposed INGEST activation appendices and resolve existing Q gaps: immutable B/N serving/counter evidence, Office coverage mapping, worker/resource qualification and exact asset/dependency binding. Then bind the canonical impact revision and A1–A5 approval before I1. Focused directive council is closed VERIFIED; no product code, live effects or new council is authorized by this preparation.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

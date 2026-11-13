@@ -1,0 +1,1403 @@
+{
+  "version": 1,
+  "status": "proposed exact path assignments; no write authority until approved A2/A4",
+  "baseline": "7a3e00bc9ef77adee25b61fc52ff91875e172738",
+  "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "rule": "Only listed paths and assigned purpose/slice; an unexpected helper/source path or newly failing old case requires map reconciliation before edit. No app.py, root dirty examples or Agent/indirect package product edits.",
+  "files": [
+    {
+      "path": "docs/architecture/README.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "55c90991ba1015b703a2736cd25cb4368ff757e9213ffe1ba6b947a0d2459927",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/architecture/command-execution.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": false,
+      "baseline_sha256": null,
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/00-quick-start.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "eedd970411de3cd3233d02427357b2ffb8fa9e97005b01c09f500cf714d26f5a",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/01-executive-summary.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "f1837b09586bc5af7b87b0011510ce3bd5118b8343dede32209d6d7b813a007f",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/02-getting-started.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "a4622e1b09343b437118996376c8aa6523e2bf0c7c60c11b4bb0a467787cf6aa",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/03-core-concepts.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "a4554e89d617c541d019bfa8f759cdac63a0f748ed1201e6f6c10cc116ea05df",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/04-adaptive-memory.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "bfd84bb9233710377766a4e4b86439d9795c66f17cf82a386d799f5c3a121f08",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/05-tools.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "13894ee2877d466ac9b37ebb1ceab8ddbb5926952c75fa8199acdb0d9ff54129",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/07-multi-agent.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "ea66dd1b48eae7c31a1e250f9b2e900f4463c059f9a73f4c3d9e447fbe4f928e",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/09-cli-reference.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "947c993bea88d71ccdb0b35a2fde9ba1096b49e1338933840f1a1f38849d0fc3",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/10-configuration.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "3faad249d8e4cb3ce6f55a3fd9eaeb033908f0bcd49ce2e8fc7267aba9aa9716",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/13-troubleshooting.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "35a5352de605ba46343f3657663cc54177bc8c93f705bfcf4ca0e6e83c48a33f",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/14-appendices.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "a51b42f30f4c6fc6b242b57bfdaba8a91c2c73e234884cd9fb91c0443ba97398",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/FRIDAY-FEATURES.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "56fe73fabdc8bcb0433796d60ec2bf1a87fd78f2cfd6aeb27b5c6f35aba2fb88",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/README.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "bb297b8ff79bc3065527b94ec10603a5103155088435e83ffb40e60128453b1e",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "docs/guides/memory-management-guidelines.md",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "963ce3d83261e2ef310281907d88392f9d02c66bcad26fd677454e2ee6b19470",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Author substantive affected architecture/guide/install/config/upgrade content with source and verified-example mapping, not a link-check-only completion."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/README.md",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "469c92f4d659618218175add20dbb7db9bf52e43b0ccb991a25f59b3adde6220",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/pyproject.toml",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "43cb2b3f4a4a950d4cf22875b5a38f82993649b43ea6760880c948c10fc381ec",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/__init__.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "02fccfca2ce6de298d97469062e482191ac9a2a5d5d238ee9f4fed457ba908de",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C3",
+          "purpose": "Append required typed v2 surface without rebinding v1."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "90488c278666379825b8d971eae0a931fcc4ef4230b7a2e16fcb81aa9cc67b9d",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI must use the exact narrow adaptation, prove an existing origin-preserving mechanism, or stop and reconcile; forwarding the resolved string alone is insufficient. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Owned request drain before existing async-client close; shielded repeated-cancel cleanup."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/files.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "2c1555ad5ec48c5aab6cf3e14024a5591b86ace2b752f1420f273daf215c9f3c",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "4615bb2e8648b62f9eb3826ccaba73f157754fcf5c12beedeef5b59185dc0f63",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/config.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "734559482073fa66b2197604136d4fde805fc8f9e4ce7078f33df57c4a3c52d1",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Retain selection/defaults and capture explicit suppliedness; ingestion YAML only at I3."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Optional strict ingestion.chunking strategy/max_tokens with independent precedence."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/config_templates/config.example.yaml",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "6fecbd23bb6b15dbe68d7bf4dbb8dfe14a431f74c68efa5379a545b13671c110",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Document chunk defaults and explicit fresh-location explanation; production examples untouched."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/config_templates/models-config.example.yaml",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "57a8d0d047833b6501415e149560d90a0437dc229f5e7891fa408aa3d17744c1",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Optional capabilities/examples; no automatic model change."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/memory_mcp.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "62eeb681b0dbb08b154951ee401d77878a1c64053b6a16fee89991d8a547b287",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/reorganization/__init__.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "f47d1b1f6eeb4f225224f5fde9f38d2b780bd72b2662cc035f81ddabd4d216c3",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C3",
+          "purpose": "Append strict v2 exports only."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/reorganization/artifacts.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "89b89c76adc9e4978791f642a94edc4b70bfa07b6558fddab13631444664c723",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C3",
+          "purpose": "Actual Memory-v2 \u2192 Chat aggregate-v2 write/read/reparse \u2192 admitted same-namespace restore/automatic rollback; strict mixed/version/identity negatives. I2-only map/docs review."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/reorganization/contracts.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "2f3552f8698039539f6b30bea6dcdf80af9755fb635e404a0aae7bc1627f6b0e",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C3",
+          "purpose": "Actual Memory-v2 \u2192 Chat aggregate-v2 write/read/reparse \u2192 admitted same-namespace restore/automatic rollback; strict mixed/version/identity negatives. I2-only map/docs review."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "b19274409af1ae822e33ed0456e79eb58e01a8a13cb2e912fd6ab35e0bb27ca6",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C3",
+          "purpose": "Actual Memory-v2 \u2192 Chat aggregate-v2 write/read/reparse \u2192 admitted same-namespace restore/automatic rollback; strict mixed/version/identity negatives. I2-only map/docs review."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/reorganization/mutation.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "8e3321d40d452f4877d397d40f6afccf2a549a91401d21ecd8b10f95d9e60d6a",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Pool/non-pool capability injection/readiness only; no stage/prompt changes."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "owner": "friday-chat",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "7a0003b0657e408261024be619a903f400f8e2f2f15533aa8392bd6ac904e6a2",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests."
+        },
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Deferred admitted store/readiness wiring and task/sink lifetime."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Fake and framework composition of shared entry/converter/counter; no separate policy."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-cli/README.md",
+      "owner": "friday-cli",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "a7e993ec679fc141758de2f5a2d319a9e84131842bd7f54d584d40a89523e062",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-cli/src/friday_cli/container.py",
+      "owner": "friday-cli",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "e3cdbdeb320f70ec13c3c153fe692a39abfef8ca5e702f33bb301d53a72aa4ee",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI must use the exact narrow adaptation, prove an existing origin-preserving mechanism, or stop and reconcile; forwarding the resolved string alone is insufficient. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-cli/src/friday_cli/profiles.py",
+      "owner": "friday-cli",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "949c03310b82b438afaf2bcc8334e7c5989e93f1b6d8776670472ac8230866cf",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI must use the exact narrow adaptation, prove an existing origin-preserving mechanism, or stop and reconcile; forwarding the resolved string alone is insufficient. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-commands/README.md",
+      "owner": "friday-commands",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "c4e4dc9e320461b09528451d0885cd4ad067e04e7432d08916f4b4e4077eb509",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-commands/src/friday_commands/file_inputs.py",
+      "owner": "friday-commands",
+      "mode": "edit",
+      "exists_at_preparation": false,
+      "baseline_sha256": null,
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-core/README.md",
+      "owner": "friday-core",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "41e7dd9db5e2565c35b5ec1ac1c97be2d2a78fc3a0bb52d193d961443604d8e0",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C2",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/ingestion.py",
+      "owner": "friday-core",
+      "mode": "edit",
+      "exists_at_preparation": false,
+      "baseline_sha256": null,
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C1",
+          "purpose": "Validate neutral values/protocol shape and old public interfaces; no Tools/Memory backend import and no actual smart_read/common plan claim."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "owner": "friday-core",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "5082f24ab7dda1a1a77e05702e8874cbd656bcbb19b4dabaa96b531b16ed76ac",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C1",
+          "purpose": "Validate neutral values/protocol shape and old public interfaces; no Tools/Memory backend import and no actual smart_read/common plan claim."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/profiles.py",
+      "owner": "friday-core",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "8e6bed2bb0d33f9b1fcb18141827e1e8fb9256f0efae88f353f854d8899b6d75",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI must use the exact narrow adaptation, prove an existing origin-preserving mechanism, or stop and reconcile; forwarding the resolved string alone is insufficient. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-llm/README.md",
+      "owner": "friday-llm",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "8503b6301707e326c1f540e1b1596f6f226f5debdb7b81c9d940445e303b61cf",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C2",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-llm/pyproject.toml",
+      "owner": "friday-llm",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "a86ec2a3f4d922a4305eda96a088c1bd7e354b82adebc1ec2a61ef7614336ea9",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C2",
+          "purpose": "Implement/test actual LLM preparation/count/batch boundary on supplied text and qualified facts; narrow counter edge. No document splitting, Runtime assembly or full document DI17/24 closure. Validate the exact I1 narrow-counter dependency/lock closure; later I3 document-stack delta is separate. During I1 legacy/unbound callers retain identical preparation, roles/cache behavior and vectors under paired old/current witnesses; new preparation/role/cache identities apply only to new guarded qualified paths until I2 binding/wiring."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-llm/src/friday_llm/embedding_limits.py",
+      "owner": "friday-llm",
+      "mode": "edit",
+      "exists_at_preparation": false,
+      "baseline_sha256": null,
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C2",
+          "purpose": "New narrow pure counter/capability/preparation implementation and strict local manifest resolution; no document policy."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-llm/src/friday_llm/embeddings.py",
+      "owner": "friday-llm",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C2",
+          "purpose": "Implement/test actual LLM preparation/count/batch boundary on supplied text and qualified facts; narrow counter edge. No document splitting, Runtime assembly or full document DI17/24 closure. Validate the exact I1 narrow-counter dependency/lock closure; later I3 document-stack delta is separate. During I1 legacy/unbound callers retain identical preparation, roles/cache behavior and vectors under paired old/current witnesses; new preparation/role/cache identities apply only to new guarded qualified paths until I2 binding/wiring."
+        },
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Retire temporary I1 unguarded branch only with coordinated admitted consumer switch."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-llm/src/friday_llm/model_library.py",
+      "owner": "friday-llm",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "754effe6adf32890073866d3192f75bbb7354642c5c32a64df456c22321b6add",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C2",
+          "purpose": "Implement/test actual LLM preparation/count/batch boundary on supplied text and qualified facts; narrow counter edge. No document splitting, Runtime assembly or full document DI17/24 closure. Validate the exact I1 narrow-counter dependency/lock closure; later I3 document-stack delta is separate. During I1 legacy/unbound callers retain identical preparation, roles/cache behavior and vectors under paired old/current witnesses; new preparation/role/cache identities apply only to new guarded qualified paths until I2 binding/wiring."
+        },
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Carry qualified capabilities for all selected catalog routes; preserve omitted-field load."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/README.md",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "36d60709631197e61dda450d6d77e5e3a0bc3a8db549d2fad05c402686b19205",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C2",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/pyproject.toml",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "2f02fb0bf8ce6eeef55e5824420cd70b997eea51592221c6f3b1fc4c82dfdcfa",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C2",
+          "purpose": "Implement/test actual LLM preparation/count/batch boundary on supplied text and qualified facts; narrow counter edge. No document splitting, Runtime assembly or full document DI17/24 closure. Validate the exact I1 narrow-counter dependency/lock closure; later I3 document-stack delta is separate. During I1 legacy/unbound callers retain identical preparation, roles/cache behavior and vectors under paired old/current witnesses; new preparation/role/cache identities apply only to new guarded qualified paths until I2 binding/wiring."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/__init__.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "98d4384b674bdfde65c9c4be2756e8099b2c24f1d3b66bbb5cfa44f84301b34a",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C4",
+          "purpose": "Append typed v2 exports; retain existing names."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/adapters/graph.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "4fdf5135ceadac3183863010744026a76da3622234e1cb8dac7d00d67ba0af87",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Carry identity envelopes on vector writes, no migration/backfill."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/adapters/null_graph.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "da1405d6946c8773354c6e716d91cb555af58a95a4735e149df787bc31508157",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Preserve graph interface/envelope passthrough."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/adapters/simple_vector.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "cf7e817caaec151116ec3c53a1fd3b5cd9fcdf534f5a93063f3976025239dbb5",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C3",
+          "purpose": "Direct factory/store admission and identity values, matching reopen and foreign/missing identity refusals; no Chat/Runtime startup claim."
+        },
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Guard ephemeral vector operations and same identity/query roles."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/adapters/vector.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "6bf75710cdaa384ac2a371dbe214182f07170fd0a9d2dbe46a7b177bf0907833",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C3",
+          "purpose": "Direct factory/store admission and identity values, matching reopen and foreign/missing identity refusals; no Chat/Runtime startup claim."
+        },
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Route all maintained query/document operations through admitted prepared vectors."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "e3dffd72311de5589ea30bc0c1da9d2e90dd01c0d76d9dd86761329e13d952f2",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/consolidator.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "d3fe57ce5cc107c29037cb85c6af92fcde2d23c0c47ade2f6575e4f11029e26a",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "No successful acknowledgement after failed summary storage."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/extraction_filter.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "2e33d85e098a0f0a97e47d30fa7b3fb150d50cef771cfcd692bbef5604028911",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Admitted per-owner rejection sink open/reconfigure/close; no old-root effects."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/extractor.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "62cc6d0a2afc5d61a094d20978ec5e1d130f781136f9c75b6d3f24901174bb33",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "8a5708f323e0066eb982d49d43b6bb1c6fc9eb13c05b78f20718ea145ffe3712",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Preserve typed refusal, correct roles, full-batch storage/recall outcomes."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C2",
+          "purpose": "Prepared source/derived handoff, one batch before first write, no second split."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/__init__.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "f6f5c726f3f19dc9e5e8d671367a2213f17d2e1a93225c793be1dc7898449cee",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C2",
+          "purpose": "Export public injected ingestion factory and typed entry."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": false,
+      "baseline_sha256": null,
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C2",
+          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/embedding_space.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": false,
+      "baseline_sha256": null,
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C3",
+          "purpose": "Direct factory/store admission and identity values, matching reopen and foreign/missing identity refusals; no Chat/Runtime startup claim."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "a125280d7eeacf842d6420e0030d9a76665196a9fa3e8d47d2115fa01e802e0c",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C2",
+          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/mcp.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "6b8dee3f72da92db4e4f509d9e4f8760db97281534d1c593c0b01774de41054a",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Shared unsplit guard and retained pending-ID retry semantics."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/tool_ingester.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "e20502fb54d7288ed4ced51fc206d9a1070addf472ac156fc21a42331eea19e7",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C2",
+          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/lifecycle/promotion.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "2c1ab998b1c544767c5873f4c3721a10f66a31d35fc3fa3c585039d95512722c",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Propagate guarded failures and count only completed mutations."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/__init__.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "a98d2c7f681aac016988c4f5d3600714bbf9f87f6ddc7da297b1c03788c6c4a4",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C4",
+          "purpose": "Append v2 models/loaders without rebinding v1 names."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/__main__.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "8ac55c0734a16d6e139bd36af0d334c207c601fc8f0dbec2452dd32d85b3b8cd",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Exact configured admission before existing commands, no new CLI mutation."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/analyzer.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "521ba2dead1b363f09d3c8227285a2803110e89caa2ab0a470a86fa4f2daa879",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/backup.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "ddd37aa5bdcedbaf623321828e26e3af7b1ebbcea9ba041dc0e40b1421ad937b",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/fact_checker.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "6c229c2c2b9c274715a1dd0bd2ac852566e2e73a6a20167ad270cd3b564fada4",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/mutation.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "edab173cf190bcfb196392220d33acf3b0d17e7ab9ae7e35b277c2b5efb90f00",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/pipeline.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "ab930a859e58a49ef88eb5c7d2b828191737c4dd6ac93cc5483854a919fa7dd0",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Role/envelope propagation at existing embedding calls; sequence unchanged."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/provider_contracts.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "7efed92f926bf6f1f45d162b738cbb50edc427e0f99e3a538be668cf34f76121",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Narrow typed shape/refusal handoff only."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/pruner.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "a36258551ee3c1d5349ca7579d79f6444b9e48f1817858a2f524563e65d0cf9b",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/recovery.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "c8c0b7bff6fac81f2d3146a67915bddcd2aae83a587a8ab19bcd03475cc8f954",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C4",
+          "purpose": "Memory-v2 model/loader, old v1 strictness and fingerprint inputs only; no actual Chat aggregate/rollback claim. I1 map and changed-contract notes accepted for I1 only."
+        },
+        {
+          "slice": "I2",
+          "exit": "I2-C3",
+          "purpose": "Actual Memory-v2 \u2192 Chat aggregate-v2 write/read/reparse \u2192 admitted same-namespace restore/automatic rollback; strict mixed/version/identity negatives. I2-only map/docs review."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "dfb8891534de628cba2bb42495fea644d1e14759d7e11a582b168c3b270f1f95",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C4",
+          "purpose": "Memory-v2 model/loader, old v1 strictness and fingerprint inputs only; no actual Chat aggregate/rollback claim. I1 map and changed-contract notes accepted for I1 only."
+        },
+        {
+          "slice": "I2",
+          "exit": "I2-C3",
+          "purpose": "Identity-bearing nested-v2 constraints for active consumers."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/reorganizer.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "98d2ac6db8fd835910c49fcd804ac6bf4d4a02e2534cd2d7f0bde683180e7e2c",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Existing direct opener admission/roles/public backup behavior, no redesign."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/synthesizer.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "44235da056162f223a9f5ee1ede27e565fccba1b653bdd2bd81aaaed7f104b38",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/graph.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "a74e9675846ee9013ee6acf4f53508c88beed080cda0ca0cfb2a12916abaa827",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Reserved identity-envelope properties, no graph schema redesign."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/retrieval/collection_manager.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "41e85080c2b80545f79685da019549d4462f69c9942d7d13db029f99aff8b8de",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Admitted exact-destination clients, batch validation and visible fetch/storage failures."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/retrieval/graph_scorer.py",
+      "owner": "friday-memory",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "339b9c6859af7c2548e470e36f1ed407cd05837e8d78f0a9fe2656275edac1c3",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Injectable-only provenance/role rules; absent fallback behavior retained."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-runtime/README.md",
+      "owner": "friday-runtime",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "fe6341b46e1761e6f43b71870519d46fb9b87fc43d18f880dd3a58a08a2d6bb1",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-runtime/src/friday_runtime/config.py",
+      "owner": "friday-runtime",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "cc248bb8b8b4e713deede41d07f0729b699f341f7f05a38304e46b004ed72d0d",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI must use the exact narrow adaptation, prove an existing origin-preserving mechanism, or stop and reconcile; forwarding the resolved string alone is insufficient. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-runtime/src/friday_runtime/di.py",
+      "owner": "friday-runtime",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "8085b142495376bab4ad38465bb7bdb267f598c443e4ed2375329ed8fb670f9c",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI must use the exact narrow adaptation, prove an existing origin-preserving mechanism, or stop and reconcile; forwarding the resolved string alone is insufficient. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-tools/README.md",
+      "owner": "friday-tools",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "790d0c90b4cd640b4962f80b6497357aa3d286d75f77f888b1c2ced2a9aa7494",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Document only contracts/profiles/compatibility actually delivered by this slice; final coherent architecture at I3/AG."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-tools/pyproject.toml",
+      "owner": "friday-tools",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "40f234b2f32bac75010ea6bbaa7b09e5d712e6d3d839a1963b485f6c1efd5b76",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py",
+      "owner": "friday-tools",
+      "mode": "edit",
+      "exists_at_preparation": false,
+      "baseline_sha256": null,
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C1",
+          "purpose": "Real native/OCR formats, order/coverage, selected-release structural mapping, no fallback or diagnostic content, resource admission and missing-assets independence."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-tools/src/friday_tools/filesystem/smart_read.py",
+      "owner": "friday-tools",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "23f514859df4ec0b228e0667187c28650982f3b2e6133d64de898dcfc54e6399",
+      "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C2",
+          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-tools/src/friday_tools/memory/lifecycle.py",
+      "owner": "friday-tools",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "a76045c4be63b3dce1aba3720a046ba459c39090b47cc7dea5e5374eed0120c7",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Truthful existing wrapper failures/counts only."
+        }
+      ]
+    },
+    {
+      "path": "packages/friday-tools/src/friday_tools/memory/maintenance.py",
+      "owner": "friday-tools",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "37ec8d951272621afa74d03613f36afeeac1bb67c49a001e99df86e46829fe81",
+      "assignments": [
+        {
+          "slice": "I2",
+          "exit": "I2-C2",
+          "purpose": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3."
+        }
+      ]
+    },
+    {
+      "path": "uv.lock",
+      "owner": "workspace",
+      "mode": "edit",
+      "exists_at_preparation": true,
+      "baseline_sha256": "da69afe794ac85afce534107b5f6579514ed600ffc13e15a7c5a8b93c77ffedc",
+      "assignments": [
+        {
+          "slice": "I1",
+          "exit": "I1-C2",
+          "purpose": "Implement/test actual LLM preparation/count/batch boundary on supplied text and qualified facts; narrow counter edge. No document splitting, Runtime assembly or full document DI17/24 closure. Validate the exact I1 narrow-counter dependency/lock closure; later I3 document-stack delta is separate. During I1 legacy/unbound callers retain identical preparation, roles/cache behavior and vectors under paired old/current witnesses; new preparation/role/cache identities apply only to new guarded qualified paths until I2 binding/wiring."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C5",
+          "purpose": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes."
+        }
+      ]
+    }
+  ],
+  "source_unchanged_witnesses": [
+    "packages/friday-runtime/src/friday_runtime/tool_loading.py",
+    "packages/friday-chat/src/friday_chat/app.py",
+    "packages/friday-agent/src/friday_agent/base.py"
+  ],
+  "guide_read_only_followups": [
+    "docs/guides/16-desktop-deployment.md",
+    "docs/guides/17-mcp-client.md"
+  ],
+  "guide_followup_rule": "Read for affected claims; no edit permission added by an advisory. Bind any necessary additional guide edits through exact approved scope reconciliation."
+}

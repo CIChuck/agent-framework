@@ -8,7 +8,9 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01–07 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects.
+**Next gate:** Review the proposed INGEST activation appendices and resolve existing Q gaps: immutable B/N serving/counter evidence, Office coverage mapping, worker/resource qualification and exact asset/dependency binding. Then bind the canonical impact revision and A1–A5 approval before I1. Focused directive council is closed VERIFIED; no product code, live effects or new council is authorized by this preparation.
+
+[Proposed activation package](product-construction/activation/README.md) contains exact draft contracts, slice/case maps and unresolved Q dispositions; it is not construction approval.
 
 ## Historical branch/design preparation (superseded for current evaluation routing)
 

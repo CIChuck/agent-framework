@@ -1,6 +1,12 @@
 # INGEST product construction drafts — maintainer review
 
-Execution phase: planning; validation state: verified for the focused directive only; product activation pending.
+Execution phase: planning; validation state: not_ready for product activation.
+
+[Proposed activation appendices](validation/document-ingestion/product-construction/activation/README.md)
+now specify exact contracts, per-slice paths/cases, worker/asset choices and the
+remaining Q facts. They require review/approval and actual qualification; no new
+code, effects or council follows. The focused directive verdict below remains
+frozen at 0144c539 and does not extend to these new appendices.
 [INGEST](directives/CD-CMD-INGEST-001-product.md) and
 [TOOLS-DOC](directives/CD-CMD-TOOLS-DOC-001-adoption.md) remain separately
 conditional, with [RD-01–07](validation/document-ingestion/product-construction/readiness-decision.md)
@@ -8,7 +14,7 @@ activation requirements. Prior bounded evaluations remain verified at their
 frozen sources. Whole Gate-A9.5 and product construction approval remain open.
 The first [three-seat reconciliation](validation/document-ingestion/product-construction/council-round1/report.md) is historical. The [round2 reconciliation](validation/document-ingestion/product-construction/council-round2/report.md) records BLOCKED, an unmet all-seat9.5 gate and one remaining mandatory document finding. Those two rounds are historical. Chuck's [new authorization](validation/document-ingestion/product-construction/correction-loop/authorization.json) permits up to three additional bounded correction/review passes. [Additional pass1](validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md) is closed with the gate unmet. [Additional pass2](validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md) is closed BLOCKED. [Final additional pass3](validation/document-ingestion/product-construction/correction-loop/pass3/results/report.md) is closed BLOCKED. That historical allowance remains exhausted. Chuck authorizes a [focused F1–F8 council](validation/document-ingestion/product-construction/focused-council/authorization.json), closed VERIFIED after round2/3 with all three complete seats above both 9.5 thresholds and no mandatory findings; no third round is launched. [Round2 reconciliation](validation/document-ingestion/product-construction/focused-council/round2/results/report.md) and [implementation handoff](validation/document-ingestion/product-construction/focused-council/round2/results/implementation-handoff.md) retain the result and future binding duties. Completed Docling evaluation remains input; product construction and model/store/production effects remain unapproved.
 
-**Next gate:** Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01–07 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects.
+**Next gate:** Review the proposed INGEST activation appendices and resolve existing Q gaps: immutable B/N serving/counter evidence, Office coverage mapping, worker/resource qualification and exact asset/dependency binding. Then bind the canonical impact revision and A1–A5 approval before I1. Focused directive council is closed VERIFIED; no product code, live effects or new council is authorized by this preparation.
 
 ## Separate MAINT closeout and historical checkpoints
 

@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01–07 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects."
+  next_gate: "Review the proposed INGEST activation appendices and resolve existing Q gaps: immutable B/N serving/counter evidence, Office coverage mapping, worker/resource qualification and exact asset/dependency binding. Then bind the canonical impact revision and A1–A5 approval before I1. Focused directive council is closed VERIFIED; no product code, live effects or new council is authorized by this preparation."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

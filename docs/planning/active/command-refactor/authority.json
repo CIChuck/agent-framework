@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01\u201307 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects.",
+  "current_scope": "Review the proposed INGEST activation appendices and resolve existing Q gaps: immutable B/N serving/counter evidence, Office coverage mapping, worker/resource qualification and exact asset/dependency binding. Then bind the canonical impact revision and A1\u2013A5 approval before I1. Focused directive council is closed VERIFIED; no product code, live effects or new council is authorized by this preparation.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1894,9 +1894,9 @@
   },
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
-    "status": "focused_directive_verified_activation_pending",
+    "status": "activation_appendices_prepared_readiness_pending",
     "execution_phase": "planning",
-    "validation_state": "verified",
+    "validation_state": "not_ready",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Focused INGEST directive council VERIFIED at 0144c539: all three seats complete, both scores >=9.5, zero mandatory findings. Loop closed after round2/3. Next prepare existing Q/RD-01\u201307 and exact A2/A3 bindings, post-readiness impact revision and maintainer A4 approval, then bounded A5 execution before I1. No product work or new effects.",
+    "next_gate": "Review the proposed INGEST activation appendices and resolve existing Q gaps: immutable B/N serving/counter evidence, Office coverage mapping, worker/resource qualification and exact asset/dependency binding. Then bind the canonical impact revision and A1\u2013A5 approval before I1. Focused directive council is closed VERIFIED; no product code, live effects or new council is authorized by this preparation.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2954,8 +2954,8 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "product_activation_preparation_pending",
-    "validation_scope": "Verified focused F1\u2013F8 construction-plan completeness/buildability only; Q/Gate A and product activation remain open.",
+    "current_stage": "activation_package_maintainer_review",
+    "validation_scope": "New proposed exact appendices have structural checks only; focused directive remains independently VERIFIED at 0144c539, Q/activation open.",
     "large_document_corpus": {
       "state": "verified",
       "scope": "validation/document-ingestion/gate-a/large-documents-scope.md",
@@ -2971,7 +2971,7 @@
     },
     "product_construction_preparation": {
       "version": "0.7",
-      "status": "focused_directive_verified_activation_pending",
+      "status": "activation_appendices_prepared_readiness_pending",
       "date": "2026-11-12",
       "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
       "files": {
@@ -2989,7 +2989,7 @@
         },
         "authority_manifest": {
           "path": "validation/document-ingestion/product-construction/authority-manifest.json",
-          "sha256": "4e3b7382e6440890e253aff93660377ac5ffd4fec20ec351732051e86c081127"
+          "sha256": "6d0d893165d865372c3a8de78a6dff9a74053fcfeebe7fb8e07046de50847116"
         },
         "baseline_test_inventory": {
           "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
@@ -3504,7 +3504,17 @@
         "target_met": true,
         "further_automatic_review": false
       },
-      "verification_date": "2026-11-13"
+      "verification_date": "2026-11-13",
+      "activation_preparation": {
+        "package": "validation/document-ingestion/product-construction/activation/README.md",
+        "binding": "validation/document-ingestion/product-construction/activation/approval-binding.json",
+        "binding_sha256": "28d6bf1f9c3a37e3b6337c0fd3b9b4ac8e48d6bcac0795910aa35ebe18867767",
+        "authority": "validation/document-ingestion/product-construction/activation/preparation-authorization.json",
+        "status": "proposed_not_approved",
+        "new_council_authorized": false,
+        "construction_approved": false,
+        "new_effects": false
+      }
     }
   },
   "command_refactor_publication": {

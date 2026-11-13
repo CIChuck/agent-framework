@@ -116,7 +116,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
-      "sha256": "f53723bccfc731803c553278ab233442b0d61eb5ae290f6334c56054eeaeb3e3"
+      "sha256": "a17b9f0aba8d88e42b84604f0893529180ec023c0444f7dd912f11c131ebb392"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md",
@@ -189,5 +189,12 @@
     "report": "focused-council/round2/results/report.md",
     "technical_inputs_and_directive_unchanged": true,
     "current_change": "Status and branch-handoff routing pin only; no technical requirement change."
+  },
+  "activation_preparation": {
+    "path": "activation/README.md",
+    "status": "proposed_not_approved",
+    "authority": "activation/preparation-authorization.json",
+    "parent_manifest_before_routing_refresh": "activation/preparation-parent-manifest.json",
+    "technical_requirement_change": false
   }
 }

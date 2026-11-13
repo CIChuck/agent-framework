@@ -4199,3 +4199,33 @@ maintainer satisfaction. Current authority/board/navigation now route to the
 existing Q/RD-01–07 and A1–A5 activation records. This focused document verdict
 closes neither whole Gate A nor product construction approval, UAT, acceptance
 or delivery. No product generation follows.
+
+
+## 2026-11-13 — proposed INGEST activation appendices prepared
+
+Chuck's latest proceed authorizes preparation of exact shared interfaces,
+per-slice file/test maps and readiness dispositions for construction approval.
+[Activation package](validation/document-ingestion/product-construction/activation/README.md)
+records neutral values/protocols, typed errors, guarded embedding/namespace and
+v2 recovery signatures, a proposed owned process/read lifecycle, explicit local
+asset ownership and deterministic identity/plan/receipt vectors. The file map
+assigns exact source/metadata/doc paths to owners/exits; the case map reuses the
+frozen inventory without rebuilding ASTs and proposes 49 exact existing-case
+exceptions plus named new witnesses, with retain-by-default and no retirements.
+No test code, fixture, product source or current guide is generated.
+
+RD-01–07 dispositions reuse completed Docling/Nomic evidence rather than repeat
+vendor evaluation. Actual immutable B/N identities/counter parity, narrow Office
+coverage, measured worker/resource behavior and full dependency/asset qualification
+remain explicit open gates. Synthetic hash vectors and unit-test fixture identities
+are not real serving proof. A1–A5 remain unactivated; exact post-readiness impact
+refinement and maintainer approval are still required. No new endpoint window,
+model choice, installation, store/reset/production operation or council is inferred.
+
+The reviewed v0.7 directive, phase maps, approved impact v0.6, REM/compatibility/
+companion/readiness, old reports and all product/test/dependency bytes remain
+unchanged. The current routing manifest refreshes only its handoff pin and records
+this unapproved proposal; its pre-preparation bytes are preserved. Current board/
+packet/authority route to appendix review and exact Q evidence, separate from the
+closed VERIFIED focused directive. This is planning preparation, not construction,
+implementation verification, acceptance or delivery.
