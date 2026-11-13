@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh LD-CORPUS-001 correction delta and full corpus review. V2 requires genuine middle/tail evidence; native25-file validation/mode and88 regressions pass. Original corpora preserved. No Qwen/model/store/production effect; serving and token counts remain unqualified. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Large-document corpus independently verified. Qualify Qwen embedding-serving identity and tokenizer, then reserve an isolated test window before larger-document Docling/chunking/embedding comparisons. Production model/default and product construction remain separate decisions. |
 
 ## Completed
 

@@ -3895,3 +3895,7 @@ The archived v1 Markdown snapshot initially retained links relative to its old
 location; the lifecycle check correctly failed. Links were rebased only, and the
 canonical full documentation check now passes. That setup attempt has no green
 verification credit; current admin receipts are retained separately.
+
+## 2026-11-12 — Long-document corpus independently verified
+
+Fresh [correction review](validation/document-ingestion/gate-a/large-documents/validation/round2/review-report.md) verifies frozen4735e3e: LD-CORPUS-001 closed and full bounded LD-01–08 pass. Actual data source remains f17b3d32. All20 native documents plus5 references are retained at five lengths, with a largest31544-word source,46 PDF pages,6 sheets and96 slides. Original corpora and prior reports remain unchanged. Source and native cross-section controls require genuine joint evidence. No model request, dependency install, store operation or production update occurred. Qwen serving/tokenizer qualification, future isolated comparisons, whole Gate-A9.5 and product construction/acceptance remain open. Exact fresh-versus-inspected checks and limits are in the independent report.

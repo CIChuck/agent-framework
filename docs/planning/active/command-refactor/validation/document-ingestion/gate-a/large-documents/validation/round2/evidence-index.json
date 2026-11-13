@@ -1,0 +1,528 @@
+{
+  "result": "VERIFIED",
+  "candidate": "4735e3e1958d05c5a5cb0f3efe4ac88a301d6aaf",
+  "report": {
+    "path": "/private/tmp/large-corpus-independent-l509_a0y/review-report.md",
+    "sha256": "16c71443f74458234479b2232a43699711904e33abec78c44e14eff7dc40b8bb"
+  },
+  "ledger": {
+    "path": "/private/tmp/large-corpus-independent-l509_a0y/command-ledger.json",
+    "sha256": "2de03f8d623c38284edb315b1a7184447a412e4c82758ad8901782e7c11e70ef"
+  },
+  "compact_evidence": {
+    "path": "/private/tmp/large-corpus-independent-l509_a0y/compact-evidence.tar.gz",
+    "sha256": "69dd743e064a9dbeb6bef919b0a559286e4b970f2cf8ea0caef864172345a2b8",
+    "bytes": 1219110,
+    "members": 100
+  },
+  "full_opening_snapshot": {
+    "path": "/private/tmp/large-corpus-independent-l509_a0y/supplied-opening.json",
+    "sha256": "25b88d6a8b599c4838340763e07ce66e8fb69ad4fca144e14c7abe979078b9e7"
+  },
+  "full_closing_snapshot": {
+    "path": "/private/tmp/large-corpus-independent-l509_a0y/supplied-closing.json",
+    "sha256": "25b88d6a8b599c4838340763e07ce66e8fb69ad4fca144e14c7abe979078b9e7"
+  },
+  "members": [
+    {
+      "path": ".friday_test/runs/large-documents-control-r2-guard/reports/guard-controls.json",
+      "sha256": "641689e8b80a88ae711a9bc4ff2efdb2de5fc941c2e301c39241fa8a3be5ae6c",
+      "bytes": 302
+    },
+    {
+      "path": ".friday_test/runs/large-documents-control-r2-native-body/inputs/corpus/manifest.json",
+      "sha256": "9679f1697b2e30d93a4e72fdef5ca769ccaf1117acbe8acda261c41daa161b08",
+      "bytes": 10536
+    },
+    {
+      "path": ".friday_test/runs/large-documents-control-r2-native-body/inputs/corpus/orion-016.docx",
+      "sha256": "90839ec26e17dc05e66591364a659c465792851a227bf74dd572c520bf6e20b2",
+      "bytes": 2493
+    },
+    {
+      "path": ".friday_test/runs/large-documents-control-r2-native-duplicate/inputs/corpus/manifest.json",
+      "sha256": "65aada2fa1af6a4b9d35047832eda17ba0ff8dd095ede1f719dcd252cb1cc27b",
+      "bytes": 10536
+    },
+    {
+      "path": ".friday_test/runs/large-documents-control-r2-native-duplicate/inputs/corpus/orion-016.docx",
+      "sha256": "44b00cf7e9fb031205f9298731312479167e14538c6c008c7f7084da1c9a29ed",
+      "bytes": 2476
+    },
+    {
+      "path": ".friday_test/runs/large-documents-control-r2-native-order/inputs/corpus/manifest.json",
+      "sha256": "b1505eb425ff2e9ce98639c91c444f25f1112ec6be7b3d8dd93dcc2fc584db33",
+      "bytes": 10536
+    },
+    {
+      "path": ".friday_test/runs/large-documents-control-r2-native-order/inputs/corpus/orion-016.docx",
+      "sha256": "027bc4151eb050d69fc2bcd2dff2c4997b0a4d8a3a62c4018c69c6f8aee082b6",
+      "bytes": 2467
+    },
+    {
+      "path": ".friday_test/runs/large-documents-copied-normal/reports/native-validation.json",
+      "sha256": "6a4d5dff7b3b4e295d6280b04563a9dfa22700631926da36cf59a4d1db165b79",
+      "bytes": 6938
+    },
+    {
+      "path": ".friday_test/runs/large-documents-copied-optimized/reports/native-validation.json",
+      "sha256": "6a4d5dff7b3b4e295d6280b04563a9dfa22700631926da36cf59a4d1db165b79",
+      "bytes": 6938
+    },
+    {
+      "path": ".friday_test/runs/large-documents-delta-tail-mutant/inputs/corpus/manifest.json",
+      "sha256": "53d4345084f16cb76e3f7ab1e29eebc627168761d05aeb8b44b84096ab488288",
+      "bytes": 10536
+    },
+    {
+      "path": ".friday_test/runs/large-documents-delta-tail-mutant/inputs/corpus/orion-016.docx",
+      "sha256": "f1e7dc260d96ac40c40e5acb787405ef863a4560d3e964be08d996b10bea65d5",
+      "bytes": 2473
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/manifest.json",
+      "sha256": "44a510e4d9fc0e404262c9c3c27bc084897b27bf65eb638ff8bbd609a2578527",
+      "bytes": 10536
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/oracles.json",
+      "sha256": "01a7244cecf4f0c84a7f128dbce981427982d6e68f0987286699994df7471c47",
+      "bytes": 5766
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-016.docx",
+      "sha256": "e6b4cfc361f7368414643143b8123d17eb8d2a7fa94561a79725669f991143f3",
+      "bytes": 2468
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-016.pdf",
+      "sha256": "7581e9fe80448ee8d688a597c5787e2d3fa1da4321eb27c80e5a7f63e27a86e0",
+      "bytes": 11528
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-016.pptx",
+      "sha256": "ce024db56c937227ea87dda41e22f0d824e473351cb764de342cbaf6accbd09b",
+      "bytes": 5375
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-016.txt",
+      "sha256": "39a492ff52c34a8a21279e04b9f168e3d7a2a86e4ba324d240a5d0367d3f17eb",
+      "bytes": 9630
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-016.xlsx",
+      "sha256": "14f86573879320edaf350e5fe104c44020d28032ae8ef7b0ca836ca727d5f0ee",
+      "bytes": 3192
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-064.docx",
+      "sha256": "457fc6ba874bf6f0e4c32c314eca2bd2393062c8dca63f4ca94f48d625c40690",
+      "bytes": 3459
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-064.pdf",
+      "sha256": "7d162ae2474e29889a718cc652a3ad10df486bd6cf0194239a5ff266a1a666da",
+      "bytes": 43839
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-064.pptx",
+      "sha256": "86bc2358feecc5594c8257de4c8daa403d042c7616e82eb65e024be52ffe1659",
+      "bytes": 17407
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-064.txt",
+      "sha256": "c5237c9781bea9a80e035bb1a6374d56429dd5da0ac0168257a409366906a0b5",
+      "bytes": 37317
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-064.xlsx",
+      "sha256": "cd9b514a205f201616dd6c506ccdf0065109d7427d9949c25f1514e1b52cd679",
+      "bytes": 4868
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-128.docx",
+      "sha256": "626d6bd839b7057424dbdb5bdad9688106c59c64e97b364802090d30a7581c45",
+      "bytes": 4725
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-128.pdf",
+      "sha256": "be02c40bf2a5b503bd829ce64ddaa391971432ff8d686e504eb6dd6218595601",
+      "bytes": 86928
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-128.pptx",
+      "sha256": "fd4d9073fa6eb163db0ebca7753734b1bb017d205ea70d7bc4d1f9c7ff101e7d",
+      "bytes": 33452
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-128.txt",
+      "sha256": "9241412d0d95e8f3981eb18ee0fccc9d34c9ac12b9304352fbf1c8af902198ec",
+      "bytes": 74238
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-128.xlsx",
+      "sha256": "d706d2db64c6d753338d60d4b57492673f88c0206269dd8e89c595238970ff74",
+      "bytes": 7994
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-256.docx",
+      "sha256": "bb16da6b98d5cddfd024ddcb1073da1c7e4659cbe6321d34b7f801fc3e912604",
+      "bytes": 7082
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-256.pdf",
+      "sha256": "dc7a5f89014e090d9dd78f235b4e7eb7d99233d7452ebe1ba9f23e64485b2b35",
+      "bytes": 172846
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-256.pptx",
+      "sha256": "4e5743487a6fd4b74dd826d8de84adbd07baabcb302132fdc514fabce83c8928",
+      "bytes": 65567
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-256.txt",
+      "sha256": "176b8668f0c563a7919c0af8466e9d48811c54df42f50be390c083b1e2081672",
+      "bytes": 148077
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-256.xlsx",
+      "sha256": "5b2e55bc5d14da50e395517f14f5abb34710b0f78773c1ff32a503cfc962d42b",
+      "bytes": 14152
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-384.docx",
+      "sha256": "becfabcc8e375a0edbc974b5ed57ec99bbff8e58464cfc06eabcba873b03a0af",
+      "bytes": 9389
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-384.pdf",
+      "sha256": "a5adb80322cebccf5c5df788f6c7a5dd3dc11f0ee039113b4f6c8b71ac110bca",
+      "bytes": 258755
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-384.pptx",
+      "sha256": "2b2906de0adc1bbc06596bb49715c8fbe789f38e31494611bbb3984c2a5d096f",
+      "bytes": 97658
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-384.txt",
+      "sha256": "645505c7c3e5de2e36707f91919cb8f03364a711516db0b6b0d37991a1265064",
+      "bytes": 221909
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/inputs/corpus/orion-384.xlsx",
+      "sha256": "afec3d2686f5549577ad87147e8748bf389fccc67e31a684b0b15f85277b16ad",
+      "bytes": 20315
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/reports/independent-layout-images.json",
+      "sha256": "df26c0d66b5fce55b4bea55db2644a75b47ea4a9ef2279c830688d2de51d4812",
+      "bytes": 599
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/reports/independent-native-distribution.json",
+      "sha256": "a3cd3ce0bd2d7da3d2fa1c91640625bf532b1c8b25db3d0ab9a7047fd32ecc69",
+      "bytes": 6535
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/reports/independent-pdf-384-page-1.png",
+      "sha256": "134a2c0b425c6e8422a04fa9d9264a61771ab6e9ba052f14a167fe5fb2755b4e",
+      "bytes": 377290
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/reports/independent-pdf-384-page-24.png",
+      "sha256": "037e558f592dea9fe08a98b8f38aa565f3e6f20629471a5e83ebcd623bbdc972",
+      "bytes": 385862
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/reports/independent-pdf-384-page-46.png",
+      "sha256": "62cba73d9a42d35bde2e37deb1bfd7236ae67aefaeaca547a6f289756f097f0c",
+      "bytes": 114061
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-normal/reports/native-validation.json",
+      "sha256": "6a4d5dff7b3b4e295d6280b04563a9dfa22700631926da36cf59a4d1db165b79",
+      "bytes": 6938
+    },
+    {
+      "path": ".friday_test/runs/large-documents-generated-optimized/reports/native-validation.json",
+      "sha256": "6a4d5dff7b3b4e295d6280b04563a9dfa22700631926da36cf59a4d1db165b79",
+      "bytes": 6938
+    },
+    {
+      "path": "close_boundary.py",
+      "sha256": "ec753a160b48475c38e2cb1dc11313e302f88c9356abc25b4aa03f3290cddd84",
+      "bytes": 2554
+    },
+    {
+      "path": "closing-boundary.json",
+      "sha256": "9ab0ed6cd1fbfa63f6cd36b2b5ccfee4701ff518956f013473029cc13a2a1b12",
+      "bytes": 680
+    },
+    {
+      "path": "command-ledger.json",
+      "sha256": "2de03f8d623c38284edb315b1a7184447a412e4c82758ad8901782e7c11e70ef",
+      "bytes": 87616
+    },
+    {
+      "path": "delta-result.json",
+      "sha256": "a739b34537e1164db77b2dc5099fd05e8c2ffd54b8e8807a56cbd4124f64bc50",
+      "bytes": 322
+    },
+    {
+      "path": "fresh-result.json",
+      "sha256": "2aed40245383d2f28482790cb65cfad667e2c400bbd99ff4dac27c493f063a6f",
+      "bytes": 2607
+    },
+    {
+      "path": "harness/README.md",
+      "sha256": "05ba482f3c21f9a9f22cbee66333b3483f0f4a6f4f2cda1b10bfefc166acb861",
+      "bytes": 23800
+    },
+    {
+      "path": "harness/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "bytes": 61691
+    },
+    {
+      "path": "harness/bootstrap.py",
+      "sha256": "70e03f2215282e2d4aa6fd0a58161ce0b9858981a114caba49f4826f5833599c",
+      "bytes": 7595
+    },
+    {
+      "path": "harness/config.example.json",
+      "sha256": "23b6e72b46d0385dbc80655a0f62cd77a3f1eeb62e5fb391982cffed0a7b5412",
+      "bytes": 344
+    },
+    {
+      "path": "harness/config.py",
+      "sha256": "36fe34e03d9506052d3f893af0b6921ae892478081ca2a9a8929370d3796898a",
+      "bytes": 1919
+    },
+    {
+      "path": "harness/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "bytes": 36391
+    },
+    {
+      "path": "harness/environment.py",
+      "sha256": "fd7e865983dd882724cd87b08c38af0b017743ce3e9dc895f4da3b80a68f07ba",
+      "bytes": 2852
+    },
+    {
+      "path": "harness/export.py",
+      "sha256": "07f0ed7c28623078e8417013e87e3c49a88188ebf43a4ecb6fb5a189daccbb8a",
+      "bytes": 7279
+    },
+    {
+      "path": "harness/fixtures/expectations.json",
+      "sha256": "878cae101edebe329a97f38ed939b5022319bc81c94ea3ef36f699336b84eaf0",
+      "bytes": 5013
+    },
+    {
+      "path": "harness/fixtures.py",
+      "sha256": "94dfb5032413a654c980db38f22e8b3cf963ae40eedd2837f0f863a1f72b12b9",
+      "bytes": 48600
+    },
+    {
+      "path": "harness/large_documents.py",
+      "sha256": "b14d8c4b89b115e954a17fbb0e6609e3115b5c0ab3d5ed9810bf27300969c066",
+      "bytes": 24162
+    },
+    {
+      "path": "harness/ledger.py",
+      "sha256": "6a217212c55910e621f826854681cd5fc51cc233dfa3c103b63d43c341bcfc31",
+      "bytes": 7421
+    },
+    {
+      "path": "harness/manifests.py",
+      "sha256": "9c6a3ff90a1e2e6604247624bb6c51e7a1646bba750808d12eb717201face903",
+      "bytes": 23585
+    },
+    {
+      "path": "harness/paths.py",
+      "sha256": "6b1b4f64f254377b07fc9dd6bea2d6b2e5730548028c7d9d973efa668c25da82",
+      "bytes": 2889
+    },
+    {
+      "path": "harness/protection.py",
+      "sha256": "98567fca7a03137600f5f962c2dde0d7be6e3d1b8106cd86bcc42a08abba2510",
+      "bytes": 2229
+    },
+    {
+      "path": "harness/reports.py",
+      "sha256": "29b66021bf8b6c7d473988631a492dc967a221a03bf56614e794a7e1a4864b9b",
+      "bytes": 2390
+    },
+    {
+      "path": "harness/requirements.in",
+      "sha256": "1d923408c8be0c89671219728dee800fc73200d7e39c718c5b7963032e3d9c87",
+      "bytes": 213
+    },
+    {
+      "path": "harness/run.py",
+      "sha256": "59e4a9490184a576603bc431abdb2bdb72c48631756e658f81fe45ceb72f6858",
+      "bytes": 572
+    },
+    {
+      "path": "harness/stages.py",
+      "sha256": "74b95391c0fdad5e1f382552983b9adf61f1ffb55dfc6b01d1964040485e21c2",
+      "bytes": 12076
+    },
+    {
+      "path": "harness/startup.py",
+      "sha256": "e80f3deaf50123f774db519e19f5b724a53e2753fa8d8d1b5b2a71e98512f1d1",
+      "bytes": 13293
+    },
+    {
+      "path": "harness/tests/test_behavior.py",
+      "sha256": "fcb76a9768eab20b19b4a6148b4fba323d24438089e259d78268dfa4cde45fa0",
+      "bytes": 13475
+    },
+    {
+      "path": "harness/tests/test_cli.py",
+      "sha256": "31c936729902ecd0f6493161307e7694c86119b906f63f155cc898068c5ddd8d",
+      "bytes": 3887
+    },
+    {
+      "path": "harness/tests/test_e2e.py",
+      "sha256": "ecdaf4e8ac9336f688af2cad2e7b1268462dae59bf09489261c291040f991d41",
+      "bytes": 13549
+    },
+    {
+      "path": "harness/tests/test_environment.py",
+      "sha256": "d199783c5e6a9ffaa56523ee46b7e16c144731af74b5e1e6d18cc2dc3d31013b",
+      "bytes": 1824
+    },
+    {
+      "path": "harness/tests/test_export.py",
+      "sha256": "9cec03469a387f9191d42a4c8a97feab97eab1cf921ec2981f58fed2569d432c",
+      "bytes": 2820
+    },
+    {
+      "path": "harness/tests/test_fixtures.py",
+      "sha256": "9388042e1eedcb0e8d881fbb01656ce241cc5e1c0a7854baaf319ec5c738deaf",
+      "bytes": 14853
+    },
+    {
+      "path": "harness/tests/test_large_documents.py",
+      "sha256": "681a3f7806227de85e6c175a3af52546b1efd969babeb72b37bcc2fbb2a861ce",
+      "bytes": 8084
+    },
+    {
+      "path": "harness/tests/test_ledger.py",
+      "sha256": "c0ed0c6f5f743539ce3d09d4dee7cf0b4fffee7c6e7aabf598f75fbf48646cd5",
+      "bytes": 3652
+    },
+    {
+      "path": "harness/tests/test_manifests.py",
+      "sha256": "275108cf81d38ec3e4788abbcd6ae80cc93e3c65e575bcc1d7d79a20c5e484d0",
+      "bytes": 20871
+    },
+    {
+      "path": "harness/tests/test_paths.py",
+      "sha256": "60d861aa500d082a2bf8d86d41a055f3c14fe5c03dfcd41df215e3f1ef80c689",
+      "bytes": 1874
+    },
+    {
+      "path": "harness/tests/test_protection.py",
+      "sha256": "cd161ca2eeda9d24209aeac085d6d605d6a01bf9a8a027d20717e6ab30045586",
+      "bytes": 12181
+    },
+    {
+      "path": "harness/tests/test_reports.py",
+      "sha256": "8d97051cc276c9e499d80c077482322a94fbed6096b6da289731a5eaffcdbff1",
+      "bytes": 1862
+    },
+    {
+      "path": "harness/tests/test_startup.py",
+      "sha256": "d65b78cbdbdf9827cda41ad35a6a83ff3c186c194ec80673f8a3438e168adfbf",
+      "bytes": 6270
+    },
+    {
+      "path": "harness/tests/test_window.py",
+      "sha256": "41788d548d1461004a310db5ff6c1cd2d9b589d4d384e537a35b591933efaa4f",
+      "bytes": 9776
+    },
+    {
+      "path": "harness/window.py",
+      "sha256": "c633ecf9b7ea2e6b9e536d1e0555a351b5b6fb63f46025454aabcb9d0cd10410",
+      "bytes": 7296
+    },
+    {
+      "path": "independent-controls.json",
+      "sha256": "ac19f7f6c5f58a697f76390493d4638559a8090fac467fadd585864f8b231541",
+      "bytes": 1670
+    },
+    {
+      "path": "independent_controls.py",
+      "sha256": "a9d4b34d2509f92bbc34b177a17d7f94292168f6d7dc9fbe3e294ca13106bb3c",
+      "bytes": 5673
+    },
+    {
+      "path": "integrity-and-inspected-typing.json",
+      "sha256": "b577c6770882a2e0b513ac729a82cc39b10acd3e9dd5bd88c866fe56fa427c27",
+      "bytes": 4708
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "fcce35ac68609eb09c336fce83ac8684deb547294a7d79d6492b7225c5ceed7e",
+      "bytes": 6059
+    },
+    {
+      "path": "measurements-and-layout.json",
+      "sha256": "1695270940b043e88be9b4dcb71082f74e9c6120cbad59b4e122b097ae7f639f",
+      "bytes": 1586
+    },
+    {
+      "path": "native_inspection.py",
+      "sha256": "42dfd4354cb68c2f067769b6e9c2f39731d5d692339d6b8688ed9da0ee077cbc",
+      "bytes": 2871
+    },
+    {
+      "path": "opening-boundary.json",
+      "sha256": "4a474a02a069eb324fb1d76b31f1f12f1896b2d5474e5105ac5344abd12a5fdb",
+      "bytes": 418
+    },
+    {
+      "path": "preservation-summary.json",
+      "sha256": "05f383de0648d014c65e5fd62367500f52d0b5f8fd22afdab4e74dc45cfa4567",
+      "bytes": 1962
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "d1e8ff05afbe8f1a06d3ddaa07db520ff0a1378f6fae23baf3ee525b9619e9d7",
+      "bytes": 4520
+    },
+    {
+      "path": "review-report.md",
+      "sha256": "16c71443f74458234479b2232a43699711904e33abec78c44e14eff7dc40b8bb",
+      "bytes": 10740
+    },
+    {
+      "path": "review_runner.py",
+      "sha256": "8ea80fc324d7a4e80949024c02ddd9e22343d20e9d304c5ae14764208766d424",
+      "bytes": 6589
+    },
+    {
+      "path": "scope-and-current-controls.json",
+      "sha256": "92a1372aa8f988834c47420f72c1c635abf4ce19ac70e8b16897bc1594e779ba",
+      "bytes": 3917
+    },
+    {
+      "path": "source-manifest-checks.json",
+      "sha256": "29ff822912448294fae1cbfc15782b9d2c0eeda1013eab5ab4613a84b6d23e02",
+      "bytes": 554
+    },
+    {
+      "path": "static_admin_integrity.py",
+      "sha256": "d9b880d6a88fb59770f006516e00e6f25ead7b873d6b6b3214d8147fff96ac98",
+      "bytes": 5327
+    },
+    {
+      "path": "write_report.py",
+      "sha256": "fbf8bc79bfa08860b928036d027ee16b13a309ecce2e5c1c8212c392c1aefae6",
+      "bytes": 14138
+    }
+  ]
+}

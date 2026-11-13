@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Fresh LD-CORPUS-001 correction delta and full corpus review. V2 requires genuine middle/tail evidence; native25-file validation/mode and88 regressions pass. Original corpora preserved. No Qwen/model/store/production effect; serving and token counts remain unqualified."
+  next_gate: "Large-document corpus independently verified. Qualify Qwen embedding-serving identity and tokenizer, then reserve an isolated test window before larger-document Docling/chunking/embedding comparisons. Production model/default and product construction remain separate decisions."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

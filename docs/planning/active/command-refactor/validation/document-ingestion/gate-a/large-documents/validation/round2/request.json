@@ -1,0 +1,77 @@
+{
+  "initiative": "friday-command-refactor",
+  "unit": "INGEST-LARGE-DOCUMENT-CORPUS",
+  "base": "b341a3c9f6c326b8f891b058fec642dd31d5efc4",
+  "candidate": "4735e3e1958d05c5a5cb0f3efe4ac88a301d6aaf",
+  "actual_generation_source": "f17b3d32b647d0df4e56963733bd606ab363e699",
+  "branch": "feature/cmd-ingest-001",
+  "work_state": "started",
+  "delivery_state": "local",
+  "authority": "Explicit latest maintainer request for larger documents for future Qwen context tests, bounded by corpus-only scope amendment and historical harness directive within amended scope",
+  "criteria": "LD-CORPUS-001 delta first, then full LD-01 through LD-08",
+  "inputs": {
+    "AGENTS.md": "9c2840ea92bf5f25acd5c85d36a18d2c7d9677c0768d1e811aef5efde6fc936b",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/development-task-lifecycle.md": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md": "bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents-scope.md": "dedcddf02336fbfd4e74511c925b123b276e2680c0c716931aa850e2f1023072",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/criteria.md": "6d36ef580d91dd5a88c68e6eab5ec6d9ad4e538df537122ba4736beb706b7420",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/results.md": "f0150c6a8069f9624ba46d3b3d47068d4164615e51beb34e76154d29d9da24b8",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/facts-v2.json": "9a5d5159a9b1402cfaac16c197fd8ad2d5354ac92b97eb3538a33c216200d1ba",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/evidence-index-v2.json": "cc34541ed79606bcd18c37094288833d5036f7a1fd880695b1ecc795481765f7",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/evidence-v2.tar.gz": "f1ac64b44d9fc8e885f3bd7fa84a1f465e22c5f097066cbb7c5c94d2eeff7601",
+    "tests/readiness/ingest/large_documents.py": "b14d8c4b89b115e954a17fbb0e6609e3115b5c0ab3d5ed9810bf27300969c066",
+    "tests/readiness/ingest/tests/test_large_documents.py": "681a3f7806227de85e6c175a3af52546b1efd969babeb72b37bcc2fbb2a861ce",
+    "tests/readiness/ingest/fixtures.py": "94dfb5032413a654c980db38f22e8b3cf963ae40eedd2837f0f863a1f72b12b9",
+    "tests/readiness/ingest/stages.py": "74b95391c0fdad5e1f382552983b9adf61f1ffb55dfc6b01d1964040485e21c2",
+    "tests/readiness/ingest/README.md": "05ba482f3c21f9a9f22cbee66333b3483f0f4a6f4f2cda1b10bfefc166acb861",
+    "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-v2-review-boundary.json": "70f98d2499d3821252547d17c78d07829c4daf5fa1155b941a9d45a73e8b1d9f",
+    "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-large-v2/manifest.json": "fcce35ac68609eb09c336fce83ac8684deb547294a7d79d6492b7225c5ceed7e",
+    "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-v2-frozen-checks.json": "46c60c2b1309a60a73c99bd705b41d5942dbc26d940a45f5dd004ca5b8904600",
+    "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/mypy-last.json": "90e864cae2be4c0b9c8839ae95d5967a961df0097855002274a818efc50262b3",
+    "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-v2-safe-current-controls.json": "4b5eaba5acdbce0a5f724b55510f8ecb34ad8c5623017ca3f91493cfa4dbcfb0",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/LD-REM-001.md": "9388cd1c8ce9aebe2a06c29305773ad43e45bcc0fa2a814daf80230a3ce24670",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/cross-section-negative.json": "a2399e2ffb7ba9a263418577cb50befa47b5bbd9e76e6c6b6c068e5178832598",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/admin-v2.json": "82d1ca2c75d0603318fa9f7c3dc7888ce1afadf9c852dbb56b4ed602172cb687"
+  },
+  "review_boundary": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-v2-review-boundary.json",
+  "frozen_harness": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-large-v2/harness",
+  "frozen_manifest": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-large-v2/manifest.json",
+  "frozen_manifest_sha256": "fcce35ac68609eb09c336fce83ac8684deb547294a7d79d6492b7225c5ceed7e",
+  "private_tools": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools",
+  "private_native_target": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/docling-behavior-e2e-20261112/target",
+  "corpus_runs": [
+    {
+      "mode": "normal",
+      "root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/large-documents-20261112-v2-normal",
+      "files": 35,
+      "source_commit": "f17b3d32b647d0df4e56963733bd606ab363e699"
+    },
+    {
+      "mode": "optimized",
+      "root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/large-documents-20261112-v2-optimized",
+      "files": 35,
+      "source_commit": "f17b3d32b647d0df4e56963733bd606ab363e699"
+    }
+  ],
+  "permitted_effects": "New reviewer-owned external scratch only. Declared existing native target and supplied sources/corpora/tools/evidence are read-only. No installs/downloads/network/model/store/service effects. Native replay may use fresh physical run roots under own scratch with copied source/corpus, empty reports/config/cache/tmp and declared target readonly. Do not execute validate against supplied originals.",
+  "required_checks": [
+    "Opening/closing boundary: logical index before status, tracked hashes/symlinks/preserved metadata/pins/HEAD/branch/staging/status",
+    "Fresh normal/-O88-case bootstrap selftests with own scratch",
+    "Focused31-source Ruff/format; inspect typing receipt with current-source equality or own-cache rerun",
+    "Archive member/source/manifest checks, determinism and genuine format/unit/all-section-body/oracle validation against own copies",
+    "Independent publish/tamper/source/alias/model-claim refusal controls without granting live-model credit",
+    "Read-only board/dashboard/docs/metadata/whitespace administration with private cache"
+  ],
+  "exclusions": [
+    "Memory/history/peer reviews, raw full authority/navigation history",
+    "No Docling conversion, inference, tokenizer qualification, production defaults or whole Gate-A9.5 claim",
+    "No unrelated product tests or baseline-debt waiver",
+    "No personal/original user documents, .friday-old or dirty YAML payload reads; hashing allowed. Declared generated corpus/target/source reads and copies allowed."
+  ],
+  "full_unit_base": "641ad015a30ea0db1ef3d4a8c5ba6263c86cf7a3",
+  "safe_current_controls": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-v2-safe-current-controls.json",
+  "review_profile": "Full current test source and README are permitted governed inputs. Raw authority/navigation/execution-log/peer history is hash-only/excluded. Canonical required admin checkers may internally parse all repository files; do not display historical payloads. No mandatory BLOCKED trigger for unrelated source-file context; disclose procedure exceptions honestly without hiding or inflating.",
+  "old_corpora_preserved": true
+}

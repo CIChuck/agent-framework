@@ -1,0 +1,32 @@
+{
+  "outcome": "VERIFIED",
+  "advisory_score": 9.2,
+  "score_scope": "corpus preparation only; not whole Gate-A 9.5",
+  "reviewed_candidate": "4735e3e1958d05c5a5cb0f3efe4ac88a301d6aaf",
+  "generation_source": "f17b3d32b647d0df4e56963733bd606ab363e699",
+  "finding": "LD-CORPUS-001",
+  "finding_status": "CLOSED",
+  "criteria": [
+    "LD-01",
+    "LD-02",
+    "LD-03",
+    "LD-04",
+    "LD-05",
+    "LD-06",
+    "LD-07",
+    "LD-08"
+  ],
+  "mandatory_findings": [],
+  "review": {
+    "request.json": "4f34705503f89862d4ab5468fc1e35a2c8cfceb7c7020cb89b8abd9695d1fe43",
+    "review-report.md": "16c71443f74458234479b2232a43699711904e33abec78c44e14eff7dc40b8bb",
+    "compact-evidence.tar.gz": "69dd743e064a9dbeb6bef919b0a559286e4b970f2cf8ea0caef864172345a2b8",
+    "evidence-index.json": "cb642eb4651eb018fc11e14cd50ee464ee8396078231dacb673dd6b27c28a375",
+    "command-ledger.json": "2de03f8d623c38284edb315b1a7184447a412e4c82758ad8901782e7c11e70ef"
+  },
+  "scope": "Synthetic corpus preparation, native validity and offline controls only",
+  "new_model_requests": 0,
+  "qwen_serving_or_tokenizer_qualified": false,
+  "production_changes": false,
+  "whole_gate_a_or_acceptance_granted": false
+}
