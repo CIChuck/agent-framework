@@ -5,16 +5,16 @@
   "status": "awaiting_maintainer_review",
   "maintainer_approval": null,
   "branch": "feature/cmd-ingest-001",
-  "prepared_from": "5e7efdb69a3d5cf9b5351a01b97cf70f7cffc007",
-  "request": "Approve package-impact assessment v0.7, the unchanged reviewed technical design/maps and I1/I2/I3 construction with the bounded private execution profile. Advance through independent phase exits; no production/live-model/delivery effects.",
+  "prepared_from": "b0d166256015b090b4a5082389b1b4f47835d1a2",
+  "request": "Approve package-impact assessment v0.8, the unchanged reviewed technical design/maps and I1/I2/I3 construction with the bounded private execution profile. Advance through independent phase exits; no production/live-model/delivery effects.",
   "request_document": {
     "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md",
-    "sha256": "ae350e3f1191faac02fcdb81bf4cab7528ca424fd67a566b1ce5857d3b9c26a4"
+    "sha256": "a7f027e8a4b70f19dcdbda13ecf10172a9a786059371705b0662eba36c13d66f"
   },
   "current_package_impact": {
     "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
-    "version": "0.7",
-    "sha256": "f2cf35435eb829c878f770e4358f0bb6c417b1659407d591d46105dfabaefd78",
+    "version": "0.8",
+    "sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f",
     "approval_status": "pending_for_changed_bytes"
   },
   "historical_impact_approval": {
@@ -137,7 +137,7 @@
   },
   "proposed_profile": {
     "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/execution-profile.json",
-    "sha256": "302cc61d3ce3d955930a07922665c571bf54b6de7274e54d8e1c4d26129a66c9",
+    "sha256": "fa964adcd72ee98c9a7aef8080fb1a9c142d86589cb0d6ffc9e2df414cc00014",
     "activated": false
   },
   "phase_edit_paths": {
@@ -292,7 +292,8 @@
     "all_three_slices_may_be_approved_together": true,
     "advance_only_after_required_independent_verification": true,
     "record_per_phase_activation_from_same_approval": true,
-    "reask_only_for_material_scope_or_effects_expansion": true
+    "reask_only_for_material_scope_or_effects_expansion": true,
+    "board_mapping": "The initiative is already started. Record exact maintainer approval and subsequent eligible phase activations under it without moving the initiative backward or treating historical initiative authority as INGEST approval."
   },
   "no_new_design_council_requested": true,
   "product_generation_allowed": false,
@@ -300,5 +301,14 @@
   "live_effects_allowed_now": false,
   "uat_or_acceptance_granted": false,
   "publication_or_delivery_granted": false,
-  "precedence": "This current request replaces the unchanged reviewed approval assembly only for the changed impact version and proposed phase execution/approval. The old v0.6 impact hash in activation/approval-binding.json is historical; technical contracts and maps retain their reviewed meanings."
+  "precedence": "This current request replaces the unchanged reviewed approval assembly only for the changed impact version and proposed phase execution/approval. The old v0.6 impact hash in activation/approval-binding.json is historical; technical contracts and maps retain their reviewed meanings.",
+  "revision": 2,
+  "presented_revision": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/presented-revision.json",
+    "binding_rule": "After the document-content commit, record its exact SHA and this request digest in the presentation receipt. That receipt is pinned by the frozen council request/current authority; no cyclic hash is embedded here. Approval binds that named document commit and request digest; later outcome-only metadata is not a new technical approval target."
+  },
+  "phase_dependency_checks": {
+    "I1_I2": "Record baseline Certifi version/module/CA origin where installed, or explicit absence in dependency-free profiles, with no unrelated early bump; tokenizers shared-lock change and unchanged-legacy positives belong to I1-C2.",
+    "I3_C1_onward": "Introduce selected Certifi2026.10.23 with Tools/Docling and enforce >=2026.10.19 plus origins in applicable installs, including final normal/optimized headless/Chat profiles. Explicit absence is recorded for dependency-free profiles."
+  }
 }

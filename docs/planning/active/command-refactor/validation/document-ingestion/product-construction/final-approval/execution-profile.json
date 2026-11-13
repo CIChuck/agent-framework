@@ -41,13 +41,20 @@
     "retain_existing_tiktoken": true,
     "certifi_floor": ">=2026.10.19",
     "phases": {
-      "I1-C2": "narrow LLM/Memory counter metadata and lock delta",
-      "I3-C1": "Tools document extra and lock delta before conversion tests",
+      "I1-C2": "Narrow LLM/Memory counter metadata and tokenizers0.22.1->0.23.3 shared-lock delta; paired unchanged-legacy positives. Record baseline Certifi version/origins only.",
+      "I3-C1": "Tools document extra/lock and Certifi2026.10.23 upgrade before conversion tests; floor/origin enforcement starts here.",
       "I3-C3": "Chat default document edge and lock delta before command adoption",
-      "I3-C5": "clean final installed profile and Certifi/origin verification"
+      "I3-C5": "Clean final installed profiles; verify Certifi floor/module/CA origin wherever installed, including normal/optimized headless and Chat; record absence in dependency-free profiles.",
+      "I2": "Existing-consumer compatibility. Record locked Certifi version/origins; no unrelated early floor/bump."
     },
     "resolution": "Record exact phase lock and artifact URLs/hashes/licenses before install; selected scope only. No unrelated package upgrade. Missing/incompatible intended artifacts stop the affected phase.",
-    "validation_tools": "Use existing locked pytest/asyncio, Ruff, mypy and declared test dependencies in private environments. Do not add an undeclared helper tool or inherit prior harness tool activation."
+    "validation_tools": "Use existing locked pytest/asyncio, Ruff, mypy and declared test dependencies in private environments. Do not add an undeclared helper tool or inherit prior harness tool activation.",
+    "certifi_baseline": "2025.11.12 in the current shared lock; no direct package declaration",
+    "certifi_selected_at_I3_C1": "2026.10.23",
+    "certifi_floor_enforced_from": "I3-C1",
+    "certifi_earlier_phases": "I1/I2 record the locked installed version, module and CA origin where present, or absence in dependency-free profiles. Do not enforce the later document-stack floor or introduce an unrelated early Certifi upgrade.",
+    "certifi_from_I3_C1": "Enforce >=2026.10.19 and verify module/CA origins after every applicable private install, including all final normal/optimized headless and Chat profiles containing Certifi. Record absence in dependency-free profiles without adding it solely for validation.",
+    "tokenizers_shared_lock_effect": "Current0.22.1 is consumed by Chroma and LiteLLM. Selected0.23.3 affects existing consumers too. I1 unchanged-legacy positives cover it; an incompatible intended resolution stops I1-C2 without unrelated selection."
   },
   "local_binding_paths": {
     "embedding_manifest": "<run-root>/<phase>/config/embedding-deployment.json",
@@ -66,7 +73,8 @@
     "embedding/deployment and document-settings hashes where relevant",
     "exact classified module/node/helper selectors and expected normal/optimized lanes",
     "all owned paths and network/effect dispositions",
-    "opening/closing preserved-state checks and command evidence"
+    "opening/closing preserved-state checks and command evidence",
+    "Certifi baseline version/module/CA origin at I1/I2; from I3-C1 enforce floor and verify origins where installed, or explicitly record absence in dependency-free profiles"
   ],
   "network": {
     "preparation_only": [
@@ -108,5 +116,6 @@
     "TOOLS-DOC completion under INGEST authority",
     "push/merge/release/deployment/human acceptance"
   ],
-  "effects_performed_now": []
+  "effects_performed_now": [],
+  "revision": 2
 }

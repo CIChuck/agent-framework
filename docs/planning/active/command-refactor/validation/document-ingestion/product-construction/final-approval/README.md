@@ -1,6 +1,6 @@
 # INGEST — final construction approval request
 
-Version 1, 2026-11-13. **Prepared for Chuck's review; not approved or activated.**
+Version 2, 2026-11-13. **Prepared for Chuck's review; not approved or activated.**
 
 ## What is finalized
 
@@ -9,12 +9,14 @@ finished at candidate `9ddaf6f8`; all three complete reviews meet the 9.5 gate
 with no mandatory findings. The reviewed contracts and exact file/test maps
 remain unchanged. Docling's completed evaluation is reused.
 
-The canonical [package impact assessment v0.7](../../../../package-impact-assessment.md)
+The canonical [package impact assessment v0.8](../../../../package-impact-assessment.md)
 now describes the selected dependencies, shared process, independent document
 settings, text-first entry reuse, configured embedding guards, tests, substantive
 documentation and upgrade consequences. Its previous v0.6 approval remains
 historical; this changed version is presented for approval. This new assessment
 and approval assembly have controller checks, not a new independent council verdict.
+This revision corrects dependency baseline/timing and the shared tokenizer impact;
+the technical contracts, edit paths and test-case scope remain unchanged.
 
 ## Your next task
 
@@ -27,8 +29,16 @@ for already approved work within these bounds.
 The [exact approval manifest](approval-request.json) pins the documents, maps,
 selected versions, phase responsibilities and [proposed execution profile](execution-profile.json).
 The recorded approval will bind its SHA256 and the presented commit before any
-product/test/guide change or dependency installation. The current “ok proceed”
-authorized preparation of this package, not construction.
+product/test/guide change or dependency installation. The earlier “ok proceed”
+authorized preparation; the latest direction authorizes these corrections and
+one additional council round. Neither authorizes construction.
+
+The [presented revision](presented-revision.json) names the exact document commit
+and approval-request digest to bind. Later review-result metadata does not change
+that approval target unless its documents or scope change. The initiative is
+already `started`: record the exact maintainer approval and each eligible phase
+activation under it, without moving the initiative backward or treating its old
+authority flag as approval of INGEST.
 
 The earlier activation `approval-binding.json` is preserved as the reviewed
 proposal at `9ddaf6f8`; its v0.6 impact digest is historical. This request replaces
@@ -64,10 +74,20 @@ remaining normative parents is not replaced by this short approval index.
   use the compatible python-dateutil 2.9.0.post0 constraint. The new Tools extra
   is `document-ingestion`, requested by default Chat before command adoption.
 - LLM's narrow `embedding-limits` extra selects tokenizers 0.23.3. Memory requests
-  that extra; text-only headless use does not gain the Docling/OCR stack.
-- Preserve the Certifi floor **>=2026.10.19**, using measured 2026.10.23 in the
-  selected profile. Verify it after every private install. The shared lock/CA
-  bundle affects all HTTPS consumers, including source-unchanged packages.
+  that extra at I1-C2, moving the shared lock from 0.22.1 to 0.23.3 for existing
+  Chroma/LiteLLM consumers too. Required unchanged-legacy positives cover this
+  dependency change; a resolution conflict stops I1-C2 rather than selecting an
+  unrelated version. Text-only headless use does not gain the Docling/OCR stack.
+- The current lock contains Certifi **2025.11.12**, without a direct declared
+  floor. I1/I2 record its locked version, module and CA origin where installed
+  (or its absence in dependency-free profiles); they do not make
+  an unrelated early Certifi upgrade. Tools' Docling extra and lock delta at
+  **I3-C1 introduce selected 2026.10.23 and the required floor >=2026.10.19**.
+  From that point verify the floor and origins after every applicable private
+  install, including every final I3-C5 normal/optimized headless and Chat profile
+  containing Certifi. Record absence in dependency-free profiles without adding
+  it solely for the check. The shared CA-bundle upgrade affects every HTTPS
+  consumer, including source-unchanged packages; TLS verification stays enabled.
 - Keep existing model YAML and pool/resilience selection compatible. Provision
   explicit local capability/counter assets. Optional input/dimension fields
   cannot silently truncate or admit incompatible vectors. No Qwen selection,
@@ -104,6 +124,10 @@ finished converter or a new package-evaluation project before coding starts.
    select coherent fresh vector/graph/WAL locations; no old files are stamped,
    reset, migrated or re-embedded. A new Runtime data root also changes transcript/
    artifact locations. Old-release recovery/backup guidance is required.
+6. Every guarded embedding operation, including recall, extraction and `/ingest`,
+   needs a provisioned `FRIDAY_EMBEDDING_MANIFEST` or explicit API path and local
+   counter assets, even with a fresh store. Existing YAML remains parseable;
+   a missing binding refuses the affected operation. `/read` stays independent.
 
 ## Execution and production boundary
 
@@ -152,8 +176,9 @@ are bounded compatibility work, not new projects. FU-013/014 remain unwaived.
 Implementation acceptance, human UAT, deployment and delivery are separate from
 this requested construction approval. If a phase discovers a material scope or
 effects expansion, return that specific change for review; do not silently change
-models, paths, contracts or provider permissions. No additional design council is
-launched by this package preparation.
+models, paths, contracts or provider permissions. This package supplies no general
+review-loop authority. The separately authorized final round is recorded in
+[round 2 authorization](council/round2/authorization.json).
 
 The [preparation checks](preparation-checks.json) cover the exact hashes, all 17
 package rows, phase/case-map consistency, links, board/documentation/metadata and

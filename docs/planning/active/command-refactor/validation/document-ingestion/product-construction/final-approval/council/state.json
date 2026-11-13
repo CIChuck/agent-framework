@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "status": "completed_changes_requested_awaiting_maintainer",
-  "round": 1,
-  "maximum_rounds": 1,
-  "active": false,
+  "status": "round2_preparing_final_additional_review",
+  "round": 2,
+  "maximum_rounds": 2,
+  "active": true,
   "rounds_started": 1,
   "rounds_completed": 1,
-  "gate_met": false,
+  "gate_met": null,
   "construction_approved": false,
   "effects_approved": false,
-  "overall_result": "CHANGES_REQUESTED",
-  "remaining_rounds": 0,
-  "result": "round1/results/report.md"
+  "overall_result": "pending",
+  "remaining_rounds": 1,
+  "prior_result": "round1/results/report.md"
 }

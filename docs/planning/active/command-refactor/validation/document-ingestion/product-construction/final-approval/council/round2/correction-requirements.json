@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "scope": "Neutral bounded document corrections first, then full unchanged FD1\u2013FD8 aggregate review",
+  "groups": [
+    {
+      "id": "C1",
+      "requirement": "State the actual Certifi2025.11.12 lock baseline/no direct declaration. I1/I2 record installed locked version/module/CA origin without unrelated early bump. Introduce selected2026.10.23 and >=2026.10.19 floor at I3-C1 with Docling. Enforce from that point through final installed lanes where Certifi exists, explicitly recording absence in dependency-free profiles; align both docs, profile and exact request."
+    },
+    {
+      "id": "C2",
+      "requirement": "Disclose tokenizers0.22.1->0.23.3 shared-lock effect on Chroma/LiteLLM at I1-C2, existing paired unchanged-legacy proof, and stop on conflicting intended resolution without unapproved selection."
+    },
+    {
+      "id": "C3",
+      "requirement": "Make embedding-manifest/local-counter prerequisite prominent for all guarded embedding operations/fresh stores; clarify phase activation under the existing started initiative; bind the exact presented document commit/request digest by a noncyclic pinned receipt. No new product scope or implementation authority. Then complete full FD1\u2013FD8."
+    }
+  ],
+  "no_code_or_effects_authority": true
+}

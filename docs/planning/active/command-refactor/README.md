@@ -93,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Final-document council round1/1 complete: CHANGES_REQUESTED. All three assess8/8; Sol9.6325 and Astra9.640 VERIFIED, Opus9.30 with mandatory Certifi baseline/per-install phase conflict. Targets and bound JSONs remain frozen at c2fcee0d. Next Chuck reviews the finding and his document comments, then authorizes any bounded wording/profile/hash correction and fresh review. No automatic repair/repeat, construction, install, model/store effect, acceptance or delivery.
+**Next gate:** Requested final-document corrections prepared for exactly one additional council, round2/2: impact v0.8 and approval request v2 clarify Certifi baseline/enforcement from I3-C1, tokenizers shared-lock effects, embedding prerequisites, existing-started phase activation and exact presented revision. Fresh full Sol/Astra/Opus FD1–FD8, complete8/8, zero mandatory findings and >=9.5 each. Stop after this council; no third round, automatic repair, construction or runtime effects.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

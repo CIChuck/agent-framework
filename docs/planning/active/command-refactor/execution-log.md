@@ -4468,3 +4468,16 @@ initial index-order disclosure retained. Targets, current bound JSONs, technical
 contracts/maps and production state unchanged. Single round exhausted; no repair,
 replacement/new council, product work, install/model/store effect or acceptance.
 Next task is Chuck's disposition of the finding alongside his parallel review.
+
+
+## 2026-11-13 — Authorized final-document correction and one additional council
+
+Chuck directs the requested edits and one more council. Impact v0.8 and requestv2
+make the current Certifi baseline explicit; early phases record it, I3-C1 introduces
+the selected upgrade/floor with Docling, later installed lanes enforce it where
+present and dependency-free lanes record absence. Disclose the shared tokenizers
+upgrade and existing legacy proof. Clarify universal guarded-embedding binding,
+phase activation under the started initiative and an exact document-revision
+receipt. Refresh profile/request/current hashes without changing technical maps,
+old cases/witnesses, source/test/guide/lock or user state. Fresh full FD1–FD8 at
+round2/2, then stop. No third round, automatic later repair or construction/effects.

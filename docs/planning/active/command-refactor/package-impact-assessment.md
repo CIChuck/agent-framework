@@ -1,6 +1,6 @@
 # INGEST-001 — Package Impact Assessment
 
-Version: **0.7 — final construction approval proposal**, 2026-11-13.
+Version: **0.8 — corrected final construction approval proposal**, 2026-11-13.
 
 This assessment describes planned implementation, not completed product upgrades.
 It covers all **17 workspace packages**: eight implementation owners and nine
@@ -56,6 +56,9 @@ settings, required counter-factory/same-entry late attachment, exact phase timin
 and the completed review stop. It adds no runtime package or feature owner.
 Traceable test restructuring and substantive architecture/guide authorship remain
 first-class implementation deliverables, as Chuck previously directed.
+The v0.8 correction specifies the actual Certifi baseline and I3-C1 enforcement
+start, plus tokenizers' shared-lock effect at I1-C2. It adds no file, package,
+behavioral feature or test-map exception beyond the reviewed implementation scope.
 
 The 17 rows derive from root workspace membership and package metadata rather
 than a directory count. Friday CLI remains a compatibility library without a
@@ -193,13 +196,23 @@ these deliverables; this planning step rewrites no live guide or architecture.
   actual installed versions before use. Do not start another vendor evaluation.
 - **Headless counting:** LLM's narrow `embedding-limits` extra selects
   `tokenizers==0.23.3`; Memory requests it at I1-C2, with the corresponding lock
-  delta. Existing tiktoken support is retained for applicable hosted profiles.
+  delta. The current shared lock has 0.22.1, already consumed by Chroma and
+  LiteLLM, so 0.23.3 affects their existing consumers too. Required I1 unchanged-
+  legacy positives cover that change. A resolution conflict stops I1-C2 instead
+  of authorizing a different tokenizer/model or an unrelated upgrade.
+  Existing tiktoken support is retained for applicable hosted profiles.
   Counter/capability assets are explicit local deployment bindings, not new
   weights shipped in Core/Commands. Text-only headless users need no Docling/OCR.
-- **Certifi:** selected measured version is 2026.10.23; the required floor remains
-  `certifi>=2026.10.19` after every installation. The shared lock/CA bundle affects
-  all HTTPS consumers, including Finance, even where package source is unchanged.
-  Keep TLS verification; do not install into the working production environment.
+- **Certifi:** the current lock contains 2025.11.12 with no direct package floor.
+  I1/I2 record the locked version, module and CA origin where installed, or
+  absence in dependency-free profiles, without an unrelated early upgrade. Tools' Docling extra and lock delta at I3-C1 introduce selected
+  2026.10.23 and the required `certifi>=2026.10.19` floor. From I3-C1 onward,
+  verify the floor and module/CA origin after each applicable private install,
+  including every final I3-C5 normal/optimized headless and Chat profile containing
+  Certifi. Record absence in dependency-free profiles rather than add a dependency
+  just for validation. This shared CA-bundle upgrade affects all HTTPS consumers,
+  including Finance, even where source is unchanged. Keep TLS verification;
+  do not install into the working production environment.
 - **Two independent local bindings:** embedding operations resolve a provisioned
   manifest by explicit API path, otherwise `FRIDAY_EMBEDDING_MANIFEST` from the
   retained service environment snapshot. Document conversion separately resolves
@@ -301,7 +314,7 @@ before permission to code.
 
 This remains the single canonical current assessment. The prior v0.6 approval
 and council records remain historical evidence for their exact bytes; they are
-not reused as approval or independent review of v0.7. The final proposal records
+not reused as approval or independent review of v0.8. The final proposal records
 its own hashes and distinguishes unchanged reviewed technical artifacts from this
 updated impact and approval wrapper.
 
