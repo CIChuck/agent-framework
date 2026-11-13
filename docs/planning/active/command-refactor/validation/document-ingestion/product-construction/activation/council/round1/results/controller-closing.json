@@ -1,0 +1,19 @@
+{
+  "scope": "Frozen round1 controller closing check before any corrections",
+  "candidate": "b04ab83afda313630eaaaa4e1dab09b71d9ce59c",
+  "target_sha256": "13eee863e7c2486ed73b60107597216c168641ad9dab26bcde7aaf05be6ac0e5",
+  "git": {
+    "head": "b04ab83afda313630eaaaa4e1dab09b71d9ce59c",
+    "branch": "feature/cmd-ingest-001",
+    "logical_index_before_status": "ef217e835738dc266e88c4380d9720f75fa79590865d5e87f2bc53f38e6c618a",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+    "staged": ""
+  },
+  "required_input_pins": 13,
+  "optional_reference_pins": 10,
+  "preserved_nonplanning_files": 16690,
+  "preserved_symlinks": 26,
+  "preserved_metadata_entries": 8,
+  "result": "PASS",
+  "product_tests_or_new_effects": false
+}

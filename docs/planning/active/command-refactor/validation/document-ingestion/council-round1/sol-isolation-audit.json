@@ -1,0 +1,33 @@
+{
+  "start": "PASS",
+  "end": "PASS",
+  "identical_integrity_results": true,
+  "protected_entries": 17536,
+  "six_preserved_metadata_records": "verified by immutable helper at both boundaries",
+  "logical_index_sha256": "f12f3152b2900cf9df29eff6fd1b8fec32d9bccbb5672a4fe6537c3116b571bf",
+  "scratch": "/private/tmp/ingest-r1-sol-bREAiNWB",
+  "generated_paths": [
+    "/private/tmp/ingest-r1-sol-bREAiNWB/whitespace.log",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/review-report.md",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/start-integrity.json",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/board.log",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/docs.log",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/commands.json",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/uv-cache",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/metadata.log",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/dashboard.log",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/end-integrity.json",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/uv-cache/.lock",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/uv-cache/interpreter-v4",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/uv-cache/CACHEDIR.TAG",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/uv-cache/sdists-v9",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/uv-cache/.gitignore",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/uv-cache/interpreter-v4/72477d20415402fe",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/uv-cache/sdists-v9/.gitignore",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/uv-cache/sdists-v9/.git",
+    "/private/tmp/ingest-r1-sol-bREAiNWB/uv-cache/interpreter-v4/72477d20415402fe/8ff324068db05875.msgpack"
+  ],
+  "UV_CACHE_DIR": "/private/tmp/ingest-r1-sol-bREAiNWB/uv-cache",
+  "XDG_CACHE_HOME": "/private/tmp/ingest-r1-sol-bREAiNWB/xdg-cache",
+  "repository_or_supplied_input_writes": "none performed; protected identity unchanged"
+}

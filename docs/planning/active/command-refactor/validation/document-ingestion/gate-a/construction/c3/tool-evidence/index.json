@@ -1,0 +1,52 @@
+[
+  {
+    "path": "approval.json.gz",
+    "raw_sha256": "6aee9af58c61492f5314e525bbdab51cd2af76ab5dc04ffa6a19e7f396043222",
+    "gzip_sha256": "3e043b505f06e15125008a22e039d724ba435eb2817c1e50f21b81d5ea740df1"
+  },
+  {
+    "path": "attempt.json.gz",
+    "raw_sha256": "35bf6d454516ded6d5a9860241465d482d6e7d21f8a31958dc9e32969db691c7",
+    "gzip_sha256": "527386e36e054110c9b20005d60ceea030d446f54dd7d20257bb33d7e9ee5dde"
+  },
+  {
+    "path": "download.json.gz",
+    "raw_sha256": "1ff0d29f55202ab3058c00990d084fb956d4631b5be961f6c34b565f77209d66",
+    "gzip_sha256": "677ca1cc748a3225878fa89bc59d5daf8fa1d7d8ae29d690ec159d9fd8c209f4"
+  },
+  {
+    "path": "inspection.json.gz",
+    "raw_sha256": "5aba7f2225da78f56be76dc46cd47333352a24330daa35fe78fe00a9e62b5dca",
+    "gzip_sha256": "19fbe61fb126145829a8931de372043af993a25dd480aa66294ee67f98d24201"
+  },
+  {
+    "path": "extraction.json.gz",
+    "raw_sha256": "811484b9babad60d2767ace16c2d43639d7bdc0b497f6710d2addd10f6e83ba6",
+    "gzip_sha256": "defb6667fd89f3ea55fe3385e8b76a73e39e71335b29ca9dcbf9bfe924107ded"
+  },
+  {
+    "path": "qualified-normal.json.gz",
+    "raw_sha256": "bcf96e3aaf416205d4a02d80592b3ac4b84e1fe3372c13696ed29a03d60615a8",
+    "gzip_sha256": "15ae838d8d99ff820a878ff557251c3ad359c558b7d12e8395ac86b1fe23f433"
+  },
+  {
+    "path": "qualified-optimized.json.gz",
+    "raw_sha256": "a50edeab9ac28aa6dc1ac17910c330a896091e7e9e1683fcf50564ef1addb818",
+    "gzip_sha256": "6b0c14e7ef2c6fec3f3f5464bce5288eec0d83d1fa34414cac2a9d1dd94e3199"
+  },
+  {
+    "path": "download_inspect.py.gz",
+    "raw_sha256": "9e309c3b9c4171eb97da5095beab860aa4e92e3b14c92fa32feda30cb8f11185",
+    "gzip_sha256": "cac48a7ba491c2e5283580d27dd2b9b30db050bb6f8b7704035e57b970c91eb3"
+  },
+  {
+    "path": "qualify_dependencies.py.gz",
+    "raw_sha256": "e79d3fb2f24e418c1cc775af0ba4809870625866bd4d268e83e36b63056051cc",
+    "gzip_sha256": "5b7d4a7314c7f364676225198d3ed9841a3e2f51badf2897ff1770c8b2b61c7d"
+  },
+  {
+    "path": "qualify_engine.py.gz",
+    "raw_sha256": "33fe89877c19363ed293feec2d480e6dc2d202b490033762ce7780d88449e65f",
+    "gzip_sha256": "5ae00893ef41b0f8afe5fe3c36e3a5f9f4372a9882eba10c41f36a1963c908a5"
+  }
+]

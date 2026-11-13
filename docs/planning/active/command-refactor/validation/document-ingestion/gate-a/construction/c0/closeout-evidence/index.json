@@ -1,0 +1,12 @@
+[
+  {
+    "path": "admin-last.json.gz",
+    "sha256": "c568cc97ce028017eabde983949207fdda879c241cbd9c8142ab051449c09099",
+    "gzip_sha256": "8e013265feeaffcb895058b2b80c3dcbbe36423f0eb580733f31637a106911e0"
+  },
+  {
+    "path": "preservation-final.json.gz",
+    "sha256": "b9f25dba532e1b575057bc121b68986598bbd1146485a9f9294594188a44d232",
+    "gzip_sha256": "9f05506201c225034d50578a96628e1fcc3709ef3373142bfa633b2bdae74ccb"
+  }
+]

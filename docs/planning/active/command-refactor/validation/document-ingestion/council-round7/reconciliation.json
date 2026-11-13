@@ -1,0 +1,116 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "global_round": 7,
+  "cycle_pass": 2,
+  "maximum_passes": 4,
+  "recorded_at": "2026-11-11T03:26:33.442573+00:00",
+  "candidate": "f1916747ad7d03e451f2b57dc00542faa6095d7c",
+  "outcome": "CHANGES_REQUESTED",
+  "threshold_met_each": false,
+  "seats": {
+    "sol": {
+      "reported_outcome": "CHANGES_REQUESTED",
+      "controller_outcome": "CHANGES_REQUESTED",
+      "coverage": 9.4,
+      "overall": 9.3,
+      "formal_signoff": false,
+      "raw_report_sha256": "4d2ed2721daac138377fe3b4a5ea9c7eb22a13ca6b6e4933e5b15dcd31e5d55e",
+      "raw_archive": "sol-report.md.gz",
+      "readable_report": "sol-report.md",
+      "readable_sha256": "4d2ed2721daac138377fe3b4a5ea9c7eb22a13ca6b6e4933e5b15dcd31e5d55e"
+    },
+    "astra": {
+      "reported_outcome": "CHANGES_REQUESTED",
+      "controller_outcome": "CHANGES_REQUESTED",
+      "coverage": 9.1,
+      "overall": 9.0,
+      "formal_signoff": false,
+      "raw_report_sha256": "46974770417e3c6bababdae6529748fcb3bddbd23cf73126e4cb35ee5d35980e",
+      "raw_archive": "astra-report.md.gz",
+      "readable_report": "astra-report.md",
+      "readable_sha256": "46974770417e3c6bababdae6529748fcb3bddbd23cf73126e4cb35ee5d35980e"
+    },
+    "opus": {
+      "reported_outcome": "CHANGES_REQUESTED",
+      "controller_outcome": "CHANGES_REQUESTED",
+      "coverage": 8.8,
+      "overall": 8.5,
+      "formal_signoff": false,
+      "raw_report_sha256": "c4320e3d8fcfafce810cd2a8d118aec454bcbf399d5fe6baa36508e4d5b845d5",
+      "raw_archive": "opus-report.md.gz",
+      "readable_report": "opus-report.md",
+      "readable_sha256": "c4320e3d8fcfafce810cd2a8d118aec454bcbf399d5fe6baa36508e4d5b845d5"
+    }
+  },
+  "technical_themes": [
+    {
+      "id": "IC-07",
+      "sources": [
+        "SOL-R7-001"
+      ],
+      "sections": [
+        "FC-08"
+      ],
+      "requirement": "Missing vectors: zero only for sync/async without fallback; retain qualified async fallback on absent components and reject invalid present vectors first."
+    },
+    {
+      "id": "IC-08",
+      "sources": [
+        "ASTRA-R7-001",
+        "OPUS-R7-M1"
+      ],
+      "sections": [
+        "FC-02"
+      ],
+      "requirement": "Keep pending records after partial/ambiguous failure/cancellation and same-ID no-extra-embedding retry; no newly automatic discard."
+    },
+    {
+      "id": "IC-09",
+      "sources": [
+        "OPUS-R7-M1"
+      ],
+      "sections": [
+        "FC-02"
+      ],
+      "requirement": "Use existing telemetry reason literals directly in the Chat memory_mcp observer union; real processor/provider forwarding stays unchanged and is tested."
+    },
+    {
+      "id": "IC-10",
+      "sources": [
+        "OPUS-R7-M2"
+      ],
+      "sections": [
+        "EC-18"
+      ],
+      "requirement": "Restore exactly35 historical Next gate lines from8d25d53a; only current gate changes subsequently."
+    },
+    {
+      "id": "IC-11",
+      "sources": [
+        "OPUS-R7-M3"
+      ],
+      "sections": [
+        "FC-03"
+      ],
+      "requirement": "Minimum new-binding evidence/admission and marker protection while preserving old backup file/default behavior; pre-existing vector/split completeness limitations recorded as FU014, with paired baseline proofs and no complete-recovery credit."
+    }
+  ],
+  "advisories_incorporated": [
+    "OPUS-R7-A1",
+    "OPUS-R7-A2",
+    "OPUS-R7-A3",
+    "OPUS-R7-A4",
+    "OPUS-R7-A5",
+    "OPUS-R7-A6",
+    "OPUS-R7-A7",
+    "OPUS-R7-A8",
+    "OPUS-R7-A9"
+  ],
+  "passes_completed": 2,
+  "next_pass": 3,
+  "next_global_round": 8,
+  "later_correction_passes_after_next": 1,
+  "source_audit": "Static public scorer missing-vector branches, actual Chat pending retention/ID assertions, strict telemetry Literal/runtime sink, public BackupManager fixed file list and real Chat vector-form constructor/Runtime split layout verified. Historical status diff was controller-caused bulk replacement;35 exact lines restored without using peer verdicts as implementation evidence. No runtime/store/model tests.",
+  "conduct": "All seats report clean guarded Git/admin and personal-state isolation. Opus discloses harness-auto-persisted tool outputs outside OWN; attributed to harness, not a reviewer-requested write. No evidence of repository/input/personal-state mutation, no replacement/reissue.",
+  "new_dispositions": "All changes are proposed docs for fresh independent pass3, not closed implementation findings. No GateA, code, user-store action or delivery authority."
+}

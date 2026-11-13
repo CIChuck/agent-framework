@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "additional_pass": 3,
+  "maximum_additional_passes": 3,
+  "global_round": 5,
+  "candidate": "b6a62742e89951679f338e46f34c4650a5e0dbc7",
+  "target_sha256": "9856c29aae0ef7c4719e43c31f35a0da71b900b7e11d5a48fdcabe36cae40ced",
+  "outcome": "BLOCKED",
+  "all_seats_terminal": true,
+  "threshold_met_each": false,
+  "required_each": {
+    "outcome": "VERIFIED",
+    "coverage": 9.5,
+    "overall": 9.5,
+    "mandatory_findings": 0
+  },
+  "results": {
+    "sol": {
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 7.0,
+      "overall": 8.0,
+      "report": "sol/report.md",
+      "report_sha256": "2fac1302ad6a70ac06e83fa838af39162eef7555afb65242958b9b3a4b5d7b91",
+      "qualifies": false,
+      "scope": "incomplete/nonqualifying; overall provisional or withheld"
+    },
+    "astra": {
+      "outcome": "BLOCKED",
+      "coverage": 4.0,
+      "overall": null,
+      "report": "astra/report.md",
+      "report_sha256": "d40800291a98177e9d8850722db3135dcb195e0c476ac632d3e162196f76427f",
+      "qualifies": false,
+      "scope": "incomplete/nonqualifying; overall provisional or withheld"
+    },
+    "opus": {
+      "outcome": "VERIFIED",
+      "coverage": 8.8,
+      "overall": 9.4,
+      "report": "opus/report.md",
+      "report_sha256": "5db4e2dc61f07b9e28431e2bf839c57156049c9229354145f7f9eccad3698338",
+      "qualifies": false,
+      "scope": "document-only below threshold with source-depth limits"
+    }
+  },
+  "mandatory_candidate_findings": [
+    {
+      "id": "SOL-R5-001",
+      "severity": "low",
+      "requirement": "Phase-map opening must include I3 candidate N common-ingestion/capacity operations, matching detailed map, readiness and qualification-plan arrays.",
+      "controller_disposition": "Retain as unresolved current-document inconsistency. Astra/Opus call same issue advisory; no majority override. Not corrected after final frozen council."
+    }
+  ],
+  "incomplete_assessment": [
+    "Sol expressly incomplete coupled-source review, overall8.0 provisional",
+    "Astra BLOCKED, substantive source work incomplete, overall withheld",
+    "Opus complete bounded document verdict, disclosed incomplete source depth and scores below target"
+  ],
+  "Astra_procedural_disclosure": {
+    "original_blocker": "ASTRA-R5-B01",
+    "facts": "AST parsed Finance live-provider module; no import/execution/provider call or credential value disclosure reported.",
+    "controller_packet_limitation": "Request baseline said Finance live provider module/credential use excluded while also requiring original inventory AST recomputation. Explicit read exclusions did not separately define Finance AST versus execution. The packet should have distinguished these. Keep original conservative BLOCKED; ambiguity does not salvage the incomplete assessment.",
+    "no_raw_credential_inspection_by_controller": true
+  },
+  "remaining_advisories": [
+    "N summary omits I3",
+    "CLI MD lacks explicit stop/reconcile; other forwarded default roots need origin classification",
+    "Initiative umbrella authority never substitutes for A4 exact approval",
+    "Some FC phase disposition summaries remain templated",
+    "A2 typing disposition for legacy ignore-errors files",
+    "Runtime startup/profile/ephemeral work needs exact per-slice assignment"
+  ],
+  "preservation": "All three reviewers and controller closing boundary pass for frozen HEAD/index/status,18854files,26symlinks,8preserved entries,52pins before closeout metadata.",
+  "budget": {
+    "passes_started": 3,
+    "passes_completed": 3,
+    "remaining": 0,
+    "fourth_pass": false,
+    "replacement": false
+  },
+  "stop": true,
+  "construction_approval": false,
+  "whole_gate_a_closed": false,
+  "new_effects": false
+}

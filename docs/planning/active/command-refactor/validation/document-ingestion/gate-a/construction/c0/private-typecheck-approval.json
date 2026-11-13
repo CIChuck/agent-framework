@@ -1,0 +1,12 @@
+{
+  "unit": "CD-CMD-INGEST-GATE-A-001-C0-TYPECHECK",
+  "maintainer": "Chuck Russell",
+  "recorded_at": "2026-11-12T03:28:24.504431+00:00",
+  "verbatim_instruction": "Approve the private type-check profile",
+  "approved_profile_sha256": "329f572b587c5998a4b8e96e6cfda8605a69f2bce6cbe4637fa191394300a568",
+  "scope": "Only five exact lock-pinned tool wheels and private validation target/cache; no production or A0-A4/model effects.",
+  "bootstrap_ca": "/private/etc/ssl/cert.pem",
+  "bootstrap_ca_sha256": "9dae8d76e55cb08991f2b672d58999ea15560d910759c16b544f843bdffbb994",
+  "request_limit": 5,
+  "payload_limit_bytes": 3145728
+}

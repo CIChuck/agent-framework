@@ -1,0 +1,124 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "global_round": 6,
+  "cycle_pass": 1,
+  "maximum_passes": 4,
+  "candidate": "8d25d53ac944ace99e3ae430364075b0c1200ff6",
+  "recorded_at": "2026-11-11T02:37:55.011556+00:00",
+  "outcome": "CHANGES_REQUESTED",
+  "threshold_met_each": false,
+  "seats": {
+    "sol": {
+      "reported_outcome": "CHANGES_REQUESTED",
+      "controller_outcome": "CHANGES_REQUESTED",
+      "coverage": 9.1,
+      "overall": 8.8,
+      "formal_signoff": false,
+      "scores_provisional": false,
+      "raw_report_sha256": "b2ce34e8759b95c1779ee034377c0a9708912fa7cba886e449af1a66645ccf0a",
+      "raw_archive": "sol-report.md.gz",
+      "readable_report": "sol-report.md",
+      "readable_sha256": "b2ce34e8759b95c1779ee034377c0a9708912fa7cba886e449af1a66645ccf0a"
+    },
+    "astra": {
+      "reported_outcome": "CHANGES_REQUESTED",
+      "controller_outcome": "CHANGES_REQUESTED",
+      "coverage": 9.0,
+      "overall": 8.7,
+      "formal_signoff": false,
+      "scores_provisional": false,
+      "raw_report_sha256": "7e8103143f18d367ba74c9dba3b6694c185b871a2adaaec4e103861c5c4b5b3a",
+      "raw_archive": "astra-report.md.gz",
+      "readable_report": "astra-report.md",
+      "readable_sha256": "7e8103143f18d367ba74c9dba3b6694c185b871a2adaaec4e103861c5c4b5b3a"
+    },
+    "opus": {
+      "reported_outcome": "CHANGES_REQUESTED",
+      "controller_outcome": "BLOCKED",
+      "coverage": 7.7,
+      "overall": 8.0,
+      "formal_signoff": false,
+      "scores_provisional": true,
+      "raw_report_sha256": "6c76fe2e94884698d4ff5a05babdcb25cb50005c0730fd90e411d260bdb0b164",
+      "raw_archive": "opus-report.md.gz",
+      "readable_report": "opus-report.md",
+      "readable_sha256": "6c76fe2e94884698d4ff5a05babdcb25cb50005c0730fd90e411d260bdb0b164"
+    }
+  },
+  "passes_completed": 1,
+  "next_pass": 2,
+  "next_global_round": 7,
+  "extra_passes_after_next": 2,
+  "procedural_disposition": {
+    "seat": "opus",
+    "controller_outcome": "BLOCKED",
+    "reason": "Disclosed broad search displayed three lines of the protected dirty example YAML despite the request prohibiting dirty-YAML reads. Integrity passed and no write occurred; neither the original report nor the incident is erased. No formal independent signoff credited. Technical observations below were independently checked against maintained source/committed templates. This consumes pass1; no replacement/reissue."
+  },
+  "source_checks": "Static current source only; no imports/runtime/store/provider proof. Graph scorer has no maintained src construction beyond its docstring; actual Chat/Runtime controller construction omits it. Extractor edge/insight/summary catches and Chat completed acknowledgement confirmed; ContextAssembler detaches an inner task. Chat MCP maps snapshot=None to skipped. Rejection logger globally retains path handlers. Chroma pinned source uses a shared ephemeral system. Public BackupManager, Reorganizer and Tools wrappers remain actual public consumers.",
+  "technical_themes": [
+    {
+      "id": "IC-01",
+      "sources": [
+        "SOL-R6-M01",
+        "ASTRA-R6-001",
+        "OPUS-R6-M2"
+      ],
+      "contract": "FC-03",
+      "disposition": "Retain public create and same-incarnation identity-safe restore; no class/API retirement or generic bridge."
+    },
+    {
+      "id": "IC-02",
+      "sources": [
+        "SOL-R6-M02",
+        "ASTRA-R6-A1"
+      ],
+      "contract": "FC-06",
+      "disposition": "Own actual ContextAssembler task/status and drain at existing Runtime shutdown; preserve Agent/Core signatures."
+    },
+    {
+      "id": "IC-03",
+      "sources": [
+        "ASTRA-R6-002"
+      ],
+      "contract": "FC-02",
+      "disposition": "Real Chat MCP observer/receipt failure mapping, narrow memory_mcp.py scope."
+    },
+    {
+      "id": "IC-04",
+      "sources": [
+        "ASTRA-R6-003"
+      ],
+      "contract": "FC-01",
+      "disposition": "Per-owner admitted rejection sink with lifecycle/reconfiguration; no global fan-out."
+    },
+    {
+      "id": "IC-05",
+      "sources": [
+        "OPUS-R6-M1"
+      ],
+      "contract": "FC-08",
+      "disposition": "Both graph scorer APIs are injectable only; actual Chat/Runtime unscored route gets no unused-vector preflight."
+    },
+    {
+      "id": "IC-06",
+      "sources": [
+        "OPUS-R6-M3"
+      ],
+      "contract": "FC-06",
+      "disposition": "Typed extraction refusal surfaces before completed acknowledgement; stable-ID retry and truthful mixed output."
+    }
+  ],
+  "advisories_incorporated": [
+    "OPUS-R6-A1",
+    "OPUS-R6-A2",
+    "OPUS-R6-A3",
+    "OPUS-R6-A4",
+    "OPUS-R6-A5",
+    "OPUS-R6-A6",
+    "OPUS-R6-A7",
+    "OPUS-R6-A8",
+    "OPUS-R6-A9",
+    "OPUS-R6-A10"
+  ],
+  "authority": "Existing bounded document-only iteration; no construction/Gate A/store operations/delivery."
+}

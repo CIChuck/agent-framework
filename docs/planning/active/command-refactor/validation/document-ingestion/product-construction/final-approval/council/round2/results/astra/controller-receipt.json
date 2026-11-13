@@ -1,0 +1,17 @@
+{
+  "seat": "astra",
+  "verdict": "CHANGES_REQUESTED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "reported_overall": 9.565,
+  "mandatory_findings": 1,
+  "entry_exit_identical": true,
+  "frozen_identity_matches": true,
+  "files": {
+    "report.md": "c97b33108a2421d20db8e10ca56ebedf3e313ab249cf9dba6a08a34177e8c192",
+    "entry.json": "a164eade6f60a093c40c00b1de3ae285eaab16d39d5bfa0ff70d7e2edcd2c83b",
+    "exit.json": "a164eade6f60a093c40c00b1de3ae285eaab16d39d5bfa0ff70d7e2edcd2c83b",
+    "presentation-binding.json": "50f42c508b2c23aeb58a718c9f13661ffbd62195e05d750476a20d5a19eb84b9",
+    "sha256.json": "66c8b83b1c9a57c07482d13aa5c48d58e2ccd8b9767ff1176b12ebeee8b04848"
+  }
+}

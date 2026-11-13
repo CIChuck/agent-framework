@@ -1,0 +1,133 @@
+{
+  "administration": [
+    {
+      "name": "render",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render"
+      ],
+      "exit": 0,
+      "stdout": "Rendered docs/planning/README.md\n",
+      "stderr": ""
+    },
+    {
+      "name": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "name": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "name": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1126 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "name": "owned-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        ".gitignore",
+        "docs/planning",
+        "tests/readiness/ingest"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "cached-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "preservation": {
+    "passed": true,
+    "protected_count": 18574,
+    "symlink_count": 26,
+    "preserved_count": 8,
+    "errors": [],
+    "head": "4735e3e1958d05c5a5cb0f3efe4ac88a301d6aaf",
+    "branch": "feature/cmd-ingest-001",
+    "logical_before_status": "ce1d769154185a79c459897003c853e3bdcc59ebf7d06d62d4f680e79e091e5c",
+    "status": " M docs/planning/README.md\n M docs/planning/active/command-refactor/README.md\n M docs/planning/active/command-refactor/authority.json\n M docs/planning/active/command-refactor/execution-log.md\n M docs/planning/active/command-refactor/next-phase.md\n M docs/planning/active/command-refactor/tactical-plan.md\n M docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/results.md\n M docs/planning/board.yaml\n M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n?? docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/validation/round2/\n"
+  },
+  "review_report_sha256": "16c71443f74458234479b2232a43699711904e33abec78c44e14eff7dc40b8bb",
+  "scope": "Closeout metadata only after source/corpus review; source and corpus unchanged"
+}

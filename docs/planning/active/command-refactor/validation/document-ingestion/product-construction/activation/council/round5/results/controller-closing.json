@@ -1,0 +1,18 @@
+{
+  "scope": "Frozen round5 close before final bounded corrections",
+  "candidate": "34981199842ef73891605a20f3b4275eeb37e943",
+  "git": {
+    "head": "34981199842ef73891605a20f3b4275eeb37e943",
+    "branch": "feature/cmd-ingest-001",
+    "logical_index_before_status": "f3deff5e446fbd09635f0fef65ab49ee9fd1088b4f380372fe9b8e32df9cd849",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+    "staged": ""
+  },
+  "required_input_pins": 16,
+  "optional_reference_pins": 10,
+  "preserved_nonplanning_files": 16690,
+  "preserved_symlinks": 26,
+  "preserved_metadata_entries": 8,
+  "result": "PASS",
+  "product_tests_or_new_effects": false
+}

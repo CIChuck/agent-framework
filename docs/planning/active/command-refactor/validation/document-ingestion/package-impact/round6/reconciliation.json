@@ -1,0 +1,244 @@
+{
+  "unit": "INGEST-PACKAGE-IMPACT-001",
+  "round": 6,
+  "maximum_authorized_rounds": 6,
+  "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+  "assessment_version": "0.6-draft",
+  "assessment_sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+  "request_sha256": "a20f7116d5b4a682f58532e6c671dbe04d4b32f0939f063973b75698c01a2406",
+  "outcome": "VERIFIED",
+  "all_seats_threshold_met": true,
+  "mandatory_findings": [],
+  "seats": {
+    "sol": {
+      "seat": "sol",
+      "round": 6,
+      "candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+      "outcome": "VERIFIED",
+      "coverage": 9.85,
+      "overall": 9.65,
+      "mandatory_findings": [],
+      "PI_01_through_18": "PASS",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "report": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/round6-sol-independent-85lwy84_/formal-report.md",
+      "report_sha256": "3262ebabccaa3530edc755a74c5c4985df579e68d3048097235f16061122ee63",
+      "qualifies_seat_only": true,
+      "construction_or_other_authority": false,
+      "readable_report": "sol-report.md",
+      "readable_sha256": "3262ebabccaa3530edc755a74c5c4985df579e68d3048097235f16061122ee63",
+      "raw_archive": "sol-report.md.gz",
+      "raw_archive_sha256": "36768b1bc009563fb87eef482553580ece01b225107bfd56475c6a7e9e259163"
+    },
+    "astra": {
+      "seat": "astra",
+      "round": 6,
+      "candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+      "outcome": "VERIFIED",
+      "coverage": 9.8,
+      "overall": 9.7,
+      "mandatory_findings": [],
+      "PI_01_through_18": "PASS",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "report": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/astra-round6-independent-qlayd3lx/formal-review.md",
+      "report_sha256": "e53c1caae2af2bcc0c6c2f44f8c6e00800aeb005898f7acd75645b2ed72c6812",
+      "qualifies_seat_only": true,
+      "construction_or_other_authority": false,
+      "readable_report": "astra-report.md",
+      "readable_sha256": "e53c1caae2af2bcc0c6c2f44f8c6e00800aeb005898f7acd75645b2ed72c6812",
+      "raw_archive": "astra-report.md.gz",
+      "raw_archive_sha256": "421c33a5875e92cd3892381f6f6f8f9fab5264ce00700e57498cac3f85c30ebc"
+    },
+    "opus": {
+      "seat": "opus",
+      "round": 6,
+      "candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+      "outcome": "VERIFIED",
+      "coverage": 9.8,
+      "overall": 9.7,
+      "mandatory_findings": [],
+      "PI_01_through_18": "PASS",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "report": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/9abaedad-23cf-41c0-993e-c9ee0847ff3f/scratchpad/r6-opus-A1UkXG/opus-round6-report.md",
+      "report_sha256": "d7d7c7c4d2cd269521e0c01680e70c28aede086d0850ef9623d2755f2dc18b90",
+      "qualifies_seat_only": true,
+      "construction_or_other_authority": false,
+      "readable_report": "opus-report.md",
+      "readable_sha256": "d7d7c7c4d2cd269521e0c01680e70c28aede086d0850ef9623d2755f2dc18b90",
+      "raw_archive": "opus-report.md.gz",
+      "raw_archive_sha256": "0cb4b568423f70a683277c5eb7996ec9a473d95da114863fc04d509804dd47d2"
+    }
+  },
+  "criterion_outcomes": {
+    "PI-01": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-02": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-03": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-04": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-05": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-06": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-07": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-08": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-09": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-10": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-11": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-12": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-13": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-14": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-15": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-16": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-17": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    },
+    "PI-18": {
+      "sol": "PASS",
+      "astra": "PASS",
+      "opus": "PASS"
+    }
+  },
+  "corrections": {
+    "PC-10": "independently PASS in all seats",
+    "PC-11": "independently PASS in all seats"
+  },
+  "reviewed_document_pins": {
+    "docs/planning/active/command-refactor/package-impact-assessment.md": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+    "docs/planning/active/command-refactor/test-migration-plan.md": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c",
+    "docs/planning/active/command-refactor/command-architecture-update-plan.md": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1",
+    "docs/planning/active/command-refactor/guide-update-handoff.md": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9",
+    "docs/planning/active/command-refactor/embedding-compatibility-contract.md": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+    "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/review-criteria.md": "0bc426c0ed16c0feab720e7b4d597c0de28f924feb58e26945637457bb9aaf62",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round6-authorization.json": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b"
+  },
+  "advisory_dispositions": [
+    {
+      "id": "CF-01",
+      "sources": [
+        "Sol A-01",
+        "Astra A-01"
+      ],
+      "topic": "Readable trace navigation",
+      "disposition": "Use the already-required final caller/test/oracle trace table as the compact reading route. Preserve reviewed technical bytes now."
+    },
+    {
+      "id": "CF-02",
+      "source": "Opus A-1",
+      "topic": "Offline Finance registration witness",
+      "disposition": "Specialize existing P-14/DI-34 requirement in the final directive with an executed offline Finance import/tool-registration witness without Docling; inventory chooses the exact existing/new location. No test edit now."
+    },
+    {
+      "id": "CF-03",
+      "source": "Opus A-2",
+      "topic": "Live-test credential-handling wording",
+      "disposition": "Final directive repeats the migration plan strict service/effect/credential-handling authorization. Current plan already controls execution; no live call or credential repair authorized."
+    },
+    {
+      "id": "CF-04",
+      "source": "Opus A-3 and A-4.1",
+      "topic": "Historical budgets and complete discovery description",
+      "disposition": "Current controller metadata distinguishes six completed rounds from the original four-round authorization. Final execution inventory records packages/*/tests_* and experiments/*/tests plus explicit non-default selectors. No historical text is rewritten."
+    },
+    {
+      "id": "CF-05",
+      "source": "Opus A-4.2",
+      "topic": "Workspace-wide Certifi effect",
+      "disposition": "Gate-A lock/dependency impact inventory must include the effective CA-bundle change for all HTTPS consumers, including provider SDKs, LLM and MCP clients; not just the document profile. No dependency is installed here."
+    },
+    {
+      "id": "CF-06",
+      "source": "Opus A-4.3",
+      "topic": "Desktop/MCP guide cross-references",
+      "disposition": "Assess affected upgrade/rollback and MCP-memory passages in guides16/17 when freezing final documentation paths. Any proposed cross-reference addition is presented in the final impact/directive scope before approval; it is not an implemented or preauthorized expansion now."
+    }
+  ],
+  "loop": {
+    "completed_rounds": 6,
+    "original_maximum_rounds": 4,
+    "single_round_extensions_explicitly_authorized": 2,
+    "remaining_rounds": 0,
+    "iteration_complete": true,
+    "stop_reason": "all_seats_VERIFIED_zero_mandatory_both_scores_at_least9.5",
+    "no_active_council": true,
+    "no_further_automatic_dispatch": true
+  },
+  "integrity": "All qualifying seats matched opening/closing identities,17750 protected files and6 preserved metadata records. Controller repeated identity before closeout.",
+  "checks": "All three qualifying seats independently ran the five administrative checks; source/test AST inspection is not runtime/test execution.",
+  "scope": "Current document readiness/source feasibility only. Model/format/assets/build/install/B/N/R and authored implementation remain future obligations.",
+  "limits": "Existing root lint/collection/format/MAINT oracle debt remains failed/unwaived; no whole-repository-green claim.",
+  "metadata_closeout_boundary": "Reviewed technical documents/criteria/authorization remain byte-identical to ae813002. Only current routing/status and append-only evidence are updated. Frozen REM pre-review routing labels are superseded by this controller result without changing contract bytes.",
+  "authority_not_granted": [
+    "maintainer impact satisfaction or remaining-condition completion",
+    "Gate-A effects",
+    "construction directive approval",
+    "product/test/live-guide implementation",
+    "acceptance or delivery"
+  ]
+}

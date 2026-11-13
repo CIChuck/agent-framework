@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "runtime_root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/docling-behavior-20261112",
+  "source_candidate": "24d15ab5a82c662bcbf3a49d0603184d5fba748b",
+  "files": 5247,
+  "raw_bytes": 57745989,
+  "archive": {
+    "path": "behavior-evidence.tar.gz",
+    "sha256": "44bcbadc510c7c7a9dc80ab28db51f4c7c377ad0693c7a2f227f58bb4af6a297",
+    "size": 1126012
+  },
+  "index": {
+    "path": "evidence-members.json.gz",
+    "sha256": "081260cf048ef1ad8a77d8313d462f07436ff58e1787c8ecda81dcc35f7b32d1",
+    "raw_sha256": "1f2bbdd580ec62587363370c418fcfbdacb2d65a5fcbc8bd57dda1c69493c59b"
+  },
+  "excluded": "No third-party wheels, installed target, model assets, personal documents or production state; selected public asset digests and package versions/lock retained."
+}

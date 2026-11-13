@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "id": "INGEST-DOCUMENT-APPROVAL-20261113",
+  "date": "2026-11-13",
+  "maintainer": "Chuck Russell",
+  "status": "approved_execution_held_for_git_discussion",
+  "user_direction": "I will automatically accept your changes and also approve all outstanding analysis, design, and directive documents. Before coding, we should discuss what we need to do with the Git repo, whether a commit is warranted, and a PR submitted, indicating that all of the pre-planning documents have been approved and applied. Recommendation is that we open up a new feature branch for the coding exercise in case it needs to be rolled back.",
+  "validation_amendment_direction": "makevThe changes to the approval package so that this validation structure is explicitly defined",
+  "interpretation": "Accept the current bounded planning edits and approve outstanding INGEST analysis/design/directives and package impact v0.8. Full Sol/Astra/Opus councils follow each construction slice, with at most three passes per gate. Discuss and settle Git handling before coding.",
+  "approved_documents": [
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md",
+      "sha256": "5039fe7d5b7db7a9808eca74c3e42012911c28d8e264741b8eda9da4c52dda14"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+      "sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/approval-request.json",
+      "sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/execution-profile.json",
+      "sha256": "bf8c1782ca833bcdd129d3c1f76ff5e52ebab71bfc3084699c73d762edc0134f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/implementation-council-plan.json",
+      "sha256": "b7abf1aa77d9f02efa0abc61d97ec35c56d5b622e52b4049fa3364a3932c6a3c"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
+      "sha256": "288265f774e08a182083537160ed0fccd9a5304b949ec95d05bcd6bf0208a8ee"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md",
+      "sha256": "44791c3a431f3f4cc8876851cfa3248a20dc7cbd90739178f022c453e370794c"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md",
+      "sha256": "98da30a313539c9d550ac14a8dffa1454997c00f5353df33bf915f8ca09c8cc7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md",
+      "sha256": "f6c0fee8046fa1d0e1d992a5640dfaca88f96f87f9b335a3e02cf172fc496cf9"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/approval-binding.json",
+      "sha256": "b6fb070ca1ec94014f0019e9e8647fc773d930185cd3594e8d3d39520cca4b3c"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/model-qualification-decision.md",
+      "sha256": "b2503902db78f9d01909c4d2c9d20a03dd4cdc772421c1ec100d5b614ed22d26"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/office-visibility-decision.md",
+      "sha256": "7eb7bf3224036d61f28059d8a1ab4c21d66b9deb4964e013de6a780b381775c7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-worker-decision.md",
+      "sha256": "a828b757b213acc9481ba3053873f4d2243f3a106927ddade71eb97631bf938b"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json",
+      "sha256": "94d29682e2c9b813dd73f4bcdad95f7a327d139e03187ed8baf3931b6f8f7346"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json",
+      "sha256": "41229b36ae5f3f33eaf15d11322be290c837d6ab21c5a3023294f890879c509c"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/digest-vectors.json",
+      "sha256": "4b5bef7daf3400dca0c7058d967a66653d1c5e3aa59a7b0c9fe5770e3bd436e4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/review-instructions.md",
+      "sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/authorization.json",
+      "sha256": "c963bad985fb1a581c2ff6b307345d295519d335eef7bf305c070e2d301180d2"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md",
+      "sha256": "f787e83ed84916264277013ab4e8097e9f3fcba90da502ea5ec1819630c71d55"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/correction-requirements.json",
+      "sha256": "6660bda1a271dc91dfee9f1a9d6659e8a2c9f3bcd398620a880173e6bb111ed6"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/extension2-authorization.json",
+      "sha256": "9d468ca11029a8f3d9d4b2acf8ac8aeaa3debdf5c5e57e787d30d740d8bfbb05"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+      "sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+      "sha256": "b7d93caf2d302e0802b3c6b7f523de42d2ab98f625b5a8a02326f21a8fec2f9f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+      "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/embedding-compatibility-contract.md",
+      "sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/test-migration-plan.md",
+      "sha256": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/command-architecture-update-plan.md",
+      "sha256": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/guide-update-handoff.md",
+      "sha256": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/proposals/tools-document-adoption.md",
+      "sha256": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
+      "sha256": "601babef2d35c11b65d5c224e082b191b3212b973e287d16740be604b54ccbc4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
+      "sha256": "e7b3b3afa0ad3ab46313f180ac3b23a62c90fe3cc5a26da6b91bcd7b90d3e909"
+    }
+  ],
+  "approval_manifest": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/approval-request.json",
+    "sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71"
+  },
+  "current_impact": {
+    "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+    "version": "0.8",
+    "sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f",
+    "approval_status": "approved_by_Chuck_2026_11_13_exact_current_bytes"
+  },
+  "content_commit": null,
+  "commit_status": "Git checkpoint now explicitly authorized; complete and verify its commit in the presentation receipt before coding.",
+  "supersedes_pending_labels": "For these exact documents this explicit maintainer approval supersedes earlier draft/not-approved/awaiting-maintainer labels and historical approval-wrapper dispositions. Current selected technical dispositions still override specifically superseded historical requirements.",
+  "post_review_correction": {
+    "record": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/post-review-correction.json",
+    "accepted": true,
+    "scope": "The disclosed A4 reference alignment to the actual impact v0.8 bytes; no independent VERIFIED result or score increase claimed."
+  },
+  "council_history": {
+    "final_document_round2_verdict": "CHANGES_REQUESTED",
+    "round2_all_seat_threshold_met": false,
+    "original_reports_and_scores_unchanged": true,
+    "current_disposition": "Human document approval recorded explicitly; no new independent review result invented. Future implementation councils remain mandatory."
+  },
+  "construction_scope": {
+    "I1_I2_I3_approved": true,
+    "exact_source_and_test_maps_unchanged": true,
+    "bounded_private_effect_scope_approved": true,
+    "execution_activated": false,
+    "gate_hold": "Git discussion, committed approval binding, actual coding branch/base and eligible private phase binding before coding or installs. Each subsequent slice also requires the previous slice council to pass.",
+    "TOOLS_DOC": "Its planning/directive document is approved, but it remains a separate work unit, not execution under INGEST."
+  },
+  "implementation_validation": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/implementation-council-plan.json",
+    "sha256": "b7abf1aa77d9f02efa0abc61d97ec35c56d5b622e52b4049fa3364a3932c6a3c"
+  },
+  "not_granted": [
+    "Push, PR creation, merge, release or deployment",
+    "Product human UAT/acceptance or a live embedding/provider window",
+    "Production configuration/environment/store changes",
+    "New coding branch creation before the requested Git discussion"
+  ],
+  "documentation_only_amendment": {
+    "authorized_by": "Chuck Russell",
+    "reason": "Explicit approval and requested validation structure; runtime files, contracts, exact code/test maps and dependencies do not change.",
+    "scope": "Final approval package, approval record and current planning routing/evidence only.",
+    "validation": "Board/dashboard, document lifecycle, metadata, binding/link/structural/whitespace and protected-state checks. No product tests or new council."
+  },
+  "git_sequence_confirmation": {
+    "statement": "yes proceed",
+    "authorization": "docs/planning/active/command-refactor/approval/ingest-git-handoff-20261113.json"
+  }
+}

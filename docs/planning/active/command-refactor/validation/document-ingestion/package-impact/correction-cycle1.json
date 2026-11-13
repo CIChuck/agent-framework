@@ -1,0 +1,137 @@
+{
+  "unit": "INGEST-PACKAGE-IMPACT-001",
+  "cycle": 1,
+  "base_candidate": "72ef265a981ef968a773172661bb512ddfd7da5e",
+  "new_assessment_version": "0.2-draft",
+  "scope": "Documentation-only completeness and precision corrections; frozen REM/annex/Tools bytes and all product paths stay unchanged.",
+  "mandatory_groups": [
+    {
+      "id": "PC-01",
+      "findings": [
+        "PI-R1-ASTRA-001",
+        "PI-R1-SOL-001",
+        "PI-R1-OPUS-003"
+      ],
+      "requirement": "Explicit Memory-owned multi-agent controller/coordinator/journal, Runtime memory_mode assembly, shared physical space versus authorization visibility, honest failure/partial-commit reporting, no new transaction or algorithm/source permission.",
+      "assessment_targets": [
+        "P-04",
+        "P-07",
+        "P-09",
+        "Cross-package execution and consumer effects"
+      ],
+      "verification": "Compare FC-13, annex visibility/inventory, Runtime di.py and Memory multi_agent source; repeat PI-01\u201316 on a new frozen candidate."
+    },
+    {
+      "id": "PC-02",
+      "findings": [
+        "PI-R1-ASTRA-002",
+        "PI-R1-OPUS-002"
+      ],
+      "requirement": "Expose ingestion.chunking.strategy/max_tokens and command\u2192YAML\u2192built-in precedence; legacy smart_file chunk_size/overlap are not ingestion aliases. Name the bounded off-loop conversion/audit/counting worker without provider/store capability, whole-request admission, worker-quiescent cancellation and late-result discard; distinct from conversation extraction.",
+      "assessment_targets": [
+        "P-02",
+        "P-06",
+        "Cross-package execution and consumer effects",
+        "Dependency/configuration effects"
+      ],
+      "verification": "Compare REM D, Execution/cancellation/admission and DI-11/26; no general worker engine or product implementation."
+    },
+    {
+      "id": "PC-03",
+      "findings": [
+        "PI-R1-OPUS-001"
+      ],
+      "requirement": "Disclose current persistent unbound-store impact even with unchanged model; explicit Chat/Runtime destinations, unset first-run refusal, absent graph/configured WAL, Runtime transcript/artifact path consequences, Nomic preparation change, packaged-template decision and old-release backup/recovery guidance.",
+      "assessment_targets": [
+        "P-06",
+        "P-07",
+        "P-08",
+        "P-11",
+        "Upgrade and first-run effect",
+        "Details to settle"
+      ],
+      "verification": "Compare exact existing-store operation matrix, REM operator note and Gate-A A02/A05/A06; retain ephemeral-profile distinction, no reset/migration or new store operation."
+    },
+    {
+      "id": "PC-04",
+      "findings": [
+        "PI-R1-OPUS-004"
+      ],
+      "requirement": "Bind DI-01\u201334 inclusive; explicitly include Tools DI-25 structural-audit/DI-30 storage-receipt obligations and DI-34 whole-framework proof for compatibility rows.",
+      "assessment_targets": [
+        "P-02",
+        "P-06",
+        "Compatibility table introduction",
+        "Source references"
+      ],
+      "verification": "Every DI ID is covered by inclusive source binding; Tools references include DI-25/30/34; no fabricated or executed proof."
+    }
+  ],
+  "advisory_dispositions": [
+    {
+      "sources": [
+        "Sol A-01",
+        "Astra advisory 1"
+      ],
+      "disposition": "Inclusive DI-34 references corrected with PC-04."
+    },
+    {
+      "sources": [
+        "Sol A-02",
+        "Astra advisory 2"
+      ],
+      "disposition": "Name maintained unscored graph recall versus public injected graph scoring in the cross-package section."
+    },
+    {
+      "sources": [
+        "Astra advisory 3",
+        "PI-R1-OPUS-A05"
+      ],
+      "disposition": "Name admission before Memory analyzer Chroma/transcript SQLite reads; include FC-04 in Transcript and FC-02 actual RuntimeMCPProvider witness."
+    },
+    {
+      "sources": [
+        "PI-R1-OPUS-A01"
+      ],
+      "disposition": "Distinguish Tools FilesystemSandbox conversion boundary from friday-sandbox Python-execution integration."
+    },
+    {
+      "sources": [
+        "PI-R1-OPUS-A02"
+      ],
+      "disposition": "Optimization will inherit Memory counter support; MCP full-extra inheritance is explicit."
+    },
+    {
+      "sources": [
+        "PI-R1-OPUS-A03"
+      ],
+      "disposition": "Record retained existing lazy/undeclared Core\u2192Memory, Memory\u2192Tools and Tools\u2192Memory edges, without broadening or repairing them."
+    },
+    {
+      "sources": [
+        "PI-R1-OPUS-A04"
+      ],
+      "disposition": "Expose whole-layout store-only admission for confirmed Tools reset and retention of the identity sidecar."
+    },
+    {
+      "sources": [
+        "PI-R1-OPUS-A06"
+      ],
+      "disposition": "Include the retained 8192-dimension maintenance ceiling as a readiness constraint."
+    },
+    {
+      "sources": [
+        "PI-R1-OPUS-A07"
+      ],
+      "disposition": "Explicitly deny positive-test credit to FU-013/014."
+    },
+    {
+      "sources": [
+        "PI-R1-OPUS-A08"
+      ],
+      "disposition": "Bind exact post-Gate-A satisfaction version/commit/hash; edited content cannot reuse approval of old bytes."
+    }
+  ],
+  "required_recheck": "Correction delta first, then FULL PI-01\u201316 assessment readiness against current scope/source; no runtime or Gate-A work.",
+  "finding_closure": "pending independent round2; controller changes are not closure evidence"
+}

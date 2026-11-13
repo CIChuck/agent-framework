@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "base": "be3aed3a9ba5629c548e36437e7e01a7333210d1",
+  "loop_pass": 1,
+  "maximum_loop_passes": 3,
+  "global_round": 3,
+  "scope": "Neutral correction requirements, not peer reasoning or verdict. Review correction delta first, then full bounded current directive.",
+  "groups": [
+    {
+      "id": "PD-Q01",
+      "requirement": "Before I1 retain actual B and N-DIM/N-SPACE/N-CAP model/dependency/counter/parity qualification, immutable identities/assets, scenario/node/namespace/lane bindings; candidate N execution stays post-build. Do not treat deterministic vectors as real serving feasibility.",
+      "artifacts": [
+        "directives/CD-CMD-INGEST-001-product.md A1",
+        "readiness RD01/RD05 Q and materiality",
+        "replacement-qualification-plan.json",
+        "phase-evidence-map.md/json"
+      ]
+    },
+    {
+      "id": "PD-Q02",
+      "requirement": "Safe review input: historical raw preparation receipt remains preserved/hash-only; metadata-only projection contains no stdout/stderr payload. No supplied peer material or protected configuration payload is in readable inputs."
+    },
+    {
+      "id": "PD-Q03",
+      "requirement": "Primary phase source lists are honestly labelled; every selected parent path still requires exact A2/A3 slice/owner/exit assignment before generation. Name existing maintenance admission in I2."
+    },
+    {
+      "id": "PD-Q04",
+      "requirement": "DI24/33 complete stages have actual eligible exit references in both directions; map every original named FC witness individually with specific per-contract dispositions."
+    },
+    {
+      "id": "PD-Q05",
+      "requirement": "An unwaived unchanged-scope regression blocks every intermediate exit; future work is not a silent waiver."
+    },
+    {
+      "id": "PD-Q06",
+      "requirement": "Supplement base inventory with non-test support modules including integration fake server/LLM helpers and test apps; hash/classify without test-count inflation or executing unclassified modules."
+    },
+    {
+      "id": "PD-Q07",
+      "requirement": "A2 must resolve the known CLI default-origin loss before I1; preserve public call shapes and bounded conditional scope. Actual I2 tests distinguish default/env/constructor/testing origins."
+    }
+  ],
+  "immutable_parents": "REM, annex, impact assessment, test/architecture/guide plans and product/test/dependency/configuration/store bytes unchanged.",
+  "no_effects": true
+}

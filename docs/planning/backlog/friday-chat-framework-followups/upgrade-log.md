@@ -425,7 +425,15 @@ Discovered During: Maintainer report and guarded source inspection,2026-11-10;
 maintainer subsequently expanded scope to XLSX and PPTX.
 Framework Package: Friday Tools shared extraction; Friday Commands file arguments;
 Friday Chat delegation/default document dependencies; shared Memory ingestion policy,
-LLM capability/limit enforcement and minimal Core contracts. Storage engines stay unchanged.
+LLM capability/limit enforcement and minimal Core contracts. Engine replacement is excluded;
+narrow durable store-identity/query-envelope and role handoffs are proposed exceptions.
+The correction draft also covers identity-preserving snapshot/restore/direct-client
+admission and Runtime/Core/CLI composition. No recovery ordering changes.
+The final design correction adds typed Memory-v2/Chat-bundle-v2 dispatch and
+explicit unset-default/graph/WAL creation qualification; old strict v1 schemas,
+Chat path fingerprints and maintenance ordering remain unchanged. The
+maintainer explicitly selected fresh-store-required behavior: preserve existing
+files and /read, with no legacy mode, migration or reset.
 Requested Change: Use one pinned Docling pipeline for PDF/DOCX/XLSX/PPTX extraction,
 with local PDF OCR, quoted paths, explicit format coverage and dependency/model
 requirements. Upgrade named Tools consumers through the companion adoption plan.
@@ -440,7 +448,13 @@ Tools consumers also require explicit routing, beyond adding a shared helper.
 Compatibility Risk: Exact read/ingest format/help and default closure change;
 shared tokenizer preserves unrelated commands. Freeze all four format policies
 and Tools XLSX selections/pagination before construction. No historical record
-cleanup, storage-engine change, formula calculation or slide rendering.
+cleanup, storage-engine replacement, formula calculation or slide rendering.
+Round1 source inspection found absent maintained web/automatic-tool ingestion
+routes, direct smart_read storage/cache bypass and undeclared model preparation.
+The corrected plan classifies those routes and binds fresh stores explicitly.
+A separate parser follow-up remains: malformed text `--lines*` silently selects
+100 lines. This unit preserves that text compatibility but reports effective
+limits/truncation; document inputs refuse it and the new literal `--` suffix is opaque.
 Suggested Follow-Up Tests: Genuine PDF/DOCX/scanned/multi-sheet/multi-slide fixtures
 through registry, shared extraction, public Tools and disposable Chroma. Inspect
 late markers in stored chunks, notes/tables/order and exact coverage. Refuse
@@ -450,3 +464,35 @@ mandatory certifi>=2026.10.19 floor.
 Source Evidence: [Historical source assessment](../../active/command-refactor/validation/document-ingestion/assessment.md),
 [scope expansion](../../active/command-refactor/validation/document-ingestion/format-expansion.json)
 and [proposed remediation](../../active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md).
+
+
+## FU-013: Public VectorInspectionTool Query Uses Missing Search API
+
+- Status: recorded; separate decision required; no implementation authority.
+- Source: packages/friday-tools/src/friday_tools/memory/inspection.py query branch
+  calls controller.vector.search; maintained ChromaVectorStore/SimpleVectorStore
+  expose query, not search. Static source finding, no user-store operation run.
+- Boundary: O-05 preserves this pre-existing broken query branch during INGEST.
+  It earns no positive semantic-query coverage. The no-query get_all inspection
+  branch and actual working semantic query APIs still require B/N/R proof.
+- Future fix: separately approve a typed adapter/contract correction and prove
+  real public tool output/error behavior; no opportunistic repair or false green
+  claim in REM-CMD-INGEST-001.
+
+
+## FU-014: Legacy Physical Backup Member-Selection Limits
+
+- Status: static source finding; unwaived; separate repair decision required.
+- Evidence: BackupManager selects fixed root-level data files and recursively
+  includes only memory_dir/vector. A vector-directory argument therefore omits
+  per-segment UUID backend files; one memory_dir also cannot express Runtime's
+  independent vector and graph roots. No real store/restore was exercised here.
+- Boundary: preserve existing public copy paths/defaults under INGEST, adding
+  only minimum admission/new-binding evidence and no-marker-overwrite guard.
+  No new backup layouts, default relocation, segment-inventory/consistency
+  repair or complete-recovery claim is authorized by this record.
+- Proof: before construction, paired baseline/candidate disposable fixtures must
+  distinguish working layouts from pre-existing incomplete cases. Keep those
+  limits unwaived, award no complete-recovery credit for them, and report any
+  newly introduced failure separately. Unsafe new guard dependencies stop
+  readiness for scope disposition rather than silently fixing this item.

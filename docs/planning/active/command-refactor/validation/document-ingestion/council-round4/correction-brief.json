@@ -1,0 +1,56 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "round": 4,
+  "correction_base": "36362be514ef387183a27d930cd41a8799e3d714",
+  "mode": "correction delta FIRST then FULL bounded proposed design; final authorized pass",
+  "mandatory_requirements": [
+    {
+      "sources": [
+        "INGEST-R3-ASTRA-001"
+      ],
+      "requirement": "Typed Memory-v2 \u2192 Chat aggregate-v2 write/read/participant validation/rollback, strict old-v1 preservation, exact scope and distinct fingerprint semantics",
+      "sections": [
+        "Versioned Memory-to-Chat recovery handoff",
+        "Proposed exact paths"
+      ],
+      "tests": [
+        "DI-27",
+        "DI-28",
+        "DI-32"
+      ],
+      "builder_disposition": "specified in proposed text, not independently closed"
+    },
+    {
+      "sources": [
+        "Opus M-1"
+      ],
+      "requirement": "Exact CREATE_FRESH qualification for unset/default versus explicit origin, associated graph/WAL absence and reused Runtime container",
+      "sections": [
+        "Existing-store upgrade policy"
+      ],
+      "tests": [
+        "DI-21",
+        "DI-29"
+      ],
+      "builder_disposition": "specified in proposed text, not independently closed"
+    }
+  ],
+  "advisories": {
+    "SOL-R3-A01": "Gate A requires one trace table joining caller/open-intent/readiness/role/envelope/test/installed-lane/oracle; existing obligations only.",
+    "Opus A-1": "Existing Core\u2192Memory lazy edges inventoried; only new contracts have no backend imports; profiles retains existing lazy imports.",
+    "Opus A-2": "Exact normalized vector directory only; no direct-client probe/fall-through after refusal; DI28 mutant.",
+    "Opus A-3": "New Runtime data-root changes transcript/artifact locations explicitly disclosed; reusing container only allowed with all actual Memory live paths absent.",
+    "Opus A-4": "Inert no-I/O service objects allowed; zero runtime model/tokenizer/provider/store initialization for read-only startup.",
+    "Opus A-5": "Marker-absent roots all unbound; marker-present malformed/pending/inconsistent row disjoint; no historical inference.",
+    "Opus A-6": "Pre-upgrade consistent backup/old-installation guidance only; no automatic backup, migration or reset."
+  },
+  "procedure_precision": "Round4 only: wrapper required for Git/repository/admin and subprocesses invoking them; plain read-only filesystem tools and own report operations are permitted. Past BLOCKED result unchanged. Isolation/private writes/frozen identity requirements remain strict.",
+  "no_correctness_evidence": "Use this as requirement scope, not builder/peer correctness proof. No current-round peer report, historical raw review or unfiltered aggregate diff.",
+  "not_performed": [
+    "product edits/tests/builds",
+    "dependency/model/gate-A work",
+    "store operations",
+    "acceptance",
+    "delivery"
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "outcome": "PASS",
+  "recorded_at": "2026-11-10T21:25:54.206270+00:00",
+  "frozen_candidate": "8be50b1218fc4db67fbd5d546fea9d7be6a2fd64",
+  "review_records_head": "8be50b1218fc4db67fbd5d546fea9d7be6a2fd64",
+  "logical_index_sha256_before_status": "f12f3152b2900cf9df29eff6fd1b8fec32d9bccbb5672a4fe6537c3116b571bf",
+  "preserved_protected_entries": 17529,
+  "reviewed_manifest_entries": 17536,
+  "explicit_status_exclusions": [
+    "docs/planning/README.md",
+    "docs/planning/active/command-refactor/README.md",
+    "docs/planning/active/command-refactor/authority.json",
+    "docs/planning/active/command-refactor/execution-log.md",
+    "docs/planning/active/command-refactor/next-phase.md",
+    "docs/planning/active/command-refactor/tactical-plan.md",
+    "docs/planning/board.yaml"
+  ],
+  "preserved_metadata_records": 6,
+  "technical_proposal_and_companion": "byte-identical to reviewed candidate",
+  "product_scripts_metadata_lock": "no committed change since ae15a537; dirty examples preserved",
+  "runtime_suites_and_gate_a": "not run",
+  "checks": [
+    {
+      "check": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "check": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "check": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 982 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "check": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "check": "whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,49 @@
+{
+  "seat": "opus",
+  "model": "claude-opus-5-5",
+  "verdict": "CHANGES_REQUESTED",
+  "coverage": 9.4,
+  "overall": 8.6,
+  "mandatory_findings": [
+    "F-01",
+    "F-02"
+  ],
+  "advisories": [
+    "A-01",
+    "A-02",
+    "A-03",
+    "A-04",
+    "A-05",
+    "A-06",
+    "A-07",
+    "A-08"
+  ],
+  "construction_activation": "NOT APPROVED",
+  "request_sha256": "6047aec2f9a5fa117055c41617b971edf01dd926a822a59b8fea8824891b4095",
+  "helper_sha256": "2e20c4e5568d8501e04c6c3a8e7e3277c8f67500f2d43d30851f7d864a2c7e46",
+  "candidate": "fb587e7a12f48ef0d6937e008045de1de2dd8cd2",
+  "target_sha256": "da911b7e6f052ab27b0e37ee939e52a0555ca177c047f84b475c9fc72b5414c1",
+  "boundary": {
+    "opening": "passed",
+    "closing": "passed",
+    "logical_index": "61ca95946a69b30db60625e88ce8ed3a16c48cfd5815a89dcd8d089f4fc2cf4e"
+  },
+  "admin_exits": {
+    "board": 0,
+    "dashboard": 0,
+    "docs": 0,
+    "metadata": 0,
+    "range-whitespace": 0,
+    "owned-whitespace": 0,
+    "staged-whitespace": 0
+  },
+  "evidence_sha256": {
+    "opening-integrity.json": "1f15f0aebe8a98a9ec3c9cc0fb1617395c650406f4b89064939591a6a2771768",
+    "closing-integrity.json": "1f15f0aebe8a98a9ec3c9cc0fb1617395c650406f4b89064939591a6a2771768",
+    "admin-commands.json": "764d438970de75c6f8431332d08c8e3ae73a4f9007b219bec4868f3b1765a674",
+    "scripts/inv_check.py": "c18ecb1b6b869a155ec5a6d9250dbbdd1be750f1a03c75c0da9e88d6d3107864",
+    "scripts/inv_verify.py": "52dd7842583ab20453817bf982582e1e2f12b7fbda678acf1864e3448a162307",
+    "report.md": "ac0956b36f78ba8eaae30178fc4b9aa2eff22836f9a3214e61ecec222038c220"
+  },
+  "disclosure": "First 400 bytes of supplied delegates.json printed inadvertently (seat/status/task id only, no review content); not used."
+}

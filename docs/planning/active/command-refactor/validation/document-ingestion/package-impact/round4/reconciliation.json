@@ -1,0 +1,119 @@
+{
+  "outcome": "CHANGES_REQUESTED",
+  "candidate": "56a495b76e7b7f8a967633bf523dfa9c30f9ed73",
+  "completed_rounds": 4,
+  "maximum_authorized_rounds": 4,
+  "remaining_rounds": 0,
+  "all_seats_terminal_and_read": true,
+  "automatic_iteration_stopped": true,
+  "further_correction_or_review_authorization": "requires Chuck Russell guidance",
+  "seats": {
+    "sol": {
+      "seat": "sol",
+      "round": 4,
+      "candidate": "56a495b76e7b7f8a967633bf523dfa9c30f9ed73",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 9.7,
+      "overall": 9.4,
+      "mandatory_findings": [
+        "R4-SOL-001"
+      ],
+      "report": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/independent-ingest-r4-kywxszs7/formal-report.md",
+      "report_sha256": "dcf438b6670501467bf63e24591ff1f9114a74a2986673ee0e15f2d30c4748dc",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "PC_05_06_07": "met",
+      "gate_qualification": false,
+      "readable_report": "sol-report.md",
+      "readable_sha256": "dcf438b6670501467bf63e24591ff1f9114a74a2986673ee0e15f2d30c4748dc",
+      "raw_archive": "sol-report.md.gz",
+      "raw_archive_sha256": "fd94edc26513e2c2b840de8b6a37430504438a9b82e953e5d90e498b6b17bcd0"
+    },
+    "astra": {
+      "seat": "astra",
+      "round": 4,
+      "candidate": "56a495b76e7b7f8a967633bf523dfa9c30f9ed73",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 9.8,
+      "overall": 9.4,
+      "mandatory_findings": [
+        "R4-ASTRA-001"
+      ],
+      "report": "/tmp/independent-r4-7aekkkfq/formal-report.md",
+      "report_sha256": "aab4c612da0e55a54a9af543a03a592427f82eac30fdf0a5327bc9267a25163d",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "PC_05_06_07": "met",
+      "gate_qualification": false,
+      "readable_report": "astra-report.md",
+      "readable_sha256": "aab4c612da0e55a54a9af543a03a592427f82eac30fdf0a5327bc9267a25163d",
+      "raw_archive": "astra-report.md.gz",
+      "raw_archive_sha256": "36ca54d17e0597580d274ffd3e0b7d5d3a2abd4b23519c12b228f31fdd13f737"
+    },
+    "opus": {
+      "seat": "opus",
+      "round": 4,
+      "candidate": "56a495b76e7b7f8a967633bf523dfa9c30f9ed73",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 9.4,
+      "overall": 9.4,
+      "mandatory_findings": [
+        {
+          "number": 1,
+          "severity": "medium",
+          "topic": "Conditional test paths and explicit collection of actual Transcript/Finance suites; Optimization has no baseline suite."
+        },
+        {
+          "number": 2,
+          "severity": "low",
+          "topic": "Stale REM Next decision version/round."
+        },
+        {
+          "number": 3,
+          "severity": "low",
+          "topic": "Stale safe current_scope authority value."
+        }
+      ],
+      "report": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/21ddf789-bd58-41b9-9e24-36c461ca46e9/scratchpad/r4seat.EmvUwM/round4-opus-report.md",
+      "report_sha256": "191f9c19acfffc6425c7752c54884b407ede6bc6ac21046021897634bf579fe7",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "PC_05_06_07": "met",
+      "gate_qualification": false,
+      "further_automatic_corrections_or_reviews": false,
+      "other_seats": "await their completion notifications, no polling",
+      "procedural_disclosures": "Retained verbatim in formal report; no retroactive waiver or VERIFIED claim.",
+      "readable_report": "opus-report.md",
+      "readable_sha256": "191f9c19acfffc6425c7752c54884b407ede6bc6ac21046021897634bf579fe7",
+      "raw_archive": "opus-report.md.gz",
+      "raw_archive_sha256": "9f574c23ab4130773eada7e490c4d62d3aaf139fa46c7147bcdae299349fcb64"
+    }
+  },
+  "consolidated_corrections": [
+    {
+      "id": "C1",
+      "sources": [
+        "Opus finding1"
+      ],
+      "topic": "Real conditional test paths and discovery",
+      "bounded_change": "Name Transcript and Finance tests/ paths, classify Optimization coverage as new/exact-location-to-be-bound, mirror migration rows and explicit future execution selectors."
+    },
+    {
+      "id": "C2",
+      "sources": [
+        "R4-SOL-001",
+        "R4-ASTRA-001",
+        "Opus findings2/3"
+      ],
+      "topic": "Current version and exhausted-budget consistency",
+      "bounded_change": "Reconcile REM Next decision and all current authority fields with actual v0.4/final-round outcome and await-guidance state; retain all historical text. A new review allowance requires explicit authorization."
+    }
+  ],
+  "repository_edits_since_freeze": false,
+  "Gate_A_or_construction_authority": false,
+  "unit": "INGEST-PACKAGE-IMPACT-001",
+  "round": 4,
+  "reviewed_candidate": "56a495b76e7b7f8a967633bf523dfa9c30f9ed73",
+  "assessment_version": "0.4-draft",
+  "authority_at_review": "Original four-round cap exhausted; no extension was presumed in any seat verdict."
+}

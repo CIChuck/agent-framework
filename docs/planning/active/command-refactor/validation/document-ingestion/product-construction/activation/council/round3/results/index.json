@@ -1,0 +1,45 @@
+{
+  "reviewed_candidate": "fd7d9f5d429857906d53da8fc053dc85b901a635",
+  "request_sha256": "8b9421da6fc954e171dad6f7cd594dca7fc9c4cdb9efb1c9df5f7dfb9361ae11",
+  "reports": [
+    {
+      "seat": "sol",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round3/results/sol/report.md",
+      "sha256": "1ea97cdecfb1858299eb5a78d6a87b14cf6ebfac6e44951052cc202c05027f09",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.53,
+      "mandatory_findings": 0
+    },
+    {
+      "seat": "astra",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round3/results/astra/report.md",
+      "sha256": "7003f9ccdb6068d8ac4c55ab1707c2b5a4cf77d9287667479b84677df50238cc",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.595,
+      "mandatory_findings": 0
+    },
+    {
+      "seat": "opus",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round3/results/opus/report.md",
+      "sha256": "ae80351816baa24c0305344214ab2e0b35a4a5d5acfe17cbc5a4423c7e8d1e2f",
+      "verdict": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.27,
+      "mandatory_findings": 1
+    }
+  ],
+  "overall_result": "CHANGES_REQUESTED",
+  "gate_met": false,
+  "minimum_per_seat": 9.5,
+  "round": 3,
+  "maximum_rounds": 3,
+  "originals_preserved": true,
+  "construction_approved": false,
+  "effects_approved": false,
+  "stop": "Authorized council limit exhausted; maintainer feedback required before further technical correction or review."
+}

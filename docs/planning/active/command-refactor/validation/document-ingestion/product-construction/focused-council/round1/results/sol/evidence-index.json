@@ -1,0 +1,19 @@
+{
+  "original_directory": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/sol-ingest-r1-nql47sj3",
+  "report_sha256": "c072292921a5f358984a16a8ec81db78bd7121d3689d370b4980045e4d5ff8cc",
+  "artifacts": [
+    {
+      "path": "entry.json",
+      "sha256": "9dab34a477f337cb81e4b5b76ba32d72210f652bef4c9e3d1ab319cc5d95b6c6"
+    },
+    {
+      "path": "exit.json",
+      "sha256": "9dab34a477f337cb81e4b5b76ba32d72210f652bef4c9e3d1ab319cc5d95b6c6"
+    },
+    {
+      "path": "report.md",
+      "sha256": "c072292921a5f358984a16a8ec81db78bd7121d3689d370b4980045e4d5ff8cc"
+    }
+  ],
+  "scope": "Original completed focused document assessment; no product conformance or readiness/effect approval."
+}

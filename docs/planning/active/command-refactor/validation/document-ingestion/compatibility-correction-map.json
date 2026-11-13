@@ -1,0 +1,474 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "recorded_at": "2026-11-11T03:26:33.442573+00:00",
+  "status": "requirements_and_proposed_dispositions_not_validation",
+  "baseline": "91ac63bad5e46eceddd252d5b7727f7a1d3c623a",
+  "annex": "embedding-compatibility-contract.md",
+  "annex_sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+  "mandatory": [
+    {
+      "theme": "INGEST-EC-01",
+      "original_ids": [
+        "OPUS-M1"
+      ],
+      "requirement": "Startup rejection logging can pre-create or mutate a vector directory",
+      "contract_sections": [
+        "FC-01"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-02",
+      "original_ids": [
+        "OPUS-M2"
+      ],
+      "requirement": "Active opt-in MCP snapshot ingestion is omitted from the route contract",
+      "contract_sections": [
+        "FC-02"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-03",
+      "original_ids": [
+        "SOL-R5-M01",
+        "OPUS-M3"
+      ],
+      "requirement": "Public physical backup/restore can bypass binding and overwrite a sidecar",
+      "contract_sections": [
+        "FC-03"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-04",
+      "original_ids": [
+        "SOL-R5-M02",
+        "OPUS-M3"
+      ],
+      "requirement": "ConsistencyAnalyzer opens SQLite and graph data outside normalized admission",
+      "contract_sections": [
+        "FC-04"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-05",
+      "original_ids": [
+        "OPUS-M3"
+      ],
+      "requirement": "Legacy synthesis can omit vectors and invoke an implicit Chroma embedder",
+      "contract_sections": [
+        "FC-05"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-06",
+      "original_ids": [
+        "SOL-R5-M03",
+        "ASTRA-R5-001"
+      ],
+      "requirement": "Consolidation can acknowledge source turns after summary-storage refusal",
+      "contract_sections": [
+        "FC-06"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-07",
+      "original_ids": [
+        "ASTRA-R5-002"
+      ],
+      "requirement": "Lifecycle counts and tool text can report failed mutations as success",
+      "contract_sections": [
+        "FC-07"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-08",
+      "original_ids": [
+        "OPUS-M4"
+      ],
+      "requirement": "Recall can suppress typed refusals; async graph fallback is not maintained wiring",
+      "contract_sections": [
+        "FC-08"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    },
+    {
+      "theme": "INGEST-EC-09",
+      "original_ids": [
+        "OPUS-M5"
+      ],
+      "requirement": "Runtime ephemeral/testing profiles still construct persistent lifecycle collections",
+      "contract_sections": [
+        "FC-09"
+      ],
+      "status": "proposed_document_disposition_for_independent_review"
+    }
+  ],
+  "high_medium_advisories": [
+    {
+      "original_ids": [
+        "OPUS-A1"
+      ],
+      "impact": "high",
+      "sections": [
+        "FC-10"
+      ],
+      "requirement": "Actual canonical Chat default versus legacy hint, preserved and visible."
+    },
+    {
+      "original_ids": [
+        "OPUS-A3"
+      ],
+      "impact": "high",
+      "sections": [
+        "FC-10"
+      ],
+      "requirement": "B01\u2013B08 qualified identities with absent/placeholder revisions and alias-swap refusal."
+    },
+    {
+      "original_ids": [
+        "OPUS-A4"
+      ],
+      "impact": "high",
+      "sections": [
+        "FC-11"
+      ],
+      "requirement": "Namespace admission before real provider probe."
+    },
+    {
+      "original_ids": [
+        "OPUS-A5"
+      ],
+      "impact": "high",
+      "sections": [
+        "FC-10"
+      ],
+      "requirement": "Preserve CLI raw explicit-origin across default forwarding."
+    },
+    {
+      "original_ids": [
+        "SOL-R5-A02",
+        "OPUS-A6"
+      ],
+      "impact": "high",
+      "sections": [
+        "FC-13"
+      ],
+      "requirement": "Actual transitive agent/multi-agent/MCP coverage and namespace distinction."
+    },
+    {
+      "original_ids": [
+        "ASTRA-R5-A02",
+        "OPUS-A8"
+      ],
+      "impact": "medium",
+      "sections": [
+        "FC-11"
+      ],
+      "requirement": "Declared dimension ceiling and identity-based empty-store behavior."
+    },
+    {
+      "original_ids": [
+        "OPUS-A10"
+      ],
+      "impact": "medium",
+      "sections": [
+        "FC-12"
+      ],
+      "requirement": "Headless counter extra/dependency profile without Docling."
+    },
+    {
+      "original_ids": [
+        "OPUS-A7"
+      ],
+      "impact": "medium",
+      "sections": [
+        "FC-13"
+      ],
+      "requirement": "Admitted store-only MEMQ reads without inference."
+    },
+    {
+      "original_ids": [
+        "OPUS-A2"
+      ],
+      "impact": "medium",
+      "sections": [
+        "FC-14"
+      ],
+      "requirement": "Operational compatibility versus later measured quality evaluation."
+    },
+    {
+      "original_ids": [
+        "OPUS-A11"
+      ],
+      "impact": "medium",
+      "sections": [
+        "FC-13"
+      ],
+      "requirement": "Public-unwired preprocessing never a second stored chunk plan."
+    }
+  ],
+  "not_claimed": [
+    "Independent finding closure",
+    "Executed B/N/R or installed proof",
+    "Selected model/dependency readiness",
+    "Construction approval"
+  ],
+  "prior_procedural_block": "Astra round5 and Opus pass1 procedural deviations remain recorded; no automatic replacement or formal credit. Technical findings rechecked from source.",
+  "cycle_pass": 3,
+  "global_round": 8,
+  "amendment_base": "f1916747ad7d03e451f2b57dc00542faa6095d7c",
+  "pass1_corrections": [
+    {
+      "id": "IC-01",
+      "sources": [
+        "SOL-R6-M01",
+        "ASTRA-R6-001",
+        "OPUS-R6-M2"
+      ],
+      "contract": "FC-03",
+      "disposition": "Retain public create and same-incarnation identity-safe restore; no class/API retirement or generic bridge."
+    },
+    {
+      "id": "IC-02",
+      "sources": [
+        "SOL-R6-M02",
+        "ASTRA-R6-A1"
+      ],
+      "contract": "FC-06",
+      "disposition": "Own actual ContextAssembler task/status and drain at existing Runtime shutdown; preserve Agent/Core signatures."
+    },
+    {
+      "id": "IC-03",
+      "sources": [
+        "ASTRA-R6-002"
+      ],
+      "contract": "FC-02",
+      "disposition": "Real Chat MCP observer/receipt failure mapping, narrow memory_mcp.py scope."
+    },
+    {
+      "id": "IC-04",
+      "sources": [
+        "ASTRA-R6-003"
+      ],
+      "contract": "FC-01",
+      "disposition": "Per-owner admitted rejection sink with lifecycle/reconfiguration; no global fan-out."
+    },
+    {
+      "id": "IC-05",
+      "sources": [
+        "OPUS-R6-M1"
+      ],
+      "contract": "FC-08",
+      "disposition": "Both graph scorer APIs are injectable only; actual Chat/Runtime unscored route gets no unused-vector preflight."
+    },
+    {
+      "id": "IC-06",
+      "sources": [
+        "OPUS-R6-M3"
+      ],
+      "contract": "FC-06",
+      "disposition": "Typed extraction refusal surfaces before completed acknowledgement; stable-ID retry and truthful mixed output."
+    }
+  ],
+  "pass1_advisory_dispositions": [
+    {
+      "id": "OPUS-R6-A1",
+      "sections": [
+        "FC-09"
+      ],
+      "requirement": "Per-incarnation physical ephemeral collections despite shared Chroma system.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A2",
+      "sections": [
+        "FC-08"
+      ],
+      "requirement": "Name get_all/priming/author read catch seams and typed propagation.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A3",
+      "sections": [
+        "FC-13"
+      ],
+      "requirement": "Explicit public Tools wrappers and disabled Chat legacy/dry-run dispositions.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A4",
+      "sections": [
+        "FC-12"
+      ],
+      "requirement": "Actual Runtime pkgutil module catalog minimal-install witness.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A5",
+      "sections": [
+        "FC-05"
+      ],
+      "requirement": "Qualified shared-guard wrapper route for all retained callable shapes.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A6",
+      "sections": [
+        "FC-11"
+      ],
+      "requirement": "Admission before LLM synthesizer probe as well as embeddings.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A7",
+      "sections": [],
+      "requirement": "Current next-decision authority and pass count reconciled.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A8",
+      "sections": [
+        "FC-01"
+      ],
+      "requirement": "Do not activate inert Chat rejection-log setting.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A9",
+      "sections": [
+        "FC-10"
+      ],
+      "requirement": "Early visibility of hosted baseline immutable-identity feasibility stop.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R6-A10",
+      "sections": [
+        "FC-04"
+      ],
+      "requirement": "Read-only transcript SQLite as well as Chroma.",
+      "status": "proposed_for_fresh_review"
+    }
+  ],
+  "pass2_corrections": [
+    {
+      "id": "IC-07",
+      "sources": [
+        "SOL-R7-001"
+      ],
+      "sections": [
+        "FC-08"
+      ],
+      "requirement": "Missing vectors: zero only for sync/async without fallback; retain qualified async fallback on absent components and reject invalid present vectors first."
+    },
+    {
+      "id": "IC-08",
+      "sources": [
+        "ASTRA-R7-001",
+        "OPUS-R7-M1"
+      ],
+      "sections": [
+        "FC-02"
+      ],
+      "requirement": "Keep pending records after partial/ambiguous failure/cancellation and same-ID no-extra-embedding retry; no newly automatic discard."
+    },
+    {
+      "id": "IC-09",
+      "sources": [
+        "OPUS-R7-M1"
+      ],
+      "sections": [
+        "FC-02"
+      ],
+      "requirement": "Use existing telemetry reason literals directly in the Chat memory_mcp observer union; real processor/provider forwarding stays unchanged and is tested."
+    },
+    {
+      "id": "IC-10",
+      "sources": [
+        "OPUS-R7-M2"
+      ],
+      "sections": [
+        "EC-18"
+      ],
+      "requirement": "Restore exactly35 historical Next gate lines from8d25d53a; only current gate changes subsequently."
+    },
+    {
+      "id": "IC-11",
+      "sources": [
+        "OPUS-R7-M3"
+      ],
+      "sections": [
+        "FC-03"
+      ],
+      "requirement": "Minimum new-binding evidence/admission and marker protection while preserving old backup file/default behavior; pre-existing vector/split completeness limitations recorded as FU014, with paired baseline proofs and no complete-recovery credit."
+    }
+  ],
+  "pass2_advisories": [
+    {
+      "id": "OPUS-R7-A1",
+      "requirement": "Name scored-graph except and recall gather typed-failure seams.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A2",
+      "requirement": "Close task admission before drain; late outer Agent arrival skips unavailable, no reopened sink.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A3",
+      "requirement": "Default no-file owned sink vs standalone logger separation; both inert Chat flags remain inert.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A4",
+      "requirement": "Explicit mutation.py empty dimension/graph-only FC11 purpose.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A5",
+      "requirement": "Wired metadata factor/access/incremental consumers, unchanged algorithms and explicit error projection.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A6",
+      "requirement": "Existing VectorInspectionTool query/search mismatch gets FU013/no positive credit, no incidental repair.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A7",
+      "requirement": "Collection suffix isolation chosen; tenant/database alternative not mixed in ad hoc.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A8",
+      "requirement": "Trace existing MCP constructors to the CollectionManager shared guard; no separate MCP counter/preflight protocol and no provider requirement for store-only reuse.",
+      "status": "proposed_for_fresh_review"
+    },
+    {
+      "id": "OPUS-R7-A9",
+      "requirement": "Mark old round1\u20134 authority historical/superseded.",
+      "status": "proposed_for_fresh_review"
+    }
+  ],
+  "history_restoration": {
+    "baseline": "8d25d53a",
+    "historical_gate_lines_restored": 35,
+    "paths": [
+      "README.md",
+      "next-phase.md",
+      "tactical-plan.md"
+    ],
+    "future_rule": "Only current gate may change; historical gate vector byte identity is checked independently."
+  },
+  "causal_scope_correction": {
+    "status": "proposed_controller_boundary_after_maintainer_scope_question",
+    "reason": "MCP/backups are embedding compatibility surfaces, not feature projects. No new physical layouts/defaults, backup-engine/member repair, MCP cleanup/counter configuration. Minimum binding/error adaptation only; FU013/014 separately unwaived.",
+    "not_a_waiver": "Paired baseline proofs required. Newly unsafe effects block readiness."
+  }
+}

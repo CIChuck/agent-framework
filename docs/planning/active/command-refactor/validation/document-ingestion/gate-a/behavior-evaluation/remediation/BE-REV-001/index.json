@@ -1,0 +1,9 @@
+{
+  "finding": "BE-REV-001",
+  "role": "builder proof, not validation",
+  "source_candidate": "1ebc1690",
+  "runner_sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+  "members": 316,
+  "archive_sha256": "32d547f721d4f2e61bb84572fa8fa52387113d0ceabe85ebc850fc76ceb48dee",
+  "members_sha256": "a6b6752f975edd15360897c2e8455aebededbb0f0e5e1cc5d51dd63810c92697"
+}

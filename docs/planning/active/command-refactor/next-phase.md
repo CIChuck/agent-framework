@@ -1,20 +1,22 @@
-# Document-ingestion remediation — proposed planning
+# INGEST — approved planning, Git handoff before coding
 
-Execution phase: planning; validation state: not_ready for this new unit.
-[REM-CMD-INGEST-001](remediation/REM-CMD-INGEST-001-pdf-docx.md) proposes shared
-Docling conversion for PDF/DOCX/XLSX/PPTX, local PDF OCR and file-path parsing
-with shared Memory chunking: document/512 tokens by default across all ingestion
-sources, with document/recursive/fixed overrides. Existing text/web fetching and
-admission remain. Shared LLM guards enforce input limits and expected dimensions;
-Qwen4B is illustrative only. Fresh test stores replace legacy migration work.
-The Tools adoption plan uses these same capabilities.
-No product construction or new council invocation is authorized by this draft.
-The next technical gate establishes the exact compatible dependency/model
-manifest; it must precede an approved implementation directive and code.
+Execution phase: planning; validation state: pending. Initiative stays started/local.
 
-MAINT-001 remains independently VERIFIED; human UAT/acceptance remain pending.
+Chuck's [approval record](approval/ingest-construction-documents-20261113.json)
+approves all outstanding INGEST analysis/design/directive documents, impact v0.8
+and the current validation amendment. The [final approval package](validation/document-ingestion/product-construction/final-approval/README.md)
+requires complete Sol/Astra/Opus councils after I1, I2 and I3, at most three
+passes per gate. I3 includes full aggregate review; no implementation council
+has started. Historical document verdicts remain unchanged.
 
-**Next gate:** Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.
+**Next gate:** Chuck approved INGEST documents and the Git handoff. Commit/push the approved planning/readiness baseline, open its PR to master, merge when checks permit, then create feature/cmd-ingest-implementation in a clean worktree from the merged baseline. Preserve the original dirty YAML and stores. Product execution waits for that handoff and the private I1 binding; full Sol/Astra/Opus councils follow each slice, at most three passes per gate, with I3 aggregate review.
+
+[Git handoff proposal](validation/document-ingestion/product-construction/final-approval/git-handoff-plan.md):
+commit the approved planning/readiness baseline, publish its PR after explicit
+Git authorization, merge it, then create a separate clean implementation branch.
+No coding/install starts until that discussion and exact branch/private phase
+bindings are complete. Earlier planning and council records retain their dated
+historical scope; completed Docling evaluation is reused.
 
 ## Separate MAINT closeout and historical checkpoints
 

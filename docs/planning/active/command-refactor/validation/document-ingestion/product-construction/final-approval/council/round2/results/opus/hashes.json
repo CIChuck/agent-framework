@@ -1,0 +1,11 @@
+{
+ "report.md": "20d214a0ba8f14880866e3acba6125dcbd355137f98e39d517e7973f28b78d3e",
+ "entry-evidence.json": "f65636d4304c24627a6c6346972236359016b788a43555d5b8c36375f1969e4d",
+ "exit-evidence.json": "f65636d4304c24627a6c6346972236359016b788a43555d5b8c36375f1969e4d",
+ "request_sha256": "aef9c61c5183c75900feb9323f0a9bc4103657d413a65c97be899a6c9c79d048",
+ "presented_commit_four_hashes_match": true,
+ "verdict": "CHANGES_REQUESTED",
+ "assessment_complete": true,
+ "overall": 9.365,
+ "mandatory_findings": 1
+}

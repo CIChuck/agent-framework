@@ -1,0 +1,129 @@
+[
+  {
+    "argv": [
+      "git",
+      "diff",
+      "23253a72ba265334e254c6a0bbad53f70cd85313..474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+      "--",
+      "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md",
+      "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/execution-contract.md",
+      "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/readiness-plan.md",
+      "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/effects-envelope.json",
+      "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/isolation-requirements.md"
+    ],
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/gate-a/effects-envelope.json"
+    ],
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/package-impact-assessment.md"
+    ],
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md"
+    ],
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/test-migration-plan.md"
+    ],
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/command-architecture-update-plan.md"
+    ],
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/guide-update-handoff.md"
+    ],
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/embedding-compatibility-contract.md"
+    ],
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/proposals/tools-document-adoption.md"
+    ],
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/package-impact/review-criteria.md"
+    ],
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "show",
+      "23253a72ba265334e254c6a0bbad53f70cd85313:docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round6-authorization.json"
+    ],
+    "env": {
+      "GIT_OPTIONAL_LOCKS": "0"
+    },
+    "exit": 0
+  }
+]

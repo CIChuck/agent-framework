@@ -1,0 +1,22 @@
+{
+  "unit": "command-refactor-parent-delivery",
+  "recorded_at": "2026-11-10T20:56:50.699900+00:00",
+  "maintainer_notification": "PR was merged, and the remote branch has been deleted.",
+  "pull_request": "https://github.com/CIChuck/agent-framework/pull/15",
+  "github_state": "closed",
+  "merged": true,
+  "merged_at": "2026-11-10T20:54:01Z",
+  "merge_commit": "c36e7ee51a9328918b9bb97712aa7f1d4a850d19",
+  "merge_parents": [
+    "6f291ca5755a616d9185c86dff104b660a1fba8c",
+    "df62b77d551491cfb33ad2492c711036b09c9d4c"
+  ],
+  "submitted_parent_head": "df62b77d551491cfb33ad2492c711036b09c9d4c",
+  "remote_retirement_branch": "absent from git ls-remote --heads",
+  "origin_master": "c36e7ee51a9328918b9bb97712aa7f1d4a850d19",
+  "scoped_branch": "feature/cmd-ingest-001",
+  "integration_merge_commit": "c7d6476358acf6a11534bfae0d912d17d432ce46",
+  "history_policy": "Regular merge; published INGEST planning commit retained; no rebase or force push.",
+  "runtime_identity": "No product/test/script/metadata/lock changes from reviewed ae15a537 source.",
+  "lifecycle_boundary": "Parent delivery merged. Active INGEST work remains design_only; MAINT human UAT/acceptance and INGEST construction remain pending. No acceptance inferred."
+}

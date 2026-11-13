@@ -1,0 +1,48 @@
+{
+  "reviewed_candidate": "c2fcee0db2fc5b8dbf3a4682bd31cd2ce95963a0",
+  "request_sha256": "6cde584b32ba6afaa32b92581ec20eaa5973f95ad786bd3abd549726fb002289",
+  "round": 1,
+  "maximum_rounds": 1,
+  "reports": [
+    {
+      "seat": "sol",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.6325,
+      "mandatory_findings": 0,
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round1/results/sol/report.md",
+      "report_sha256": "28ac2c35e2258d7b1cddcfe7ba5c2ac5a5a1113e98e28f9dd3483e139acf84b8"
+    },
+    {
+      "seat": "astra",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.64,
+      "mandatory_findings": 0,
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round1/results/astra/report.md",
+      "report_sha256": "18088d0187d1ddcd746abad5072d678e79805cb52835166241751758fde0a9c5"
+    },
+    {
+      "seat": "opus",
+      "verdict": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.3,
+      "mandatory_findings": 1,
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round1/results/opus/report.md",
+      "report_sha256": "4a07dee0d7637bb4d4c4efc89c5ba705b9574bb3dcc930091a506262b49b1187"
+    }
+  ],
+  "overall_result": "CHANGES_REQUESTED",
+  "gate_met": false,
+  "mandatory_findings": [
+    "MF-1 Certifi baseline and per-install phase contradiction"
+  ],
+  "targets_unchanged_by_closeout": true,
+  "original_reports_byte_exact": true,
+  "construction_approved": false,
+  "effects_approved": false,
+  "further_repair_or_council_authorized": false
+}

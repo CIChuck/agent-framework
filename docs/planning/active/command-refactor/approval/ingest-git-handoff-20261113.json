@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "id": "INGEST-GIT-HANDOFF-20261113",
+  "maintainer": "Chuck Russell",
+  "date": "2026-11-13",
+  "statement": "yes proceed",
+  "responds_to": "Recommendation to commit approved planning, push/open baseline PR to master, merge it, then create feature/cmd-ingest-implementation from merged master in a clean worktree before I1.",
+  "approved_actions": [
+    "Commit only the approved planning amendment and exact presentation/evidence metadata",
+    "Push feature/cmd-ingest-001 and open its review-ready baseline PR against master",
+    "Merge that baseline PR by regular merge when required checks/reviews permit, retaining evidence commit identities",
+    "Create feature/cmd-ingest-implementation from the merged baseline in a clean worktree",
+    "Record current branch/base, approval and eligible private execution binding before starting I1"
+  ],
+  "baseline_branch": "feature/cmd-ingest-001",
+  "base_branch": "master",
+  "proposed_implementation_branch": "feature/cmd-ingest-implementation",
+  "proposed_implementation_worktree": "/Users/chuckrussell/Dev/gendev/agent-framework-ingest-implementation",
+  "approved_request": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/approval-request.json",
+    "sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71"
+  },
+  "document_approval_record": {
+    "path": "docs/planning/active/command-refactor/approval/ingest-construction-documents-20261113.json",
+    "sha256": "ef88e0dbd07b0bf3fbf7b47bb05ad43ccdcbe8818565b93ebecbb266c6927d2e"
+  },
+  "constraints": [
+    "No force push, history rewrite or deletion of existing branches/worktrees",
+    "Never stage the two dirty Chat YAML examples or personal stores/exports",
+    "No installation into production .venv or mutation of production data/configuration",
+    "Preserve formal historical council outcomes; no new planning council",
+    "Required checks/reviews must permit merge; no bypass",
+    "No product merge, release, deployment or live embedding/provider window is authorized"
+  ],
+  "supersedes": "The previous Git-discussion hold and no-baseline-publication labels only. Product execution still requires the merged baseline/new branch and exact private phase binding.",
+  "status": "authorized_execution_in_progress"
+}

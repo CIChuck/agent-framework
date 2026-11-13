@@ -1,0 +1,41 @@
+{
+  "candidate": "a4b18fe5743ea8543bd000f6f85d8225d4dbb676",
+  "reports": [
+    {
+      "seat": "sol",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round4/results/sol/report.md",
+      "sha256": "9fc150b93c23bfc3d19c5163f517bfa66b23fa3ea76eacddc21872d846c94f35",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.57,
+      "mandatory_findings": 0
+    },
+    {
+      "seat": "astra",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round4/results/astra/report.md",
+      "sha256": "d1834522f6fd7f667c919816b1f102f923f9f5a5d17d59c05f949a8d282203a2",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.555,
+      "mandatory_findings": 0
+    },
+    {
+      "seat": "opus",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round4/results/opus/report.md",
+      "sha256": "54eefee7c8bf8b2b0598a1d19bb01958fda7254904c2d9e4be3d3c757e484f80",
+      "verdict": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.41,
+      "mandatory_findings": 1
+    }
+  ],
+  "gate_met": false,
+  "round": 4,
+  "additional_pass": 1,
+  "originals_preserved": true,
+  "procedure_disclosure": "Opus reported one lock-disabled status before successful logical-index hash after shell error. Preserved as disclosed, not represented as full procedural compliance; no replacement requested.",
+  "construction_approved": false
+}

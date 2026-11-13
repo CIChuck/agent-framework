@@ -1,0 +1,15 @@
+{
+  "operator": "Chuck Russell",
+  "confirmation": "Yes\u2014production stopped; Nomic loaded",
+  "confirmed_at_utc": "2026-11-12T21:18:02.285998+00:00",
+  "expires_at_utc": "2026-11-12T23:18:02.285998+00:00",
+  "production_stopped": true,
+  "already_loaded_model": "text-embedding-nomic-embed-text-v1.5",
+  "permitted_effects": "Embedding requests through Friday-LLM and isolated test-store writes, per current end-to-end request",
+  "origin": "http://127.0.0.1:1234",
+  "status_profile": "LMS_NATIVE_V1",
+  "request_budget": 64,
+  "requests_used": 1,
+  "production_changes": false,
+  "jit_ttl_eviction_configuration": "not attested; no model-management call permitted"
+}

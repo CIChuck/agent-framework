@@ -1,0 +1,13 @@
+{
+  "errors": [],
+  "DI": 36,
+  "proof_groups": 12,
+  "exits": 12,
+  "FC": 14,
+  "named_FC": 19,
+  "modules": 237,
+  "AST_nodes": 3073,
+  "fixtures": 72,
+  "helpers": 30,
+  "seed_nodes": 3
+}

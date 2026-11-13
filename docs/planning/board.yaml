@@ -711,11 +711,23 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed."
-  delivery_state: pushed
-  branch: feature/command-retirement
+  next_gate: "Chuck approved INGEST documents and the Git handoff. Commit/push the approved planning/readiness baseline, open its PR to master, merge when checks permit, then create feature/cmd-ingest-implementation in a clean worktree from the merged baseline. Preserve the original dirty YAML and stores. Product execution waits for that handoff and the private I1 binding; full Sol/Astra/Opus councils follow each slice, at most three passes per gate, with I3 aggregate review."
+  delivery_state: local
+  branch: feature/cmd-ingest-001
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/round2/results/report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/round1/results/report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/results/report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/gate-a/verified-directive-report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass2/results/report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/package-impact/current-verified-report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/package-impact/verified-report.md
+  - docs/planning/active/command-refactor/validation/document-ingestion/compatibility-verified-report.md
   - docs/planning/active/command-refactor/validation/maintenance/implementation/verified-report.md
   - docs/planning/active/command-refactor/validation/step3/correction-report.md
   - docs/planning/active/command-refactor/validation/legacy-cli-removal/report.md
@@ -3099,3 +3111,285 @@ events:
   action: delivery local -> pushed
   note: Chuck Russell authorized branch publication and PR submission; feature/command-retirement is pushed and PR 15 is open against master. Human acceptance and INGEST construction remain separate.
   evidence: https://github.com/CIChuck/agent-framework/pull/15; head ac3f9fa0bdadf95a6fc76d40b39fbc077b53da96
+- task: friday-command-refactor
+  at: '2026-11-10T20:43:27.753975+00:00'
+  actor: Codex
+  actor_role: agent
+  action: isolated INGEST-001 planning on a scoped feature branch
+  note: Chuck Russell directs the branch split after publication. Parent PR 15/head df62b77d is preserved. Current branch is feature/cmd-ingest-001 with design_only authority; no construction, model switch, store reset, council or acceptance granted.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md
+- task: friday-command-refactor
+  at: '2026-11-10T20:56:50.699900+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled merged parent PR 15 and integrated master into INGEST branch
+  note: GitHub reports PR 15 merged at c36e7ee5; remote retirement branch is absent. Regular branch merge preserves 070764d4 and user edits without rebase/force-push. Current INGEST branch remains design_only/pushed; parent merge is a separate delivery fact, not MAINT acceptance or INGEST implementation authority.
+  evidence: docs/planning/active/command-refactor/validation/delivery/command-retirement-merge.json
+- task: friday-command-refactor
+  at: '2026-11-10T21:02:12.052548+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze INGEST-001 design for the explicitly requested three-seat council
+  note: Chuck Russell adds Claude Opus5.5 to GPT-6.1 Sol/GPT-6 Astra and requests a deep read-only review. High-effort fresh contexts; no provider substitution, implementation, remediation or acceptance authority.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round1/roster.json
+- task: friday-command-refactor
+  at: '2026-11-10T21:25:05.426858+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled INGEST-001 round1 deep design council
+  note: All three seats CHANGES_REQUESTED (Sol8.1/Astra8.5/Opus7.3); eleven mandatory IDs consolidated into eight open themes. Opus command-discipline conformance qualified. Design-only; no remediation, new council, gate A or construction.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round1/report.md
+- task: friday-command-refactor
+  at: '2026-11-10T21:46:08.742345+00:00'
+  actor: Codex
+  actor_role: agent
+  action: corrected INGEST design for authorized council round2
+  note: Explicit maintainer authorizes document revisions and up to three additional fresh Sol/Astra/Opus rounds; stop only with all VERIFIED >=9.5/no mandatory finding, or return remaining issues at budget. No installation, gate A, product generation or acceptance.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-iteration-authorization.json
+- task: friday-command-refactor
+  at: '2026-11-10T22:11:51.549781+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled INGEST council round2 and drafted bounded correction cycle2
+  note: Sol VERIFIED9.5; Astra CHANGES_REQUESTED9.0; Opus CHANGES_REQUESTED8.4 with conduct qualification. Recovery/direct-client and composition corrections drafted. Existing-store upgrade behavior requires one maintainer preference before round3; no premature review, implementation or installation.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round2/report.md
+- task: friday-command-refactor
+  at: '2026-11-10T22:25:35.384333+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded explicit INGEST existing-store policy and round3 design freeze
+  note: Chuck Russell requires an explicitly configured fresh store for unbound existing stores, preserving old files and /read. Root-state matrix/request mechanism complete; fresh round3 authorized within budget. No installation, gate A, product/store action or acceptance.
+  evidence: docs/planning/active/command-refactor/approval/ingest-existing-store-policy.md
+- task: friday-command-refactor
+  at: '2026-11-10T22:49:20.621400+00:00'
+  actor: Codex
+  actor_role: agent
+  action: corrected INGEST documents for final authorized council round4
+  note: Round3 Sol VERIFIED9.6, Astra CHANGES_REQUESTED9.2, Opus procedural BLOCKED/technical CHANGES_REQUESTED9.15 retained. Typed aggregate v2 and exact fresh/default/live-path rules corrected. Future wrapper rule precisely covers Git/admin; scratch reads permitted. Last pass, each seat VERIFIED >=9.5/no mandatory finding; no construction/installation/store/delivery action.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round4/correction-brief.json
+- task: friday-command-refactor
+  at: '2026-11-10T23:05:43.462778+00:00'
+  actor: Codex
+  actor_role: agent
+  action: reconciled INGEST document design VERIFIED at the all-seat score gate
+  note: Final round4 Sol9.6/Astra9.6/Opus9.5 all VERIFIED,30 criteria/no mandatory findings. Six advisories carried to future Gate-A/directive. Reviewed technical bytes unchanged; iteration complete/no active council. Design-only; no Gate-A execution, code, store operations, acceptance or delivery.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/verified-design-report.md
+- task: friday-command-refactor
+  at: "2026-11-11T00:46:21.895426+00:00"
+  actor: Codex
+  actor_role: agent
+  action: clarified INGEST embedding-pool operational compatibility
+  note: Maintainer requests existing configurations and consumers remain operational. New fields may resolve from qualified readiness; explicit cross-subsystem DI-33 and unchanged fresh-store safety. Current REM pending review; old round4 results remain candidate-specific. No new council, Gate-A, source, store or delivery action.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/embedding-pool-compatibility.json
+- task: friday-command-refactor
+  at: "2026-11-11T01:11:28.895397+00:00"
+  actor: Codex
+  actor_role: agent
+  action: froze single framework-wide embedding compatibility council
+  note: Explicit maintainer requests Sol/Astra/Opus review of all direct and indirect embedding consumers, including subsystems unnamed in REM; unchanged-config and replacement-model/fresh-namespace compatibility. One read-only pass; no automatic repair loop, installs, product/store actions or delivery.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round5/roster.json
+- task: friday-command-refactor
+  at: "2026-11-11T01:37:37.401608+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled framework-wide INGEST council with changes requested
+  note: Sol8.6 and Opus7.2 CHANGES_REQUESTED; Astra procedurally BLOCKED with provisional8.4 only. Nine source-backed technical themes and all advisory IDs preserved; disabled CLI mutations qualified accurately. No technical REM/companion edit, replacement review, automatic repair, Gate-A, product/store action or delivery.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/framework-compatibility-review.md
+- task: friday-command-refactor
+  at: "2026-11-11T02:04:15.454127+00:00"
+  actor: Codex
+  actor_role: agent
+  action: revised INGEST framework compatibility specification for bounded council cycle
+  note: Explicit maintainer authorizes nine mandatory themes and high/medium advisories in proposed REM/annex, followed by one initial plus three corrective passes maximum. Each seat coverage and overall >=9.5/VERIFIED/no findings; stop after fourth for guidance. Document-only, no Gate-A or product/store/delivery authority.
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/compatibility-iteration-authorization.json
+- task: friday-command-refactor
+  at: "2026-11-11T02:40:23.192924+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled INGEST compatibility pass1 and corrected the document scope for pass2
+  note: "Pass1 scores below gate; six source-confirmed themes corrected without product edits. Opus dirty-YAML read disclosed and formal seat blocked; no replacement. Public backups retained; graph scorer correctly injectable-only; owned extraction/logging and real MCP outcome seams specified. Fresh pass2/4, round7; two later correction passes remain. No Gate-A, construction, store action or delivery."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round6/reconciliation.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T03:26:33.442573+00:00"
+  actor: Codex
+  actor_role: agent
+  action: corrected INGEST pass2 contracts and restored historical gates for pass3
+  note: "All pass2 scores below gate. Five contract/history themes plus nine advisory dispositions; no product changes. Fresh pass3/4 then one final pass maximum; no Gate-A, store or delivery authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/council-round7/reconciliation.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T03:52:54.229623+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled INGEST compatibility design VERIFIED and stopped the bounded council loop
+  note: "All3 seats independently VERIFIED with both coverage and overall >=9.5, zero mandatory findings, candidate f43368c5. Technical bytes unchanged; pass3/4 success stops further automatic review. Readiness/directive carry-forward only; no Gate-A, construction, model/store, acceptance or delivery authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/compatibility-verified-report.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T13:24:05.266147+00:00"
+  actor: Codex
+  actor_role: agent
+  action: drafted INGEST package impact assessment under conditional maintainer approval
+  note: "Documentation only. Current plan mapped to all17 packages; eight proposed implementation packages including conditional CLI edits and nine source-unchanged compatibility packages. Maintainer satisfaction with package impact is required before construction directive approval; remaining conditions and Gate-A activation pending. Reviewed technical pins unchanged; no council or execution started."
+  evidence: docs/planning/active/command-refactor/package-impact-assessment.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T13:30:40.641649+00:00"
+  actor: Codex
+  actor_role: agent
+  action: recorded bounded Package Impact Assessment council authorization
+  note: "Explicit maintainer requests fresh Sol/Astra/Opus review and up to four total rounds of bounded document correction until every seat VERIFIED and coverage/overall >=9.5 with no mandatory findings. Maintainer reviews linked draft in parallel. This is a new document council; the completed technical-design loop stays closed. No Gate-A or implementation authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/iteration-authorization.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T13:48:52.126581+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled Package Impact Assessment round1 and prepared v0.2 for round2
+  note: "Seven mandatory findings in four document themes and all13 advisories dispositioned. Fresh round2/4, delta first then full assessment; no current closure claim. Technical pins/product/user state unchanged. Maintainer reviews linked v0.2 in parallel; no Gate-A or construction."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round1/reconciliation.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T14:07:59.832831+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled Package Impact Assessment VERIFIED and recorded guide handoff
+  note: "All three round2 seats independently VERIFIED v0.2 at 1a040de3 with both scores>=9.5 and zero mandatory findings; seven original IDs closed. Loop stopped after2/4, no active council. Reviewed assessment/technical pins unchanged. Maintainer impact satisfaction and remaining conditions pending. New guide-coverage handoff is a proposed unreviewed final-directive input; no live guide, Gate-A, construction or delivery action."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/verified-report.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T17:06:47.715765+00:00"
+  actor: Codex
+  actor_role: agent
+  action: revised INGEST test migration and substantive architecture documentation requirements
+  note: "Explicit maintainer clarifications allow traceable affected-test restructuring and require canonical architecture plus guide rewrites. REM G1/G2 and DI-35/36, assessment v0.3 and supporting plans revised; old verdicts historical. Fresh round3 within original max4 budget, no reset. No implementation, live guide edits, Gate-A or delivery."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/test-doc-revision-authorization.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T17:29:04.155424+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled package impact round3 and prepared final bounded correction
+  note: "Round3 retains Sol VERIFIED, Astra BLOCKED by review-brief conflict, and Opus CHANGES_REQUESTED. Three document corrections and related advisories are incorporated; protocol revised prospectively, no waiver. Fresh round4/4 is final; stop for guidance if unmet. No product/test/live-guide, Gate-A or delivery authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/correction-cycle2.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T18:21:33.691122+00:00"
+  actor: Codex
+  actor_role: agent
+  action: recorded explicit one-round package-impact extension and bounded corrections
+  note: "Chuck answered proceed to the exact request for bounded document corrections and one additional full council. Original4 rounds exhausted; new maximum5, one review remaining. Actual test paths/discovery and current routing corrected, no scope change. Fresh Sol/Astra/Opus round5 at unchanged9.5 thresholds; stop if unmet. No product/Gate-A/delivery authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round5-authorization.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T19:29:08.475288+00:00"
+  actor: Codex
+  actor_role: agent
+  action: recorded bounded Finance validation remediation and fresh council authorization
+  note: "Chuck directed remediate and continue after the specific request for offline Finance validation correction and one fresh council. Round5 reports retained, including Sol BLOCKED. Maximum6, exactly one fresh round remaining; no memory/history searches, same9.5 gates. No product/test/live-guide edits, provider calls or construction authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round6-authorization.json
+
+- task: friday-command-refactor
+  at: "2026-11-11T19:43:15.398745+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled VERIFIED package-impact v0.6 council and closed bounded loop
+  note: "All fresh round6 Sol/Astra/Opus seats independently VERIFIED, PI01\u201318 PASS, no mandatory findings, coverage/overall>=9.5. Exact ae813002 technical bytes preserved. Current metadata only; history/advisories retained, no active review. Next is Chuck impact satisfaction/remaining conditions then bounded Gate-A planning and separate exact directive approval. No implementation, effects, acceptance or delivery granted."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/package-impact/current-verified-report.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T20:16:39.806527+00:00"
+  actor: Codex
+  actor_role: agent
+  action: recorded maintainer package-impact approval and prepared Gate-A plan
+  note: "Chuck approved exact v0.6 assessment and directed continuation. Approval binds f570318f/ae813002 bytes presented at fd33d5f5; the package-impact condition is satisfied for that version. Concrete Gate-A plan/envelope/source metadata/worklist prepared for review, not activated. No new council, resolver/install, model/provider/store or product/test/live-guide effect. Current contracts and user state preserved; construction remains separately approved."
+  evidence: docs/planning/active/command-refactor/approval/ingest-package-impact.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T20:49:52.318443+00:00"
+  actor: Codex
+  actor_role: agent
+  action: recorded manual harness and production isolation requirements
+  note: "Chuck requires all test code/config/input/output isolated from production. Gate-A plan v0.2 uses .friday_test, private configurations/caches and an independent LM Studio test process/endpoint; production stays untouched. Planning requirements only, no harness or environment created and no execution/council/construction activated."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/gate-a/isolation-requirements.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T21:15:31.969889+00:00"
+  actor: Codex
+  actor_role: agent
+  action: prepared tests-scoped readiness harness directive and shared model window
+  note: "Current proceed authorizes planning reconciliation and bounded instructions. All versioned harness/probe/generator/config/test code is proposed under tests/readiness/ingest/; generated state under .friday_test/. Existing LM Studio reuse is permitted only after operator-confirmed production shutdown, server restart and separate logs. Independent service requirement superseded; no code/environment, inference or new council activated. Exact impact approval and production state preserved."
+  evidence: docs/planning/active/command-refactor/directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T21:45:00.775444+00:00"
+  actor: Codex
+  actor_role: agent
+  action: authorized read-only Gate-A harness construction-directive council
+  note: "Explicit maintainer dispatch request; one fresh Sol/Astra/Opus round at high effort, target coverage/overall>=9.5, zero mandatory findings. Focus no production code/config/env/store edits, isolated tests/readiness/ingest and .friday_test, controlled shared LM Studio window. Directive/parent bytes unchanged; no construction, model calls, installs or service effects. No automatic additional round or repair loop."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/authorization.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T22:11:46.276575+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled and closed Gate-A harness council with changes requested
+  note: "All three terminal reports verified and archived, eight admin checks and opening/closing identity passed per seat. Sol 10.0/8.9, Astra 10.0/8.7, Opus 8.6/8.3 coverage/overall as reported; no averaging. Seven mandatory IDs form six open bounded design groups. Directive/14 parent bytes unchanged; no repairs, new council, construction, tests, install or model/store/service action. Exact impact approval persists; next is maintainer disposition. Controller public-primary documentation corroboration only."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/report.md
+
+- task: friday-command-refactor
+  at: "2026-11-11T22:56:07.106988+00:00"
+  actor: Codex
+  actor_role: agent
+  action: started bounded corrective harness council loop pass1 of four
+  note: "Explicit proceed authorizes up to four new corrective document review passes without intermediate questions, stop on full all-seat 9.5 gate or after fourth. Prior single pass is history; this is harness round2/pass1. Six correction groups and related advisories proposed in directive v0.2/execution contract/plan v0.4. Numeric budgets and nine business inputs preserved; no runtime, source-code, model/server/store or construction effects. Fresh full council after freeze; no hidden replacements."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/authorization.md
+
+- task: friday-command-refactor
+  at: "2026-11-13T15:10:22.075204+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled successful INGEST activation design council and stopped early
+  note: "Round7 all-seat VERIFIED: Sol9.54, Astra9.55, Opus9.52; complete8/8 and no mandatory findings. Original reports and frozen boundaries archived; technical inputs unchanged. Rounds8/9 unused. Next exact activation/impact approval preparation; Gate A1-A5 remain incomplete. No product/effects or acceptance authority."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/results/report.md
+
+- task: friday-command-refactor
+  at: "2026-11-13T15:35:07.277699+00:00"
+  actor: Codex
+  actor_role: agent
+  action: prepared final INGEST construction approval request and revised package impact
+  note: "Explicit planning proceed; impact v0.7 and exact scope/private-profile request prepared for Chuck. Reviewed design/contracts/maps and council originals unchanged. Historical v0.6 approval does not approve new bytes. No product, install, model/store, council or delivery effects; next is maintainer review."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md
+
+- task: friday-command-refactor
+  at: "2026-11-13T16:06:33.292728+00:00"
+  actor: Codex
+  actor_role: agent
+  action: reconciled final INGEST approval document council with changes requested
+  note: "All8 areas assessed by each seat; Sol9.6325/Astra9.640 VERIFIED, Opus9.30 with Certifi timing finding. Source confirmed; reports/disclosure preserved, targets unchanged. One read-only round complete, no automatic correction/repeat. Await Chuck, no construction or effects."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round1/results/report.md
+
+- task: friday-command-refactor
+  at: "2026-11-13T16:32:06.147242+00:00"
+  actor: Codex
+  actor_role: agent
+  action: stopped final INGEST document council and disclosed one-field correction
+  note: "All final seats complete8/8; shared stale A4 label only. Original CHANGES_REQUESTED scores/reports retained. Same requested reference alignment completed in one field, receipt refreshed; no independent VERIFIED/gate waiver claimed. No third council or runtime effects. Await explicit maintainer disposition/construction approval."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/results/report.md
+
+- task: friday-command-refactor
+  at: "2026-11-13T17:15:07.602644+00:00"
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved INGEST planning documents and required Git discussion before coding
+  note: "Explicitly approves all outstanding INGEST analysis/design/directive documents and current edits. Full Sol/Astra/Opus councils after each slice, at most three passes per gate; I3 includes aggregate. Exact approval recorded; historical reports unchanged. Git checkpoint/publication and new implementation branch await discussion; no code, installs, council or production effects."
+  evidence: docs/planning/active/command-refactor/approval/ingest-construction-documents-20261113.json
+
+- task: friday-command-refactor
+  at: "2026-11-13T17:20:42.239214+00:00"
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized approved INGEST baseline publication and implementation branch handoff
+  note: "yes proceed confirms checkpoint, push/open PR to master, regular merge when checks permit, then clean feature/cmd-ingest-implementation from merged master. No force push or personal-state staging. Product code remains behind branch/private-phase binding and per-slice councils."
+  evidence: docs/planning/active/command-refactor/approval/ingest-git-handoff-20261113.json

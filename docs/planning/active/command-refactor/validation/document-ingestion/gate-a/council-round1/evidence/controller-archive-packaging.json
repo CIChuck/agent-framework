@@ -1,0 +1,23 @@
+{
+  "scope": "Controller archival packaging only, not directive remediation or reviewer evidence alteration.",
+  "initial_closeout_commit": "2fd8050e",
+  "initial_staged_whitespace_gate": "FAILED on verbatim source excerpt line-prefix trailing spaces; initial commit was created despite failure.",
+  "initial_combined_range_gate": "FAILED on those same newly archived text receipts.",
+  "correction": "Store the two raw receipts with deterministic lossless gzip; archive map binds original bytes and encoded bytes.",
+  "receipts": [
+    {
+      "previous_archive": "evidence/sol/startup-source-evidence.txt",
+      "archive": "evidence/sol/startup-source-evidence.txt.gz",
+      "source_sha256": "ff1dfdbfcca45c0e60f7d131eb85f68cc2fc3724b6cc46988672852c60fdbe2a",
+      "original_bytes_preserved": true
+    },
+    {
+      "previous_archive": "evidence/astra/python-startup-source.txt",
+      "archive": "evidence/astra/python-startup-source.txt.gz",
+      "source_sha256": "6c0bb4cb2fed0eec293f2dae3cbf5e9193fa8b7b72af3ccf880096898309d717",
+      "original_bytes_preserved": true
+    }
+  ],
+  "reviewer_reports_or_normative_documents_changed": false,
+  "production_or_runtime_effects": false
+}

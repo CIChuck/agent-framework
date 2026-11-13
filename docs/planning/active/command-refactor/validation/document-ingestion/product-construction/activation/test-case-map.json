@@ -1,0 +1,2131 @@
+{
+  "version": 1,
+  "status": "proposed case-level exceptions; not approved or executed",
+  "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "inventory_reference": "../baseline-test-inventory.json.gz",
+  "inventory_sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4",
+  "inventory_rebuilt": false,
+  "default": "Every inventory case not explicitly listed retains public class/name/assertion body. A new required edit blocks its slice until an exact map entry is approved; this is not a whole-suite rewrite waiver.",
+  "default_retained_static_nodes": 3024,
+  "mapped_cases": [
+    {
+      "id": "TM-A001",
+      "phase": "I2",
+      "old_path": "packages/friday-llm/tests_llm/test_embeddings.py",
+      "old_node": "TestLiteLLMEmbeddingService::test_embed_single_query",
+      "old_file_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "old_definition_sha256": "b7a12bcec2749fa2f165be1ffb7f3897b45877d1fb321efc27acd1ac72df11ac",
+      "disposition": "adapt_test_inputs",
+      "new_nodes": [
+        "packages/friday-llm/tests_llm/test_embeddings.py::TestLiteLLMEmbeddingService::test_embed_single_query"
+      ],
+      "reason": "Guarded fixture must declare the exact synthetic dimension and provider order contract; old mocks omit indices and one batch changes vector dimension.",
+      "requirements": [
+        "DI-18",
+        "DI-22",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain original result equality/cardinality, batching count, cache hit/miss/LRU/disabled and telemetry assertions applicable to this node.",
+        "Provide complete provider indices and per-case qualified synthetic capability; no guard bypass or claim of actual-serving qualification."
+      ],
+      "permitted_edit": "Test construction/fixture capability and complete mock response indices only; original assertion body retained. Per-case dimension is 5 for single_query, 3 for ordinary query/document/cache/telemetry; no special support exemption.",
+      "approved": false
+    },
+    {
+      "id": "TM-A002",
+      "phase": "I2",
+      "old_path": "packages/friday-llm/tests_llm/test_embeddings.py",
+      "old_node": "TestLiteLLMEmbeddingService::test_embed_multiple_documents",
+      "old_file_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "old_definition_sha256": "7b207240c5b92f2aea741ab4173de637705fe68d405fbc108a575b928317d09e",
+      "disposition": "adapt_test_inputs",
+      "new_nodes": [
+        "packages/friday-llm/tests_llm/test_embeddings.py::TestLiteLLMEmbeddingService::test_embed_multiple_documents"
+      ],
+      "reason": "Guarded fixture must declare the exact synthetic dimension and provider order contract; old mocks omit indices and one batch changes vector dimension.",
+      "requirements": [
+        "DI-18",
+        "DI-22",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain original result equality/cardinality, batching count, cache hit/miss/LRU/disabled and telemetry assertions applicable to this node.",
+        "Provide complete provider indices and per-case qualified synthetic capability; no guard bypass or claim of actual-serving qualification."
+      ],
+      "permitted_edit": "Test construction/fixture capability and complete mock response indices only; original assertion body retained. Per-case dimension is 5 for single_query, 3 for ordinary query/document/cache/telemetry; no special support exemption.",
+      "approved": false
+    },
+    {
+      "id": "TM-A003",
+      "phase": "I2",
+      "old_path": "packages/friday-llm/tests_llm/test_embeddings.py",
+      "old_node": "TestLiteLLMEmbeddingService::test_embed_empty_list",
+      "old_file_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "old_definition_sha256": "54f3b37e11c898292d0656602dcde7662f201a61fb5102aea62df393314342ce",
+      "disposition": "adapt_test_inputs",
+      "new_nodes": [
+        "packages/friday-llm/tests_llm/test_embeddings.py::TestLiteLLMEmbeddingService::test_embed_empty_list"
+      ],
+      "reason": "Guarded fixture must declare the exact synthetic dimension and provider order contract; old mocks omit indices and one batch changes vector dimension.",
+      "requirements": [
+        "DI-18",
+        "DI-22",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain original result equality/cardinality, batching count, cache hit/miss/LRU/disabled and telemetry assertions applicable to this node.",
+        "Provide complete provider indices and per-case qualified synthetic capability; no guard bypass or claim of actual-serving qualification."
+      ],
+      "permitted_edit": "Test construction/fixture capability and complete mock response indices only; original assertion body retained. Per-case dimension is 5 for single_query, 3 for ordinary query/document/cache/telemetry; no special support exemption.",
+      "approved": false
+    },
+    {
+      "id": "TM-A004",
+      "phase": "I2",
+      "old_path": "packages/friday-llm/tests_llm/test_embeddings.py",
+      "old_node": "TestLiteLLMEmbeddingService::test_batching",
+      "old_file_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "old_definition_sha256": "37037289d958f4375ebdb1c2b17f2da1eb6c3a7bf218214bd361cb4222c29860",
+      "disposition": "adapt_test_inputs",
+      "new_nodes": [
+        "packages/friday-llm/tests_llm/test_embeddings.py::TestLiteLLMEmbeddingService::test_batching"
+      ],
+      "reason": "Guarded fixture must declare the exact synthetic dimension and provider order contract; old mocks omit indices and one batch changes vector dimension.",
+      "requirements": [
+        "DI-18",
+        "DI-22",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain original result equality/cardinality, batching count, cache hit/miss/LRU/disabled and telemetry assertions applicable to this node.",
+        "Provide complete provider indices and per-case qualified synthetic capability; no guard bypass or claim of actual-serving qualification."
+      ],
+      "permitted_edit": "Add capability/local-counter fixture and enumerate MockEmbeddingResponse indices; only test_batching may change final mocked vector from length 1 to length 2 to match its first batch. No result/count/telemetry assertion deletion.",
+      "approved": false
+    },
+    {
+      "id": "TM-A005",
+      "phase": "I2",
+      "old_path": "packages/friday-llm/tests_llm/test_embeddings.py",
+      "old_node": "TestLiteLLMEmbeddingService::test_telemetry_events",
+      "old_file_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "old_definition_sha256": "c1d528c3bacfb338032fd45996e9aa9bfc33d05c3e40b5b62df752920b340019",
+      "disposition": "adapt_test_inputs",
+      "new_nodes": [
+        "packages/friday-llm/tests_llm/test_embeddings.py::TestLiteLLMEmbeddingService::test_telemetry_events"
+      ],
+      "reason": "Guarded fixture must declare the exact synthetic dimension and provider order contract; old mocks omit indices and one batch changes vector dimension.",
+      "requirements": [
+        "DI-18",
+        "DI-22",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain original result equality/cardinality, batching count, cache hit/miss/LRU/disabled and telemetry assertions applicable to this node.",
+        "Provide complete provider indices and per-case qualified synthetic capability; no guard bypass or claim of actual-serving qualification."
+      ],
+      "permitted_edit": "Test construction/fixture capability and complete mock response indices only; original assertion body retained. Per-case dimension is 5 for single_query, 3 for ordinary query/document/cache/telemetry; no special support exemption.",
+      "approved": false
+    },
+    {
+      "id": "TM-A006",
+      "phase": "I2",
+      "old_path": "packages/friday-llm/tests_llm/test_embeddings.py",
+      "old_node": "TestLiteLLMEmbeddingService::test_query_telemetry",
+      "old_file_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "old_definition_sha256": "03e59fce33c6951c00bc3be128135cef3d728995318c1575949c61bfc99c3803",
+      "disposition": "adapt_test_inputs",
+      "new_nodes": [
+        "packages/friday-llm/tests_llm/test_embeddings.py::TestLiteLLMEmbeddingService::test_query_telemetry"
+      ],
+      "reason": "Guarded fixture must declare the exact synthetic dimension and provider order contract; old mocks omit indices and one batch changes vector dimension.",
+      "requirements": [
+        "DI-18",
+        "DI-22",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain original result equality/cardinality, batching count, cache hit/miss/LRU/disabled and telemetry assertions applicable to this node.",
+        "Provide complete provider indices and per-case qualified synthetic capability; no guard bypass or claim of actual-serving qualification."
+      ],
+      "permitted_edit": "Test construction/fixture capability and complete mock response indices only; original assertion body retained. Per-case dimension is 5 for single_query, 3 for ordinary query/document/cache/telemetry; no special support exemption.",
+      "approved": false
+    },
+    {
+      "id": "TM-A007",
+      "phase": "I2",
+      "old_path": "packages/friday-llm/tests_llm/test_embeddings.py",
+      "old_node": "TestEmbeddingCache::test_cache_hit",
+      "old_file_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "old_definition_sha256": "8fa451929a034c7d539be047434020f94212f7d6178309bb99a9873fe75e8195",
+      "disposition": "adapt_test_inputs",
+      "new_nodes": [
+        "packages/friday-llm/tests_llm/test_embeddings.py::TestEmbeddingCache::test_cache_hit"
+      ],
+      "reason": "Guarded fixture must declare the exact synthetic dimension and provider order contract; old mocks omit indices and one batch changes vector dimension.",
+      "requirements": [
+        "DI-18",
+        "DI-22",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain original result equality/cardinality, batching count, cache hit/miss/LRU/disabled and telemetry assertions applicable to this node.",
+        "Provide complete provider indices and per-case qualified synthetic capability; no guard bypass or claim of actual-serving qualification."
+      ],
+      "permitted_edit": "Test construction/fixture capability and complete mock response indices only; original assertion body retained. Per-case dimension is 5 for single_query, 3 for ordinary query/document/cache/telemetry; no special support exemption.",
+      "approved": false
+    },
+    {
+      "id": "TM-A008",
+      "phase": "I2",
+      "old_path": "packages/friday-llm/tests_llm/test_embeddings.py",
+      "old_node": "TestEmbeddingCache::test_cache_miss_different_queries",
+      "old_file_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "old_definition_sha256": "f35c78e64b2910a83bbfd50fbb55b8d740471b435a8f935e715be2e3fafa4565",
+      "disposition": "adapt_test_inputs",
+      "new_nodes": [
+        "packages/friday-llm/tests_llm/test_embeddings.py::TestEmbeddingCache::test_cache_miss_different_queries"
+      ],
+      "reason": "Guarded fixture must declare the exact synthetic dimension and provider order contract; old mocks omit indices and one batch changes vector dimension.",
+      "requirements": [
+        "DI-18",
+        "DI-22",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain original result equality/cardinality, batching count, cache hit/miss/LRU/disabled and telemetry assertions applicable to this node.",
+        "Provide complete provider indices and per-case qualified synthetic capability; no guard bypass or claim of actual-serving qualification."
+      ],
+      "permitted_edit": "Test construction/fixture capability and complete mock response indices only; original assertion body retained. Per-case dimension is 5 for single_query, 3 for ordinary query/document/cache/telemetry; no special support exemption.",
+      "approved": false
+    },
+    {
+      "id": "TM-A009",
+      "phase": "I2",
+      "old_path": "packages/friday-llm/tests_llm/test_embeddings.py",
+      "old_node": "TestEmbeddingCache::test_cache_lru_eviction",
+      "old_file_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "old_definition_sha256": "a67dd94e979fda5e5cc2961d8588cf878bfcbfe6a5aea8f61deab80e26a6fb80",
+      "disposition": "adapt_test_inputs",
+      "new_nodes": [
+        "packages/friday-llm/tests_llm/test_embeddings.py::TestEmbeddingCache::test_cache_lru_eviction"
+      ],
+      "reason": "Guarded fixture must declare the exact synthetic dimension and provider order contract; old mocks omit indices and one batch changes vector dimension.",
+      "requirements": [
+        "DI-18",
+        "DI-22",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain original result equality/cardinality, batching count, cache hit/miss/LRU/disabled and telemetry assertions applicable to this node.",
+        "Provide complete provider indices and per-case qualified synthetic capability; no guard bypass or claim of actual-serving qualification."
+      ],
+      "permitted_edit": "Test construction/fixture capability and complete mock response indices only; original assertion body retained. Per-case dimension is 5 for single_query, 3 for ordinary query/document/cache/telemetry; no special support exemption.",
+      "approved": false
+    },
+    {
+      "id": "TM-A010",
+      "phase": "I2",
+      "old_path": "packages/friday-llm/tests_llm/test_embeddings.py",
+      "old_node": "TestEmbeddingCache::test_cache_disabled",
+      "old_file_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "old_definition_sha256": "9cc611bb06024d7e8bd58ad15b665369749bffe55cbd281809995c119b650445",
+      "disposition": "adapt_test_inputs",
+      "new_nodes": [
+        "packages/friday-llm/tests_llm/test_embeddings.py::TestEmbeddingCache::test_cache_disabled"
+      ],
+      "reason": "Guarded fixture must declare the exact synthetic dimension and provider order contract; old mocks omit indices and one batch changes vector dimension.",
+      "requirements": [
+        "DI-18",
+        "DI-22",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain original result equality/cardinality, batching count, cache hit/miss/LRU/disabled and telemetry assertions applicable to this node.",
+        "Provide complete provider indices and per-case qualified synthetic capability; no guard bypass or claim of actual-serving qualification."
+      ],
+      "permitted_edit": "Test construction/fixture capability and complete mock response indices only; original assertion body retained. Per-case dimension is 5 for single_query, 3 for ordinary query/document/cache/telemetry; no special support exemption.",
+      "approved": false
+    },
+    {
+      "id": "TM-A011",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_new_collection_uses_modern_hnsw_configuration",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "66723a79939d389c3dd2125256675416b07768a426550be401d29544c474b906",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_new_collection_uses_modern_hnsw_configuration"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Only explicit fresh child destination, synthetic capability/envelope and admitted fixture/client setup may change; retain assertions. Legacy/modern hnsw setup may allocate admitted namespace before creating/opening the collection.",
+      "approved": false
+    },
+    {
+      "id": "TM-A012",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_existing_legacy_hnsw_collection_remains_compatible",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "541ac8a60ad9e5861e550c922f8eecb25628a8c31a6a0d145794b21fa87a565a",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_existing_legacy_hnsw_collection_remains_compatible"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Only explicit fresh child destination, synthetic capability/envelope and admitted fixture/client setup may change; retain assertions. Legacy/modern hnsw setup may allocate admitted namespace before creating/opening the collection.",
+      "approved": false
+    },
+    {
+      "id": "TM-A013",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_add_documents",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "196f48592de095f0079e6bc302c5bbe4191de438d59174f0fb712143e2c176f2",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_add_documents"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A014",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_add_empty_documents",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "8dff20f2fd9bd199f7aa8d23aecfa929f9a9a8d5b7aad1de51a5d91466121dba",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_add_empty_documents"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A015",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_upsert_documents_reuses_stable_identity",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "536f5d12667e6224cacaa767cb862f06a73d276f4cede1728602d8dd9dfdfef0",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_upsert_documents_reuses_stable_identity"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A016",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_query_documents",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "e5e3f7ba7eabea416ee5df3f26408a741c56c320bc8883b154bf2018b203c276",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_query_documents"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A017",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_query_with_metadata_filter",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "e9701f2e5d2599e7523475e9b128731e72fbf3691b9b849785b7be16e9f00dd3",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_query_with_metadata_filter"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A018",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_delete_by_ids",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "62e4eb838d443d9264d074e3c85d4cc465f05eee021673fb2a5c89b3a181776e",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_delete_by_ids"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A019",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_delete_empty_list",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "4d37b0bc3809b44dc85d24d9ca4f9dc5d8ad8f9a3e11f3263162f272f4a32d7a",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_delete_empty_list"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A020",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_delete_where",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "b3bd56ef0cdb8118e599a84252bc015eae3bff4bb91b27f8227053afab048d8e",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_delete_where"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A021",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_get_by_id",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "b515066c48254a4b895a8bc3a0efa8e952617a78897e700bb394abf485ed756d",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_get_by_id"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A022",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_get_by_id_not_found",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "3a0a98dc8f2f47252d21978c8be3d0d5d3cdbc742c6cd961e8d0125da8af77bd",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_get_by_id_not_found"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A023",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_similarity_scores",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "4e293e4a956126ad574d02c43ac242d3286a57318fcf9e445a150663cac3e33a",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_similarity_scores"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A024",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "old_node": "TestChromaVectorStore::test_unique_collection_names",
+      "old_file_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "old_definition_sha256": "2acfa02ae5d76c12c8e7e038684a61b6984c154b9bbc73cb78ca666757e38785",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_vector.py::TestChromaVectorStore::test_unique_collection_names"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A025",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_add_documents",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "f44e017c2d160951022c047ab8e6c773e669d872ca2dcb4ecebdc8436dd3ac21",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_add_documents"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A026",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_add_empty_documents",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "dc519e13e1471a341ac7907a0ad983975d0ce62a6e8cba36324fe6d930615efa",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_add_empty_documents"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A027",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_query_documents",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "eceefc409105b30687288d43b25330a7b3efb569ebaefca8c33752f8db603ce7",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_query_documents"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A028",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_query_empty_store",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "5cf4ad9cf3a2b0234f9cbbb14824cae4ce9e7c91d328d87a28f620f0fe62138f",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_query_empty_store"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A029",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_query_with_metadata_filter",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "1dcae2366d96bee27b3c0794043255852c9c1cca68cf8566b275f459cd5e8aee",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_query_with_metadata_filter"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A030",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_query_with_operator_filter",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "6346e9d09a5e360d024a387966f90996acd56256ac419b08af891b317f4b6866",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_query_with_operator_filter"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A031",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_query_with_in_operator",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "42496dcbe571f555855b74dfffffb3de35fd359ee4003a113996272dc6b91349",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_query_with_in_operator"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A032",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_delete_by_ids",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "4908905adf8b80d72673574f828da13c19832f91af9bde14256db626ad089dca",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_delete_by_ids"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A033",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_delete_empty_list",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "15981ede47f29a615752e650eb4d1f9ffd82ae9200ba8c7a3362097dfadce34d",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_delete_empty_list"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A034",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_delete_where",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "7e226a92e809b18ff798b1a89961524bcf92b095168eec91bc4c3c59f3bebb79",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_delete_where"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A035",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_get_by_id",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "6cb1eb09909cea6461c9d231a7ad117ac3979bd4ca40d6404409d6fb362b88bd",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_get_by_id"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A036",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_get_by_id_not_found",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "72173df21e86e40237f0b1e7386dd75aae30756bf52267bd48693e096f3631de",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_get_by_id_not_found"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A037",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_similarity_scores",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "95e8f56a4365e94268deaf4bb4be4338792eb0e3c8f2824f31126548000fd10a",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_similarity_scores"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A038",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_clear",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "b706a502d38a4c04ffea86e7519fe7f08d280542c45d638d3bcc9b3a08ac486e",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_clear"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A039",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_get_all",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "d2718d0cf41dc95c5701d94de4273ccb863d49838607dab79e67441b7b31dc05",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_get_all"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A040",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_update_metadata",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "124ee6947300d8545f8475f4646267528860d6c80c0b01b891204f9540f972dc",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_update_metadata"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A041",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_update_metadata_not_found",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "38998a38071c06d148f3402e1321d6143eb44664f0def459b08e55493d44edb7",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_update_metadata_not_found"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A042",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_increment_hit_count",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "75474fe7b0a891088f843f0a1fe0aaf27be72e7dbfdbe65079c79b660d84bea7",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_increment_hit_count"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A043",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStore::test_increment_hit_count_not_found",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "4f501e835e301abd90d7aa3bb55fcf12aa7f29ff587d28911b9e962ae0269ff3",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStore::test_increment_hit_count_not_found"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A044",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStoreFiltering::test_filter_eq",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "e845650481c81ff721559e064bcd00eaae7e8d32c2c90d84115696dc931bc760",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStoreFiltering::test_filter_eq"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A045",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStoreFiltering::test_filter_ne",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "33f26761739c98d41720231e56f20a49a78e6e9da2b38e76b84073aacf2b4804",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStoreFiltering::test_filter_ne"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A046",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStoreFiltering::test_filter_gte_lte",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "74c9df3119195b90ef98aebc2451905da109924b9b8d0af03d3dac026a749774",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStoreFiltering::test_filter_gte_lte"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A047",
+      "phase": "I2",
+      "old_path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "old_node": "TestSimpleVectorStoreFiltering::test_filter_nin",
+      "old_file_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "old_definition_sha256": "a5bd3a56ff5cc35a7cb7a4aea9e9e1fa28b9a41eb4f78ff1f8c0c128f1394f19",
+      "disposition": "adapt_admission_setup",
+      "new_nodes": [
+        "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py::TestSimpleVectorStoreFiltering::test_filter_nin"
+      ],
+      "reason": "Keep successful store behavior in explicitly fresh admitted disposable namespaces; no stamp of a pre-existing unbound root.",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-33",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Retain old CRUD/filter/count/vector-equality and stable-ID behavior.",
+        "Create fresh binding before legacy hnsw collection seed; retain its configuration assertions. Add separate refusal witnesses rather than calling unbound legacy data compatible."
+      ],
+      "permitted_edit": "Setup/fixture injection only: valid synthetic space and unique ephemeral/persistent destination. No filter/score/CRUD assertion weakening.",
+      "approved": false
+    },
+    {
+      "id": "TM-A048",
+      "phase": "I3",
+      "old_path": "packages/friday-chat/tests_chat/test_files_replay_shell.py",
+      "old_node": "test_read_dispatches_supported_extensions",
+      "old_file_sha256": "94443a42877ea53b35ca5f1f7d204d90ebf6e71ce8d59dd0cd92ab735f53daf7",
+      "old_definition_sha256": "31d7e815e1a374d158ac96f043ee4e10d959a34db8ef8c02fba331f36faf1746",
+      "disposition": "proposed split/replace",
+      "new_nodes": [
+        "packages/friday-chat/tests_chat/test_files_replay_shell.py::test_read_dispatches_supported_text_extensions",
+        "packages/friday-chat/tests_chat/test_document_ingestion.py::test_read_extracts_genuine_document_content"
+      ],
+      "reason": "Legacy document positives write fake extension-only text; preserve valid text/table/JSON assertions and replace placeholder assertions with genuine extraction.",
+      "requirements": [
+        "DI-01",
+        "DI-02",
+        "DI-04",
+        "DI-13",
+        "DI-14",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "All retained text/table/JSON dispatch behavior",
+        "Actual default registry to shared converter and real full source markers/metadata for all four document formats",
+        "No placeholder success for corrupt document"
+      ],
+      "permitted_edit": "TM-01: retain all text/table/JSON assertions and replace fake document positives with genuine four-format successes plus corrupt refusal. TM-02: setup/common-entry adaptation only; preserve source/description/listing and add actual stored-plan proof.",
+      "approved": false
+    },
+    {
+      "id": "TM-A049",
+      "phase": "I3",
+      "old_path": "packages/friday-chat/tests_chat/test_files_replay_shell.py",
+      "old_node": "test_ingest_records_source_metadata_and_list_ingested",
+      "old_file_sha256": "94443a42877ea53b35ca5f1f7d204d90ebf6e71ce8d59dd0cd92ab735f53daf7",
+      "old_definition_sha256": "63213c865af6f48837e8d6f4f7beb2a90dce96008851daa5e5e2410ab655376c",
+      "disposition": "retain requirement; evaluate fixture-only adaptation",
+      "new_nodes": [
+        "packages/friday-chat/tests_chat/test_files_replay_shell.py::test_ingest_records_source_metadata_and_list_ingested",
+        "tests/integration/test_document_ingestion.py::test_registry_stores_extracted_document_chunks"
+      ],
+      "reason": "Keep exact source/description/listing requirements while shared entry replaces Chat slicing; no removal of missing-description or metadata repair coverage.",
+      "requirements": [
+        "DI-07",
+        "DI-35"
+      ],
+      "retained_or_replacement_assertions": [
+        "Exact source and description metadata preserved",
+        "Common plan is used once and stored chunks match it",
+        "Actual disposable store inspected rather than listing-only extraction proof",
+        "Plain-text ingestion setup needs no document binding/converter; its common entry is owned and drained."
+      ],
+      "permitted_edit": "TM-01: retain all text/table/JSON assertions and replace fake document positives with genuine four-format successes plus corrupt refusal. TM-02: setup/common-entry adaptation only; preserve source/description/listing and add actual stored-plan proof. No document converter/settings fixture is required for the retained text-ingest behavior.",
+      "approved": false
+    }
+  ],
+  "planned_new_witnesses": [
+    {
+      "node": "packages/friday-core/tests_core/test_interfaces.py::test_ingestion_contracts_are_immutable_and_backend_neutral",
+      "phase": "I1",
+      "exit": "I1-C1",
+      "requirements": [
+        "DI-23",
+        "DI-35"
+      ],
+      "assertions": "Validate neutral values/protocol shape and old public interfaces; no Tools/Memory backend import and no actual smart_read/common plan claim. Include pure DocumentConversionSettings validation with no directory/model side effects.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_embeddings.py::test_qualified_preparation_limits_and_indexed_batch_guards",
+      "phase": "I1",
+      "exit": "I1-C2",
+      "requirements": [
+        "DI-17",
+        "DI-18",
+        "DI-22",
+        "DI-24",
+        "DI-35"
+      ],
+      "assertions": "Implement/test actual LLM preparation/count/batch boundary on supplied text and qualified facts; narrow counter edge. No document splitting, Runtime assembly or full document DI17/24 closure. Validate the exact I1 narrow-counter dependency/lock closure; later I3 document-stack delta is separate. During I1 legacy/unbound callers retain identical preparation, roles/cache behavior and vectors under paired old/current witnesses; new preparation/role/cache identities apply only to new guarded qualified paths until I2 binding/wiring.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-memory/tests_memory/test_adapters/test_vector.py::test_direct_namespace_admission_contracts",
+      "phase": "I1",
+      "exit": "I1-C3",
+      "requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-35"
+      ],
+      "assertions": "Direct factory/store admission and identity values, matching reopen and foreign/missing identity refusals; no Chat/Runtime startup claim.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-memory/tests_memory/test_maintenance/test_recovery_participant.py::test_memory_v2_models_and_typed_loader_contract",
+      "phase": "I1",
+      "exit": "I1-C4",
+      "requirements": [
+        "DI-27",
+        "DI-32",
+        "DI-35",
+        "DI-36"
+      ],
+      "assertions": "Memory-v2 model/loader, old v1 strictness and fingerprint inputs only; no actual Chat aggregate/rollback claim. I1 map and changed-contract notes accepted for I1 only.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_existing_embedding_configuration_and_origin",
+      "phase": "I2",
+      "exit": "I2-C1",
+      "requirements": [
+        "DI-18",
+        "DI-21",
+        "DI-28",
+        "DI-29",
+        "DI-33",
+        "DI-34",
+        "DI-35"
+      ],
+      "assertions": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI must use the exact narrow adaptation, prove an existing origin-preserving mechanism, or stop and reconcile; forwarding the resolved string alone is insufficient. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism. Exact resolver explicit/env precedence; no fallback for invalid explicit path; positive catalog/pool/default/legacy route-to-record binding and local assets with unchanged YAML, absent/duplicate/contradictory bindings refuse; origin forwarding unchanged.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_model_change_preserves_operational_contract",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "DI-22",
+        "DI-28",
+        "DI-33",
+        "DI-34",
+        "DI-35"
+      ],
+      "assertions": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_chat_v2_snapshot_roundtrip_and_same_namespace_rollback",
+      "phase": "I2",
+      "exit": "I2-C3",
+      "requirements": [
+        "DI-27",
+        "DI-28",
+        "DI-32",
+        "DI-35",
+        "DI-36"
+      ],
+      "assertions": "Actual Memory-v2 \u2192 Chat aggregate-v2 write/read/reparse \u2192 admitted same-namespace restore/automatic rollback; strict mixed/version/identity negatives. I2-only map/docs review.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-tools/tests_tools/test_document_ingestion.py::test_genuine_format_scope_and_complete_success_admission",
+      "phase": "I3",
+      "exit": "I3-C1",
+      "requirements": [
+        "DI-01",
+        "DI-02",
+        "DI-03",
+        "DI-04",
+        "DI-13",
+        "DI-14",
+        "DI-25"
+      ],
+      "assertions": "Real native/OCR formats, order/coverage, selected-release structural mapping, no fallback or diagnostic content, resource admission and missing-assets independence.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_document_ingestion.py::test_headless_common_plan_and_destination_bound_receipts",
+      "phase": "I3",
+      "exit": "I3-C2",
+      "requirements": [
+        "DI-16",
+        "DI-17",
+        "DI-19",
+        "DI-23",
+        "DI-30",
+        "DI-31",
+        "DI-24",
+        "DI-22",
+        "DI-08"
+      ],
+      "assertions": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply current DI24 offline asset integrity, final-input counting/preparation and overflow guards to the complete document plan; no actual-serving parity campaign or remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Create the entry with required counter_factory from the same resolved embedding capabilities used for parent counter/embedder; no document settings lookup for this factory.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_document_ingestion.py::test_headless_document_ingestion_uses_injected_tools_planner",
+      "phase": "I3",
+      "exit": "I3-C2",
+      "requirements": [
+        "DI-16",
+        "DI-17",
+        "DI-19",
+        "DI-23",
+        "DI-30",
+        "DI-31",
+        "DI-24",
+        "DI-22",
+        "DI-08"
+      ],
+      "assertions": "No Chat import: explicit Tools converter/session + LLM local counter and injected PreparedEmbeddingService + public Memory factory -> full plan -> one validated batch -> real disposable Chroma. Missing/mismatched broker space and invalid batch refuse before writes; same session converts once. Construct public admitted ChromaVectorStore, obtain read-only store.destination without RuntimeKernel internals and supply the exact factory dependencies. Create the entry with required counter_factory from the same resolved embedding capabilities used for parent counter/embedder; no document settings lookup for this factory.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_document_ingestion.py::test_registry_stores_extracted_document_chunks",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-05",
+        "DI-06",
+        "DI-07",
+        "DI-16",
+        "DI-19",
+        "DI-29",
+        "DI-22",
+        "DI-11",
+        "DI-26"
+      ],
+      "assertions": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit. Obtain four converter constructor values through the same public document settings binding, positive from provisioned local assets, missing/invalid refusal before worker. Plain text stays unaffected.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_document_read_keeps_event_loop_responsive",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-05",
+        "DI-06",
+        "DI-07",
+        "DI-16",
+        "DI-19",
+        "DI-29",
+        "DI-22",
+        "DI-11",
+        "DI-26"
+      ],
+      "assertions": "Actual async /read of genuine slow/OCR document maintains 100 ms heartbeat with <=1 s gap; no Memory admission/embedding construction; same Tools service.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_document_read_discards_output_and_joins_worker",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-05",
+        "DI-06",
+        "DI-07",
+        "DI-16",
+        "DI-19",
+        "DI-29",
+        "DI-22",
+        "DI-11",
+        "DI-26"
+      ],
+      "assertions": "Cancel actual /read before start, during conversion and after child completion before registry return; repeat cancellation during shielded join. No late result, orphan child, Memory/provider/store effect. runtime=None owner also joins/drains on repeated cancellation before returning.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_shutdown_drains_document_read_worker",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-05",
+        "DI-06",
+        "DI-07",
+        "DI-16",
+        "DI-19",
+        "DI-29",
+        "DI-22",
+        "DI-11",
+        "DI-26"
+      ],
+      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success. Exercise lazy lifecycle bind after admission and read-only request owner without eager Memory construction. Lazy converter-only bind uses typed mutable holder under frozen wrapper; close and bind/start race is ordered, no worker after closing, no required entry. Constructor kwargs seed the single holder; accessors reflect later bind; no stale frozen copies. Same optional-converter entry registration/late-attach/drain matrix in actual Chat lifecycle, constructor seeding and read-only conversion preserved. Minimal C3 get-or-create reuses the bound entry; simultaneous creation loser is closed without touching shared clients, and cannot replace a closing/foreign entry.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_ingestion_waits_for_quiescence_without_late_storage",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-11",
+        "DI-26",
+        "DI-29"
+      ],
+      "assertions": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_document_ingestion.py::test_clean_installed_candidate_document_profiles",
+      "phase": "I3",
+      "exit": "I3-C5",
+      "requirements": [
+        "DI-08",
+        "DI-09",
+        "DI-10",
+        "DI-15",
+        "DI-20",
+        "DI-34",
+        "DI-35",
+        "DI-36",
+        "DI-24",
+        "DI-33"
+      ],
+      "assertions": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes. Obtain four converter constructor values through the same public document settings binding, positive from provisioned local assets, missing/invalid refusal before worker. Plain text stays unaffected.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_rejection_logging_obeys_namespace_admission",
+      "phase": "I2",
+      "exit": "I2-C1",
+      "requirements": [
+        "FC-01",
+        "DI-34"
+      ],
+      "assertions": "Admitted owner-specific logging initialization, reconfigure/close and no old-root effects.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_mcp_snapshot_embedding_compatibility",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-02",
+        "DI-34"
+      ],
+      "assertions": "Actual unsplit MCP persist/observer/ownership, pending same-ID retry and existing reasons.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_mcp_pending_retry_and_existing_telemetry_reasons",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-02",
+        "DI-34"
+      ],
+      "assertions": "Actual unsplit MCP persist/observer/ownership, pending same-ID retry and existing reasons.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_legacy_backup_guarded_namespace_disposition",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-03",
+        "DI-34"
+      ],
+      "assertions": "Existing public backup create/verify/restore baseline with admitted same-incarnation receipt and marker exclusion.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_public_backup_identity_and_unchanged_baselines",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-03",
+        "DI-34"
+      ],
+      "assertions": "Existing public backup create/verify/restore baseline with admitted same-incarnation receipt and marker exclusion.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_analyzer_store_only_namespace_admission",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-04",
+        "DI-34"
+      ],
+      "assertions": "Actual offline analyzer SQLite/graph admission and no opener on refusal.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_legacy_synthesis_never_uses_default_embedder",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-05",
+        "DI-34"
+      ],
+      "assertions": "Actual legacy synthesizer/module embedder handoff and no hidden Chroma default.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_consolidation_acknowledges_only_stored_batches",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-06",
+        "DI-34"
+      ],
+      "assertions": "Actual extraction/consolidation acknowledgement, retry and owned background task status/shutdown.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_extraction_acknowledges_only_stored_outputs",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-06",
+        "DI-34"
+      ],
+      "assertions": "Actual extraction/consolidation acknowledgement, retry and owned background task status/shutdown.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_background_extraction_status_observes_owned_task",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-06",
+        "DI-34"
+      ],
+      "assertions": "Actual extraction/consolidation acknowledgement, retry and owned background task status/shutdown.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_lifecycle_counts_and_tool_text_report_actual_effects",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-07",
+        "DI-34"
+      ],
+      "assertions": "Real lifecycle effects and public Tools text/structured partial-failure projection.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_recall_propagates_embedding_refusals",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-08",
+        "DI-34"
+      ],
+      "assertions": "Maintained unscored recall plus actual public injected scorer B/N/R, fallbacks and typed failures.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_injected_graph_scorer_binding_and_unscored_routes",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-08",
+        "DI-34"
+      ],
+      "assertions": "Maintained unscored recall plus actual public injected scorer B/N/R, fallbacks and typed failures.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_runtime_memory_profile_identity_and_persistence",
+      "phase": "I2",
+      "exit": "I2-C1",
+      "requirements": [
+        "FC-09",
+        "DI-34"
+      ],
+      "assertions": "Actual profile persistence/origin and independent ephemeral-kernel isolation.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_maintenance_probe_and_empty_store_dimensions",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-11",
+        "DI-34"
+      ],
+      "assertions": "Provider readiness after admission, empty fresh collection dimensions and graph-only operation.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_headless_embedding_install_profiles",
+      "phase": "I2",
+      "exit": "I2-C1",
+      "requirements": [
+        "FC-12",
+        "DI-34"
+      ],
+      "assertions": "Actual headless candidate Memory/Runtime/CLI/Agent/direct LLM counter-only profiles.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_embedding_compatibility.py::test_indirect_memory_consumers_and_inspection",
+      "phase": "I2",
+      "exit": "I2-C2",
+      "requirements": [
+        "FC-13",
+        "DI-34"
+      ],
+      "assertions": "Actual Agent/multi-agent/MEMQ/public wrappers and visibility/partial effects; classify absent routes.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_embedding_limits.py::test_prepared_inputs_are_counted_once_before_provider",
+      "phase": "I1",
+      "exit": "I1-C2",
+      "requirements": [
+        "DI-18",
+        "DI-24"
+      ],
+      "assertions": "All inputs preflight before provider; correct role/special overhead; overflow zero provider/cache writes.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_embedding_limits.py::test_response_indices_dimensions_and_finiteness",
+      "phase": "I1",
+      "exit": "I1-C2",
+      "requirements": [
+        "DI-18",
+        "DI-24"
+      ],
+      "assertions": "Valid shuffled complete indices reorder exactly; duplicate/gap/extra/wrong dimension/nonfinite rejects complete batch.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_embedding_limits.py::test_i1_legacy_inputs_vectors_and_cache_are_unchanged",
+      "phase": "I1",
+      "exit": "I1-C2",
+      "requirements": [
+        "DI-18",
+        "DI-24"
+      ],
+      "assertions": "Paired unchanged old entry prepared text/vector/cache; guarded new path separate; no implicit prefix switch.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-memory/tests_memory/test_document_ingestion.py::test_shared_policy_plan_coverage_and_no_second_split",
+      "phase": "I3",
+      "exit": "I3-C2",
+      "requirements": [
+        "DI-16",
+        "DI-17",
+        "DI-23",
+        "DI-31"
+      ],
+      "assertions": "All strategies/defaults/independent overrides; exact Unicode coverage/context provenance; refuse budgets above capacity; final batch preflight; headless text requires no Docling.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_hidden_rows_or_columns_reject_entire_workbook_before_ingestion",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-04",
+        "DI-13",
+        "DI-25"
+      ],
+      "authority": "office-visibility-decision.md",
+      "assertions": "Row-only, column-only and combined hidden dimensions in included worksheets return unsupported_workbook_visibility with actionable explanation; no conversion, embedding or storage. Visible-only and hidden-sheet-excluded controls retain success; source unchanged. Include large synthetic structural fixture: streaming audit yields bounded batches inside heartbeat window before any converter process; rejection/cancel has no conversion, embedding or store effects.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_document_ingestion.py::test_headless_document_worker_progress_cancel_timeout_and_backpressure",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-08",
+        "DI-11",
+        "DI-23",
+        "DI-26"
+      ],
+      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication. Launch the actual installed friday_tools.filesystem.readers.document_ingestion module from private request_root, verify installed origin and framed stdin/stdout exchange plus concurrent stderr flooding/drain; malformed/oversize/EOF, profile deadline defaults/overrides and no terminal output. Run in normal and optimized installed lanes. Exercise v1 IPC message/state transitions, unknown/out-of-order frames and capability-record mutation before child counter creation. Parent package imports are silent/offline; count their time/RSS in limits; no shim/init-source edits. Explicit planned/closing/terminal transitions reject duplicate plans; sample RSS with bound psutil profile/PID identity, never treat denied/lost accounting as zero; report startup/conversion timing separately. Include bounded maximum-input snapshot copy/hash, cancellation between copy batches and before spawn, and partial snapshot cleanup under heartbeat/cold deadline. Planned session retains active slot until aclose/reap/cleanup; queued request does not start at plan completion. Closed or duplicate-plan sessions never revive.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-runtime/tests_runtime/test_di.py::test_shutdown_drains_shared_document_worker",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-11",
+        "DI-26"
+      ],
+      "assertions": "Construct public DIContainer; register exact entry/converter pair, same-pair idempotence and rejected different/reclosing pair preserve caller ownership. Shutdown closes entry then converter then MCP; repeated cancellation joins retained task, fails honestly on unknown reap. No RuntimeKernel private field or Chat import. Converter-only registration drains without an entry; later entry uses the same converter; default boot performs no settings lookup. Matrix entry-only, converter-only and both: text entry registers with converter omitted, late attachment, same-object idempotence, different-object rejection and entry-then-optional-converter close order; no document settings lookup for text. In one actual lifecycle ingest text through E, attach converter later, then ingest a genuine document through the identical E and read back its complete stored plan. Ownership-only spies or separate lifecycles do not prove this. Every composition passes same-capabilities counter_factory initially.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_document_read_rejects_hidden_workbook_before_conversion",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-11",
+        "DI-13",
+        "DI-26"
+      ],
+      "assertions": "Genuine row-only, column-only and combined hidden-dimension workbook on /read: unsupported_workbook_visibility with safe explanation, no converter worker/Memory/provider/store initialization. Hidden-sheet-only positive still extracts included visible sheets. Include large synthetic structural fixture: streaming audit yields bounded batches inside heartbeat window before any converter process; rejection/cancel has no conversion, embedding or store effects.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_read_extracts_genuine_document_content",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-01",
+        "DI-02",
+        "DI-04",
+        "DI-13",
+        "DI-14",
+        "DI-35"
+      ],
+      "assertions": "TM-A048 replacement: actual default /read extracts genuine PDF/DOCX/XLSX/PPTX source markers and metadata, rejects corrupt inputs; retains separate text/table/JSON dispatch assertions. Lifecycle cancellation/resource proof belongs to I3-C4. Obtain four converter constructor values through the same public document settings binding, positive from provisioned local assets, missing/invalid refusal before worker. Plain text stays unaffected.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-tools/tests_tools/test_document_ingestion.py::test_document_settings_resolver_is_strict_and_read_only",
+      "phase": "I3",
+      "exit": "I3-C1",
+      "requirements": [
+        "DI-01",
+        "DI-02",
+        "DI-29",
+        "DI-35"
+      ],
+      "assertions": "Explicit settings path wins over environment; valid provisioned local profile/assets bind exactly; invalid explicit never falls back. Unknown/duplicate keys, relative roots, hash/size/path escape and missing binding refuse before scratch creation, worker, Memory or embedding. No heavyweight import or asset fetch. Distinguish schema/content readiness errors from bound manifest/profile hash identity errors; record settings digest without claiming undeclared tamper detection. Present declared-size mismatch is identity, absent asset missing_asset; no worker on resolver failure.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_document_binding_refusal_preserves_plain_text_read",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-11",
+        "DI-29",
+        "DI-35"
+      ],
+      "assertions": "Actual default /read plain text succeeds with document and embedding bindings absent. Genuine document /read uses provisioned document binding with poisoned/absent embedding manifest and no Memory/embedding initialization. Missing/invalid document binding gives actionable format-local refusal, zero worker/store effects; /ingest shares that binding. Also invoke default handler with runtime=None: same factory/config, local try/finally ownership, no constructed runtime/Memory and unaffected plain text. Runtime-backed and runtime=None paths use request-entry document environment snapshots; first late document binding can be resolved, existing converter settings remain immutable. Embedding capabilities do not refresh.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_embedding_limits.py::test_embedding_manifest_resolution_is_strict_and_contained",
+      "phase": "I1",
+      "exit": "I1-C2",
+      "requirements": [
+        "DI-18",
+        "DI-24",
+        "DI-35"
+      ],
+      "assertions": "Named local resolver negatives for unknown/duplicate fields, relative/absent paths, size and route/record caps, record hash mismatch, traversal/escaping symlink. Pair each refusal with valid explicit/environment resolution, never provider/store I/O.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_embedding_limits.py::test_counter_factory_binds_exact_capability_record_bytes",
+      "phase": "I1",
+      "exit": "I1-C2",
+      "requirements": [
+        "DI-18",
+        "DI-24",
+        "DI-35"
+      ],
+      "assertions": "Resolved factory carries selected record digest; serialized roundtrip preserves it. Same bound bytes create counter; mutated record before create refuses without following a new manifest or embedding/store effects. I3 separately proves parent-to-worker transfer drift.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-commands/tests_commands/test_file_inputs.py::test_parse_file_input_rem_c_semantics_and_document_option_refusal",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-05",
+        "DI-06",
+        "DI-07",
+        "DI-11",
+        "DI-35"
+      ],
+      "assertions": "Direct public helper: quoted/unquoted paths, repeated interior whitespace, Unicode/apostrophes/backslashes, invalid/empty/unmatched quote paths, option order, -- opaque suffix and literal description quotes, prefix lookalikes/default-handler scope. /read chunk overrides and recognized document line tokens before -- refuse lexically before I/O; after -- remains literal. Text/table raw line tokens retain legacy downstream behavior. Fresh module closure stdlib-only, no Core/Memory/frontend imports or filesystem/environment access; retained separate API54/import-boundary witnesses run.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_text_ingestion_needs_no_document_binding",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-16",
+        "DI-17",
+        "DI-19",
+        "DI-23",
+        "DI-29",
+        "DI-35"
+      ],
+      "assertions": "Actual default plain-text /ingest stores the common plan with document binding absent, owns an entry alone and never calls document settings resolver/converter. Default document/512 chunking uses Memory non-Docling planner. Preserve source/description/listing and actual disposable-store readback. Four-format request without a bound converter/settings refuses readiness before embedding/storage. Create the entry with required counter_factory from the same resolved embedding capabilities used for parent counter/embedder; no document settings lookup for this factory.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_lifecycle_drains_entry_with_optional_late_converter",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-11",
+        "DI-19",
+        "DI-23",
+        "DI-26",
+        "DI-35"
+      ],
+      "assertions": "Actual frozen-wrapper mutable-holder lifecycle: construct/bind entry only with no document settings; shutdown drains it and LLM clients without converter. Separately attach converter later, preserve it when omitted on repeat, reject mismatched entry/converter with no partial mutation, and drain entry then converter then clients under repeated cancel. Previously owned objects remain owned after refused bind. In one actual lifecycle ingest text through E, attach converter later, then ingest a genuine document through the identical E and read back its complete stored plan. Ownership-only spies or separate lifecycles do not prove this. Every composition passes same-capabilities counter_factory initially.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-memory/tests_memory/test_document_ingestion.py::test_converted_source_requires_exact_matching_session",
+      "phase": "I3",
+      "exit": "I3-C2",
+      "requirements": [
+        "DI-11",
+        "DI-17",
+        "DI-23",
+        "DI-35"
+      ],
+      "assertions": "Core converted-kind/profile iff invariant. Valid converted source with missing or non-equal session refuses readiness before plan/embed/store; compare source_id/raw/content/profile hashes and full source value. Nonconverted text plus a session also refuses. Parent and child wrong-space plans still fail before writes; no fallback to text.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_document_ingestion.py::test_same_entry_ingests_text_then_document_after_late_attach",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-16",
+        "DI-17",
+        "DI-19",
+        "DI-23",
+        "DI-26",
+        "DI-29",
+        "DI-35"
+      ],
+      "assertions": "Actual public composition: same resolved capabilities creates required counter_factory, counter, embedder and E. Text /ingest succeeds with document binding absent. Publish binding before next request, resolve/attach C, then genuine PDF or Office ingestion succeeds through identical E without replacing it or re-resolving embeddings. Inspect actual complete stored chunks/provenance and final entry-then-converter drain. Run same transition in installed normal and optimized profiles, retaining separate no-document-stack text smoke as well.",
+      "status": "planned_not_executed"
+    }
+  ],
+  "modules": [
+    {
+      "path": "packages/friday-chat/tests_chat/test_document_ingestion.py",
+      "exists_at_baseline": false,
+      "baseline_sha256": null,
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Use only qualified local assets and disposable roots. No live provider authority is implied. Classify new fixtures/helpers before execution."
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_files_replay_shell.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "94443a42877ea53b35ca5f1f7d204d90ebf6e71ce8d59dd0cd92ab735f53daf7",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Use only qualified local assets and disposable roots. No live provider authority is implied. Classify new fixtures/helpers before execution."
+    },
+    {
+      "path": "packages/friday-core/tests_core/test_interfaces.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "4cf98136ddd34a423a106adf28d6f7f62bd64791adeb80a75bbe1a6ef7680743",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Use only qualified local assets and disposable roots. No live provider authority is implied. Classify new fixtures/helpers before execution."
+    },
+    {
+      "path": "packages/friday-llm/tests_llm/test_embedding_limits.py",
+      "exists_at_baseline": false,
+      "baseline_sha256": null,
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Use only qualified local assets and disposable roots. No live provider authority is implied. Classify new fixtures/helpers before execution."
+    },
+    {
+      "path": "packages/friday-llm/tests_llm/test_embeddings.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Use only qualified local assets and disposable roots. No live provider authority is implied. Classify new fixtures/helpers before execution."
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "1352f2deee08eb3985f394878624111e1b4f7985a49b90970a70aa1cda0e13c4",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Use only qualified local assets and disposable roots. No live provider authority is implied. Classify new fixtures/helpers before execution."
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_adapters/test_vector.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "635cf7f4cf824ac9827be0ab2a6464d974e0c78481d58c1508f1dd749e323238",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Use only qualified local assets and disposable roots. No live provider authority is implied. Classify new fixtures/helpers before execution."
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_maintenance/test_recovery_participant.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "59fcde80facc67405d446513e040570c4f1a2e99b67e1502d4f0e18fcb09373d",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Use only qualified local assets and disposable roots. No live provider authority is implied. Classify new fixtures/helpers before execution."
+    },
+    {
+      "path": "packages/friday-tools/tests_tools/test_document_ingestion.py",
+      "exists_at_baseline": false,
+      "baseline_sha256": null,
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Use only qualified local assets and disposable roots. No live provider authority is implied. Classify new fixtures/helpers before execution."
+    },
+    {
+      "path": "tests/integration/test_document_ingestion.py",
+      "exists_at_baseline": false,
+      "baseline_sha256": null,
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Use only qualified local assets and disposable roots. No live provider authority is implied. Classify new fixtures/helpers before execution."
+    },
+    {
+      "path": "tests/integration/test_embedding_compatibility.py",
+      "exists_at_baseline": false,
+      "baseline_sha256": null,
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Use only qualified local assets and disposable roots. No live provider authority is implied. Classify new fixtures/helpers before execution."
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_document_ingestion.py",
+      "exists_at_baseline": false,
+      "baseline_sha256": null,
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Only pure policy tests and qualified local counter fixtures; no provider call."
+    },
+    {
+      "path": "packages/friday-runtime/tests_runtime/test_di.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "38e7627347db26894047113cfb02f56757aae7f23bee4b4760ba1c886f5f44b1",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Only new shared-worker shutdown node; unmapped existing assertion bodies retained."
+    },
+    {
+      "path": "packages/friday-commands/tests_commands/test_file_inputs.py",
+      "exists_at_baseline": false,
+      "baseline_sha256": null,
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "New pure parser tests at I3-C3; synthetic strings, no provider/store/filesystem effects. Classify helpers before execution."
+    },
+    {
+      "path": "packages/friday-commands/tests_commands/test_import_boundary.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "d4e9d0761a0a83648dea7419384484f303b1ac0737271e21e3b7010f7abc6318",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Retain existing stdlib/optimized import-boundary regression bodies unchanged; offline fresh interpreter only."
+    },
+    {
+      "path": "packages/friday-commands/tests_commands/test_memory_queries.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "f68e058a46ed7907882c6c53218437d208735256adc4efcf1565e9edbb24029b",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Only retained test_memory_query_specs_exports_and_factory selector is added for API54; other nodes need their existing phase approval. No body edits."
+    },
+    {
+      "path": "packages/friday-llm/tests_llm/test_model_library.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "d7a48c564ad05498700722539026090657d68f44a2554bbccea031b429d189de",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Existing explicitly selected I1 local resolver/model-constructor regressions, no live requests; private environment/asset setup at later guarded phases requires mapped approval before edit."
+    },
+    {
+      "path": "packages/friday-finance/tests/test_basics.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "4fc47aa91dd2a8631c8cad6cdc1ea4956438544bff89027d734739b1c1a3d7d3",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Already approved retained offline non-default Finance basics selector; source bytes match baseline. No live integration or credential module, no body changes or provider calls. Existing live-module exclusion is unchanged."
+    }
+  ],
+  "helper_rule": "Keep all existing helper/fixture bytes by default. Only the exact local mock-response/embedding fixtures in mapped modules, packages/friday-memory/tests_memory/conftest.py, and named new test modules may gain synthetic capabilities. No shared session/diagnostic fixture rewrite; six dual-role files retain one identity and no extra node credit. Add opt-in fixtures for mapped nodes; do not replace a widely shared fixture globally. Any shared fixture body change requires enumerating its dependent cases first. Named opt-in fixtures: qualified_mock_embedding_model, admitted_vector_store, synthetic_embedding_capability; use per-case dimensions.",
+  "new_retirements": [],
+  "companion_exceptions": "TM-03 remains solely in TOOLS-DOC; INGEST grants no document-routing test rewrite.",
+  "excluded_from_read_parse_execution": [
+    "packages/friday-finance/tests/test_integration_massive.py"
+  ],
+  "offline_nondefault_selectors": [
+    "packages/friday-finance/tests/test_basics.py",
+    "packages/friday-transcript/tests/"
+  ],
+  "default_discovery_note": "Root excludes non-tests_* package folders and top-level tests/integration; run named paths explicitly. Unclassified modules/helpers cannot execute under this map.",
+  "helper_inventory_sha256": "8bd13dc913f9c2295e3ee766efa5dac1c53a4bf7c7ea816e8aa3b1725a38d266",
+  "support_role_map_sha256": "57900f1bd7b2e546d0911f9e21ba9ab00d1b5b42664e3802c6177d10d054a3d8",
+  "excluded_from_default_execution": [
+    "packages/friday-finance/tests/test_integration_massive.py",
+    "packages/friday-llm/tests_llm/test_live_lmstudio.py"
+  ],
+  "helpers": [
+    {
+      "path": "packages/friday-memory/tests_memory/conftest.py",
+      "baseline_sha256": "0bf44d0f5d212b5e83d966e4ad06cdae1aa93597933c1a193ba7ef54b63e6799",
+      "phase": "I2",
+      "purpose": "Only map-selected tests may use explicit synthetic capability/bound disposable store setup. Preserve unrelated helpers; no guard bypass.",
+      "execution_class": "offline_disposable_or_mocked_provider_required"
+    },
+    {
+      "path": "tests/integration/ingest_installed_probe.py",
+      "baseline_sha256": null,
+      "phase": "I3",
+      "purpose": "Actual installed normal/-O public command/headless/guard proof, explicit require-style checks and no source fallback. Use the same public document binding and converter-only headless /read path; no direct test-only injection shortcut. Include text entry-only positive and shutdown without document assets; retain separate real document positive through the public binding. Mandatory same-entry/same-lifecycle text -> late converter attach -> genuine document storage transition in normal/-O; separate isolated positives do not satisfy it.",
+      "execution_class": "offline_with_qualified_local_assets_and_deterministic_vectors"
+    }
+  ],
+  "new_fixture_paths": [
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/native-two-pages.pdf",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/scanned.pdf",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/blank.pdf",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/corrupt.pdf",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/encrypted.pdf",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/ordered.docx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/corrupt.docx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/values.xlsx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-units.xlsx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/formula-cache-missing.xlsx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/notes.pptx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-slides.pptx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/corrupt.pptx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/oracles.json",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/resource-boundaries.json",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-rows.xlsx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-columns.xlsx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-rows-columns.xlsx"
+  ],
+  "fixture_rule": "Synthetic generated fixtures only. oracles.json binds expected meaningful source strings/order/unit counts independently; no personal documents, diagnostic placeholders or copied user store. Boundary fixtures are generated in private test output from resource-boundaries.json, not huge committed blobs.",
+  "approved_requirement_amendments": [
+    {
+      "path": "office-visibility-decision.md",
+      "scope": "Workbook refusal policy only; no test code edit or execution approval."
+    },
+    {
+      "path": "requirement-reconciliation.md",
+      "scope": "Current model/parity removal and worker acceptance timing; no test edit/execution approval."
+    }
+  ],
+  "fixture_oracles": {
+    "hidden-units.xlsx": "Hidden-sheet-only positive: visible-sheet markers present, excluded hidden sheet markers absent. Hidden dimensions solely in excluded hidden sheet do not reject.",
+    "hidden-rows.xlsx": "Included sheet hidden-row rejection.",
+    "hidden-columns.xlsx": "Included sheet hidden-column rejection.",
+    "hidden-rows-columns.xlsx": "Included sheet combined hidden-row/column rejection."
+  },
+  "retained_regression_selectors": [
+    {
+      "selector": "packages/friday-commands/tests_commands/test_import_boundary.py",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "rule": "Bodies unchanged; stdlib/optimized boundary."
+    },
+    {
+      "selector": "packages/friday-commands/tests_commands/test_memory_queries.py::test_memory_query_specs_exports_and_factory",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "rule": "Body unchanged; exact API54/root exports."
+    }
+  ]
+}

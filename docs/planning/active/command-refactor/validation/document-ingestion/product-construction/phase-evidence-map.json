@@ -1,0 +1,1276 @@
+{
+  "version": "0.7",
+  "status": "conditional draft; planned witnesses are not executed tests or approved test-body exceptions",
+  "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "parent_rem_sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+  "phases": [
+    {
+      "id": "Q",
+      "requires": [],
+      "scope": "Actual upstream/deployment B and N-DIM/N-SPACE/N-CAP model/dependency/counter/parity qualification and unchanged-baseline experiments; no new product feature claim."
+    },
+    {
+      "id": "I1",
+      "requires": [
+        "Q"
+      ],
+      "scope": "Approved foundation contracts, LLM guards/counter metadata and Memory identity/v2 models."
+    },
+    {
+      "id": "I2",
+      "requires": [
+        "Q",
+        "I1"
+      ],
+      "scope": "Approved existing consumer assembly, direct-client integration and actual Chat recovery."
+    },
+    {
+      "id": "I3",
+      "requires": [
+        "Q",
+        "I1",
+        "I2"
+      ],
+      "scope": "Approved converter/shared-plan/command/cache/worker integration and actual document metadata/profiles."
+    },
+    {
+      "id": "AG",
+      "requires": [
+        "I1",
+        "I2",
+        "I3"
+      ],
+      "scope": "Full frozen-candidate technical evidence, aggregate compatibility/test/docs review and separately authorized DI12 code council."
+    },
+    {
+      "id": "UAT",
+      "requires": [
+        "AG"
+      ],
+      "scope": "Human execution on verified installed disposable setup; recorded acceptance remains separate."
+    }
+  ],
+  "exit_assertions": [
+    {
+      "id": "I1-C1",
+      "phase": "I1",
+      "owners": [
+        "Core"
+      ],
+      "implemented_paths": [
+        "packages/friday-core/src/friday_core/ingestion.py",
+        "packages/friday-core/src/friday_core/interfaces/memory.py"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "packages/friday-core/tests_core/test_interfaces.py::test_ingestion_contracts_are_immutable_and_backend_neutral",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Validate neutral values/protocol shape and old public interfaces; no Tools/Memory backend import and no actual smart_read/common plan claim.",
+      "traces_requirements": [
+        "DI-23",
+        "DI-35"
+      ]
+    },
+    {
+      "id": "I1-C2",
+      "phase": "I1",
+      "owners": [
+        "LLM",
+        "Memory metadata"
+      ],
+      "implemented_paths": [
+        "packages/friday-llm/src/friday_llm/embeddings.py",
+        "packages/friday-llm/src/friday_llm/model_library.py",
+        "packages/friday-llm/pyproject.toml",
+        "packages/friday-memory/pyproject.toml",
+        "uv.lock"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "packages/friday-llm/tests_llm/test_embeddings.py::test_qualified_preparation_limits_and_indexed_batch_guards",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Implement/test actual LLM preparation/count/batch boundary on supplied text and qualified facts; narrow counter edge. No document splitting, Runtime assembly or full document DI17/24 closure. Validate the exact I1 narrow-counter dependency/lock closure; later I3 document-stack delta is separate. During I1 legacy/unbound callers retain identical preparation, roles/cache behavior and vectors under paired old/current witnesses; new preparation/role/cache identities apply only to new guarded qualified paths until I2 binding/wiring.",
+      "traces_requirements": [
+        "DI-17",
+        "DI-18",
+        "DI-22",
+        "DI-24",
+        "DI-35"
+      ]
+    },
+    {
+      "id": "I1-C3",
+      "phase": "I1",
+      "owners": [
+        "Memory"
+      ],
+      "implemented_paths": [
+        "packages/friday-memory/src/friday_memory/ingestion/embedding_space.py",
+        "packages/friday-memory/src/friday_memory/adapters/vector.py",
+        "packages/friday-memory/src/friday_memory/adapters/simple_vector.py"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "packages/friday-memory/tests_memory/test_adapters/test_vector.py::test_direct_namespace_admission_contracts",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Direct factory/store admission and identity values, matching reopen and foreign/missing identity refusals; no Chat/Runtime startup claim.",
+      "traces_requirements": [
+        "DI-21",
+        "DI-29",
+        "DI-35"
+      ]
+    },
+    {
+      "id": "I1-C4",
+      "phase": "I1",
+      "owners": [
+        "Memory"
+      ],
+      "implemented_paths": [
+        "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py",
+        "packages/friday-memory/src/friday_memory/maintenance/recovery.py"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "packages/friday-memory/tests_memory/test_maintenance/test_recovery_participant.py::test_memory_v2_models_and_typed_loader_contract",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Memory-v2 model/loader, old v1 strictness and fingerprint inputs only; no actual Chat aggregate/rollback claim. I1 map and changed-contract notes accepted for I1 only.",
+      "traces_requirements": [
+        "DI-27",
+        "DI-32",
+        "DI-35",
+        "DI-36"
+      ]
+    },
+    {
+      "id": "I2-C1",
+      "phase": "I2",
+      "owners": [
+        "Memory",
+        "Chat",
+        "Runtime",
+        "Core profiles",
+        "CLI conditional"
+      ],
+      "implemented_paths": [
+        "packages/friday-runtime/src/friday_runtime/di.py",
+        "packages/friday-runtime/src/friday_runtime/config.py",
+        "packages/friday-chat/src/friday_chat/adapters.py",
+        "packages/friday-core/src/friday_core/profiles.py",
+        "packages/friday-cli/src/friday_cli/container.py",
+        "packages/friday-cli/src/friday_cli/profiles.py"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "tests/integration/test_embedding_compatibility.py::test_existing_embedding_configuration_and_origin",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI must use the exact narrow adaptation, prove an existing origin-preserving mechanism, or stop and reconcile; forwarding the resolved string alone is insufficient. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism.",
+      "traces_requirements": [
+        "DI-18",
+        "DI-21",
+        "DI-28",
+        "DI-29",
+        "DI-33",
+        "DI-34",
+        "DI-35"
+      ]
+    },
+    {
+      "id": "I2-C2",
+      "phase": "I2",
+      "owners": [
+        "Memory",
+        "Chat",
+        "Runtime",
+        "listed Tools wrappers"
+      ],
+      "implemented_paths": [
+        "packages/friday-memory/src/friday_memory/context/assembler.py",
+        "packages/friday-memory/src/friday_memory/context/extractor.py",
+        "packages/friday-chat/src/friday_chat/memory_mcp.py",
+        "packages/friday-tools/src/friday_tools/memory/maintenance.py",
+        "packages/friday-memory/src/friday_memory/maintenance/pruner.py",
+        "packages/friday-memory/src/friday_memory/maintenance/synthesizer.py",
+        "packages/friday-memory/src/friday_memory/maintenance/fact_checker.py",
+        "packages/friday-memory/src/friday_memory/maintenance/backup.py",
+        "packages/friday-memory/src/friday_memory/maintenance/analyzer.py",
+        "packages/friday-memory/src/friday_memory/maintenance/mutation.py"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "tests/integration/test_embedding_compatibility.py::test_model_change_preserves_operational_contract",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. DI22 evidence here covers existing callers only; the complete original source/derived matrix waits for I3-C2/C3.",
+      "traces_requirements": [
+        "DI-22",
+        "DI-28",
+        "DI-33",
+        "DI-34",
+        "DI-35"
+      ]
+    },
+    {
+      "id": "I2-C3",
+      "phase": "I2",
+      "owners": [
+        "Memory",
+        "Chat"
+      ],
+      "implemented_paths": [
+        "packages/friday-memory/src/friday_memory/maintenance/recovery.py",
+        "packages/friday-chat/src/friday_chat/reorganization/contracts.py",
+        "packages/friday-chat/src/friday_chat/reorganization/artifacts.py",
+        "packages/friday-chat/src/friday_chat/reorganization/coordinator.py"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "tests/integration/test_embedding_compatibility.py::test_chat_v2_snapshot_roundtrip_and_same_namespace_rollback",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Actual Memory-v2 \u2192 Chat aggregate-v2 write/read/reparse \u2192 admitted same-namespace restore/automatic rollback; strict mixed/version/identity negatives. I2-only map/docs review.",
+      "traces_requirements": [
+        "DI-27",
+        "DI-28",
+        "DI-32",
+        "DI-35",
+        "DI-36"
+      ]
+    },
+    {
+      "id": "I3-C1",
+      "phase": "I3",
+      "owners": [
+        "Tools"
+      ],
+      "implemented_paths": [
+        "packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "packages/friday-tools/tests_tools/test_document_ingestion.py::test_genuine_format_scope_and_complete_success_admission",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Real native/OCR formats, order/coverage, selected-release structural mapping, no fallback or diagnostic content, resource admission and missing-assets independence.",
+      "traces_requirements": [
+        "DI-01",
+        "DI-02",
+        "DI-03",
+        "DI-04",
+        "DI-13",
+        "DI-14",
+        "DI-25"
+      ]
+    },
+    {
+      "id": "I3-C2",
+      "phase": "I3",
+      "owners": [
+        "Memory",
+        "Tools",
+        "Core contracts"
+      ],
+      "implemented_paths": [
+        "packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py",
+        "packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py",
+        "packages/friday-memory/src/friday_memory/ingestion/tool_ingester.py",
+        "packages/friday-tools/src/friday_tools/filesystem/smart_read.py"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "tests/integration/test_document_ingestion.py::test_headless_common_plan_and_destination_bound_receipts",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write.",
+      "traces_requirements": [
+        "DI-16",
+        "DI-17",
+        "DI-19",
+        "DI-23",
+        "DI-30",
+        "DI-31",
+        "DI-24",
+        "DI-22",
+        "DI-08"
+      ],
+      "additional_planned_witnesses": [
+        {
+          "node": "tests/integration/test_document_ingestion.py::test_headless_document_ingestion_uses_injected_tools_planner",
+          "assertions": "Genuine converted document, injected Tools document planner and neutral qualified counter through real Memory entry/disposable store, no Chat import; exact one-plan source chunks and destination receipt.",
+          "requirements": [
+            "DI-08",
+            "DI-23"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "I3-C3",
+      "phase": "I3",
+      "owners": [
+        "Commands",
+        "Chat",
+        "Memory"
+      ],
+      "implemented_paths": [
+        "packages/friday-commands/src/friday_commands/file_inputs.py",
+        "packages/friday-chat/src/friday_chat/commands/files.py",
+        "packages/friday-chat/src/friday_chat/commands/registry.py",
+        "packages/friday-chat/src/friday_chat/adapters.py"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "tests/integration/test_document_ingestion.py::test_registry_stores_extracted_document_chunks",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit.",
+      "traces_requirements": [
+        "DI-05",
+        "DI-06",
+        "DI-07",
+        "DI-16",
+        "DI-19",
+        "DI-29",
+        "DI-22",
+        "DI-11",
+        "DI-26"
+      ],
+      "additional_planned_witnesses": [
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_document_read_keeps_event_loop_responsive",
+          "assertions": "Actual default document /read with slow/scanned conversion leaves event loop responsive; no Memory admission/embedding/storage and no Memory readiness dependency.",
+          "requirements": [
+            "DI-11",
+            "DI-26",
+            "DI-29"
+          ]
+        },
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_document_read_discards_output_and_joins_worker",
+          "assertions": "Before-start/during/after-completion-before-render cancellation discards output, does not launch cancelled queued work, joins owned Tools job and leaves no orphan or late CommandResult/display.",
+          "requirements": [
+            "DI-11",
+            "DI-26"
+          ]
+        },
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_shutdown_drains_document_read_worker",
+          "assertions": "Actual owning Chat request/exit lifecycle cancels/discards/drains read handles before shutdown returns, without Memory admission; bounded native work may finish before join.",
+          "requirements": [
+            "DI-11",
+            "DI-26"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "I3-C4",
+      "phase": "I3",
+      "owners": [
+        "Tools worker",
+        "Memory text planning",
+        "LLM counter",
+        "caller request owner"
+      ],
+      "implemented_paths": [
+        "packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py",
+        "packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py",
+        "packages/friday-chat/src/friday_chat/runtime.py",
+        "packages/friday-chat/src/friday_chat/commands/registry.py",
+        "packages/friday-chat/src/friday_chat/commands/files.py"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_ingestion_waits_for_quiescence_without_late_storage",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests.",
+      "traces_requirements": [
+        "DI-11",
+        "DI-26",
+        "DI-29"
+      ],
+      "additional_planned_witnesses": [
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_document_read_keeps_event_loop_responsive",
+          "assertions": "Actual default document /read with slow/scanned conversion leaves event loop responsive; no Memory admission/embedding/storage and no Memory readiness dependency.",
+          "requirements": [
+            "DI-11",
+            "DI-26",
+            "DI-29"
+          ]
+        },
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_document_read_discards_output_and_joins_worker",
+          "assertions": "Before-start/during/after-completion-before-render cancellation discards output, does not launch cancelled queued work, joins owned Tools job and leaves no orphan or late CommandResult/display.",
+          "requirements": [
+            "DI-11",
+            "DI-26"
+          ]
+        },
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_shutdown_drains_document_read_worker",
+          "assertions": "Actual owning Chat request/exit lifecycle cancels/discards/drains read handles before shutdown returns, without Memory admission; bounded native work may finish before join.",
+          "requirements": [
+            "DI-11",
+            "DI-26"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "I3-C5",
+      "phase": "I3",
+      "owners": [
+        "Tools",
+        "Chat",
+        "all affected test/document owners"
+      ],
+      "implemented_paths": [
+        "packages/friday-tools/pyproject.toml",
+        "packages/friday-chat/pyproject.toml",
+        "uv.lock",
+        "docs/architecture/command-execution.md"
+      ],
+      "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
+      "planned_witness": "tests/integration/test_document_ingestion.py::test_clean_installed_candidate_document_profiles",
+      "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
+      "exit_assertion": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes.",
+      "traces_requirements": [
+        "DI-08",
+        "DI-09",
+        "DI-10",
+        "DI-15",
+        "DI-20",
+        "DI-34",
+        "DI-35",
+        "DI-36",
+        "DI-24",
+        "DI-33"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "DI-01",
+      "parent_definition": "Real two-page text PDF: distinctive first/last-page strings and correct page count, no placeholder or diagnostic payload. Validity checked independently of the converter.",
+      "parent_definition_sha256": "b1835f976f474c4ee234c62e34f73d0786f2be8ae0b73fe0bfba0534e3724c59",
+      "scoped_exit_references": [
+        "I3-C1"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-02",
+      "parent_definition": "Real DOCX: paragraph \u2192 table \u2192 paragraph order, Unicode and distinctive late table/body text preserved. No fake extension-only file as success fixture.",
+      "parent_definition_sha256": "4b6d8d3d6f72ed3ad9ac17a7ee04cfedb2463d6798d39093c7e630b6e1bd64b8",
+      "scoped_exit_references": [
+        "I3-C1"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-03",
+      "parent_definition": "Genuine image-only scanned PDF with readable test text: real local OCR yields expected words with network blocked. Separate blank/unreadable image fixture fails empty-text checks. Missing OCR/model assets report readiness failure before ingestion.",
+      "parent_definition_sha256": "c803377009f28cbb80a59b95390789fc99530def7a5666d825c431f07abe278c",
+      "scoped_exit_references": [
+        "I3-C1"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-04",
+      "parent_definition": "Corrupt/encrypted documents, converter exception, PARTIAL_SUCCESS, page failure after one good page, unavailable library/model and read failure after path resolution: exact error category and zero memory/embedding calls. Diagnostic strings and image-only serializer output must not count as content.",
+      "parent_definition_sha256": "451218e7f4d4e8d94d3eb1e9ea3fa27b0c3d8647e1417345040518274424e751",
+      "scoped_exit_references": [
+        "I3-C1"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-05",
+      "parent_definition": "Both quote forms, repeated spaces, Unicode/apostrophes/backslashes, description/omission, malformed quotes and option-like paths. New option reservation, before/after/duplicate/lookalike tokens, literal `--` suffix, description quotes and `/read` override refusal. Legacy text limits remain explicitly characterized with truthful truncation. Other/custom handlers unaffected.",
+      "parent_definition_sha256": "6e00d8a9508030265b7b9f52d07bbfcd1b86a1db6a2738b36680def25917e251",
+      "scoped_exit_references": [
+        "I3-C3"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-06",
+      "parent_definition": "All four document formats reject `--lines=1`, malformed and negative variants explicitly without conversion/ingestion; current text/table limit behavior is unchanged. Non-allowlisted binary/legacy/macro-enabled paths fail closed without fallback.",
+      "parent_definition_sha256": "3f8586f30db4735e7f17b31434d809039d5cd861df32cca4c86fb910736d3ae3",
+      "scoped_exit_references": [
+        "I3-C3"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-07",
+      "parent_definition": "Invoke actual `/ingest` on genuine PDF, DOCX, XLSX and PPTX through real Memory/Chroma with deterministic embeddings; cover single/multiple chunks. Inspect stored documents, late source markers, sheet/slide separators, chunk metadata/counts, source/type/protection and absent/explicit descriptions. `/list-ingested` alone is not proof.",
+      "parent_definition_sha256": "f46a9bd046851e4ece4dfb2a7b79fe6fa7510aad6f244b17a3054507f8928941",
+      "scoped_exit_references": [
+        "I3-C3"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-08",
+      "parent_definition": "Headless consumers import shared tokenizer/extractor without Chat/TUI; no Docling dependency in Commands. Default clean Chat install contains the declared converter stack and Certifi>=2026.10.19, verified after all installs; plain Tools without the extra fails lazily/actionably for documents. Both ordinary and `-O` installed real conversions/OCR/storage run.",
+      "parent_definition_sha256": "86e20564e4922ab6d5d73d5079c51a0adad256244604806accf45d46afda1d94",
+      "scoped_exit_references": [
+        "I3-C5",
+        "I3-C2"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-09",
+      "parent_definition": "Negative controls: placeholder substitution, ignored conversion failure, metadata-only image output, dropped last PDF page/table/sheet/slide or PPTX notes, reordered DOCX table, concealed missing formula cache, quote-split regression and swallowed missing-model failure produce named call-phase assertion witnesses. Unchanged control, canonical origins and before/finish/after hashes; no setup/import rejection credit.",
+      "parent_definition_sha256": "144a18df166b0696f6f04e04dc295ce87c34c4a23a0a5d74ab5222dc453e7a66",
+      "scoped_exit_references": [
+        "I3-C5"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-10",
+      "parent_definition": "Full affected package/cohort/CLI/Memory regressions, focused Ruff/mypy/new-file formatting, exact metadata/lock/default closure inventory, enforced Certifi floor/negative control, source/wheel/installed data/origins and model manifest. Record baseline debt and exact approved file-help exceptions without waivers.",
+      "parent_definition_sha256": "8ad3e4240b64fbd13ed3cea7f6ba16ebc3020b995ad71e866f39a3e4fefda71e",
+      "scoped_exit_references": [
+        "I3-C5"
+      ],
+      "earliest_complete_evidence_stage": "AG",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-11",
+      "parent_definition": "Bound cold/warm startup and representative document elapsed time, progress/cancellation behavior and file/resource-limit refusal. Cancelled extraction cannot trigger later background ingestion. No unsupported hard-timeout or cross-platform claim.",
+      "parent_definition_sha256": "42c72210f4538dfdd972b65310dae1fb6649f8d4280a75ad6671fe37d069f546",
+      "scoped_exit_references": [
+        "I3-C4",
+        "I3-C3"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-12",
+      "parent_definition": "Freeze stable code/evidence, then separately authorized fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 independent review. No agents before maintainer document review/direction. Human UAT follows verification; acceptance and delivery remain separate.",
+      "parent_definition_sha256": "b070b178cdea940acb7c4b32f251913815de233a6f7804e58ce46c6f6e6df983",
+      "scoped_exit_references": [],
+      "earliest_complete_evidence_stage": "UAT",
+      "aggregate_disposition": "AG checks all technical evidence and required code council; DI12 human UAT remains pending until UAT record.",
+      "DI12_substages": [
+        "AG: code/evidence freeze and separately authorized required fresh Sol/Astra/Opus council",
+        "UAT: human execution after verification; record outcome; acceptance and delivery separate"
+      ]
+    },
+    {
+      "id": "DI-13",
+      "parent_definition": "Genuine multi-sheet XLSX with late-sheet/late-row markers, cached formulas, missing/error formula caches, blank cells, zero/false/date/leading-zero text, merged cells and hidden content. Prove table relationships, coverage warnings, no recalculation/network/macro execution, and no silent active-sheet/preview-row limit. Independent fixture validity and saved-cache oracle required.",
+      "parent_definition_sha256": "da2319ad41969fe64fa90383b6954a18edafa5f122c03c462fe66f966a9100e8",
+      "scoped_exit_references": [
+        "I3-C1"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-14",
+      "parent_definition": "Genuine multi-slide PPTX with late-slide markers, ordered text/bullets/tables, speaker notes, hidden slides/shapes and an image-only case. Prove original numbering, separately labeled notes, honest omitted-content coverage and no media fetching/rendering. Required native text/table/notes failures yield zero ingestion calls.",
+      "parent_definition_sha256": "f3d5368cff0831a26d2071595216c98a91f9c0a81a3992bcf3524ba0044050cc",
+      "scoped_exit_references": [
+        "I3-C1"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-15",
+      "parent_definition": "Every positive format has actual offline normal/optimized installed extraction/chunking and stored-chunk proof, plus corrupt/missing-backend/partial/empty and quoted-path tests. Existing text/web extraction and safety contracts remain; intentional chunking/count deltas are exact and reviewed. Do not infer new web-fetch support.",
+      "parent_definition_sha256": "9a2e46ed7203821857c368c9f2f2926857a9f23d3a7244310ef554bf540b0a50",
+      "scoped_exit_references": [
+        "I3-C5"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-16",
+      "parent_definition": "All strategies/defaults/independent CLI and YAML overrides on actual file/text routes, explicit supplied web/tool payloads and public ingester capability. Distinguish capability proof from absent maintained routes. Verify precedence and no I/O on usage errors. Text document-default works with no Docling extra or Chat; Commands stays stdlib-only/API54.",
+      "parent_definition_sha256": "ed228c9d5008f188c072b1f04cc86d14958a031200eabdececa153a6bc78d00b",
+      "scoped_exit_references": [
+        "I3-C2",
+        "I3-C3"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-17",
+      "parent_definition": "Real model-matched token counts on Unicode, headings, repeated table headers, long rows/cells, sections/slides and plain web/text blocks. Final inputs stay within requested budget and effective capacity; no lost tail, fabricated text, split Unicode, second chunking pass or hidden character-estimate fallback.",
+      "parent_definition_sha256": "4839ed0351d3a823b4523d6cfa7d3dbd623b56dca1cf3e6b335236319c42cd6b",
+      "scoped_exit_references": [
+        "I1-C2",
+        "I3-C2"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-18",
+      "parent_definition": "Catalog schema/resolver plus pool/non-pool actual guard paths: omitted new YAML fields with qualified artifact-bound readiness pass; missing resolved capabilities or contradictory explicit values refuse at embedding-operation preflight. Unselected profiles/load/read-only paths remain usable, smaller loaded/batch limit wins, identity/counter refuses, boundary inputs and once-only role formatting. Wrong count/dimension/nonfinite or shuffled-invalid indices fail before storage; valid shuffled indices reorder exactly. Call-phase bypass witnesses required.",
+      "parent_definition_sha256": "85234f1960144fc74068674484ca8ac014df7b6fe074ed64f2f52c8835a166aa",
+      "scoped_exit_references": [
+        "I1-C2",
+        "I2-C1"
+      ],
+      "earliest_complete_evidence_stage": "I2",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-19",
+      "parent_definition": "Source-linked active/public-not-wired/absent route inventory with separate proofs. Actual text/smart_read storage and explicitly called ToolOutputIngester share options; the active opt-in MCP snapshot route follows FC-02 unsplit semantics. Absent web/generic automatic wiring is documented, earns no route-test credit and is not newly activated. Retain fetching/opt-in/quarantine/provenance. Strategy/budget/model/preparation drift invalidates ingestion caches; context-only hits cannot satisfy new storage.",
+      "parent_definition_sha256": "a355656c7bea094b23529123bc439dc0788528d0ea19d6d7da698c699c5a3807",
+      "scoped_exit_references": [
+        "I3-C2",
+        "I3-C3"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-20",
+      "parent_definition": "Fresh disposable stores only; no reset of current state or legacy migration. Qwen4B example never activates/downloads a model. Installed normal/optimized guard and source-to-store proofs use verified counter assets, realistic exact-dimension test vectors, canonical origins and post-install Certifi checks. Real backend readiness evidence is explicitly distinguished from doubles/model-card metadata.",
+      "parent_definition_sha256": "407560c21f294d8d0fdc2e76953a1fb9e23d197c61d800cb70a4dfd53013380b",
+      "scoped_exit_references": [
+        "I3-C5"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-21",
+      "parent_definition": "Fresh persistent/ephemeral binding; matching close/reopen passes; same-dimension changed artifact/preparation, missing/malformed/pending sidecar, collection attachment from a mismatched namespace and identity-free precomputed vectors refuse before provider/client/write I/O. No store-byte/mtime change on refusal. Exclusive/race/interrupted creation controls; no automatic repair. Matching identity envelope passes.",
+      "parent_definition_sha256": "e5d5b395155cc94875cd8b71e9f3d96c86c5174032731c163f2eade049850cc6",
+      "scoped_exit_references": [
+        "I1-C3",
+        "I2-C1"
+      ],
+      "earliest_complete_evidence_stage": "I2",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-22",
+      "parent_definition": "Role spy matrix for every inventoried caller: direct query and maintained unscored recall (zero graph-vector comparisons), separately public-injectable sync/async scorer and document fallback, source/derived storage, synthesis, promotion/decay/reactivation, recall and maintenance pool/non-pool. No asymmetric convention enabled with an unclassified caller; graph edge/node cached-vector identities are checked before similarity, including unknown-provenance refusal without backfill. Whole-batch result is validated before the first persistence write.",
+      "parent_definition_sha256": "1b8e0871cd2c451c3836e377f0a5cfb0fc963829be488b65cb95f1318fafbe74",
+      "scoped_exit_references": [
+        "I1-C2",
+        "I2-C2",
+        "I3-C2",
+        "I3-C3"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-23",
+      "parent_definition": "Public headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked and warm caches, with no Chat import. Disabled\u2192enabled storage, source change, stale/missing identity, policy drift and failures cannot bypass current admission. Stored raw texts equal common plan chunks exactly; derived records use one guarded unsplit input.",
+      "parent_definition_sha256": "1a6fab765bf1a0fc54fd3d0263e710ef2aec39c03fa728351f134899e8352afc",
+      "scoped_exit_references": [
+        "I1-C1",
+        "I3-C2"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-24",
+      "parent_definition": "Synchronous offline tokenizer resolves only the manifest root; no network per split/global-cache lookup/download/custom-code escape. Boundary parity against actual serving behavior includes special tokens/headers and the serving physical ceiling. Unknown parity refuses readiness.",
+      "parent_definition_sha256": "a977ad7393533c8a6b95a34433c02d76d867ba1eb3a513cf1be9c1ec604cb150",
+      "scoped_exit_references": [
+        "I1-C2",
+        "I3-C2",
+        "I3-C5"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-25",
+      "parent_definition": "Genuine Office structure oracle distinguishes missing formula cache from blank, hidden row/column, large merged ranges, notes versus comments and backend clipping. Non-text audit cannot supply or repair text. Unknown mapping/warning refuses before ingestion; wrong-format and renamed generic ZIP/multi-document input refuse.",
+      "parent_definition_sha256": "d20a85076dee434c342210d762542c84707d5b60991453ba2692cae900c76b55",
+      "scoped_exit_references": [
+        "I3-C1"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-26",
+      "parent_definition": "Event loop remains responsive during conversion/counting; cancellation before worker start, during work and immediately after completion cannot cause ingestion. Admission stays held until worker quiescence, late results discarded and cleanup idempotent. No hard-thread-timeout/OS-sandbox claim.",
+      "parent_definition_sha256": "1141674213e700eaad213f914db38ddc42bbe54d792459dffcf3b7bfb9010960",
+      "scoped_exit_references": [
+        "I3-C4",
+        "I3-C3"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-27",
+      "parent_definition": "Same-namespace snapshot/verify/restore and automatic rollback preserve binding, data and graph-vector identity. Wrong space with same dimensions, wrong incarnation/layout, identity-free v1 artifact, pending/malformed/missing sidecar and binding tamper refuse before client/live writes. No rebinding. Private bound preflight is distinct from live restore. Existing journal/quiescence/ULP policies remain tested.",
+      "parent_definition_sha256": "1c72c2fba72cf94d29912602bf0d480a3ffb45ece204b1bf37556882ea0e466b",
+      "scoped_exit_references": [
+        "I1-C4",
+        "I2-C3"
+      ],
+      "earliest_complete_evidence_stage": "I2",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-28",
+      "parent_definition": "Every direct client uses exact normalized-destination admission. Pruner/synthesizer/fact-checker cannot fall through to memory_dir/vector or another root after refusal; include a namespace-fallback mutant. Missing admission is not skip/empty success. Maintained Chat aggregate snapshot/rollback and direct participant entries execute; no bare-client bypass survives.",
+      "parent_definition_sha256": "9a21dc15dc0d0633883f837aebd469b55efb18b64aed703e383d3e0ebcf7de84",
+      "scoped_exit_references": [
+        "I2-C1",
+        "I2-C2",
+        "I2-C3"
+      ],
+      "earliest_complete_evidence_stage": "I2",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-29",
+      "parent_definition": "Actual Chat/Runtime pool/non-pool startup and read-only extraction: zero Chroma/model/tokenizer initialization or provider/store I/O; inert service/config objects are allowed. Test unset + absent fallback refusal, explicit value equal to default creation eligibility, unbound/empty/mismatched/invalid-marker refusal, absent vector + existing graph, absent vector + configured WAL, and reused Runtime root both with old graph/WAL (refuse) and only unrelated state (eligible). Core direct StoreOpenRequest/ephemeral and CLI delegation inherit exact policy. No stateless/legacy fallback; preserve old metadata, /read and exit.",
+      "parent_definition_sha256": "5dd9a33f6ac0f40f208b9261d9eebcd749dd861374796b41176bc423044a4c1a",
+      "scoped_exit_references": [
+        "I1-C3",
+        "I2-C1",
+        "I3-C3",
+        "I3-C4"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-30",
+      "parent_definition": "Storage receipts are destination/incarnation/collection-specific: same-space new destination or different collection, lost record IDs/provenance and disabled\u2192enabled storage cannot skip ingestion. Extraction cache reuse is distinct from completed-storage evidence. Unwired Chat smart_read storage remains unwired and explicitly refuses requested storage.",
+      "parent_definition_sha256": "73868030a907e2d0460a42d19a7e82b0b2a59e4c6a41f3a3e6d452826e8c5310",
+      "scoped_exit_references": [
+        "I3-C2"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-31",
+      "parent_definition": "Plain CSV/TSV keeps all source spans/late rows and reports missing supplied table structure; structured tables repeat known headers. No inferred/fabricated header. Hosted mutable identity/missing offline BPE refuses operation; qualified pinned deployment passes only after real gate-A proof. Inactive migration/stub earns no integration credit.",
+      "parent_definition_sha256": "1ec3c70970f908776c08d25c267c2176687a0e183c2bce28829af4cb4592a39b",
+      "scoped_exit_references": [
+        "I3-C2"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-32",
+      "parent_definition": "Actual Chat bound Memory-v2 snapshot \u2192 aggregate-v2 writer/read/participant reparse \u2192 same-namespace restore/automatic rollback. Accept only bundle1/memory1/transcript1 for offline inspection and bundle2/memory2/transcript1 for active use; reject mixed/unknown versions, binding/incarnation/participant digest tamper and v1 bound restore before live effects. Verify old v1 validators/exports remain strict, Memory v2 fingerprint is distinct from unchanged Chat path fingerprint, and generic AtomicJsonStore needs no bypass.",
+      "parent_definition_sha256": "d30881fce71be442331957fbf4b38e366229d87b5c2871396eb76c0e3e2edc52",
+      "scoped_exit_references": [
+        "I1-C4",
+        "I2-C3"
+      ],
+      "earliest_complete_evidence_stage": "I2",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-33",
+      "parent_definition": "Preserve pre-change catalog/pool and maintained non-pool configuration fixtures with both new fields omitted. Assert unchanged service/profile/default/endpoint selection and existing embedding call interfaces, batch/cache/resilience settings, and successful operations using qualified readiness plus fresh admitted namespaces. Exercise extraction \u2192 graph and insight/summary storage \u2192 recall, compaction/lifecycle, maintenance synthesis/re-embedding and stored-vector comparisons. Same-space different service names pass; same-dimension different-space bindings to one namespace refuse before incompatible provider/storage effects; independent namespaces may use different spaces. Include overflow and typed error propagation without silent partial-success claims. Missing baseline readiness is a gate-A stop, not a waived compatibility test. Repeat representative cross-subsystem proofs in actual normal/optimized installed lanes.",
+      "parent_definition_sha256": "f92d2be74f1da9af25c1a9eb3371f68ded4ebe6b9a8dd314e922c7f5acadb791",
+      "scoped_exit_references": [
+        "I2-C1",
+        "I2-C2",
+        "I3-C5"
+      ],
+      "earliest_complete_evidence_stage": "I3",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-34",
+      "parent_definition": "All FC-01\u201314 and B01\u2013B08 in the normative compatibility annex bind the exact named integration nodes and focused lower-level assertions. Independently audit the whole framework including unnamed consumers; classify every discovered path, actual maintained versus public-unwired/inactive routes, required narrow source purposes, successful B/N and R controls and installed witness. Require exact source-backed exceptions for MCP overflow, profile persistence, identity-safe public backup/restore admission and guarded failures; safe refusal is not operational compatibility. No new unsupported route, implicit embedder, silent acknowledgement/count success or unknown baseline exclusion.",
+      "parent_definition_sha256": "d663ae753f4f08cd9f0112da398190dbc74d8002b7e4981057cbaa95aec31150",
+      "scoped_exit_references": [
+        "I2-C1",
+        "I2-C2",
+        "I3-C5"
+      ],
+      "earliest_complete_evidence_stage": "AG",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-35",
+      "parent_definition": "Test migration acceptance: baseline case/fixture inventory and traceable retain/restructure/replace/retire/add map; exact old/new nodes and justified oracles/retirements, every valid requirement covered by executed substantive assertions, updated selectors and meaningful public/installed/negative witnesses. Counts/old assertion bodies alone do not prove preservation; no historical evidence rewrite, silent coverage loss or unrelated suite churn.",
+      "parent_definition_sha256": "360ff292035cc7704c3e78da2f4126a739ed5aa97646a1e2882b4762a5d9ef25",
+      "scoped_exit_references": [
+        "I1-C1",
+        "I1-C2",
+        "I1-C3",
+        "I1-C4",
+        "I2-C1",
+        "I2-C2",
+        "I2-C3",
+        "I3-C5"
+      ],
+      "earliest_complete_evidence_stage": "AG",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    },
+    {
+      "id": "DI-36",
+      "parent_definition": "Substantive documentation acceptance: canonical command architecture and necessary guide/README/configuration-section rewrites are complete for the candidate, coherent with source/requirements/package metadata and independently reviewed. Require change-to-document-to-source/example/probe mapping and representative verified commands/config/install examples plus structural/link checks. A documentation checker pass alone cannot satisfy content, architecture or example correctness.",
+      "parent_definition_sha256": "46565333864f055405d0e61e41b38723c8f351af73eb25e5211b439e354b3cb6",
+      "scoped_exit_references": [
+        "I1-C4",
+        "I2-C3",
+        "I3-C5"
+      ],
+      "earliest_complete_evidence_stage": "AG",
+      "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
+      "DI12_substages": []
+    }
+  ],
+  "compatibility_requirements": [
+    {
+      "id": "FC-01",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Admitted owner-specific logging initialization, reconfigure/close and no old-root effects.",
+      "I3": "No new logging capability; recheck common request cancellation through I3-C4.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_rejection_logging_obeys_namespace_admission",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C1",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new logging capability; recheck common request cancellation through I3-C4.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-02",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual unsplit MCP persist/observer/ownership, pending same-ID retry and existing reasons.",
+      "I3": "Common ingestion does not activate/split MCP; recheck shared guard interaction at I3-C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_mcp_snapshot_embedding_compatibility",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Common ingestion does not activate/split MCP; recheck shared guard interaction at I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        },
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_mcp_pending_retry_and_existing_telemetry_reasons",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Common ingestion does not activate/split MCP; recheck shared guard interaction at I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-03",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Existing public backup create/verify/restore baseline with admitted same-incarnation receipt and marker exclusion.",
+      "I3": "No new backup work in I3; preserved public baseline rechecked at I3-C5, FU014 unwaived.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_legacy_backup_guarded_namespace_disposition",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new backup work in I3; preserved public baseline rechecked at I3-C5, FU014 unwaived.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        },
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_public_backup_identity_and_unchanged_baselines",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new backup work in I3; preserved public baseline rechecked at I3-C5, FU014 unwaived.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-04",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual offline analyzer SQLite/graph admission and no opener on refusal.",
+      "I3": "Source-unchanged analyzer behavior rechecked after common entry at I3-C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_analyzer_store_only_namespace_admission",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Source-unchanged analyzer behavior rechecked after common entry at I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-05",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual legacy synthesizer/module embedder handoff and no hidden Chroma default.",
+      "I3": "No new synthesis strategy; qualified roles remain guarded after I3 integration.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_legacy_synthesis_never_uses_default_embedder",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new synthesis strategy; qualified roles remain guarded after I3 integration.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-06",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual extraction/consolidation acknowledgement, retry and owned background task status/shutdown.",
+      "I3": "Document requests add I3-C4 worker joins; do not claim Agent source rewrite.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_consolidation_acknowledges_only_stored_batches",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Document requests add I3-C4 worker joins; do not claim Agent source rewrite.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        },
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_extraction_acknowledges_only_stored_outputs",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Document requests add I3-C4 worker joins; do not claim Agent source rewrite.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        },
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_background_extraction_status_observes_owned_task",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Document requests add I3-C4 worker joins; do not claim Agent source rewrite.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-07",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Real lifecycle effects and public Tools text/structured partial-failure projection.",
+      "I3": "No algorithm change; retained effects rechecked with final I3 namespace/plan.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_lifecycle_counts_and_tool_text_report_actual_effects",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No algorithm change; retained effects rechecked with final I3 namespace/plan.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-08",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Maintained unscored recall plus actual public injected scorer B/N/R, fallbacks and typed failures.",
+      "I3": "No new scorer wiring; final document retrieval/destination binding rechecked I3-C2/C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_recall_propagates_embedding_refusals",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new scorer wiring; final document retrieval/destination binding rechecked I3-C2/C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        },
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_injected_graph_scorer_binding_and_unscored_routes",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new scorer wiring; final document retrieval/destination binding rechecked I3-C2/C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-09",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual profile persistence/origin and independent ephemeral-kernel isolation.",
+      "I3": "Recheck final candidate headless/document profiles at I3-C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_runtime_memory_profile_identity_and_persistence",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C1",
+          "final_review_stage": "AG",
+          "I3_interaction": "Recheck final candidate headless/document profiles at I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-10",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "B01\u201308 service/default/origin selection including known CLI forwarded-default gap.",
+      "I3": "New chunking YAML/command options are I3; no model selection change.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_existing_embedding_configuration_and_origin",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C1",
+          "final_review_stage": "AG",
+          "I3_interaction": "New chunking YAML/command options are I3; no model selection change.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-11",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Provider readiness after admission, empty fresh collection dimensions and graph-only operation.",
+      "I3": "No maintenance ordering change; final installed guard parity rechecked I3-C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_maintenance_probe_and_empty_store_dimensions",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No maintenance ordering change; final installed guard parity rechecked I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-12",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual headless candidate Memory/Runtime/CLI/Agent/direct LLM counter-only profiles.",
+      "I3": "Actual default-Chat/document/bare-Tools profiles added at I3-C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_headless_embedding_install_profiles",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C1",
+          "final_review_stage": "AG",
+          "I3_interaction": "Actual default-Chat/document/bare-Tools profiles added at I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-13",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual Agent/multi-agent/MEMQ/public wrappers and visibility/partial effects; classify absent routes.",
+      "I3": "Actual supplied payload/common-entry and smart_read ingestion handoffs complete at I3-C2/C3/C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_indirect_memory_consumers_and_inspection",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Actual supplied payload/common-entry and smart_read ingestion handoffs complete at I3-C2/C3/C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    },
+    {
+      "id": "FC-14",
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual existing consumer extraction\u2192store\u2192recall\u2192lifecycle/maintenance B/N/R, using Q-qualified B and N scenario manifest.",
+      "I3": "Add common document entry/command flows at I3-C2/C3/C5; semantic model-quality evaluation remains separately authorized.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_model_change_preserves_operational_contract",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Add common document entry/command flows at I3-C2/C3/C5; semantic model-quality evaluation remains separately authorized.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
+    }
+  ],
+  "proof_groups": [
+    {
+      "id": "file_arguments",
+      "requirements": [
+        "DI-05",
+        "DI-06"
+      ]
+    },
+    {
+      "id": "native_ocr_office",
+      "requirements": [
+        "DI-01",
+        "DI-02",
+        "DI-03",
+        "DI-04",
+        "DI-13",
+        "DI-14",
+        "DI-25"
+      ]
+    },
+    {
+      "id": "command_storage",
+      "requirements": [
+        "DI-07"
+      ]
+    },
+    {
+      "id": "chunk_policy_content",
+      "requirements": [
+        "DI-16",
+        "DI-17",
+        "DI-31"
+      ]
+    },
+    {
+      "id": "embedding_capabilities_roles",
+      "requirements": [
+        "DI-18",
+        "DI-22",
+        "DI-24"
+      ]
+    },
+    {
+      "id": "routes_namespaces_recovery_caches",
+      "requirements": [
+        "DI-19",
+        "DI-20",
+        "DI-21",
+        "DI-23",
+        "DI-27",
+        "DI-28",
+        "DI-29",
+        "DI-30",
+        "DI-32",
+        "DI-33"
+      ]
+    },
+    {
+      "id": "worker_resources",
+      "requirements": [
+        "DI-11",
+        "DI-26"
+      ]
+    },
+    {
+      "id": "installed_regressions_rejections",
+      "requirements": [
+        "DI-08",
+        "DI-09",
+        "DI-10",
+        "DI-15"
+      ]
+    },
+    {
+      "id": "framework_integration",
+      "requirements": [
+        "DI-34"
+      ]
+    },
+    {
+      "id": "review_human_sequence",
+      "requirements": [
+        "DI-12"
+      ]
+    },
+    {
+      "id": "test_migration",
+      "requirements": [
+        "DI-35"
+      ]
+    },
+    {
+      "id": "documentation",
+      "requirements": [
+        "DI-36"
+      ]
+    }
+  ],
+  "qualification_implementation_boundary": "A1 requires completed Q dispositions, including manifest-bound actual B and all N scenario identities, assets/counters/dimensions/capacity/preparation/parity before I1. Candidate operations, new extras and installed profiles remain I1/I2/I3/AG. Deterministic operational vectors are not a replacement for real serving qualification.",
+  "not_claimed": "No completed Gate A, construction approval, runtime test, installed profile, council/UAT execution or acceptance is inferred from this map.",
+  "path_list_semantics": "exit_assertions.implemented_paths lists primary source seams, not an exhaustive file partition or independent allowlist. Before generation A2 assigns every selected parent-authorized path to slice/owner/purpose/exit and A3 binds tests/helpers; an unassigned path blocks that slice.",
+  "Q_replacement_qualification_plan": "replacement-qualification-plan.json",
+  "intermediate_regression_rule": "Any unwaived regression in previously supported unchanged scope blocks the current slice exit; a later planned repair is not a waiver. Only an exact maintainer-approved changed baseline/temporary integration exception with replacement coverage can permit exit. Missing clearly later features are not falsely certified or used to excuse broken old paths.",
+  "intermediate_I1_compatibility": "Before I1 activation A2 freezes an additive staging design: new typed contracts, guarded entry/factory and direct positive/refusal tests without changing existing maintained callers to require an unprovided binding before I2 wiring. Existing baseline flows must still pass I1. This is not final permission for an unguarded direct opener or a released legacy mode. If exact public shapes/file scope cannot support additive staging, stop before I1 and obtain a named maintainer-approved integration exception and coverage; no blanket temporary waiver. Preparation/role/cache-space changes are also staged: legacy/unbound inputs and vectors stay unchanged in I1, with paired I1-C2 witnesses; only newly guarded qualified paths use new preparation, until I2 binds and switches actual existing callers.",
+  "document_read_lifecycle": {
+    "frontend_owner": "Chat default read handler and existing registry/files/runtime request lifecycle",
+    "execution_owner": "Tools converter worker",
+    "adapter_contract": "Awaitable Chat document-read adapter; A2 freezes signature and typed owned job. Existing sync legacy text/table API retained.",
+    "memory_admission": null,
+    "embedding_or_store_requirement": false,
+    "cancel_exit_rule": "Invalidate output eligibility, cancel queued work or await owned running job, join/drain before owning lifecycle returns, no late result/display or orphan.",
+    "headless_rule": "Equivalent caller ownership over same shared worker API, no Chat import."
+  }
+}

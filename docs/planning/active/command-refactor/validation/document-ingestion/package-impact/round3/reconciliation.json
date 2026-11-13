@@ -1,0 +1,98 @@
+{
+  "unit": "INGEST-PACKAGE-IMPACT-001",
+  "round": 3,
+  "maximum_total_rounds": 4,
+  "reviewed_candidate": "c96ecbea685a2627e033d3a9cb62a2f05b72afb7",
+  "assessment_version": "0.3-draft",
+  "outcome": "CHANGES_REQUESTED",
+  "all_seats_threshold_met": false,
+  "seats": {
+    "sol": {
+      "seat": "sol",
+      "round": 3,
+      "candidate": "c96ecbea685a2627e033d3a9cb62a2f05b72afb7",
+      "outcome": "VERIFIED",
+      "coverage": 9.7,
+      "overall": 9.6,
+      "mandatory_findings": [],
+      "all_PI_01_through_18": "PASS",
+      "report": "/tmp/pi-r3-sol-tq13f4gr/report.md",
+      "report_sha256": "0b83e62374ae0a9f39a6281fe5c349ba4f4fbef68da99fe48485a68dab70f314",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "reviewed_without_mutating_frozen_candidate": true,
+      "readable_report": "sol-report.md",
+      "readable_sha256": "0b83e62374ae0a9f39a6281fe5c349ba4f4fbef68da99fe48485a68dab70f314",
+      "raw_archive": "sol-report.md.gz",
+      "raw_archive_sha256": "181a7a2d515aa1494532841fb61fb38422fefe9820db4d48bee9e096652e0f66"
+    },
+    "astra": {
+      "seat": "astra",
+      "round": 3,
+      "candidate": "c96ecbea685a2627e033d3a9cb62a2f05b72afb7",
+      "outcome": "BLOCKED",
+      "coverage": 9.7,
+      "overall": 9.6,
+      "scores_advisory_only_due_to_protocol_block": true,
+      "formal_threshold_qualification": false,
+      "mandatory_document_findings": [],
+      "protocol_block": "Displayed prohibited historical verdict/score text in an allowed navigation diff. No retroactive waiver or VERIFIED result.",
+      "all_PI_01_through_18": "substantive assessment only; see formal BLOCKED report",
+      "report": "/tmp/pi-r3-astra-0pizmvp3/astra-round3-report.md",
+      "report_sha256": "11ff439a9f6ea533e8d9f12590633d7299879731704849ae0e8e83f681600c12",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "reviewed_without_mutating_frozen_candidate": true,
+      "readable_report": "astra-report.md",
+      "readable_sha256": "6429b186776505217e223814e710bed71047e73517c4a7610735bf922474ab09",
+      "raw_archive": "astra-report.md.gz",
+      "raw_archive_sha256": "c4dfbcf30b79182313877d450039e2925803fde4c9b6cfbd736707fdddf71f8e"
+    },
+    "opus": {
+      "seat": "opus",
+      "round": 3,
+      "candidate": "c96ecbea685a2627e033d3a9cb62a2f05b72afb7",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 9.1,
+      "overall": 9.0,
+      "mandatory_findings": [
+        "PI-R3-OPUS-001",
+        "PI-R3-OPUS-002",
+        "PI-R3-OPUS-003"
+      ],
+      "report": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/0254d659-b2fa-4da1-a778-95f6e0c0eb20/scratchpad/pi-r3-opus/PI-R3-OPUS-report.md",
+      "report_sha256": "40aeca99fd580801b0a0882f41e714ee91508edb3e2a52ad9ca04d1f15d657c3",
+      "opening_closing_integrity": "PASS",
+      "five_administrative_checks": "PASS",
+      "reviewed_without_mutating_frozen_candidate": true,
+      "readable_report": "opus-report.md",
+      "readable_sha256": "40aeca99fd580801b0a0882f41e714ee91508edb3e2a52ad9ca04d1f15d657c3",
+      "raw_archive": "opus-report.md.gz",
+      "raw_archive_sha256": "9a9050345a1b62de43d474abef8c387ce6419e530e5a6c672ec3b52be26adcfd"
+    }
+  },
+  "mandatory_document_findings": [
+    "PI-R3-OPUS-001",
+    "PI-R3-OPUS-002",
+    "PI-R3-OPUS-003"
+  ],
+  "protocol_block": {
+    "seat": "astra",
+    "finding": "PI-R3-ASTRA-001",
+    "disposition": "BLOCKED retained. Controller brief permitted a navigation diff containing historical verdict/score text while forbidding its display. No retroactive waiver; fresh final full council required."
+  },
+  "loop": {
+    "completed_rounds": 3,
+    "remaining_rounds": 1,
+    "budget_reset": false,
+    "next_round": 4,
+    "stop_after_fourth_if_unmet": true
+  },
+  "authority_not_granted": [
+    "maintainer impact satisfaction",
+    "Gate-A",
+    "construction",
+    "product/test/live-guide implementation",
+    "delivery"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "outcome": "VERIFIED",
+  "candidate": "1f5f86dcd8315eaf9a7508c44c65b4637766c323",
+  "scratch": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox",
+  "artifacts": [
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/report.md",
+      "sha256": "b85895d746ee8044b5eccb7deb3eda7273d40be43a30589801dc0ef1b7af3e6c",
+      "size": 11647
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/ledger.json",
+      "sha256": "a0148ef17f90edb6f4f1b747cc8c37574c140fb3161b205b51aa40cf20c6ba3f",
+      "size": 9012
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/command-ledger.json",
+      "sha256": "272ab6319f85ac30ace1a5887bdbc485a9aad2c70e19ba9856e3ce32ceeea6b4",
+      "size": 44196
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/review-evidence.tar.gz",
+      "sha256": "ec1f7f9baaca589222dcf9be2fdec8004e8507584f4c28a8b95547b530f95ced",
+      "size": 2296206
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/closing-summary.json",
+      "sha256": "fbec558f3598fd2aea960c28b219bb96faae03f13f1e0bdaa9dec9048adad5d3",
+      "size": 683
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/static-integrity.json",
+      "sha256": "bc1081f157a9c74719ab630bb3c68ce3ca9d2a37ce7b21dda11a5aa83e5972dc",
+      "size": 13674
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/e2e-iv-corrected-zwi93lox/historical-reproduction.json",
+      "sha256": "1dc97dbb687d3f3d4ab8752ee20a30a817c0cdf013afaaf5eea16dc322b598c8",
+      "size": 3663
+    }
+  ],
+  "archive_member_count": 123
+}

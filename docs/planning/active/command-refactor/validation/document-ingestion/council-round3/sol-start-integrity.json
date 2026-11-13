@@ -1,0 +1,10 @@
+{
+  "provenance": "Transcribed from directly observed initial helper stdout, not a second execution",
+  "outcome": "PASS",
+  "request_sha256": "faa4e9570318004b6e1bf00db15e60925a006f5484a47a5c399b640279379af4",
+  "candidate": "36362be514ef387183a27d930cd41a8799e3d714",
+  "branch": "feature/cmd-ingest-001",
+  "logical_index_sha256": "43738da1ed6e59de584e729e570b1bbeb4b5ab54b7813c66660f684951b5f9fc",
+  "protected_entries": 17583,
+  "failures": []
+}

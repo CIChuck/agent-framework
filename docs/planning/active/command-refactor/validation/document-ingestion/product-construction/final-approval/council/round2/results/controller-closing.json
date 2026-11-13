@@ -1,0 +1,18 @@
+{
+  "reviewed_candidate": "b4eecbe804b862f606995c4c4e5197c9b9d37150",
+  "request_sha256": "aef9c61c5183c75900feb9323f0a9bc4103657d413a65c97be899a6c9c79d048",
+  "identity": {
+    "head": "b4eecbe804b862f606995c4c4e5197c9b9d37150",
+    "branch": "feature/cmd-ingest-001",
+    "logical_index_before_status": "e5341c157e69e60314a7320e53a7cdb4a1f80ebb66d2fc0a6a9bc6056a9734e4",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+    "staged": ""
+  },
+  "all_frozen_pins_match": true,
+  "all_three_complete": true,
+  "original_report_hashes_match": true,
+  "preserved_nonplanning_files": 16690,
+  "preserved_symlinks": 26,
+  "preserved_records": 8,
+  "result": "PASS"
+}

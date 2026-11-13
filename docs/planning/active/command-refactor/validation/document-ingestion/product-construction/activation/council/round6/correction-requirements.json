@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "scope": "Neutral correction questions first, then full unchanged eight-area design review; no previous verdicts supplied.",
+  "groups": [
+    {
+      "id": "G1",
+      "requirement": "Optional converter in Runtime/Chat bind_ingestion; valid text entry-only ownership with no document binding. Late attach, identical-object checks, atomic mismatch refusal and ordered shutdown with/without converter. Separate matching document-session requirement for actual converted ingestion; no Memory-to-Tools dependency."
+    },
+    {
+      "id": "G2",
+      "requirement": "Positive text /ingest and TM-A049 fixture independence; Chat/Runtime entry-only/late-attach/drain witnesses; declaration-before-use metadata/lock timing and phase-bound environments; explicit asset-size identity errors, bounded input snapshot/cancel, PPTX extension and current cap wording."
+    },
+    {
+      "id": "G3",
+      "requirement": "FULL unchanged Review A1-A8 after corrections. Global round6/6 is FINAL additional pass3/3; stop for maintainer feedback regardless of outcome. No replacement, seventh round, construction or live effects."
+    }
+  ],
+  "global_round": 6,
+  "maximum_global_rounds": 6,
+  "extension_pass": 3,
+  "maximum_additional_passes": 3,
+  "final_round": true,
+  "product_or_effects_authority": false
+}

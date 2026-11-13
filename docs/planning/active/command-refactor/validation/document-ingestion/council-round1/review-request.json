@@ -1,0 +1,263 @@
+{
+  "initiative": "friday-command-refactor",
+  "unit": "REM-CMD-INGEST-001",
+  "companion": "TOOLS-DOC-001",
+  "round": 1,
+  "review_mode": "Fresh FULL bounded proposal/document/design readiness, including source feasibility; NOT implementation conformance",
+  "recorded_at": "2026-11-10T21:04:26.609496+00:00",
+  "workdir": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "branch": "feature/cmd-ingest-001",
+  "base": "c36e7ee51a9328918b9bb97712aa7f1d4a850d19",
+  "candidate": "8be50b1218fc4db67fbd5d546fea9d7be6a2fd64",
+  "diff_range": "c36e7ee51a9328918b9bb97712aa7f1d4a850d19..8be50b1218fc4db67fbd5d546fea9d7be6a2fd64",
+  "full_review_note": "Read the entire current proposal and companion, not just the incremental branch diff. Much of their content was already present at the base. Runtime source is unchanged since reviewed ae15a537; inspect it only for feasibility/wiring hazards.",
+  "changed_paths": [
+    "docs/planning/README.md",
+    "docs/planning/active/command-refactor/README.md",
+    "docs/planning/active/command-refactor/authority.json",
+    "docs/planning/active/command-refactor/execution-log.md",
+    "docs/planning/active/command-refactor/next-phase.md",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+    "docs/planning/active/command-refactor/tactical-plan.md",
+    "docs/planning/active/command-refactor/validation/delivery/command-retirement-merge.json",
+    "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/council-round1/roster.json",
+    "docs/planning/active/command-refactor/validation/document-ingestion/planning-checks.json",
+    "docs/planning/board.yaml"
+  ],
+  "authority_pins": {
+    "AGENTS.md": "9c2840ea92bf5f25acd5c85d36a18d2c7d9677c0768d1e811aef5efde6fc936b",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/development-task-lifecycle.md": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    ".agents/skills/council/SKILL.md": "360493507c5f522d4a365f7f90f76c7eb37ad31ee36096a359c0715aae00b23c",
+    ".agents/skills/independent-code-validator/SKILL.md": "578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508",
+    "docs/planning/active/command-refactor/scope-decisions.md": "6760092e9d7b4f38a0e96d8109fde0e95cd8c3db0aeaf05c927801243dccb749",
+    "docs/planning/active/command-refactor/validation/document-ingestion/council-round1/roster.json": "5419b122e94d7bf786702c6adcce2f90e3a79b10b67d9af1686035b359f3bbed",
+    "docs/planning/active/command-refactor/validation/document-ingestion/discussion-decisions.json": "1d34126facfa5e483b880003d42c0ac30b90ba4cac026e2e9b6bcc5f917fcc0b",
+    "docs/planning/active/command-refactor/validation/document-ingestion/format-expansion.json": "93229156bcec385b07f491ce960fa61a99a2d3d26e2c585549d19c908d8c206f",
+    "docs/planning/active/command-refactor/validation/document-ingestion/certifi-security-requirement.json": "4aa555cd6387d21b52b2b1d83b031c51bb480d17814664689706f8502e4b3774"
+  },
+  "document_pins": {
+    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "7cc7d382a725ed647f966a84f5513bfce84df28502667c14c63bfdce05491b7e",
+    "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "dccc9e8a02bd257479fde759666f7f15a238172628ca6dd2c4f15e3f2700e218",
+    "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md": "fc681e1c483b3acb400b5a5854b9208b66c4401fc4a7455d778ca80b7b475f7f",
+    "docs/planning/active/command-refactor/validation/document-ingestion/assessment.json": "ade8a16263c632fa68e786cae9145978798e75a704e1c0fe85f9f0a90000d4b3",
+    "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md": "245cb526887a067b5a2cb207f0db6f2ed92b53cc5b59d66db5ed6e45eec611c8",
+    "docs/planning/active/command-refactor/validation/document-ingestion/planning-checks.json": "5840d7555da74e2d2d9ab3950ab54da366422eac09b128d2fa4ed3cc920b595a",
+    "docs/planning/active/command-refactor/README.md": "42b15c8b104e03fffe3c33172c1da6b52a648c4ac1c14e762d6c7b7a202f1fe1",
+    "docs/planning/active/command-refactor/next-phase.md": "0a7a1389971c28bce6451db1470431d95548ef23368c1a056ff799e883e6af25",
+    "docs/planning/active/command-refactor/tactical-plan.md": "91b6be9598e56f177b9f6922618f93a30e40b850e7018179daf7fcc0abe33873",
+    "docs/planning/active/command-refactor/authority.json": "778e69b8fda2ad0f87fffccdf93263dbbe5e73e17c159048ad337e4697fe34c0",
+    "docs/planning/board.yaml": "118c36cc010c89041f65cd50c2d8c5811b3031a866a5e8248131ae19deaf735d",
+    "docs/planning/README.md": "68ec0e81539144a0df8edf4f9578488cd4e0136c2af99725920d1a0ce9381b17"
+  },
+  "source_pins": {
+    "packages/friday-chat/src/friday_chat/commands/files.py": "2c1555ad5ec48c5aab6cf3e14024a5591b86ace2b752f1420f273daf215c9f3c",
+    "packages/friday-chat/src/friday_chat/commands/registry.py": "4615bb2e8648b62f9eb3826ccaba73f157754fcf5c12beedeef5b59185dc0f63",
+    "packages/friday-chat/src/friday_chat/adapters.py": "90488c278666379825b8d971eae0a931fcc4ef4230b7a2e16fcb81aa9cc67b9d",
+    "packages/friday-chat/src/friday_chat/runtime.py": "7a0003b0657e408261024be619a903f400f8e2f2f15533aa8392bd6ac904e6a2",
+    "packages/friday-chat/src/friday_chat/config.py": "734559482073fa66b2197604136d4fde805fc8f9e4ce7078f33df57c4a3c52d1",
+    "packages/friday-chat/src/friday_chat/config_templates/config.example.yaml": "6fecbd23bb6b15dbe68d7bf4dbb8dfe14a431f74c68efa5379a545b13671c110",
+    "packages/friday-chat/src/friday_chat/config_templates/models-config.example.yaml": "57a8d0d047833b6501415e149560d90a0437dc229f5e7891fa408aa3d17744c1",
+    "packages/friday-chat/tests_chat/test_files_replay_shell.py": "94443a42877ea53b35ca5f1f7d204d90ebf6e71ce8d59dd0cd92ab735f53daf7",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/base.py": "4ade26a60d1723b1e965ea8b5b0bc95712620ee1b9cf575fb496aca06267fe98",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/factory.py": "748dbb97a90330cb8ef35f7275745749c2236386bf2494d1e30db8c942c539bc",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py": "b42b82261fbc1d7dd759b6f2527723cabb222903eb7469180d5982f92a5e0248",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/docx_reader.py": "454c5530827c4467c30495e1d2e783221632671c7f801a5d997775190a14cb23",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/xlsx_reader.py": "4f3bbe6c7f7f9735bfa26701976c0023bf10df5144d1fe5acd3366fe65fea9ee",
+    "packages/friday-tools/src/friday_tools/filesystem/smart_read.py": "23f514859df4ec0b228e0667187c28650982f3b2e6133d64de898dcfc54e6399",
+    "packages/friday-tools/src/friday_tools/web/reader.py": "3be2e72097d9305f81bf9891f8bb2b31954d8cfa404a6cc3282f43dd4eb0314a",
+    "packages/friday-tools/src/friday_tools/web/fetch.py": "64a510e33957e27dbc215814a003c53feab6a7505dc3023a319cfd134b719f0e",
+    "packages/friday-memory/src/friday_memory/ingestion/metadata.py": "1952c60b10f6e929117eda8c86b0d21f64f526b2297f01bbb8c20bc712811e85",
+    "packages/friday-memory/src/friday_memory/ingestion/chunker.py": "3ab2ee869b9706d76b86c4834695fa6948ab10a50685df0566b3f0547c073015",
+    "packages/friday-memory/src/friday_memory/ingestion/tool_ingester.py": "e20502fb54d7288ed4ced51fc206d9a1070addf472ac156fc21a42331eea19e7",
+    "packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py": "a125280d7eeacf842d6420e0030d9a76665196a9fa3e8d47d2115fa01e802e0c",
+    "packages/friday-llm/src/friday_llm/model_library.py": "754effe6adf32890073866d3192f75bbb7354642c5c32a64df456c22321b6add",
+    "packages/friday-llm/src/friday_llm/embeddings.py": "b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b",
+    "packages/friday-core/src/friday_core/interfaces/memory.py": "5082f24ab7dda1a1a77e05702e8874cbd656bcbb19b4dabaa96b531b16ed76ac",
+    "packages/friday-core/pyproject.toml": "a25eeb33992595b3bb5f9fff277a7d74fc14a307153974ebef053ca27757933c",
+    "packages/friday-commands/pyproject.toml": "b59dc20b840692b32b0d2dfc7bf756d202cfff5e81b2f9273f4adb18c46374ec",
+    "packages/friday-tools/pyproject.toml": "40f234b2f32bac75010ea6bbaa7b09e5d712e6d3d839a1963b485f6c1efd5b76",
+    "packages/friday-memory/pyproject.toml": "2f02fb0bf8ce6eeef55e5824420cd70b997eea51592221c6f3b1fc4c82dfdcfa",
+    "packages/friday-llm/pyproject.toml": "a86ec2a3f4d922a4305eda96a088c1bd7e354b82adebc1ec2a61ef7614336ea9",
+    "packages/friday-chat/pyproject.toml": "43cb2b3f4a4a950d4cf22875b5a38f82993649b43ea6760880c948c10fc381ec",
+    "pyproject.toml": "d1e8ff05afbe8f1a06d3ddaa07db520ff0a1378f6fae23baf3ee525b9619e9d7",
+    "uv.lock": "da69afe794ac85afce534107b5f6579514ed600ffc13e15a7c5a8b93c77ffedc"
+  },
+  "protected_manifest": {
+    "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-ingest-council-r1-inputs-qj57z4f_/protected-manifest.json",
+    "sha256": "647f359a7e101c74340cf0b93c654d2370a8ec9eae67c3d6cced34b7fb505f6b",
+    "entries": 17536
+  },
+  "preserved_state": {
+    "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-ingest-council-r1-inputs-qj57z4f_/preserved-state.json",
+    "sha256": "43bc63142365560b7bfc72004d0edd493f1c9ec5f21e7cff724b54b12af52ce8"
+  },
+  "logical_index_sha256": "f12f3152b2900cf9df29eff6fd1b8fec32d9bccbb5672a4fe6537c3116b571bf",
+  "status_porcelain_all": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/backups/1bca75db4f1d4d049db21d167e4c13b7/.journal.json.write.lock\n?? .friday-old/backups/1bca75db4f1d4d049db21d167e4c13b7/bundle/.manifest.json.write.lock\n?? .friday-old/backups/1bca75db4f1d4d049db21d167e4c13b7/bundle/manifest.json\n?? .friday-old/backups/1bca75db4f1d4d049db21d167e4c13b7/journal.json\n?? .friday-old/backups/1bca75db4f1d4d049db21d167e4c13b7/memory/chroma-logical.json\n?? .friday-old/backups/1bca75db4f1d4d049db21d167e4c13b7/memory/graph.json\n?? .friday-old/backups/1bca75db4f1d4d049db21d167e4c13b7/memory/manifest.json\n?? .friday-old/backups/1bca75db4f1d4d049db21d167e4c13b7/transcript/manifest.json\n?? .friday-old/backups/1bca75db4f1d4d049db21d167e4c13b7/transcript/transcript.sqlite3\n?? .friday-old/backups/1bca75db4f1d4d049db21d167e4c13b7/transcript/transcript.sqlite3-shm\n?? .friday-old/backups/1bca75db4f1d4d049db21d167e4c13b7/transcript/transcript.sqlite3-wal\n?? .friday-old/backups/44930eed323e49679bc933bb422eb459/.journal.json.write.lock\n?? .friday-old/backups/44930eed323e49679bc933bb422eb459/bundle/.manifest.json.write.lock\n?? .friday-old/backups/44930eed323e49679bc933bb422eb459/bundle/manifest.json\n?? .friday-old/backups/44930eed323e49679bc933bb422eb459/journal.json\n?? .friday-old/backups/44930eed323e49679bc933bb422eb459/memory/chroma-logical.json\n?? .friday-old/backups/44930eed323e49679bc933bb422eb459/memory/graph.json\n?? .friday-old/backups/44930eed323e49679bc933bb422eb459/memory/manifest.json\n?? .friday-old/backups/44930eed323e49679bc933bb422eb459/transcript/manifest.json\n?? .friday-old/backups/44930eed323e49679bc933bb422eb459/transcript/transcript.sqlite3\n?? .friday-old/backups/44930eed323e49679bc933bb422eb459/transcript/transcript.sqlite3-shm\n?? .friday-old/backups/44930eed323e49679bc933bb422eb459/transcript/transcript.sqlite3-wal\n?? .friday-old/backups/712606c8e4ec405f9fcb88e3ad4cb6a8/.journal.json.write.lock\n?? .friday-old/backups/712606c8e4ec405f9fcb88e3ad4cb6a8/bundle/.manifest.json.write.lock\n?? .friday-old/backups/712606c8e4ec405f9fcb88e3ad4cb6a8/bundle/manifest.json\n?? .friday-old/backups/712606c8e4ec405f9fcb88e3ad4cb6a8/journal.json\n?? .friday-old/backups/712606c8e4ec405f9fcb88e3ad4cb6a8/memory/chroma-logical.json\n?? .friday-old/backups/712606c8e4ec405f9fcb88e3ad4cb6a8/memory/graph.json\n?? .friday-old/backups/712606c8e4ec405f9fcb88e3ad4cb6a8/memory/manifest.json\n?? .friday-old/backups/712606c8e4ec405f9fcb88e3ad4cb6a8/transcript/manifest.json\n?? .friday-old/backups/712606c8e4ec405f9fcb88e3ad4cb6a8/transcript/transcript.sqlite3\n?? .friday-old/backups/712606c8e4ec405f9fcb88e3ad4cb6a8/transcript/transcript.sqlite3-shm\n?? .friday-old/backups/712606c8e4ec405f9fcb88e3ad4cb6a8/transcript/transcript.sqlite3-wal\n?? .friday-old/backups/7145d0feca6b45cc9287f869d42c02cb/.journal.json.write.lock\n?? .friday-old/backups/7145d0feca6b45cc9287f869d42c02cb/bundle/.manifest.json.write.lock\n?? .friday-old/backups/7145d0feca6b45cc9287f869d42c02cb/bundle/manifest.json\n?? .friday-old/backups/7145d0feca6b45cc9287f869d42c02cb/journal.json\n?? .friday-old/backups/7145d0feca6b45cc9287f869d42c02cb/memory/chroma-logical.json\n?? .friday-old/backups/7145d0feca6b45cc9287f869d42c02cb/memory/graph.json\n?? .friday-old/backups/7145d0feca6b45cc9287f869d42c02cb/memory/manifest.json\n?? .friday-old/backups/7145d0feca6b45cc9287f869d42c02cb/transcript/manifest.json\n?? .friday-old/backups/7145d0feca6b45cc9287f869d42c02cb/transcript/transcript.sqlite3\n?? .friday-old/backups/7145d0feca6b45cc9287f869d42c02cb/transcript/transcript.sqlite3-shm\n?? .friday-old/backups/7145d0feca6b45cc9287f869d42c02cb/transcript/transcript.sqlite3-wal\n?? .friday-old/backups/7df0b2904c504c399c42952189d1f80e/.journal.json.write.lock\n?? .friday-old/backups/7df0b2904c504c399c42952189d1f80e/journal.json\n?? .friday-old/chroma/chroma.sqlite3\n?? .friday-old/exports/.friday_transcripts.sqlite.669c204b5b3d45f5a97475f276e67ce0.restore-shm\n?? .friday-old/exports/.friday_transcripts.sqlite.669c204b5b3d45f5a97475f276e67ce0.restore-wal\n?? .friday-old/exports/.friday_transcripts.sqlite.7aeffb803ecc498481ad897811dbc3fc.restore-shm\n?? .friday-old/exports/.friday_transcripts.sqlite.7aeffb803ecc498481ad897811dbc3fc.restore-wal\n?? .friday-old/exports/.friday_transcripts.sqlite.93b6c1cce87f4b6cadda035b2d6b8250.restore-shm\n?? .friday-old/exports/.friday_transcripts.sqlite.93b6c1cce87f4b6cadda035b2d6b8250.restore-wal\n?? .friday-old/exports/.friday_transcripts.sqlite.dc3ee917708f4ffc9e5c5dc3065498c0.restore-shm\n?? .friday-old/exports/.friday_transcripts.sqlite.dc3ee917708f4ffc9e5c5dc3065498c0.restore-wal\n?? .friday-old/exports/friday_context.txt\n?? .friday-old/exports/friday_prompt.txt\n?? .friday-old/exports/friday_transcripts.sqlite\n?? .friday-old/graph.json\n?? .friday-old/reorganization_logs/.1bca75db4f1d4d049db21d167e4c13b7.json.write.lock\n?? .friday-old/reorganization_logs/.44930eed323e49679bc933bb422eb459.json.write.lock\n?? .friday-old/reorganization_logs/.712606c8e4ec405f9fcb88e3ad4cb6a8.json.write.lock\n?? .friday-old/reorganization_logs/.7145d0feca6b45cc9287f869d42c02cb.json.write.lock\n?? .friday-old/reorganization_logs/.7df0b2904c504c399c42952189d1f80e.json.write.lock\n?? .friday-old/reorganization_logs/1bca75db4f1d4d049db21d167e4c13b7.json\n?? .friday-old/reorganization_logs/44930eed323e49679bc933bb422eb459.json\n?? .friday-old/reorganization_logs/712606c8e4ec405f9fcb88e3ad4cb6a8.json\n?? .friday-old/reorganization_logs/7145d0feca6b45cc9287f869d42c02cb.json\n?? .friday-old/reorganization_logs/7df0b2904c504c399c42952189d1f80e.json\n?? .friday-old/vector/0fd302d0-2c5e-4dfd-880e-1b0735854bd3/data_level0.bin\n?? .friday-old/vector/0fd302d0-2c5e-4dfd-880e-1b0735854bd3/header.bin\n?? .friday-old/vector/0fd302d0-2c5e-4dfd-880e-1b0735854bd3/length.bin\n?? .friday-old/vector/0fd302d0-2c5e-4dfd-880e-1b0735854bd3/link_lists.bin\n?? .friday-old/vector/35255283-6c24-483e-9397-47d7c271452f/data_level0.bin\n?? .friday-old/vector/35255283-6c24-483e-9397-47d7c271452f/header.bin\n?? .friday-old/vector/35255283-6c24-483e-9397-47d7c271452f/length.bin\n?? .friday-old/vector/35255283-6c24-483e-9397-47d7c271452f/link_lists.bin\n?? .friday-old/vector/36fdef9f-44e5-42c8-afc8-2d1092472067/data_level0.bin\n?? .friday-old/vector/36fdef9f-44e5-42c8-afc8-2d1092472067/header.bin\n?? .friday-old/vector/36fdef9f-44e5-42c8-afc8-2d1092472067/length.bin\n?? .friday-old/vector/36fdef9f-44e5-42c8-afc8-2d1092472067/link_lists.bin\n?? .friday-old/vector/5f258b85-297a-4787-abef-e15e069846dc/data_level0.bin\n?? .friday-old/vector/5f258b85-297a-4787-abef-e15e069846dc/header.bin\n?? .friday-old/vector/5f258b85-297a-4787-abef-e15e069846dc/length.bin\n?? .friday-old/vector/5f258b85-297a-4787-abef-e15e069846dc/link_lists.bin\n?? .friday-old/vector/8ec3b3aa-70c7-434a-95e3-06c08038b739/data_level0.bin\n?? .friday-old/vector/8ec3b3aa-70c7-434a-95e3-06c08038b739/header.bin\n?? .friday-old/vector/8ec3b3aa-70c7-434a-95e3-06c08038b739/length.bin\n?? .friday-old/vector/8ec3b3aa-70c7-434a-95e3-06c08038b739/link_lists.bin\n?? .friday-old/vector/chroma.sqlite3\n?? .friday-old/vector/extraction_rejections.log\n",
+  "dirty_files": [
+    "packages/friday-chat/config.example.yaml",
+    "packages/friday-chat/models-config.example.yaml"
+  ],
+  "permitted_untracked_root": ".friday-old/",
+  "roster": [
+    {
+      "seat": "sol",
+      "provider": "OpenAI",
+      "model": "gpt-6.1-sol",
+      "effort": "high"
+    },
+    {
+      "seat": "astra",
+      "provider": "OpenAI",
+      "model": "gpt-6-astra",
+      "effort": "high"
+    },
+    {
+      "seat": "opus",
+      "provider": "Anthropic",
+      "model": "claude-opus-5-5",
+      "effort": "high"
+    }
+  ],
+  "authority_precedence": [
+    "Explicit latest maintainer roster and discussion decisions",
+    "Repository policies",
+    "Current proposed REM and companion within scope",
+    "Historical assessment/receipts are observations only, not independent proof"
+  ],
+  "proposal_gate": "Judge coherence, safety, boundedness and readiness to undertake gate A/final directive drafting. Pending implementation/packages/models are explicitly not built. Do not demand future product tests now or return BLOCKED merely because construction approval is absent. Flag substantive contradictions, unsafe assumptions, missing boundaries or dangerously deferred design decisions.",
+  "criteria": {
+    "IR-01": "Maintainer decisions, scope, authority, branch/source identity and separation of proposal review from construction/MAINT acceptance.",
+    "IR-02": "Local four-format admission, actual extraction before storage, complete-versus-declared coverage, partial/empty/diagnostic-content refusal.",
+    "IR-03": "PDF native text/OCR/order/page count and DOCX interleaved paragraphs/tables; trustworthy limits and omissions.",
+    "IR-04": "XLSX visible sheets/rows/columns, missing/error cached formulas, type/merged/table relationships, no recalculation or silent preview caps.",
+    "IR-05": "PPTX slides/notes/hidden content/native tables and declared visual omissions, no fabricated success or media fetch.",
+    "IR-06": "Original-raw-tail quoted paths plus scoped options, flags/description ambiguities, custom-handler ownership and unchanged root API54.",
+    "IR-07": "All-source document/512 defaults, per-command/YAML precedence, document/recursive/fixed semantics, overlap and final token budgets.",
+    "IR-08": "Typed reusable Core/Memory/Tools/LLM boundaries, dependency cycles, shared policy, native structure access and no double chunking.",
+    "IR-09": "Embedding catalog identity/limits/dimensions, exact counter inference and effective served capacity; Qwen remains illustrative.",
+    "IR-10": "Query/document preparation, token/special/header overhead, vector cardinality/dimensions, overflow reject/split roles and storage safety.",
+    "IR-11": "Dependency/extras/Certifi floor and post-install enforcement, local model/counter provisioning, offline behavior and version proof boundaries.",
+    "IR-12": "Resource/ZIP/page/cell limits, malformed/encrypted inputs, cancellation/progress/side effects and untrusted-source safety.",
+    "IR-13": "Actual text/web/tool/SmartFileReadTool handoffs and companion scope, cache provenance/invalidation, preserved opt-in/admission/quarantine.",
+    "IR-14": "Meaningful future source/installed/genuine-fixture/Chroma/negative/mutation/boundary tests, preserved oracles and baseline failure accounting.",
+    "IR-15": "Fresh/disposable store decision, no hidden migration/reset/cleanup, truthful governance/roster/status and future PR base.",
+    "IR-16": "Bounded gate-A feasibility, exact implementation-directive stop conditions and whether any prerequisite is dangerously deferred or underspecified."
+  },
+  "rubric": {
+    "scope_authority_and_boundedness": 1.5,
+    "shared_architecture_and_integration": 2.0,
+    "format_extraction_and_coverage": 2.0,
+    "chunking_embedding_and_data_safety": 3.0,
+    "verification_reproducibility_and_reporting": 1.5
+  },
+  "outcomes": [
+    "VERIFIED",
+    "CHANGES_REQUESTED",
+    "BLOCKED"
+  ],
+  "score_rule": "Independent advisory score /10, rubric breakdown, no score manipulation or mandatory-finding waiver. No minimum threshold imported from MAINT.",
+  "conduct": {
+    "shared_checkout_exception": "Authorized bounded shared-checkout READ-ONLY review of frozen documents/source with exact protected dirty state; never write/stage/commit/checkout/clean repository or supplied inputs. Git metadata T3 checkpoints may occur; logical identity and protected contents still must match.",
+    "freshness": "New context, no parent transcript/private reasoning/current peer verdicts. No nested agents/delegation. Prior implementation reports are not correctness proof for this proposal.",
+    "isolation": "Every generated file/cache/report/export/locator belongs to YOUR OWN fresh external scratch. Do not write to these supplied inputs or any historical supplied scratch. Do not replay receipt argv or historical controller scripts. Any isolation breach is BLOCKED and disclosed, not cleaned/restored away.",
+    "network": "Public official primary documentation may be read using web tools for verification. No application/provider/model inference, installations/resolution/model downloads, real/user store reads or mutations, repository/PR mutations or runtime application launches.",
+    "authority_json": "Do not dump whole authority.json or old review directories. Extract current top-level branch/current_scope/product_code_authority/active_council_roster and document_ingestion_remediation fields. Historical other-unit scores/verdicts are not review evidence.",
+    "commands": "Use GIT_OPTIONAL_LOCKS=0 and PYTHONDONTWRITEBYTECODE=1 for all Git/child processes. Set UV_CACHE_DIR/XDG_CACHE_HOME and any output/cache location to own scratch before running administrative commands. No tests/builds/mypy/Ruff required in this design pass; independent safe stdlib/static probes permitted."
+  },
+  "required_checks": [
+    {
+      "id": "integrity-start",
+      "command": "python3 -B SUPPLIED/check_integrity.py SUPPLIED/review-request.json > OWN_SCRATCH/start-integrity.json; verify request SHA first. Script hashes logical index before any status."
+    },
+    {
+      "id": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ]
+    },
+    {
+      "id": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ]
+    },
+    {
+      "id": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ]
+    },
+    {
+      "id": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ]
+    },
+    {
+      "id": "whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "c36e7ee51a9328918b9bb97712aa7f1d4a850d19..8be50b1218fc4db67fbd5d546fea9d7be6a2fd64"
+      ]
+    },
+    {
+      "id": "full-deep-inspection",
+      "command": "Independently inspect every IR criterion against full proposed text, relevant current source and official sources as needed. Use counterexamples, not builder verdicts."
+    },
+    {
+      "id": "integrity-end",
+      "command": "Run same immutable check_integrity.py into own end-integrity.json; no mutation in between."
+    }
+  ],
+  "known_baseline_limits": [
+    "Gate A exact Docling/dependency/OCR/counter/model readiness intentionally pending; no installed candidate behavior claimed.",
+    "Current /ingest character slicing, missing LLM length/dimension guards and placeholder document reading are observed pre-remediation gaps to assess against proposed coverage, not a claim of implemented fixes.",
+    "Historical root Ruff 534, root test_display collection conflict7196, seven legacy format failures and MAINT Chat1413/15 are failed/unwaived background. Do not rerun unrelated runtime suites.",
+    "MAINT UAT/acceptance and broader refactor/TUI remain separate; parent PR15 merged does not grant INGEST construction."
+  ],
+  "report": "Write YOUR_OWN_SCRATCH/review-report.md with outcome, identity/authority/independence, stable seat-prefixed mandatory/advisory finding IDs, requirement/source evidence and mitigation/test impact, full IR matrix, exact commands/results, reproduced-vs-inspected/public-source verification, skipped checks/limits, rubric score and next gate. Final response gives outcome/score/findings summary and absolute report path. Do not write report into repository.",
+  "integrity_helper": {
+    "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-ingest-council-r1-inputs-qj57z4f_/check_integrity.py",
+    "sha256": "6e1ec704678475fa6dbd45301c94a824e217a177cc8c83e05ee05b6f606278c3"
+  }
+}

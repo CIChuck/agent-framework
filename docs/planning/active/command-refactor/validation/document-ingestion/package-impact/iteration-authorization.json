@@ -1,0 +1,55 @@
+{
+  "unit": "INGEST-PACKAGE-IMPACT-001",
+  "date": "2026-11-11",
+  "maintainer": "Chuck Russell",
+  "authority": "Explicit current-session instructions; document drafting followed by a fresh council and bounded document iteration.",
+  "instructions": [
+    "Once the package impact assessment document is constructed invoke the council. Expect at least a 9.5 score in order to move on. A loop up to 4 times without getting me involved",
+    "Make sure that I have a link to the impact assessment when it is completed. I would like to review it in tandem with the council."
+  ],
+  "assessment": "docs/planning/active/command-refactor/package-impact-assessment.md",
+  "criteria": "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/review-criteria.md",
+  "roster": [
+    {
+      "seat": "sol",
+      "provider": "codex",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    },
+    {
+      "seat": "astra",
+      "provider": "codex",
+      "model": "gpt-6-astra",
+      "reasoning_effort": "high"
+    },
+    {
+      "seat": "opus",
+      "provider": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "reasoning_effort": "high"
+    }
+  ],
+  "maximum_total_rounds_including_initial": 4,
+  "new_fresh_context_per_seat_per_round": true,
+  "early_stop": "Every seat VERIFIED, no mandatory finding, independent coverage and overall scores each at least 9.5/10.",
+  "scoring": "Score honestly; never inflate to satisfy the gate. Do not average seats or waive a mandatory finding with a score.",
+  "authorized_corrections": "Bounded non-destructive documentation corrections to this assessment, its traceability, approval-condition records and current routing. Record finding dispositions and freeze a new candidate before a new full assessment review.",
+  "technical_boundary": "Summarize current reviewed REM, compatibility annex and Tools companion. Do not silently amend those frozen contracts, authorize another package or implement their proposed changes. Report a material uncovered design issue for explicit scope disposition.",
+  "do_not_repeat": "No new implementation review, model/dependency qualification, store operations or full feature-design rewrite is authorized by this document review.",
+  "maintainer_review": "Provide a direct assessment link now and on revision; maintainer may review in parallel. Council verification does not satisfy the maintainer's package-impact approval condition.",
+  "stop_after_four": "Stop and present remaining findings/scores for guidance if the qualifying gate has not been achieved. No automatic extra or replacement council round.",
+  "authority_not_granted": [
+    "Gate-A effects or dependency/model installs/downloads",
+    "product code/tests/package metadata edits or runtime configuration changes",
+    "provider/model calls, user-store inspection/reset/migration or cleanup",
+    "construction directive approval or maintainer satisfaction/acceptance",
+    "push, PR, merge, publication or delivery"
+  ],
+  "lightweight_change_exemption": {
+    "maintainer": "Chuck Russell",
+    "date": "2026-11-11",
+    "scope": "Assessment, criteria, authorization, current status/navigation, append-only evidence/log and bounded document corrections only.",
+    "reason": "Explicit document drafting and review request; no product behavior, metadata, lock or runtime configuration changes.",
+    "validation": "Independent read-only document council plus board/dashboard, documentation lifecycle, metadata, scoped whitespace and preservation checks."
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "authorized_by": "Chuck Russell",
+  "recorded_at": "2026-11-11T02:02:58.635062+00:00",
+  "instruction": "Let's incorporate the high- and medium-impact findings into our spec. Once they are incorporated. Invoke the council. Very precise with your counsel guidance. We're shooting for a 9.5 for coverage. Have my permission to iterate up to 3 times. After the fourth, stop and ask for my guidance.",
+  "scope": "Document-only incorporation of nine mandatory compatibility themes plus selected high/medium-impact advisory dispositions; fresh framework-wide design/source-feasibility council and bounded document corrections. No product construction/Gate-A/model/store/delivery actions.",
+  "budget": {
+    "initial_pass": 1,
+    "maximum_additional_iterations": 3,
+    "maximum_total_passes": 4,
+    "global_rounds": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "stop": "Stop early only if each seat independently VERIFIED with overall and coverage scores >=9.5 and zero mandatory findings. At latest after pass4 stop and ask maintainer guidance; no fifth pass, unlimited reissue or provider substitution. Blocked/incomplete passes count.",
+    "explicit_document_only_exception": "Maintainer explicitly authorizes up to three corrective document iterations beyond the usual two-cycle escalation; this does not extend to implementation or any wider scope.",
+    "initial_cycle_pass": 1,
+    "first_global_round": 6
+  },
+  "seats": [
+    {
+      "seat": "sol",
+      "provider": "codex",
+      "model": "gpt-6.1-sol",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "astra",
+      "provider": "codex",
+      "model": "gpt-6-astra",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "opus",
+      "provider": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "options": {
+        "effort": "high",
+        "fastMode": false
+      }
+    }
+  ],
+  "no_active_old_council": true,
+  "low_impact_dispositions": "Prior status-summary correction remains; telemetry is explicitly unchanged. No additional low-impact implementation work.",
+  "exemption": {
+    "reason": "Explicit maintainer request to revise proposed technical documents and review them; no runtime behavior changes during planning.",
+    "validation": "Document/admin, exact path/hash/scope checks, state preservation; future runtime/model proof remains pending."
+  }
+}

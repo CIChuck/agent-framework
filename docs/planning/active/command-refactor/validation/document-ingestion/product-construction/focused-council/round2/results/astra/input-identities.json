@@ -1,0 +1,42 @@
+[
+  {
+    "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+    "sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1"
+  },
+  {
+    "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/criteria.md",
+    "sha256": "f6772d98dec630005e6e7a9d4ff1007e1fab809399cd8fa917768be74170afcb"
+  },
+  {
+    "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/review-context.md",
+    "sha256": "34b9bc82755e60ad3c266afb5a7f0fe6596e25c14cc8eadf2ad7144c09d1d170"
+  },
+  {
+    "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/authorization.json",
+    "sha256": "4b7435d516830347409cc7204936f3e7f3a1343f37026646c9c525df626e53a3"
+  },
+  {
+    "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
+    "sha256": "601babef2d35c11b65d5c224e082b191b3212b973e287d16740be604b54ccbc4"
+  },
+  {
+    "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+    "sha256": "b7d93caf2d302e0802b3c6b7f523de42d2ab98f625b5a8a02326f21a8fec2f9f"
+  },
+  {
+    "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/package-impact-assessment.md",
+    "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176"
+  },
+  {
+    "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/readiness-decision.md",
+    "sha256": "3f31544c6c49ea03665d9899eae410b4a510c6078bb3c19f5e974e5b3693c8e0"
+  },
+  {
+    "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/round2/correction-brief.json",
+    "sha256": "747c62569065d33900158f29a5b88a96fbb09cca5dbe5d7b07bf3457ac0a1ef5"
+  },
+  {
+    "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-focused-council-ry9gtwj2/round2-inputs/current-controls.json",
+    "sha256": "1811d7b535c9a1777367b2bcc4022069120d34019f560e517785841f0e6698a2"
+  }
+]

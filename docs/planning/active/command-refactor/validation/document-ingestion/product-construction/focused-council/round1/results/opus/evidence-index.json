@@ -1,0 +1,11 @@
+{
+  "original_directory": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/f905f5aa-6975-4f31-8de4-99301e3cce80/scratchpad/opus-seat-r1-IRoz",
+  "report_sha256": "1f1dadbd9a00ca901114dd584cffc2b99596110ba1ac6574ecacd01bf3bc1ab0",
+  "artifacts": [
+    {
+      "path": "opus-round1-report.md",
+      "sha256": "1f1dadbd9a00ca901114dd584cffc2b99596110ba1ac6574ecacd01bf3bc1ab0"
+    }
+  ],
+  "scope": "Original completed focused document assessment; no product conformance or readiness/effect approval."
+}

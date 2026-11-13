@@ -1,0 +1,8 @@
+{
+  "candidate": "2956b861de75fcf7ebf463c82f5f470cf6fa7b40",
+  "request": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r2-p8slwm9l/inputs/review-request.json",
+  "request_sha256": "3a113826ce9b458ce21aa17298ed1ce5c7a096eb93f930353f82070ac6865455",
+  "helper_sha256": "6e1ec704678475fa6dbd45301c94a824e217a177cc8c83e05ee05b6f606278c3",
+  "protected_entries": 17561,
+  "logical_index": "587b8099a2c6a1be5adc8bfe021bbc9cd6c6ebdcbf54a78d543d57007125ebe3"
+}

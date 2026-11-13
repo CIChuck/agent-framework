@@ -1,0 +1,27 @@
+{
+  "seat": "opus",
+  "round": 2,
+  "verdict": "VERIFIED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "areas_total": 8,
+  "coverage": 9.6,
+  "overall": 9.57,
+  "mandatory_findings": [],
+  "source": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/69d37470-8fcf-47b7-af5a-19f08cf8153b/scratchpad/opus-r2-seat.JczAZv",
+  "report_sha256": "662f43cd29d9d4f91886f9c99e16c3e6e7b0bc17c53fe1deea2805047c2d27f5",
+  "files": [
+    {
+      "path": "report.md",
+      "sha256": "662f43cd29d9d4f91886f9c99e16c3e6e7b0bc17c53fe1deea2805047c2d27f5"
+    },
+    {
+      "path": "entry.txt",
+      "sha256": "f436860465741c7e307de7e465e87dd11ef9e96b6b4beac618d8d785c70a4c7b"
+    },
+    {
+      "path": "exit.txt",
+      "sha256": "f436860465741c7e307de7e465e87dd11ef9e96b6b4beac618d8d785c70a4c7b"
+    }
+  ]
+}

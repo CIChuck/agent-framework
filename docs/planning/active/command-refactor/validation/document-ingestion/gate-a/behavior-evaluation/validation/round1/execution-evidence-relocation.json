@@ -1,0 +1,17 @@
+{
+  "reason": "Preserve exact initial execution evidence before corrected evidence publication",
+  "members": [
+    {
+      "path": "behavior-evidence.tar.gz",
+      "sha256": "44bcbadc510c7c7a9dc80ab28db51f4c7c377ad0693c7a2f227f58bb4af6a297"
+    },
+    {
+      "path": "evidence-index.json",
+      "sha256": "e33e6e49728e6cfdb7d198671d774bdc83e84301c4afecc76bb106629274bbd4"
+    },
+    {
+      "path": "evidence-members.json.gz",
+      "sha256": "081260cf048ef1ad8a77d8313d462f07436ff58e1787c8ecda81dcc35f7b32d1"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "workflow": "activation_package_council",
+  "maximum_rounds": 9,
+  "rounds_started": 7,
+  "rounds_completed": 7,
+  "current_round": null,
+  "status": "completed_verified_gate_met",
+  "instructions_approved": true,
+  "history": [
+    {
+      "round": 1,
+      "candidate": "b04ab83afda313630eaaaa4e1dab09b71d9ce59c",
+      "result": "CHANGES_REQUESTED",
+      "gate_met": false,
+      "results": "round1/results/index.json",
+      "reconciliation": "round1/reconciliation.md"
+    },
+    {
+      "round": 2,
+      "candidate": "c24ff0998010e960fb86c1a89b150ada079bbd46",
+      "result": "CHANGES_REQUESTED",
+      "gate_met": false,
+      "results": "round2/results/index.json",
+      "reconciliation": "round2/reconciliation.md"
+    },
+    {
+      "round": 3,
+      "candidate": "fd7d9f5d429857906d53da8fc053dc85b901a635",
+      "result": "CHANGES_REQUESTED",
+      "gate_met": false,
+      "results": "round3/results/index.json",
+      "report": "round3/results/report.md"
+    },
+    {
+      "round": 4,
+      "candidate": "a4b18fe5743ea8543bd000f6f85d8225d4dbb676",
+      "result": "CHANGES_REQUESTED",
+      "gate_met": false,
+      "results": "round4/results/index.json",
+      "reconciliation": "round4/reconciliation.md"
+    },
+    {
+      "round": 5,
+      "candidate": "34981199842ef73891605a20f3b4275eeb37e943",
+      "result": "CHANGES_REQUESTED",
+      "gate_met": false,
+      "results": "round5/results/index.json",
+      "reconciliation": "round5/reconciliation.md"
+    },
+    {
+      "round": 6,
+      "candidate": "7cf8956012a9c66d15f959436c6e129cde8a86c5",
+      "result": "CHANGES_REQUESTED",
+      "gate_met": false,
+      "results": "round6/results/index.json",
+      "reconciliation": "round6/reconciliation.md"
+    },
+    {
+      "round": 7,
+      "candidate": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a",
+      "result": "VERIFIED",
+      "gate_met": true,
+      "results": "round7/results/index.json",
+      "report": "round7/results/report.md"
+    }
+  ],
+  "construction_approved": false,
+  "effects_approved": false,
+  "active": false,
+  "gate_met": true,
+  "overall_result": "VERIFIED",
+  "remaining_rounds": 0,
+  "additional_rounds_authorized": 3,
+  "additional_rounds_started": 1,
+  "additional_rounds_completed": 1,
+  "extension": "extension2-authorization.json",
+  "extension_sha256": "9d468ca11029a8f3d9d4b2acf8ac8aeaa3debdf5c5e57e787d30d740d8bfbb05",
+  "extension_ordinal": 2,
+  "unused_authorized_rounds": 2,
+  "stop_reason": "all_three_complete_seats_verified_at_or_above_9_5"
+}

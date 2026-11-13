@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-12T13:08:58.675843+00:00",
+  "kind": "operator_reported_model_id_not_runtime_qualification",
+  "operator": "Chuck Russell",
+  "reported_loaded_model_id": "text-embedding-nomic-embed-text-v1.5",
+  "source": "Answer to exact loaded Nomic model ID/version question",
+  "tokenizer_match": "not_yet_qualified",
+  "served_artifact_revision_digest": "not_yet_bound",
+  "effective_server_input_limit": "not_yet_observed",
+  "effects_activation": false,
+  "endpoint_calls": 0,
+  "note": "Record supplied identity only. Local token counting supports the approved token-budget chunking test; the embedding API still receives text and tokenizes server-side. No technical plan or production configuration changed."
+}

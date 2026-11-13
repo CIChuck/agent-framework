@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "report": {
+    "path": "report.md",
+    "sha256": "155478189d592ba2cd7e4178160a06826ae52cecf83a2b936dd9285fd37c342d",
+    "retention": "verbatim formal report"
+  },
+  "exact_safe_admin_commands": "admin-commands.json",
+  "raw_other_command_evidence": {
+    "source_path": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/fb47a1e3-227b-451b-84fd-476f7fc07d0a/scratchpad/opus-r2-review.DuM9d4/ledger.sha256",
+    "sha256": "12dae956ee591235760fb551e8676b05f5a212808e7eb2a5cfbe02df86d747de",
+    "retention": "Original external reviewer artifact retained unchanged; raw captured source/output payloads are not duplicated into closeout or future review inputs."
+  },
+  "reviewer_artifact_hashes": {
+    "closing-integrity.json": "ea37e73aebca0dd6b2631d5f8db6164c12539fbfff58e06c81cb59701fc01218",
+    "inv-counts.json": "db95eae5c1bf7d38ac0d58a205827a9d1452b9d57b125bd68117bb5a130e4816",
+    "admin-commands.json": "82305ccb02f32cb6a7fc758fa1fddd4bdeff55570cdd804bba30febae5dfe82d",
+    "report.md": "155478189d592ba2cd7e4178160a06826ae52cecf83a2b936dd9285fd37c342d",
+    "opening-integrity.json": "ea37e73aebca0dd6b2631d5f8db6164c12539fbfff58e06c81cb59701fc01218",
+    "ledger.sha256": "12dae956ee591235760fb551e8676b05f5a212808e7eb2a5cfbe02df86d747de",
+    "arch.pkl": "99abfb04c09b885d60e1de5ccdf9db5708c3c0570146ca0422457e1a0ececb34",
+    "closing.out": "ea37e73aebca0dd6b2631d5f8db6164c12539fbfff58e06c81cb59701fc01218",
+    "inventory.json": "65a7e22114872c86fdd83c659484413d26fca17a27be2a892ca59a58a64cf3ed"
+  },
+  "retained_safe_file_hashes": {
+    "closing-integrity.json": "ea37e73aebca0dd6b2631d5f8db6164c12539fbfff58e06c81cb59701fc01218",
+    "admin-commands.json": "82305ccb02f32cb6a7fc758fa1fddd4bdeff55570cdd804bba30febae5dfe82d",
+    "report.md": "155478189d592ba2cd7e4178160a06826ae52cecf83a2b936dd9285fd37c342d",
+    "opening-integrity.json": "ea37e73aebca0dd6b2631d5f8db6164c12539fbfff58e06c81cb59701fc01218"
+  },
+  "scope": "No product or model replay; static reports/boundaries/admin evidence only. Original detailed ledgers remain external and hash-bound; no archive is advertised as complete raw-output retention."
+}

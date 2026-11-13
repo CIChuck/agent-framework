@@ -1,0 +1,38 @@
+{
+  "original_directory": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/1fa344f1-96fb-4755-9dca-1cd767dc92ee/scratchpad/r3-opus-pass1",
+  "retained_formal_report": "Terminal full report captured verbatim",
+  "report_sha256": "818f67ad58d5c9b57abd8a1d71bc1fb2fa5a272e6abcf38ed7f6f72c019214f7",
+  "safe_admin_boundary_artifacts": [
+    {
+      "path": "opening-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    },
+    {
+      "path": "closing-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    },
+    {
+      "path": "admin-commands.json",
+      "sha256": "c83b0604f605f56e7a6441ba789328b58893c3ddb3f83c0a9a9120b29d0efe6b"
+    }
+  ],
+  "external_additional_artifact_hashes": [
+    {
+      "file": "closing-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    },
+    {
+      "file": "admin-commands.json",
+      "sha256": "c83b0604f605f56e7a6441ba789328b58893c3ddb3f83c0a9a9120b29d0efe6b"
+    },
+    {
+      "file": "report.md",
+      "sha256": "06367284827e123174f7eeb647b89825669e5b0529b8816e8da52e77f009cbc0"
+    },
+    {
+      "file": "opening-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    }
+  ],
+  "evidence_limit": "No unrun test/model/store claims. Opus on-disk report was abbreviated; full terminal report is retained here, with original summary separately preserved. No missing scripts are fabricated."
+}

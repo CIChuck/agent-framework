@@ -1,0 +1,17 @@
+{
+  "outcome": "VERIFIED",
+  "candidate": "1f5f86dcd8315eaf9a7508c44c65b4637766c323",
+  "closed": [
+    "E2E-IV-001"
+  ],
+  "actual_live_source": "c97777366671006f56866aa92898aaffcec524d6",
+  "new_live_execution": false,
+  "files": {
+    "request.json": "89c31e373f8b6c203f184569e39b6bc13b79a30813d5d970d6a901300256c6d0",
+    "report.md": "b85895d746ee8044b5eccb7deb3eda7273d40be43a30589801dc0ef1b7af3e6c",
+    "artifact-index.json": "7719b457f3b0accdf81e6afcb570f0f362059be3104021215f3ccf8ec093151c",
+    "command-ledger.json": "272ab6319f85ac30ace1a5887bdbc485a9aad2c70e19ba9856e3ce32ceeea6b4",
+    "review-evidence.tar.gz": "ec1f7f9baaca589222dcf9be2fdec8004e8507584f4c28a8b95547b530f95ced",
+    "ledger.json": "a0148ef17f90edb6f4f1b747cc8c37574c140fb3161b205b51aa40cf20c6ba3f"
+  }
+}

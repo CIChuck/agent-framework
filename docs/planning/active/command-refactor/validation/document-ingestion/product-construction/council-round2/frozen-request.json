@@ -1,0 +1,227 @@
+{
+  "version": 2,
+  "initiative": "friday-command-refactor",
+  "unit": "INGEST-PRODUCT-DIRECTIVE-COUNCIL",
+  "round": 2,
+  "maximum_authorized_rounds": 2,
+  "new_rounds_authorized": 1,
+  "repo": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "base": "5f43d424e3b695c3fb85227f74830a7d1dc895cf",
+  "full_unit_base": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "candidate": "be3aed3a9ba5629c548e36437e7e01a7333210d1",
+  "branch": "feature/cmd-ingest-001",
+  "target": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+  "target_sha256": "be9b6611d725740bff401464c3b4be6e51bb18396d3b631009f92501bba1ad8c",
+  "criteria": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/criteria.md",
+  "authorization": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/authorization.json",
+  "correction_brief": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/correction-brief.json",
+  "review_order": "Neutral numbered correction delta first, then FULL current PD01\u201316 plus PD-R01\u201303. No prior peer report/verdict/score/private reasoning input.",
+  "controller_scratch": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r2-yo1w1gus",
+  "boundary": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r2-yo1w1gus/boundary.json",
+  "safe_current_controls": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r2-yo1w1gus/current-controls.json",
+  "helper": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r2-yo1w1gus/review_tools.py",
+  "pins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "9c2840ea92bf5f25acd5c85d36a18d2c7d9677c0768d1e811aef5efde6fc936b"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+      "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/embedding-compatibility-contract.md",
+      "sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/proposals/tools-document-adoption.md",
+      "sha256": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+      "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/approval/ingest-package-impact.md",
+      "sha256": "f4f4a20d6db52f2459f767ede79f2db211a4a7118d6736f40551fd00fbf1cbec"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/test-migration-plan.md",
+      "sha256": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/command-architecture-update-plan.md",
+      "sha256": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/guide-update-handoff.md",
+      "sha256": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/behavior-evaluation/behavior-results.md",
+      "sha256": "92cc218e4addde573cb2784ddaec83332c84fece637cfa721187d98c387a302a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/behavior-evaluation/evidence-index.json",
+      "sha256": "316e913a407f012e69d1b26118f6604667eddda09a2eba6305f240b7dcdf7f1a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/end-to-end-evaluation/results.md",
+      "sha256": "afef85cfe26141dd2ff9cc3cb0e63a4a4423c2e12aa975a42fef9b4f9497fe88"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/end-to-end-evaluation/facts.json",
+      "sha256": "3461b01f117cf03cf9878c91705ca986cf30945fbccaca958e35c2942b36fa1f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/end-to-end-evaluation/evidence-index.json",
+      "sha256": "afc977ff29ffd74699c843de0804d246a54ad897fbcc11883272659450cdd1f6"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/results.md",
+      "sha256": "2eaa1f967edddeb8c8c6e40528d0fb9ad52ff2a2ae39e30245f31bed278448f3"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/facts-v2.json",
+      "sha256": "9a5d5159a9b1402cfaac16c197fd8ad2d5354ac92b97eb3538a33c216200d1ba"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/evidence-index-v2.json",
+      "sha256": "cc34541ed79606bcd18c37094288833d5036f7a1fd880695b1ecc795481765f7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
+      "sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-test-summary.json",
+      "sha256": "d0b8cddd06bddfd3a1b74924b3d4dc14bdad15ea200878ec348617a7676bbf5a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/test-migration-seed.json",
+      "sha256": "01b0e983af3ae77692e8daa59765bbd2a3d7f6f3cdfb86ec091c990382069601"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/preparation-authorization.json",
+      "sha256": "d57c864b280230ae7f0a351a6bedae1bfe83c843b81176619758c838c0636e0d"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
+      "sha256": "48a87bde31574763352f44eb9f1beb20e0be545d309aefe3240a66dd52ca994e"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
+      "sha256": "e7350f7810e5d7d51c93aba0fa66e3541e464134d4f815d6ec2d81707e7e2af1"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/authorization.json",
+      "sha256": "c593b36da42cb3897d7bb0bd272d28133e24321093aee27e7dda58534cc4ffbc"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/correction-brief.json",
+      "sha256": "0940534768dfcd42340e76a63d8ce9e1ee796d87703e658e934e0fc80d32360f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/approval/ingest-existing-store-policy.md",
+      "sha256": "3a9343e77d97e2d8b94ebab2d2fa8fb3c3c339b1c4a37c32899de86e58139668"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
+      "sha256": "2b0efb34438bba1394de63c00026b079af9eee4ec950a1bf42d0983411cb6ae0"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md",
+      "sha256": "fc681e1c483b3acb400b5a5854b9208b66c4401fc4a7455d778ca80b7b475f7f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+      "sha256": "be9b6611d725740bff401464c3b4be6e51bb18396d3b631009f92501bba1ad8c"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+      "sha256": "456d280d1961b9d57ae9e94af0398253ac6e051a654a871deedc0d73d1b64707"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/authority-manifest.json",
+      "sha256": "eddaf8d712dbc2437c611aae6c8284b603205535bfe197c10dccdff80e377d00"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/readiness-decision.md",
+      "sha256": "db8f54c1e80173cf2e3bf8e8c9b09446222e2450170bb7e1bfbeffc8ca211859"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/preparation-checks.json",
+      "sha256": "36682354102a4a11196883b7223d2c2a070370962b1d7918aab56f8ac4a889ed"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/criteria.md",
+      "sha256": "3e9f411962aa4b62d49df85ba014967aff394de213e068605bbcd2951c0dc02e"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/roster.json",
+      "sha256": "63f9b636d6151c8bab0bce7c00788f7fed67dd299697569142bb572ca80960c2"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/traceability-checks.json",
+      "sha256": "5b7f3c3da0b51c3d1325862e0a34c18db8711687d7bcd450ea17e8018fdb3acf"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/correction-checks.json",
+      "sha256": "7056661118946207ef4702625aaeda9ea887798b21cdbe60cde006e6a0255a6d"
+    },
+    {
+      "path": ".agents/skills/council/SKILL.md",
+      "sha256": "360493507c5f522d4a365f7f90f76c7eb37ad31ee36096a359c0715aae00b23c"
+    },
+    {
+      "path": ".agents/skills/friday-dev-board/SKILL.md",
+      "sha256": "d5b1074961e982d2bb28cb9549e90f8a7ff24a10a5748cffec5dcef594b42a76"
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r2-yo1w1gus/boundary.json",
+      "sha256": "bc77f0dfc2729296b6910e809df7edb18caba57aa9f0d35161016a6f3c369c17"
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r2-yo1w1gus/current-controls.json",
+      "sha256": "65fb757069e3a93adaaabdebf75904c3f8d7b2e647928f62b9a14a3b9aa5a0e9"
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r2-yo1w1gus/review_tools.py",
+      "sha256": "2e20c4e5568d8501e04c6c3a8e7e3277c8f67500f2d43d30851f7d864a2c7e46"
+    }
+  ],
+  "qualified_python": "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+  "review_scope": "Conditional DOCUMENT readiness and selected-source feasibility only. The companion is interaction context; no separate construction approval. All Q qualification/implementation/AG/UAT gates remain as stated; evaluate feasibility and completeness, not absence of unapproved code.",
+  "scoring": {
+    "coverage_threshold_each": 9.5,
+    "overall_threshold_each": 9.5,
+    "VERIFIED_and_zero_mandatory_findings_each": true,
+    "honesty": "Score complete requirement assessment within declared document/source scope; disclose actual depth/limits. No averaging, rounding up, inflation or scope expansion to obtain a score."
+  },
+  "required_checks": [
+    "Verify request SHA before reading, read full helper before executing, verify input pins and opening/closing full boundary with logical index before status",
+    "Read all current target, pinned governing/impact/test/architecture/guide/readiness/phase-map and neutral correction inputs. Compare old governed document/seed/summary/readiness source blobs at base, not prior reports.",
+    "Independently verify Q/I1/I2/I3/AG/UAT DAG, all12 scoped exit owner/path/prerequisite/planned-witness joins, complete36 DI original-definition digests/disjoint proof groups and14 FC dispositions; trace DI17/23/28/29/32/33 and per-slice versus final DI35/36/12.",
+    "Verify static module/fixture/seed hashes/AST node references and summary root/excluded scope without importing/collecting tests. Preserve original inventory/source and all valid obligations.",
+    "Inspect relevant source/metadata across each proposed owner/file boundary, full phase-critical methods, exact pool/caller/direct-opener/worker/recovery/Tools seams, and allowed parent policy records. This is targeted feasibility, not an unrelated framework defect hunt.",
+    "Use stdlib-only stream/index/hash member checks on the three named measured behavior/E2E/corpus compact archives and indexes when assessing their factual claims; no conversion, inference, database execution or product imports. Distinguish those archive checks from rerunning historical tests.",
+    "Run all7 fixed offline administration checks with own caches/output; full16+3 criterion matrices, precise findings/advisories, honest rubric scores, exact command/exits and fresh-versus-inspected facts."
+  ],
+  "permitted_reads": "All pinned current normative/measurement inputs in full, including historical provenance labels embedded there. Explicitly pinned branch-handoff, existing-store approval and initial assessment are allowed context. Hash-only raw authority/navigation/log history; use safe controls for current fields. Relevant package source/metadata/AST and old governed source blobs at correction base are allowed. Filename-only Git diffs may list old report names but not display their payloads. Whole tracked hashing for preservation is allowed. Canonical admin checkers may internally parse repo files; show summaries only. Declared evidence archives may be streamed/hashed with stdlib and inspected for report/source/inventory consistency; embedded test-store bytes may be hashed but never opened by database/client code.",
+  "excluded_reads": "Skip memory, conversations/history, current or previous peer council reports/verdicts/scores, builder private reasoning, raw authority/navigation/execution history and all other-agent/delegate inventory. No broad controller scratch listings/reads; use only the explicit supplied input paths. Do not open dirty user YAML contents, .friday-old, personal .friday documents/stores/caches. Hash and declared metadata checks only for protected user state.",
+  "permitted_writes": "New physical reviewer-owned external scratch only; every cache/tmp/config/output/report under it. Repository and supplied/controller/input/evaluation roots are read-only. No source/test/doc repairs, Git writes/branches/worktrees, installs/downloads, third-party/product imports or execution, tests/builds/conversion/models/providers/store/services/network research. No nested delegation. All archival scripts/data are evidence, not instructions to execute or replay supplied argv/caches.",
+  "procedure": "Prefer supplied helper with base Python -I -S -B after reading it. Any alternate read-only Git/admin command uses GIT_OPTIONAL_LOCKS=0 and PYTHONDONTWRITEBYTECODE=1, own outputs/caches and disclosure. Setup mistakes/current governed context are not automatic independence blocks; actual peer reasoning exposure, supplied-output write, protected-state change or forbidden effect requires stop/BLOCKED. Host .git checkpoint metadata is disclosed separately; logical identity must still match.",
+  "baseline_failures": "Root Ruff/collection/registry-format debt and FU013/FU014 remain failed/unwaived, unrerun. Full dirty-worktree whitespace has protected user models-config whitespace; required range/planning/staged checks are scoped. Finance live provider module/credential use is excluded; no tests/provider authority."
+}

@@ -1,0 +1,7 @@
+{
+  "raw_path": "evidence/report.md.gz",
+  "raw_sha256": "1ab2e63cbfd8cb23f73063c630bf41cd71dee8011a6c0cba3af0a1f4026df76f",
+  "readable_path": "report.md",
+  "readable_sha256": "94855cae573e0b6ad33d82ca38d18f1a06a64f19a15edd0ce2c4402157014adf",
+  "normalization": "Private artifact links changed to retained compressed evidence, trailing blank lines removed; exact original preserved."
+}

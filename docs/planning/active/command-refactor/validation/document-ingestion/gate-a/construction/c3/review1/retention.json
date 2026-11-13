@@ -1,0 +1,13 @@
+{
+  "omitted_binary": [
+    {
+      "path": "validation-tools/ruff",
+      "sha256": "3844f53974c6e6d52dcfccdc02e9b34188c5003f0060ad2f3a96b9d550eea6f5",
+      "bytes": 34454512,
+      "reason": "Already approved tool binary retained in private qualified target; identity pinned in request and receipt. No binary vendoring into repository."
+    }
+  ],
+  "raw_report_sha256": "491efe6dd5aa46eaf18ae8157dcf2b063c760692ff112020ad0d8f5b2e277bf4",
+  "readable_sha256": "491efe6dd5aa46eaf18ae8157dcf2b063c760692ff112020ad0d8f5b2e277bf4",
+  "normalization": "Trailing whitespace stripped, private reviewer root replaced with relative dot. Exact raw report retained compressed. All named code/evidence retained; tool binary identity retained without vendoring."
+}

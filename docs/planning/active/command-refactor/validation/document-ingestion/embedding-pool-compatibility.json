@@ -1,0 +1,35 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "recorded_at": "2026-11-11T00:46:21.895426+00:00",
+  "status": "maintainer_requested_document_amendment_pending_review",
+  "maintainer": "Chuck Russell",
+  "direction": "Shouldn't we place these ideas in REM-CD-ingest-001? As long as we maintain backward compatibility with the pre-existing embedding configurations, these other services will work as is. That is the premise and point which I would like to ensure we agree on.",
+  "prior_reviewed_candidate": "728cba77e816e5618a06262dd4aa1cbc6e50a376",
+  "prior_reviewed_rem_sha256": "61d93548eeae52be1b273e8ae985860d869cceac6a88868eb9396e7a2adf1804",
+  "revised_rem_sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
+  "contract": {
+    "configuration": "Retain embedding_pool and maintained non-pool configurations, existing bindings/default/profile selection and embedding APIs; no required ingestion-specific model service.",
+    "omitted_new_fields": "Qualified artifact-bound readiness may supply capabilities without mandatory user YAML edits; missing field syntax alone does not disable a qualified service.",
+    "readiness": "Qualify maintained baseline configurations operationally. Inability to establish required capabilities is a readiness stop for maintainer disposition, not a compatibility pass or authority for unguarded fallback.",
+    "namespace": "Services may differ in name and resilience while sharing a compatible embedding space; different spaces remain possible for independent namespaces.",
+    "existing_exceptions": "Explicit fresh-store policy, preparation/role corrections, strict overflow/vector checks and identity refusal remain. No guarantee of unchanged vectors or identity-free legacy-store use.",
+    "proof": "DI-18 plus DI-33: unchanged configuration fixtures and cross-subsystem extraction/graph/recall/maintenance/lifecycle/compaction/ingestion operations; source and representative normal/optimized installed proofs remain future work."
+  },
+  "documentation_only_exemption": {
+    "authorized_by": "Chuck Russell",
+    "date": "2026-11-11",
+    "reason": "Explicit request to place the discussed embedding-pool compatibility premise in the proposed REM.",
+    "scope": "REM and its current planning/authority/status/check records only; exact prior council reports/requests, companion, store-policy approval and other unit authority preserved.",
+    "runtime_effect": "None: no source, tests, runtime config, package metadata, dependency lock or existing store changes.",
+    "validation": "Board/dashboard/document lifecycle/whitespace, JSON/hash/status coherence and preservation checks."
+  },
+  "review_boundary": "Prior council results remain historical for exact candidate bytes. No new council was invoked or inferred from this document-edit request.",
+  "not_performed": [
+    "Gate-A or installs",
+    "model/provider calls",
+    "product implementation or tests",
+    "store read/reset/migration",
+    "council/delegation",
+    "push/PR/acceptance"
+  ]
+}

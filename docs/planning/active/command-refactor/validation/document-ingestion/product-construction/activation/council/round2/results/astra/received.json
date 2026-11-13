@@ -1,0 +1,17 @@
+{
+  "seat": "astra",
+  "round": 2,
+  "candidate": "c24ff0998010e960fb86c1a89b150ada079bbd46",
+  "report_sha256": "ed9613117843a42c6ad6e7414b2d4e2a428c8fad0c7f7fe9d82c59b5769264ce",
+  "verdict": "CHANGES_REQUESTED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.39,
+  "mandatory_findings": [
+    "F1: worker launch target mismatches selected source path"
+  ],
+  "report_hash_verified": true,
+  "entry_exit_identity_metadata_pins_equal": true,
+  "exit_additional_targeted_hashes_preserved": true,
+  "repo_unchanged_by_collection": true
+}

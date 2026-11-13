@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "base": "8c847e72b6ab260a2fc618f74390f39d599cb6e7",
+  "loop_pass": 3,
+  "maximum_loop_passes": 3,
+  "global_round": 5,
+  "scope": "Final bounded document correction; delta first then full same conditional directive/source review. No prior peer reasoning/scores.",
+  "groups": [
+    {
+      "id": "PD-T01",
+      "requirement": "I1 staging covers preparation/role/cache identity as well as admission: existing legacy/unbound flows retain unchanged inputs/vectors with paired I1-C2 witnesses, until actual I2 binding and wiring; new preparation is confined to guarded qualified paths. No final legacy mode."
+    },
+    {
+      "id": "PD-T02",
+      "requirement": "Qualification/readiness candidate N positive/refusal stages include I3 common ingestion/chunk capacity, matching I3-C5; actual Q qualification remains before I1."
+    },
+    {
+      "id": "PD-T03",
+      "requirement": "JSON and prose require CLI narrow adaptation, proof of existing origin mechanism, or stop/reconcile. Forwarding a resolved string alone is explicitly insufficient."
+    },
+    {
+      "id": "PD-T04",
+      "requirement": "Six dual-role MCP support files get one canonical A3 path/hash disposition with both roles and zero duplicate node/exception credit; original inventory bytes remain intact."
+    },
+    {
+      "id": "PD-T05",
+      "requirement": "TM03 companion seed maps TD02/03/04 to separate TOOLS-DOC migration approval, with no INGEST DI35 closure/authority claim; old source/AST hashes remain unchanged."
+    },
+    {
+      "id": "PD-T06",
+      "requirement": "Fix small fixture count spacing and align I3-C5 MD/JSON semantics, with no scope change."
+    }
+  ],
+  "retained_S_corrections": [
+    {
+      "id": "PD-S01",
+      "requirement": "DI22 complete caller-role/source-derived validation matrix starts I3, with reciprocal I3-C2/C3 traces; I1 contracts and I2 existing callers are scoped portions."
+    },
+    {
+      "id": "PD-S02",
+      "requirement": "Primary immutable fixture selection plus disjoint supplement classify all63 non-Python test-tree files, with omitted retained SESSION/DIAG oracle and integration support included; OS metadata explicitly excluded. Preserve original gzip/AST/seed bytes and no count inflation."
+    },
+    {
+      "id": "PD-S03",
+      "requirement": "Current review criteria, target, controls and authorization agree on additional pass2/3/globalround4; no stale current round2/no-third-round restriction. Historical original criteria remain preserved and noncontrolling."
+    },
+    {
+      "id": "PD-S04",
+      "requirement": "Refresh only current branch-handoff Next gate while preserving original branch/merge provenance."
+    },
+    {
+      "id": "PD-S05",
+      "requirement": "CLI container/profiles primary seams and actual default/env/constructor/testing-origin duties are explicit in I2-C1 JSON/MD; A2 settles its narrow design before I1."
+    },
+    {
+      "id": "PD-S06",
+      "requirement": "A2 must bind an additive I1 intermediate-compatibility design or obtain an exact approved exception before I1; unwaived old-consumer regressions still block exits. No released unguarded-store mode or broad temporary waiver."
+    },
+    {
+      "id": "PD-S07",
+      "requirement": "I1 narrow LLM/Memory metadata changes include exact compatible uv.lock delta; I3 document-stack delta remains separately bounded."
+    }
+  ],
+  "retained_Q_corrections": [
+    {
+      "id": "PD-Q01",
+      "requirement": "Before I1 retain actual B and N-DIM/N-SPACE/N-CAP model/dependency/counter/parity qualification, immutable identities/assets, scenario/node/namespace/lane bindings; candidate N execution stays post-build. Do not treat deterministic vectors as real serving feasibility.",
+      "artifacts": [
+        "directives/CD-CMD-INGEST-001-product.md A1",
+        "readiness RD01/RD05 Q and materiality",
+        "replacement-qualification-plan.json",
+        "phase-evidence-map.md/json"
+      ]
+    },
+    {
+      "id": "PD-Q02",
+      "requirement": "Safe review input: historical raw preparation receipt remains preserved/hash-only; metadata-only projection contains no stdout/stderr payload. No supplied peer material or protected configuration payload is in readable inputs."
+    },
+    {
+      "id": "PD-Q03",
+      "requirement": "Primary phase source lists are honestly labelled; every selected parent path still requires exact A2/A3 slice/owner/exit assignment before generation. Name existing maintenance admission in I2."
+    },
+    {
+      "id": "PD-Q04",
+      "requirement": "DI24/33 complete stages have actual eligible exit references in both directions; map every original named FC witness individually with specific per-contract dispositions."
+    },
+    {
+      "id": "PD-Q05",
+      "requirement": "An unwaived unchanged-scope regression blocks every intermediate exit; future work is not a silent waiver."
+    },
+    {
+      "id": "PD-Q06",
+      "requirement": "Supplement base inventory with non-test support modules including integration fake server/LLM helpers and test apps; hash/classify without test-count inflation or executing unclassified modules."
+    },
+    {
+      "id": "PD-Q07",
+      "requirement": "A2 must resolve the known CLI default-origin loss before I1; preserve public call shapes and bounded conditional scope. Actual I2 tests distinguish default/env/constructor/testing origins."
+    }
+  ],
+  "source_review_process": "Same scope and score rubric; recover ordinary truncated reads with small chunks and complete semantics before report construction. No replacement or fourth additional pass.",
+  "immutable_scope": "No product/tests/guides/dependencies/lock/user config/store effects; approved technical parents unchanged.",
+  "no_effects": true
+}

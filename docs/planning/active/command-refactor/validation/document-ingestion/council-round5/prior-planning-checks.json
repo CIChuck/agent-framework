@@ -1,0 +1,122 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "status": "embedding_pool_compatibility_document_checks_only",
+  "outcome": "PASS",
+  "recorded_at": "2026-11-11T00:47:46.431001+00:00",
+  "base": "c28e6f8bba959f10137b8d772a667ec4e59389f5",
+  "revised_rem_sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
+  "validation_state": "pending_independent_review_not_verified",
+  "checks": [
+    {
+      "check": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "check": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "check": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 997 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "check": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "check": "whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "allowed_planning_paths": [
+    "docs/planning/README.md",
+    "docs/planning/active/command-refactor/README.md",
+    "docs/planning/active/command-refactor/authority.json",
+    "docs/planning/active/command-refactor/execution-log.md",
+    "docs/planning/active/command-refactor/next-phase.md",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+    "docs/planning/active/command-refactor/tactical-plan.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/embedding-pool-compatibility.json",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a-handoff.md",
+    "docs/planning/active/command-refactor/validation/document-ingestion/planning-checks.json",
+    "docs/planning/board.yaml"
+  ],
+  "preserved_metadata_records": 6,
+  "logical_index_sha256_before_status": "fe92c5996493a0587e66700139d73806bc11c1abd0f24bb257ce4fca7f4e01f9",
+  "historical_council_and_other_authority": "unchanged",
+  "compatibility_tests": "DI-33 specified; runtime and installed execution deferred",
+  "not_performed": [
+    "product/runtime tests/builds",
+    "Gate-A/installs/models/providers",
+    "store operations/reset/migration",
+    "MAINT acceptance",
+    "council/delegation",
+    "push/PR/delivery"
+  ],
+  "failures": []
+}

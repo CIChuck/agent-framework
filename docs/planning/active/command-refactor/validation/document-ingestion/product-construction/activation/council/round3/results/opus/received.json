@@ -1,0 +1,16 @@
+{
+  "seat": "opus",
+  "round": 3,
+  "candidate": "fd7d9f5d429857906d53da8fc053dc85b901a635",
+  "report_sha256": "ae80351816baa24c0305344214ab2e0b35a4a5d5acfe17cbc5a4423c7e8d1e2f",
+  "verdict": "CHANGES_REQUESTED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.27,
+  "raw_total": 9.2775,
+  "mandatory_findings": [
+    "M1: converter deployment settings lack discovery/binding"
+  ],
+  "report_hash_verified": true,
+  "boundary_evidence": "Original report and exit-evidence.txt retained; no reviewer JSON fabricated."
+}

@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "scope": "Tracked non-test/non-conftest Python support modules under package-local test trees and tests/integration; no imports or runtime execution.",
+  "helper_count": 30,
+  "static_test_node_credit": 0,
+  "helpers": [
+    {
+      "path": "packages/friday-agent/tests_agent/__init__.py",
+      "sha256": "6908c199c1213bcc21575e6b60c78b9189a7c4f6f9ad046bda91b3c44668aeee",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/fixtures/mcp_execution_peer.py",
+      "sha256": "f972ff2b71dea5dcc89d988d358a9a21bcee1006d4e9bfade77ae3ba4135e1ac",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-core/tests_core/__init__.py",
+      "sha256": "6908c199c1213bcc21575e6b60c78b9189a7c4f6f9ad046bda91b3c44668aeee",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-llm/tests_llm/__init__.py",
+      "sha256": "6908c199c1213bcc21575e6b60c78b9189a7c4f6f9ad046bda91b3c44668aeee",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/__init__.py",
+      "sha256": "6908c199c1213bcc21575e6b60c78b9189a7c4f6f9ad046bda91b3c44668aeee",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/__init__.py",
+      "sha256": "ea1f45e87eebc1231fd0f5ecfa6c8363e783d1d7125ad665cd15817c23a9fa1e",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
+      "sha256": "faaf068e2b83eaa6a5248b760bfd243a60a46b5506826cf67668de68393e3899",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py",
+      "sha256": "bab26932a97bedbecca9b4d6e80b678d0c93390c2e566ec7bb95fd3374b3b61e",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py",
+      "sha256": "8898696a9dd2068844389c54655e4d0cbfdbf155a99d7a6e0ce36010642d1175",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py",
+      "sha256": "f2cfb56dba97bab9dffe5a4a1cb0f27f4c1faf4773a2e5057a0adff7b251a8ec",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py",
+      "sha256": "ebf33b8779d88dabc68bd5a53126797dcabef26a4b7f021d87d5d861349a59dd",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/server/__init__.py",
+      "sha256": "6dc2ae4f8e085a1dee87a8afc2850a459ab414fed07d0eedd4981d8cbd7f1212",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/__init__.py",
+      "sha256": "6908c199c1213bcc21575e6b60c78b9189a7c4f6f9ad046bda91b3c44668aeee",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_adapters/__init__.py",
+      "sha256": "12e507414854b0c27a7c47d52495d742d3f7b839607e37d03e84fc2b9efcf6c9",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/__init__.py",
+      "sha256": "f8631e5ee57ee2cedcee780ad8cd03f25488a3981ca002e9b122897606a1b54d",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_lifecycle/__init__.py",
+      "sha256": "6b08acb32e8540e973cd5a2a003403610c431f1d910444241f2c6274f9425907",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_maintenance/__init__.py",
+      "sha256": "6908c199c1213bcc21575e6b60c78b9189a7c4f6f9ad046bda91b3c44668aeee",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_retrieval/__init__.py",
+      "sha256": "b532747ce2e7baea175b280c1ad362593376e8a0c2ddbf218cabf925dd175c69",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-moltbook/tests_moltbook/apps/create_post.py",
+      "sha256": "e4d234f5fdf42c027a9fb34436c7e41bd3712b4656154bbde08d58b7886f87b4",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-moltbook/tests_moltbook/apps/register_agent.py",
+      "sha256": "6e3ba54120c04c0c1c1e8a41157044c8602f0c7e700e47317ac4868492c46774",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-runtime/tests_runtime/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-sandbox/tests_sandbox/__init__.py",
+      "sha256": "6908c199c1213bcc21575e6b60c78b9189a7c4f6f9ad046bda91b3c44668aeee",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-telemetry/tests_telemetry/__init__.py",
+      "sha256": "318053b06732cdbae7aa75ff698accd70e8dbb0c535b67110016fe8f2ee65177",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "packages/friday-tools/tests_tools/__init__.py",
+      "sha256": "c5776f609fe022222a6c61a577080c4126cd02eb7818ea2b334361c3c30082f2",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "tests/integration/llm/__init__.py",
+      "sha256": "b41ea5f0c28022cfceda6171f2fe40dbf65306f088a4de994c8b9d12dd83d562",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "tests/integration/llm/chat-telemetry-test.py",
+      "sha256": "ca89987c7068f98a7d330b22030eb38e75c2948e9212afe1c5fba9d499f53317",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "tests/integration/llm/chat.py",
+      "sha256": "5792bd260eec8e32a54b12f9cb1465ddeea4d14883f30aeeb2b136fed8208b05",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "tests/integration/llm/embedding-test.py",
+      "sha256": "c6bda02333937138015dc2b39469eea8382edad080651d9305aecebae28147c7",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "tests/integration/llm/functionchat.py",
+      "sha256": "e16449e6d75eaefb5f0f550329576e8fa2f5046f8e52636574898e974266b334",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    },
+    {
+      "path": "tests/integration/mcp_fake_server.py",
+      "sha256": "2ea86b83a2f448727d580d76842fb3af4bcfd48e3fd33d5c990e008821960c70",
+      "kind": "support_module_not_test_node",
+      "execution_classification": "pending explicit offline/live review and A3 node binding; not executable authority"
+    }
+  ],
+  "excluded_elsewhere": "Other lab/readiness/security/experiment helpers remain outside initial product migration scope; newly affected files must be mapped before edits.",
+  "authority": "Hash inventory only; offline/live classification and exact test/helper edit lists still bind A3."
+}

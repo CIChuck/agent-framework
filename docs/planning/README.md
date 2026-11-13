@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | pushed | Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Chuck approved INGEST documents and the Git handoff. Commit/push the approved planning/readiness baseline, open its PR to master, merge when checks permit, then create feature/cmd-ingest-implementation in a clean worktree from the merged baseline. Preserve the original dirty YAML and stores. Product execution waits for that handoff and the private I1 binding; full Sol/Astra/Opus councils follow each slice, at most three passes per gate, with I3 aggregate review. |
 
 ## Completed
 

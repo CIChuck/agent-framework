@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "status": "approved_at_committed_planning_checkpoint",
+  "target_document_commit": "67d79114f43c9a1048526458d6861efa1f6f5322",
+  "branch": "feature/cmd-ingest-001",
+  "approval_request_sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71",
+  "documents": [
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md",
+      "sha256": "5039fe7d5b7db7a9808eca74c3e42012911c28d8e264741b8eda9da4c52dda14"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+      "sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/approval-request.json",
+      "sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/execution-profile.json",
+      "sha256": "bf8c1782ca833bcdd129d3c1f76ff5e52ebab71bfc3084699c73d762edc0134f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/implementation-council-plan.json",
+      "sha256": "b7abf1aa77d9f02efa0abc61d97ec35c56d5b622e52b4049fa3364a3932c6a3c"
+    }
+  ],
+  "rule": "The exact approved document bytes are present at target_document_commit and match every digest. This receipt is later outcome-only metadata and is intentionally not inside the content commit. Private execution waits for the baseline merge/new implementation branch and eligible phase binding.",
+  "maintainer_approval": {
+    "record": "docs/planning/active/command-refactor/approval/ingest-construction-documents-20261113.json",
+    "sha256": "ef88e0dbd07b0bf3fbf7b47bb05ad43ccdcbe8818565b93ebecbb266c6927d2e"
+  },
+  "construction_approved": true,
+  "effects_approved": true,
+  "previous_target_document_commit": "b357c3c4dd0c892aa57593d32cb236b7e832022c",
+  "post_review_correction": "post-review-correction.json",
+  "effects_activated": false,
+  "git_handoff_hold": true,
+  "git_authorization": {
+    "path": "docs/planning/active/command-refactor/approval/ingest-git-handoff-20261113.json",
+    "sha256": "e8d16cad21908331720769e4443a5da5aa6f1c61fdd14a5fb32286f060c5b38f"
+  }
+}

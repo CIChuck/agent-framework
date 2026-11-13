@@ -1,0 +1,158 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "recorded_at": "2026-11-11T03:52:54.229623+00:00",
+  "cycle_pass": 3,
+  "global_round": 8,
+  "maximum_passes": 4,
+  "reviewed_candidate": "f43368c503da19fd245730ee579806db95ed3748",
+  "technical_pins": {
+    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "e1c90753a3e2876df0f9f6f0ca82b1893455266cee1f252276f460b48a9f2a16",
+    "docs/planning/active/command-refactor/embedding-compatibility-contract.md": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+    "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998"
+  },
+  "request_sha256": "0b9247701339f8fe25dce08d70ec08e8785fbe20c01ea1f4054bc4c51a0a202d",
+  "outcome": "VERIFIED",
+  "formal_scope": "bounded design/source-feasibility readiness only",
+  "threshold": {
+    "each_seat_verified": true,
+    "each_coverage_at_least": 9.5,
+    "each_overall_at_least": 9.5,
+    "mandatory_findings": 0,
+    "met": true
+  },
+  "seats": {
+    "sol": {
+      "outcome": "VERIFIED",
+      "coverage": 9.6,
+      "overall": 9.6,
+      "mandatory_findings": [],
+      "formal_scope": "design/source feasibility only",
+      "report": "sol-report.md",
+      "readable_sha256": "b543263810b8f5dcb536f8deeb9899ecf48ad0ef3a40d78d1701d5f2e659b0f4",
+      "raw_archive": "sol-report.md.gz",
+      "raw_report_sha256": "b543263810b8f5dcb536f8deeb9899ecf48ad0ef3a40d78d1701d5f2e659b0f4",
+      "conduct": "accepted independent read-only seat; non-executed shell setup errors earn no proof credit"
+    },
+    "astra": {
+      "outcome": "VERIFIED",
+      "coverage": 9.5,
+      "overall": 9.5,
+      "mandatory_findings": [],
+      "formal_scope": "design/source feasibility only",
+      "report": "astra-report.md",
+      "readable_sha256": "0cf334d73c8efaa107dc71fabe65a1a86b5b8ba6c67a2740c651cf047bf60fbe",
+      "raw_archive": "astra-report.md.gz",
+      "raw_report_sha256": "0cf334d73c8efaa107dc71fabe65a1a86b5b8ba6c67a2740c651cf047bf60fbe",
+      "conduct": "accepted independent read-only seat; non-executed shell setup errors earn no proof credit"
+    },
+    "opus": {
+      "outcome": "VERIFIED",
+      "coverage": 9.5,
+      "overall": 9.5,
+      "mandatory_findings": [],
+      "formal_scope": "design/source feasibility only",
+      "report": "opus-report.md",
+      "readable_sha256": "9b77fb51f42c8a1485815353da6929ba993377733978a114726447d537e2c63f",
+      "raw_archive": "opus-report.md.gz",
+      "raw_report_sha256": "9b77fb51f42c8a1485815353da6929ba993377733978a114726447d537e2c63f",
+      "conduct": "accepted independent read-only seat; non-executed shell setup errors earn no proof credit",
+      "reported_raw_rubric_totals": {
+        "coverage": 9.55,
+        "overall": 9.55,
+        "reported_scores": "rounded down by reviewer; use9.5 for gate"
+      }
+    }
+  },
+  "criterion_outcomes": "EC01\u201318 and FC01\u201314 pass in each independent report; no implementation verdict",
+  "integrity": "All seats opening/closing match logical index d5b9549f8299653d66f6890c54af31f072a63687088a369be3dff0fac9be5e8d, candidate/branch/status,17689 protected entries and6 records. Controller rechecked before archival.",
+  "checks": "Each seat reproduced exactly5 administrative checks; product/tests/builds/installs/providers/stores not run. Static source and document calculations only.",
+  "carry_forward": [
+    {
+      "id": "CF-01",
+      "source_ids": [
+        "SOL-R8-A01",
+        "ASTRA-R8-A01"
+      ],
+      "stage": "early separately activated Gate A",
+      "requirement": "Qualify hosted B02/default identity and actual local counting first; unknown qualification stops readiness. No default swap, silent baseline omission or weaker identity."
+    },
+    {
+      "id": "CF-02",
+      "source_ids": [
+        "SOL-R8-A02",
+        "ASTRA-R8-A02",
+        "OPUS-R8-A1"
+      ],
+      "stage": "Gate-A fixture/receipt and final-directive freeze",
+      "requirement": "Paired old/new public backup fixtures; exact default/data member oracles. Explicitly exclude all ready/pending/lock/temp binding evidence from live restore; choose non-colliding receipt/evidence names. Test parent-form recursive sidecar capture and backup_dir equal to each bound-root form with unchanged marker bytes/inode/mtime/ctime. No complete-recovery credit for FU014 and no engine/layout/default repair."
+    },
+    {
+      "id": "CF-03",
+      "source_ids": [
+        "OPUS-R8-A3"
+      ],
+      "stage": "final Core/scorer boundary freeze",
+      "requirement": "Bind injected scorer query identity through a qualified constructor/capability or typed envelope, with unbound bare-list refusal. Classify None versus empty[] explicitly and test them; no maintained scorer wiring."
+    },
+    {
+      "id": "CF-04",
+      "source_ids": [
+        "OPUS-R8-A4"
+      ],
+      "stage": "B06 fixture/final origin freeze",
+      "requirement": "FridayConfig.for_testing internal .friday/test_chroma is not user-explicit CREATE_FRESH authority; TESTING/ephemeral semantics remain. Otherwise stop/reconcile. Include this exact constructor fixture."
+    },
+    {
+      "id": "CF-05",
+      "source_ids": [
+        "OPUS-R8-A2"
+      ],
+      "stage": "approved exact oracle exceptions",
+      "requirement": "Byte-oversize operational ingestion counter changes skipped\u2192capped alongside new token overflow mapping, while receipt ingestion_decision stays skipped. Name this exact delta; no schema/lifecycle/cleanup change."
+    },
+    {
+      "id": "CF-06",
+      "source_ids": [
+        "ASTRA-R8-A03"
+      ],
+      "stage": "Gate-A and final construction directive",
+      "requirement": "Freeze signatures, receipt encoding, collection name encoding/backend limits, numeric resource budgets and actual source/installed normal/-O public nodes/canonical call-phase mutation witnesses. No implementation before exact directive approval."
+    },
+    {
+      "id": "CF-07",
+      "source_ids": [
+        "OPUS-R8-A5"
+      ],
+      "stage": "current handoff only; next authorized technical correction if needed",
+      "requirement": "Current handoff links all pass1/round6, pass2/round7 and pass3/round8 results. Keep reviewed REM bytes unchanged here; its minor missing pass2 reference can wait for a separately reviewed technical revision."
+    },
+    {
+      "id": "CF-08",
+      "source_ids": [
+        "OPUS-R8-A6"
+      ],
+      "stage": "informational existing baseline; no action authorized",
+      "requirement": "Maintained Chat uses per-turn UUIDs and has no same-turn automatic pending retry. Public same-ID retry capability is not maintained retry wiring. Retained pending records can remain unpublished; no collector, retry route or cleanup added."
+    }
+  ],
+  "loop": {
+    "passes_completed": 3,
+    "maximum_passes": 4,
+    "unused_passes": 1,
+    "stopped_early": true,
+    "stop_reason": "all-seat gate met",
+    "no_fourth_council": true,
+    "no_active_delegates": true,
+    "no_further_dispatch_authorized_by_this_record": true
+  },
+  "authority_not_granted": [
+    "Gate-A effects/installs/model provisioning",
+    "construction/product source",
+    "human acceptance or UAT",
+    "store/reset/migration",
+    "MAINT acceptance",
+    "push/merge/delivery"
+  ],
+  "history": "R4 historical VERIFIED and R5\u20137 changed/blocked reports remain immutable/candidate-specific; no verdict carried to changed bytes.35 historic gate lines restored and checked.",
+  "controller_changes": "New reports/current routing only. Reviewed REM, normative annex and Tools companion must remain byte-identical. This is not a new reviewed HEAD claim."
+}

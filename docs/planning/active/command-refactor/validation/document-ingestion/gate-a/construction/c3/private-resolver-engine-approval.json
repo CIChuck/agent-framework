@@ -1,0 +1,13 @@
+{
+  "unit": "INGEST-C3-PRIVATE-RESOLVER-ENGINE",
+  "maintainer": "Chuck Russell",
+  "verbatim_instruction": "Approve private resolver-engine profile",
+  "profile_sha256": "a9c64ca1ccc63ebe54c26108bc58c033792905394736fe048f29e84d74103a0f",
+  "recorded_at_utc": "2026-11-12T15:56:14.323607+00:00",
+  "baseline": "ba5a41f80d446f9bebb87053fb5b21eb441e6e2c",
+  "scope": "Only one exact18737-byte resolvelib wheel plus guarded offline synthetic solver development/qualification, reusing approved packaging; no production or actual A0-A4 effects.",
+  "status": "ACTIVATED_EXACT_PRIVATE_TOOL_ONLY",
+  "download": "tool-evidence/download.json.gz",
+  "inspection": "tool-evidence/inspection.json.gz",
+  "qualification": "6 guarded offline checks each normal/optimized; actual synthetic backtracking, impossible graph, cycle, round ceiling and import/inventory checks"
+}

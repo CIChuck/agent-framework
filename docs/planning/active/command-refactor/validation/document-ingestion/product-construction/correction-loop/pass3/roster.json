@@ -1,0 +1,30 @@
+{
+  "loop_pass": 3,
+  "global_round": 5,
+  "final_authorized_pass": true,
+  "members": [
+    {
+      "seat": "sol",
+      "provider": "codex",
+      "model": "gpt-6.1-sol",
+      "effort": "high"
+    },
+    {
+      "seat": "astra",
+      "provider": "codex",
+      "model": "gpt-6-astra",
+      "effort": "high"
+    },
+    {
+      "seat": "opus",
+      "provider": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "effort": "high"
+    }
+  ],
+  "fresh_context": true,
+  "read_only": true,
+  "nested_delegation": false,
+  "scope": "current T delta first, retained Q/S/R plus full PD document/source feasibility",
+  "further_pass_or_replacement": false
+}

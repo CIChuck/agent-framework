@@ -1,0 +1,50 @@
+{
+  "source_directory": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/astra-r5-final-06lahiag",
+  "report_sha256": "d40800291a98177e9d8850722db3135dcb195e0c476ac632d3e162196f76427f",
+  "retained_admin_boundaries": [
+    {
+      "path": "opening-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "closing-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "admin-commands.json",
+      "sha256": "e1d97125d6124043bdfba6d271570e5a37ad37799c12cdade596f87dce09db1e"
+    }
+  ],
+  "other_original_artifact_hashes": [
+    {
+      "path": "closing-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "admin-commands.json",
+      "sha256": "e1d97125d6124043bdfba6d271570e5a37ad37799c12cdade596f87dce09db1e"
+    },
+    {
+      "path": "report.md",
+      "sha256": "d40800291a98177e9d8850722db3135dcb195e0c476ac632d3e162196f76427f"
+    },
+    {
+      "path": "opening-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "static-audit.json",
+      "sha256": "58e4aa0cfb6bb86e1dd84fad7f242d0638de3dc379a748a491991c350d2a54f4"
+    },
+    {
+      "path": "source-ledger.json",
+      "sha256": "9be161469ce81fb1c943ad0d8ddab0a04a6cdaeb92f4d6661a52b3bf66076e2d"
+    },
+    {
+      "path": "archive-audit.json",
+      "sha256": "58dd2e7e05cb1a41f12f3943a6968ecff1ba12f52830d7aab16530ee2ba40662"
+    }
+  ],
+  "raw_evidence_policy": "Additional detailed ledgers remain external/hash-bound. No user configuration, provider credential or raw historical receipt payload is duplicated.",
+  "limits": "Original report/outcome/score/depth preserved verbatim; no incomplete result is promoted."
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "archive": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/behavior-evaluation/behavior-evidence.tar.gz",
+    "sha256": "0e29ddb46ac16e5d8f38c0c29273c7cb22175a079fdd3cb5ba58b12afa414f30",
+    "verified_members": 8148,
+    "payload_execution": false
+  },
+  {
+    "archive": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/end-to-end-evaluation/evidence.tar.gz",
+    "sha256": "64034d38f01f1dc2791da765f0a39f02b58df0bce40af3fcc3ba8a7d652a452c",
+    "verified_members": 367,
+    "payload_execution": false
+  },
+  {
+    "archive": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/evidence-v2.tar.gz",
+    "sha256": "f1ac64b44d9fc8e885f3bd7fa84a1f465e22c5f097066cbb7c5c94d2eeff7601",
+    "verified_members": 194,
+    "payload_execution": false
+  }
+]

@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "scope": "Controller closeout checks only; not an independent/qualifying council result",
+  "reviewed_candidate": "b6a62742e89951679f338e46f34c4650a5e0dbc7",
+  "target_sha256": "9856c29aae0ef7c4719e43c31f35a0da71b900b7e11d5a48fdcabe36cae40ced",
+  "administration": [
+    {
+      "name": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "name": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "name": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1161 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "name": "range-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "8c847e72..b6a62742",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "owned-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "staged-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "preservation": {
+    "protected_nonplanning_files": 16690,
+    "symlinks": 26,
+    "metadata_records": 8,
+    "failures": []
+  },
+  "frozen_pin_status": {
+    "total": 52,
+    "unchanged": 50,
+    "status_routing_only_changes": [
+      "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
+      "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/authority-manifest.json"
+    ],
+    "reviewed_manifest_original_retained": true,
+    "authority_manifest_diff_limited_to_status_routing_pin_and_closeout_note": true
+  },
+  "reviewed_target_and_technical_artifacts_unchanged": true,
+  "original_reports_hash_verified": true,
+  "execution_log_append_only": true,
+  "only_current_closeout_paths_plus_preexisting_user_dirty": true,
+  "budget": {
+    "started": 3,
+    "completed": 3,
+    "remaining": 0,
+    "further_pass_or_replacement": false
+  },
+  "whole_worktree_whitespace": "Known user YAML debt remains failed/unwaived; scoped planning/range/staged checks only.",
+  "construction_approval": false,
+  "new_effects": false
+}

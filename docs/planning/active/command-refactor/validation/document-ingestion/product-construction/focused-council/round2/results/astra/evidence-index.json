@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "path": "entry.json",
+      "sha256": "f44078780733a2764d72825c24daf1a2122a6de2a117466027322844935029e1"
+    },
+    {
+      "path": "exit.json",
+      "sha256": "f44078780733a2764d72825c24daf1a2122a6de2a117466027322844935029e1"
+    },
+    {
+      "path": "input-identities.json",
+      "sha256": "6eef130e3d31f4a9e7e47fec969e18e60a2c2e620673be8571060846c37b3c1b"
+    },
+    {
+      "path": "report.md",
+      "sha256": "6ae75e6ea18cc855500fc7103b62c14a4d605d92bf6574b512f46e37f70d7b5c"
+    },
+    {
+      "path": "result.json",
+      "sha256": "007def5c0988267ac2466b6f002811028a16572bb709e6557e956db935db71be"
+    },
+    {
+      "path": "source-evidence.json",
+      "sha256": "5424d6966ca137a5906e2589368dfe6ffeb8186cf994e3d9d7439b443f31fd9b"
+    }
+  ],
+  "classification": "Original report and lightweight reviewer receipts copied byte-for-byte; source behavior was inspected, not executed."
+}

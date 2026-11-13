@@ -1,0 +1,21 @@
+{
+  "scope": "Controller static planning checks, not independent review/runtime proof",
+  "original_DI_definitions": 36,
+  "bidirectional_exits": 12,
+  "retained_FC_witnesses": 19,
+  "N_stages": [
+    "I2",
+    "I3",
+    "AG"
+  ],
+  "qualified_model_slots": 0,
+  "single_record_dual_role_files": 6,
+  "companion_seed_separate": true,
+  "original_inventory_unchanged": true,
+  "protected_files_unchanged": 16690,
+  "symlinks_unchanged": 26,
+  "preserved_metadata_unchanged": 8,
+  "parent_manifest_pins_match": true,
+  "final_pass": 3,
+  "fourth_pass_authorized": false
+}

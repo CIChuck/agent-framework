@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "additional_pass": 2,
+  "maximum_additional_passes": 3,
+  "global_round": 4,
+  "candidate": "8c847e72b6ab260a2fc618f74390f39d599cb6e7",
+  "outcome": "BLOCKED",
+  "all_seats_terminal": true,
+  "threshold_met_each": false,
+  "results": {
+    "sol": {
+      "outcome": "BLOCKED",
+      "coverage": 4.0,
+      "overall": 4.5,
+      "score_status": "incomplete/nonqualifying; overall provisional",
+      "report": "sol/report.md",
+      "report_sha256": "87faf44fe1239a2e7754f54c7f2e871549cca9a359b3989ae092ed65f2b15b32"
+    },
+    "astra": {
+      "outcome": "BLOCKED",
+      "coverage": 6.0,
+      "overall": 6.7,
+      "score_status": "incomplete/nonqualifying; overall provisional",
+      "report": "astra/report.md",
+      "report_sha256": "714a5b4423c0f9ab2a04500cc307c71c2fee025e03e802ad12f6c685ed3a094b"
+    },
+    "opus": {
+      "outcome": "VERIFIED",
+      "coverage": 9.1,
+      "overall": 9.4,
+      "score_status": "bounded document review below threshold",
+      "report": "opus/report.md",
+      "report_sha256": "3e60339633830660f78be2315436fddafeea5dc39d338fc638f389e4ee15ec4e"
+    }
+  },
+  "candidate_mandatory_findings": "None established by the completed Opus seat; incomplete Sol/Astra do not establish zero findings.",
+  "review_completion_blockers": [
+    "SOL-R4-B01 incomplete parents/source",
+    "ASTRA-R4-LIMIT-001 incomplete source"
+  ],
+  "advisories_to_address": [
+    "ADV01 preparation staging on existing unbound flows",
+    "ADV02 candidate N includes I3",
+    "ADV03 CLI adapt/prove mechanism/stop wording",
+    "ADV04 one A3 classification per dual-role support file",
+    "ADV05 companion seed ownership tags",
+    "ADV06 typography/exit sentence consistency"
+  ],
+  "reading_process": "Do not replace seats or retroactively upgrade provisional results. Final fresh pass retains full scope but recovers truncated reads in bounded verified chunks; complete substantive assessment before verbose reporting.",
+  "remaining_passes": 1,
+  "construction_or_new_effects": false,
+  "preservation": "Every reviewer and controller closing boundary matches frozen candidate before changes:18824files,26symlinks,8preserved,49pins."
+}

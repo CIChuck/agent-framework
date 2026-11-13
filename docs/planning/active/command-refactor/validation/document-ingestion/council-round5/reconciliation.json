@@ -1,0 +1,360 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "round": 5,
+  "recorded_at": "2026-11-11T01:37:37.401608+00:00",
+  "candidate": "06f294d779c5bc9ea3016eaffdf8efb349979ce4",
+  "request_sha256": "e463c4e849957eb920e4260c10d408217498f6afb787da474c301a546e33c35c",
+  "rem_sha256": "2bbf54c8c987eba9b2b823c9efb6f218c4cd7058d8e0f72694ae8ed04dd12dea",
+  "outcome": "CHANGES_REQUESTED",
+  "formal_council_complete": false,
+  "procedural_limitation": "ASTRA-R5-B01: forbidden historical authority fields exposed; no valid Astra formal signoff. Its8.4 is provisional only. No substitute/retry is authorized by the single-pass request.",
+  "each_score_gate_met": false,
+  "score_target": 9.5,
+  "seats": {
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "outcome": "CHANGES_REQUESTED",
+      "score": 8.6,
+      "formal_score": true,
+      "root": "/private/tmp/rem-ingest-sol-round5-FLryM9",
+      "sha256": "f33306b9f93b8a6dfd90239ce37ed8454b8ec6ba02ddfd8c4d9a81086f199dda",
+      "criteria": {
+        "EC-01": "PASS",
+        "EC-02": "GAP",
+        "EC-03": "PASS",
+        "EC-04": "PASS",
+        "EC-05": "PASS",
+        "EC-06": "PASS",
+        "EC-07": "PASS",
+        "EC-08": "PASS",
+        "EC-09": "GAP",
+        "EC-10": "GAP",
+        "EC-11": "GAP",
+        "EC-12": "GAP",
+        "EC-13": "PASS",
+        "EC-14": "GAP",
+        "EC-15": "GAP",
+        "EC-16": "GAP",
+        "EC-17": "PASS",
+        "EC-18": "PASS"
+      },
+      "integrity_start_end": "PASS",
+      "git_admin_pairs": 9,
+      "report": "sol-report.md",
+      "technical_assessment_formal": true
+    },
+    "astra": {
+      "model": "gpt-6-astra",
+      "outcome": "BLOCKED",
+      "score": 8.4,
+      "formal_score": false,
+      "root": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/astra-round5-independent-ax58i_i1",
+      "sha256": "a9b3a90bc082c5fd4dc63a7c98e5311b2f977131417326f01617976e3178aaed",
+      "criteria": {
+        "EC-01": "Blocked procedurally",
+        "EC-02": "Gap",
+        "EC-03": "Design adequate",
+        "EC-04": "Design adequate pending signatures",
+        "EC-05": "Design adequate",
+        "EC-06": "Design adequate",
+        "EC-07": "Design adequate",
+        "EC-08": "Design adequate",
+        "EC-09": "Design adequate",
+        "EC-10": "Gap",
+        "EC-11": "Gap",
+        "EC-12": "Design adequate",
+        "EC-13": "Design adequate",
+        "EC-14": "Gap",
+        "EC-15": "Gap",
+        "EC-16": "Gap",
+        "EC-17": "Design adequate; Gate-A pending",
+        "EC-18": "Blocked"
+      },
+      "integrity_start_end": "PASS",
+      "git_admin_pairs": 8,
+      "report": "astra-report.md",
+      "technical_assessment_formal": false,
+      "original_report_sha256": "a9b3a90bc082c5fd4dc63a7c98e5311b2f977131417326f01617976e3178aaed",
+      "readable_report_sha256": "d6915dfd791e0f28aa476778ada2e986ddab6d54d45adf29326930e5ed110037",
+      "raw_original_archive": "astra-report.raw.md.gz",
+      "raw_original_archive_sha256": "9577c45583d9b9bd6a4914c24d58d0c1bb01c9af6822463e72611dfb46b061e6",
+      "readable_copy_normalization": "Remove trailing empty lines only; original exact bytes retained in gzip mtime0 archive."
+    },
+    "opus": {
+      "model": "claude-opus-5-5",
+      "outcome": "CHANGES_REQUESTED",
+      "score": 7.2,
+      "formal_score": true,
+      "root": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/b009693c-10b7-4a28-84c2-970a0e25d393/scratchpad/opus-r5-1794359781",
+      "sha256": "c44370285a8d74570e2dd50abca5ddc34d8068cad4b99c8b64b0b7b76103fc85",
+      "criteria": {
+        "EC-01": "PASS",
+        "EC-02": "PARTIAL",
+        "EC-03": "PARTIAL",
+        "EC-04": "PARTIAL",
+        "EC-05": "PARTIAL",
+        "EC-06": "PARTIAL",
+        "EC-07": "PARTIAL",
+        "EC-08": "PASS",
+        "EC-09": "PARTIAL",
+        "EC-10": "PARTIAL",
+        "EC-11": "PARTIAL",
+        "EC-12": "PARTIAL",
+        "EC-13": "PASS",
+        "EC-14": "PARTIAL",
+        "EC-15": "PARTIAL",
+        "EC-16": "PARTIAL",
+        "EC-17": "PASS (advisory A10)",
+        "EC-18": "PASS"
+      },
+      "integrity_start_end": "PASS",
+      "git_admin_pairs": 14,
+      "report": "opus-report.md",
+      "technical_assessment_formal": true
+    }
+  },
+  "mandatory_technical_themes": [
+    {
+      "id": "INGEST-EC-01",
+      "title": "Startup rejection logging can pre-create or mutate a vector directory",
+      "severity": "high",
+      "sources": [
+        "OPUS-M1"
+      ],
+      "anchor": "packages/friday-memory/src/friday_memory/context/extraction_filter.py:32; context/extractor.py:211; packaged config.example.yaml:71/236",
+      "scope": "Defer extractor/log resource effects until namespace admission and define the configured log destination disposition. Preserve unrelated/legacy roots; do not rewrite user YAML.",
+      "proof": "Packaged and compat-config startup/read creates no vector directory; first admitted memory use can CREATE_FRESH; refused/old roots and parent metadata unchanged."
+    },
+    {
+      "id": "INGEST-EC-02",
+      "title": "Active opt-in MCP snapshot ingestion is omitted from the route contract",
+      "severity": "high",
+      "sources": [
+        "OPUS-M2"
+      ],
+      "anchor": "packages/friday-chat/src/friday_chat/memory_mcp.py:162; packages/friday-memory/src/friday_memory/ingestion/mcp.py:166; retrieval/collection_manager.py:481",
+      "scope": "Classify the maintained MCP-to-Memory route separately from public-unwired ToolOutputIngester. Preserve the single exact snapshot/receipt protocol; freeze unsplit guard and overflow outcome rather than applying document/512 splitting blindly.",
+      "proof": "Baseline and both replacement-model cases retain exact snapshot/publication ownership, document role and metadata; token-overflow refuses before provider I/O with truthful outcome and no snapshot success."
+    },
+    {
+      "id": "INGEST-EC-03",
+      "title": "Public physical backup/restore can bypass binding and overwrite a sidecar",
+      "severity": "high",
+      "sources": [
+        "SOL-R5-M01",
+        "OPUS-M3"
+      ],
+      "anchor": "packages/friday-memory/src/friday_memory/maintenance/backup.py:137,273; maintenance/reorganizer.py:148",
+      "scope": "Give public BackupManager and Reorganizer accessors an explicit identity-aware delegation or refusal-only disposition. Preserve offline historical interpretation; no new migration or backup engine.",
+      "proof": "Public create/restore controls cover root/vector layouts, same-space/incarnation supported positive, identity-free/mismatched/tampered sidecar negatives before mkdir/copy/write; no sidecar substitution."
+    },
+    {
+      "id": "INGEST-EC-04",
+      "title": "ConsistencyAnalyzer opens SQLite and graph data outside normalized admission",
+      "severity": "medium",
+      "sources": [
+        "SOL-R5-M02",
+        "OPUS-M3"
+      ],
+      "anchor": "packages/friday-memory/src/friday_memory/maintenance/analyzer.py:74,124-186",
+      "scope": "Declare store-only admitted analysis or explicitly offline historical inspection. Use one normalized vector/graph layout; no alternative-root probing after refusal. Preserve analysis algorithms.",
+      "proof": "Matching admitted inspection works with inference unavailable; unbound/mismatched/pending state refuses before SQLite/graph opens and creates no WAL/SHM or fallback-directory effects."
+    },
+    {
+      "id": "INGEST-EC-05",
+      "title": "Legacy synthesis can omit vectors and invoke an implicit Chroma embedder",
+      "severity": "high",
+      "sources": [
+        "OPUS-M3"
+      ],
+      "anchor": "packages/friday-memory/src/friday_memory/maintenance/synthesizer.py:707-742,785-795; maintenance/__main__.py:435-446",
+      "scope": "Require failure when the selected embedder is absent or refuses; never omit embeddings to let a collection select a hidden model. Classify public legacy helpers and module read/dry-run entries without enabling disabled mutations.",
+      "proof": "Missing/failed embedder yields zero collection writes/default embedding work; guarded public and module entry dispositions are explicit and negative witnesses preserve current disabled CLI mutation behavior."
+    },
+    {
+      "id": "INGEST-EC-06",
+      "title": "Consolidation can acknowledge source turns after summary-storage refusal",
+      "severity": "high",
+      "sources": [
+        "SOL-R5-M03",
+        "ASTRA-R5-001"
+      ],
+      "anchor": "packages/friday-memory/src/friday_memory/context/consolidator.py:188-207,356-370",
+      "scope": "Explicitly cover the public-unwired consolidator, separately from ordinary extraction/compaction. Permit only guard-error propagation and successful-batch acknowledgement changes; retain scheduling, prompts and record semantics.",
+      "proof": "Overflow, mismatch and invalid-vector storage failures leave affected turns retryable and produce no success event/acknowledgement; mixed-batch and retry positives work under baseline and replacement configurations."
+    },
+    {
+      "id": "INGEST-EC-07",
+      "title": "Lifecycle counts and tool text can report failed mutations as success",
+      "severity": "medium",
+      "sources": [
+        "ASTRA-R5-002"
+      ],
+      "anchor": "packages/friday-memory/src/friday_memory/lifecycle/promotion.py:372,462; packages/friday-tools/src/friday_tools/memory/lifecycle.py:34-54; base.py:30,136",
+      "scope": "Count completed non-dry-run mutations truthfully and expose failures in public tool execution text; preserve dry-run prospective counts, partial-results policy and lifecycle thresholds/order.",
+      "proof": "Same-space success and overflow/identity/invalid-vector failures verify both structured results and ordinary tool execute text; refused mutations are not counted as successes."
+    },
+    {
+      "id": "INGEST-EC-08",
+      "title": "Recall can suppress typed refusals; async graph fallback is not maintained wiring",
+      "severity": "high",
+      "sources": [
+        "OPUS-M4"
+      ],
+      "anchor": "packages/friday-memory/src/friday_memory/controller/memory_controller.py:522-527,1625,1639; retrieval/graph_scorer.py:226,335",
+      "scope": "Name the gather/except/priming propagation points for typed embedding readiness/provenance errors, preserving other existing degradation policies. Distinguish maintained sync scoring from public-unwired async fallback; no new fallback activation is inferred.",
+      "proof": "End-to-end Chat/Runtime/agent-tool recall returns actionable typed refusal for unknown provenance and mid-session space mismatch, rather than empty context/zero-score success. Preserve ordinary missing-vector policy explicitly."
+    },
+    {
+      "id": "INGEST-EC-09",
+      "title": "Runtime ephemeral/testing profiles still construct persistent lifecycle collections",
+      "severity": "high",
+      "sources": [
+        "OPUS-M5"
+      ],
+      "anchor": "packages/friday-core/src/friday_core/profiles.py:74; packages/friday-runtime/src/friday_runtime/di.py:282-300",
+      "scope": "Freeze a FULL/VECTOR_ONLY/EPHEMERAL/TESTING open-intent and identity matrix. State whether lifecycle collections are ephemeral or explicitly requested persistent; disclose the narrow behavior delta, without profile redesign.",
+      "proof": "Actual RuntimeKernel per-profile startup and recall witnesses cover no persistent effects for an ephemeral choice, unset persistent refusal and explicit matching persistent success, with exact existing fixture exceptions."
+    }
+  ],
+  "technical_theme_count": 9,
+  "advisory_dispositions": [
+    {
+      "sources": [
+        "SOL-R5-A01",
+        "ASTRA-R5-A01"
+      ],
+      "topic": "Stale top-level authority summary",
+      "disposition": "Fixed only in current reconciliation status; technical documents/review artifacts unchanged."
+    },
+    {
+      "sources": [
+        "SOL-R5-A02",
+        "OPUS-A6"
+      ],
+      "topic": "Agent, multi-agent and MCP consumer trace rows",
+      "disposition": "Carry into proposed document correction; controller-mediated unaffected behavior can be proven without local source changes. Distinguish visibility namespaces from physical embedding namespaces."
+    },
+    {
+      "sources": [
+        "ASTRA-R5-A02",
+        "OPUS-A8"
+      ],
+      "topic": "Existing dimension ceiling and empty fresh collection inference",
+      "disposition": "Qualify selected dimensions against the existing ceiling and specify graph-only/empty-store behavior; no speculative ceiling removal."
+    },
+    {
+      "sources": [
+        "OPUS-A1"
+      ],
+      "topic": "Chat embedding.embedding_service differs from actual default-service wiring",
+      "disposition": "Characterize retained baseline behavior and explicit selection semantics; do not silently change it while claiming unchanged configuration."
+    },
+    {
+      "sources": [
+        "OPUS-A2"
+      ],
+      "topic": "Similarity thresholds and retrieval quality",
+      "disposition": "Operational compatibility is distinct from quality/calibration under a different model. Require measured relevance/UAT evidence if a replacement is later selected; deterministic vector shape checks are insufficient."
+    },
+    {
+      "sources": [
+        "OPUS-A3"
+      ],
+      "topic": "Baseline configuration catalogue and served-artifact identity",
+      "disposition": "Enumerate maintained pool/non-pool/CLI/maintenance fixture families; qualify absent/placeholder revisions and mutable alias behavior or stop readiness explicitly."
+    },
+    {
+      "sources": [
+        "OPUS-A4"
+      ],
+      "topic": "Real maintenance probe ordering",
+      "disposition": "Admission must precede model probe/provider I/O; add the explicit no-I/O refusal witness."
+    },
+    {
+      "sources": [
+        "OPUS-A5"
+      ],
+      "topic": "CLI explicit-origin bit",
+      "disposition": "Trace dataclass/default/environment origin into Runtime before defaults obscure explicit selection; add DI-29 witness."
+    },
+    {
+      "sources": [
+        "OPUS-A7"
+      ],
+      "topic": "MEMQ store-only operations",
+      "disposition": "Add stats/records/list-ingested dispositions to the operation matrix without requiring an embedding provider to render admitted data."
+    },
+    {
+      "sources": [
+        "OPUS-A9"
+      ],
+      "topic": "Telemetry compatibility",
+      "disposition": "Source supports unchanged telemetry/error outcomes; no telemetry patch is justified by this review."
+    },
+    {
+      "sources": [
+        "OPUS-A10"
+      ],
+      "topic": "Runtime/CLI/Agent-only counter dependencies",
+      "disposition": "Freeze exact minimal/optional dependency/readiness placement at Gate-A; do not make document conversion a prerequisite of unrelated embedding consumers."
+    },
+    {
+      "sources": [
+        "OPUS-A11"
+      ],
+      "topic": "Public legacy preprocessing/chunking pipeline",
+      "disposition": "Classify public-unwired preprocessing explicitly; no second storage chunking authority or automatic activation."
+    }
+  ],
+  "controller_qualifications": [
+    "The module maintenance CLI already refuses restore and non-dry-run synthesis/prune/verify/reorganize mutation paths. Do not portray it as an active destructive bypass or re-enable it. The public BackupManager/MemorySynthesizer APIs remain affected; module backup/analyze/read/dry-run surfaces still need admission dispositions.",
+    "Sol/Astra treated MCP publication as covered or unchanged, but the controller followed memory_mcp -> adapter -> MCPMemoryIngester -> stage_mcp_snapshot -> add_to_short_term. This is active opt-in tool-output storage; the generic ToolOutputIngester route remains public-unwired. Accept OPUS-M2 as a real missing route classification.",
+    "Sol/Astra considered recall covered by global typed-refusal intent; Opus identified specific catch/gather sites and sync-only maintained graph scoring. Retain the design intent but require explicit propagation scope and end-to-end negative witnesses; do not claim public async fallback is maintained wiring.",
+    "Astra is procedurally BLOCKED; its provisional findings are not formal conformance. INGEST-EC-06 is also supported by Sol and INGEST-EC-07 was independently checked by the controller in promotion count ordering and ToolResult/execute rendering. This does not cure the blocked seat.",
+    "These findings are static source-backed risks and missing design dispositions, not executed demonstrations that the proposed implementation fails. No implementation exists for this unit and no runtime/model/store tests ran."
+  ],
+  "all_delegates_terminal": true,
+  "no_active_council": true,
+  "no_automatic_remediation_or_new_review": true,
+  "frozen_integrity_before_closeout": {
+    "outcome": "PASS",
+    "request_sha256": "e463c4e849957eb920e4260c10d408217498f6afb787da474c301a546e33c35c",
+    "candidate": "06f294d779c5bc9ea3016eaffdf8efb349979ce4",
+    "branch": "feature/cmd-ingest-001",
+    "logical_index_sha256": "948187c7cb810e1721eaf094454ff68b44e4e6b35f65fad0290c6e98437a0ffe",
+    "protected_entries": 17643,
+    "failures": []
+  },
+  "raw_artifact_hashes": {
+    "sol-report.md": "f33306b9f93b8a6dfd90239ce37ed8454b8ec6ba02ddfd8c4d9a81086f199dda",
+    "sol-start-integrity.json": "dcb0b521744f37cc7ab7e18ed33b353feee77e21d081bf5df3a97110b673f9df",
+    "sol-end-integrity.json": "dcb0b521744f37cc7ab7e18ed33b353feee77e21d081bf5df3a97110b673f9df",
+    "sol-command-audit.jsonl": "880f8d5cf4e493c7c1745b50418ed553a274223af4f6eb1ea845356e17160902",
+    "astra-report.md": "d6915dfd791e0f28aa476778ada2e986ddab6d54d45adf29326930e5ed110037",
+    "astra-start-integrity.json": "dcb0b521744f37cc7ab7e18ed33b353feee77e21d081bf5df3a97110b673f9df",
+    "astra-end-integrity.json": "dcb0b521744f37cc7ab7e18ed33b353feee77e21d081bf5df3a97110b673f9df",
+    "astra-command-audit.jsonl": "8fcff6071b02582a9b36455fedac011a02521b8de519cf5b2f6e2dd822457b2d",
+    "opus-report.md": "c44370285a8d74570e2dd50abca5ddc34d8068cad4b99c8b64b0b7b76103fc85",
+    "opus-start-integrity.json": "dcb0b521744f37cc7ab7e18ed33b353feee77e21d081bf5df3a97110b673f9df",
+    "opus-end-integrity.json": "dcb0b521744f37cc7ab7e18ed33b353feee77e21d081bf5df3a97110b673f9df",
+    "opus-command-audit.jsonl": "145ca05005d06c609518e845876122d301376f2bd0c84a24ba387aea7534df3f",
+    "review-request.json": "e463c4e849957eb920e4260c10d408217498f6afb787da474c301a546e33c35c",
+    "check_integrity.py": "2d383c058aec2af50f4b0c6d6b27909b7b57995755a89f3af6bcb2857eceb38a",
+    "read_only_command.py": "cb0669f81efd0098c104d7b96342fcd614255021ea2bfa49cbbb6af7c2fea248",
+    "preserved-state.json": "43bc63142365560b7bfc72004d0edd493f1c9ec5f21e7cff724b54b12af52ce8",
+    "protected-manifest.raw.json.gz": "6a5743ef9b21d12517230bca42665853e0a60a964c710d7ca81b12f56387784e",
+    "dispatch-identity.json": "e2a8b7ff81b6f320bed8a65646c850b13543747a25d24498ba5d496e28a500d2",
+    "dispatch.json": "b864a44855ff1d30db6a5b5d2fa2b6188c785d487ff0db10931d1dd858096b78",
+    "controller-frozen-integrity.json": "dcb0b521744f37cc7ab7e18ed33b353feee77e21d081bf5df3a97110b673f9df",
+    "controller-freeze-checks.json": "fc1d2a05c86140db0ea42117265cffcf97e4dcf2474d4afed7affad97a5a5ea9",
+    "prior-planning-checks.json": "6883447b89ccee1ee9324dd6c7e0bf4498a66d3761d712a265921c8620ad2c39",
+    "astra-report.raw.md.gz": "9577c45583d9b9bd6a4914c24d58d0c1bb01c9af6822463e72611dfb46b061e6"
+  },
+  "manifest_archive": {
+    "encoding": "gzip mtime0 of exact supplied raw JSON",
+    "uncompressed_sha256": "ae217be9abbb7a1f8f4b3ee66e236e43598d3832fbe622756da02a4b3f3b7bc0"
+  },
+  "proof_limits": "Design/source-feasibility review; administrative checks only. No product tests/imports/builds, dependency/model readiness, provider calls, real store reads/reset/migration, MAINT acceptance or delivery.",
+  "report_preservation_note": "Sol/Opus readable reports equal exact originals. Astra readable copy removes EOF empty lines solely for repository whitespace; exact original gzip archive decompresses to the announced report hash."
+}

@@ -1,0 +1,17 @@
+{
+  "seat": "astra",
+  "round": 7,
+  "verdict": "VERIFIED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall_score": 9.55,
+  "mandatory_findings": 0,
+  "report_sha256": "e1428334a8906c6fe5e0f9644372af741edd1870422f14192ce947e84a025ee2",
+  "files": {
+    "report.md": "e1428334a8906c6fe5e0f9644372af741edd1870422f14192ce947e84a025ee2",
+    "entry.json": "de458c361144474c1a2e7f36104d83ff876593598e4917a682da921365a1c068",
+    "exit.json": "de458c361144474c1a2e7f36104d83ff876593598e4917a682da921365a1c068",
+    "boundary.json": "72330325163ac7638795b5499fd37d4ab1f8abc2400ee8f577af1312133c7b49"
+  },
+  "entry_exit_equal": true
+}

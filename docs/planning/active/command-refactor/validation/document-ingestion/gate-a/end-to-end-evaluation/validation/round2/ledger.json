@@ -1,0 +1,123 @@
+{
+  "outcome": "VERIFIED",
+  "reviewer": "/root/ingest_e2e_corrected_independent_validation (fresh Codex validator; exact model identifier not exposed)",
+  "timestamp_utc": "2026-11-12T22:57:49.989238+00:00",
+  "candidate": "1f5f86dcd8315eaf9a7508c44c65b4637766c323",
+  "base": "cae6aa4c183f013c19d10af4358dcf93fd189367",
+  "actual_live_source": "c97777366671006f56866aa92898aaffcec524d6",
+  "profile": "Reporting-only correction; prove all20 unchanged live definitions versus c977 and inspect frozen actual c977 experiment. Fresh synthetic report-control/CLI proof is not new live execution. No inference replay.",
+  "delta": {
+    "E2E-IV-001": "CLOSED",
+    "scope": "Only report changed, report_conversion_source added; other20 definitions AST-identical and behavior.py byte-identical to c977",
+    "fresh_canonical_cli_cases": 30,
+    "new_live_execution": false
+  },
+  "mandatory_findings": [],
+  "criteria": [
+    {
+      "criterion": "EE-01",
+      "outcome": "PASS \u2014 test-only correction; committed source/package origins and all preserved identities match.",
+      "evidence": "Selected three-file diff; static-integrity.json; opening.json; closing-summary.json. 149 Friday wheel payload files equal commit 96f752d6, candidate and supplied installed files.",
+      "advisory_score": "9.4"
+    },
+    {
+      "criterion": "EE-02",
+      "outcome": "PASS \u2014 historical five genuine conversions cover native/scanned PDF, DOCX, XLSX and PPTX; corrupt PDF and missing-formula-cache XLSX remain excluded. Default512 and DOCX128 content oracles bind to immutable conversion attempts.",
+      "evidence": "conversion-oracle-attribution.json; original attempt/result/document receipts; historical-attribution.json. Reproduced token counts on persisted copies: maximum510 at512 and84 at128. No fresh Docling replay.",
+      "advisory_score": "9.2"
+    },
+    {
+      "criterion": "EE-03",
+      "outcome": "PASS \u2014 inspected original Friday-LLM broker and task-preparation path; recomputed all18 POST input hashes from stored document/query text; all36 surrounding observations retain exact model/context/fingerprint.",
+      "evidence": "e2e.py embed() source; original HTTP receipts; historical-attribution.json; 149 committed/installed wheel-member comparisons. No live request reproduced.",
+      "advisory_score": "9.1"
+    },
+    {
+      "criterion": "EE-04",
+      "outcome": "PASS \u2014 unchanged runtime validates model/count/order/finite/nonzero768 dimensions and reserves budgets before zero-retry transport. Fresh malformed-response and exhausted-budget controls refuse; all162 persisted document vectors independently checked.",
+      "evidence": "independent-response-budget.json; independent_controls.py; reopen-normal.json; reopen-optimized.json; original request sequence4..57 and 172 vectors/41556 local tokens.",
+      "advisory_score": "9.2"
+    },
+    {
+      "criterion": "EE-05",
+      "outcome": "PASS \u2014 shared public Memory adapter retains81 rows per mode in fresh per-mode historical stores; exact content hash, source, chunk, budget, protected metadata and absent description all reproduced from copied stores. Refused cases absent.",
+      "evidence": "reopen-normal.json; reopen-optimized.json; original corpus/stored receipts; historical-attribution.json. Original physical18 store files still byte-equal archive.",
+      "advisory_score": "9.3"
+    },
+    {
+      "criterion": "EE-06",
+      "outcome": "PASS \u2014 inspected original query embedding attribution; independently reopened both physical store copies in separate normal/-O processes with networking denied and embedding callbacks that raise. All10 retrieval ID lists match.",
+      "evidence": "independent_reopen.py; reopen-normal.json; reopen-optimized.json and guard receipts. Queries reuse source text; semantic retrieval quality remains unqualified.",
+      "advisory_score": "9.3"
+    },
+    {
+      "criterion": "EE-07",
+      "outcome": "PASS \u2014 E2E-IV-001 CLOSED. Fresh canonical CLI positives and source/binding/alias/failure/artifact negatives succeed in both modes. Historical e2e receipts refuse the corrected runner as expected. All pins/archives/per-run bindings and frozen boundaries agree.",
+      "evidence": "independent-cli.json; old-receipts-normal.stderr; old-receipts-optimized.stderr; static-integrity.json; closing-summary.json. Home-cache metadata/mkdir attempts prevented; Python-visible guard is not an OS sandbox.",
+      "advisory_score": "9.1"
+    },
+    {
+      "criterion": "EE-08",
+      "outcome": "PASS \u2014 fresh79-case bootstrap suites pass normal/-O; Ruff check and format pass29 files. Inspected successful private mypy receipt has29/29 source-byte equality and exact root config. Manual commands, setup limitations and actual versions remain accurately attributed. Fresh administration passes.",
+      "evidence": "normal.stdout/stderr; optimized.stdout/stderr; ruff.stdout; format.stdout; typing-source-equality.json; admin-*.stdout; command-ledger.json. Typing was inspected, not rerun.",
+      "advisory_score": "9.2"
+    }
+  ],
+  "boundary": {
+    "frozen_boundary_equal": {
+      "logical_before_status": true,
+      "status": true,
+      "head": true,
+      "branch": true,
+      "tracked_sha256": true,
+      "symlinks": true,
+      "preserved": true
+    },
+    "opening_equal": true,
+    "pins_equal": true,
+    "frozen_manifest_equal": true,
+    "tracked_count": 18665,
+    "symlink_count": 26,
+    "preserved_count": 8,
+    "pins_count": 24,
+    "logical_index": "aa9ece30961e4648b0ab7bff84f811e510fa5ccb9228e56d65b58f4ecaa56e26",
+    "head": "1f5f86dcd8315eaf9a7508c44c65b4637766c323",
+    "branch": "feature/cmd-ingest-001",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n"
+  },
+  "attribution": {
+    "reproduced": [
+      "normal/-O79-case bootstrap suites",
+      "30 canonical synthetic report CLI cases",
+      "2 corrected-runner refusals of original live receipts",
+      "10 independent malformed response/budget refusals and positive vector/budget controls",
+      "33 frozen source/member bindings",
+      "367 original plus411 correction archive member hashes",
+      "149 committed/installed wheel payload member comparisons",
+      "2 independent network-denied native copied-store reopens,162 rows,162 finite nonzero768-dimensional document vectors,10 query ID lists",
+      "token counts for copied persisted text using archived-metadata-bound local tokenizer",
+      "read-only administration and closing preservation"
+    ],
+    "inspected": [
+      "Original c977 real Docling conversion/OCR/inference/transport/storage/process evidence",
+      "Original operator window, selected safe LM Studio settings, package/setup facts",
+      "Private mypy exit0 receipt on29 byte-identical current sources and exact current root config"
+    ],
+    "not_run": [
+      "New inference, live status calls, model loading, downloads, installs, full Docling matrix replay, product suites, production /ingest, whole Gate-A or delivery acceptance"
+    ]
+  },
+  "limits": [
+    "Original real experiment remains attributed to c977; corrected synthetic reports confer only report-control credit.",
+    "No raw server-token equivalence: saved upstream usage is zero; local tokenizer counts are independently reproduced.",
+    "Retrieval uses known source text and proves consistency rather than semantic quality.",
+    "Python audit guards and targeted home-cache metadata wrappers prevented recorded probes/mkdir attempts; no home-cache payload open or write was permitted. Native extension code is not OS-contained.",
+    "Native copied-store reopens used the supplied read-only private package target; only reviewer-owned extracted store copies were opened.",
+    "Documentation checker used reviewer PATH wrappers: uv child invocations forced offline/frozen/no-sync/no-python-downloads and python -B; git document inventory used cached paths only to avoid .friday-old enumeration. Frozen status showed no untracked documentation.",
+    "Original failed setup/version-lookup attempts are retained/documented as setup evidence and receive no negative-test credit. Reviewer-only order/glob inspection mistakes are recorded separately in the command ledger.",
+    "No prior full peer review or private reasoning was read; EE-REM-001 alone supplied the approved finding. Controller results/status were treated as claims, never inherited verdicts. Memory and history were not used.",
+    "Whole-repository baseline debt remains unwaived and was not rerun."
+  ],
+  "effect_boundary": "All output, scratch, caches, copied stores, tokenizer copy and artifacts under this new external scratch; no candidate, supplied artifact/runtime/store, dirty YAML or Git mutation.",
+  "authority_boundary": "VERIFIED is bounded independent conformance only; no whole Gate-A9.5, product construction, maintainer acceptance, push/merge/release/deployment or delivery authority."
+}

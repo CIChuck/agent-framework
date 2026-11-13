@@ -1,0 +1,101 @@
+{
+  "scope": "Metadata-only final council closeout; not product validation or technical correction",
+  "reviewed_candidate": "fd7d9f5d429857906d53da8fc053dc85b901a635",
+  "reviewed_technical_inputs_unchanged": true,
+  "original_report_hashes_match": true,
+  "protected_nonplanning_files": 16690,
+  "preserved_symlinks": 26,
+  "preserved_metadata_records": 8,
+  "execution_log_append_only": true,
+  "administration": [
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": "",
+      "name": "board"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": "",
+      "name": "dashboard"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1193 Markdown files checked\n",
+      "stderr": "",
+      "name": "docs"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": "",
+      "name": "metadata"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "name": "planning-whitespace"
+    }
+  ],
+  "no_product_or_model_effects": true,
+  "council_active": false,
+  "round_limit": 3,
+  "rounds_completed": 3,
+  "gate_met": false
+}

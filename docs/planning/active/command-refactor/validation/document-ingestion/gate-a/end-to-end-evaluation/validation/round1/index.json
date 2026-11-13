@@ -1,0 +1,11 @@
+{
+  "candidate": "cae6aa4c183f013c19d10af4358dcf93fd189367",
+  "outcome": "CHANGES_REQUESTED",
+  "finding": "E2E-IV-001",
+  "files": {
+    "report.md": "b06a8b663c54595fee3658e373fbfaf607aa6c41c924b278f0c57a356a32ad65",
+    "ledger.json": "d1a7c2d951a31fe87a8887d315350e1985a8cbd93cc637cdcc4e798c40fcc1c5",
+    "command-ledger.json": "061e913c8b5d1793c672c91c440c918829405e62ec4b9b76130c5ac0a867715a",
+    "review-evidence.tar.gz": "4d0c714f24af68c4079fd6c7ff6eadbe80d2410cfea3f7b6c4717421d5fa35fa"
+  }
+}

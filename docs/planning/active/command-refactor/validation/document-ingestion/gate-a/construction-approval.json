@@ -1,0 +1,26 @@
+{
+  "unit": "CD-CMD-INGEST-GATE-A-001",
+  "maintainer": "Chuck Russell",
+  "recorded_at": "2026-11-12T02:55:46.685424+00:00",
+  "verbatim_instruction": "proceed",
+  "context": "Response to the reconciled all-seat VERIFIED directive and explicit next step of separate exact approval for isolated harness construction.",
+  "directive": "directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md",
+  "directive_version": "0.3",
+  "directive_sha256": "bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803",
+  "reviewed_candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+  "construction_baseline": "e42082195cd70d4ff384fcf73eac10303144aa07",
+  "construction": "GRANTED: standalone harness under tests/readiness/ingest and sole /.friday_test/ ignore entry, named planning/approval/evidence. Offline stdlib C0 tests in fresh private unit roots.",
+  "execution_order": [
+    "startup/manifest/typed path and environment foundation",
+    "ledger/export/protection/window controls",
+    "CLI/report/genuine fixtures and gated stage interfaces"
+  ],
+  "not_authorized": [
+    "Production packages/source/tests/config/env/store changes",
+    "A0-A4 real resolution/download/install/conversion/model effects",
+    "LM Studio/server settings or management and actual window confirmation",
+    "Dependency installs for C0 or use of working .venv for harness/tests",
+    "Push/PR/merge/release or human acceptance"
+  ],
+  "validation": "Normal and optimized offline C0; separately bound private validation tools only; fresh independent implementation validation before completion. No automatic three-seat council or new remediation loop is inferred."
+}

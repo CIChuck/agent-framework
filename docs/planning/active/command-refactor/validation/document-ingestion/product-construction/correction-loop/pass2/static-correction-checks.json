@@ -1,0 +1,19 @@
+{
+  "scope": "Controller static planning validation only, not independent review or runtime proof",
+  "original_DI_definitions": 36,
+  "bidirectional_exits": 12,
+  "FC_contracts": 14,
+  "FC_named_witnesses": 19,
+  "DI22_complete_stage": "I3",
+  "effective_fixture_conftest_count": 75,
+  "original_gzip_unchanged": true,
+  "supplemental_fixtures": 3,
+  "excluded_artifacts": 1,
+  "original_helper_inventory_unchanged": 30,
+  "no_obsolete_current_cap": true,
+  "all_parent_manifest_hashes_match": true,
+  "protected_files": 16690,
+  "symlinks": 26,
+  "preserved_metadata": 8,
+  "failures": []
+}

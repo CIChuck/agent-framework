@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "INGEST-IMPLEMENTATION-COUNCILS-001",
+  "date": "2026-11-13",
+  "status": "approved_not_activated",
+  "approval_record": "docs/planning/active/command-refactor/approval/ingest-construction-documents-20261113.json",
+  "scope": "Independent review of generated INGEST implementation after each of I1, I2 and I3; I3 includes the complete aggregate review.",
+  "roster": [
+    {"seat": "sol", "provider": "OpenAI", "model": "gpt-6.1-sol"},
+    {"seat": "astra", "provider": "OpenAI", "model": "gpt-6-astra"},
+    {"seat": "opus", "provider": "Anthropic", "model": "claude-opus-5-5"}
+  ],
+  "review_mode": "Fresh-context, independent, read-only seats using the same frozen candidate, authority manifest, criteria and evidence. No builder reasoning or peer verdicts in the brief. Use the repository council workflow; disclose unavailable models and stop instead of substituting unasked.",
+  "gates": [
+    {
+      "id": "I1-council",
+      "after": "I1-C4",
+      "scope": "Complete I1 foundations and all affected existing consumers/regressions; retain additive staging and unchanged legacy preparation/cache behavior. Do not require I2/I3 functionality early.",
+      "blocks": "I2 implementation",
+      "maximum_passes": 3
+    },
+    {
+      "id": "I2-council",
+      "after": "I2-C3",
+      "scope": "Complete I2 consumer adoption plus cumulative I1 compatibility, configuration, store admission/recovery, roles, failure/task observability and baseline/replacement positives and refusals. Do not require unbuilt I3 document features.",
+      "blocks": "I3 implementation",
+      "maximum_passes": 3
+    },
+    {
+      "id": "I3-and-aggregate-council",
+      "after": "I3-C5",
+      "scope": "Complete I3 extraction/chunking/command/headless/process behavior plus full I1-I3 implementation, installed profiles, all affected package consumers, retained/replacement coverage and authored architecture/guides.",
+      "required_dispositions": ["I3", "aggregate I1-I3"],
+      "blocks": "human UAT and proposal of implementation completion",
+      "maximum_passes": 3,
+      "one_combined_council_not_a_fourth_gate": true
+    }
+  ],
+  "pass_rule": {
+    "all_three_seats_required": true,
+    "assessment_complete_required": true,
+    "verdict_each": "VERIFIED",
+    "minimum_overall_score_each": 9.5,
+    "minimum_coverage_score_each_if_reported": 9.5,
+    "mandatory_findings_each": 0,
+    "I3_and_aggregate_must_both_pass": true,
+    "no_averaging_majority_or_score_inflation": true,
+    "stop_early_on_success": true
+  },
+  "evidence_before_dispatch": [
+    "Stable base/candidate commits and exact cumulative/slice diffs; clean candidate scope and declared unrelated dirty exclusions",
+    "Approved directive, impact, current dispositions, exact source/test maps and this council plan, with paths/revisions/hashes",
+    "Slice-specific acceptance criteria, positive/negative/regression/integration and normal/optimized evidence, command results and known baseline debt",
+    "Declared private installed environments, artifact/origin and asset identities, disposable store/readback evidence and preservation receipts as applicable",
+    "Traceable test changes and substantive authored-document validation due at this slice; distinguish inspected receipts from reproduced checks",
+    "Per-seat criteria table, cited source/evidence, exact score calculation, mandatory/advisory findings and limitations"
+  ],
+  "review_focus": [
+    "Implemented contracts, package ownership and reusable Chat/CLI/Runtime/TUI boundaries",
+    "Cross-package embedding/configuration compatibility and truthful failure/partial-effect behavior",
+    "Real document-to-chunks-to-Memory behavior, limits, configured guards and existing text consumers when due",
+    "Worker responsiveness, cancellation/timeout/shutdown and destination/cache/store/recovery identity when due",
+    "Meaningful retained/replacement tests, installed profiles, dependency effects and substantive user/architecture documentation"
+  ],
+  "remediation": {
+    "maximum_cycles_after_initial_pass": 2,
+    "scope": "Numbered findings within the approved construction scope; no opportunistic subsystem rewrite or baseline-debt cleanup.",
+    "review_after_change": "Commit a stable corrected candidate. New fresh seats assess the approved remediation delta first, then full bounded aggregate conformance for that gate. No carry-forward verdict for changed bytes.",
+    "counting": "A started pass counts even if a seat is incomplete, BLOCKED or fails protocol. No hidden replacement/reissue, extra pass or budget reset. Each gate has its own non-transferable cap.",
+    "after_third_unsuccessful_pass": "Stop for Chuck with unresolved findings and exact candidate/evidence; do not advance the next slice or start another council.",
+    "material_expansion": "Stop and obtain disposition before changes outside the approved scope/effects. Ordinary within-scope correction and review cycles do not need repeated permission."
+  },
+  "maximum_if_all_gates_use_their_budget": {
+    "gates": 3,
+    "council_passes": 9,
+    "seat_reviews": 27,
+    "not_an_instruction_to_consume_unused_passes": true
+  },
+  "effects": {
+    "council_model_calls": "Authorized only for the three named seats and bounded implementation gates after Git handoff/phase activation. No calls now.",
+    "validation": "Approved private offline execution profile only; owned local fixture servers where named. No production mutation, real embedding provider requests or live Finance tests.",
+    "completed_vendor_evaluation": "Reuse established Docling/readiness evidence. Do not restart vendor evaluation, archive re-audits or a historical AST-inventory campaign as a substitute for reviewing implementation.",
+    "publication_and_acceptance": "No push, merge, release, deployment or human product acceptance follows from a council verdict. UAT/effects and delivery remain separate."
+  },
+  "activation": {
+    "active": false,
+    "prerequisites": [
+      "Settle the requested Git handoff before coding",
+      "Commit and bind the approved document digests, then record the actual coding branch/base",
+      "Record each eligible phase's exact private execution binding before effects",
+      "Complete that phase's implementation and required builder checks before its council"
+    ],
+    "closed_planning_councils_reopened": false
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "inventory_sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4",
+  "uncompressed_json_sha256": "3c513e8f4c6d7c4abcf6560b3456ea8b936570cfb0ac6eaa901632091e0deb56",
+  "test_modules": 237,
+  "static_base_test_definitions": 3073,
+  "fixture_conftest_files": 72,
+  "actual_collection_or_execution": false,
+  "workspace_packages": [
+    {
+      "path": "packages/friday-agent",
+      "distribution": "friday-framework-agent",
+      "test_modules": 11,
+      "static_base_test_definitions": 209
+    },
+    {
+      "path": "packages/friday-chat",
+      "distribution": "friday-chat",
+      "test_modules": 60,
+      "static_base_test_definitions": 587
+    },
+    {
+      "path": "packages/friday-cli",
+      "distribution": "friday-framework-cli",
+      "test_modules": 6,
+      "static_base_test_definitions": 155
+    },
+    {
+      "path": "packages/friday-commands",
+      "distribution": "friday-framework-commands",
+      "test_modules": 8,
+      "static_base_test_definitions": 65
+    },
+    {
+      "path": "packages/friday-core",
+      "distribution": "friday-framework-core",
+      "test_modules": 7,
+      "static_base_test_definitions": 128
+    },
+    {
+      "path": "packages/friday-finance",
+      "distribution": "friday-framework-finance",
+      "test_modules": 2,
+      "static_base_test_definitions": 19
+    },
+    {
+      "path": "packages/friday-llm",
+      "distribution": "friday-framework-llm",
+      "test_modules": 18,
+      "static_base_test_definitions": 198
+    },
+    {
+      "path": "packages/friday-mcp",
+      "distribution": "friday-framework-mcp",
+      "test_modules": 24,
+      "static_base_test_definitions": 342
+    },
+    {
+      "path": "packages/friday-memory",
+      "distribution": "friday-framework-memory",
+      "test_modules": 45,
+      "static_base_test_definitions": 717
+    },
+    {
+      "path": "packages/friday-moltbook",
+      "distribution": "friday-framework-moltbook",
+      "test_modules": 1,
+      "static_base_test_definitions": 4
+    },
+    {
+      "path": "packages/friday-optimization",
+      "distribution": "friday-framework-optimization",
+      "test_modules": 0,
+      "static_base_test_definitions": 0
+    },
+    {
+      "path": "packages/friday-runtime",
+      "distribution": "friday-framework-runtime",
+      "test_modules": 8,
+      "static_base_test_definitions": 150
+    },
+    {
+      "path": "packages/friday-sandbox",
+      "distribution": "friday-framework-sandbox",
+      "test_modules": 3,
+      "static_base_test_definitions": 38
+    },
+    {
+      "path": "packages/friday-speech",
+      "distribution": "friday-framework-speech",
+      "test_modules": 5,
+      "static_base_test_definitions": 15
+    },
+    {
+      "path": "packages/friday-telemetry",
+      "distribution": "friday-framework-telemetry",
+      "test_modules": 11,
+      "static_base_test_definitions": 115
+    },
+    {
+      "path": "packages/friday-tools",
+      "distribution": "friday-framework-tools",
+      "test_modules": 13,
+      "static_base_test_definitions": 245
+    },
+    {
+      "path": "packages/friday-transcript",
+      "distribution": "friday-framework-transcript",
+      "test_modules": 4,
+      "static_base_test_definitions": 25
+    }
+  ],
+  "root_integration": {
+    "path": "tests/integration",
+    "test_modules": 11,
+    "static_base_test_definitions": 61,
+    "paths": [
+      "tests/integration/reorganization/test_gate_a_reproductions.py",
+      "tests/integration/reorganization/test_maintenance_headless.py",
+      "tests/integration/reorganization/test_reorganization_recovery.py",
+      "tests/integration/test_development_board.py",
+      "tests/integration/test_documentation_lifecycle.py",
+      "tests/integration/test_mcp_execution_provenance.py",
+      "tests/integration/test_mcp_memory_ingestion.py",
+      "tests/integration/test_mcp_registry.py",
+      "tests/integration/test_mcp_runtime_lifecycle.py",
+      "tests/integration/test_package_cohort_metadata.py",
+      "tests/integration/test_typed_llm_boundary_audit.py"
+    ]
+  },
+  "inventory_scope": {
+    "includes": [
+      "Tracked package-local test_*.py under test directories",
+      "Tracked tests/integration/test_*.py",
+      "Primary selected fixture/conftest identities plus the explicitly linked supplement; complete classified non-Python package/integration test-tree support set."
+    ],
+    "excludes": {
+      "docs/dev-skills": [
+        "docs/dev-skills/babysit-pr/tests/test_pr_wait.py"
+      ],
+      "experiments/agent_quality": [
+        "experiments/agent_quality/tests/test_agent_quality.py"
+      ],
+      "experiments/prompt_transcript_audit": [
+        "experiments/prompt_transcript_audit/tests/test_prompt_transcript_audit.py"
+      ],
+      "experiments/provider_memory_smoke": [
+        "experiments/provider_memory_smoke/tests/test_provider_memory_smoke.py"
+      ],
+      "experiments/workflow_artifact_smoke": [
+        "experiments/workflow_artifact_smoke/tests/test_workflow_artifact_smoke.py"
+      ],
+      "tests/lab": [
+        "tests/lab/test_delegation_chain.py",
+        "tests/lab/test_headless_execution.py",
+        "tests/lab/test_legacy_compatibility.py"
+      ],
+      "tests/readiness/ingest/tests": [
+        "tests/readiness/ingest/tests/test_behavior.py",
+        "tests/readiness/ingest/tests/test_cli.py",
+        "tests/readiness/ingest/tests/test_e2e.py",
+        "tests/readiness/ingest/tests/test_environment.py",
+        "tests/readiness/ingest/tests/test_export.py",
+        "tests/readiness/ingest/tests/test_fixtures.py",
+        "tests/readiness/ingest/tests/test_large_documents.py",
+        "tests/readiness/ingest/tests/test_ledger.py",
+        "tests/readiness/ingest/tests/test_manifests.py",
+        "tests/readiness/ingest/tests/test_paths.py",
+        "tests/readiness/ingest/tests/test_protection.py",
+        "tests/readiness/ingest/tests/test_reports.py",
+        "tests/readiness/ingest/tests/test_startup.py",
+        "tests/readiness/ingest/tests/test_window.py"
+      ],
+      "tests/unit/security": [
+        "tests/unit/security/test_config.py",
+        "tests/unit/security/test_markers.py",
+        "tests/unit/security/test_output_processor.py",
+        "tests/unit/security/test_patterns.py",
+        "tests/unit/security/test_quarantine.py",
+        "tests/unit/security/test_sanitizer.py"
+      ]
+    },
+    "scope_note": "Static base-node inventory only, not all repository tests or runtime parameter collection. Lab/security/readiness/experiment suites are outside this initial product migration inventory; every newly affected obligation must be inventoried/mapped before change. Root pytest also discovers experiments/*/tests."
+  },
+  "helper_inventory": {
+    "path": "baseline-helper-inventory.json",
+    "sha256": "8bd13dc913f9c2295e3ee766efa5dac1c53a4bf7c7ea816e8aa3b1725a38d266",
+    "helper_modules": 30,
+    "test_node_credit": 0,
+    "classification": "Separate support inventory; offline/live reviewed before execution."
+  },
+  "fixture_supplement": {
+    "path": "baseline-fixture-supplement.json",
+    "sha256": "04b5860567b1abf96744e1ec38c5fd2d24554bd353c67237ab32b3181ad1e778",
+    "additional_identities": 3,
+    "effective_fixture_conftest_total": 75,
+    "excluded_nonfunctional_artifacts": 1
+  },
+  "fixture_count_scope": "fixture_conftest_files=72 is the original gzip selection; effective disjoint union with supplement=75. All63 non-Python test-tree files are classified:62 included,1 OS artifact excluded.",
+  "dual_role_support": {
+    "path": "baseline-support-role-map.json",
+    "sha256": "57900f1bd7b2e546d0911f9e21ba9ab00d1b5b42664e3802c6177d10d054a3d8",
+    "paths": 6,
+    "extra_node_credit": 0
+  }
+}

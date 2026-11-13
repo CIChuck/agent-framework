@@ -1,16 +1,23 @@
 # TOOLS-DOC-001 — adopt shared Docling conversion in document-reading tools
 
-Status: **PROPOSED companion work item — no construction approval**.
+Status: **PROPOSED companion — framework compatibility correction; no construction approval**.
 This is a scoped adoption plan, not a completed tool upgrade or implementation
 directive. It depends on the exact shared capability and dependency/model
 readiness from [REM-CMD-INGEST-001](../remediation/REM-CMD-INGEST-001-pdf-docx.md).
 The maintainer expanded the document scope to **PDF, DOCX, XLSX and PPTX** on
 2026-11-10. That four-format scope applies to this adoption plan as well as Chat.
-Text and web extraction/fetching remain existing capabilities. The later
+Text and web reading remain existing capabilities; maintained web-to-Memory
+and generic automatic ToolOutputIngester routes were not found. Chat's active
+opt-in MCP snapshot-to-Memory route is separately governed as an exact unsplit
+structured record in [the compatibility annex](../embedding-compatibility-contract.md);
+it is not a document chunking/adoption route. The later
 maintainer discussion extends shared ingestion chunking to **all sources** with
 document/512 defaults and document/recursive/fixed overrides. That common policy
 and the embedding guards are established by INGEST; this companion adopts them
-without duplicating policy or adding fetchers. No implementation claim is implied.
+without duplicating policy or adding fetchers. Supplied extracted web/tool text
+exercises the common entry without claiming absent product wiring. The maintainer
+authorizes the current bounded four-pass document correction/review cycle, not readiness
+operations or implementation. No implementation claim is implied.
 
 ## Why a separate adoption obligation is needed
 
@@ -22,7 +29,7 @@ confirmed against unchanged product bytes at `f6287faa`, shows:
 | --- | --- | --- |
 | Chat `/read` and `/ingest` through `SmartFileReader` | PDF/DOCX/XLSX placeholders; PPTX not admitted | INGEST unit uses shared Docling extraction for all four formats. |
 | Tools `ReaderFactory` / `get_reader_for_path` | Selects legacy PDF/DOCX/XLSX readers; PPTX reaches binary fallback | Companion unit routes all four formats through typed adapters of the same shared converter. No independent engine/configuration policy. |
-| Tools `SmartFileReadTool` (`smart_read`) | PDF/DOCX/XLSX are binary-skipped; PPTX is absent from that binary list and has no document conversion path | Companion unit routes all four formats before binary/text handling, then uses existing small/large-file processing paths. |
+| Tools `SmartFileReadTool` (`smart_read`) | Public injected storage paths exist, but maintained Chat does not supply Memory and Runtime does not construct it. PDF/DOCX/XLSX binary-skip; PPTX lacks conversion. | INGEST corrects explicitly injected text storage/cache and makes unwired storage requests fail. Companion adds document routing but does not activate maintained storage wiring. |
 | Tools `FileReadTool` (`file_read`) and line readers | Text/encoding/line APIs | Remain text tools; do not silently turn line-oriented operations into document conversion. |
 | Direct public `PdfReader` / `DocxReader` / `XlsxReader` callers | Existing specialized reader APIs, including legacy XLSM support | Retain explicit compatibility APIs unless a separately approved contract migration covers them. Do not claim every direct reader caller has migrated. |
 
@@ -35,17 +42,24 @@ cannot establish either public Tools entry point works with Docling.
 1. **INGEST unit:** establish the shared Tools conversion API, compatible pinned
    Docling/model assets and mandatory `certifi>=2026.10.19`; fix Chat file parsing
    and four-format extraction, all-source shared chunking, typed model limits and
-   guarded embedding handoffs. Freeze and independently verify that bounded unit.
+   guarded embedding handoffs. Include existing smart_read text small/large/cache
+   storage, raw/derived classification, durable store identity and headless
+   composition. Freeze and independently verify INGEST without claiming Tools
+   document-consumer adoption.
 2. **TOOLS-DOC unit:** use the same frozen capability to upgrade the two named
    Tools entry points and their package setup/help/tests. Produce its own exact
-   implementation directive and independent verification. No second converter.
+   implementation directive and independent verification. Existing shared text
+   storage/cache policy is established by INGEST, not deferred to this companion.
+   Add format routing, selections and conversion-profile caching here. No second
+   converter or shared-policy implementation.
 3. **Package adoption handoff:** publish a consumer matrix and installed proof.
    Describe INGEST as complete independently when appropriate, but do not call
    Tools document adoption complete until step2 and its acceptance gate pass.
    Package publication/version delivery is separately authorized.
 
-Both units can be planned together. Do not implement step2 under INGEST's narrower
-allowlist or infer step2 approval from approval of the shared dependency alone.
+Both units can be planned together. INGEST includes narrow existing smart_read
+storage/cache changes, but not its four-format routing. Do not implement step2
+or infer its approval from the shared dependency alone.
 If the maintainer chooses one combined construction unit instead, revise and
 review its exact allowlist/criteria first; no automatic scope expansion.
 
@@ -81,15 +95,21 @@ review its exact allowlist/criteria first; no automatic scope expansion.
   Context-only summarization may keep its own read-processing behavior, but any
   storage handoff uses the shared ingestion options and validated chunk plan.
   Pass native structure to document chunking instead of flattening and slicing
-  again. This applies to text/web tool ingestion too under the common INGEST
-  caller inventory; do not turn on previously disabled storage or tool ingestion.
+  again. Existing text storage adopts this under INGEST; supplied web/tool text
+  capability uses the same rule without claiming new maintained routes. Do not
+  turn on previously disabled storage or tool ingestion.
 - For document caches, bind entries to source identity and conversion-profile
   identity, including relevant backend/model/options changes. An old entry
   without that provenance cannot substitute for verified extraction. Bypass it
   and reprocess; do not delete user records. Ingestion cache identity additionally
-  includes strategy/budget, embedding identity and counting/formatting revision
+  includes source content identity, completed-storage state, strategy/budget,
+  embedding space and counting/formatting revision
   for every source type. Preserve context-only text caching where it cannot
   bypass a later storage-policy/embedding check.
+  Completed-storage receipts additionally bind destination namespace path,
+  incarnation, exact collection set and record IDs/provenance, validated before
+  skipping storage. A matching model does not prove a fresh destination has the
+  data. Missing records or a switched collection require the common entry again.
   Its existing persistent cache queries `type=file_synthesis`, not arbitrary
   `/ingest` records; do not conflate these with the historical placeholder issue.
 - Define migration of the existing Tools `documents` extra and the new
@@ -117,7 +137,11 @@ frozen contract needs planned unit/selection access, a new typed
 tests/fixtures and dependency lock changes specifically required by this profile.
 Core/Memory/LLM contracts and policy are established in INGEST. This companion
 calls those frozen capabilities; it does not implement another Memory chunker,
-embedding guard or Chat handler. No general file-tool rewrite or TUI implementation
+  embedding guard or Chat handler. Core supplies the injected entry protocol;
+headless callers construct the public Memory implementation and inject it,
+without a Tools-to-Memory dependency or Chat proxy. Source raw records come from
+that plan; summaries are derived records under the unsplit guard. No general
+file-tool rewrite or TUI implementation
 is included. Freeze exact paths/signatures after readiness;
 this list is not construction authorization.
 
@@ -128,13 +152,13 @@ this list is not construction authorization.
 | TD-01 | Actual `ReaderFactory.read` / `get_reader_for_path` on genuine PDF, DOCX, XLSX and PPTX reaches the shared converter once and returns distinctive source text, order and real metadata. Only these four routes change. XLSX active-sheet/explicit-sheet/range/row compatibility is tested separately from full-workbook ingestion. |
 | TD-02 | Actual `SmartFileReadTool.run(Input(...))` extracts all four formats through Docling; no binary-skip or raw ZIP/text success. Verify small and large/force_chunked paths, extracted-character sizing, full admitted scope, retained opt-in/context controls and exactly one shared ingestion chunk plan on storage paths. |
 | TD-03 | Both consumers refuse corrupt/encrypted/partial/empty conversion and missing library/models with no fallback/false success or unwanted storage/cache writes. Local OCR has real scanned-fixture proof, not only converter doubles. |
-| TD-04 | Existing filesystem sandbox denial still wins before converter access. Text/code/CSV/web extraction and direct legacy-reader contracts are preserved; shared ingestion chunking deltas are those explicitly established by INGEST. XLSX factory routing/format deltas are exact and separately approved; XLSM remains on its legacy route. |
+| TD-04 | Existing filesystem sandbox denial still wins before converter access. Text/code/CSV/web extraction and direct legacy-reader contracts are preserved; plain delimited payloads disclose absent table structure rather than infer headers; shared ingestion chunking deltas are those explicitly established by INGEST. XLSX factory routing/format deltas are exact and separately approved; XLSM remains on its legacy route. |
 | TD-05 | Cache hit/invalidation/force_reprocess prove conversion, strategy/budget, model and counting-profile drift. Ineligible historical entries are ignored, not purged. No stale ingestion cache can conceal a converter or embedding-guard failure. |
 | TD-06 | Tools pagination and structured metadata are explicit and tested. Same source/selection/profile produces matching extracted source markers before optional summaries. Compare common included content across Chat, factory and smart_read; an intentional factory sheet/range selection is not mistaken for lost full-workbook content. |
 | TD-07 | Clean installed Tools-with-profile works without Chat installed; Commands remains standard-library-only. The exact Docling/model manifest and post-install `certifi>=2026.10.19` checks apply in normal and optimized modes. |
 | TD-08 | Stable candidate, package/tool regressions, canonical origins, negative controls and fresh independent review; consumer matrix records implemented versus deferred entry points. Human acceptance and delivery stay separate. |
 | TD-09 | Real multi-sheet/slide fixtures demonstrate common hidden-content coverage, saved formula values/refusals, late markers, notes and merged/native tables through both public consumers. No silent first-sheet/slide/row cap or dropped-note success; all four formats have installed normal/optimized public-entry proof without Chat. |
-| TD-10 | Headless tool storage observes document/512 defaults, all three explicit strategies and exact token/dimension guards through the same injected policy used by Chat. No double chunking or unsafe fixed/estimated-token fallback. Qwen example does not activate a model; no legacy store reset/migration. |
+| TD-10 | Actual headless smart_read storage on all four adopted formats observes document/512 and all explicit strategies through the injected Memory entry already established by INGEST. Stored raw chunks equal its plan, derived records use the unsplit guard, and fresh bound stores admit only matching identity. Missing capability/old cache refuses storage. Supplied web/tool payload tests are capability proof, not proof of absent product wiring. No double chunking, model activation, reset or migration. |
 
 Existing `test_pdf_is_binary` expectations may change only for the explicitly
 adopted formats. Preserve the other binary/text/cache/storage tests and expose

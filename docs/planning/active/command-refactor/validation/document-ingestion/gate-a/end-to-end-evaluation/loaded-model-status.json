@@ -1,0 +1,29 @@
+{
+  "status": 200,
+  "selected": {
+    "type": "embedding",
+    "publisher": "nomic-ai",
+    "key": "text-embedding-nomic-embed-text-v1.5",
+    "display_name": "Nomic Embed Text v1.5",
+    "quantization": {
+      "name": "Q4_K_M",
+      "bits_per_weight": 4
+    },
+    "size_bytes": 84106624,
+    "params_string": null,
+    "loaded_instances": [
+      {
+        "id": "text-embedding-nomic-embed-text-v1.5",
+        "config": {
+          "context_length": 2048
+        }
+      }
+    ],
+    "max_context_length": 2048,
+    "format": "gguf"
+  },
+  "all_loaded_instances_digest": "333235a9b7afaefe3550f879c4f8bafcfbf853dcc56197f2d47becea60f6c3c8",
+  "raw_status_sha256": "43de48bb816e974f100d0cdee37de113cdfcd945198bac06f6345224fceca264",
+  "requested_origin": "http://127.0.0.1:1234",
+  "status_profile": "LMS_NATIVE_V1"
+}

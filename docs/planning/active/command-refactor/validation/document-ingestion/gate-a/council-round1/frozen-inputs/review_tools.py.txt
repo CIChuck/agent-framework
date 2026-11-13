@@ -1,0 +1,42 @@
+from pathlib import Path
+import argparse,datetime,hashlib,json,os,subprocess,sys
+
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def need(ok,message):
+ if not ok:raise SystemExit(message)
+a=argparse.ArgumentParser();a.add_argument('action',choices=['boundary','admin']);a.add_argument('--request',required=True);a.add_argument('--scratch',required=True);a.add_argument('--label',choices=['opening','closing'],default='opening');v=a.parse_args()
+request_path=Path(v.request).resolve();request=json.loads(request_path.read_text());repo=Path(request['repo']).resolve();scratch=Path(v.scratch).resolve();supplied=Path(request['supplied_root_read_only']).resolve()
+need(scratch.is_dir() and scratch.stat().st_uid==os.getuid(),'Scratch must exist and be reviewer-owned')
+need(not scratch.is_relative_to(repo) and not scratch.is_relative_to(supplied),'Scratch must be outside checkout and all supplied input/controller directories')
+for path,key in [(request['protected_manifest'],'protected_manifest_sha256'),(request['current_controls'],'current_controls_sha256')]:need(sha(Path(path))==request[key],'Supplied input hash changed: '+path)
+for name,digest in request['helper_pins'].items():need(sha(Path(name))==digest,'Helper hash changed')
+env=dict(os.environ,GIT_OPTIONAL_LOCKS='0',PYTHONDONTWRITEBYTECODE='1',UV_CACHE_DIR=str(scratch/'uv-cache'),XDG_CACHE_HOME=str(scratch/'xdg-cache'),MYPY_CACHE_DIR=str(scratch/'mypy-cache'),PYTHONPYCACHEPREFIX=str(scratch/'pycache'),TMPDIR=str(scratch/'tmp'))
+for key in ['PYTHONPATH','PYTHONHOME','VIRTUAL_ENV','UV_PROJECT_ENVIRONMENT']:env.pop(key,None)
+(scratch/'tmp').mkdir(exist_ok=True)
+def git(*args):return subprocess.run(['git',*args],cwd=repo,env=env,check=True,capture_output=True).stdout
+if v.action=='boundary':
+ # The logical index is the first Git command, before status.
+ logical=hashlib.sha256(git('ls-files','-s','-z')).hexdigest();status=git('status','--short','--untracked-files=all').decode();manifest=json.loads(Path(request['protected_manifest']).read_text());failures=[]
+ def check(ok,message):
+  if not ok:failures.append(message)
+ check(logical==manifest['logical_before_status'],'logical index changed');check(status==manifest['status_full'],'status changed');check(git('rev-parse','HEAD').decode().strip()==request['candidate'],'HEAD changed');check(git('branch','--show-current').decode().strip()==manifest['branch'],'branch changed');check(not git('diff','--cached','--name-only'),'staging not empty')
+ for name,digest in manifest['tracked_files_sha256'].items():
+  q=repo/name;check(q.is_file() and sha(q)==digest,'protected file changed: '+name)
+ for name,target in manifest['symlink_targets'].items():check((repo/name).is_symlink() and os.readlink(repo/name)==target,'symlink changed: '+name)
+ for name,digest in request['authority_pins'].items():check(sha(repo/name)==digest,'authority pin changed: '+name)
+ for name,wanted in manifest['preserved_metadata'].items():
+  q=repo/name
+  if wanted=={'absent':True}:check(not q.exists(),'unexpected path created: '+name);continue
+  if not q.exists():check(False,'preserved path missing: '+name);continue
+  z=q.stat();actual={'mode':z.st_mode,'size':z.st_size,'mtime_ns':z.st_mtime_ns,'ctime_ns':z.st_ctime_ns,'birthtime':z.st_birthtime}
+  if 'sha256' in wanted:actual['sha256']=sha(q)
+  check(actual==wanted,'preserved metadata changed: '+name)
+ changed=git('diff','--name-only',request['diff']).decode().splitlines();check(changed==request['changed_paths'],'diff paths changed');check(all(name.startswith('docs/planning/') for name in changed),'nonplanning candidate change')
+ report={'outcome':'PASS' if not failures else 'FAIL','label':v.label,'time':datetime.datetime.now(datetime.timezone.utc).isoformat(),'candidate':request['candidate'],'logical_before_status':logical,'authority_pins':len(request['authority_pins']),'protected_files':len(manifest['tracked_files_sha256']),'preserved_records':len(manifest['preserved_metadata']),'failures':failures}
+ (scratch/('integrity-'+v.label+'.json')).write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report));sys.exit(0 if not failures else 1)
+base=['uv','run','--offline','--frozen','--no-sync','--no-python-downloads','python','-B']
+commands=[('board',base+['scripts/friday-dev-board.py','validate']),('dashboard',base+['scripts/friday-dev-board.py','render','--check']),('documentation',base+['scripts/check-documentation-lifecycle.py']),('metadata',base+['scripts/check-package-metadata.py']),('whitespace-worktree',['git','diff','--check','--','docs/planning']),('whitespace-staged',['git','diff','--cached','--check']),('whitespace-unit',['git','diff','--check',request['diff'],'--','docs/planning']),('whitespace-preparation',['git','diff','--check',request['review_preparation_delta'],'--','docs/planning'])]
+ledger=[]
+for name,argv in commands:
+ started=datetime.datetime.now(datetime.timezone.utc).isoformat();result=subprocess.run(argv,cwd=repo,env=env,capture_output=True,text=True,timeout=90);(scratch/(name+'.stdout')).write_text(result.stdout);(scratch/(name+'.stderr')).write_text(result.stderr);ledger.append({'name':name,'argv':argv,'cwd':str(repo),'started':started,'exit':result.returncode,'stdout':str(scratch/(name+'.stdout')),'stderr':str(scratch/(name+'.stderr'))});print(json.dumps({'check':name,'exit':result.returncode,'stdout':result.stdout[:1200],'stderr':result.stderr[:1200]}))
+(scratch/'commands.json').write_text(json.dumps(ledger,indent=2)+'\n');sys.exit(0 if all(row['exit']==0 for row in ledger) else 1)

@@ -1,0 +1,16 @@
+{
+  "seat": "opus",
+  "round": 7,
+  "verdict": "VERIFIED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall_score": 9.52,
+  "mandatory_findings": 0,
+  "report_sha256": "9628c18906b2f4fb5244364ca99d699c15773c2c3600ddf364f800b9d8417568",
+  "files": {
+    "report.md": "9628c18906b2f4fb5244364ca99d699c15773c2c3600ddf364f800b9d8417568",
+    "entry-boundary.json": "297c3102236c6195088b4d006fc4be7473c72f12636651dd457989687f3be147",
+    "exit-boundary.json": "297c3102236c6195088b4d006fc4be7473c72f12636651dd457989687f3be147"
+  },
+  "entry_exit_equal": true
+}

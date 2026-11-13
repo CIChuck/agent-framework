@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "project": "/REPLACE/WITH/PRIVATE/C0/UNIT/PROJECT",
+  "run_id": "c0-example",
+  "harness_sha256": "REPLACE_WITH_APPROVED_MANIFEST_SHA256",
+  "envelope_sha256": "4b6273c2a629affd02e388574a0b1715334456c921611e55e069122f7b0b4315",
+  "interpreter_sha256": "REPLACE_WITH_QUALIFIED_BASE_INTERPRETER_SHA256",
+  "activation": "C0"
+}

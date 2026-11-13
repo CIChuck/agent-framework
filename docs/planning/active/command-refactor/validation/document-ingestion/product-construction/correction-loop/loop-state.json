@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "authorized_additional_passes": 3,
+  "passes_started": 3,
+  "passes_completed": 3,
+  "current_pass": 3,
+  "global_round": 5,
+  "status": "stopped_budget_exhausted_gate_unmet",
+  "stop_on_all_seat_target": true,
+  "stop_after_pass3": true,
+  "fourth_additional_pass_authorized": false,
+  "construction_approved": false,
+  "source_changes_authorized": false,
+  "passes": [
+    {
+      "additional_pass": 1,
+      "global_round": 3,
+      "candidate": "af4e12bd66e19303b6b32dbd7a66c70eae6d3330",
+      "outcome": "CHANGES_REQUESTED",
+      "report": "pass1/results/report.md",
+      "scores": {
+        "sol": {
+          "coverage": 9.3,
+          "overall": 9.3
+        },
+        "astra": {
+          "coverage": 9.1,
+          "overall": 9.2
+        },
+        "opus": {
+          "coverage": 8.6,
+          "overall": 8.9
+        }
+      }
+    },
+    {
+      "additional_pass": 2,
+      "global_round": 4,
+      "candidate": "8c847e72b6ab260a2fc618f74390f39d599cb6e7",
+      "outcome": "BLOCKED",
+      "report": "pass2/results/report.md",
+      "scores": {
+        "sol": {
+          "coverage": 4.0,
+          "overall": 4.5,
+          "status": "incomplete/nonqualifying; overall provisional"
+        },
+        "astra": {
+          "coverage": 6.0,
+          "overall": 6.7,
+          "status": "incomplete/nonqualifying; overall provisional"
+        },
+        "opus": {
+          "coverage": 9.1,
+          "overall": 9.4,
+          "status": "bounded document review below threshold"
+        }
+      }
+    },
+    {
+      "additional_pass": 3,
+      "global_round": 5,
+      "candidate": "b6a62742e89951679f338e46f34c4650a5e0dbc7",
+      "outcome": "BLOCKED",
+      "report": "pass3/results/report.md",
+      "scores": {
+        "sol": {
+          "coverage": 7.0,
+          "overall": 8.0,
+          "scope": "incomplete/nonqualifying; overall provisional or withheld"
+        },
+        "astra": {
+          "coverage": 4.0,
+          "overall": null,
+          "scope": "incomplete/nonqualifying; overall provisional or withheld"
+        },
+        "opus": {
+          "coverage": 8.8,
+          "overall": 9.4,
+          "scope": "document-only below threshold with source-depth limits"
+        }
+      }
+    }
+  ],
+  "stop_after_this_council": true,
+  "remaining_passes": 0,
+  "all_seats_terminal": true,
+  "target_met": false,
+  "further_automatic_review": false,
+  "final_report": "pass3/results/report.md",
+  "final_report_sha256": "d2228b38ac6761c3e3f2160d7d8b4b6b9f188230d1a50726961d03c9a6131559"
+}

@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "round": 1,
+  "maximum_authorized_rounds": 1,
+  "candidate": "fb587e7a12f48ef0d6937e008045de1de2dd8cd2",
+  "base": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "target": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+  "target_sha256": "da911b7e6f052ab27b0e37ee939e52a0555ca177c047f84b475c9fc72b5414c1",
+  "outcome": "CHANGES_REQUESTED",
+  "scope": "Conditional document readiness and selected-source feasibility only",
+  "all_seats_terminal": true,
+  "formal_council_complete": true,
+  "threshold_each": 9.5,
+  "threshold_met_each": false,
+  "results": {
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 9.6,
+      "overall": 9.2,
+      "mandatory_findings": [
+        "SOL-PD-001",
+        "SOL-PD-002"
+      ],
+      "threshold_met": false,
+      "report": "sol/report.md",
+      "report_sha256": "ca9e5fa60d0a66bd7639eaa0ff60a6b7b4054a52088b98fa4e659134c3f4768c",
+      "command_ledger": "sol/commands.md",
+      "command_ledger_sha256": "5d1551cd7f6af0a83e112158ddb62fd0e7f4813edbef3ace30afe5aa78be0d65",
+      "evidence_archive": "sol/evidence.tar.gz",
+      "evidence_sha256": "543b288f1ee357b73811e0a0b5e077d24a902942a2c26dbcde1e3d3e22cc3764",
+      "conduct": "Accepted fresh independent read-only evidence; preserved scope and boundaries."
+    },
+    "astra": {
+      "model": "gpt-6-astra",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 9.6,
+      "overall": 9.1,
+      "mandatory_findings": [
+        "ASTRA-PD-001"
+      ],
+      "threshold_met": false,
+      "report": "astra/report.md",
+      "report_sha256": "b8b06ce0108a867e6253aa78844ee2470a81609d7de522253d38ab894ee79f74",
+      "command_ledger": "astra/command-ledger.json",
+      "command_ledger_sha256": "91fd277b71d3e030d135222ee1170a1a7b819c6ffef4225fd2d6f522b03609cf",
+      "evidence_archive": "astra/evidence.tar.gz",
+      "evidence_sha256": "7d7fbe8dfaaf1d8bea70af5e8d3b7442efdfc1bc49e98c0ee742ee5efe9aaa4b",
+      "conduct": "Accepted fresh independent read-only evidence; preserved scope and boundaries."
+    },
+    "opus": {
+      "model": "claude-opus-5-5",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 9.4,
+      "overall": 8.6,
+      "mandatory_findings": [
+        "F-01",
+        "F-02"
+      ],
+      "threshold_met": false,
+      "report": "opus/report.md",
+      "report_sha256": "ac0956b36f78ba8eaae30178fc4b9aa2eff22836f9a3214e61ecec222038c220",
+      "command_ledger": "opus/command-ledger.json",
+      "command_ledger_sha256": "d13463d9658831bae7e7782b38ffe44ac4e12cde070e12bd54f7b658149bd4c3",
+      "evidence_archive": "opus/evidence.tar.gz",
+      "evidence_sha256": "305b4fc3b3d2709deccf22854b2fc400746a0b12db7cabf4d561f02e0750ee9f",
+      "conduct": "Accepted with disclosed incidental delegate-inventory exposure: first400 bytes contained only a seat/status/opaque task ID, no peer review reasoning/findings/scores. This violates the requested inventory exclusion but not its substantive peer-reasoning BLOCKED trigger. Findings corroborated independently; scores and CHANGES_REQUESTED outcome are retained unchanged. No replacement or extra round."
+    }
+  },
+  "mandatory_correction_groups": [
+    {
+      "id": "INGEST-PD-R1-001",
+      "severity": "high",
+      "title": "Phase exits require later-slice implementation",
+      "source_findings": [
+        "sol/SOL-PD-001",
+        "astra/ASTRA-PD-001",
+        "opus/F-01"
+      ],
+      "required_correction": "Define exact slice-scoped DI/FC sub-obligations, prerequisites and exits. I1 proves foundation contracts; I2 proves integrated consumers/Chat recovery; I3 proves common plans/smart_read/command delivery. Scope DI-35 per phase and retain full DI01\u201336 and whole-suite map acceptance at final aggregate. Do not weaken public positive requirements or widen a slice implicitly.",
+      "proof": "Topological requirement\u2192owner/file\u2192input candidate\u2192exact witness\u2192earliest slice table, explicitly tracing DI17/23/28/29/32/33 and per-phase DI35."
+    },
+    {
+      "id": "INGEST-PD-R1-002",
+      "severity": "medium",
+      "title": "Preconstruction activation requires artifacts created by construction",
+      "source_findings": [
+        "sol/SOL-PD-002"
+      ],
+      "related_observations": [
+        "astra/ASTRA-PD-001 A1/RD discussion",
+        "opus/F-01 A1/RD discussion"
+      ],
+      "required_correction": "Separate preconstruction package/model/deployment qualification and planned trace/docs matrices from actual new product extras, installed profiles, guard/consumer tests and verified guide examples. Put actual installed-product acceptance after its expressly approved implementation, or define a separately approved exact metadata-readiness unit. Keep Gate-A, baseline qualification stops and final product-profile positives mandatory.",
+      "proof": "Each RD01/06/07 closure item identifies artifact/interpreter, generation authority, prerequisite and correct phase; no product artifact is required before its authorizing unit."
+    },
+    {
+      "id": "INGEST-PD-R1-003",
+      "severity": "medium",
+      "title": "Incorrect requirement-to-evidence and seed mapping; DI12 council obligation unclear",
+      "source_findings": [
+        "opus/F-02"
+      ],
+      "required_correction": "Re-key proof groups and TM01/TM02 against the exact REM DI definitions. Parsing DI05/06 is distinct from OCR/corruption/XLSX, actual command storage DI07, installed-profile/regression gates DI08/10, review/UAT DI12 and destination receipts DI30. Explicitly retain required separately authorized post-code-freeze Sol/Astra/Opus review before human UAT.",
+      "proof": "Mechanical DI01\u201336 definition\u2192proof group\u2192phase\u2192public node join and seed assertion\u2192requirement mapping with no missing, incorrectly satisfied or optionalized parent obligation."
+    }
+  ],
+  "advisories": [
+    {
+      "id": "AD-01",
+      "sources": [
+        "opus/A-01"
+      ],
+      "topic": "Consolidate the six intentional compatibility exceptions and operator remedies."
+    },
+    {
+      "id": "AD-02",
+      "sources": [
+        "opus/A-02"
+      ],
+      "topic": "Name and prioritize B02 hosted-default immutable-identity/counter qualification risk."
+    },
+    {
+      "id": "AD-03",
+      "sources": [
+        "opus/A-03"
+      ],
+      "topic": "Record CLI source unchanged versus exact conditional adaptation before activation."
+    },
+    {
+      "id": "AD-04",
+      "sources": [
+        "opus/A-04"
+      ],
+      "topic": "Name worker ownership and the headless execution/admission contract."
+    },
+    {
+      "id": "AD-05",
+      "sources": [
+        "opus/A-05"
+      ],
+      "topic": "Add root-integration summary row; disclose excluded lab/security/readiness suites and static inventory scope."
+    },
+    {
+      "id": "AD-06",
+      "sources": [
+        "sol/SOL-ADV-001",
+        "astra/ASTRA-A01",
+        "opus/A-06"
+      ],
+      "topic": "Refresh preparation-time pending/before-council labels on a later authorized directive revision."
+    },
+    {
+      "id": "AD-07",
+      "sources": [
+        "opus/A-07"
+      ],
+      "topic": "Correct Agent plus eight other indirect packages, not nine."
+    },
+    {
+      "id": "AD-08",
+      "sources": [
+        "opus/A-08"
+      ],
+      "topic": "Reconcile canonical post-readiness assessment refinement versus addendum form; identify material differences and exact approval binding."
+    },
+    {
+      "id": "AD-09",
+      "sources": [
+        "astra/ASTRA-A02"
+      ],
+      "topic": "Correct corrupt PDF seed description: %PDF-1.4 is eight bytes, not five; preserve the original fixture/refusal requirement."
+    }
+  ],
+  "construction_approval": false,
+  "gate_a_or_implementation_conformance": false,
+  "no_automatic_remediation_or_reissue": true,
+  "protected_state": "All three reviewers and controller closing check passed at frozen candidate before closeout metadata changes; 18715 tracked hashes,26 symlinks,8 preserved entries,37 pins; logical index before status.",
+  "fresh_checks": "Per-seat boundaries, seven offline administrative checks and static source/inventory inspections. Model/document/Chroma/product tests were inspected history, not rerun.",
+  "controller_observation": "The draft put full downstream proofs on earlier slice exits and mis-keyed proof IDs. Those are document defects that need correction; no reviewed target bytes are changed during this closeout."
+}

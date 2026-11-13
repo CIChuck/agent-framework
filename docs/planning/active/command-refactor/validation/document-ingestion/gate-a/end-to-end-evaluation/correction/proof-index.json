@@ -1,0 +1,2060 @@
+{
+  "sha256": "4ce8d798ba220e4916c082db14d7a44d9a8813033d8e04ab88435c6c66ebceac",
+  "members": [
+    {
+      "path": "guard-compatible-tests/ast-scope.json",
+      "sha256": "bf55ad2be21af8c2d5d9cfa1a049f60b10b8edfae091fb195c606c50c6797502",
+      "size": 651
+    },
+    {
+      "path": "guard-compatible-tests/canonical-changed-behavior-normal.stderr",
+      "sha256": "d88660d67bf6cbe1bdbdc7a2b75f310b52bfef519528af76ecb050a6ba65e831",
+      "size": 1894
+    },
+    {
+      "path": "guard-compatible-tests/canonical-changed-behavior-normal.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/canonical-changed-behavior-optimized.stderr",
+      "sha256": "aded1356282dbfdb8d91f90ddab0586fc5b10fe336aa3b422f602e8b2bedd48b",
+      "size": 1894
+    },
+    {
+      "path": "guard-compatible-tests/canonical-changed-behavior-optimized.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/canonical-changed-e2e-normal.stderr",
+      "sha256": "34f4b223f55a06d0d9685c15c28fb3318909ea4bdc05a08397996c874236d52a",
+      "size": 1545
+    },
+    {
+      "path": "guard-compatible-tests/canonical-changed-e2e-normal.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/canonical-changed-e2e-optimized.stderr",
+      "sha256": "74fa364f92ec25d73b7274ffdb814af13d34a2a659e913ed67766d9b14588693",
+      "size": 1545
+    },
+    {
+      "path": "guard-compatible-tests/canonical-changed-e2e-optimized.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "3f6b43ee448c72228b93012bfbebf6a824a4d4a71bfd4e365a0757343a52e504",
+      "size": 36415
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "3f6b43ee448c72228b93012bfbebf6a824a4d4a71bfd4e365a0757343a52e504",
+      "size": 36415
+    },
+    {
+      "path": "guard-compatible-tests/canonical-mismatched-binding-normal.stderr",
+      "sha256": "d88660d67bf6cbe1bdbdc7a2b75f310b52bfef519528af76ecb050a6ba65e831",
+      "size": 1894
+    },
+    {
+      "path": "guard-compatible-tests/canonical-mismatched-binding-normal.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/canonical-mismatched-binding-optimized.stderr",
+      "sha256": "aded1356282dbfdb8d91f90ddab0586fc5b10fe336aa3b422f602e8b2bedd48b",
+      "size": 1894
+    },
+    {
+      "path": "guard-compatible-tests/canonical-mismatched-binding-optimized.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/canonical-missing-binding-normal.stderr",
+      "sha256": "bf98dc6ff19864b4eda0263304d7bbbb9f153955bd7273a335a00278674abd52",
+      "size": 1984
+    },
+    {
+      "path": "guard-compatible-tests/canonical-missing-binding-normal.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/canonical-missing-binding-optimized.stderr",
+      "sha256": "8bba54d9a10ace06c93f79ce886e12475ed96d70205a5184923e2381d3a2286e",
+      "size": 1984
+    },
+    {
+      "path": "guard-compatible-tests/canonical-missing-binding-optimized.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/canonical-positive-normal.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/canonical-positive-normal.stdout",
+      "sha256": "39e049136636d84020b70bb5a251faccffce66681a415cdd055779d92988d8a1",
+      "size": 1932
+    },
+    {
+      "path": "guard-compatible-tests/canonical-positive-optimized.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/canonical-positive-optimized.stdout",
+      "sha256": "39e049136636d84020b70bb5a251faccffce66681a415cdd055779d92988d8a1",
+      "size": 1932
+    },
+    {
+      "path": "guard-compatible-tests/closing.json",
+      "sha256": "6fddd081c7599346cae06f47c914202429a2f4b00d577f56fe8c1d9add482f3c",
+      "size": 1006
+    },
+    {
+      "path": "guard-compatible-tests/command-ledger.json",
+      "sha256": "49119adf039e40cb1d700e7f777f4947c025705541792b99e71d2fffd9cf5169",
+      "size": 17099
+    },
+    {
+      "path": "guard-compatible-tests/focused-normal.stderr",
+      "sha256": "55fdab0fc6c150af558f6331d53de2dbf135c3cbb098f8451d626feb9349e40f",
+      "size": 1813
+    },
+    {
+      "path": "guard-compatible-tests/focused-normal.stdout",
+      "sha256": "7a8f814151d2e865b360029b3aee9e2f885dcbf1109190fad45300e70e61fcaa",
+      "size": 131
+    },
+    {
+      "path": "guard-compatible-tests/focused-optimized.stderr",
+      "sha256": "6fdf592da29d187488e7931aa774d6db2754079dbdd8b99ec691b742649742ef",
+      "size": 1813
+    },
+    {
+      "path": "guard-compatible-tests/focused-optimized.stdout",
+      "sha256": "7a8f814151d2e865b360029b3aee9e2f885dcbf1109190fad45300e70e61fcaa",
+      "size": 131
+    },
+    {
+      "path": "guard-compatible-tests/focused-tests.py",
+      "sha256": "6f65c31ef7797e7f709f7aca09c3a35d87e0259beaff6e33ee73d881c2824320",
+      "size": 651
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-488e8cbc56324a4da1daf594400b755c/reports/live-budget.json",
+      "sha256": "036f1f39ba5d20d21bca89fdb9ceb370d7a590a2f37879e07e8dc2ab20180c96",
+      "size": 59
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-488e8cbc56324a4da1daf594400b755c/reports/live-budget.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.physical.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-49f128979bbe469c9dc4b8bf49e377c5/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/admitted/docx-long.docx.attempt.json",
+      "sha256": "c890a33653249ee10a0f568e0f4c214724e204b9810d222d269ccdc80602e393",
+      "size": 55
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/admitted/pdf-native.pdf.attempt.json",
+      "sha256": "c890a33653249ee10a0f568e0f4c214724e204b9810d222d269ccdc80602e393",
+      "size": 55
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5749f30381ab4b33b95f89c65d2a4f19/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/source/physical-ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-5f1b68557bf248948abef2c813d61fd8/.friday_test/runs/docling-behavior-e2e-synthetic/source/physical-ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.physical.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-688b88c94aaf494caa50990df83b2e58/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "2a24468d0b3dddf8a43219d955a4546417aa60e3c0b091c845788688bf91b42c",
+      "size": 685
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "bd204e45228df9572094251ae5bf8175eafab6a8cd1b2ca79cf99b5acc481ea5",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-741a136660884e2d9a1deff9b31626c1/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-775b365ff6354760a352aa516ab18b4c/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/physical-behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-84d8cda27dc84b22930cf80c1b8bf5bd/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "3f6b43ee448c72228b93012bfbebf6a824a4d4a71bfd4e365a0757343a52e504",
+      "size": 36415
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "49c779b606c281c48b5b66e92ef38767b64d16d4972cc10174def26a3e519294",
+      "size": 22
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-89634c01e4244c398252afe20765f8f7/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-b056bf2cbeb54646a431baa56a67dec6/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/physical-behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-d236244764a04cffb6a94cc5b52eaa75/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/physical-behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "156512ee31465c3804a07e7e612145818545b6ec62a6624c4635c0869cceb3fe",
+      "size": 61711
+    },
+    {
+      "path": "guard-compatible-tests/normal-final/case-f5bbdb7e73cb46d9b5483c04598b7af9/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/opening.json",
+      "sha256": "063f655923481b0d11b4e9202473803dd84228ef789d5e39d5c38d1b87ad45d5",
+      "size": 897
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "156512ee31465c3804a07e7e612145818545b6ec62a6624c4635c0869cceb3fe",
+      "size": 61711
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-063534410f684b89a6bc0a85b0675e93/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-07f47e9d9f6e440bb82ee23650f78be2/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/physical-behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-1622097603174fb590b4bc813ab8719d/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "3f6b43ee448c72228b93012bfbebf6a824a4d4a71bfd4e365a0757343a52e504",
+      "size": 36415
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-24b3f12ffafe4e54b3e4d983418e90d2/reports/live-budget.json",
+      "sha256": "036f1f39ba5d20d21bca89fdb9ceb370d7a590a2f37879e07e8dc2ab20180c96",
+      "size": 59
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-24b3f12ffafe4e54b3e4d983418e90d2/reports/live-budget.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "49c779b606c281c48b5b66e92ef38767b64d16d4972cc10174def26a3e519294",
+      "size": 22
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-2aae6e8ecb2e46b299b1c2646628f265/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-39615cefe4c64fb4bcca1666e4d0b2b7/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/physical-behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-597aa42a94c348038713a3230d8e12c4/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/physical-behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "2a24468d0b3dddf8a43219d955a4546417aa60e3c0b091c845788688bf91b42c",
+      "size": 685
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "bd204e45228df9572094251ae5bf8175eafab6a8cd1b2ca79cf99b5acc481ea5",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-697d62a2741646fe9b234007895da9ec/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/source/physical-ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-779b5ea0d58748f59c4f0b728c9e3bc5/.friday_test/runs/docling-behavior-e2e-synthetic/source/physical-ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.physical.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-b48508d53ef549a0ba832e8c4fd42183/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.physical.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-ede7ffa270ce44699025f01d7cf66518/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/admitted/docx-long.docx.attempt.json",
+      "sha256": "c890a33653249ee10a0f568e0f4c214724e204b9810d222d269ccdc80602e393",
+      "size": 55
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/admitted/pdf-native.pdf.attempt.json",
+      "sha256": "c890a33653249ee10a0f568e0f4c214724e204b9810d222d269ccdc80602e393",
+      "size": 55
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.corpus.json",
+      "sha256": "e41884419d7d96e1e4d295af6d272ee7a20d62818624e79e2b7eb2ac27548875",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.result.json",
+      "sha256": "55ad04726055f6c551d83243c300dfdcb368bb58d816d8060c5b3b1b12e5994c",
+      "size": 1193
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.corpus.json",
+      "sha256": "90e24044af397453ff81e7a95cb9f61c7094f9e2d74ebcc2a3f7e94c36e9a06f",
+      "size": 570
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.http.json",
+      "sha256": "cb7426eda156173c7ac20dba20a8890050538423f0f5d108a557b1b888263c45",
+      "size": 41
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.reopened.json",
+      "sha256": "f3b94ce3ec935b95d4635a0a59d95fd0f42b0ae3fe9d9204ff8d2ed3b9287bf8",
+      "size": 45
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.result.json",
+      "sha256": "922e440b4e169c304c4294057d021c49fe7385e9c3604aa2bc1e5eefa95c1188",
+      "size": 1196
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.stored.json",
+      "sha256": "b27684cdadfb9d5415d50e528a3d4618d62a27b613e187fea1f7ba4e28345df9",
+      "size": 43
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/normal.latest.json",
+      "sha256": "bf2926c10e100cb245bb04965c853ae139d0a79112af151b46f7ae2f5f01b460",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/e2e/optimized.latest.json",
+      "sha256": "1ed4899fa80f4ac313d3e825a9ca143f3874a652670dc802d9c85e0fb48c9f40",
+      "size": 138
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/reports/live-budget.json",
+      "sha256": "71a2e39f6f5c6b1dae5e71cfe76983b04f187003026e107c6998d8783e99f525",
+      "size": 20
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/behavior.py",
+      "sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "size": 61691
+    },
+    {
+      "path": "guard-compatible-tests/optimized-final/case-fa60f08a87f543cc913f7fafd8277b15/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "sha256": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "size": 36391
+    },
+    {
+      "path": "guard-compatible-tests/ruff-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/ruff-check.stdout",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "size": 19
+    },
+    {
+      "path": "guard-compatible-tests/ruff-format.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "guard-compatible-tests/ruff-format.stdout",
+      "sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938",
+      "size": 26
+    },
+    {
+      "path": "guard-compatible-tests/summary.json",
+      "sha256": "648a5d40e3edc2c57a2466d55beeaf10d29e297be67359e7739e81bce4fdebef",
+      "size": 2038
+    },
+    {
+      "path": "guard-compatible-tests/verify.py",
+      "sha256": "43e2cd68de474806e08fd4f18c147f2eeb8cdbfc477313adcd0357ed41ad3eb9",
+      "size": 6039
+    }
+  ]
+}

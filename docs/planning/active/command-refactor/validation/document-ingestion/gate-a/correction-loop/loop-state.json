@@ -1,0 +1,47 @@
+{
+  "unit": "CD-CMD-INGEST-GATE-A-001",
+  "authorization": "authorization.md",
+  "authorization_sha256": "d71afa78077d4be7748b99604e058333ff740a96bf545c836c64486baa6ae851",
+  "new_passes_authorized": 4,
+  "passes_started": 2,
+  "passes_completed": 2,
+  "current_pass": 2,
+  "current_harness_global_round": 3,
+  "status": "closed_verified_early_stop",
+  "stop_on_all_seats_verified_ge_9_5": true,
+  "stop_after_pass": 4,
+  "no_unbudgeted_replacements": true,
+  "construction_or_effects_authority": false,
+  "history": [
+    {
+      "pass": 1,
+      "harness_global_round": 2,
+      "reviewed_candidate": "23253a72ba265334e254c6a0bbad53f70cd85313",
+      "all_seats_terminal": true,
+      "record": "pass1/results/reconciliation.json",
+      "record_sha256": "3569738b3ae2f45d36357180e6fc2e9df4777a79bbf99bb2f6f19c8a2aaecf53"
+    },
+    {
+      "pass": 2,
+      "harness_global_round": 3,
+      "reviewed_candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+      "all_seats_terminal": true,
+      "record": "pass2/results/reconciliation.json",
+      "record_sha256": "0ad00ed276cb65e496dd2e472c300ecc113f2222d4b27682bf103d71eaf3e69e"
+    }
+  ],
+  "current": {
+    "base_commit": "23253a72ba265334e254c6a0bbad53f70cd85313",
+    "directive_version": "0.3-draft",
+    "plan_version": "0.5-draft",
+    "criteria": "pass2/criteria.md",
+    "roster": "pass2/roster.json",
+    "corrections": "pass2/corrections.json",
+    "candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+    "status": "review_complete_verified"
+  },
+  "all_seats_terminal": true,
+  "target_met": true,
+  "unused_passes": 2,
+  "further_automatic_review": false
+}

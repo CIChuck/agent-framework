@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "repo": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "candidate": "92e356d17bc3a97be18d3d7cc4fed740b06795d1",
+  "branch": "feature/cmd-ingest-001",
+  "workflow": "Focused INGEST implementation directive review",
+  "round": 1,
+  "maximum_rounds": 3,
+  "authorization": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/authorization.json",
+  "criteria": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/criteria.md",
+  "target": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+  "target_sha256": "8abad750e6346b7118c6c23ea0fd2f2550f19a880179d23e134487c4d32495f2",
+  "expected_entry_exit": {
+    "head": "92e356d17bc3a97be18d3d7cc4fed740b06795d1",
+    "branch": "feature/cmd-ingest-001",
+    "logical_index_before_status": "610562634bfd1122e9bdf85414be29b202a7608f97626fe5a0c61c1a2a31cf26",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+    "staged": ""
+  },
+  "preserved_metadata": {
+    "packages/friday-chat/config.example.yaml": {
+      "mode": 33188,
+      "size": 30129,
+      "mtime_ns": 1794334784972093361,
+      "ctime_ns": 1794334784972093361,
+      "birthtime": 1788446389.467035,
+      "sha256": "7c31a9ad3f6a7ff1cfc891cace6c4b3cde21d10202770c374a38c6cc28620f32"
+    },
+    "packages/friday-chat/models-config.example.yaml": {
+      "mode": 33188,
+      "size": 3962,
+      "mtime_ns": 1794264005521487739,
+      "ctime_ns": 1794264005521487739,
+      "birthtime": 1788446389.4671795,
+      "sha256": "5cf3d15ec469d3b8e495248d3aec9ed7bcdb48b68243668b6dbbbb3e0b0326c9"
+    },
+    ".friday": {
+      "mode": 16877,
+      "size": 224,
+      "mtime_ns": 1794335780595591896,
+      "ctime_ns": 1794335780595591896,
+      "birthtime": 1794312889.6114945
+    },
+    ".friday-old": {
+      "mode": 16877,
+      "size": 256,
+      "mtime_ns": 1794312848481691252,
+      "ctime_ns": 1794312880963718202,
+      "birthtime": 1793062680.0546615
+    },
+    ".venv": {
+      "mode": 16877,
+      "size": 288,
+      "mtime_ns": 1772940967050495003,
+      "ctime_ns": 1772940967050495003,
+      "birthtime": 1772940965.7368934
+    },
+    "exports": {
+      "mode": 16877,
+      "size": 128,
+      "mtime_ns": 1794172873430987983,
+      "ctime_ns": 1794172873430987983,
+      "birthtime": 1794172873.430393
+    },
+    "exports/friday_context.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419969663853,
+      "ctime_ns": 1794173419969663853,
+      "birthtime": 1794172873.4304848,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    },
+    "exports/friday_prompt.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419970166478,
+      "ctime_ns": 1794173419970166478,
+      "birthtime": 1794172873.4309843,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    }
+  },
+  "required_inputs": [
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+      "sha256": "8abad750e6346b7118c6c23ea0fd2f2550f19a880179d23e134487c4d32495f2",
+      "read_scope": "full target/brief/companion/phase map; impact P01\u2013P17 + tests/docs duties; readiness established results/limitations and gate distinction as specified in review-context"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/criteria.md",
+      "sha256": "f6772d98dec630005e6e7a9d4ff1007e1fab809399cd8fa917768be74170afcb",
+      "read_scope": "full target/brief/companion/phase map; impact P01\u2013P17 + tests/docs duties; readiness established results/limitations and gate distinction as specified in review-context"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/review-context.md",
+      "sha256": "34b9bc82755e60ad3c266afb5a7f0fe6596e25c14cc8eadf2ad7144c09d1d170",
+      "read_scope": "full target/brief/companion/phase map; impact P01\u2013P17 + tests/docs duties; readiness established results/limitations and gate distinction as specified in review-context"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/authorization.json",
+      "sha256": "4b7435d516830347409cc7204936f3e7f3a1343f37026646c9c525df626e53a3",
+      "read_scope": "full target/brief/companion/phase map; impact P01\u2013P17 + tests/docs duties; readiness established results/limitations and gate distinction as specified in review-context"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
+      "sha256": "0b4b9e8e89ef6a3a1ad880a6a49c44597a4a1023928fa846148cede31992da7d",
+      "read_scope": "full target/brief/companion/phase map; impact P01\u2013P17 + tests/docs duties; readiness established results/limitations and gate distinction as specified in review-context"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+      "sha256": "b7d93caf2d302e0802b3c6b7f523de42d2ab98f625b5a8a02326f21a8fec2f9f",
+      "read_scope": "full target/brief/companion/phase map; impact P01\u2013P17 + tests/docs duties; readiness established results/limitations and gate distinction as specified in review-context"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+      "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+      "read_scope": "full target/brief/companion/phase map; impact P01\u2013P17 + tests/docs duties; readiness established results/limitations and gate distinction as specified in review-context"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/readiness-decision.md",
+      "sha256": "3f31544c6c49ea03665d9899eae410b4a510c6078bb3c19f5e974e5b3693c8e0",
+      "read_scope": "full target/brief/companion/phase map; impact P01\u2013P17 + tests/docs duties; readiness established results/limitations and gate distinction as specified in review-context"
+    }
+  ],
+  "optional_references": [
+    {
+      "path": "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+      "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+      "read_scope": "only sections needed to resolve a concrete implementation requirement/question"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/embedding-compatibility-contract.md",
+      "sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+      "read_scope": "only sections needed to resolve a concrete implementation requirement/question"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/test-migration-plan.md",
+      "sha256": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c",
+      "read_scope": "only sections needed to resolve a concrete implementation requirement/question"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/command-architecture-update-plan.md",
+      "sha256": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1",
+      "read_scope": "only sections needed to resolve a concrete implementation requirement/question"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/guide-update-handoff.md",
+      "sha256": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9",
+      "read_scope": "only sections needed to resolve a concrete implementation requirement/question"
+    }
+  ],
+  "controller_structural_checks": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/round1/controller-checks.json",
+    "sha256": "df85ec6a62ba0a5a371747b0a1d53fa092288c68ced56a734db84521fa2f4969",
+    "classification": "provided controller checks, not your fresh proof; do not rerun admin suites"
+  },
+  "safe_current_controls": {
+    "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-focused-council-ry9gtwj2/round1-inputs/current-controls.json",
+    "sha256": "9098046d667a10157521c29d60fcd42358e0c496e84ac3651100870f02669d66"
+  },
+  "scope": "Judge comprehensive nature, coherence and buildability of this implementation directive across F1\u2013F8. Targeted source questions allowed; no whole-framework source audit. Prior Docling evaluation established. New candidate integration tests and model/counter evidence remain planned acceptance/gates, not work to execute now.",
+  "explicit_exclusions": [
+    "No Docling/OCR/model behavior tests, dependency installation, imports/tests/builds, network/provider/store access.",
+    "No full AST/test/fixture inventory rebuild, evidence-archive/member hashing, wheel inspection or old harness replay.",
+    "Finance tests/test_integration_massive.py entirely excluded from reading, parsing and execution. No credential handling.",
+    "No user YAML contents, .friday* contents, exports, .venv contents, secrets or production state. Metadata/hash-only checks of the declared preserved entries are permitted.",
+    "No prior/peer council reports, transcripts, memory/history lookup or controller private reasoning. Current permitted documents may contain historical provenance labels; these labels are context, not evidence or automatic disqualification.",
+    "No repository or supplied-input writes, delegation, repairs, replacement or another round by this seat."
+  ],
+  "procedure": [
+    "First hash this request and verify its supplied digest before reading; verify target/input identities.",
+    "Read-only fresh context; scratch only a new physical external reviewer-owned directory outside repo and supplied-input directory.",
+    "At entry and exit, GIT_OPTIONAL_LOCKS=0 git ls-files -s -z before status; compare HEAD/branch/index/status/staging and declared dirty/protected metadata. Do not hash every repository file.",
+    "Read the target/brief and required context. Assess all eight areas; use bounded direct source reads only for material interface/consumer questions. Recover normal output truncation.",
+    "Do the design assessment before report drafting. No admin/test/inventory/archive checklist is assigned to this seat.",
+    "Return durable compact F1\u2013F8 report and completion flag, honest coverage/overall scores ONLY when assessment complete, mandatory findings with exact section/gap/bounded fix and acceptance implication, separate advisories/limits, source reads and boundary checks.",
+    "If truly unable to finish, report INCOMPLETE/BLOCKED with precise cause and overall=null. Do not invent a design quality score for unread work.",
+    "Stop after this seat. Controller owns permitted bounded correction/fresh rounds, never this reviewer. A VERIFIED document result grants no construction/effects/UAT/acceptance/delivery."
+  ],
+  "scoring": {
+    "complete_assessment_required": true,
+    "each_seat_threshold": 9.5,
+    "zero_mandatory_findings_required": true,
+    "rubric": "F1 2.0,F2 1.0,F3 1.5,F4 2.0,F5 1.0,F6 .75,F7 1.0,F8 .75",
+    "coverage_meaning": "Completeness of the eight-area focused directive assessment, not every source method or runtime behavior.",
+    "honesty": "Never inflate, average or round up. Preserve actual limitations."
+  },
+  "report_length_guideline": "1000\u20132000 words usually enough, with concise F1\u2013F8 table; more if findings require. No repeated source catalogs."
+}

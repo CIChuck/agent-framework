@@ -1,0 +1,19 @@
+exit logical_index: 8524b5db3a84d1d5faa42b52c0550b453cee522d454e44152a473a3f5828af46
+head: fd7d9f5d429857906d53da8fc053dc85b901a635
+branch: feature/cmd-ingest-001
+status:
+ M packages/friday-chat/config.example.yaml
+ M packages/friday-chat/models-config.example.yaml
+?? .friday-old/
+staged_bytes: 0
+OK  packages/friday-chat/config.example.yaml []
+OK  packages/friday-chat/models-config.example.yaml []
+OK  .friday []
+OK  .friday-old []
+OK  .venv []
+OK  exports []
+OK  exports/friday_context.txt []
+OK  exports/friday_prompt.txt []
+ALL True
+ALL True
+request 8b9421da6fc954e171dad6f7cd594dca7fc9c4cdb9efb1c9df5f7dfb9361ae11

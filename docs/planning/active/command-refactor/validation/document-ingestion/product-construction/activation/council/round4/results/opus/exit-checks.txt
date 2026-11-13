@@ -1,0 +1,17 @@
+logical_index_sha256(ls-files -s -z): 2f3eb131a2a684bfc95663d61e4a9070ed3c40d3a3913c37cd85e4d1245ec934
+head: a4b18fe5743ea8543bd000f6f85d8225d4dbb676
+branch: feature/cmd-ingest-001
+status:
+ M packages/friday-chat/config.example.yaml
+ M packages/friday-chat/models-config.example.yaml
+?? .friday-old/
+staged:[]
+PRESERVED OK  packages/friday-chat/config.example.yaml 
+PRESERVED OK  packages/friday-chat/models-config.example.yaml 
+PRESERVED OK  .friday 
+PRESERVED OK  .friday-old 
+PRESERVED OK  .venv 
+PRESERVED OK  exports 
+PRESERVED OK  exports/friday_context.txt 
+PRESERVED OK  exports/friday_prompt.txt 
+ALL_OK True

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "errors": [],
+  "head": "be3aed3a9ba5629c548e36437e7e01a7333210d1",
+  "branch": "feature/cmd-ingest-001",
+  "logical_index_before_status": "6e7f445e07d5aef776fe21816f3dbc163350262d5af8340d43bf00a018307fa9",
+  "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+  "staged": "",
+  "tracked_files_checked": 18754,
+  "symlinks_checked": 26,
+  "preserved_entries_checked": 8,
+  "pins_checked": 45
+}

@@ -1,0 +1,710 @@
+{
+  "source_candidate": "f17b3d32b647d0df4e56963733bd606ab363e699",
+  "runs": [
+    {
+      "mode": "normal",
+      "root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/large-documents-20261112-v2-normal",
+      "files": 35,
+      "source_commit": "f17b3d32b647d0df4e56963733bd606ab363e699"
+    },
+    {
+      "mode": "optimized",
+      "root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/large-documents-20261112-v2-optimized",
+      "files": 35,
+      "source_commit": "f17b3d32b647d0df4e56963733bd606ab363e699"
+    }
+  ],
+  "genuine_document_count": 20,
+  "reference_text_count": 5,
+  "profiles": [
+    {
+      "sections": 16,
+      "canonical_words": 1368,
+      "canonical_characters": 9630,
+      "native_units": {
+        "pdf_pages": 2,
+        "xlsx_sheets": 1,
+        "pptx_slides": 4
+      }
+    },
+    {
+      "sections": 64,
+      "canonical_words": 5304,
+      "canonical_characters": 37317,
+      "native_units": {
+        "pdf_pages": 8,
+        "xlsx_sheets": 1,
+        "pptx_slides": 16
+      }
+    },
+    {
+      "sections": 128,
+      "canonical_words": 10552,
+      "canonical_characters": 74238,
+      "native_units": {
+        "pdf_pages": 16,
+        "xlsx_sheets": 2,
+        "pptx_slides": 32
+      }
+    },
+    {
+      "sections": 256,
+      "canonical_words": 21048,
+      "canonical_characters": 148077,
+      "native_units": {
+        "pdf_pages": 31,
+        "xlsx_sheets": 4,
+        "pptx_slides": 64
+      }
+    },
+    {
+      "sections": 384,
+      "canonical_words": 31544,
+      "canonical_characters": 221909,
+      "native_units": {
+        "pdf_pages": 46,
+        "xlsx_sheets": 6,
+        "pptx_slides": 96
+      }
+    }
+  ],
+  "normal_optimized_byte_equal": true,
+  "mode_comparisons": [
+    {
+      "path": "orion-016.txt",
+      "equal": true,
+      "sha256": "39a492ff52c34a8a21279e04b9f168e3d7a2a86e4ba324d240a5d0367d3f17eb"
+    },
+    {
+      "path": "orion-064.pptx",
+      "equal": true,
+      "sha256": "86bc2358feecc5594c8257de4c8daa403d042c7616e82eb65e024be52ffe1659"
+    },
+    {
+      "path": "orion-384.docx",
+      "equal": true,
+      "sha256": "becfabcc8e375a0edbc974b5ed57ec99bbff8e58464cfc06eabcba873b03a0af"
+    },
+    {
+      "path": "orion-128.pdf",
+      "equal": true,
+      "sha256": "be02c40bf2a5b503bd829ce64ddaa391971432ff8d686e504eb6dd6218595601"
+    },
+    {
+      "path": "orion-064.pdf",
+      "equal": true,
+      "sha256": "7d162ae2474e29889a718cc652a3ad10df486bd6cf0194239a5ff266a1a666da"
+    },
+    {
+      "path": "orion-128.txt",
+      "equal": true,
+      "sha256": "9241412d0d95e8f3981eb18ee0fccc9d34c9ac12b9304352fbf1c8af902198ec"
+    },
+    {
+      "path": "orion-384.pptx",
+      "equal": true,
+      "sha256": "2b2906de0adc1bbc06596bb49715c8fbe789f38e31494611bbb3984c2a5d096f"
+    },
+    {
+      "path": "orion-064.docx",
+      "equal": true,
+      "sha256": "457fc6ba874bf6f0e4c32c314eca2bd2393062c8dca63f4ca94f48d625c40690"
+    },
+    {
+      "path": "orion-016.pdf",
+      "equal": true,
+      "sha256": "7581e9fe80448ee8d688a597c5787e2d3fa1da4321eb27c80e5a7f63e27a86e0"
+    },
+    {
+      "path": "orion-016.xlsx",
+      "equal": true,
+      "sha256": "14f86573879320edaf350e5fe104c44020d28032ae8ef7b0ca836ca727d5f0ee"
+    },
+    {
+      "path": "orion-128.xlsx",
+      "equal": true,
+      "sha256": "d706d2db64c6d753338d60d4b57492673f88c0206269dd8e89c595238970ff74"
+    },
+    {
+      "path": "orion-256.xlsx",
+      "equal": true,
+      "sha256": "5b2e55bc5d14da50e395517f14f5abb34710b0f78773c1ff32a503cfc962d42b"
+    },
+    {
+      "path": "orion-064.txt",
+      "equal": true,
+      "sha256": "c5237c9781bea9a80e035bb1a6374d56429dd5da0ac0168257a409366906a0b5"
+    },
+    {
+      "path": "orion-256.txt",
+      "equal": true,
+      "sha256": "176b8668f0c563a7919c0af8466e9d48811c54df42f50be390c083b1e2081672"
+    },
+    {
+      "path": "orion-384.xlsx",
+      "equal": true,
+      "sha256": "afec3d2686f5549577ad87147e8748bf389fccc67e31a684b0b15f85277b16ad"
+    },
+    {
+      "path": "orion-016.pptx",
+      "equal": true,
+      "sha256": "ce024db56c937227ea87dda41e22f0d824e473351cb764de342cbaf6accbd09b"
+    },
+    {
+      "path": "orion-128.pptx",
+      "equal": true,
+      "sha256": "fd4d9073fa6eb163db0ebca7753734b1bb017d205ea70d7bc4d1f9c7ff101e7d"
+    },
+    {
+      "path": "orion-256.pptx",
+      "equal": true,
+      "sha256": "4e5743487a6fd4b74dd826d8de84adbd07baabcb302132fdc514fabce83c8928"
+    },
+    {
+      "path": "manifest.json",
+      "equal": true,
+      "sha256": "44a510e4d9fc0e404262c9c3c27bc084897b27bf65eb638ff8bbd609a2578527"
+    },
+    {
+      "path": "orion-384.pdf",
+      "equal": true,
+      "sha256": "a5adb80322cebccf5c5df788f6c7a5dd3dc11f0ee039113b4f6c8b71ac110bca"
+    },
+    {
+      "path": "orion-256.pdf",
+      "equal": true,
+      "sha256": "dc7a5f89014e090d9dd78f235b4e7eb7d99233d7452ebe1ba9f23e64485b2b35"
+    },
+    {
+      "path": "orion-064.xlsx",
+      "equal": true,
+      "sha256": "cd9b514a205f201616dd6c506ccdf0065109d7427d9949c25f1514e1b52cd679"
+    },
+    {
+      "path": "orion-384.txt",
+      "equal": true,
+      "sha256": "645505c7c3e5de2e36707f91919cb8f03364a711516db0b6b0d37991a1265064"
+    },
+    {
+      "path": "orion-256.docx",
+      "equal": true,
+      "sha256": "bb16da6b98d5cddfd024ddcb1073da1c7e4659cbe6321d34b7f801fc3e912604"
+    },
+    {
+      "path": "orion-128.docx",
+      "equal": true,
+      "sha256": "626d6bd839b7057424dbdb5bdad9688106c59c64e97b364802090d30a7581c45"
+    },
+    {
+      "path": "orion-016.docx",
+      "equal": true,
+      "sha256": "e6b4cfc361f7368414643143b8123d17eb8d2a7fa94561a79725669f991143f3"
+    },
+    {
+      "path": "oracles.json",
+      "equal": true,
+      "sha256": "01a7244cecf4f0c84a7f128dbce981427982d6e68f0987286699994df7471c47"
+    }
+  ],
+  "native_validation": {
+    "normal": {
+      "status": "PASS",
+      "manifest_sha256": "44a510e4d9fc0e404262c9c3c27bc084897b27bf65eb638ff8bbd609a2578527",
+      "source_binding": {
+        "large_documents.py": "b14d8c4b89b115e954a17fbb0e6609e3115b5c0ab3d5ed9810bf27300969c066",
+        "fixtures.py": "94dfb5032413a654c980db38f22e8b3cf963ae40eedd2837f0f863a1f72b12b9"
+      },
+      "results": [
+        {
+          "path": "orion-016.pdf",
+          "status": "PASS",
+          "sections": 16,
+          "native_words": 1368,
+          "exact_section_bodies_verified": 16,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-016.docx",
+          "status": "PASS",
+          "sections": 16,
+          "native_words": 1368,
+          "exact_section_bodies_verified": 16,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-016.xlsx",
+          "status": "PASS",
+          "sections": 16,
+          "native_words": 1365,
+          "exact_section_bodies_verified": 16,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-016.pptx",
+          "status": "PASS",
+          "sections": 16,
+          "native_words": 1390,
+          "exact_section_bodies_verified": 16,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-016.txt",
+          "status": "PASS",
+          "sections": 16,
+          "native_words": 1368,
+          "exact_section_bodies_verified": 16,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-064.pdf",
+          "status": "PASS",
+          "sections": 64,
+          "native_words": 5304,
+          "exact_section_bodies_verified": 64,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-064.docx",
+          "status": "PASS",
+          "sections": 64,
+          "native_words": 5304,
+          "exact_section_bodies_verified": 64,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-064.xlsx",
+          "status": "PASS",
+          "sections": 64,
+          "native_words": 5301,
+          "exact_section_bodies_verified": 64,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-064.pptx",
+          "status": "PASS",
+          "sections": 64,
+          "native_words": 5410,
+          "exact_section_bodies_verified": 64,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-064.txt",
+          "status": "PASS",
+          "sections": 64,
+          "native_words": 5304,
+          "exact_section_bodies_verified": 64,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-128.pdf",
+          "status": "PASS",
+          "sections": 128,
+          "native_words": 10552,
+          "exact_section_bodies_verified": 128,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-128.docx",
+          "status": "PASS",
+          "sections": 128,
+          "native_words": 10552,
+          "exact_section_bodies_verified": 128,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-128.xlsx",
+          "status": "PASS",
+          "sections": 128,
+          "native_words": 10552,
+          "exact_section_bodies_verified": 128,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-128.pptx",
+          "status": "PASS",
+          "sections": 128,
+          "native_words": 10770,
+          "exact_section_bodies_verified": 128,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-128.txt",
+          "status": "PASS",
+          "sections": 128,
+          "native_words": 10552,
+          "exact_section_bodies_verified": 128,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-256.pdf",
+          "status": "PASS",
+          "sections": 256,
+          "native_words": 21048,
+          "exact_section_bodies_verified": 256,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-256.docx",
+          "status": "PASS",
+          "sections": 256,
+          "native_words": 21048,
+          "exact_section_bodies_verified": 256,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-256.xlsx",
+          "status": "PASS",
+          "sections": 256,
+          "native_words": 21054,
+          "exact_section_bodies_verified": 256,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-256.pptx",
+          "status": "PASS",
+          "sections": 256,
+          "native_words": 21490,
+          "exact_section_bodies_verified": 256,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-256.txt",
+          "status": "PASS",
+          "sections": 256,
+          "native_words": 21048,
+          "exact_section_bodies_verified": 256,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-384.pdf",
+          "status": "PASS",
+          "sections": 384,
+          "native_words": 31544,
+          "exact_section_bodies_verified": 384,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-384.docx",
+          "status": "PASS",
+          "sections": 384,
+          "native_words": 31544,
+          "exact_section_bodies_verified": 384,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-384.xlsx",
+          "status": "PASS",
+          "sections": 384,
+          "native_words": 31556,
+          "exact_section_bodies_verified": 384,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-384.pptx",
+          "status": "PASS",
+          "sections": 384,
+          "native_words": 32210,
+          "exact_section_bodies_verified": 384,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-384.txt",
+          "status": "PASS",
+          "sections": 384,
+          "native_words": 31544,
+          "exact_section_bodies_verified": 384,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        }
+      ],
+      "inference_requests": 0,
+      "docling_conversion_performed": false,
+      "packages": {
+        "pypdfium2": "5.15.2",
+        "python-docx": "1.2.0",
+        "openpyxl": "3.1.5",
+        "python-pptx": "1.0.2"
+      },
+      "native_isolation_limit": "Python audit guard; not an OS sandbox"
+    },
+    "optimized": {
+      "status": "PASS",
+      "manifest_sha256": "44a510e4d9fc0e404262c9c3c27bc084897b27bf65eb638ff8bbd609a2578527",
+      "source_binding": {
+        "large_documents.py": "b14d8c4b89b115e954a17fbb0e6609e3115b5c0ab3d5ed9810bf27300969c066",
+        "fixtures.py": "94dfb5032413a654c980db38f22e8b3cf963ae40eedd2837f0f863a1f72b12b9"
+      },
+      "results": [
+        {
+          "path": "orion-016.pdf",
+          "status": "PASS",
+          "sections": 16,
+          "native_words": 1368,
+          "exact_section_bodies_verified": 16,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-016.docx",
+          "status": "PASS",
+          "sections": 16,
+          "native_words": 1368,
+          "exact_section_bodies_verified": 16,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-016.xlsx",
+          "status": "PASS",
+          "sections": 16,
+          "native_words": 1365,
+          "exact_section_bodies_verified": 16,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-016.pptx",
+          "status": "PASS",
+          "sections": 16,
+          "native_words": 1390,
+          "exact_section_bodies_verified": 16,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-016.txt",
+          "status": "PASS",
+          "sections": 16,
+          "native_words": 1368,
+          "exact_section_bodies_verified": 16,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-064.pdf",
+          "status": "PASS",
+          "sections": 64,
+          "native_words": 5304,
+          "exact_section_bodies_verified": 64,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-064.docx",
+          "status": "PASS",
+          "sections": 64,
+          "native_words": 5304,
+          "exact_section_bodies_verified": 64,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-064.xlsx",
+          "status": "PASS",
+          "sections": 64,
+          "native_words": 5301,
+          "exact_section_bodies_verified": 64,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-064.pptx",
+          "status": "PASS",
+          "sections": 64,
+          "native_words": 5410,
+          "exact_section_bodies_verified": 64,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-064.txt",
+          "status": "PASS",
+          "sections": 64,
+          "native_words": 5304,
+          "exact_section_bodies_verified": 64,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-128.pdf",
+          "status": "PASS",
+          "sections": 128,
+          "native_words": 10552,
+          "exact_section_bodies_verified": 128,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-128.docx",
+          "status": "PASS",
+          "sections": 128,
+          "native_words": 10552,
+          "exact_section_bodies_verified": 128,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-128.xlsx",
+          "status": "PASS",
+          "sections": 128,
+          "native_words": 10552,
+          "exact_section_bodies_verified": 128,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-128.pptx",
+          "status": "PASS",
+          "sections": 128,
+          "native_words": 10770,
+          "exact_section_bodies_verified": 128,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-128.txt",
+          "status": "PASS",
+          "sections": 128,
+          "native_words": 10552,
+          "exact_section_bodies_verified": 128,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-256.pdf",
+          "status": "PASS",
+          "sections": 256,
+          "native_words": 21048,
+          "exact_section_bodies_verified": 256,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-256.docx",
+          "status": "PASS",
+          "sections": 256,
+          "native_words": 21048,
+          "exact_section_bodies_verified": 256,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-256.xlsx",
+          "status": "PASS",
+          "sections": 256,
+          "native_words": 21054,
+          "exact_section_bodies_verified": 256,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-256.pptx",
+          "status": "PASS",
+          "sections": 256,
+          "native_words": 21490,
+          "exact_section_bodies_verified": 256,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-256.txt",
+          "status": "PASS",
+          "sections": 256,
+          "native_words": 21048,
+          "exact_section_bodies_verified": 256,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-384.pdf",
+          "status": "PASS",
+          "sections": 384,
+          "native_words": 31544,
+          "exact_section_bodies_verified": 384,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-384.docx",
+          "status": "PASS",
+          "sections": 384,
+          "native_words": 31544,
+          "exact_section_bodies_verified": 384,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-384.xlsx",
+          "status": "PASS",
+          "sections": 384,
+          "native_words": 31556,
+          "exact_section_bodies_verified": 384,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-384.pptx",
+          "status": "PASS",
+          "sections": 384,
+          "native_words": 32210,
+          "exact_section_bodies_verified": 384,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        },
+        {
+          "path": "orion-384.txt",
+          "status": "PASS",
+          "sections": 384,
+          "native_words": 31544,
+          "exact_section_bodies_verified": 384,
+          "cross_section_control": "PASS; joint evidence required",
+          "qwen_tokens": null
+        }
+      ],
+      "inference_requests": 0,
+      "docling_conversion_performed": false,
+      "packages": {
+        "pypdfium2": "5.15.2",
+        "python-docx": "1.2.0",
+        "openpyxl": "3.1.5",
+        "python-pptx": "1.0.2"
+      },
+      "native_isolation_limit": "Python audit guard; not an OS sandbox"
+    }
+  },
+  "model_requests": 0,
+  "docling_conversion_performed": false,
+  "token_counts_pending": true,
+  "total_corpus_source_bytes": 1362170,
+  "pdf_visual_spotcheck_pages": [
+    1,
+    24,
+    46
+  ],
+  "pdf_spotcheck_clipping_observed": false,
+  "limits": "Controlled procedural templates; no real-corpus retrieval-quality benchmark or model-token capacity proof."
+}

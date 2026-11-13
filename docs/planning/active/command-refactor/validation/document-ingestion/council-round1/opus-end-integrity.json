@@ -1,0 +1,9 @@
+{
+  "outcome": "PASS",
+  "request_sha256": "edcdfc3b2f2734499b54c919db86a35d5731d712ecd81e84a904eb2ad40582eb",
+  "candidate": "8be50b1218fc4db67fbd5d546fea9d7be6a2fd64",
+  "branch": "feature/cmd-ingest-001",
+  "logical_index_sha256": "f12f3152b2900cf9df29eff6fd1b8fec32d9bccbb5672a4fe6537c3116b571bf",
+  "protected_entries": 17536,
+  "failures": []
+}

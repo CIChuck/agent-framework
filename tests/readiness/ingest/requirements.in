@@ -1,0 +1,5 @@
+# Future upstream candidate seeds only; NOT an activated install command.
+# C0 runs with CPython 3.13.10 stdlib and does not install these packages.
+docling[rapidocr]==2.150.0
+rapidocr==3.10.0
+certifi==2026.10.23

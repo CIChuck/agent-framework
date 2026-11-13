@@ -1,0 +1,298 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "companion": "TOOLS-DOC-001",
+  "round": 1,
+  "recorded_at": "2026-11-10T21:25:05.426858+00:00",
+  "scope": "full bounded design/source-feasibility review only",
+  "base": "c36e7ee51a9328918b9bb97712aa7f1d4a850d19",
+  "candidate": "8be50b1218fc4db67fbd5d546fea9d7be6a2fd64",
+  "branch": "feature/cmd-ingest-001",
+  "diff_range": "c36e7ee51a9328918b9bb97712aa7f1d4a850d19..8be50b1218fc4db67fbd5d546fea9d7be6a2fd64",
+  "outcome": "CHANGES_REQUESTED",
+  "seats": {
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "reported_outcome": "CHANGES_REQUESTED",
+      "advisory_score": 8.1,
+      "original_report": "/private/tmp/ingest-r1-sol-bREAiNWB/review-report.md",
+      "original_report_sha256": "833ff36851495862405a2d8b86e880079f6b096f93dc131c548031e51d45bfcc",
+      "report": "sol-report.md",
+      "readable_report_sha256": "833ff36851495862405a2d8b86e880079f6b096f93dc131c548031e51d45bfcc",
+      "criteria_as_reported": {
+        "IR-01": "PASS",
+        "IR-02": "PASS",
+        "IR-03": "PASS",
+        "IR-04": "PASS",
+        "IR-05": "PASS",
+        "IR-06": "PASS",
+        "IR-07": "CHANGE",
+        "IR-08": "CHANGE",
+        "IR-09": "PASS",
+        "IR-10": "CHANGE",
+        "IR-11": "PASS",
+        "IR-12": "PASS",
+        "IR-13": "CHANGE",
+        "IR-14": "PASS",
+        "IR-15": "CHANGE",
+        "IR-16": "CHANGE"
+      },
+      "receipts": {
+        "start-integrity.json": {
+          "file": "sol-start-integrity.json",
+          "sha256": "3feaa6cdacfd859849ab92bccd4c1cfe669afecb9fbee8ddd6feeb8d7139346a"
+        },
+        "end-integrity.json": {
+          "file": "sol-end-integrity.json",
+          "sha256": "3feaa6cdacfd859849ab92bccd4c1cfe669afecb9fbee8ddd6feeb8d7139346a"
+        },
+        "commands.json": {
+          "file": "sol-commands.json",
+          "sha256": "360314d5de66a3641e3c1d9970b3c59a8e745ff55a32559b4ae85cbd59e328b6"
+        },
+        "isolation-audit.json": {
+          "file": "sol-isolation-audit.json",
+          "sha256": "d21d069998644fd2873618ab001cfbf6d873801043b4372062b63f3074a80d34"
+        }
+      },
+      "procedural_disposition": "no reported conduct deviation"
+    },
+    "astra": {
+      "model": "gpt-6-astra",
+      "effort": "high",
+      "reported_outcome": "CHANGES_REQUESTED",
+      "advisory_score": 8.5,
+      "original_report": "/private/tmp/ingest-r1-astra-sBNoaL/review-report.md",
+      "original_report_sha256": "b1a43546cc91136b06153661e468df5b31af50bd2a97d4c8914da96d75b60037",
+      "report": "astra-report.md",
+      "readable_report_sha256": "b1a43546cc91136b06153661e468df5b31af50bd2a97d4c8914da96d75b60037",
+      "criteria_as_reported": {
+        "IR-01": "PASS",
+        "IR-02": "PASS",
+        "IR-03": "PASS",
+        "IR-04": "PASS",
+        "IR-05": "PASS",
+        "IR-06": "PASS/advisory 003",
+        "IR-07": "CHANGES_REQUESTED/001",
+        "IR-08": "CHANGES_REQUESTED/001",
+        "IR-09": "PASS",
+        "IR-10": "PASS/advisory 002",
+        "IR-11": "PASS",
+        "IR-12": "PASS with gate-A risk",
+        "IR-13": "CHANGES_REQUESTED/001",
+        "IR-14": "PASS",
+        "IR-15": "PASS",
+        "IR-16": "CHANGES_REQUESTED/001"
+      },
+      "receipts": {
+        "start-integrity.json": {
+          "file": "astra-start-integrity.json",
+          "sha256": "3feaa6cdacfd859849ab92bccd4c1cfe669afecb9fbee8ddd6feeb8d7139346a"
+        },
+        "end-integrity.json": {
+          "file": "astra-end-integrity.json",
+          "sha256": "3feaa6cdacfd859849ab92bccd4c1cfe669afecb9fbee8ddd6feeb8d7139346a"
+        },
+        "admin-results.json": {
+          "file": "astra-admin-results.json",
+          "sha256": "360314d5de66a3641e3c1d9970b3c59a8e745ff55a32559b4ae85cbd59e328b6"
+        }
+      },
+      "procedural_disposition": "no reported conduct deviation"
+    },
+    "opus": {
+      "model": "claude-opus-5-5",
+      "effort": "high",
+      "reported_outcome": "CHANGES_REQUESTED",
+      "advisory_score": 7.3,
+      "original_report": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/0092ee75-7f1e-464d-badd-b69e2bb3a186/scratchpad/opus-ingest-r1/review-report.md",
+      "original_report_sha256": "56fa62501511a509874280d06112afa1d554956f83cb2bdb6789a0032a67d072",
+      "report": "opus-report.md",
+      "readable_report_sha256": "cb8b2803292c29f0605e7ebda781acab9cfd62c74935519a404d2db6b6225bbb",
+      "criteria_as_reported": {
+        "IR-01": "PASS",
+        "IR-02": "PASS (design)",
+        "IR-03": "PASS (design)",
+        "IR-04": "**CHANGES (OPUS-006)**",
+        "IR-05": "**CHANGES (OPUS-006)**",
+        "IR-06": "PASS with advisories",
+        "IR-07": "**CHANGES (OPUS-004)**",
+        "IR-08": "**CHANGES (OPUS-004, 008)**",
+        "IR-09": "**CHANGES (OPUS-003, 005)**",
+        "IR-10": "**CHANGES (OPUS-001, 002)**",
+        "IR-11": "PASS with OPUS-005",
+        "IR-12": "PASS (design) with A01/A02",
+        "IR-13": "**CHANGES (OPUS-007, 008)**",
+        "IR-14": "PASS (plan) with OPUS-007",
+        "IR-15": "**CHANGES (OPUS-001)**",
+        "IR-16": "PASS with gaps"
+      },
+      "receipts": {
+        "start-integrity.json": {
+          "file": "opus-start-integrity.json",
+          "sha256": "3feaa6cdacfd859849ab92bccd4c1cfe669afecb9fbee8ddd6feeb8d7139346a"
+        },
+        "end-integrity.json": {
+          "file": "opus-end-integrity.json",
+          "sha256": "3feaa6cdacfd859849ab92bccd4c1cfe669afecb9fbee8ddd6feeb8d7139346a"
+        }
+      },
+      "procedural_disposition": "qualified: all-command optional-lock compliance is not established"
+    }
+  },
+  "mandatory_findings": [
+    {
+      "id": "CR-01",
+      "title": "One shared storage entry point, cache identity and honest unit sequencing",
+      "mandatory_ids": [
+        "INGEST-R1-SOL-001",
+        "INGEST-R1-ASTRA-001",
+        "INGEST-R1-OPUS-008"
+      ],
+      "recommendation": "Assign smart_read small/large storage and cache admission to an explicit injected shared ingestion entry point; separate raw stored chunks from summarization windows and classify derived records. Reconcile INGEST/TOOLS-DOC allowlists and completion gates together."
+    },
+    {
+      "id": "CR-02",
+      "title": "Durable embedding-space identity and unbound legacy-store admission",
+      "mandatory_ids": [
+        "INGEST-R1-SOL-002",
+        "INGEST-R1-OPUS-001"
+      ],
+      "recommendation": "Use fresh bound stores for the new convention; specify create/reopen/read/write enforcement, same-dimension model/preparation mismatch and precomputed-vector identity. Refuse legacy-unbound use by the new pipeline without scanning, resetting or migrating it; this recommendation is not a newly approved behavior."
+    },
+    {
+      "id": "CR-03",
+      "title": "Complete query/document embedding role inventory",
+      "mandatory_ids": [
+        "INGEST-R1-OPUS-002"
+      ],
+      "related_advisory_ids": [
+        "INGEST-R1-SOL-003"
+      ],
+      "recommendation": "Inventory retrieval/lifecycle/maintenance as well as ingestion; give discovered role corrections exact owners and paths. Do not enable asymmetric preparation while a relevant caller remains unclassified."
+    },
+    {
+      "id": "CR-04",
+      "title": "Missing embedding-capacity fields and legacy constructors",
+      "mandatory_ids": [
+        "INGEST-R1-OPUS-003"
+      ],
+      "recommendation": "Define how model-catalog and non-catalog constructors obtain verified capacity/dimensions and which operation refuses when those cannot be established. No silent unguarded bypass and no accidental whole-application configuration break."
+    },
+    {
+      "id": "CR-05",
+      "title": "Document strategy for text and other non-Docling sources",
+      "mandatory_ids": [
+        "INGEST-R1-OPUS-004"
+      ],
+      "recommendation": "Assign normalization/block segmentation and packaging so document/512 works for text/headless consumers, with no hidden strategy fallback or undeclared Docling requirement. Freeze the missing-extra behavior for document formats."
+    },
+    {
+      "id": "CR-06",
+      "title": "Local model-bound tokenization and nonblocking execution",
+      "mandatory_ids": [
+        "INGEST-R1-OPUS-005"
+      ],
+      "related_advisory_ids": [
+        "OPUS-A01"
+      ],
+      "recommendation": "Use provisioned offline synchronous token assets for repeated chunk counts, with a declared asset root and worker execution/cancellation contract; server tokenization may cross-check rather than serve as a per-split network bridge. Verify feasibility on the selected release at gate A."
+    },
+    {
+      "id": "CR-07",
+      "title": "Office structural admission and observable omissions",
+      "mandatory_ids": [
+        "INGEST-R1-OPUS-006"
+      ],
+      "related_advisory_ids": [
+        "OPUS-A02"
+      ],
+      "recommendation": "Explicitly permit a bounded read-only structural audit that can refuse or report coverage but never supplies text, or narrow the claimed guarantees. Freeze format detection, warning/refusal and resource limits on the selected release."
+    },
+    {
+      "id": "CR-08",
+      "title": "Actual web and automatic-tool routes versus future capability",
+      "mandatory_ids": [
+        "INGEST-R1-OPUS-007"
+      ],
+      "recommendation": "Keep the all-source policy decision, but identify maintained entry points, legacy-only callers and absent routes. Decide whether a new route is authorized or is future work; an absent route earns no integration-test credit. Do not invent a new web fetcher under this review."
+    }
+  ],
+  "raw_mandatory_finding_count": 11,
+  "reconciled_theme_count": 8,
+  "advisories_to_consider": [
+    "INGEST-R1-SOL-003",
+    "INGEST-R1-ASTRA-002",
+    "INGEST-R1-ASTRA-003",
+    "OPUS-A01",
+    "OPUS-A02",
+    "OPUS-A03",
+    "OPUS-A04",
+    "OPUS-A05",
+    "OPUS-A06",
+    "OPUS-A07"
+  ],
+  "score_rule": "Advisory only; no averaging, majority waiver or inherited MAINT score threshold.",
+  "opus_conduct_disposition": {
+    "disclosed": "Two read-only Git invocations lack an explicit GIT_OPTIONAL_LOCKS=0 setting.",
+    "controller_limit": "No per-command evidence establishes inherited zero; complete command-discipline conformance is not certified. Technical findings remain open planning evidence; the raw reported outcome is not changed or promoted.",
+    "protected_identity": "All reported start/end audits and controller final frozen audit pass; no attribution of host gitdir mtime is established.",
+    "action": "Preserve disclosure. No cleanup, replacement review or retrospective clean-execution claim."
+  },
+  "controller_source_checks": [
+    "smart_read direct small-file store and early session/long-term cache returns confirmed by source inspection.",
+    "Vector adapter creates collection without embedding identity; query without precomputed vector uses embed_documents.",
+    "MaintenanceSynthesizer uses embed_query for stored text; non-catalog Chat and maintenance embedding constructors exist.",
+    "No maintained ToolOutputIngester caller found in Chat/Agent/Tools/Runtime; legacy integration caller exists. Web tools inspected do not persist to Memory.",
+    "LargeFileProcessor uses a separate semantic chunker with estimated-token targets; its numeric chunk_size is not established as a literal 2048-character window. The raw-chunk ownership finding stands without adopting that wording from Opus."
+  ],
+  "external_claim_limits": "Opus inspected upstream main, not a selected release; those observations are release-readiness hazards, not final backend proof. Server batch-limit advisory is prior knowledge in that report, not reproduced evidence.",
+  "archives": [
+    {
+      "file": "opus-report.raw.md.gz",
+      "sha256": "e5f9e230709a21786445bc47389e1377be7ee15efdacb18159ba8334dfa437ed",
+      "decompressed_sha256": "56fa62501511a509874280d06112afa1d554956f83cb2bdb6789a0032a67d072",
+      "normalization": "Readable copy removes trailing line whitespace only; original bytes preserved in this archive."
+    },
+    {
+      "file": "review-request.json",
+      "sha256": "edcdfc3b2f2734499b54c919db86a35d5731d712ecd81e84a904eb2ad40582eb",
+      "original": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-ingest-council-r1-inputs-qj57z4f_/review-request.json"
+    },
+    {
+      "file": "check_integrity.py",
+      "sha256": "6e1ec704678475fa6dbd45301c94a824e217a177cc8c83e05ee05b6f606278c3",
+      "original": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-ingest-council-r1-inputs-qj57z4f_/check_integrity.py"
+    },
+    {
+      "file": "preserved-state.json",
+      "sha256": "43bc63142365560b7bfc72004d0edd493f1c9ec5f21e7cff724b54b12af52ce8",
+      "original": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-ingest-council-r1-inputs-qj57z4f_/preserved-state.json"
+    },
+    {
+      "file": "dispatch-identity.json",
+      "sha256": "8c6f7b22ec085f79d534427d9c613fb1696db80a07289368fa349faaa8a6ed0e",
+      "original": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-ingest-council-r1-inputs-qj57z4f_/dispatch-identity.json"
+    },
+    {
+      "file": "protected-manifest.raw.json.gz",
+      "sha256": "d82bf3f947badeefe6b304f8ac08ccaf6562cd212669b5cad27f3029d4e727d2",
+      "decompressed_sha256": "647f359a7e101c74340cf0b93c654d2370a8ec9eae67c3d6cced34b7fb505f6b",
+      "protected_entries": 17536,
+      "original": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/friday-ingest-council-r1-inputs-qj57z4f_/protected-manifest.json"
+    }
+  ],
+  "frozen_request_sha256": "edcdfc3b2f2734499b54c919db86a35d5731d712ecd81e84a904eb2ad40582eb",
+  "controller_frozen_integrity": "controller-frozen-integrity.json",
+  "next_gate": "Review the reconciled INGEST round1 findings and authorize a bounded document-only revision; resolve storage/cache ownership, embedding identity/capacity, Office audit and actual route scope before any new council, gate A or construction. MAINT human UAT/acceptance remain separate.",
+  "implementation_authority": "design_only",
+  "proposal_revised": false,
+  "gate_a": "not_started_or_authorized_by_this_review",
+  "runtime_tests_builds_installs": "not_performed_in_this_design_review",
+  "stores": "no reset/migration/cleanup or content inspection",
+  "new_council": "not_launched",
+  "acceptance": "not_granted",
+  "delivery_action": "none",
+  "controller_closeout_checks": "controller-closeout-checks.json",
+  "controller_closeout_scope": "17,529 unchanged protected records; seven explicit current-status records changed; all six preserved metadata records unchanged."
+}

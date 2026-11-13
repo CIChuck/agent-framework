@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "focused_tests_per_lane": 11,
+  "canonical_cli_cases_per_lane": 5,
+  "live_execution": false,
+  "scratch": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests",
+  "ast": {
+    "baseline": "c97777366671006f56866aa92898aaffcec524d6",
+    "unchanged_e2e_definitions": [
+      "Budget",
+      "array",
+      "corpus",
+      "embed",
+      "integer",
+      "main",
+      "model_state",
+      "obj",
+      "private_root",
+      "read",
+      "reopen",
+      "require",
+      "run",
+      "runtime",
+      "sha",
+      "store_path",
+      "text",
+      "validated_vectors",
+      "window",
+      "write"
+    ],
+    "unchanged_definition_count": 20,
+    "changed_definitions": [
+      "report"
+    ],
+    "added_definitions": [
+      "report_conversion_source"
+    ],
+    "behavior_byte_equal": true,
+    "behavior_sha256": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a"
+  },
+  "preservation": {
+    "hashes": {
+      "tests/readiness/ingest/e2e.py": "2374097bcd0817ec8a4ca520ee7d6b0b351dd3e2252cca01abd3e5e62adceaa0",
+      "tests/readiness/ingest/tests/test_e2e.py": "ecdaf4e8ac9336f688af2cad2e7b1268462dae59bf09489261c291040f991d41",
+      "tests/readiness/ingest/README.md": "ff27ebae2a393b3ea638e04b803ff6edb782e23869aa1d2997acf62c99fdb466",
+      "tests/readiness/ingest/behavior.py": "d27a7974fc9ede16038a9798623093df475f370d15cf1fa4b0e92f77d1fed21a",
+      "packages/friday-chat/config.example.yaml": "7c31a9ad3f6a7ff1cfc891cace6c4b3cde21d10202770c374a38c6cc28620f32",
+      "packages/friday-chat/models-config.example.yaml": "5cf3d15ec469d3b8e495248d3aec9ed7bcdb48b68243668b6dbbbb3e0b0326c9"
+    },
+    "index_sha256": "92e8bb95a32757d97fd237d39e6dfb7dc5178f0b904c49586a819024831b252b",
+    "index_unchanged": true,
+    "protected_unchanged": {
+      "tests/readiness/ingest/behavior.py": true,
+      "packages/friday-chat/config.example.yaml": true,
+      "packages/friday-chat/models-config.example.yaml": true
+    }
+  }
+}

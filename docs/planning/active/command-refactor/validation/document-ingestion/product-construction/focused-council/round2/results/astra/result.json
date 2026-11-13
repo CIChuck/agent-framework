@@ -1,0 +1,14 @@
+{
+  "seat": "ASTRA",
+  "round": 2,
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "areas_total": 8,
+  "verdict": "VERIFIED",
+  "mandatory_findings": [],
+  "coverage": 10.0,
+  "overall": 9.6,
+  "report_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/astra-ingest-r2-6nbzoix9/report.md",
+  "report_sha256": "6ae75e6ea18cc855500fc7103b62c14a4d605d92bf6574b512f46e37f70d7b5c",
+  "boundaries_match": true
+}

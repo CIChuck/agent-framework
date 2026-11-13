@@ -1,0 +1,9 @@
+{
+  "commit": "115e4cecdb659d2af043c11e73964aca0a590d78",
+  "verified": {
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md": "a7f027e8a4b70f19dcdbda13ecf10172a9a786059371705b0662eba36c13d66f",
+    "docs/planning/active/command-refactor/package-impact-assessment.md": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/approval-request.json": "7fbc2fa7b21c9ea14c8eeac5246563faba4d69e2e7359967639595b4d2155b27",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/execution-profile.json": "fa964adcd72ee98c9a7aef8080fb1a9c142d86589cb0d6ffc9e2df414cc00014"
+  }
+}

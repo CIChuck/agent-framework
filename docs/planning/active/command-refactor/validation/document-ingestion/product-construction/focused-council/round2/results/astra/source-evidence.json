@@ -1,0 +1,60 @@
+{
+  "sources": [
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "sha256": "4615bb2e8648b62f9eb3826ccaba73f157754fcf5c12beedeef5b59185dc0f63",
+      "read_scope": [
+        "165-211",
+        "226-234",
+        "669-716",
+        "1196-1224",
+        "targeted handler searches"
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/files.py",
+      "sha256": "2c1555ad5ec48c5aab6cf3e14024a5591b86ace2b752f1420f273daf215c9f3c",
+      "read_scope": [
+        "1-165"
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "sha256": "7a0003b0657e408261024be619a903f400f8e2f2f15533aa8392bd6ac904e6a2",
+      "read_scope": [
+        "90-147",
+        "460-525",
+        "targeted lifecycle/composition searches"
+      ]
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/app.py",
+      "sha256": "d4d3a7a08b95bb618b12571b87760ca3b10871b9c41fd5ba9fad310e263a4a4a",
+      "read_scope": [
+        "215-255",
+        "430-574",
+        "611-650",
+        "targeted lifecycle searches"
+      ]
+    },
+    {
+      "path": "packages/friday-tools/src/friday_tools/filesystem/smart_read.py",
+      "sha256": "23f514859df4ec0b228e0667187c28650982f3b2e6133d64de898dcfc54e6399",
+      "read_scope": [
+        "209-231",
+        "279-366",
+        "targeted cache/processor searches"
+      ]
+    }
+  ],
+  "optional_inputs": [
+    {
+      "path": "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+      "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/embedding-compatibility-contract.md",
+      "sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb"
+    }
+  ]
+}

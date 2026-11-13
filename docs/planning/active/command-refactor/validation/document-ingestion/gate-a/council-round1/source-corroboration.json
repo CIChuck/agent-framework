@@ -1,0 +1,31 @@
+{
+  "kind": "Controller public-primary-source corroboration, separate from reviewer evidence and not local-service qualification",
+  "observed_at": "2026-11-11T22:10:05.644343+00:00",
+  "sources": [
+    {
+      "url": "https://docs.python.org/3.13/library/site.html",
+      "claim": "Site initialization can process path files and sitecustomize; -S suppresses automatic site main. Supports the startup concern, not an executed target-interpreter proof."
+    },
+    {
+      "url": "https://docs.astral.sh/uv/configuration/files/",
+      "claim": "uv discovers project/parent/user/system configuration; --no-config disables persistent discovery. Exact flags for future child tools must still qualify against their pinned versions."
+    },
+    {
+      "url": "https://lmstudio.ai/docs/developer/core/ttl-and-auto-evict",
+      "claim": "LM Studio documents just-in-time loading, idle unloading and eviction. This supports loaded-state safeguards; no actual server settings or model state were inspected."
+    },
+    {
+      "url": "https://lmstudio.ai/docs/developer/core/server/settings",
+      "claim": "LM Studio documents dynamic-loading and unloading server settings. Harness permission remains read-only; no configuration changes or management requests were made."
+    }
+  ],
+  "not_performed": [
+    "tests",
+    "dependency/model transfer",
+    "install",
+    "conversion",
+    "inference",
+    "local endpoint call",
+    "service or store operation"
+  ]
+}

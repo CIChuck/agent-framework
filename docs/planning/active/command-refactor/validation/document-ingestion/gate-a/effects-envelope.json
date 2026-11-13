@@ -1,0 +1,296 @@
+{
+  "unit": "REM-CMD-INGEST-001-GATE-A",
+  "version": "0.5-draft",
+  "status": "NOT_ACTIVATED",
+  "scope": "Isolated manually executable upstream dependency/converter/counter feasibility and source-linked final-directive inventory. All runtime code/config/input/output test-owned; no production mutation or product implementation.",
+  "assessment_approval": {
+    "record": "../../../approval/ingest-package-impact.md",
+    "version": "0.6",
+    "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+    "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+    "observed_head_before_planning": "fd33d5f52277a4d5da0bc0897d97c9360f326ced"
+  },
+  "candidate_requirements": [
+    "docling[rapidocr]==2.150.0",
+    "rapidocr==3.10.0",
+    "certifi==2026.10.23"
+  ],
+  "security_floor": {
+    "certifi": ">=2026.10.19",
+    "candidate_exact_version": "2026.10.23",
+    "no_unlocked_post_install_upgrade": true
+  },
+  "target": {
+    "os": "macOS/Darwin",
+    "arch": "arm64",
+    "python": "3.13.10",
+    "device": "CPU",
+    "parallel_conversions": 1,
+    "threads": 4
+  },
+  "paths": {
+    "project_root": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "test_workspace": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test",
+    "run_root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>",
+    "harness_copy": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/harness",
+    "target_prefix": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/target",
+    "source_export": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/source-export",
+    "test_config": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/config",
+    "wheelhouse": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/wheelhouse",
+    "cache_root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/cache",
+    "fixtures": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/fixtures",
+    "generated_inputs": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/inputs/generated",
+    "supplied_inputs": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/inputs/supplied",
+    "logs": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/logs",
+    "reports": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/reports",
+    "asset_root": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/assets/<manifest-sha256>",
+    "reserved_integration_vector": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/vector",
+    "reserved_integration_graph": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/graph.json",
+    "reserved_integration_state": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/state",
+    "control_inputs": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/control/<activation-id>",
+    "source_git_view": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/source-git",
+    "binding_ledger": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/state/bindings.jsonl",
+    "revocation": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/state/stop.json",
+    "window_receipts": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/config/windows/<digest>.json",
+    "profile_overlays": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/<activation-id>/profile-overlays/<profile>"
+  },
+  "budgets": {
+    "metadata_bytes": 67108864,
+    "metadata_requests": 500,
+    "package_download_bytes": 4294967296,
+    "asset_download_bytes": 1073741824,
+    "total_retained_disk_bytes": 17179869184,
+    "free_disk_before_start_bytes": 21474836480,
+    "peak_child_process_tree_rss_bytes": 8589934592,
+    "metadata_wall_seconds": 900,
+    "install_wall_seconds": 1200,
+    "single_conversion_wall_seconds": 300,
+    "warm_conversion_wall_seconds": 180,
+    "child_quiescence_seconds": 30,
+    "local_embedding_requests_max": 64,
+    "local_embedding_vectors_max": 256,
+    "local_embedding_total_input_tokens_max": 131072,
+    "overall_active_seconds": 7200
+  },
+  "document_probe_limits": {
+    "compressed_file_bytes": 33554432,
+    "expanded_archive_bytes": 134217728,
+    "archive_members": 2048,
+    "pdf_pages": 50,
+    "xlsx_sheets": 32,
+    "xlsx_rows_per_sheet": 20000,
+    "xlsx_cells_total": 250000,
+    "pptx_slides": 100,
+    "pptx_shapes_total": 5000
+  },
+  "allowed_public_metadata_hosts": [
+    "pypi.org",
+    "api.github.com",
+    "raw.githubusercontent.com",
+    "github.com",
+    "huggingface.co",
+    "docling-project.github.io",
+    "spdx.org",
+    "cdla.dev"
+  ],
+  "artifact_transfer_hosts_after_manifest_promotion": [
+    "files.pythonhosted.org",
+    "huggingface.co",
+    "cdn-lfs.huggingface.co",
+    "cdn-lfs-us-1.hf.co",
+    "cas-bridge.xethub.hf.co"
+  ],
+  "permitted_artifact_urls": "Only exact hash-bound URLs in the promoted manifest. Seed candidates are in source-observations.json. New redirect hosts stop; no wildcard host or implicit mirror.",
+  "manifest_review": {
+    "owner": "Chuck or the delegated Codex controller explicitly named by stage activation",
+    "requirement": "Before each stage promotion, record full exact URL/revision/size/license/digest manifest, review it within the approved hosts/budgets, and reject unknowns. Any source build, custom model code, unlisted host or material package-impact change returns to Chuck."
+  },
+  "stages": [
+    {
+      "id": "A0",
+      "name": "metadata/graph and inventory",
+      "network": "metadata hosts only",
+      "effects": "Resolve in private exported metadata; no working-lock change, install, source build or inference. If archive payload is needed to obtain metadata, stop until an explicit archive-inspection allowance and URL manifest is recorded."
+    },
+    {
+      "id": "A1",
+      "name": "hash-pinned wheels and isolated target",
+      "network": "exact promoted wheel URLs only",
+      "effects": "Download/install approved compatible third-party wheels in fresh target. Build workspace wheels only from the exact private source export with separately pinned existing build tools; no source edits. Inspect OCR routes/keys and licenses before model-stage promotion. No global environment mutation or automatic model fetch."
+    },
+    {
+      "id": "A2",
+      "name": "manifest-owned assets and offline converter probes",
+      "network": "exact promoted asset URLs during transfer; denied during conversion",
+      "effects": "Publish verified assets; run generated/supplied manifest-bound fixtures and standalone probes under limits. Supplied originals unchanged; no production command/store path or external content upload."
+    },
+    {
+      "id": "A3",
+      "name": "embedding qualification",
+      "network": "Only exact local LM Studio endpoint after the bound production-offline/restart/log-separation receipt and model/counter facts pass; none otherwise.",
+      "effects": "Manifest/batch promotion and a valid production-offline/restart/log-separation/preloaded-safe-policy receipt before any status/embedding call. Only chosen native GET status plus POST /v1/embeddings; all calls count, no model load/evict/settings/service/credential/store effects."
+    },
+    {
+      "id": "A4",
+      "name": "readiness report and final-directive handoff",
+      "network": "none",
+      "effects": "Report measured facts, unsupported rules and scope deltas. No construction or new council automatically."
+    }
+  ],
+  "unbound_model_inputs": {
+    "local_endpoint": null,
+    "served_artifact_path_and_sha256": null,
+    "effective_limits_and_dimensions": null,
+    "selected_baseline_service_configuration": null,
+    "replacement_model": null,
+    "status": "A3 blocked until confirmed production-offline/restart/log-separation window and exact endpoint/model/counter/input facts are bound. Existing local endpoint may be reused. Qwen remains illustrative.",
+    "operator_window_receipt": null,
+    "test_log_separation_evidence": null,
+    "loaded_model_and_safe_loading_policy": null,
+    "selected_native_status_profile": null,
+    "protected_cache_metadata_scope": null
+  },
+  "excluded_effects": [
+    "Model requests outside confirmed shared-LM-Studio test window; harness service/process/settings management or production application/config/store access",
+    "Working .venv/uv.lock/pyproject or package source/test modification",
+    "Dirty YAML/personal-store/model-cache payload inspection or mutation; only explicit metadata-only boundary observations may be activated",
+    "Third-party source distributions/build scripts, executable installers, new runtime services",
+    "Remote OCR/VLM, automatic backend fallback, URL ingestion or extra formats",
+    "Live Finance/provider tests or credential use",
+    "Qwen selection, re-embedding, old-store reset/migration",
+    "Product/harness construction, push/PR/publication authority; council permissions come only from their separate authorization",
+    "Creating/resetting any Chroma store during A0\u2013A4; integration store paths are reserved for later approved work"
+  ],
+  "activation": {
+    "maintainer_approval_of_this_plan": "PENDING",
+    "activation_id_and_exact_run_root": "REQUIRED_BEFORE_EXECUTION",
+    "manifest_review_record": "REQUIRED_BEFORE_EACH_STAGE_PROMOTION",
+    "operator_local_model_record": "REQUIRED after model-batch promotion: confirmed window, already-loaded model, safe JIT/TTL/eviction, exact selected status/profile facts and budgets.",
+    "no_automatic_stage_promotion_on_missing_facts": true,
+    "boundary_preflight": "REQUIRED_BEFORE_EFFECTS; explicit test paths/origins and negative controls; model window checked before every batch."
+  },
+  "isolation": {
+    "requirements": "isolation-requirements.md",
+    "status": "REQUIRED_NOT_IMPLEMENTED",
+    "existing_production_endpoint_allowed": true,
+    "test_lm_studio_process_and_config_required": false,
+    "all_probe_writes_within_run_root": true,
+    "shared_asset_publish": "Only promoted A2 publisher; new manifest directory from verified run-local staging; never overwrite.",
+    "working_checkout_or_venv_imports_allowed": false,
+    "ambient_application_configuration_or_credentials_allowed": false,
+    "path_alias_or_production_overlap": "REFUSE_CONTROLLED_OPERATIONS_BEFORE_EFFECTS; classify and prove native/child limits separately.",
+    "test_workspace_git_ignore": "Required in separately approved harness scope before generation; not changed now.",
+    "production_containment_claim": "Bounded demonstrated preventive controls plus declared detective metadata evidence; Python audit is not native/OS containment. Outside changes fail isolation; no unknown-root or universal-filesystem guarantee.",
+    "shared_host_resource_contention": "Limits apply; zero performance impact is not claimed.",
+    "shared_input_publish": "Only explicit fixture/supplied-input preparation; new manifest-named directory from run-local staging; never overwrite originals or existing inputs.",
+    "endpoint_reuse_condition": "Only confirmed operator-managed test window: production stopped, server restarted, test logs separated, exact endpoint/model/input/config/manifest hashes and expiry bound.",
+    "shared_lm_studio_exception": "Existing service/model assets may be reused under the window; no harness service management or model-directory mutation. Working application/env/config/store isolation remains mandatory.",
+    "cache_observation": "Activation names specific default tool/cache/config roots and finite metadata-only enumeration limits; no payload/whole-HOME/model-dir scan, no silent truncation."
+  },
+  "manual_operation": {
+    "full_and_per_stage_runs": true,
+    "offline_extraction_chunking_mode": true,
+    "no_effects_preflight": true,
+    "cli_status": "NOT_IMPLEMENTED; publish actual commands only after implementation",
+    "versioned_code_root": "tests/readiness/ingest/"
+  },
+  "input_policy": {
+    "baseline": "Hash-bound generated fixtures with known expected content.",
+    "supplemental": "Explicitly supplied input manifest only; read-only copies, no in-place conversion/scanning/upload.",
+    "originals": "Unchanged; content stays private unless a sanitized report is separately selected.",
+    "embedding": "Only explicitly manifested test inputs through the reused local endpoint inside the confirmed production-offline/restart/log-separation window.",
+    "selection": "NONE_SELECTED"
+  },
+  "versioned_harness_root": "tests/readiness/ingest/",
+  "model_window_policy": {
+    "status": "NOT_CONFIRMED",
+    "receipt_per_run": true,
+    "operator_production_shutdown_required": true,
+    "operator_server_restart_required": true,
+    "separate_test_logs_required": true,
+    "exact_model_config_input_manifest_binding": true,
+    "expiry_and_revocation_required": true,
+    "check_before_each_batch": true,
+    "harness_service_management_allowed": false,
+    "production_resumption": "Operator responsibility; never automatic.",
+    "loaded_model_required": true,
+    "unsafe_or_unknown_jit_ttl_eviction": "BLOCK",
+    "selected_status_profiles": {
+      "LMS_NATIVE_V1": "GET /api/v1/models: exact embedding key and loaded instance ID",
+      "LMS_NATIVE_V0": "GET /api/v0/models: exact embeddings ID, state loaded; instance facts labelled attested"
+    },
+    "status_profile_selection": "Exactly one operator-selected/version-qualified profile; no fallback probe or server upgrade.",
+    "request_routes": "Only selected GET status and POST /v1/embeddings; exact loaded identifier, no management/TTL override.",
+    "status_and_embedding_share_request_budget": true,
+    "check_before_and_after_each_batch": true,
+    "authentication": "Ambient/production credentials forbidden; required authentication blocks current profile.",
+    "server_settings_changes_allowed": false,
+    "pending_settings_decision": "If actual safe preloaded policy cannot be attested, A3 remains blocked; any settings change requires separate authority at activation, never inferred now."
+  },
+  "execution_contract": "execution-contract.md",
+  "time_accounting": {
+    "overall_seconds": 7200,
+    "meaning": "Cumulative active qualification execution across resumed invocations; not per-stage reset.",
+    "human_waiting": "Between processes only; excluded and separately reported. all exits rather than waits.",
+    "crash_accounting": "Reserve/charge effects before execution; unknown interrupted usage conservatively charged.",
+    "existing_subcaps_and_numeric_budgets": "Unchanged; no automatic increase.",
+    "legacy_field": "v0.3 overall_wall_seconds is replaced by overall_active_seconds, same 7200 numeric cap; human-wait semantics now explicit.",
+    "stage_subcaps": "Metadata/install subcaps cumulative across invocations/profiles; single/warm conversion caps remain per conversion."
+  },
+  "startup_policy": {
+    "required_flags": [
+      "-I",
+      "-S",
+      "-B"
+    ],
+    "optimized_additional_flag": "-O",
+    "trusted_roots": "Externally qualified interpreter/stdlib/launcher; no self-authentication claim.",
+    "imports": "Read once, verify committed manifest/blob/SHA, compile and execute same buffer; no pyc/path-loader fallback; explicit guard before imports.",
+    "orchestrator": "Qualified base interpreter, stdlib/harness only.",
+    "workers": "Separate private profile interpreters, explicit guard first; do not derive Python 3.13 -S site paths from sys.prefix.",
+    "required_flags_scope": "Harness-launched entry/tests/workers only; tool-spawned class separately qualified in contract1.2.",
+    "pre_init": "Externally verified single stdlib bootstrap and approved complete committed harness manifest; refuse dirty/extra/pyc before writes; post-init frozen run harness only.",
+    "tool_spawned": "Expected/actual version-qualified child argv/environment; prepared run-owned build targets, startup inventory, no unclassified executable sites; detective/residual evidence, not guarded flags."
+  },
+  "source_export": {
+    "selection": "Recorded source/harness commit/tree and explicit regular-blob selection; no dirty/untracked/ignored copy.",
+    "mechanism": "Run-owned minimal bare object-reading view and blob export; explicit declared read-only alternate objects, empty private Git config, no remotes/config discovery/filter/archive transformations.",
+    "allowed_git_object_operations": [
+      "rev-parse",
+      "cat-file",
+      "ls-tree"
+    ],
+    "boundary_collection": "Stable read-only source index copy; private view ls-files -s -z --cached against the copy, not production index/status.",
+    "production_git_mutation": false,
+    "uncommitted_harness_fallback": false,
+    "metadata_rehearsal": "Read-only base export plus explicit metadata-only derived overlay, with base/patch/result hashes and code-byte equality; promotion binds the profile.",
+    "split_index": "Read-only copy of declared dependencies when qualified; otherwise stop, never change source index settings.",
+    "git_environment": "Explicit private GIT_DIR/OBJECT_DIRECTORY, declared alternates, GIT_OPTIONAL_LOCKS=0, no system/global config, no prompts/replace objects/hooks/fsmonitor/credentials/maintenance/network; index collector uses private copy only."
+  },
+  "promotion_policy": {
+    "init": "Immutable run/source/harness/config/envelope/seed binding.",
+    "ledger": "Versioned strict canonical hash-chained append-only records with explicit authorized promotion receipts; chain is consistency evidence, not authentication of a malicious local owner.",
+    "all": "Consecutive ready stages; exits AWAITING_PROMOTION/PREPARATION/WINDOW without auto preparing facts or promoting. Accepts existing ready A3 window receipt; A4 is offline aggregate, skipped A3 cannot qualify full readiness.",
+    "prepare_model": "Offline exact candidate model/counter/input batch freeze after A2; promotion precedes window receipt.",
+    "model_receipt": "Binds existing promoted manifest/batch hashes and ledger tip; revocation rechecked before requests.",
+    "stop": "Lease-free idempotent atomic sticky stop command; no network/service management or implicit reset."
+  },
+  "tool_isolation": {
+    "requirements": "execution-contract.md sections 2-3",
+    "HOME": "Unchanged; every relevant user/system/config/credential/proxy channel explicitly neutralized and qualified.",
+    "uv": "No config/dotenv/.python-version/discovery fallback; --no-python-downloads and explicit --python/target; private config/NETRC/cache/credentials and qualified tool-child handling.",
+    "pip_executable_allowed": false,
+    "HTTP": "Direct clients; no automatic env/macOS proxy/netrc/keyring; explicit TLS roots and exact destinations.",
+    "validation_tools": "Explicit config/project and private/no caches.",
+    "unknown_channels": "Block profile, do not guess or modify production settings.",
+    "import_channels": "A1 pre-import inventory, worker read/probe roots, LITELLM_MODE=PRODUCTION and LITELLM_LOCAL_MODEL_COST_MAP=True for qualified version, callbacks/telemetry off, explicit clients and transport-attempt budgets; unknown blocks."
+  },
+  "protected_state_policy": {
+    "scope": "Declared checkout/source/lock/config/.venv/.env/.friday*/exports, production Git logical state and exact default tool/library cache/config roots.",
+    "cache_content_reads": false,
+    "metadata_coverage": "Declared bounded path/type/size/mode/mtime records, absent roots included, no symlink traversal/truncation.",
+    "detected_change": "Fail isolation and stop, no cleanup/repair; detection is not prevention.",
+    "unknown_native_channel": "Block qualification until covered within approved boundary.",
+    "shared_service_exception": "Only the explicit LM Studio test window, not general tool caches."
+  }
+}

@@ -29,3 +29,6 @@ scripts/pypi.sh
 
 # Finder metadata is machine-local.
 .DS_Store
+
+# Isolated INGEST readiness state; versioned code is under tests/.
+/.friday_test/

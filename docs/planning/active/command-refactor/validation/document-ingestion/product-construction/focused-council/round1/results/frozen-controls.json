@@ -1,0 +1,15 @@
+{
+  "initiative": "friday-command-refactor",
+  "branch": "feature/cmd-ingest-001",
+  "work_state": "started",
+  "delivery_state": "local",
+  "execution_phase": "validation",
+  "validation_state": "in_review",
+  "workflow": "new focused directive council",
+  "round": 1,
+  "maximum_rounds": 3,
+  "construction_approval": false,
+  "new_effects": false,
+  "completed_Docling_evaluation": "established input, not retested",
+  "historical_broad_loops": "closed, not restarted or replacement-reviewed"
+}

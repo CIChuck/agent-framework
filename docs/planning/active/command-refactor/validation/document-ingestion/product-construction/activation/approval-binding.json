@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "date": "2026-11-13",
+  "unit": "CD-CMD-INGEST-001-activation-preparation",
+  "base": "7a3e00bc9ef77adee25b61fc52ff91875e172738",
+  "branch": "feature/cmd-ingest-001",
+  "status": "proposed_second_extension_round7_activation_package_not_approved",
+  "reviewed_directive_candidate": "0144c53908afb6f8288425c58c7a3bbff651faef",
+  "inputs": [
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+      "sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/authority-manifest.json",
+      "sha256": "e46d0b430c0a94696d079fc62676542a805c086944e6504ea2adefab5d35522b"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
+      "sha256": "e7b3b3afa0ad3ab46313f180ac3b23a62c90fe3cc5a26da6b91bcd7b90d3e909"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
+      "sha256": "601babef2d35c11b65d5c224e082b191b3212b973e287d16740be604b54ccbc4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/readiness-decision.md",
+      "sha256": "3f31544c6c49ea03665d9899eae410b4a510c6078bb3c19f5e974e5b3693c8e0"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/replacement-qualification-plan.json",
+      "sha256": "5616c80516f79d47d1ed5e2f18f1f8cd7b4154460a73f34ea799bf2cda870798"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+      "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/embedding-compatibility-contract.md",
+      "sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+      "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+      "sha256": "b7d93caf2d302e0802b3c6b7f523de42d2ab98f625b5a8a02326f21a8fec2f9f"
+    }
+  ],
+  "appendices": [
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
+      "sha256": "288265f774e08a182083537160ed0fccd9a5304b949ec95d05bcd6bf0208a8ee"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md",
+      "sha256": "44791c3a431f3f4cc8876851cfa3248a20dc7cbd90739178f022c453e370794c"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json",
+      "sha256": "94d29682e2c9b813dd73f4bcdad95f7a327d139e03187ed8baf3931b6f8f7346"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json",
+      "sha256": "41229b36ae5f3f33eaf15d11322be290c837d6ab21c5a3023294f890879c509c"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/digest-vectors.json",
+      "sha256": "4b5bef7daf3400dca0c7058d967a66653d1c5e3aa59a7b0c9fe5770e3bd436e4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md",
+      "sha256": "98da30a313539c9d550ac14a8dffa1454997c00f5353df33bf915f8ca09c8cc7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md",
+      "sha256": "f6c0fee8046fa1d0e1d992a5640dfaca88f96f87f9b335a3e02cf172fc496cf9"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/preparation-authorization.json",
+      "sha256": "84d03ffd3798d18bf5778d79bceca6318a46a58af27c08192c7591aaddaadc0d"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md",
+      "sha256": "f787e83ed84916264277013ab4e8097e9f3fcba90da502ea5ec1819630c71d55"
+    }
+  ],
+  "gates": {
+    "A1": {
+      "complete": false,
+      "reason": "Bind current dispositions and reused evidence; separate serving/parity campaign removed. Worker acceptance is I3-C4, not a pre-coding gate. Gate remains unapproved."
+    },
+    "A2": {
+      "complete": false,
+      "design": "Exact signatures/field/protocol/path choices prepared for review.",
+      "missing": "Exact design approval and phase-local configured document/embedding/asset manifests via the specified independent APIs/environment bindings; final impact satisfaction. No pre-built-worker or serving/parity prerequisite."
+    },
+    "A3": {
+      "complete": false,
+      "design": "49 known exact case exceptions and named future witnesses; all other baseline bodies retained.",
+      "missing": "Exact phase approval and any newly discovered exceptions/classifications before edit/execution."
+    },
+    "A4": {
+      "complete": false,
+      "approval": null,
+      "reason": "No maintainer approval of these final appendix hashes or post-readiness canonical impact revision recorded."
+    },
+    "A5": {
+      "complete": false,
+      "environment": null,
+      "effects": [],
+      "reason": "No new private execution environment, install or live window activated."
+    }
+  },
+  "product_generation_allowed": false,
+  "council_result_scope": "Changed activation package requires its own current council; no prior verdict supplies construction or acceptance authority.",
+  "case_map_not_runtime_proof": true,
+  "current_maintainer_adjustments": [
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/model-qualification-decision.md",
+      "sha256": "b2503902db78f9d01909c4d2c9d20a03dd4cdc772421c1ec100d5b614ed22d26",
+      "effect": "Remove separate pre-coding model identity/tokenizer parity qualification; retain runtime guards and normal implementation compatibility coverage."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/office-visibility-decision.md",
+      "sha256": "7eb7bf3224036d61f28059d8a1ab4c21d66b9deb4964e013de6a780b381775c7",
+      "effect": "Approved XLSX hidden-row/column whole-workbook refusal replaces exclusion promise for these cases; no filtering prerequisite."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-worker-decision.md",
+      "sha256": "a828b757b213acc9481ba3053873f4d2243f3a106927ddade71eb97631bf938b",
+      "effect": "Shared worker process, structured UI-neutral progress/cancellation/results and headless lifecycle acceptance; no Chat-owned engine or new frontend implementation."
+    }
+  ]
+}

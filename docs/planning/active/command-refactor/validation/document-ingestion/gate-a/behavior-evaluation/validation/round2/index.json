@@ -1,0 +1,16 @@
+{
+  "outcome": "VERIFIED",
+  "candidate": "96f752d64ead1c98bd900891aaa94edfe4ebe5d3",
+  "source_candidate": "1ebc16905300ba6d946383c05cdf686ac8ff7d36",
+  "closed": [
+    "BE-REV-001"
+  ],
+  "coverage": 9.3,
+  "overall": 9.2,
+  "scope": "Standalone test-only Docling behavior, not whole Gate A or product acceptance",
+  "pins": {
+    "report.md": "e41232041841de3565d7c901d8d1d121d1eb27954ac6566d33ec3f0925526907",
+    "ledger.json": "11d42be4ad84a45f4468ca09b8db7b2aa2d3839009eb801dd51b5d26def224fc",
+    "review-evidence.tar.gz": "60700eb58a0e8a8025567739e1acb9d9a0f68415c4e7a43394547cb405db4ced"
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "unit": "REM-CMD-INGEST-001",
+  "companion": "TOOLS-DOC-001",
+  "round": 4,
+  "recorded_at": "2026-11-10T23:05:43.462778+00:00",
+  "candidate": "728cba77e816e5618a06262dd4aa1cbc6e50a376",
+  "correction_base": "36362be514ef387183a27d930cd41a8799e3d714",
+  "branch": "feature/cmd-ingest-001",
+  "outcome": "VERIFIED",
+  "gate": "design_readiness_only",
+  "seats": {
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "outcome": "VERIFIED",
+      "score": 9.6,
+      "mandatory_findings": [],
+      "advisory_ids": [],
+      "all_30_design_criteria": "PASS",
+      "criteria_as_reported": {
+        "IR-01": "PASS (design)",
+        "IR-02": "PASS (design)",
+        "IR-03": "PASS (design)",
+        "IR-04": "PASS (design)",
+        "IR-05": "PASS (design)",
+        "IR-06": "PASS (design)",
+        "IR-07": "PASS (design)",
+        "IR-08": "PASS (design)",
+        "IR-09": "PASS (design)",
+        "IR-10": "PASS (design)",
+        "IR-11": "PASS (design)",
+        "IR-12": "PASS (design)",
+        "IR-13": "PASS (design)",
+        "IR-14": "PASS (design)",
+        "IR-15": "PASS (design)",
+        "IR-16": "PASS (design)",
+        "IR-R01": "PASS (design)",
+        "IR-R02": "PASS (design)",
+        "IR-R03": "PASS (design)",
+        "IR-R04": "PASS (design)",
+        "IR-R05": "PASS (design)",
+        "IR-R06": "PASS (design)",
+        "IR-R07": "PASS (design)",
+        "IR-R08": "PASS (design)",
+        "IR-S01": "PASS (design)",
+        "IR-S02": "PASS (design)",
+        "IR-S03": "PASS (design)",
+        "IR-S04": "PASS (design)",
+        "IR-F01": "PASS (design)",
+        "IR-F02": "PASS (design)"
+      },
+      "report": "sol-report.md",
+      "report_sha256": "c99ab6effb234e0275c791b97f0fef1b1f6e525055a264e256311ea1778be041",
+      "original_report": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/sol-ingest-r4-review-21kyeab4/review-report.md",
+      "receipts": {
+        "start-integrity": {
+          "file": "sol-start-integrity.json",
+          "sha256": "b9cf5c6a4907789841048bb8655dd79df82f54fd17dd2d885a535d12b828767d"
+        },
+        "end-integrity": {
+          "file": "sol-end-integrity.json",
+          "sha256": "b9cf5c6a4907789841048bb8655dd79df82f54fd17dd2d885a535d12b828767d"
+        },
+        "command-audit": {
+          "file": "sol-command-audit.jsonl",
+          "sha256": "012b2fb2fe3527e16fd03feee003d162d61f669049631abb57c59fa48026119d",
+          "paired_calls": 10,
+          "all_logged_guards_match": true
+        }
+      },
+      "conduct": "no reported round4 deviation; paired logged Git/admin calls have required guards, exempt static reads follow request"
+    },
+    "astra": {
+      "model": "gpt-6-astra",
+      "effort": "high",
+      "outcome": "VERIFIED",
+      "score": 9.6,
+      "mandatory_findings": [],
+      "advisory_ids": [],
+      "all_30_design_criteria": "PASS",
+      "criteria_as_reported": {
+        "IR-01": "PASS",
+        "IR-02": "PASS",
+        "IR-03": "PASS",
+        "IR-04": "PASS",
+        "IR-05": "PASS",
+        "IR-06": "PASS",
+        "IR-07": "PASS",
+        "IR-08": "PASS",
+        "IR-09": "PASS",
+        "IR-10": "PASS",
+        "IR-11": "PASS",
+        "IR-12": "PASS",
+        "IR-13": "PASS",
+        "IR-14": "PASS",
+        "IR-15": "PASS",
+        "IR-16": "PASS",
+        "IR-R01": "PASS",
+        "IR-R02": "PASS",
+        "IR-R03": "PASS",
+        "IR-R04": "PASS",
+        "IR-R05": "PASS",
+        "IR-R06": "PASS",
+        "IR-R07": "PASS",
+        "IR-R08": "PASS",
+        "IR-S01": "PASS",
+        "IR-S02": "PASS",
+        "IR-S03": "PASS",
+        "IR-S04": "PASS",
+        "IR-F01": "PASS",
+        "IR-F02": "PASS"
+      },
+      "report": "astra-report.md",
+      "report_sha256": "92b999a1e2eb65544912ff2192a19055d2fb58fb93be03dd462574d1ec4c7828",
+      "original_report": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/astra-r4-independent-aya226uj/review-report.md",
+      "receipts": {
+        "start-integrity": {
+          "file": "astra-start-integrity.json",
+          "sha256": "b9cf5c6a4907789841048bb8655dd79df82f54fd17dd2d885a535d12b828767d"
+        },
+        "end-integrity": {
+          "file": "astra-end-integrity.json",
+          "sha256": "b9cf5c6a4907789841048bb8655dd79df82f54fd17dd2d885a535d12b828767d"
+        },
+        "command-audit": {
+          "file": "astra-command-audit.jsonl",
+          "sha256": "46adde092ee4d2e1e3804badf358c34a4e9e2d91239fe02f7d9debb66c88ba99",
+          "paired_calls": 10,
+          "all_logged_guards_match": true
+        }
+      },
+      "conduct": "no reported round4 deviation; paired logged Git/admin calls have required guards, exempt static reads follow request"
+    },
+    "opus": {
+      "model": "claude-opus-5-5",
+      "effort": "high",
+      "outcome": "VERIFIED",
+      "score": 9.5,
+      "mandatory_findings": [],
+      "advisory_ids": [
+        "OPUS-R4-A01",
+        "OPUS-R4-A02",
+        "OPUS-R4-A03",
+        "OPUS-R4-A04",
+        "OPUS-R4-A05",
+        "OPUS-R4-A06"
+      ],
+      "all_30_design_criteria": "PASS",
+      "criteria_as_reported": {
+        "IR-01": "PASS",
+        "IR-02": "PASS",
+        "IR-03": "PASS",
+        "IR-04": "PASS",
+        "IR-05": "PASS",
+        "IR-06": "PASS",
+        "IR-07": "PASS",
+        "IR-08": "PASS",
+        "IR-09": "PASS",
+        "IR-10": "PASS",
+        "IR-11": "PASS",
+        "IR-12": "PASS",
+        "IR-13": "PASS",
+        "IR-14": "PASS",
+        "IR-15": "PASS",
+        "IR-16": "PASS",
+        "IR-R01": "PASS",
+        "IR-R02": "PASS",
+        "IR-R03": "PASS",
+        "IR-R04": "PASS",
+        "IR-R05": "PASS",
+        "IR-R06": "PASS",
+        "IR-R07": "PASS",
+        "IR-R08": "PASS",
+        "IR-S01": "PASS",
+        "IR-S02": "PASS",
+        "IR-S03": "PASS",
+        "IR-S04": "PASS",
+        "IR-F01": "PASS",
+        "IR-F02": "PASS"
+      },
+      "report": "opus-report.md",
+      "report_sha256": "fd97c40ceede89c427a436db91657967c39856bc42e5a7175962e652b3448f89",
+      "original_report": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/2f8adb48-0c44-4d04-a526-6d83535fbb2c/scratchpad/opus-r4-review/review-report.md",
+      "receipts": {
+        "start-integrity": {
+          "file": "opus-start-integrity.json",
+          "sha256": "b9cf5c6a4907789841048bb8655dd79df82f54fd17dd2d885a535d12b828767d"
+        },
+        "end-integrity": {
+          "file": "opus-end-integrity.json",
+          "sha256": "b9cf5c6a4907789841048bb8655dd79df82f54fd17dd2d885a535d12b828767d"
+        },
+        "command-audit": {
+          "file": "opus-command-audit.jsonl",
+          "sha256": "04bb829300ad947ac37a42c7549cbe4a663535916b1ab4dfdfbe3c71a6885c7a",
+          "paired_calls": 9,
+          "all_logged_guards_match": true
+        }
+      },
+      "conduct": "no reported round4 deviation; paired logged Git/admin calls have required guards, exempt static reads follow request"
+    }
+  },
+  "mandatory_findings": [],
+  "each_minimum_score": 9.5,
+  "each_verified_and_threshold_met": true,
+  "score_policy": "Each seat independently meets the target; no averaging, rounding-up or carry-forward from a prior candidate.",
+  "technical_pins": {
+    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "61d93548eeae52be1b273e8ae985860d869cceac6a88868eb9396e7a2adf1804",
+    "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "b5429eb75427aa12f016ad1d0a571743c066375c1a3da34826b3e464ba5e8ba1"
+  },
+  "archives": [
+    {
+      "file": "review-request.json",
+      "sha256": "0601d7c1f2db634e6efe20fd96aa38ea80539e129fdb0e1ecab3d5afe18c7c1c",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r4-g0490xr4/inputs/review-request.json"
+    },
+    {
+      "file": "check_integrity.py",
+      "sha256": "080be4f9b781c5624492ab83071dcd6301f5d30f8c65a33eb636ab0a90a9d368",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r4-g0490xr4/inputs/check_integrity.py"
+    },
+    {
+      "file": "read_only_command.py",
+      "sha256": "cb0669f81efd0098c104d7b96342fcd614255021ea2bfa49cbbb6af7c2fea248",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r4-g0490xr4/inputs/read_only_command.py"
+    },
+    {
+      "file": "preserved-state.json",
+      "sha256": "43bc63142365560b7bfc72004d0edd493f1c9ec5f21e7cff724b54b12af52ce8",
+      "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-design-r4-g0490xr4/inputs/preserved-state.json"
+    },
+    {
+      "file": "protected-manifest.raw.json.gz",
+      "sha256": "e8c4dde62d2fe7d5c5d9b166287bd1d4e7ada0caf7c42f41017e823ab1b2d5a2",
+      "decompressed_sha256": "646fac33098e99ed35ae59df2b97d63160c030ac1a56fbbe9ce71ff9fe85d5dd",
+      "entries": 17606
+    }
+  ],
+  "request_sha256": "0601d7c1f2db634e6efe20fd96aa38ea80539e129fdb0e1ecab3d5afe18c7c1c",
+  "controller_frozen_integrity": "controller-frozen-integrity.json",
+  "preservation": "All17606 protected entries, six metadata records, HEAD/branch/logical index/staging/status match before controller reconciliation.",
+  "advisory_carry_forward": [
+    {
+      "id": "OPUS-R4-A01",
+      "status": "nonblocking; carried to future Gate-A/final-directive preparation; not independently closed here"
+    },
+    {
+      "id": "OPUS-R4-A02",
+      "status": "nonblocking; carried to future Gate-A/final-directive preparation; not independently closed here"
+    },
+    {
+      "id": "OPUS-R4-A03",
+      "status": "nonblocking; carried to future Gate-A/final-directive preparation; not independently closed here"
+    },
+    {
+      "id": "OPUS-R4-A04",
+      "status": "nonblocking; carried to future Gate-A/final-directive preparation; not independently closed here"
+    },
+    {
+      "id": "OPUS-R4-A05",
+      "status": "nonblocking; carried to future Gate-A/final-directive preparation; not independently closed here"
+    },
+    {
+      "id": "OPUS-R4-A06",
+      "status": "nonblocking; carried to future Gate-A/final-directive preparation; not independently closed here"
+    }
+  ],
+  "advisory_handoff": "../gate-a-handoff.md",
+  "technical_artifacts_changed_after_review": false,
+  "review_rounds_used": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "authorized_additional_rounds_used": [
+    2,
+    3,
+    4
+  ],
+  "iteration_status": "success_at_last_authorized_pass; no further council",
+  "prior_blocked_or_changes_requested_outcomes": "retained unchanged in their candidate-specific historical reports",
+  "not_performed": [
+    "Gate-A execution",
+    "dependency resolution/installation",
+    "model/counter provisioning or inference",
+    "product code/tests/builds",
+    "store operations/reset/migration",
+    "MAINT UAT/acceptance",
+    "push/PR/release"
+  ],
+  "construction_approval": "not_granted",
+  "implementation": "not_started",
+  "acceptance": "not_granted",
+  "next_gate": "Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate."
+}

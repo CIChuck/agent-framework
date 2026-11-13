@@ -1,0 +1,13 @@
+{
+  "unit": "INGEST-C1-CONSTRUCTION",
+  "maintainer": "Chuck Russell",
+  "instruction": "ok proceed",
+  "context": "Continue building the remaining isolated evaluation harness after tokenizer explanation and prior explicit statement that construction may proceed without live effects.",
+  "directive": "directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md",
+  "directive_sha256": "bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803",
+  "recorded_at_utc": "2026-11-12T13:24:23.181608+00:00",
+  "baseline": "2920d0dd295e9ecb1b35acc1d646cba18149c60d",
+  "scope": "Remaining test-only fixture/stage preparation and evaluation adapter source under the approved tests/readiness/ingest allowlist; offline tests in fresh private fake projects. Incremental committed component reviews do not close full HR readiness.",
+  "excluded": "All actual A0-A4 downloads/installs/conversion/model/service/store effects until separately exact stage activation; all production source/config/env/lock/package tests, dirty/generated state, push or acceptance.",
+  "target": "Prepare actual fixture/dependency stage code and exact activation inputs; no 9.5 readiness advancement claim from earlier C0 advisory9.2."
+}

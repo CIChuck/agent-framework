@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "C0": {
+    "seeds": ["seed.pdf", "seed.docx"],
+    "distinctive_text": "INGEST-C0-DISTINCTIVE-LATE-TEXT",
+    "claim": "Deterministic structural seeds only; no extraction or OCR qualification"
+  },
+  "A2": {
+    "status": "NOT_ACTIVATED_NOT_QUALIFIED",
+    "minimum_genuine_fixture_counts": {"pdf": 6, "docx": 6, "xlsx": 10, "pptx": 8},
+    "oracles": ["late distinctive text", "body and table order", "hidden content", "formula cached-value audit", "notes versus comments", "limits and corrupt or empty extraction"],
+    "qualification": "Requires exact promoted Docling/OCR/counter profile; generated containers and structural audits earn no conversion credit",
+    "fixture_oracles": {
+      "schema": 1,
+      "cases": [
+        {"file":"pdf-native.pdf","format":"pdf","contains":["PDF FIRST MARKER","PDF LATE MARKER"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"pdf-pages.pdf","format":"pdf","contains":["PDF PAGE 1 DISTINCTIVE","PDF PAGE 2 DISTINCTIVE","PDF PAGE 3 DISTINCTIVE"],"excludes":[],"units":3,"outcome":"extract"},
+        {"file":"pdf-table.pdf","format":"pdf","contains":["PDF TABLE HEADER","PDF TABLE VALUE ZERO 0"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"pdf-scanned.pdf","format":"pdf","contains":["SCANNED PAGE VERIFIED"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"pdf-blank-image.pdf","format":"pdf","contains":[],"excludes":[],"units":1,"outcome":"refuse"},
+        {"file":"pdf-encrypted.pdf","format":"pdf","contains":[],"excludes":[],"units":1,"outcome":"refuse"},
+        {"file":"docx-body.docx","format":"docx","contains":["WORD HEADING","WORD BEFORE","WORD TABLE HEADER","WORD TABLE VALUE","WORD AFTER"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"docx-unicode.docx","format":"docx","contains":["café","東京","Ω","0007"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"docx-parts.docx","format":"docx","contains":["WORD INCLUDED BODY"],"excludes":[],"units":1,"outcome":"characterize"},
+        {"file":"docx-merged.docx","format":"docx","contains":["WORD MERGED","WORD LEFT","WORD RIGHT"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"docx-long.docx","format":"docx","contains":["WORD PARAGRAPH 0","WORD PARAGRAPH 39"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"docx-empty.docx","format":"docx","contains":[],"excludes":[],"units":1,"outcome":"refuse"},
+        {"file":"xlsx-values.xlsx","format":"xlsx","contains":["XLSX INCLUDED","0"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"xlsx-order.xlsx","format":"xlsx","contains":["WORKBOOK FIRST","WORKBOOK SECOND"],"excludes":[],"units":2,"outcome":"extract"},
+        {"file":"xlsx-hidden-sheet.xlsx","format":"xlsx","contains":["VISIBLE SHEET"],"excludes":["EXCLUDED HIDDEN SHEET"],"units":2,"outcome":"extract"},
+        {"file":"xlsx-hidden-row.xlsx","format":"xlsx","contains":["READINESS HEADER"],"excludes":["EXCLUDED HIDDEN ROW"],"units":1,"outcome":"extract"},
+        {"file":"xlsx-hidden-column.xlsx","format":"xlsx","contains":["VISIBLE CELL"],"excludes":["EXCLUDED HIDDEN COLUMN"],"units":1,"outcome":"extract"},
+        {"file":"xlsx-merged.xlsx","format":"xlsx","contains":["MERGED ONE VALUE"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"xlsx-types.xlsx","format":"xlsx","contains":["café","東京","multiline","0007","0"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"xlsx-formula-valid.xlsx","format":"xlsx","contains":["5"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"xlsx-formula-missing.xlsx","format":"xlsx","contains":[],"excludes":[],"units":1,"outcome":"refuse"},
+        {"file":"xlsx-formula-error.xlsx","format":"xlsx","contains":[],"excludes":[],"units":1,"outcome":"refuse"},
+        {"file":"pptx-order.pptx","format":"pptx","contains":["SLIDE FIRST","SLIDE SECOND"],"excludes":[],"units":2,"outcome":"extract"},
+        {"file":"pptx-notes.pptx","format":"pptx","contains":["SLIDE BODY","SEPARATE SPEAKER NOTES"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"pptx-hidden.pptx","format":"pptx","contains":["SLIDE VISIBLE"],"excludes":["EXCLUDED HIDDEN SLIDE","EXCLUDED HIDDEN SHAPE"],"units":2,"outcome":"extract"},
+        {"file":"pptx-table.pptx","format":"pptx","contains":["SLIDE TABLE HEADER","SLIDE TABLE VALUE"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"pptx-comments.pptx","format":"pptx","contains":["SLIDE INCLUDED BODY"],"excludes":["EXCLUDED SLIDE COMMENT"],"units":1,"outcome":"extract"},
+        {"file":"pptx-external.pptx","format":"pptx","contains":["SLIDE LOCAL BODY"],"excludes":[],"units":1,"outcome":"characterize"},
+        {"file":"pptx-unicode-long.pptx","format":"pptx","contains":["SLIDE café 東京 Ω","SLIDE LATE TOKEN MARKER"],"excludes":[],"units":1,"outcome":"extract"},
+        {"file":"pptx-empty.pptx","format":"pptx","contains":[],"excludes":[],"units":1,"outcome":"refuse"}
+      ]
+    }
+  }
+}

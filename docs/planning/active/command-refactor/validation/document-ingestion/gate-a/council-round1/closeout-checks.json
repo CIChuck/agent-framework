@@ -1,0 +1,24 @@
+{
+  "outcome": "PASS",
+  "postcommit": false,
+  "head": "f81453695007cacfa072fe295b8da7aa478438ba",
+  "logical_before_status": "2873bdac566cf50f8c9acf1994aaaf02a23b58a31cc4c06cdb1e828b35ed0d46",
+  "protected_files_preserved": 17763,
+  "reviewed_business_pins_preserved": 9,
+  "directive_parent_pins_preserved": 14,
+  "local_metadata_records_preserved": 9,
+  "raw_archives_verified": 75,
+  "raw_reports_verified": 3,
+  "open_mandatory_ids": 7,
+  "open_correction_groups": 6,
+  "no_runtime_effects_or_directive_changes": true,
+  "scope": "Controller evidence/archive/navigation closeout only; no implementation conformance or repaired finding.",
+  "fresh_admin_checks": {
+    "board": "PASS: 36 tasks",
+    "dashboard": "PASS: current",
+    "documentation": "PASS: 1063 Markdown files",
+    "metadata": "PASS: 18 manifests"
+  },
+  "initial_staged_and_range_whitespace": "FAILED on two verbatim source excerpts; initial closeout committed despite failed staged check.",
+  "archive_packaging_correction": "Deterministic gzip preserves source bytes; final content/range/staged checks rerun separately before completion."
+}

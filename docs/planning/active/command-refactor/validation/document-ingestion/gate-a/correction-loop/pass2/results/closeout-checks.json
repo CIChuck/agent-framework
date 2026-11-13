@@ -1,0 +1,18 @@
+{
+  "outcome": "PASS",
+  "postcommit": false,
+  "head": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+  "reviewed_candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+  "protected_files": 17931,
+  "business_pins": 9,
+  "reviewed_normative_pins": 8,
+  "directive_parent_pins": 15,
+  "preserved_metadata": 9,
+  "archive_pairs": 85,
+  "all_seats_verified_each_ge_9_5": true,
+  "loop_completed_passes": 2,
+  "authorized_maximum": 4,
+  "further_automatic_review": false,
+  "construction_or_effects_authority": false,
+  "no_runtime_or_production_change": true
+}

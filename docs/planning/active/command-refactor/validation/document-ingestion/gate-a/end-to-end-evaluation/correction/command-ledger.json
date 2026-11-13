@@ -1,0 +1,241 @@
+[
+  {
+    "label": "focused-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/focused-tests.py",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/normal-final"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/focused-normal.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/focused-normal.stderr"
+  },
+  {
+    "label": "focused-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/focused-tests.py",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/optimized-final"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/focused-optimized.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/focused-optimized.stderr"
+  },
+  {
+    "label": "ruff-check",
+    "argv": [
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/ruff",
+      "check",
+      "--no-cache",
+      "--config",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/pyproject.toml",
+      "tests/readiness/ingest/e2e.py",
+      "tests/readiness/ingest/tests/test_e2e.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/ruff-check.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/ruff-check.stderr"
+  },
+  {
+    "label": "ruff-format",
+    "argv": [
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/ruff",
+      "format",
+      "--check",
+      "--no-cache",
+      "--config",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/pyproject.toml",
+      "tests/readiness/ingest/e2e.py",
+      "tests/readiness/ingest/tests/test_e2e.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/ruff-format.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/ruff-format.stderr"
+  },
+  {
+    "label": "canonical-positive-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic",
+    "exit": 0,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-positive-normal.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-positive-normal.stderr"
+  },
+  {
+    "label": "canonical-missing-binding-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic",
+    "exit": 1,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-missing-binding-normal.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-missing-binding-normal.stderr"
+  },
+  {
+    "label": "canonical-mismatched-binding-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic",
+    "exit": 1,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-mismatched-binding-normal.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-mismatched-binding-normal.stderr"
+  },
+  {
+    "label": "canonical-changed-behavior-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic",
+    "exit": 1,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-changed-behavior-normal.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-changed-behavior-normal.stderr"
+  },
+  {
+    "label": "canonical-changed-e2e-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-d3551527a1454f0c8533ef2fc99d90f0/.friday_test/runs/docling-behavior-e2e-synthetic",
+    "exit": 1,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-changed-e2e-normal.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-changed-e2e-normal.stderr"
+  },
+  {
+    "label": "canonical-positive-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic",
+    "exit": 0,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-positive-optimized.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-positive-optimized.stderr"
+  },
+  {
+    "label": "canonical-missing-binding-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic",
+    "exit": 1,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-missing-binding-optimized.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-missing-binding-optimized.stderr"
+  },
+  {
+    "label": "canonical-mismatched-binding-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic",
+    "exit": 1,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-mismatched-binding-optimized.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-mismatched-binding-optimized.stderr"
+  },
+  {
+    "label": "canonical-changed-behavior-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic",
+    "exit": 1,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-changed-behavior-optimized.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-changed-behavior-optimized.stderr"
+  },
+  {
+    "label": "canonical-changed-e2e-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic/source/ingest/e2e.py",
+      "report",
+      "--run-root",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-cli-fixtures/case-2292d06528d24c69869b5ada1f41fb46/.friday_test/runs/docling-behavior-e2e-synthetic",
+    "exit": 1,
+    "stdout": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-changed-e2e-optimized.stdout",
+    "stderr": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-source-remediation-umyft3pd/guard-compatible-tests/canonical-changed-e2e-optimized.stderr"
+  }
+]

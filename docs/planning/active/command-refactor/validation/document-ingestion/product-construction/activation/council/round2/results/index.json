@@ -1,0 +1,36 @@
+{
+  "candidate": "c24ff0998010e960fb86c1a89b150ada079bbd46",
+  "request_sha256": "cce1f001c7c49afea4de47bb45e061f4f519b5ad0b9492ccbb10b1087b2e4659",
+  "reports": [
+    {
+      "seat": "sol",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round2/results/sol/report.md",
+      "sha256": "f40f684a2777cd2b0ab651015525335ab8696c4f481c3359158e003c73ae40e5",
+      "verdict": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.25
+    },
+    {
+      "seat": "astra",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round2/results/astra/report.md",
+      "sha256": "ed9613117843a42c6ad6e7414b2d4e2a428c8fad0c7f7fe9d82c59b5769264ce",
+      "verdict": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.39
+    },
+    {
+      "seat": "opus",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round2/results/opus/report.md",
+      "sha256": "2f4dc8fcfa207afd6f1ec33b7758bd87d0f007c2f6ac665390e7b4b95c5370b6",
+      "verdict": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 8.8
+    }
+  ],
+  "gate_met": false,
+  "originals_preserved": true,
+  "opus_boundary_evidence": "Original report contains boundary findings; no reviewer JSON fabricated."
+}

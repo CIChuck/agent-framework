@@ -1,12 +1,20 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/pushed. Ingestion extraction/chunking and embedding-limit
-planning awaits document review; MAINT-001 human UAT/acceptance remains pending.
+**Status:** started/local; execution phase: planning; validation state: pending.
+Chuck has [approved the outstanding INGEST planning documents](approval/ingest-construction-documents-20261113.json),
+including impact v0.8 and the bounded I1–I3 construction scope. Execution is held
+for the requested Git discussion before coding. The [final approval package](validation/document-ingestion/product-construction/final-approval/README.md)
+requires a full Sol/Astra/Opus council after every slice, up to three passes per
+gate; the I3 council also reviews the complete aggregate. No product coding,
+installs or new councils start in this amendment. MAINT human UAT/acceptance
+remains separate.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
-is open against `master` from `feature/command-retirement`. Publication does not
-complete MAINT UAT/acceptance or authorize INGEST construction. The next scoped
-branch is `feature/cmd-ingest-001`, based on this submission while review is pending.
+is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
+The current scoped branch `feature/cmd-ingest-001` incorporates that merge while
+retaining its separate planning commit. Merge does not complete MAINT human UAT
+or acceptance or authorize INGEST construction; see the
+[branch handoff](validation/document-ingestion/branch-handoff.md).
 
 **Working-folder update — 2026-11-05:** The maintainer changed direction:
 current command-first and Friday TUI planning is consolidated in the
@@ -25,29 +33,80 @@ The explicit `/reorganize --full --execute` syntax defect is separately open as
 Earlier implementation/review/pending-UAT statements describe their historical
 freezes and are superseded by this acceptance. The wider initiative stays started/local.
 
-**Current work — MAINT-001:** [Implementation verification](validation/maintenance/implementation/verified-report.md)
+**Separate MAINT-001 closeout:** [Implementation verification](validation/maintenance/implementation/verified-report.md)
 reconciles Astra9.5 and Sol9.6, both VERIFIED, no mandatory findings. Reviewed
 candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Additional requested planning — document ingestion:**
-[Proposed Docling remediation](remediation/REM-CMD-INGEST-001-pdf-docx.md)
-replaces PDF/DOCX/XLSX placeholders and adds PPTX extraction through one shared
-Tools converter, with quoted paths and explicit dependency/model readiness.
-Existing text/web extraction remains; shared ingestion now defaults to document/512
-tokens across all sources, with document/recursive/fixed overrides. Model catalog
-limits/dimension checks are planned; Qwen4B remains illustrative, with no migration.
-The proposed spreadsheet/slide defaults and limits require document review.
-[Guarded source assessment](validation/document-ingestion/assessment.md)
-confirms the defect. Execution phase: planning; validation state: not_ready.
-No document-ingestion code, installation or council is approved or started.
-MAINT implementation verification and its pending human UAT remain unchanged.
-[Tools adoption companion](proposals/tools-document-adoption.md) explicitly tracks
-ReaderFactory and smart_read routing; the shared helper alone does not establish
-that those tools have been upgraded.
+**Historical INGEST directive/review preparation (superseded for current routing):**
+[INGEST construction draft](directives/CD-CMD-INGEST-001-product.md) and the
+[separate Tools adoption draft](directives/CD-CMD-TOOLS-DOC-001-adoption.md)
+bind phased shared contracts, consumer compatibility, actual file command/store
+proof, traceable tests and substantive architecture/guide updates. The
+[measured readiness decision](validation/document-ingestion/product-construction/readiness-decision.md)
+records RD-01–07 before activation; the draft does not silently close those gaps.
+[Round1 reconciliation](validation/document-ingestion/product-construction/council-round1/report.md)
+records the historical first-round findings. The [round2 reconciliation](validation/document-ingestion/product-construction/council-round2/report.md)
+records a blocked seat, below-threshold scores and the remaining replacement-model
+qualification finding. Those two rounds are historical. Chuck's [three-pass authorization](validation/document-ingestion/product-construction/correction-loop/authorization.json)
+now permits bounded corrections and up to three additional fresh councils.
+[The replacement qualification plan](validation/document-ingestion/product-construction/replacement-qualification-plan.json)
+and safe review-input projection remain required. [Additional pass1 reconciliation](validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md)
+records the unmet gate. The bounded DI22/fixture/routing corrections and related
+intermediate-compatibility/lock/origin joins were assessed in pass2. [Pass2 reconciliation](validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md)
+records incomplete Sol/Astra seats and below-threshold Opus, with original limits.
+The final preparation/N-stage/CLI/support-role/companion clarifications are prepared
+for final pass3/3. [Final reconciliation](validation/document-ingestion/product-construction/correction-loop/pass3/results/report.md)
+records the historical BLOCKED outcome and exhausted broad-review allowance.
+Chuck now authorizes a [new focused council](validation/document-ingestion/product-construction/focused-council/authorization.json).
+Its [eight-area brief](validation/document-ingestion/product-construction/focused-council/criteria.md)
+assesses the ingestion implementation plan; Docling evaluations remain established
+input. [Focused round1](validation/document-ingestion/product-construction/focused-council/round1/results/report.md)
+completed all eight areas: Sol/Astra VERIFIED, Opus identified the document /read
+lifecycle/acceptance gap. Directive v0.7 clarifies it and related integration
+duties. [Focused round2](validation/document-ingestion/product-construction/focused-council/round2/results/report.md)
+completes all eight areas in every seat, with zero mandatory findings and both
+scores at least 9.5. The loop closes after two rounds; no third is launched.
+[Implementation advisories](validation/document-ingestion/product-construction/focused-council/round2/results/implementation-handoff.md)
+feed the existing activation appendices. No construction is activated. The [phase map](validation/document-ingestion/product-construction/phase-evidence-map.md)
+separates Q qualification, scoped I1/I2/I3 exits, final AG and human UAT.
+Product generation has not started. The earlier proceed
+is recorded as documentation-only preparation, with protected state preserved.
 
-**Working home:** `agent-framework`, branch `feature/command-retirement`.
+**Earlier scoped evaluation and package-impact authority:**
+Chuck [approved exact assessment v0.6](approval/ingest-package-impact.md),
+SHA256 `f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176`.
+The [assessment](package-impact-assessment.md), [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md),
+test/architecture/guide contracts retain their reviewed bytes.
+[Round6 council](validation/document-ingestion/package-impact/current-verified-report.md)
+remains VERIFIED for that document/source-feasibility scope, not execution.
+
+The [reviewed directive v0.3](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md),
+[execution contract](validation/document-ingestion/gate-a/execution-contract.md)
+and [plan v0.5](validation/document-ingestion/gate-a/readiness-plan.md) are
+[reconciled VERIFIED](validation/document-ingestion/gate-a/verified-directive-report.md)
+for design/source feasibility at `474479df`. Sol10.0/9.6, Astra10.0/9.6 and
+Opus9.6/9.5 (coverage/overall), no mandatory findings. The authorized loop stops
+after pass2/4; no further round is launched. Reviewed technical/business bytes
+and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
+remain visible for implementation/activation; none grants effects authority.
+
+**Next gate:** Chuck approved INGEST documents and the Git handoff. Commit/push the approved planning/readiness baseline, open its PR to master, merge when checks permit, then create feature/cmd-ingest-implementation in a clean worktree from the merged baseline. Preserve the original dirty YAML and stores. Product execution waits for that handoff and the private I1 binding; full Sol/Astra/Opus councils follow each slice, at most three passes per gate, with I3 aggregate review.
+
+[Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
+and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
+cover the test-only slice. The historical harness/design material below does not
+claim full Gate-A or product conformance.
+
+**Historical design evidence:** the technical-design report at `f43368c5` and
+[assessment v0.2 council](validation/document-ingestion/package-impact/verified-report.md)
+at `1a040de3` remain valid only for their old pinned bytes. Their raw reports
+and accepted evidence are preserved. The changed REM/assessment are not marked
+VERIFIED by carrying those results forward. TOOLS-DOC stays a separate adoption
+obligation; unrelated FU-013/014 repairs remain separate and unwaived.
+
+**Working home:** `agent-framework`, branch `feature/cmd-ingest-001`.
 **Board ID:** `friday-command-refactor`.
 **Status:** CMD-FND-001 implemented, independently VERIFIED at `b4fc199e` and
 accepted by Chuck Russell. Exact strengthened RET-001 is now approved and implemented locally; independently VERIFIED at `f896ef53` and accepted by Chuck Russell on 2026-11-07.
@@ -91,7 +150,7 @@ are in [cycle2 evidence](validation/memory-queries/directive-review/correction2/
 The [additional prose correction evidence](validation/memory-queries/directive-review/correction3/report.md)
 records the current patch and preservation checks, not an independent verdict.
 
-**Next gate:** Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.
+**Next gate:** Reconcile compatibility-cycle pass3/4 (global round8) fresh Sol/Astra/Opus reviews of the corrected REM/annex/Tools and all framework consumers. Every seat must VERIFIED with coverage and overall >=9.5 and zero mandatory findings. At most one further correction/review pass remains; after pass4 stop for maintainer guidance. No Gate-A, construction, store/reset action or delivery.
 
  The wider initiative stays started/local. Ignored exports
 and dirty examples remain preserved. SESSION-001 remains accepted and verified.
@@ -271,3 +330,25 @@ SESSION-001 construction was [approved](approval/session-views.md), independentl
 VERIFIED and [accepted by Chuck Russell](approval/session-acceptance.md).
 The [remaining council roster](approval/council-roster.md) is Sol/Astra/Claude.
 The post-SESSION instruction “Await separate maintainer direction and approved scope for a next unit” is historical and superseded by the current MEMQ next gate above.
+
+
+## Current harness construction approval
+
+[Exact approval](validation/document-ingestion/gate-a/construction-approval.md) binds
+the reviewed directive and activates only standalone construction/offline C0,
+not dependency/model execution or production changes. [C0 implementation scope](validation/document-ingestion/gate-a/construction/c0/implementation-scope.md)
+and fresh implementation validation remain separate from full A0–A4 construction.
+The [private typing approval](validation/document-ingestion/gate-a/construction/c0/private-typecheck-approval.json)
+permits five pinned static-tool wheels only.
+
+Final activation council: [outcome and remaining converter-binding issue](validation/document-ingestion/product-construction/activation/council/round3/results/report.md). Historical three-round stop point; superseded by the current authorized three-round extension.
+
+Historical activation council: [VERIFIED round7 outcome and next approval gate](validation/document-ingestion/product-construction/activation/council/round7/results/report.md). All three complete seats clear9.5; loop stopped early. Construction remains unapproved.
+
+Historical approval preparation: [Final construction approval package](validation/document-ingestion/product-construction/final-approval/README.md) and [canonical package impact v0.7](package-impact-assessment.md). Exact proposed scope/effects are prepared; construction and private installs await Chuck. The prior council stays closed.
+
+Historical final approval document council: [complete outcome and bounded Certifi finding](validation/document-ingestion/product-construction/final-approval/council/round1/results/report.md). Single read-only round closed; awaiting Chuck's disposition. Reviewed targets remain unchanged.
+
+Historical final additional council: [round2 outcome and exact one-field post-review correction](validation/document-ingestion/product-construction/final-approval/council/round2/results/report.md). Original CHANGES_REQUESTED verdicts remain; no third council. Await Chuck's explicit disposition and construction approval.
+
+Current approval and Git gate: [approved documents and mandatory slice councils](validation/document-ingestion/product-construction/final-approval/README.md). [Git handoff proposal](validation/document-ingestion/product-construction/final-approval/git-handoff-plan.md) awaits discussion before coding; no publication or implementation branch created.

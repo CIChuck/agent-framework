@@ -1,0 +1,21 @@
+{
+  "files": [
+    {
+      "path": "entry.txt",
+      "sha256": "f436860465741c7e307de7e465e87dd11ef9e96b6b4beac618d8d785c70a4c7b"
+    },
+    {
+      "path": "exit.txt",
+      "sha256": "f436860465741c7e307de7e465e87dd11ef9e96b6b4beac618d8d785c70a4c7b"
+    },
+    {
+      "path": "received.json",
+      "sha256": "6325efc172c4e299dd920fa7558a63130679923eb2b4ca245de4cb588c0c6620"
+    },
+    {
+      "path": "report.md",
+      "sha256": "662f43cd29d9d4f91886f9c99e16c3e6e7b0bc17c53fe1deea2805047c2d27f5"
+    }
+  ],
+  "classification": "Original report and lightweight reviewer receipts copied byte-for-byte; source behavior was inspected, not executed."
+}

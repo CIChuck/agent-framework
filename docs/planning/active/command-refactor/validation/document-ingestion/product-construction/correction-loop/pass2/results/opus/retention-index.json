@@ -1,0 +1,27 @@
+{
+  "original_directory": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/ef0abf0a-5e19-4ead-907e-0a1be34af5a6/scratchpad/opus-r4p2-seat",
+  "report_sha256": "3e60339633830660f78be2315436fddafeea5dc39d338fc638f389e4ee15ec4e",
+  "external_artifact_hashes": [
+    {
+      "path": "closing-integrity.json",
+      "sha256": "03450d7e77e2720300311ad18fd6741da0893fb2ffcf034654eaa2e49ac3f266"
+    },
+    {
+      "path": "admin-commands.json",
+      "sha256": "74f7036b17a1073f39716ff8d0cc5f0e5558d7aa6fa7549f002dfdc64934f33a"
+    },
+    {
+      "path": "report.md",
+      "sha256": "3e60339633830660f78be2315436fddafeea5dc39d338fc638f389e4ee15ec4e"
+    },
+    {
+      "path": "opening-integrity.json",
+      "sha256": "03450d7e77e2720300311ad18fd6741da0893fb2ffcf034654eaa2e49ac3f266"
+    },
+    {
+      "path": "inv-modules.json",
+      "sha256": "8f1e4df95dbc1a57193e7c742e3d869aa17337358228d847c4d4bb842861c075"
+    }
+  ],
+  "scope": "Verbatim original report; blocked/provisional scores retained as nonqualifying. No fabricated review completion."
+}

@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "id": "INGEST-FINAL-CONSTRUCTION-APPROVAL-001",
+  "date": "2026-11-13",
+  "status": "approved_git_handoff_in_progress",
+  "maintainer_approval": {
+    "maintainer": "Chuck Russell",
+    "date": "2026-11-13",
+    "record": "docs/planning/active/command-refactor/approval/ingest-construction-documents-20261113.json",
+    "scope": "All outstanding INGEST analysis/design/directive and impact documents, the current validation amendment and bounded I1-I3 construction scope. Execution waits for the requested Git discussion."
+  },
+  "branch": "feature/cmd-ingest-001",
+  "prepared_from": "d12f9c6c24d43eb88c0a3bb1f612dd01774a57b8",
+  "request": "Execute the maintainer-approved Git baseline handoff, retaining the exact approved I1-I3 scope and mandatory per-slice councils. No coding until the merged baseline/new branch and private phase binding are recorded.",
+  "request_document": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md",
+    "sha256": "5039fe7d5b7db7a9808eca74c3e42012911c28d8e264741b8eda9da4c52dda14"
+  },
+  "current_package_impact": {
+    "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+    "version": "0.8",
+    "sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f",
+    "approval_status": "approved_by_Chuck_2026_11_13_exact_current_bytes"
+  },
+  "historical_impact_approval": {
+    "version": "0.6",
+    "document_sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+    "approved_record": "docs/planning/active/command-refactor/approval/ingest-package-impact.md",
+    "record_sha256": "f4f4a20d6db52f2459f767ede79f2db211a4a7118d6736f40551fd00fbf1cbec",
+    "historical_document_commit": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+    "not_approval_of_current_version": true
+  },
+  "reviewed_design": {
+    "candidate": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a",
+    "council_result": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/results/index.json",
+    "council_result_sha256": "e5f73d20559ba091d4313ff7a2484af7a5e0de2eba125fa697ca9e0fc4af635e",
+    "all_three_complete_verified_at_or_above_9_5": true,
+    "current_reviewed_technical_inputs_unchanged": true,
+    "inputs": [
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
+        "sha256": "288265f774e08a182083537160ed0fccd9a5304b949ec95d05bcd6bf0208a8ee",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md",
+        "sha256": "44791c3a431f3f4cc8876851cfa3248a20dc7cbd90739178f022c453e370794c",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md",
+        "sha256": "98da30a313539c9d550ac14a8dffa1454997c00f5353df33bf915f8ca09c8cc7",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md",
+        "sha256": "f6c0fee8046fa1d0e1d992a5640dfaca88f96f87f9b335a3e02cf172fc496cf9",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/approval-binding.json",
+        "sha256": "b6fb070ca1ec94014f0019e9e8647fc773d930185cd3594e8d3d39520cca4b3c",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/model-qualification-decision.md",
+        "sha256": "b2503902db78f9d01909c4d2c9d20a03dd4cdc772421c1ec100d5b614ed22d26",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/office-visibility-decision.md",
+        "sha256": "7eb7bf3224036d61f28059d8a1ab4c21d66b9deb4964e013de6a780b381775c7",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-worker-decision.md",
+        "sha256": "a828b757b213acc9481ba3053873f4d2243f3a106927ddade71eb97631bf938b",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json",
+        "sha256": "94d29682e2c9b813dd73f4bcdad95f7a327d139e03187ed8baf3931b6f8f7346",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json",
+        "sha256": "41229b36ae5f3f33eaf15d11322be290c837d6ab21c5a3023294f890879c509c",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/digest-vectors.json",
+        "sha256": "4b5bef7daf3400dca0c7058d967a66653d1c5e3aa59a7b0c9fe5770e3bd436e4",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/review-instructions.md",
+        "sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/authorization.json",
+        "sha256": "c963bad985fb1a581c2ff6b307345d295519d335eef7bf305c070e2d301180d2",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md",
+        "sha256": "f787e83ed84916264277013ab4e8097e9f3fcba90da502ea5ec1819630c71d55",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/correction-requirements.json",
+        "sha256": "6660bda1a271dc91dfee9f1a9d6659e8a2c9f3bcd398620a880173e6bb111ed6",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/extension2-authorization.json",
+        "sha256": "9d468ca11029a8f3d9d4b2acf8ac8aeaa3debdf5c5e57e787d30d740d8bfbb05",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+        "sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+        "sha256": "b7d93caf2d302e0802b3c6b7f523de42d2ab98f625b5a8a02326f21a8fec2f9f",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+        "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/embedding-compatibility-contract.md",
+        "sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+        "reviewed_at": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a"
+      }
+    ],
+    "scope_limit": "The new impact/wrapper/execution-profile bytes have controller checks only; no new independent verdict is asserted."
+  },
+  "proposed_profile": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/execution-profile.json",
+    "sha256": "bf8c1782ca833bcdd129d3c1f76ff5e52ebab71bfc3084699c73d762edc0134f",
+    "activated": false
+  },
+  "phase_edit_paths": {
+    "I1": [
+      "packages/friday-core/README.md",
+      "packages/friday-core/src/friday_core/ingestion.py",
+      "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "packages/friday-llm/README.md",
+      "packages/friday-llm/pyproject.toml",
+      "packages/friday-llm/src/friday_llm/embedding_limits.py",
+      "packages/friday-llm/src/friday_llm/embeddings.py",
+      "packages/friday-llm/src/friday_llm/model_library.py",
+      "packages/friday-memory/README.md",
+      "packages/friday-memory/pyproject.toml",
+      "packages/friday-memory/src/friday_memory/__init__.py",
+      "packages/friday-memory/src/friday_memory/adapters/simple_vector.py",
+      "packages/friday-memory/src/friday_memory/adapters/vector.py",
+      "packages/friday-memory/src/friday_memory/ingestion/embedding_space.py",
+      "packages/friday-memory/src/friday_memory/maintenance/__init__.py",
+      "packages/friday-memory/src/friday_memory/maintenance/recovery.py",
+      "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py",
+      "uv.lock"
+    ],
+    "I2": [
+      "packages/friday-chat/src/friday_chat/__init__.py",
+      "packages/friday-chat/src/friday_chat/adapters.py",
+      "packages/friday-chat/src/friday_chat/config.py",
+      "packages/friday-chat/src/friday_chat/memory_mcp.py",
+      "packages/friday-chat/src/friday_chat/reorganization/__init__.py",
+      "packages/friday-chat/src/friday_chat/reorganization/artifacts.py",
+      "packages/friday-chat/src/friday_chat/reorganization/contracts.py",
+      "packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+      "packages/friday-chat/src/friday_chat/reorganization/mutation.py",
+      "packages/friday-chat/src/friday_chat/runtime.py",
+      "packages/friday-cli/README.md",
+      "packages/friday-cli/src/friday_cli/container.py",
+      "packages/friday-cli/src/friday_cli/profiles.py",
+      "packages/friday-core/src/friday_core/profiles.py",
+      "packages/friday-llm/src/friday_llm/embeddings.py",
+      "packages/friday-llm/src/friday_llm/model_library.py",
+      "packages/friday-memory/src/friday_memory/adapters/graph.py",
+      "packages/friday-memory/src/friday_memory/adapters/null_graph.py",
+      "packages/friday-memory/src/friday_memory/adapters/simple_vector.py",
+      "packages/friday-memory/src/friday_memory/adapters/vector.py",
+      "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "packages/friday-memory/src/friday_memory/context/consolidator.py",
+      "packages/friday-memory/src/friday_memory/context/extraction_filter.py",
+      "packages/friday-memory/src/friday_memory/context/extractor.py",
+      "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "packages/friday-memory/src/friday_memory/ingestion/mcp.py",
+      "packages/friday-memory/src/friday_memory/lifecycle/promotion.py",
+      "packages/friday-memory/src/friday_memory/maintenance/__main__.py",
+      "packages/friday-memory/src/friday_memory/maintenance/analyzer.py",
+      "packages/friday-memory/src/friday_memory/maintenance/backup.py",
+      "packages/friday-memory/src/friday_memory/maintenance/fact_checker.py",
+      "packages/friday-memory/src/friday_memory/maintenance/mutation.py",
+      "packages/friday-memory/src/friday_memory/maintenance/pipeline.py",
+      "packages/friday-memory/src/friday_memory/maintenance/provider_contracts.py",
+      "packages/friday-memory/src/friday_memory/maintenance/pruner.py",
+      "packages/friday-memory/src/friday_memory/maintenance/recovery.py",
+      "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py",
+      "packages/friday-memory/src/friday_memory/maintenance/reorganizer.py",
+      "packages/friday-memory/src/friday_memory/maintenance/synthesizer.py",
+      "packages/friday-memory/src/friday_memory/models/graph.py",
+      "packages/friday-memory/src/friday_memory/retrieval/collection_manager.py",
+      "packages/friday-memory/src/friday_memory/retrieval/graph_scorer.py",
+      "packages/friday-runtime/README.md",
+      "packages/friday-runtime/src/friday_runtime/config.py",
+      "packages/friday-runtime/src/friday_runtime/di.py",
+      "packages/friday-tools/src/friday_tools/memory/lifecycle.py",
+      "packages/friday-tools/src/friday_tools/memory/maintenance.py"
+    ],
+    "I3": [
+      "docs/architecture/README.md",
+      "docs/architecture/command-execution.md",
+      "docs/guides/00-quick-start.md",
+      "docs/guides/01-executive-summary.md",
+      "docs/guides/02-getting-started.md",
+      "docs/guides/03-core-concepts.md",
+      "docs/guides/04-adaptive-memory.md",
+      "docs/guides/05-tools.md",
+      "docs/guides/07-multi-agent.md",
+      "docs/guides/09-cli-reference.md",
+      "docs/guides/10-configuration.md",
+      "docs/guides/13-troubleshooting.md",
+      "docs/guides/14-appendices.md",
+      "docs/guides/FRIDAY-FEATURES.md",
+      "docs/guides/README.md",
+      "docs/guides/memory-management-guidelines.md",
+      "packages/friday-chat/README.md",
+      "packages/friday-chat/pyproject.toml",
+      "packages/friday-chat/src/friday_chat/adapters.py",
+      "packages/friday-chat/src/friday_chat/commands/files.py",
+      "packages/friday-chat/src/friday_chat/commands/registry.py",
+      "packages/friday-chat/src/friday_chat/config.py",
+      "packages/friday-chat/src/friday_chat/config_templates/config.example.yaml",
+      "packages/friday-chat/src/friday_chat/config_templates/models-config.example.yaml",
+      "packages/friday-chat/src/friday_chat/runtime.py",
+      "packages/friday-cli/README.md",
+      "packages/friday-commands/README.md",
+      "packages/friday-commands/src/friday_commands/file_inputs.py",
+      "packages/friday-core/README.md",
+      "packages/friday-llm/README.md",
+      "packages/friday-memory/README.md",
+      "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "packages/friday-memory/src/friday_memory/ingestion/__init__.py",
+      "packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py",
+      "packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py",
+      "packages/friday-memory/src/friday_memory/ingestion/tool_ingester.py",
+      "packages/friday-runtime/README.md",
+      "packages/friday-runtime/src/friday_runtime/di.py",
+      "packages/friday-tools/README.md",
+      "packages/friday-tools/pyproject.toml",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py",
+      "packages/friday-tools/src/friday_tools/filesystem/smart_read.py",
+      "uv.lock"
+    ]
+  },
+  "case_scope": {
+    "map": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json",
+    "sha256": "41229b36ae5f3f33eaf15d11322be290c837d6ab21c5a3023294f890879c509c",
+    "mapped_old_cases": 49,
+    "planned_new_witnesses": 51,
+    "classified_modules": 18,
+    "retirements_authorized": 0,
+    "all_other_valid_assertions_retained": true
+  },
+  "gate_disposition": {
+    "A1": {
+      "proposal_ready": true,
+      "basis": "Current dispositions and reused evaluation; no new vendor/model/parity/prebuilt-worker prerequisite."
+    },
+    "A2": {
+      "proposal_ready": true,
+      "basis": "Unchanged exact design and phase map. Strict real local asset/configuration manifests must be recorded before their phase uses them, under the proposed profile."
+    },
+    "A3": {
+      "proposal_ready": true,
+      "basis": "Exact frozen old-case exceptions and new witness/module classifications; expand phase selectors before execution; reconcile new exceptions before edit."
+    },
+    "A4": {
+      "approved": true,
+      "record": "docs/planning/active/command-refactor/approval/ingest-construction-documents-20261113.json",
+      "binding": "Chuck approves the current request and impact bytes identified by current_package_impact, including the disclosed A4 reference correction. Record the stable content commit at the agreed Git checkpoint before coding."
+    },
+    "A5": {
+      "activated": false,
+      "proposal_ready": true,
+      "basis": "Private scope approved; complete the now-authorized Git handoff and record each eligible private phase binding before implementation effects. No external embedding/model/provider window.",
+      "scope_approved": true
+    }
+  },
+  "approval_scope": {
+    "all_three_slices_may_be_approved_together": true,
+    "advance_only_after_required_independent_verification": true,
+    "record_per_phase_activation_from_same_approval": true,
+    "reask_only_for_material_scope_or_effects_expansion": true,
+    "board_mapping": "The initiative is already started. Record exact maintainer approval and subsequent eligible phase activations under it without moving the initiative backward or treating historical initiative authority as INGEST approval.",
+    "all_three_slices_approved_together": true,
+    "implementation_councils": "I1, I2 and I3 each require the three named seats, all VERIFIED >=9.5 and no mandatory findings, up to three passes per gate. I3 includes aggregate review.",
+    "no_reapproval_for_unchanged_approved_documents": true
+  },
+  "no_new_design_council_requested": true,
+  "product_generation_allowed": false,
+  "installs_allowed_now": false,
+  "live_effects_allowed_now": false,
+  "uat_or_acceptance_granted": false,
+  "publication_or_delivery_granted": false,
+  "precedence": "This approved assembly replaces the historical pending approval assembly and strengthens implementation validation to a full council after every slice. Technical contracts, source/test maps and impact v0.8 retain their exact bytes. Closed planning council results remain unchanged; execution remains held for the requested Git handoff.",
+  "revision": 3,
+  "presented_revision": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/presented-revision.json",
+    "binding_rule": "Chuck approved the exact current document digests and authorized their Git checkpoint. After the content commit, record and verify that immutable commit in the presentation receipt before coding. Do not change approved document bytes while completing outcome-only receipt metadata."
+  },
+  "phase_dependency_checks": {
+    "I1_I2": "Record baseline Certifi version/module/CA origin where installed, or explicit absence in dependency-free profiles, with no unrelated early bump; tokenizers shared-lock change and unchanged-legacy positives belong to I1-C2.",
+    "I3_C1_onward": "Introduce selected Certifi2026.10.23 with Tools/Docling and enforce >=2026.10.19 plus origins in applicable installs, including final normal/optimized headless/Chat profiles. Explicit absence is recorded for dependency-free profiles."
+  },
+  "implementation_validation": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/implementation-council-plan.json",
+    "sha256": "b7abf1aa77d9f02efa0abc61d97ec35c56d5b622e52b4049fa3364a3932c6a3c"
+  },
+  "git_handoff": {
+    "status": "approved_pending_baseline_publication_and_merge",
+    "proposal": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/git-handoff-plan.md",
+    "proposed_coding_branch": "feature/cmd-ingest-implementation",
+    "coding_branch_created": false,
+    "publication_authorized": true,
+    "merge_authorized": true,
+    "authorization": "docs/planning/active/command-refactor/approval/ingest-git-handoff-20261113.json",
+    "new_implementation_branch_authorized": true
+  },
+  "publication_or_delivery_scope": "No product publication/release/deployment; baseline planning/readiness push, PR and merge are separately authorized by the Git handoff record."
+}

@@ -1,0 +1,54 @@
+{
+  "original_directory": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/astra-r3-seat-5p7txfct",
+  "retained_formal_report": "Verbatim reviewer report",
+  "report_sha256": "3feadf58637596c235a120108973d43b3e89713c57b9e58b58791fe27cb2a00d",
+  "safe_admin_boundary_artifacts": [
+    {
+      "path": "opening-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    },
+    {
+      "path": "closing-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    },
+    {
+      "path": "admin-commands.json",
+      "sha256": "c83b0604f605f56e7a6441ba789328b58893c3ddb3f83c0a9a9120b29d0efe6b"
+    }
+  ],
+  "external_additional_artifact_hashes": [
+    {
+      "file": "report.md",
+      "sha256": "3feadf58637596c235a120108973d43b3e89713c57b9e58b58791fe27cb2a00d"
+    },
+    {
+      "file": "opening-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    },
+    {
+      "file": "closing-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    },
+    {
+      "file": "admin-commands.json",
+      "sha256": "c83b0604f605f56e7a6441ba789328b58893c3ddb3f83c0a9a9120b29d0efe6b"
+    },
+    {
+      "file": "static-audit.json",
+      "sha256": "9d28399cc3d3c067b935d08477c44246b2f26d04435fff3668d24d8a96482703"
+    },
+    {
+      "file": "archive-audit.json",
+      "sha256": "56f8d9933923a52c306da6343f22a43cfdbe626ea82afd1e90ee7c0c2b6bef8a"
+    },
+    {
+      "file": "audit.py",
+      "sha256": "e753fb453f8aa4ea67ea8b64637529da74e8f39ed7bb4f7ee3f0b6b6b26d10bd"
+    },
+    {
+      "file": "archives.py",
+      "sha256": "6aaf2075f547f875c7059901d44d732b44681bbea36f2daa69822ffc72191032"
+    }
+  ],
+  "evidence_limit": "No unrun test/model/store claims. Opus on-disk report was abbreviated; full terminal report is retained here, with original summary separately preserved. No missing scripts are fabricated."
+}

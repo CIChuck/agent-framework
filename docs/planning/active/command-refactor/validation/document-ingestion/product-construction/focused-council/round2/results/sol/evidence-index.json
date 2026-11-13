@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "path": "assessment.json",
+      "sha256": "dc68c30535e40e79edf0fe5d4ceffdee9236e62fa0d40ad3f2d422debd6b4703"
+    },
+    {
+      "path": "entry.json",
+      "sha256": "f44078780733a2764d72825c24daf1a2122a6de2a117466027322844935029e1"
+    },
+    {
+      "path": "evidence.json",
+      "sha256": "082dd5199740b3b38feebc7bcddccbf3387707c5106df7737d5864947d24c058"
+    },
+    {
+      "path": "exit.json",
+      "sha256": "f44078780733a2764d72825c24daf1a2122a6de2a117466027322844935029e1"
+    },
+    {
+      "path": "report.md",
+      "sha256": "89952ff70c382878e8c3c5c33c772c1f31f86567b4a8c0bfd752bd9d85ecaef2"
+    }
+  ],
+  "classification": "Original report and lightweight reviewer receipts copied byte-for-byte; source behavior was inspected, not executed."
+}

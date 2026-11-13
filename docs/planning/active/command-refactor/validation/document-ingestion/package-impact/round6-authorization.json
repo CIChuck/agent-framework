@@ -1,0 +1,38 @@
+{
+  "unit": "INGEST-PACKAGE-IMPACT-001",
+  "date": "2026-11-11",
+  "maintainer": "Chuck Russell",
+  "preceding_controller_question": "Do you authorize the narrow validation-plan correction and one fresh council, with self-contained briefs explicitly excluding memory and historical-review searches?",
+  "maintainer_answer": "remediate and continue",
+  "authorization": "Correct the Finance validation-plan scope and run exactly one fresh full Sol/Astra/Opus council with self-contained pinned inputs and no memory/history searches.",
+  "original_maximum_rounds": 4,
+  "rounds_completed_before_this_authorization": 5,
+  "previous_single_round_extension": "round5-authorization.json",
+  "additional_rounds_this_authorization": 1,
+  "extensions_authorized_cumulatively": 2,
+  "maximum_total_rounds": 6,
+  "next_round": 6,
+  "remaining_including_next": 1,
+  "budget_reset": false,
+  "corrections": [
+    {
+      "id": "PC-10",
+      "requirement": "Finance validation selects offline test_basics.py. Classify live test_integration_massive.py separately, excluded absent explicit service/effect authority. Final directive inventories offline/live classification and exact selectors for non-default suites; no executed-retained-coverage credit from an unrun live module."
+    },
+    {
+      "id": "PC-11",
+      "requirement": "Fresh independent full reviews use this self-contained request and pinned current documents/source only. No local memory registry, rollout/session history or peer review search. Reconcile current version/authority/navigation to v0.6 and one authorized round6/6."
+    }
+  ],
+  "threshold": "Every seat independently VERIFIED, no mandatory findings, coverage AND overall each >=9.5; honest scores, no averaging or waiver.",
+  "stop_condition": "After this single round6, stop; if gate unmet return to Chuck. No replacement, seventh round or automatic loop.",
+  "scope_exclusion": [
+    "product/test/live-guide implementation",
+    "Finance product feature, live API calls or credential use/repair",
+    "new production owner or feature",
+    "annex/Tools companion change",
+    "Gate-A effects, model/provider/store operations",
+    "impact satisfaction, construction or acceptance",
+    "push/PR/publication/delivery"
+  ]
+}

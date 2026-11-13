@@ -1,0 +1,52 @@
+{
+  "unit": "INGEST-TEST-DOC-REQUIREMENTS-001",
+  "date": "2026-11-11",
+  "maintainer": "Chuck Russell",
+  "scope": "Revise planning requirements for affected package test restructuring and substantive command architecture/guide rewrites. No implementation starts in this step.",
+  "maintainer_direction": "Many package tests may need to be rewritten; make that explicit in the impact assessment and REM. Documentation acceptance must cover rewriting/updating key command architecture portions in Friday Chat and Friday CLI, beyond a check pass.",
+  "clarifications": [
+    {
+      "question": "May affected tests be renamed, split or retired when obsolete, provided every still-valid behavioral requirement maps to retained or replacement coverage and each retirement has a documented reason?",
+      "answer": "Allow traceable test restructuring (Recommended)"
+    },
+    {
+      "question": "Should the documentation work include one canonical command-architecture document for Chat, CLI/Runtime and the shared packages, alongside substantive updates to the affected Friday guide chapters?",
+      "answer": "Canonical architecture plus guide updates (Recommended)"
+    }
+  ],
+  "required_plans": [
+    "test-migration-plan.md",
+    "command-architecture-update-plan.md",
+    "guide-update-handoff.md"
+  ],
+  "required_contract_revisions": [
+    "package-impact-assessment.md",
+    "remediation/REM-CMD-INGEST-001-pdf-docx.md"
+  ],
+  "test_boundary": "Keep every still-valid requirement covered; allow justified affected-case/file/helper restructuring, replacement and retirement. Preserve old evidence, scope, safety and required acceptance witnesses; no unrelated suite rewrite or silent coverage reduction.",
+  "documentation_boundary": "Canonical docs/architecture/command-execution.md for the implemented candidate plus substantive affected guide/package/schema/example updates, with semantic source/evidence review and verified examples. No current guide/architecture implementation in this planning step.",
+  "review_budget": {
+    "standing_authority": "validation/document-ingestion/package-impact/iteration-authorization.json",
+    "maximum_total_rounds": 4,
+    "completed_before_this_revision": 2,
+    "next_round": 3,
+    "remaining_including_next": 2,
+    "budget_reset": false,
+    "continuation": "Changed governing requirements require a fresh candidate review within the standing four-total-round cap; earlier verdicts remain candidate-specific. Maintainer reviews linked documents in parallel.",
+    "threshold": "Each Sol/Astra/Opus seat VERIFIED, zero mandatory findings, coverage and overall each >=9.5. Stop after round4 for guidance if unmet."
+  },
+  "lightweight_change_exemption": {
+    "maintainer": "Chuck Russell",
+    "date": "2026-11-11",
+    "reason": "Explicit revision of planning documents and bounded independent document review; no runtime behavior changes now.",
+    "scope": "Named plans, REM/assessment/criteria, current authority/routing and append-only evidence only.",
+    "validation": "Document/source-feasibility council and focused board/dashboard, lifecycle/link, metadata, whitespace and preservation checks."
+  },
+  "authority_not_granted": [
+    "product or test implementation",
+    "actual guide/architecture rewrite",
+    "Gate-A installs, downloads or model/provider/store operations",
+    "maintainer package-impact satisfaction or construction directive approval",
+    "push, PR, publication or delivery"
+  ]
+}

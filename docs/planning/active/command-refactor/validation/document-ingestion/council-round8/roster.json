@@ -1,0 +1,60 @@
+{
+  "candidate": "f43368c503da19fd245730ee579806db95ed3748",
+  "cycle_pass": 3,
+  "global_round": 8,
+  "request_sha256": "0b9247701339f8fe25dce08d70ec08e8785fbe20c01ea1f4054bc4c51a0a202d",
+  "roster": [
+    {
+      "seat": "sol",
+      "provider": "codex",
+      "model": "gpt-6.1-sol",
+      "options": [
+        {
+          "id": "reasoningEffort",
+          "value": "high"
+        },
+        {
+          "id": "serviceTier",
+          "value": "default"
+        }
+      ],
+      "taskId": "node:delegated-task:command%3Amcp%3Afbb3002d-ca5f-4503-aaeb-22fcced8535a%3Adelegate-task%3Aingest-compat-p3-sol-f43368c5",
+      "threadId": "thread:delegated-task:command%3Amcp%3Afbb3002d-ca5f-4503-aaeb-22fcced8535a%3Adelegate-task%3Aingest-compat-p3-sol-f43368c5",
+      "link": "<t3-thread://v2/6ee9d258-4414-45b2-ad28-6fe30f4adb05/thread:delegated-task:command%3Amcp%3Afbb3002d-ca5f-4503-aaeb-22fcced8535a%3Adelegate-task%3Aingest-compat-p3-sol-f43368c5>"
+    },
+    {
+      "seat": "astra",
+      "provider": "codex",
+      "model": "gpt-6-astra",
+      "options": [
+        {
+          "id": "reasoningEffort",
+          "value": "high"
+        }
+      ],
+      "taskId": "node:delegated-task:command%3Amcp%3Afbb3002d-ca5f-4503-aaeb-22fcced8535a%3Adelegate-task%3Aingest-compat-p3-astra-f43368c5",
+      "threadId": "thread:delegated-task:command%3Amcp%3Afbb3002d-ca5f-4503-aaeb-22fcced8535a%3Adelegate-task%3Aingest-compat-p3-astra-f43368c5",
+      "link": "<t3-thread://v2/6ee9d258-4414-45b2-ad28-6fe30f4adb05/thread:delegated-task:command%3Amcp%3Afbb3002d-ca5f-4503-aaeb-22fcced8535a%3Adelegate-task%3Aingest-compat-p3-astra-f43368c5>"
+    },
+    {
+      "seat": "opus",
+      "provider": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "options": [
+        {
+          "id": "effort",
+          "value": "high"
+        },
+        {
+          "id": "fastMode",
+          "value": false
+        }
+      ],
+      "taskId": "node:delegated-task:command%3Amcp%3Afbb3002d-ca5f-4503-aaeb-22fcced8535a%3Adelegate-task%3Aingest-compat-p3-opus-f43368c5",
+      "threadId": "thread:delegated-task:command%3Amcp%3Afbb3002d-ca5f-4503-aaeb-22fcced8535a%3Adelegate-task%3Aingest-compat-p3-opus-f43368c5",
+      "link": "<t3-thread://v2/6ee9d258-4414-45b2-ad28-6fe30f4adb05/thread:delegated-task:command%3Amcp%3Afbb3002d-ca5f-4503-aaeb-22fcced8535a%3Adelegate-task%3Aingest-compat-p3-opus-f43368c5>"
+    }
+  ],
+  "all_terminal_results_read": true,
+  "no_active_council": true
+}

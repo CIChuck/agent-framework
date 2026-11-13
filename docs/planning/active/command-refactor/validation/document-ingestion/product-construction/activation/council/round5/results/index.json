@@ -1,0 +1,41 @@
+{
+  "candidate": "34981199842ef73891605a20f3b4275eeb37e943",
+  "reports": [
+    {
+      "seat": "sol",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round5/results/sol/report.md",
+      "sha256": "38314c3e2e6c87a490e9c648ac1d381feb527d7dc6725e3df17338989d998e06",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.5775,
+      "mandatory_findings": 0
+    },
+    {
+      "seat": "astra",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round5/results/astra/report.md",
+      "sha256": "116d521eec4a968acdbbbf27f5a96a24337cf1805ae0a20a5182eebe45926a7f",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.61,
+      "mandatory_findings": 0
+    },
+    {
+      "seat": "opus",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round5/results/opus/report.md",
+      "sha256": "df3d6d792bac736e08f61cb766c6b6efde1f49811b467ed7a0e2067071066a42",
+      "verdict": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.32,
+      "mandatory_findings": 1
+    }
+  ],
+  "gate_met": false,
+  "round": 5,
+  "additional_pass": 2,
+  "originals_preserved": true,
+  "construction_approved": false,
+  "effects_approved": false
+}

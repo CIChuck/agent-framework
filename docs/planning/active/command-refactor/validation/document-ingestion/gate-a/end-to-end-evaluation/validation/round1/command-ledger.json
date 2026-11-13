@@ -1,0 +1,351 @@
+[
+  {
+    "name": "selftest-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-e2e/harness/run.py",
+      "selftest",
+      "--harness-manifest",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-e2e/manifest.json",
+      "--harness-manifest-sha256",
+      "7057b9a6ed5dbce39f0b8a0766f34815a34e41a94ef5abff26b5c63582568f56",
+      "--scratch",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/selftest-normal"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 0,
+    "seconds": 1.9255644578952342,
+    "stdout": "{\"status\": \"PASS\", \"scope\": \"offline controls and synthetic input preparation only\", \"cases\": 74, \"optimized\": false, \"upstream_qualified\": false}\n",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/normal.stderr"
+  },
+  {
+    "name": "selftest-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-e2e/harness/run.py",
+      "selftest",
+      "--harness-manifest",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-e2e/manifest.json",
+      "--harness-manifest-sha256",
+      "7057b9a6ed5dbce39f0b8a0766f34815a34e41a94ef5abff26b5c63582568f56",
+      "--scratch",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/selftest-optimized"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 0,
+    "seconds": 2.012428125133738,
+    "stdout": "{\"status\": \"PASS\", \"scope\": \"offline controls and synthetic input preparation only\", \"cases\": 74, \"optimized\": true, \"upstream_qualified\": false}\n",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/optimized.stderr"
+  },
+  {
+    "name": "ruff-check",
+    "argv": [
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/ruff",
+      "check",
+      "--no-cache",
+      "--config",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/pyproject.toml",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-e2e/harness"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 0,
+    "stdout": "All checks passed!\n",
+    "stderr": ""
+  },
+  {
+    "name": "ruff-format",
+    "argv": [
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/ruff",
+      "format",
+      "--check",
+      "--no-cache",
+      "--config",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/pyproject.toml",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/frozen-e2e/harness"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 0,
+    "stdout": "29 files already formatted\n",
+    "stderr": ""
+  },
+  {
+    "name": "controls",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/controls.py"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/controls.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/controls.stderr"
+  },
+  {
+    "name": "reopen",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/reopen.py"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 1,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/reopen.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/reopen.stderr"
+  },
+  {
+    "name": "attribution",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/attribution.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 1,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/attribution.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/attribution.stderr"
+  },
+  {
+    "name": "reopen-diagnostic",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/reopen.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 1,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/reopen-diagnostic.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/reopen-diagnostic.stderr"
+  },
+  {
+    "name": "board",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/board.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/board.stderr"
+  },
+  {
+    "name": "dashboard",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/dashboard.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/dashboard.stderr"
+  },
+  {
+    "name": "docs",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/admin_docs.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/docs.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/docs.stderr"
+  },
+  {
+    "name": "metadata",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-package-metadata.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/metadata.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/metadata.stderr"
+  },
+  {
+    "name": "range-whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "96f752d64ead1c98bd900891aaa94edfe4ebe5d3",
+      "cae6aa4c183f013c19d10af4358dcf93fd189367"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/range-whitespace.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/range-whitespace.stderr"
+  },
+  {
+    "name": "staged-whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/staged-whitespace.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/staged-whitespace.stderr"
+  },
+  {
+    "name": "owned-whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "tests/readiness/ingest",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/owned-whitespace.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/owned-whitespace.stderr"
+  },
+  {
+    "name": "attribution-corrected",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/attribution.py"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/attribution-corrected.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/attribution-corrected.stderr"
+  },
+  {
+    "name": "fresh-reopen",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/reopen.py"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/fresh-reopen.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/fresh-reopen.stderr"
+  },
+  {
+    "name": "stale-source-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/stale_source.py"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/stale-source-normal.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/stale-source-normal.stderr"
+  },
+  {
+    "name": "stale-source-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/stale_source.py"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/stale-source-optimized.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/stale-source-optimized.stderr"
+  },
+  {
+    "name": "canonical-stale-source-normal",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/stale_cli.py"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/canonical-normal.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/canonical-normal.stderr"
+  },
+  {
+    "name": "canonical-stale-source-optimized",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "-O",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/stale_cli.py"
+    ],
+    "cwd": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/canonical-optimized.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/canonical-optimized.stderr"
+  },
+  {
+    "name": "closing-integrity",
+    "argv": [
+      "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+      "-I",
+      "-S",
+      "-B",
+      "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/close_integrity.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/closing.stdout",
+    "stderr_path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-e2e-independent-3e_a67gm/closing.stderr"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "scope": "Neutral bounded correction requirements first; then FULL unchanged Review A1-A8. No prior/peer verdicts supplied.",
+  "groups": [
+    {
+      "id": "E1",
+      "requirement": "Independent public document settings resolver/factory, explicit path then one environment value, strict asset/profile/scratch binding. /read needs no Memory/embedding manifest; plain text unaffected; positive and no-worker refusal installed witnesses and guide assignments."
+    },
+    {
+      "id": "E2",
+      "requirement": "State startup parent-import limitation honestly, include cost in cold/RSS acceptance, real silent/offline installed launch with bounded descriptor redirection; versioned IPC state/discriminator table and invalid transitions. No bootstrap/source-scope expansion."
+    },
+    {
+      "id": "E3",
+      "requirement": "Counter factory retains exact capability-record hash across transfer and rejects drift; named I1 schema/containment witnesses and unchanged simple-vector regression selector; actual cross-process controls later at I3."
+    },
+    {
+      "id": "E4",
+      "requirement": "Typed mutable lifecycle holder within existing Chat adapter under public frozen wrapper; converter-only lazy binding and ordered shutdown, no eager settings lookup or Memory initialization for /read."
+    },
+    {
+      "id": "E5",
+      "requirement": "Optional-versus-required YAML precision, current exact parent/appendix bindings and unchanged technical scope; explicit latest extension controls only council budget."
+    }
+  ],
+  "extension_pass": 1,
+  "maximum_additional_passes": 3,
+  "global_round": 4,
+  "maximum_global_rounds": 6,
+  "product_or_effects_authority": false
+}

@@ -1,0 +1,66 @@
+{
+  "original_directory": "/private/tmp/ingest-sol-r3-d1NihDly",
+  "retained_formal_report": "Verbatim reviewer report",
+  "report_sha256": "6b4b4adab2a80de5afa93383a980ae7eae4c2eb35e86695862ef2b1f70c1541b",
+  "safe_admin_boundary_artifacts": [
+    {
+      "path": "opening-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    },
+    {
+      "path": "closing-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    },
+    {
+      "path": "admin-commands.json",
+      "sha256": "c83b0604f605f56e7a6441ba789328b58893c3ddb3f83c0a9a9120b29d0efe6b"
+    }
+  ],
+  "external_additional_artifact_hashes": [
+    {
+      "name": "closing-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    },
+    {
+      "name": "old-target.md",
+      "sha256": "be9b6611d725740bff401464c3b4be6e51bb18396d3b631009f92501bba1ad8c"
+    },
+    {
+      "name": "admin-commands.json",
+      "sha256": "c83b0604f605f56e7a6441ba789328b58893c3ddb3f83c0a9a9120b29d0efe6b"
+    },
+    {
+      "name": "old-test-migration-seed.json",
+      "sha256": "01b0e983af3ae77692e8daa59765bbd2a3d7f6f3cdfb86ec091c990382069601"
+    },
+    {
+      "name": "audit_static.py",
+      "sha256": "9c1bdd62cf77a533f2fb8a3ecd726d753cde8752997fb9698d03a41c28ab8bda"
+    },
+    {
+      "name": "opening-integrity.json",
+      "sha256": "b56b09facdf3d1afaa6137ce02075b7ae86b3fc2f5065e2d99cd073039bc505c"
+    },
+    {
+      "name": "independent-hashes.json",
+      "sha256": "c067e10c03157af1c9f9f3c029d48ee11ebb99ae6a456928e3d48d97149a6975"
+    },
+    {
+      "name": "old-baseline-test-summary.json",
+      "sha256": "d0b8cddd06bddfd3a1b74924b3d4dc14bdad15ea200878ec348617a7676bbf5a"
+    },
+    {
+      "name": "static-audit.json",
+      "sha256": "e166e63e5f7065018a7d9c53bad3828105a64a7e54a8e3d7f6d0d4d3186b1095"
+    },
+    {
+      "name": "sol-review-report.md",
+      "sha256": "6b4b4adab2a80de5afa93383a980ae7eae4c2eb35e86695862ef2b1f70c1541b"
+    },
+    {
+      "name": "old-readiness-decision.md",
+      "sha256": "db8f54c1e80173cf2e3bf8e8c9b09446222e2450170bb7e1bfbeffc8ca211859"
+    }
+  ],
+  "evidence_limit": "No unrun test/model/store claims. Opus on-disk report was abbreviated; full terminal report is retained here, with original summary separately preserved. No missing scripts are fabricated."
+}

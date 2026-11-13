@@ -1,0 +1,15 @@
+{
+  "request_sha256": "ada377ddd0835d4cd5e128a2a9313e922a22f984792124972d748216e92972af",
+  "entry_exit_equal": true,
+  "preserved_records": 8,
+  "additional_targeted_reference_pins": {
+    "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7"
+  },
+  "source_reads": [
+    "packages/friday-chat/src/friday_chat/adapters.py:139-151,1699-1701",
+    "packages/friday-runtime/src/friday_runtime/di.py:56-85,135-149"
+  ],
+  "controller_content_read": false,
+  "product_execution": false
+}

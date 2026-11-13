@@ -1,0 +1,42 @@
+{
+  "candidate": "7cf8956012a9c66d15f959436c6e129cde8a86c5",
+  "reports": [
+    {
+      "seat": "sol",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round6/results/sol/report.md",
+      "sha256": "3e6f0395da03ba00a11dd8705a6dfc67b3405c822056c53b6655612a91bc9366",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.575,
+      "mandatory_findings": 0
+    },
+    {
+      "seat": "astra",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round6/results/astra/report.md",
+      "sha256": "b839c5313edf1c5d8481d797b147b1c7efb15f45aee4c97c16167cf60a167351",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.55,
+      "mandatory_findings": 0
+    },
+    {
+      "seat": "opus",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round6/results/opus/report.md",
+      "sha256": "4ca4d55ef65cdc648107eb5033f4d2fbfa36433962f31bc51f50493027622300",
+      "verdict": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.4,
+      "mandatory_findings": 1
+    }
+  ],
+  "gate_met": false,
+  "round": 6,
+  "additional_pass": 3,
+  "originals_preserved": true,
+  "construction_approved": false,
+  "effects_approved": false,
+  "budget_at_review": "First extension ended at6; maintainer subsequently authorized three more rounds7-9."
+}

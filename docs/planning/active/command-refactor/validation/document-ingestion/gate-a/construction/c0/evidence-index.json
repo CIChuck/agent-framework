@@ -1,0 +1,62 @@
+[
+  {
+    "path": "evidence/commands.json.gz",
+    "uncompressed_sha256": "0314b15a051d2551c00dddf243a6b70f830211939d3515c5f176d35c03854b6a",
+    "compressed_sha256": "e4a7d737296b14c18ac8a61735a5c6de273909238ddc0f1117738bf30d03146c"
+  },
+  {
+    "path": "evidence/static-commands.json.gz",
+    "uncompressed_sha256": "9ccf02789dac1ccea971e8bf5a42d725f1ed90d79620b4689398f3139dd5f51e",
+    "compressed_sha256": "b053131114c593851721508383deb2fd0f8eecec057440634cd5357cd2954116"
+  },
+  {
+    "path": "evidence/summary.json.gz",
+    "uncompressed_sha256": "2ce16194b96b23c998059b7ec9bb42db0a706800518d6906b2426d9b96d6f8e9",
+    "compressed_sha256": "abc3dcd39a016b446fee356966dcade720ec154203b3cb788a00aad88ebc3b29"
+  },
+  {
+    "path": "evidence/administration.json.gz",
+    "uncompressed_sha256": "52f34af5aba6a9980f2fa275b685dd38b19cae391ca8a57e41ec3df7ee1bbb23",
+    "compressed_sha256": "a03c0e0cef825f497751cf8dd36d4793e55670446598e2db0a33b1d880efb57b"
+  },
+  {
+    "path": "evidence/protected-baseline.json.gz",
+    "uncompressed_sha256": "403d70d14be272c3d84c3b463f3c1f55a01e9749a106b6c802f534f1f87e1f0f",
+    "compressed_sha256": "8b87bd25fa53d0c09e119c308f311ca1ef5a94c38aa5736d9c035e0f8d09ef81"
+  },
+  {
+    "path": "evidence/preservation-post-formal.json.gz",
+    "uncompressed_sha256": "5b7f96f8aece20f9c480daee8f1a91c3beb8a6580b88bea0922959b10bb81d2d",
+    "compressed_sha256": "cb4c35ac2dbed2fea86f71b814511057c8e7f61ed1b5707ea3cc67dac10daeed"
+  },
+  {
+    "path": "evidence/private-mypy-launcher.py.txt.gz",
+    "uncompressed_sha256": "402fcbd0547da35db0dd06d90c11f9006fdda73c4312d3245943fcc4d6db3dd0",
+    "compressed_sha256": "fdabc939a697a63b9b532c4722e22f86f35221cce640a00fd6f82f142347cf88"
+  },
+  {
+    "path": "evidence/formal-driver.py.txt.gz",
+    "uncompressed_sha256": "991de911cfe2a7ffddf7a776dbedc17a68be6d2f98777354006053973c7d1f3f",
+    "compressed_sha256": "f974bad455aff0bd4da20a1d2e8d855fbca7866303c400a1ff65e6ddd6533f62"
+  },
+  {
+    "path": "evidence/static-driver.py.txt.gz",
+    "uncompressed_sha256": "635d0e42748514e4f8a6aa2b7533c39457c4429163ed8f857762e799c7a7379b",
+    "compressed_sha256": "353846e22cbbd4a5e3857d31985ba69010c32cd0e7d31329a23033350c683ea4"
+  },
+  {
+    "path": "evidence/preservation-driver.py.txt.gz",
+    "uncompressed_sha256": "069d30000e8d717b22a684c22a5f8e1027de2435660313a0c44429746d073097",
+    "compressed_sha256": "180dba17e6c8b8b5aa416057edd92f3cd1418a8dc2b1ea773593d410e0926f22"
+  },
+  {
+    "path": "evidence/administration-driver.py.txt.gz",
+    "uncompressed_sha256": "16b22994e664ec01be64742eb9a4a7963c10fade41e145678be8f40cbab2ebca",
+    "compressed_sha256": "7dbac210fd521cded541077c2f556bf9908ec0ccbf74f84fce9148bcf64a2cfb"
+  },
+  {
+    "path": "evidence/validation-tools.json.gz",
+    "uncompressed_sha256": "74fa4defeba64794f8088419e2146fbf525bbfa9e465478b90effd81b72a25f0",
+    "compressed_sha256": "1ab7449f93b79c18ce5eaee42b8588a1e974ea448ffcd3dea246037d6ade10fe"
+  }
+]

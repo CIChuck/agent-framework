@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "scope": "Controller static planning checks only, no runtime tests or qualification effects",
+  "DI_definitions_unchanged": 36,
+  "proof_group_partition": 36,
+  "bidirectional_scoped_exits": 12,
+  "phase_DAG": "Q\u2192I1\u2192I2\u2192I3\u2192AG\u2192UAT",
+  "FC_contracts": 14,
+  "individually_joined_FC_witnesses": 19,
+  "helper_modules_hash_and_baseline_match": 30,
+  "historical_raw_receipt_unchanged": true,
+  "metadata_projection_payload_keys_absent": true,
+  "production_files_unchanged": 16690,
+  "symlinks_unchanged": 26,
+  "preserved_metadata_unchanged": 8,
+  "qualification_status": "All B/N slots remain unqualified/open; no Gate-A claim",
+  "parent_manifest_pins_match": true
+}

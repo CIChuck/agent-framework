@@ -1,0 +1,18 @@
+{
+  "seat": "sol",
+  "verdict": "VERIFIED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.6325,
+  "mandatory_findings": 0,
+  "entry_exit_shared_fields_match": true,
+  "frozen_git_identity_matches": true,
+  "files": {
+    "report.md": "28ac2c35e2258d7b1cddcfe7ba5c2ac5a5a1113e98e28f9dd3483e139acf84b8",
+    "entry.json": "f30f38967e5c165a574d3a5204c83900dd754e2f7dd06fa25ae5cfd576787a2c",
+    "exit.json": "c18a6e3d291d49894611cf6fb60161b6b6f822675b34fef0a1d6822c49456223",
+    "assessment.json": "ff27466274aa8d664fba0c85798fb325a197d653407796c2dfdf2df431b0ada1",
+    "SHA256SUMS": "e5d62f5f6d0e2324062ef2381c63b5980b94b714f20614db1abab8566dde6946"
+  },
+  "disclosed_protocol_deviation": null
+}

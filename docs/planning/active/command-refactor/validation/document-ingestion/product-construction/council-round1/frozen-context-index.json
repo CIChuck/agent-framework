@@ -1,0 +1,13 @@
+{
+  "files": {
+    "frozen-boundary.json.gz": {
+      "raw_sha256": "70f4e86811eef83d38ce9fe7ee705052224af2617de84cd40a829ab5ca848708",
+      "gzip_sha256": "05f33a284acf11bf06ab0c65281d26164f3b72b48bdee7bc95983d70a4c35bdb"
+    },
+    "frozen-helper.py.gz": {
+      "raw_sha256": "2e20c4e5568d8501e04c6c3a8e7e3277c8f67500f2d43d30851f7d864a2c7e46",
+      "gzip_sha256": "768bf5898ced5594dcb283293414be03f18f2ba13c814395ea1bc2e32843bd7c"
+    }
+  },
+  "scope": "Original review context; receipts require a fresh private target and adapted output paths for reproduction. Do not replay original argv or mutate supplied state."
+}

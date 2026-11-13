@@ -1,0 +1,92 @@
+{
+  "logical_index_before_status": "fa0be09a85c95d9185bc1edc3fe8d83371ab1836b04d56bbb1598792c7a30b9b",
+  "head": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a",
+  "branch": "feature/cmd-ingest-001",
+  "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+  "staged": "",
+  "preserved_metadata": {
+    "packages/friday-chat/config.example.yaml": {
+      "mode": 33188,
+      "size": 30129,
+      "mtime_ns": 1794334784972093361,
+      "ctime_ns": 1794334784972093361,
+      "birthtime": 1788446389.467035,
+      "sha256": "7c31a9ad3f6a7ff1cfc891cace6c4b3cde21d10202770c374a38c6cc28620f32"
+    },
+    "packages/friday-chat/models-config.example.yaml": {
+      "mode": 33188,
+      "size": 3962,
+      "mtime_ns": 1794264005521487739,
+      "ctime_ns": 1794264005521487739,
+      "birthtime": 1788446389.4671795,
+      "sha256": "5cf3d15ec469d3b8e495248d3aec9ed7bcdb48b68243668b6dbbbb3e0b0326c9"
+    },
+    ".friday": {
+      "mode": 16877,
+      "size": 224,
+      "mtime_ns": 1794335780595591896,
+      "ctime_ns": 1794335780595591896,
+      "birthtime": 1794312889.6114945
+    },
+    ".friday-old": {
+      "mode": 16877,
+      "size": 256,
+      "mtime_ns": 1794312848481691252,
+      "ctime_ns": 1794312880963718202,
+      "birthtime": 1793062680.0546615
+    },
+    ".venv": {
+      "mode": 16877,
+      "size": 288,
+      "mtime_ns": 1772940967050495003,
+      "ctime_ns": 1772940967050495003,
+      "birthtime": 1772940965.7368934
+    },
+    "exports": {
+      "mode": 16877,
+      "size": 128,
+      "mtime_ns": 1794172873430987983,
+      "ctime_ns": 1794172873430987983,
+      "birthtime": 1794172873.430393
+    },
+    "exports/friday_context.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419969663853,
+      "ctime_ns": 1794173419969663853,
+      "birthtime": 1794172873.4304848,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    },
+    "exports/friday_prompt.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419970166478,
+      "ctime_ns": 1794173419970166478,
+      "birthtime": 1794172873.4309843,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    }
+  },
+  "pins": {
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/approval-binding.json": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/model-qualification-decision.md": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/office-visibility-decision.md": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-worker-decision.md": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/digest-vectors.json": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/review-instructions.md": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/authorization.json": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/correction-requirements.json": true,
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/extension2-authorization.json": true
+  },
+  "safe_current_controls_hash_matches": true,
+  "controller_checks_hash_matches": true,
+  "identity_matches": true,
+  "preserved_matches": true,
+  "matches_entry": true
+}

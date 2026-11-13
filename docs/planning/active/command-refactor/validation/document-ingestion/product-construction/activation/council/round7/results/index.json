@@ -1,0 +1,48 @@
+{
+  "reviewed_candidate": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a",
+  "request_sha256": "ada377ddd0835d4cd5e128a2a9313e922a22f984792124972d748216e92972af",
+  "reports": [
+    {
+      "seat": "sol",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/results/sol/report.md",
+      "sha256": "b2240c9fd5561463c233f89770bec1cfaffd69993cc52418f111db7121f28039",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.54,
+      "mandatory_findings": 0
+    },
+    {
+      "seat": "astra",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/results/astra/report.md",
+      "sha256": "e1428334a8906c6fe5e0f9644372af741edd1870422f14192ce947e84a025ee2",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.55,
+      "mandatory_findings": 0
+    },
+    {
+      "seat": "opus",
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/results/opus/report.md",
+      "sha256": "9628c18906b2f4fb5244364ca99d699c15773c2c3600ddf364f800b9d8417568",
+      "verdict": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "overall": 9.52,
+      "mandatory_findings": 0
+    }
+  ],
+  "overall_result": "VERIFIED",
+  "gate_met": true,
+  "minimum_per_seat": 9.5,
+  "round": 7,
+  "maximum_rounds": 9,
+  "extension_ordinal": 2,
+  "extension_pass": 1,
+  "originals_preserved": true,
+  "reviewed_input_bytes_unchanged": true,
+  "construction_approved": false,
+  "effects_approved": false,
+  "stop": "All three complete seats meet the per-seat gate. Stop early; do not launch rounds8/9. Exact activation/impact approval preparation is next, with construction separately unapproved."
+}

@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "primary_inventory": "baseline-test-inventory.json.gz",
+  "primary_sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4",
+  "primary_fixture_conftest_count": 72,
+  "supplemental_fixtures": [
+    {
+      "path": "packages/friday-chat/tests_chat/fixtures_session/session-baseline.json",
+      "sha256": "3b512406d989e7d114fdcc17ac270eaccb3bcf772dc09a15fd566b10afeb6ea7",
+      "baseline_sha256": "3b512406d989e7d114fdcc17ac270eaccb3bcf772dc09a15fd566b10afeb6ea7",
+      "kind": "retained oracle",
+      "execution_policy": "Hash-only planning inventory; no standalone execution, A3 maps valid behaviors and offline/live use."
+    },
+    {
+      "path": "tests/integration/llm/README.md",
+      "sha256": "f59be384fb37c17281c42c8775065413ff0de055b3a785002fc550ee105772de",
+      "baseline_sha256": "f59be384fb37c17281c42c8775065413ff0de055b3a785002fc550ee105772de",
+      "kind": "integration support/configuration documentation",
+      "execution_policy": "Hash-only planning inventory; no standalone execution, A3 maps valid behaviors and offline/live use."
+    },
+    {
+      "path": "tests/integration/llm/config.yaml",
+      "sha256": "fd14b90d8cabc0fc7db24664338e7fce47867ae5ad13856e9ac67470dcefa96d",
+      "baseline_sha256": "fd14b90d8cabc0fc7db24664338e7fce47867ae5ad13856e9ac67470dcefa96d",
+      "kind": "integration support/configuration documentation",
+      "execution_policy": "Hash-only planning inventory; no standalone execution, A3 maps valid behaviors and offline/live use."
+    }
+  ],
+  "effective_fixture_conftest_count": 75,
+  "non_python_test_tree_file_count": 63,
+  "included_non_python_files": 62,
+  "explicitly_excluded_artifacts": [
+    {
+      "path": "tests/integration/.DS_Store",
+      "sha256": "4c6f87376b18e41476a51e64adbd023b5db11c6eb9d03b5ccc95660eeb704d70",
+      "baseline_sha256": "4c6f87376b18e41476a51e64adbd023b5db11c6eb9d03b5ccc95660eeb704d70",
+      "reason": "Nonfunctional OS metadata; excluded from behavioral fixture set, hash retained for preservation only."
+    }
+  ],
+  "scope": "Primary and supplement form one disjoint fixture inventory. No claim that counts establish behavior or collection. Existing test/fixture bytes remain unchanged."
+}

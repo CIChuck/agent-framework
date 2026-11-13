@@ -1,0 +1,87 @@
+{
+  "unit": "CD-CMD-INGEST-GATE-A-001",
+  "scope": "Document readiness/source feasibility only; no implemented harness, containment or upstream/model qualification.",
+  "loop_pass": 2,
+  "maximum_new_passes": 4,
+  "harness_global_round": 3,
+  "reviewed_candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+  "all_seats_terminal": true,
+  "outcome": "VERIFIED",
+  "target_met": true,
+  "seats": [
+    {
+      "seat": "sol",
+      "candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+      "outcome": "VERIFIED",
+      "coverage": 10.0,
+      "overall": 9.6,
+      "mandatory_findings": 0,
+      "report_sha256": "7984d6488da0672c49116456fb80ea8c4bb35d75ba72e9168800a775f1d10fe8"
+    },
+    {
+      "seat": "astra",
+      "candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+      "outcome": "VERIFIED",
+      "coverage": 10.0,
+      "overall": 9.6,
+      "mandatory_findings": 0,
+      "report_sha256": "3e4a36382543b8a05dfb75cd42488244536cb470a305d1dd53c74616dee0d12c"
+    },
+    {
+      "seat": "opus",
+      "candidate": "474479df6baf1ffab89ffab81ae3b84bb7a98ed7",
+      "outcome": "VERIFIED",
+      "coverage": 9.6,
+      "overall": 9.5,
+      "mandatory_findings": 0,
+      "report_sha256": "a4d0d6897c9b0ac4ab8c6b4980bff29ac310c61c524e39aee236dd895b1c6553"
+    }
+  ],
+  "mandatory_findings": [],
+  "corrections_independently_passed": [
+    "P2-01",
+    "P2-02",
+    "P2-03",
+    "RC-01",
+    "RC-02",
+    "RC-03",
+    "RC-04",
+    "RC-05",
+    "RC-06"
+  ],
+  "aggregate": "All three independently pass HRC01-16 and HR01-18 design trace.",
+  "reviewed_normative_sha256": {
+    "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md": "bb5453f9078a2c7ec4d45762d522ab75d52c35dfcf15685b1b6c8f1a53a50803",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/execution-contract.md": "ac09cc3115640f788fba8f3c29e0b981e18e43ae29846e5fe9585a3099f24a69",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/readiness-plan.md": "94c37e845c0acc4c8f79568c57060dd65df01b20def54abf78c1cf177bba6cd2",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/isolation-requirements.md": "a50069c9ede478c2387ed819e15cc949223e14bd0635ee9dcc5aa14b0bb60264",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/effects-envelope.json": "4b6273c2a629affd02e388574a0b1715334456c921611e55e069122f7b0b4315",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass2/criteria.md": "878f063157431d6569950e1a8821d4b118ce35395e84316806159dd46fbe1046",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass2/roster.json": "7e56b51df9f7e3bff2520fc6c22948716d111cc695827e70bd0da9844f7f7e93",
+    "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass2/corrections.json": "a8d1b223b1ef28ce2ca67eddb6bff43c8c0d604c997ad303aeb4852030600ee2"
+  },
+  "business_pins_unchanged": {
+    "docs/planning/active/command-refactor/package-impact-assessment.md": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+    "docs/planning/active/command-refactor/test-migration-plan.md": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c",
+    "docs/planning/active/command-refactor/command-architecture-update-plan.md": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1",
+    "docs/planning/active/command-refactor/guide-update-handoff.md": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9",
+    "docs/planning/active/command-refactor/embedding-compatibility-contract.md": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+    "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/review-criteria.md": "0bc426c0ed16c0feab720e7b4d597c0de28f924feb58e26945637457bb9aaf62",
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round6-authorization.json": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b"
+  },
+  "controller_frozen_boundary": "PASS: all17941 hashes,27 authority pins,nine metadata records, unchanged logical index/HEAD/branch/status/staging.",
+  "eight_checks_per_seat": "All exit0; administrative/whitespace, not runtime tests.",
+  "loop_disposition": "Stop early after two of four authorized passes; do not launch pass3 or pass4.",
+  "construction_effects_window_acceptance_delivery_authority": false,
+  "limitations": [
+    "No runtime tests, builds, installs, endpoint/model calls, native platform or actual LM Studio status qualification occurred.",
+    "Root Ruff534, root test_display conflict and registry formatting remain historical failed/unwaived, not rerun.",
+    "Native/tool-child read/write qualification, backend discovery, operator model/window facts and end-to-end manual usability remain future implementation/activation proof."
+  ],
+  "review_disclosures": [
+    "Opus disclosed provider-harness automatic persistence of installed LiteLLM source grep output under its ~/.claude tool-results. Controller classifies this as host-managed capture, not a reviewer-directed command write, checkout/supplied-root write or production environment mutation. It gives no isolation proof for the future harness. No private credentials were reported in that source-only artifact; it was not copied or read by the controller.",
+    "Opus report table says95 paths whereas the frozen request and successful helper verify97; its authority prose miscounts policy files. Exact request/pins/helper outputs control. These reporting inaccuracies do not change the reviewed bytes or criterion outcomes; raw report remains unchanged."
+  ]
+}

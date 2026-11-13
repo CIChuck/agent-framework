@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "scope": "One classification per source identity despite multiple inventory roles; no extra test-node credit.",
+  "dual_role_paths": [
+    {
+      "path": "packages/friday-chat/tests_chat/fixtures/mcp_execution_peer.py",
+      "sha256": "f972ff2b71dea5dcc89d988d358a9a21bcee1006d4e9bfade77ae3ba4135e1ac",
+      "roles": [
+        "fixture_payload",
+        "support_module"
+      ],
+      "A3_rule": "One canonical case-level support record lists both roles, offline/live imports/use, affected nodes and single edit/disposition authority. Inventory appearances do not create two exceptions or executed-test credit."
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/friday_modern_tools_server.py",
+      "sha256": "faaf068e2b83eaa6a5248b760bfd243a60a46b5506826cf67668de68393e3899",
+      "roles": [
+        "fixture_payload",
+        "support_module"
+      ],
+      "A3_rule": "One canonical case-level support record lists both roles, offline/live imports/use, affected nodes and single edit/disposition authority. Inventory appearances do not create two exceptions or executed-test credit."
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py",
+      "sha256": "bab26932a97bedbecca9b4d6e80b678d0c93390c2e566ec7bb95fd3374b3b61e",
+      "roles": [
+        "fixture_payload",
+        "support_module"
+      ],
+      "A3_rule": "One canonical case-level support record lists both roles, offline/live imports/use, affected nodes and single edit/disposition authority. Inventory appearances do not create two exceptions or executed-test credit."
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py",
+      "sha256": "8898696a9dd2068844389c54655e4d0cbfdbf155a99d7a6e0ce36010642d1175",
+      "roles": [
+        "fixture_payload",
+        "support_module"
+      ],
+      "A3_rule": "One canonical case-level support record lists both roles, offline/live imports/use, affected nodes and single edit/disposition authority. Inventory appearances do not create two exceptions or executed-test credit."
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py",
+      "sha256": "f2cfb56dba97bab9dffe5a4a1cb0f27f4c1faf4773a2e5057a0adff7b251a8ec",
+      "roles": [
+        "fixture_payload",
+        "support_module"
+      ],
+      "A3_rule": "One canonical case-level support record lists both roles, offline/live imports/use, affected nodes and single edit/disposition authority. Inventory appearances do not create two exceptions or executed-test credit."
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py",
+      "sha256": "ebf33b8779d88dabc68bd5a53126797dcabef26a4b7f021d87d5d861349a59dd",
+      "roles": [
+        "fixture_payload",
+        "support_module"
+      ],
+      "A3_rule": "One canonical case-level support record lists both roles, offline/live imports/use, affected nodes and single edit/disposition authority. Inventory appearances do not create two exceptions or executed-test credit."
+    }
+  ],
+  "static_test_node_credit": 0
+}

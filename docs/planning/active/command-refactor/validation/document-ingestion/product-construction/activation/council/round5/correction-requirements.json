@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "scope": "Neutral correction requirements first, then full unchanged Review A1-A8; no peer conclusions.",
+  "groups": [
+    {
+      "id": "F1",
+      "requirement": "Classify the new direct parser test module and name an I3-C3 contract witness; retain stdlib import-boundary and actual API54 nodes; include classified Runtime DI in I3 selectors. Existing valid oracles retained, no unclassified required selector."
+    },
+    {
+      "id": "F2",
+      "requirement": "Honest settings schema versus declared asset hash failures; settings hash is traceability, not implicit attestation. Runtime-absent /read owns/drains locally; lifecycle constructor kwargs seed one holder with accessors, no stale copies."
+    },
+    {
+      "id": "F3",
+      "requirement": "Shared Tools workbook preflight uses bounded cooperative batches inside heartbeat/cancellation before any converter process, no extraction fallback. Explicit planned IPC state and existing psutil process-tree RSS mechanism/profile. No new source path, thread engine or pre-coding experiment."
+    },
+    {
+      "id": "F4",
+      "requirement": "Current global round5/6, additional pass2/3 under the unchanged review scope/weights/gate; old stops remain historical and no replacement/seventh round is authorized."
+    }
+  ],
+  "global_round": 5,
+  "maximum_global_rounds": 6,
+  "extension_pass": 2,
+  "maximum_additional_passes": 3,
+  "product_or_effects_authority": false
+}

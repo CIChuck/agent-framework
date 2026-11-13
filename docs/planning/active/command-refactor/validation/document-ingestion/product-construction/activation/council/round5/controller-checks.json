@@ -1,0 +1,135 @@
+{
+  "scope": "Controller structural/preservation checks once for activation council round5; not semantic review or readiness proof",
+  "administration": [
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": "",
+      "name": "board"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": "",
+      "name": "dashboard"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1198 Markdown files checked\n",
+      "stderr": "",
+      "name": "docs"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": "",
+      "name": "metadata"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "name": "planning-whitespace"
+    },
+    {
+      "name": "staged-current-planning-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check",
+        "--",
+        "docs/planning",
+        ":(exclude)docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round4/results/opus/entry-pins.txt",
+        ":(exclude)docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round4/results/opus/exit-checks.txt"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "input_bindings_match": true,
+  "reviewed_instruction_bytes_unchanged": true,
+  "planned_witness_ids_unique": true,
+  "planned_new_witnesses": 47,
+  "mapped_cases": 49,
+  "source_doc_paths": 91,
+  "preserved_nonplanning_files": 16690,
+  "preserved_symlinks": 26,
+  "preserved_metadata_entries": 8,
+  "execution_log_append_only": true,
+  "canonical_vectors_validated": 5,
+  "raw_utf8_content_vectors_validated": 1,
+  "no_product_or_vendor_tests": true,
+  "no_AST_or_archive_rebuild": true,
+  "new_effects": false,
+  "imported_original_whitespace": {
+    "exit": 2,
+    "scope": "Trailing spaces in two original Opus boundary text receipts; preserve exact evidence bytes, no active planning whitespace issues.",
+    "files": [
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round4/results/opus/entry-pins.txt",
+        "sha256": "5963ad1521d908be9efa9b37db24aeb2159e6c5b54f45e7edeeeef5413628a4d"
+      },
+      {
+        "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round4/results/opus/exit-checks.txt",
+        "sha256": "e09c180ff27bb767486d4402de4063aaa9366d8661ebf49c8dc20ac5a9701198"
+      }
+    ],
+    "normalization_performed": false
+  }
+}

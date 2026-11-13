@@ -1,0 +1,136 @@
+{
+  "outcome": "CHANGES_REQUESTED",
+  "scope": "Construction-directive document readiness/source feasibility only",
+  "reviewed_candidate": "f81453695007cacfa072fe295b8da7aa478438ba",
+  "construction_source": "494eed4f1c15d79d29cf0acc5e2203d7c7ebe5ef",
+  "directive": "../../../../directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md",
+  "directive_sha256": "e44d4e4b28736d66a1de1e66314cb6da25343430dec0933be4ac9f1645ec91ad",
+  "request_sha256": "651d8edfa6d1afb952418ee393b5f1369eadce2ef6b73eeb63eeb61c37320a44",
+  "round": 1,
+  "maximum_authorized_rounds": 1,
+  "all_seats_terminal": true,
+  "target_met": false,
+  "scores_as_reported_not_averaged": true,
+  "coverage_metric_caveat": "Sol/Astra coverage describes review completeness, not candidate compliance. Preserve all scores as reported; each overall score is below 9.5.",
+  "seats": [
+    {
+      "seat": "Sol",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 10.0,
+      "overall": 8.9,
+      "report": "reports/sol-report.md",
+      "sha256": "f49c3c70f53b8b287e4f908dcef489562f9b3c7502ab24a38216a6b5a34aaf23",
+      "mandatory_findings": [
+        "IGH-R1-SOL-001"
+      ],
+      "opening_and_closing_integrity": "PASS",
+      "eight_admin_checks": "PASS",
+      "executed_runtime_tests_or_model_calls": false
+    },
+    {
+      "seat": "Astra",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 10.0,
+      "overall": 8.7,
+      "report": "reports/astra-report.md",
+      "sha256": "8a775caf6eaef140f6d96d66e26ed8162279ca3ec5745030aebfd127ef115e8e",
+      "mandatory_findings": [
+        "IGH-R1-ASTRA-001"
+      ],
+      "opening_and_closing_integrity": "PASS",
+      "eight_admin_checks": "PASS",
+      "executed_runtime_tests_or_model_calls": false
+    },
+    {
+      "seat": "Opus",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 8.6,
+      "overall": 8.3,
+      "report": "reports/opus-report.md",
+      "sha256": "7f074008e7d4e8dda92672e06a8ccfda83687accd7cdb85061fe3d00b96f2644",
+      "mandatory_findings": [
+        "IGH-R1-OPUS-001",
+        "IGH-R1-OPUS-002",
+        "IGH-R1-OPUS-003",
+        "IGH-R1-OPUS-004",
+        "IGH-R1-OPUS-005"
+      ],
+      "opening_and_closing_integrity": "PASS",
+      "eight_admin_checks": "PASS",
+      "executed_runtime_tests_or_model_calls": false
+    }
+  ],
+  "mandatory_ids": 7,
+  "correction_groups": [
+    {
+      "id": "C01",
+      "reports": [
+        "IGH-R1-SOL-001",
+        "IGH-R1-ASTRA-001"
+      ],
+      "reported_severity": "High",
+      "issue": "Trusted Python startup before harness guards",
+      "recommended_scope": "Revise launch/import contract and future startup-canary controls; verify target-version normal/-O behavior. No production interpreter changes.",
+      "status": "OPEN_NOT_REMEDIATED"
+    },
+    {
+      "id": "C02",
+      "reports": [
+        "IGH-R1-OPUS-001"
+      ],
+      "reported_severity": "Major",
+      "issue": "Promotion/resume/window lifecycle and time accounting",
+      "recommended_scope": "Explicit append-only promotion/binding records; all stops at missing promotion/window. Preserve approved numeric caps and total active-execution allowance; do not grant two hours per stage.",
+      "status": "OPEN_NOT_REMEDIATED"
+    },
+    {
+      "id": "C03",
+      "reports": [
+        "IGH-R1-OPUS-002"
+      ],
+      "reported_severity": "Medium",
+      "issue": "Ambient tool configuration/credentials/proxies/upward discovery",
+      "recommended_scope": "Tool-version-qualified no-config/explicit-root/credential/proxy controls and negative proof, without repurposing real HOME or modifying user settings.",
+      "status": "OPEN_NOT_REMEDIATED"
+    },
+    {
+      "id": "C04",
+      "reports": [
+        "IGH-R1-OPUS-003"
+      ],
+      "reported_severity": "Medium",
+      "issue": "Commit-bound export and source-Git non-mutation",
+      "recommended_scope": "Read-only object export of a recorded commit/tree, explicit included paths, no dirty/untracked/ignored data or mutating Git commands; protect logical index/HEAD/refs and classify host checkpoint writes separately.",
+      "status": "OPEN_NOT_REMEDIATED"
+    },
+    {
+      "id": "C05",
+      "reports": [
+        "IGH-R1-OPUS-004"
+      ],
+      "reported_severity": "Medium",
+      "issue": "Preventive versus detective containment and fallback-cache evidence",
+      "recommended_scope": "Explicit control matrix and bounded declared metadata observations; no user-cache payload scans. Detection neither proves prevention nor excuses a forbidden write. Stop if strict boundary cannot be substantiated.",
+      "status": "OPEN_NOT_REMEDIATED"
+    },
+    {
+      "id": "C06",
+      "reports": [
+        "IGH-R1-OPUS-005"
+      ],
+      "reported_severity": "Medium",
+      "issue": "Loaded-model/JIT/TTL/eviction preconditions",
+      "recommended_scope": "Operator-attested loaded instance/settings and version-qualified read-only observations before batches. Keep shared endpoint permission; no harness management calls or automatic server-setting change.",
+      "status": "OPEN_NOT_REMEDIATED"
+    }
+  ],
+  "advisories": "advisory-disposition.md",
+  "archive_map": "archive-map.json",
+  "controller_source_check": "source-corroboration.json",
+  "controller_final_frozen_boundary": "evidence/controller-post-review-integrity.json",
+  "controller_disposition": "Accept six design-gap groups for bounded correction planning, without changing the directive or executing mitigations. No finding is closed.",
+  "authority_metadata_clarification": "Current council is explicitly authorized and complete; earlier preparation-only council_authority wording is superseded at closeout. Frozen directive remains unchanged.",
+  "production_scope": "No production source/config/lock/env/store change or test environment creation. All review changes were planning metadata; reviewers wrote only their own external scratch.",
+  "next_gate": "Maintainer disposition of the bounded correction list and any fresh review authorization; no automatic remediation/loop/replacement, construction, activation, acceptance or delivery.",
+  "controller_archive_packaging_correction": "evidence/controller-archive-packaging.json"
+}

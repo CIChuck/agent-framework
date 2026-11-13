@@ -1,0 +1,62 @@
+[
+  {
+    "path": "evidence/commands.json.gz",
+    "raw_sha256": "176d6c6b07cb3259011b8b37650246c76de3d8fb99be56eae9230a0f934a660a",
+    "gzip_sha256": "f03ed5b05a141b422f8c7eb18bb4c71a5077eb8535ad3aae0b4f26e453a79650"
+  },
+  {
+    "path": "evidence/summary.json.gz",
+    "raw_sha256": "3c2e768efd36104718b3a7e14972407c4744ecce264e677d11a0fcd34d665472",
+    "gzip_sha256": "2026540a66cfaf2fbed9f3b994579e2302516038b252a4a373342e2cbb699883"
+  },
+  {
+    "path": "evidence/regression-profile.json.gz",
+    "raw_sha256": "16d76ddc8be7300759044cd7dcf798d0f4857ec54a5f5ff04b3b3df4d6cf6109",
+    "gzip_sha256": "519c43479a99c9b0d8f9f3a75b1615db4ab6c873fe90d6bc7c2267733e533046"
+  },
+  {
+    "path": "evidence/retained-tests.json.gz",
+    "raw_sha256": "875c4c25b5411b31d011d041f4fe32b0c6f9d6e007a58b0fe31d2139fcf8da62",
+    "gzip_sha256": "fb146d83a6699978b4db759ec763cfff21544026fc68ae9ad96b5c3ad507a977"
+  },
+  {
+    "path": "evidence/mypy.json.gz",
+    "raw_sha256": "a527fd6dbb67961ee07bc6727f8bd529d29824197db25c35d3910dd49fb760af",
+    "gzip_sha256": "773357f755d2f23c8d5b616f7724aa2d9522e361793d31a9a310b90a91f1f511"
+  },
+  {
+    "path": "evidence/preservation.json.gz",
+    "raw_sha256": "7303d9eaf11d07e1b6003a25a1945d163c066f087053dfb6b3d3341a18f2c2e7",
+    "gzip_sha256": "f4f882f54487a468d876dc653068d2851831532136f96aefaf416a3dc468b4f9"
+  },
+  {
+    "path": "evidence/formal-driver.py.txt.gz",
+    "raw_sha256": "452a3bc8e462fb636d2b26838628d28471824da4c9b71065b35b1d5627a4b235",
+    "gzip_sha256": "59942d361d045426b5e6d991a41b687ff8ada7128be9ac1feb13fa32c9ad682f"
+  },
+  {
+    "path": "evidence/static-driver.py.txt.gz",
+    "raw_sha256": "c4881cf0474b3d2cc5b383017ce9ebbb9fe37160a6664ce0d77e3638f6c25db9",
+    "gzip_sha256": "0aa0a63d59e6a3d52496466f727f06b26dbdf5a300504e000818151bc488e465"
+  },
+  {
+    "path": "evidence/tag-regression-worker.py.txt.gz",
+    "raw_sha256": "b7b8fc5a67bd3193d433c4d3f8b8038d0e45ce8beda247e7883dee09615470fe",
+    "gzip_sha256": "f57897b18e78a687918189c64c5b766e06971e02594df776efe790b5eeed99ff"
+  },
+  {
+    "path": "evidence/unfixed-source-manifest.json.gz",
+    "raw_sha256": "c9197333b7b124b73fe086a759a9e25d909d6814e4b85cb1b16287a8975a305a",
+    "gzip_sha256": "f5095890fabc9afa1ca8b3b58a3bcbb16241dab08ed6bc183a808aec37e7000f"
+  },
+  {
+    "path": "evidence/static.json.gz",
+    "raw_sha256": "437d697f2aa4da88fa43f1e467bdeecee2313f1e040ced176a481e8ee9c20e26",
+    "gzip_sha256": "e2ec8e176db37b92f85e3dd033effd3d73838cfb8286d6575e165d3e46584c86"
+  },
+  {
+    "path": "evidence/administration.json.gz",
+    "raw_sha256": "d8b9eeb8db47f9163f4f2038353d40b01bb1883f5a9ef9c525bd2bc733a99fa0",
+    "gzip_sha256": "e605c04e44085af9c4ce48e1bbbd23f61f4a59f74adba71a150593edacaa55f0"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "board",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "exit": 0,
+    "output": "Development board validation passed: 36 tasks\n"
+  },
+  {
+    "id": "dashboard",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "exit": 0,
+    "output": "Planning dashboard is current\n"
+  },
+  {
+    "id": "docs",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    "exit": 0,
+    "output": "Documentation lifecycle validation passed: 978 Markdown files checked\n"
+  },
+  {
+    "id": "metadata",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-package-metadata.py"
+    ],
+    "exit": 0,
+    "output": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n"
+  },
+  {
+    "id": "whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "c36e7ee51a9328918b9bb97712aa7f1d4a850d19..8be50b1218fc4db67fbd5d546fea9d7be6a2fd64"
+    ],
+    "exit": 0,
+    "output": ""
+  }
+]

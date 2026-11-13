@@ -1,0 +1,42 @@
+{
+  "packages/friday-chat/config.example.yaml": {
+    "mode": 33188,
+    "size": 30129,
+    "mtime_ns": 1794334784972093361,
+    "ctime_ns": 1794334784972093361,
+    "sha256": "7c31a9ad3f6a7ff1cfc891cace6c4b3cde21d10202770c374a38c6cc28620f32"
+  },
+  "packages/friday-chat/models-config.example.yaml": {
+    "mode": 33188,
+    "size": 3962,
+    "mtime_ns": 1794264005521487739,
+    "ctime_ns": 1794264005521487739,
+    "sha256": "5cf3d15ec469d3b8e495248d3aec9ed7bcdb48b68243668b6dbbbb3e0b0326c9"
+  },
+  ".friday-old": {
+    "mode": 16877,
+    "size": 256,
+    "mtime_ns": 1794312848481691252,
+    "ctime_ns": 1794312880963718202
+  },
+  "exports": {
+    "mode": 16877,
+    "size": 128,
+    "mtime_ns": 1794172873430987983,
+    "ctime_ns": 1794172873430987983
+  },
+  "exports/friday_context.txt": {
+    "mode": 33188,
+    "size": 6,
+    "mtime_ns": 1794173419969663853,
+    "ctime_ns": 1794173419969663853,
+    "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+  },
+  "exports/friday_prompt.txt": {
+    "mode": 33188,
+    "size": 6,
+    "mtime_ns": 1794173419970166478,
+    "ctime_ns": 1794173419970166478,
+    "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+  }
+}

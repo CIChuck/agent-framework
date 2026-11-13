@@ -1,0 +1,148 @@
+{
+  "scope": "documentation-only draft preparation; no independent council or implementation claim",
+  "administration": [
+    {
+      "name": "render",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render"
+      ],
+      "exit": 0,
+      "stdout": "Rendered docs/planning/README.md\n",
+      "stderr": ""
+    },
+    {
+      "name": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "name": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "name": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1129 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "name": "whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 2,
+      "stdout": "packages/friday-chat/models-config.example.yaml:130: trailing whitespace.\n+      model_id: google/gemini-2.5-flash \npackages/friday-chat/models-config.example.yaml:142: trailing whitespace.\n+  \npackages/friday-chat/models-config.example.yaml:142: new blank line at EOF.\n",
+      "stderr": ""
+    },
+    {
+      "name": "staged-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "owned-planning-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "authority_pins_verified": 24,
+  "inventory_modules_verified": 237,
+  "inventory_fixture_files_verified": 72,
+  "preservation": {
+    "passed": true,
+    "protected_files": 16690,
+    "symlinks": 26,
+    "metadata_entries": 8,
+    "errors": [],
+    "logical_index_before_status": "30993b295bf44753eb7de0b7469232ba35e9e8d69c1b63ade12e5ae21e1c3cb3"
+  },
+  "baseline_whitespace_debt": {
+    "command": "git diff --check",
+    "exit": 2,
+    "path": "packages/friday-chat/models-config.example.yaml",
+    "unchanged_from_opening_sha256": "5cf3d15ec469d3b8e495248d3aec9ed7bcdb48b68243668b6dbbbb3e0b0326c9",
+    "disposition": "Failed/unwaived protected user whitespace; owned planning whitespace passes. No fix or source alteration."
+  }
+}

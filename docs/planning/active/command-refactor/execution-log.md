@@ -2722,3 +2722,1826 @@ has been executed or accepted through this documentation change.
   in the PR. INGEST is planning only. No merge, release or agents authorized.
 - Uncommitted user YAML and .friday-old/ excluded; ignored exports untouched.
 - **Next gate:** Review PR #15 against master; INGEST-001 remains planning-only pending document/readiness review. MAINT-001 human UAT/acceptance pending. Delivery pushed.
+
+
+## 2026-11-10T20:43:27.753975+00:00 — INGEST-001 branch isolated from published command refactor
+
+- Created and checked out feature/cmd-ingest-001 from parent df62b77d after PR #15
+  publication. No rebase, cherry-pick, cleanup or new product change.
+- Updated current board/packet branch and narrowed current authority to
+  design_only. Historical approvals, frozen review inputs and pending MAINT
+  human UAT/acceptance retain their prior scope.
+- Branch handoff records the pending-parent comparison, squash-merge caveat and
+  exact INGEST readiness/approval boundaries. All current decisions are retained.
+- Preserved user YAML/generated state; no council, model install or store reset.
+- **Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001; parent PR #15 targets master. MAINT-001 human UAT/acceptance pending. Delivery pushed.
+
+
+## 2026-11-10T20:56:50.699900+00:00 — parent PR merge reconciled on scoped INGEST branch
+
+- Maintainer reports PR #15 merged and remote branch deleted; verified GitHub
+  merged=true at c36e7ee5 and absent remote feature/command-retirement.
+- Fetched/pruned remote refs. Integrated merged master with a regular merge
+  (c7d6476358acf6a11534bfae0d912d17d432ce46); existing published planning commit is preserved.
+  No rebase, force push, local branch deletion or stash.
+- Future INGEST diffs target master. Board delivery remains pushed for this
+  active unmerged branch; the parent's merged delivery is recorded separately.
+- Product/runtime remains unchanged; no council, model install, store reset or
+  human acceptance inferred. Protected user configuration/generated state retained.
+- **Next gate:** Review INGEST-001 document/readiness and exact construction scope on feature/cmd-ingest-001 against merged master; MAINT-001 human UAT/acceptance pending. INGEST delivery pushed; parent PR #15 merged.
+
+
+## 2026-11-10T21:02:12.052548+00:00 — three-seat deep INGEST-001 design council authorized
+
+- Maintainer explicitly adds Anthropic Claude Opus5.5 to OpenAI GPT-6.1 Sol and
+  GPT-6 Astra, requesting a deep full review of REM-CMD-INGEST-001. Available
+  provider/model identities resolved; all three seats use high effort.
+- Administrative roster/status freeze only. No proposal repairs or product
+  implementation, dependency/model operations or store reset. Each reviewer
+  gets a fresh context, exact pinned request and private scratch, without peer
+  reports or controller reasoning. Review includes source feasibility and
+  planned proof, not an invented claim that future implementation exists.
+- **Next gate:** Reconcile fresh GPT-6.1 Sol/GPT-6 Astra/Claude Opus5.5 round1 deep design review of REM-CMD-INGEST-001; dependency/model readiness and exact construction approval remain pending. MAINT human UAT/acceptance separate.
+
+
+## 2026-11-10T21:25:05.426858+00:00 — INGEST-001 deep design council reconciled, changes requested
+
+- All requested seats terminal: Sol8.1, Astra8.5, Opus7.3, each CHANGES_REQUESTED.
+  Eleven raw mandatory IDs map to eight open planning themes; none is waived
+  by score or majority. Exact reports, boundary receipts and immutable inputs
+  are preserved under validation/document-ingestion/council-round1/.
+- Storage/cache unit ownership, durable embedding identity, role inventory,
+  missing capacity fields, non-Docling defaults, tokenizer execution, Office
+  structural admission and absent web/automatic-tool routes require disposition.
+- Opus discloses two Git calls without explicit optional-lock refusal. Complete
+  all-command conformance is not certified; source findings remain qualified
+  evidence. Start/end and controller frozen integrity pass. No cleanup/reissue.
+- Controller source checks confirm the key handoff/role hazards; no runtime
+  behavior or selected-release readiness is claimed. Technical proposal and
+  companion bytes remain unchanged. Product/tests/lock/config remain preserved.
+- Execution phase: planning; validation state: changes_requested. No installation,
+  model activation, user-store operation, technical remediation or new council.
+- **Next gate:** Review the reconciled INGEST round1 findings and authorize a bounded document-only revision; resolve storage/cache ownership, embedding identity/capacity, Office audit and actual route scope before any new council, gate A or construction. MAINT human UAT/acceptance remain separate.
+
+
+## 2026-11-10T21:46:08.742345+00:00 — INGEST-001 document correction and bounded iteration authorized
+
+- Chuck Russell authorizes the council-derived document revision and up to three
+  additional fresh rounds (2–4), stopping with every seat VERIFIED >=9.5 and no
+  mandatory finding. Original reports remain immutable; no score averaging.
+- Proposed ownership now includes injected headless storage/cache entry, raw vs
+  derived records, durable store/graph-vector identity and complete role audit.
+  Missing capabilities refuse at embedding use; text document-default is shared
+  without Docling; local tokenizer/Office audit/execution rules are explicit.
+- Actual maintained, callable and absent web/tool routes are separated. Quoting,
+  literal flags, vector ordering, truncation and resource/cancellation advisories
+  are addressed without a new fetcher, automatic storage or runtime framework.
+- Technical proposal/companion changed; no product/tests/dependency/model/store
+  operations. MAINT authority/history and dirty/generated local state preserved.
+- Execution phase: planning; validation state: in_review (round2 design).
+- **Next gate:** Reconcile fresh Sol/Astra/Opus round2 of corrected INGEST design; repeat document-only within rounds2–4 budget until every seat VERIFIED >=9.5 with no mandatory findings. Gate A/implementation and MAINT human acceptance remain separate.
+
+
+## 2026-11-10T22:11:51.549781+00:00 — INGEST council round2 reconciled; bounded correction draft
+
+- Sol VERIFIED9.5; Astra CHANGES_REQUESTED9.0; Opus CHANGES_REQUESTED8.4.
+  Reports/24-criterion matrices/raw hashes and frozen input evidence preserved.
+  Opus's post-check Git wrapper omission remains qualified, not certified clean.
+- Recovery snapshots/restore, direct clients, Runtime/Core/CLI composition and
+  destination storage receipts are specified without changing maintenance order.
+  Read-only startup, real smart_read wiring, hosted limits, CSV coverage, graph
+  refusal, inactive migration and exact flag wording are clarified in draft.
+- Opus M-1 requires an explicit upgrade behavior decision distinct from the
+  earlier test-only fresh-store choice. A concise preference question is pending;
+  no answer is inferred. Round3 is not dispatched before it is settled.
+- Execution phase: planning; validation state: changes_requested. No product,
+  dependency/model, store, human acceptance or delivery operation. Two authorized
+  further rounds (3–4) remain; user-local state and prior reports preserved.
+- **Next gate:** Resolve the pending existing-store upgrade preference, then freeze the corrected INGEST documents for fresh Sol/Astra/Opus round3. Rounds3–4 remain; every seat must be VERIFIED >=9.5 with no mandatory findings. Gate A/construction and MAINT human acceptance remain separate.
+
+
+## 2026-11-10T22:25:35.384333+00:00 — existing-store upgrade choice recorded; corrected round3 freeze
+
+- Chuck Russell explicitly requires a configured fresh store for legacy-unbound
+  state, preserving old files and /read. This separately settles upgrade behavior;
+  the earlier testing-only choice is not retrospectively relabeled. No legacy mode.
+- The REM now specifies existing destination fields, typed open intent, fresh
+  graph/WAL layout, deferred startup and a root-state/operation matrix. Refusal
+  precedes clients, models, graph loading and old-root lease/temp writes.
+- Recovery/direct clients, Runtime/Core/CLI, destination receipts and remaining
+  advisories are ready for fresh delta-first/full-design round3. Round4 remains
+  the final permitted pass if needed; each seat must be VERIFIED >=9.5/no findings.
+- Execution phase: planning; validation state: in_review. All actual product,
+  dependency/model, user-store, acceptance and delivery operations remain absent.
+- **Next gate:** Reconcile fresh Sol/Astra/Opus round3 of the corrected INGEST design and explicit fresh-store upgrade policy. Each seat must be VERIFIED >=9.5 with no mandatory findings; round4 is the last remaining authorized pass if needed. Gate A/construction and MAINT human acceptance remain separate.
+
+
+## 2026-11-10T22:49:20.621400+00:00 — INGEST round3 reconciled; final round4 correction freeze
+
+- Round3: Sol VERIFIED9.6; Astra CHANGES_REQUESTED9.2; Opus procedural BLOCKED
+  with separate technical CHANGES_REQUESTED9.15. Raw reports, matrices, request,
+  wrappers and17583-entry/six-record frozen integrity preserved unchanged.
+- Corrected Chat's typed Memory-v2/aggregate-v2 handoff and exact public scope,
+  without rebinding old classes or changing Chat path/journal fingerprints.
+  Fresh CREATE requires raw explicit origin and absent vector/graph/WAL paths;
+  unset defaults, Runtime container reuse and side effects are unambiguous.
+- Bounded advisories cover import edges, direct-client namespace fall-through,
+  inert service objects, disjoint marker rows, backup guidance and one trace map.
+- For future round4, wrapper enforcement targets Git/repository/admin subprocesses;
+  plain scratch reads/report hashing are permitted. Old BLOCKED result stands.
+- Execution phase: planning; validation state: in_review. Round4 is the last
+  authorized pass. No product, install, model/store, acceptance or delivery work.
+- **Next gate:** Reconcile the final authorized Sol/Astra/Opus round4 of corrected INGEST documents. Pass only if every seat is independently VERIFIED >=9.5 with no mandatory findings; otherwise return remaining issues without a fifth pass. Gate A/construction and MAINT human acceptance remain separate.
+
+
+## 2026-11-10T23:05:43.462778+00:00 — INGEST-001 design council VERIFIED, all-seat target met
+
+- Final round4: Sol9.6, Astra9.6, Opus9.5, each VERIFIED, all30 criteria PASS,
+  zero mandatory findings. Original reports and Git/admin/boundary receipts
+  preserved with exact hashes. No averaging or earlier-verdict carry-forward.
+- Controller final frozen integrity matches17606 protected entries/six metadata
+  records, HEAD/branch/index/status/staging. Reviewed REM/companion remain exact.
+- Opus's six advisories are nonblocking future Gate-A/directive inputs, not
+  independently closed or applied to the reviewed artifacts. Readiness execution
+  and every installed/product proof are still pending. Historical debt unwaived.
+- The initial council plus three authorized additional rounds are complete; all
+  current seats terminal, no fifth pass or replacement. Prior BLOCKED/changes
+  requested records retain their original candidate-specific meaning.
+- Execution phase: planning; validation state: verified (document/design only).
+  No dependency/model, product/test/build, store, MAINT acceptance or delivery
+  action follows automatically. User-edited/generated state remains preserved.
+- **Next gate:** Review the VERIFIED INGEST design handoff and separately activate a bounded Gate-A effects envelope for isolated dependency/model/counter/format readiness. Freeze and approve the exact construction directive before product code. Six nonblocking advisories carry forward; MAINT human UAT/acceptance and delivery remain separate.
+
+
+## 2026-11-11T00:46:21.895426+00:00 — INGEST embedding-pool compatibility premise recorded
+
+- Chuck Russell requests explicit backward compatibility for existing embedding
+  configurations and their consumers. The REM retains pool/non-pool shapes,
+  service/profile/default selection and embedding interfaces. Omitted new YAML
+  fields may resolve from qualified artifact-bound readiness; inability to
+  qualify a baseline deployment stops readiness, not a silent compatibility pass.
+- Added subsystem trace rows and DI-33 proof for extraction/graph/recall,
+  maintenance including stored-vector consumers, lifecycle/compaction and
+  ingestion. Shared LLM guards and Memory admission remain the policy owners.
+- The explicit fresh-store policy and safety/preparation exceptions remain;
+  configuration compatibility does not authorize legacy-unbound stores or mixed
+  spaces. No actual configuration, model or store changed.
+- Exact prior council inputs/reports remain unchanged. Their VERIFIED scores
+  cover728cba77 only; the current amendment has validation_state pending.
+  No further council is launched or inferred. Document-only authorization and
+  scope are recorded in validation/document-ingestion/embedding-pool-compatibility.json.
+- Execution phase: planning; validation state: pending. No product generation,
+  package/model operations, user-store reads/reset, acceptance or delivery.
+- **Next gate:** Review the revised INGEST embedding-pool backward-compatibility contract and DI-33 proof requirements. Earlier round4 verification applies only to 728cba77; no further council is active or automatically authorized. Gate-A effects activation and exact construction-directive approval remain separate; preserve the fresh-store policy and MAINT human acceptance boundary.
+
+
+## 2026-11-11T01:11:28.895397+00:00 — framework-wide INGEST embedding compatibility council authorized
+
+- Chuck Russell explicitly requests one fresh council and clarifies its audit
+  universe includes subsystems not named in the REM. All maintained packages,
+  entrypoints and indirect contract/store consumers must be classified.
+- Two cases: unchanged existing configuration, and replacement model with an
+  explicitly selected fresh compatible vector/graph namespace. No data reset,
+  deletion, migration, re-embedding or model/provider execution occurs here.
+- Sol, Astra and Opus each receive identical read-only scope and private output
+  requirements. Prior scores/verdicts are historical, not correctness evidence.
+- Execution phase: planning; validation state: in_review (round5). One pass only;
+  findings return for disposition without an automatic remediation loop.
+- **Next gate:** Reconcile the single authorized round5 Sol/Astra/Opus framework-wide embedding compatibility council, including unnamed subsystems and replacement-model/fresh-namespace behavior. Require independent VERIFIED >=9.5 with no mandatory findings before claiming design readiness; no automatic repair/review loop, Gate-A, construction, store reset or delivery.
+
+
+## 2026-11-11T01:37:37.401608+00:00 — INGEST framework-wide council reconciled, changes requested
+
+- Sol8.6 and Opus7.2 return CHANGES_REQUESTED. Astra is formally BLOCKED for
+  authority-isolation conduct; provisional8.4 and technical observations are
+  preserved without treating them as a valid signoff. No all-seat gate pass.
+- Raw reports/audits/start-end checks match exact hashes. Controller source
+  checks consolidate nine technical themes and qualify the already-disabled
+  module CLI mutations accurately. Whole-framework consumer/scenario matrices
+  and all18 criterion rows remain available in each report.
+- Frozen integrity passed17643 entries/six metadata records before closeout.
+  No product tests/imports/builds, model/provider/store operations or installs
+  ran. The current REM and companion remain exact; no technical repair occurs.
+- This completes the single authorized review. No retry, replacement, new
+  council or automatic correction loop is started. Earlier reviews remain
+  candidate-specific history; MAINT acceptance and delivery are separate.
+- Execution phase: planning; validation state: changes_requested.
+- **Next gate:** Review round5 framework-wide embedding compatibility findings and decide bounded REM corrections for nine technical themes and advisory dispositions. Sol8.6/Opus7.2 request changes; Astra is procedurally BLOCKED, with no formal signoff. Fresh review requires separate authorization after a new freeze; no automatic repair loop, Gate-A, construction, store reset or delivery.
+
+
+## 2026-11-11T02:04:15.454127+00:00 — revised framework compatibility contract; four-pass council cycle
+
+- Chuck Russell explicitly authorizes incorporation of nine technical themes and
+  selected high/medium advisories, then one fresh council plus up to three
+  document correction/review iterations (four total). The latest-after-fourth
+  guidance stop and honest per-seat coverage/overall9.5 gates are recorded.
+- Proposed normative annex binds B01–B08, FC-01–14, actual source routes and
+  exact B/N/R proof. REM/Tools companion correct the active MCP route; logging,
+  profile persistence, acknowledgement/count errors, hidden embedders and public
+  legacy surfaces now have narrow explicit dispositions and allowed paths.
+- Legacy physical-copy live backup is an explicit proposed compatibility
+  exception; maintained v2 recovery success remains required. No source code,
+  tests/config/dependencies/lock or user state changed. Future final construction
+  directive must approve exact exceptions/signatures after Gate A.
+- Historical raw reports remain unchanged. Fresh reviewers receive an exact
+  current-controls view, not a broad historical authority search. No inherited
+  verdict or lowered standard; no model/store operations in this planning work.
+- Execution phase: planning; validation state: in_review (pass1/4, global round6).
+- **Next gate:** Reconcile compatibility-cycle pass1/4 (global round6) fresh Sol/Astra/Opus reviews of the revised REM and normative framework contract. Require every seat VERIFIED with coverage and overall scores >=9.5 and no mandatory findings; otherwise bounded document corrections within four total passes, then stop for maintainer guidance. No Gate-A, code, model/store reset or delivery.
+
+
+## INGEST compatibility cycle pass1 reconciliation and pass2 correction — 2026-11-10
+
+Frozen pass1 `8d25d53a` did not meet the gate: Sol coverage9.1/overall8.8,
+Astra9.0/8.7, Opus7.7/8.0 (technical scores provisional after disclosed dirty-YAML
+read). Exact raw reports and conduct disposition are preserved in
+[round6](validation/document-ingestion/council-round6/report.md). No runtime
+assurance or finding closure is inferred. All six-record/protected integrity
+checks passed, and no reviewer wrote product/user state.
+
+Source-confirmed document correction retains public backup creation and bounded
+same-incarnation restore, correctly classifies BOTH graph-scorer APIs as injectable
+only, names maintained extraction catches/acknowledgement and actual owned task
+status, defines real Chat MCP outcome mapping and per-owner rejection-log lifecycle,
+and names ephemeral collection isolation despite Chroma's shared in-memory system.
+The high/medium advisories and small status/inspection clarifications are mapped
+to exact scope and future public-call source/installed witnesses. No new scoring
+wiring, scheduler, transaction/backup engine, reset/migration or source code.
+
+Next is fresh pass2/4 (global round7), correction delta first then full current
+bounded design and framework consumer inventory. Two further correction/review
+passes remain after it. Every seat must independently verify with coverage and
+overall >=9.5 and no mandatory findings; stop at pass4 for guidance otherwise.
+Gate-A effects, construction, MAINT acceptance and delivery remain ungranted.
+
+
+## INGEST compatibility pass2 reconciliation and pass3 correction — 2026-11-10
+
+Pass2 `f1916747` remains CHANGES_REQUESTED: Sol coverage9.4/overall9.3,
+Astra9.1/9.0, Opus8.8/8.5. [Round7](validation/document-ingestion/council-round7/report.md)
+preserves exact raw hashes and reports. No runtime/installed proof or acceptance.
+
+Corrected sync/no-fallback versus qualified async missing-vector behavior;
+retained pending snapshot IDs/no-extra-write retry, with no automatic discard;
+reused existing telemetry reason literals in the actual Chat MCP observer,
+with unchanged processor/provider forwarding. The maintainer questioned MCP and
+backup scope: the corrected boundary is causal compatibility only. New backup
+layouts/defaults/member repairs and MCP cleanup/counter protocols are excluded;
+minimum binding safety and paired old-behavior proofs remain, with pre-existing
+physical-copy limits separately recorded as FU-014.
+Exactly35 historical gate lines were restored byte-for-byte from `8d25d53a`;
+future gate edits target only the current checkpoint. Nine advisory dispositions
+name late-task admission, default/standalone logging, metadata consumers, the
+pre-existing inspection query defect and the exact mutation/counter seams.
+No product code, schema deployment, model/store operation or cleanup occurred.
+
+Fresh pass3/4 (global round8) reviews delta first then full bounded design and
+all-framework consumers. At most one later correction/review pass remains.
+Every seat must VERIFIED/no mandatory findings with coverage and overall >=9.5;
+after pass4 stop for maintainer guidance. No automatic Gate-A/construction,
+MAINT acceptance, data reset/migration, push or delivery authority.
+
+
+## INGEST compatibility council reconciled VERIFIED — 2026-11-10
+
+Reviewed `f43368c5`: Sol coverage9.6/overall9.6, Astra9.5/9.5 and Opus9.5/9.5,
+all VERIFIED, zero mandatory findings. [Round8](validation/document-ingestion/council-round8/report.md)
+preserves raw hashes/reports, exact technical pins, all32 criteria and conduct.
+All guarded integrity/admin checks pass; no runtime/installed proof inferred.
+The loop stops after3/4 passes; no fourth council or new sub-agent is launched.
+
+Reviewed REM/annex/Tools bytes are unchanged. Current routing and evidence only
+are reconciled. All11 advisory IDs are carried into the
+[readiness handoff](validation/document-ingestion/council-round8/readiness-carry-forward.md)
+without granting broader repair scope. Historical35 gate lines and prior raw
+reports remain preserved. Gate-A effects envelope review/activation and exact
+qualified construction directive approval remain required before code. No
+installs/models, personal-store cleanup/reset/migration, MAINT/human acceptance,
+push or delivery performed or authorized by this record.
+
+
+## INGEST package impact assessment drafted — 2026-11-11
+
+Chuck conditionally approves the REM and requires satisfaction with overall
+per-package impact before approving the construction directive. His subsequent
+`proceed` authorizes this documentation step. [Assessment v0.1](package-impact-assessment.md)
+maps all 17 workspace packages: eight with proposed implementation changes
+(CLI changes only if needed) and nine with source-unchanged compatibility
+obligations. INGEST and TOOLS-DOC adoption remain separate delivery obligations.
+
+The draft includes dependency/configuration/data effects, required positives
+and refusals, unresolved Gate-A details, and exact-version/hash incorporation
+as a mandatory referenced appendix to the final directive. Its SHA256 is
+`df73594bd39c64190552b7e7e1d3deced9c73d49e09a24405711051492affb60`. Satisfaction with this draft and the remaining approval conditions
+are pending; no execution authority is inferred. The reviewed REM/annex/Tools
+technical bytes and prior council reports are unchanged. No agents, installs,
+product edits, provider/model calls, store operations or delivery were launched.
+
+
+## Package Impact Assessment council authorized — 2026-11-11
+
+Chuck directs fresh council review after the draft is constructed, targeting
+at least 9.5 per seat and a loop of at most four total rounds without further
+routine approval requests. He also requests a direct assessment link to review
+in parallel; that link was provided. [Authorization](validation/document-ingestion/package-impact/iteration-authorization.json)
+records the three named models, honest coverage/overall scoring, bounded
+document corrections and the stop after round4 if the gate is not met.
+
+Execution phase: validation; validation state: in_review, document round1/4.
+The prior technical-design council remains completed at f43368c5. This council
+assesses the new table and its traceability, not implementation or Gate-A proof.
+User satisfaction with the impact and remaining conditions is still pending.
+No product/dependency/configuration changes or model/store operations are
+authorized. Review candidate and private request pins are frozen before dispatch.
+
+
+## Package Impact Assessment round 1 reconciled; v0.2 frozen for round 2 — 2026-11-11
+
+All three seats returned CHANGES_REQUESTED on v0.1 at 72ef265a: Sol
+coverage/overall 9.40/9.40, Astra 9.0/9.1, Opus 8.55/8.65. Seven mandatory
+findings consolidate into four bounded documentation themes; all 13 optional
+advisories are dispositioned in the [reconciliation](validation/document-ingestion/package-impact/round1/reconciliation.json).
+Exact raw reports are archived alongside readable copies. All opening/closing
+identities and five administrative checks passed. No implementation proof
+or safety waiver is inferred.
+
+Assessment v0.2 exposes existing persistent-store/first-run and Runtime root
+effects, YAML/legacy-key precedence, bounded conversion/cancellation,
+multi-agent visibility/partial outcomes and complete DI-01–34 references.
+Optional precision fixes retain existing ownership and exact-version
+approval. SHA256 `c20f4bc8fdc05c77092c1f01c1943c639fd1c163859f1eaad7575bc7ab049501`.
+[Correction brief](validation/document-ingestion/package-impact/correction-cycle1.json)
+preserves each mandatory ID and recheck; closure remains pending fresh
+round 2/4, delta first then full PI-01–16 review. Technical REM/annex/Tools
+pins, source, dependencies, user YAML and state are unchanged. Chuck reviews
+in parallel; satisfaction/conditions, Gate-A and construction remain pending.
+
+
+## Package Impact Assessment council VERIFIED; guide coverage question recorded — 2026-11-11
+
+All three fresh round-2 seats VERIFIED unchanged v0.2 at 1a040de3: Sol
+coverage/overall 9.70/9.60, Astra 9.65/9.60, Opus 9.65/9.60. No mandatory
+findings; all seven original IDs independently closed and all PI-01–16 pass.
+[Reconciliation](validation/document-ingestion/package-impact/round2/reconciliation.json)
+and exact raw report archives preserve evidence, limits and eight optional
+advisories. Every opening/closing identity and required administrative check
+passed. The loop ends after 2/4; no third council or further automatic dispatch.
+
+The assessment remains SHA256
+`c20f4bc8fdc05c77092c1f01c1943c639fd1c163859f1eaad7575bc7ab049501`.
+Only current routing and closeout metadata change. Chuck's package-impact
+satisfaction and remaining conditions still precede final directive approval.
+No Gate-A, source/tests/metadata/lock/config implementation, provider/model/store
+operation, live-guide rewrite, acceptance or push occurred.
+
+Chuck subsequently asked whether the Friday guides are included. The current
+REM names package READMEs/templates but not exact docs/guides paths; current
+guides describe released alpha3 behavior. The proposed [guide-update handoff](guide-update-handoff.md)
+maps scoped installation, architecture, Memory, tools, commands, configuration
+and troubleshooting coverage into the future directive. It was not reviewed
+by the assessment council, changes none of its frozen bytes and supplies no
+new execution authority. Reconcile its exact paths/criteria before construction.
+
+
+## Explicit test restructuring and architecture/documentation requirements — 2026-11-11
+
+Chuck directs that substantial affected-test rewrites and substantive command
+architecture/guide updates be explicit implementation deliverables. In response
+to the two clarifying questions, he selects traceable test restructuring
+(renaming/splitting/replacement/justified retirement with every valid requirement
+covered) and one canonical architecture document plus guide updates.
+[Authorization](validation/document-ingestion/test-doc-revision-authorization.json)
+records the decisions and continuation within the existing four-review cap.
+
+The REM now has G1/G2 and DI-35/36; assessment v0.3 and the test migration,
+architecture and guide plans make the scope and acceptance concrete. Old blanket
+assertion-body preservation is replaced by semantic coverage mapping; no safety
+weakening, unrelated suite overhaul or historical evidence editing is allowed.
+Documentation acceptance includes authored content/diagrams, source/schema/
+metadata mapping, verified representative examples and independent technical
+review alongside structural checks. Actual tests/guides/source are untouched.
+
+Earlier f43368c5 and assessment-v0.2/1a040de3 verdicts remain historical for
+their exact bytes. Fresh round 3 reviews amendment delta then complete current
+requirements; maximum four total rounds is unchanged. Chuck reviews in parallel.
+No product/tests/live-guide implementation, installs, model/store operations,
+Gate-A, acceptance or delivery is authorized by the planning amendment.
+
+
+## Package-impact round3 reconciliation and final correction — 2026-11-11
+
+[Round3 reconciliation](validation/document-ingestion/package-impact/round3/report.md)
+preserves all terminal reports: Sol VERIFIED, Astra BLOCKED by contradictory
+review-input/display instructions, and Opus CHANGES_REQUESTED with three mandatory
+document findings. No advisory score waives the block or findings. The controller
+accepts responsibility for the brief inconsistency and corrects the next review
+inputs prospectively; the blocked seat is not relabelled.
+
+[Bounded correction](validation/document-ingestion/package-impact/correction-cycle2.json)
+qualifies the original REM approval by its old hash, reconciles the annex's test
+preservation rule through named case-level final-directive exceptions, and names
+all three command registries plus CLI placeholders in the architecture plan.
+Related guide/README/test-path/inventory advisories are incorporated. Assessment
+v0.4 and amended REM/plans remain planning requirements; annex and companion,
+production source, tests, live guides, package metadata and user state are unchanged.
+
+Round4 is the fourth and final full council within the original cap. It reviews
+the correction delta then the full current PI-01–18 scope. Every seat must qualify
+independently at coverage/overall >=9.5 with no mandatory finding. Corrected
+inputs exclude raw peer reports and historical routing diffs; past provenance
+labels supply no correctness credit. If unmet, stop for Chuck's guidance without
+a replacement seat, fifth round or automatic implementation. Exact amended
+assessment/REM approval, impact satisfaction, Gate-A and construction remain pending.
+
+
+## Explicit one-round extension and document accuracy correction — 2026-11-11
+
+[Round4 reconciliation](validation/document-ingestion/package-impact/round4/report.md)
+records all three CHANGES_REQUESTED outcomes. After the controller stopped at
+the original four-round limit and requested guidance, Chuck answered proceed
+to the specific bounded corrections plus one additional full council request.
+[The recorded extension](validation/document-ingestion/package-impact/round5-authorization.json)
+authorizes round5 only; the budget is not reset.
+
+The REM/test plan now name actual Transcript and Finance tests/ paths, require
+explicit future suite selectors, and classify any justified Optimization witness
+as new. Current REM closing/header instructions, authority current_scope/current
+authorization, assessment v0.5, board and routing all use the one-round extension.
+The three-registry architecture and mapped test-exception rules are retained.
+Original approvals, historical reports/checkpoints, annex/companion and all
+production/test/live-guide/dependency bytes remain unchanged.
+
+Fresh Sol/Astra/Opus reviews examine the bounded delta then full PI-01–18 scope.
+Every seat must be VERIFIED, no mandatory finding and coverage/overall >=9.5.
+After this one extra round, stop; if unmet ask Chuck for guidance. No replacement
+seat, sixth round, automatic correction loop or construction follows. Impact
+satisfaction, Gate-A activation and exact construction approval remain pending.
+
+
+## Finance offline validation correction and fresh review authorization — 2026-11-11
+
+[Round5 reconciliation](validation/document-ingestion/package-impact/round5/report.md)
+retains Astra VERIFIED, Opus CHANGES_REQUESTED for a planned live-test selector,
+and Sol BLOCKED before assessment by historical-memory exposure. No qualifying
+Sol score or correctness claim is inferred. After the stop/request for guidance,
+Chuck directed remediate and continue to the specific narrow correction and one
+fresh full council. [Recorded authority](validation/document-ingestion/package-impact/round6-authorization.json)
+grants round6 only, with no memory/history searches and unchanged score gates.
+
+The test plan/P-14 and REM now default to offline Finance test_basics.py and
+classify the existing live-provider module as excluded absent explicit authority.
+The final directive must classify non-default modules and bind exact selectors;
+no retained executed-coverage claim comes from an unrun live module. No provider
+call, credential use/repair, product/test or live-guide change was performed.
+Current assessment v0.6 and authority/navigation identify five completed rounds
+and this one fresh full review, without resetting history or old approvals.
+
+Fresh Sol/Astra/Opus reviews assess the delta then full PI-01–18 source-feasible
+planning scope from self-contained pinned inputs. Local memory, rollout/session
+history and peer reports are excluded. Each seat must independently VERIFIED,
+no mandatory finding and coverage/overall >=9.5. Stop after round6; if unmet ask
+Chuck for guidance. No replacement, seventh round or automatic construction.
+
+
+## Package-impact v0.6 VERIFIED; review loop closed — 2026-11-11
+
+[Round6 reconciliation](validation/document-ingestion/package-impact/round6/report.md)
+records three independently VERIFIED seats: Sol coverage9.85/overall9.65, Astra
+9.8/9.7, Opus9.8/9.7. All PI-01–18 and PC-10/11 pass with no mandatory findings.
+The original four rounds and both explicit single-round extensions remain
+recorded; earlier BLOCKED/CHANGES_REQUESTED results are preserved, not waived.
+All three current final results are read; the loop ends without a seventh round.
+
+Exact assessment v0.6, REM, test/architecture/guide plans, normative dependencies,
+criteria and authorization remain unchanged from reviewed candidate ae813002.
+Raw compressed reports and readable copies retain hashes, full matrices, honest
+rubrics, commands/provenance and limits. Current routing/authority records this
+metadata-only closeout; frozen pre-review pending labels are superseded without
+a silent contract edit. [Advisory carry-forward](validation/document-ingestion/package-impact/round6/readiness-carry-forward.md)
+is for later readiness/directive disposition, not a scope or effects grant.
+
+Five administrative checks and opening/closing identities passed in every
+qualifying seat; controller repeated identity before closeout. Source/test AST
+inspection is not executed runtime proof. Product/tests/live guides, lock and
+user configuration/state remain untouched; baseline debt stays failed/unwaived.
+
+[Current handoff](validation/document-ingestion/package-impact/current-verified-report.md)
+returns to Chuck for exact-version package-impact satisfaction and remaining
+conditions. After approval, prepare a bounded Gate-A dependency/capability/assets/
+resource effects plan for scoped activation. Measured results then finalize the
+impact appendix and exact construction directive for separate approval before
+code. No installs, providers/models/stores, implementation, acceptance or delivery
+are authorized by this document-readiness result.
+
+
+## Exact package impact approved; Gate-A plan prepared — 2026-11-11
+
+Chuck answered approved, let's continue after the next-step handoff.
+[The approval record](approval/ingest-package-impact.md) binds exact assessment
+v0.6/hash f570318f at reviewed ae813002, presented from fd33d5f5. This satisfies
+the package-impact condition for those bytes and authorizes plan preparation;
+other conditions, Gate-A effects and construction are not inferred.
+
+Prepared [readiness plan](validation/document-ingestion/gate-a/readiness-plan.md),
+[effects envelope](validation/document-ingestion/gate-a/effects-envelope.json),
+[public source observations](validation/document-ingestion/gate-a/source-observations.json)
+and [consumer worklist](validation/document-ingestion/gate-a/consumer-readiness-matrix.md).
+Proposed qualification candidates are Docling 2.150.0 with rapidocr extra,
+RapidOCR 3.10.0 CPU and Certifi 2026.10.23 above the settled 2026.10.19 floor.
+Exact upstream metadata, expected artifact hashes and model repository commits
+were inspected; this is not target installation/format/model proof. The packaged
+Nomic revision remains an unresolved example, not the live deployment identity;
+Qwen stays illustrative. A3 needs bound operator/model/counter facts.
+
+The plan defines private roots/caches, artifact/license manifest promotion,
+numeric effects limits, genuine synthetic formats, offline local counting,
+consumer/configuration trace and final directive outputs. Full actual test
+migration, architecture/guide implementation and B/N/R installed proof remain
+construction obligations. No source, tests, live guides, dependency metadata or
+lock changed; user YAML/stores/exports and old evidence remain untouched.
+
+No council was launched and no Gate-A stage was executed: no dependency resolver,
+artifact installation/model transfer, conversion, inference or store operation.
+The plan is prepared for Chuck's review before scoped activation. The approved
+assessment and reviewed REM/annex/companion/criteria/authorization bytes are
+preserved; changed post-readiness impact needs a new exact-version binding.
+
+
+## Manual readiness harness and production boundary — 2026-11-11
+
+Chuck confirms local LM Studio is part of the production environment and requires
+all readiness code, configuration, test input and test output to be isolated.
+The earlier discussion also establishes manual operation, controlled generated
+fixtures plus explicitly supplied private documents, and a project-local
+`.friday_test/` workspace. [Requirements](validation/document-ingestion/gate-a/isolation-requirements.md)
+record these decisions without activating effects or product construction.
+
+[Readiness plan v0.2](validation/document-ingestion/gate-a/readiness-plan.md) and
+[the effects envelope](validation/document-ingestion/gate-a/effects-envelope.json)
+replace the v0.1 temporary-root proposal. All runtime test code, private dependency
+installation/configuration, input copies/assets, caches/logs and outputs are
+confined to the test workspace and fresh per-run roots. Path/import/environment
+and child-process controls must demonstrate the boundary before use. No current
+`.gitignore` or production package/configuration/lock/test/guide file is changed.
+
+A production LM Studio endpoint would change its request queue/logs and is
+excluded. Embedding checks require an independently owned test process/server,
+private configuration/state and manifest-bound test model assets. A separate
+port alone is insufficient. A3 stays blocked until that isolation and exact
+model/counter facts are bound. Same-host resource contention is limited, not
+claimed eliminated. No production process, settings or model lifecycle changes
+are permitted. Later integration stores are reserved fresh test paths; A0–A4
+still make no Memory store writes.
+
+This is documentation-only clarification under the current maintainer direction.
+No harness/environment/test directory has been built, no supplied documents
+selected, no package/model installed, no inference or store call made and no
+new council launched. The exact approved assessment and other reviewed inputs
+remain unchanged; construction and bounded effects retain their separate gates.
+
+
+## Tests-scoped harness draft and shared LM Studio window — 2026-11-11
+
+Chuck permits reuse of the existing LM Studio endpoint while production is shut
+down, after an operator-managed server restart and separated test logs. The
+agent obeyed the intervening stop and made no service/document changes until
+resumption. The latest proceed directs bounded preparation; the subsequent
+location instruction puts this unit's versioned code under the tests subfolder.
+
+[Gate-A plan v0.3](validation/document-ingestion/gate-a/readiness-plan.md),
+[the envelope](validation/document-ingestion/gate-a/effects-envelope.json) and
+[isolation requirements](validation/document-ingestion/gate-a/isolation-requirements.md)
+now record the controlled shared-endpoint window. This supersedes the earlier
+independent-process/endpoint and copied served-weight requirement, not application
+configuration/store isolation. Run-specific confirmation binds production shutdown,
+restart, actual log separation, model/counter facts, manifests, budgets and expiry;
+no confirmation or service state is inferred. The harness may not manage services.
+
+Prepared [CD-CMD-INGEST-GATE-A-001](directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md)
+for exact-version review. Proposed code/config/probes/generators/tests live in
+`tests/readiness/ingest/`; all runtime environments/assets/input copies/results
+live in `.friday_test/`. The directive covers manual full/stage/offline/preflight
+operations, genuine controlled fixtures plus explicit supplied documents, negative
+isolation/window controls, explicit test selectors and normal/optimized evidence.
+Root test discovery excludes `tests/`, so unrun harness tests earn no root credit.
+
+This is a documentation-only planning checkpoint. No harness or test directory,
+dependency/model installation, document conversion, inference, Chroma/Memory
+operation, production process/configuration change, new council or push occurred.
+The exact approved impact and all other frozen reviewed contracts are preserved;
+product construction, stage effects and model-window activation remain separate.
+
+
+## Gate-A harness directive council authorized — 2026-11-11
+
+Chuck explicitly requests council review of the construction directive, emphasizing
+no production-code change and an isolated test environment. Recorded the [one-round
+authorization](validation/document-ingestion/gate-a/council-round1/authorization.md),
+[full criteria](validation/document-ingestion/gate-a/council-round1/criteria.md)
+and [resolved roster](validation/document-ingestion/gate-a/council-round1/roster.json).
+The seats are GPT-6.1 Sol, GPT-6 Astra and Claude Opus 5.5, high effort, each reviewing
+the whole scope with an honest coverage/overall target of 9.5 and no mandatory findings.
+
+Directive e44d4e4b from construction source 494eed4f and all 14 pinned parent bytes
+remain unchanged. The controller freezes an exact documentation-only candidate
+and external request/protected manifest before dispatch. Reviewers use the approved
+shared-checkout read-only exception and private external scratch/caches. Required
+checks are read-only administration, identity and source/design inspection only.
+No implementation/runtime test, install, LM Studio/server operation or store access
+is authorized. Future model qualification still requires the operator-confirmed
+production-offline/restart/log-separation window and exact model/counter facts.
+
+This new explicit council authorization supersedes only the earlier no-council
+routing. It does not approve the draft for construction, activate stages, grant
+acceptance/delivery or renew a prior iteration loop. One complete council round
+then controller reconciliation; no automatic repair/replacement or further round.
+
+
+## Gate-A harness council round1 closed — CHANGES_REQUESTED — 2026-11-11
+
+[Controller reconciliation](validation/document-ingestion/gate-a/council-round1/report.md)
+archives all three hash-verified terminal reports. Sol reports coverage/overall
+10.0/8.9; Astra 10.0/8.7; Opus 8.6/8.3, all CHANGES_REQUESTED. Coverage definitions
+are preserved, not averaged into a compliance score. The target is unmet.
+
+Seven mandatory IDs collapse only the duplicate Sol/Astra startup finding into
+six open groups: trusted Python startup, promotion/resume/window bindings, ambient
+tool configuration, committed-source export/Git non-mutation, preventive versus
+detective native/cache evidence, and loaded-model/JIT/TTL/eviction preconditions.
+All are accepted for bounded correction planning, not implemented or closed.
+The [advisory disposition](validation/document-ingestion/gate-a/council-round1/advisory-disposition.md)
+retains all seven Opus advisories, preserves existing effect/time budgets and
+shared endpoint permission, and does not authorize global cache payload scans,
+production setting changes or a separate server requirement.
+
+All reviewers record fresh contexts, eight successful administrative checks and
+opening/closing integrity PASS: 17,773 protected files, 24 authority pins and nine
+metadata records. The controller's own final frozen check also passed. Exact raw
+reports, selected command/source/preservation evidence and frozen inputs are
+archived with hashes; the inventory is compressed losslessly and the review
+helper retained as audit text, not executable harness code. Static/runtime and
+attested/observed limits remain explicit. Controller public official Python/uv/LM
+Studio documentation checks corroborate mechanisms, not the local service state.
+
+Directive e44d4e4b at reviewed candidate f8145369, all 14 pinned parents and exact
+approved impact v0.6 remain unchanged. No harness, `.friday_test` environment,
+package/model install, test/conversion/inference, local endpoint/store operation,
+production mutation, new council or push occurred. This commit is archival/current
+metadata only. Root debt stays historical FAILED/UNWAIVED, not rerun or waived.
+
+The one authorized council pass is exhausted. Next is Chuck's disposition of the
+bounded document-correction list and any fresh review authorization. No automatic
+repair/replacement/iteration, construction, stage activation, acceptance or
+delivery follows. Earlier preparation-only council-authority wording is clarified
+in current metadata; the frozen directive is not rewritten during closeout.
+
+
+### Controller archive packaging correction — 2026-11-11
+
+The initial closeout commit 2fd8050e was created after the staged whitespace
+check failed on two byte-exact source-excerpt receipts. The combined-range check
+then failed on the same receipts. This was a controller sequencing error, not
+baseline debt or a reviewer failure. The two receipts are now stored losslessly
+compressed; archive mapping retains their original and encoded hashes. No source
+text was normalized, no reviewer report or directive was changed, and no production
+file/runtime was touched. The [packaging audit](validation/document-ingestion/gate-a/council-round1/evidence/controller-archive-packaging.json)
+records the failure/correction. Final range/staged/preservation checks are rerun
+before completing the closeout; all six design correction groups remain open.
+
+
+## Corrective harness council loop authorized; pass1/4 prepared — 2026-11-11
+
+Chuck directs: proceed and execute up to four review rounds without involving him,
+stop after the fourth. [Authorization](validation/document-ingestion/gate-a/correction-loop/authorization.md)
+records four new corrective passes (harness rounds2–5), early stop only on every
+seat VERIFIED/no mandatory/both scores>=9.5, no hidden replacements or score
+inflation. This supersedes the old one-pass limit and ordinary two-cycle escalation
+only for bounded document work, not implementation or runtime permissions.
+
+Prepared directive v0.2, execution contract v0.1, readiness plan/envelope v0.4 and
+isolation requirements v0.3. The six proposed correction groups cover safe startup,
+configuration/credential isolation, read-only commit export, promotion/resume/window
+bindings, honest native/cache control evidence and safe loaded-model status. All
+seven related advisories are mapped. Their closure needs independent evidence;
+no builder claim transfers the old verdict. All numeric ceilings remain, with
+two-hour cumulative active qualification versus separately recorded human waits.
+
+[Pass1 criteria](validation/document-ingestion/gate-a/correction-loop/pass1/criteria.md)
+require delta first then full HRC01–16/HR01–18/RC01–06 review by fresh Sol/Astra/Opus
+contexts. The fixed nine business inputs, accepted impact v0.6, old review reports,
+user YAML/state and production files remain unchanged. Code stays prospective
+under tests/readiness/ingest; generated runtime state .friday_test is not created.
+No dependency/model install, conversion, inference, endpoint/store/process action,
+new provider or push is authorized. The controller used public primary references
+for mechanism details, not local-service or upstream package qualification.
+
+
+## 2026-11-11 — harness corrective pass1 reconciliation and pass2 freeze
+
+- [Pass1 result](validation/document-ingestion/gate-a/correction-loop/pass1/results/report.md):
+  Sol VERIFIED9.8/9.5, Astra VERIFIED10.0/9.6; Opus CHANGES_REQUESTED8.8/8.7,
+  three mandatory document findings. All seats terminal; no averaging/closure inference.
+- Preserve exact reports, frozen inputs and boundary/admin receipts with archive hashes.
+- Bounded proposed corrections: complete committed pre-init code identity and exact-byte
+  loading, distinct tool-spawned Python startup/trace, and guarded import-time settings/
+  read/network channels. Related operational/proof advisories clarified without new
+  product scope, server setting rights or numeric budget changes.
+- Prepare fresh corrective pass2/4 (harness-global round3), delta first then full aggregate;
+  three passes remain including this one. Stop on all-seat >=9.5 VERIFIED/no mandatory
+  or after pass4; no hidden replacement. Same three high-effort models.
+- No executable harness, .friday_test, environment/install, model/endpoint/service,
+  Memory store or production change. Exact approved business bytes preserved.
+
+
+## 2026-11-11 — harness directive council VERIFIED, corrective loop closed early
+
+- Reviewed candidate `474479df6baf1ffab89ffab81ae3b84bb7a98ed7`:
+  Sol VERIFIED10.0/9.6, Astra VERIFIED10.0/9.6, Opus VERIFIED9.6/9.5
+  (coverage/overall), no mandatory findings. All P2/RC/HRC/HR rows pass at
+  document/design level. All eight administrative/whitespace checks pass per seat.
+- [Formal reconciliation](validation/document-ingestion/gate-a/verified-directive-report.md)
+  binds exact reports, frozen inputs, evidence archive map, limitations and
+  advisory dispositions. Controller final frozen boundary passed17941 hashes,
+  27 authority pins and nine preservation records before closeout metadata changes.
+- Stop early on success after two of four authorized corrective passes; no
+  pass3/pass4, replacement reviewer or construction is launched. All seats terminal.
+- Preserve reviewed directive v0.3, contract v0.2, plan/envelope v0.5, isolation
+  v0.4, all nine business inputs and numeric limits byte-for-byte. Remaining
+  advisories do not silently amend those bytes or qualify runtime behavior.
+- Only closeout records/navigation/board/dashboard change. Existing dirty YAMLs,
+  production/generated state and ignored exports remain unchanged; no .friday_test,
+  executable harness, installs/models/services/stores or push. Main initiative
+  stays started/design_only; separate exact construction approval is next, with
+  A0-A4 effects and actual shared-model window still separately unactivated.
+
+
+## 2026-11-12 — exact harness construction approved
+
+Chuck directs “proceed” after the reviewed directive handoff.
+[Approval](validation/document-ingestion/gate-a/construction-approval.json) binds
+v0.3/SHA bb5453f9… to test-only harness construction and offline stdlib C0.
+Production and actual A0–A4 effects remain excluded; no dependency install,
+model/server call or working-store operation is performed. Build in foundation,
+controls and CLI/fixture stages; fresh independent implementation validation
+remains required. Dirty configuration and generated state are preserved.
+
+
+## 2026-11-12 — C0 foundation prepared for independent validation
+
+Standalone committed-byte startup, typed controls, private paths/environment,
+ledger/export/metadata/fake-window controls, manual C0 CLI and two structural seeds
+are implemented under `tests/readiness/ingest/`. This is the explicitly bounded
+[C0 slice](validation/document-ingestion/gate-a/construction/c0/implementation-scope.md),
+not completion of the full reviewed directive. Real A0–A4 adapters, full thirty-format
+fixtures and upstream/model qualification remain open.
+
+Chuck separately approves the five-wheel private typing profile; exact wheels,
+RECORD/license/startup inspection and private extraction are recorded. Private mypy
+checks all25 new sources; setup refusals earn no correctness credit. Root typing
+rules and package/lock bytes are unchanged. Development-fixture normal/-O tests
+pass37 each; formal committed-export receipts and fresh independent review remain
+pending. All18023 protected tracked hashes,26 symlink targets and9 preserved local
+metadata records match. Actual repository `.friday_test/` remains absent.
+
+
+## 2026-11-12 — C0 independent findings / cycle1
+
+Fresh bounded C0 validation returns CHANGES_REQUESTED on ecfa38bb: four findings
+C0-F01–04 cover standard-thread escape, dir_fd metadata mutation, access probes
+and stale pre-send stop/expiry admission.37 normal/-O selftests and static/admin
+checks pass but do not override those reproduced failures. All reviewer effects
+stay private and closing protected state matches. Separate security remediation
+is limited to the [numbered directive](remediation/REM-CMD-INGEST-C0-001-controls.md);
+new source freeze and fresh delta/full C0 validation are required. No upstream or
+production activity is activated.
+
+
+## 2026-11-12 — C0 cycle1 source correction prepared
+
+Separate remediator changes only startup/window, their two existing test modules
+and the source README. Qualified thread audit events cover standard/saved aliases;
+dir_fd mutation shapes and supported probe wrappers refuse; fake transport rechecks
+control state after reservation. Six regressions bring the suite to43. Normal/-O
+development snapshots, private lint/format/mypy and direct call-phase probes pass.
+Initial incorrect convenience-probe assertions/type/lint attempts are retained and
+not credited as a clean result. Bootstrap/run and all frozen business inputs stay
+unchanged. Formal committed source proof and fresh delta/full CC review remain
+pending; prior CHANGES_REQUESTED report is historical for the changed candidate.
+
+
+## 2026-11-12 — C0 cycle1 committed proof
+
+Source f90367e6 has43/43 normal/-O passes from exact committed export and again
+from frozen post-init run.py,25-source private static passes, and the original
+call-phase probes now refuse before effects. Corrected tests on unfixed source
+produce19 assertion witnesses per mode; the additional FileExistsError receives
+no credit. [Current receipt](validation/document-ingestion/gate-a/construction/c0/correction-evidence.md)
+keeps formal/development/counterexample attempts separate. All protected production
+state matches. New implementation delivery is local/unpushed. A fresh context
+will assess the delta first, then the full bounded C0 aggregate.
+
+
+## 2026-11-12 — bounded C0 result reconciled
+
+Fresh correction-delta-first / full-CC review on fbe8201d returns VERIFIED:
+all C0-F01–04 closed, CC01–10 pass,43 tests and62 independent delta checks per
+normal/-O mode, private static/admin pass and closing identity unchanged.
+[Reconciliation](validation/document-ingestion/gate-a/construction/c0/reconciliation.json)
+records the honest9.2 advisory score; it does not satisfy/claim a9.5 broader
+readiness advancement, full directive completion or effects activation. Exact
+raw report and all linked evidence are durably retained, with navigation-only
+link copies distinguished. Full harness remains not_ready; no automatic score
+loop, product implementation, acceptance or delivery is inferred.
+
+
+## 2026-11-12 — operator production-stop / LM Studio restart statement
+
+Chuck confirms production is stopped and LM Studio restarted; names a Nomic
+embedding model and directs use of Friday-LLM for test communication.
+[Partial operator record](validation/document-ingestion/gate-a/operator-updates/2026-11-12T12-56-26Z-production-stop-restart.json) preserves those facts.
+This is not the promoted run-specific A3 window/activation: exact loaded model,
+model/counter/input manifests and log separation remain unbound. No endpoint call,
+package import/install, setting/store change or production activity is performed.
+The existing A3 client requirement already covers Friday-LLM; no technical parent
+is revised while discussing the value of that integration check.
+
+
+## 2026-11-12 — loaded Nomic model ID supplied
+
+Chuck reports `text-embedding-nomic-embed-text-v1.5` as the loaded LM Studio
+model. [Operator identity record](validation/document-ingestion/gate-a/operator-updates/2026-11-12T13-08-58Z-nomic-model-id.json) binds that
+statement only; it is not a verified tokenizer/artifact/server-limit or completed
+A3 window receipt. No model call, package import/install, configuration, store or
+technical-parent change is made while explaining local preflight token counting.
+
+
+## 2026-11-12 — remaining test-only harness construction continued
+
+Chuck directs “ok proceed” after model/tokenizer clarification.
+[Continuation](validation/document-ingestion/gate-a/construction/c1/continuation.json)
+records test-only source/offline construction under the unchanged approved directive.
+No actual stage dependency, converter, model or server effects are activated.
+Baseline2920d0dd preserves18188 protected tracked hashes and9 local metadata records.
+Build genuine format fixtures and bounded stage preparation/adapters, with explicit
+remaining qualifications and fresh validation; no C0 result carries to changed code.
+
+
+## 2026-11-12 — C1 synthetic fixture component prepared
+
+Prepared thirty original PDF/DOCX/XLSX/PPTX candidate containers and literal
+independent oracles, bounded structural facts, exclusive run-local publication,
+held ledger append, manual preparation and truthful incomplete reports.
+[Component criteria](validation/document-ingestion/gate-a/construction/c1/implementation-scope.md)
+retain the full HR01–18 obligations. All43 original test bodies are AST-equal;
+11 new cases are appended. Development-only normal/-O and private static checks
+passed before the final source freeze; formal committed-source checks and a fresh
+read-only independent review remain required. A private resolver standards-parser
+proposal is pending separate activation. No upstream/model/store effects occurred.
+
+
+## 2026-11-12 — C1 source and current execution evidence frozen
+
+Committed source e07892f0 is exported by Git blob identity. Both54-case lanes and
+two frozen manual fixture workflows pass; private25-source static checks pass.
+[Builder evidence](validation/document-ingestion/gate-a/construction/c1/builder-evidence.md)
+records exact receipts, retained43 bodies, limits and preserved state. A fresh
+read-only CI01–10 delta plus retained-controls aggregate review follows under
+repository policy. The resolver-tool activation request remains unanswered; no
+real upstream or model effects, full readiness, acceptance or delivery is implied.
+
+
+## 2026-11-12 — bounded C1 review and separate parser activation recorded
+
+Fresh read-only CI01–10 review of48bc7c97 returns VERIFIED, no mandatory findings;
+bounded advisory9.2 is not full HR readiness or9.5 advancement. Runtime source
+remains e07892f0. All54 cases per mode, both manual flows, independent8 cases
+and28 refusal witnesses per mode, private static/admin and preservation passed.
+[Closeout](validation/document-ingestion/gate-a/construction/c1/verified-report.md)
+retains exact reports and evidence. After the frozen review ended, Chuck approved
+the unchanged private parser profile f81bc1ed. Exactly one65451-byte wheel was
+downloaded/RECORD/license/startup inspected and privately extracted;15 guarded
+checks per mode pass. No Docling/model/A0–A4 activation or production change follows.
+Continue remaining test-only construction; broader task stays started/local.
+
+
+## 2026-11-12 — C2 offline dependency-selection checks prepared
+
+Within the unchanged construction directive and activated private parser profile,
+added a declaration-only wheel-closure consistency checker and explicit guarded
+parser-profile cases. Core loading remains standard-library only. Candidate
+consistency withholds artifact/license/installed/execution qualification.
+[CD01–08 criteria](validation/document-ingestion/gate-a/construction/c2/implementation-scope.md)
+require fresh committed checks plus bounded retained-controls aggregate review.
+No actual resolver/metadata/download/install/Docling/model/store stage is activated.
+
+
+## 2026-11-12 — C2 source and current offline profile evidence frozen
+
+Source f931db99 passes55 minimal cases per mode and retains54 prior test bodies.
+Explicit guarded parser profile passes5 positives and31 refusal assertions per
+mode. Both manual fixture workflows, private25-source static and administration
+pass; preservation covers18283 tracked hashes plus26 symlinks and9 local records.
+[Builder receipts](validation/document-ingestion/gate-a/construction/c2/builder-evidence.md)
+separate candidate consistency from unqualified A0–A4. Fresh read-only CD01–08
+delta then bounded retained-controls aggregate review follows. No actual stage,
+production change, whole-repo-green, readiness advancement or delivery is claimed.
+
+
+## 2026-11-12 — C2 tag finding and bounded correction
+
+Fresh review of120def19 requests INGEST-C2-VAL-001: parsing accepted empty tag
+components. [Bounded correction](validation/document-ingestion/gate-a/construction/c2/remediation-001.md)
+adds explicit target/wheel syntax checks and tests, preserving the first report.
+Actual unfixed source reproduces both reported call-assertion failures in each
+Python mode; corrected development fixtures refuse both. Current parser selector
+passes6 positives/39 refusal cases per mode. Commit current source, rerun formal
+checks, then obtain fresh delta and bounded aggregate review. Production and all
+real stages remain untouched/unactivated; no prior conclusion carries forward.
+
+
+## 2026-11-12 — C2 correction1 source and current evidence frozen
+
+Corrected source8cb32e31 passes56 minimal cases per mode,6 positive/39 refusal
+parser cases per mode, both exact tag regressions, both manual workflows and
+private root-rule static checks. Actual unfixed120def source yields2 call-phase
+assertion witnesses per mode under the same qualified worker.
+[Current evidence](validation/document-ingestion/gate-a/construction/c2/correction-evidence.md)
+retains origins/commands and historical failures separately. Fresh read-only
+finding-delta then full bounded aggregate review follows. No actual stage,
+production change,9.5 advancement, acceptance or delivery is claimed.
+
+
+## 2026-11-12 — C2 corrected review recorded; next private tool pending
+
+Fresh review of3985edc2 returns VERIFIED, closing INGEST-C2-VAL-001 with no new
+findings. CD01–08 and bounded retained CC/CI controls pass; component9.3 does not
+claim broader9.5/HR readiness. Source remains8cb32e31. The reviewer freshly ran
+56 minimal,6positive39refusal selector and9positive43refusal independent cases
+per mode, actual unfixed/corrected witnesses, manual/static/admin and integrity.
+[Closeout](validation/document-ingestion/gate-a/construction/c2/verified-report.md)
+retains exact raw reports and the disclosed unrelated-authority-field exposure.
+The next [private resolver-engine proposal](validation/document-ingestion/gate-a/construction/c3/private-resolver-engine-profile.md)
+pins one18737-byte resolvelib wheel for offline solving; approval is requested
+and pending. No transfer/import, real stage activation, production effect,
+acceptance or delivery is inferred. All actual A0–A4 construction/qualification
+remains open; task stays started/local.
+
+
+## 2026-11-12 — exact private resolver-engine activation
+
+Chuck directs “Approve private resolver-engine profile”, binding a9c64ca1.
+Exactly one18737-byte resolvelib1.2.1 wheel was transferred to the declared private
+cache. Every15 member/RECORD hash, ISC material and startup-hook absence passed
+inspection. All8 declared extra dependencies are inactive without extras; no
+additional download occurred. Approved packaging was reused by verified copy.
+Six guarded checks pass per Python mode, including genuine synthetic backtracking,
+impossible constraints, cycles, round bounds and private origins/unchanged targets.
+[Exact approval/evidence](validation/document-ingestion/gate-a/construction/c3/private-resolver-engine-approval.json)
+permits offline construction only. Continue bounded source and fresh review.
+Production files/venv/config/locks/stores/model services remain unchanged; no real
+A0–A4/model/index activation,9.5 readiness, acceptance or delivery is inferred.
+
+
+## 2026-11-12 — C3 offline solver source prepared
+
+Added a closed-catalog API backed by the activated standard engine, shared strict
+declaration parsing, bounded callbacks/rounds/time and immutable control snapshot.
+No live metadata lookup/fallback, build, install or permission claim is added.
+Development minimal57, parser6positive39refusal and engine7positive24refusal
+cases pass per mode; root-rule private typing25 sources and lint pass.
+[CS01–10 scope](validation/document-ingestion/gate-a/construction/c3/implementation-scope.md)
+requires committed current proof and fresh delta/full bounded aggregate review.
+Production and protected state remain unchanged; full HR/A0–A4 readiness stays open.
+
+
+### 2026-11-12 — C3 private resolver engine and offline solver freeze
+
+Recorded Chuck's exact private-engine approval; one18737-byte resolvelib1.2.1 wheel transferred and inspected with no other dependency transfer. Stable source `75d880e8b2d7ceb855f7497b2639b6d6b8effb98` adds only closed-catalog solving. Committed29-file export passes57 minimal cases,6 positive/39 refusal parser cases and7 positive/24 refusal engine cases per normal/-O, retained56 bodies,30 deterministic fixture inputs and root-rule private Ruff/format/mypy25. Protected18498 regular hashes,26 symlinks and9 local records match. Current [builder evidence](validation/document-ingestion/gate-a/construction/c3/builder-evidence.md) is frozen for fresh read-only CS01-10 delta then full bounded retained aggregate. All actual A0-A4/index/Docling/model/store effects and full9.5 readiness remain open; no acceptance or delivery.
+
+
+### 2026-11-12 — C3 independent component result retained
+
+Fresh candidate5c37bf03 source75d880e8 review returns VERIFIED, no mandatory
+findings. CS01-10 and retained CC/CI/CD all pass on current source. Fresh both-mode
+57minimal,6/39parser,7/24engine,27independent checks, manual/static/admin and
+terminal identities match. [Report and reconciliation](validation/document-ingestion/gate-a/construction/c3/verified-report.md)
+retain advisory9.0, the historical-label/expanded-status procedural disclosures,
+raw bytes and exact receipts. No old outcome supplied correctness evidence.
+The full9.5/HR gate stays open; this incremental result grants no actual stage,
+acceptance or delivery. Production and all protected state remain unchanged.
+Continue already approved test-only actual A0 adapter construction, offline first;
+separate exact A0-A4 effects activation is still absent.
+
+
+## 2026-11-12 — Maintainer refocuses readiness on actual Docling behavior
+
+Chuck directs “focus more on the important stuff” and “Proceed with extreme
+prejudice” after the proposal to simplify package setup and test documents.
+The [focus amendment](validation/document-ingestion/gate-a/behavior-evaluation/behavior-focus-amendment.md)
+records the bounded private evaluation and retained production boundaries.
+Uncommitted C4 custom metadata code is archived and its three files restored
+to reviewed C3 bytes. Standard uv resolves106 packages and installs Docling2.150.0,
+RapidOCR3.10.0, Certifi2026.10.23 into `.friday_test`; Certifi floor passes.
+All18 selected local assets hash-verify. The original30 genuine formats execute,
+including real PDF/OCR and Office conversion. Raw defaults expose header-layer,
+hidden-row/column and formula-cache limitations; explicit public Docling options
+restore required header/heading/note chunk content. Formal result/controls/review
+remain pending; no full9.5, production/LM Studio effect, acceptance or delivery.
+
+
+## 2026-11-12 — Direct Docling behavior candidate and measurements
+
+Committed test-only runner at `24d15ab5`. Standard private Docling2.150.0 /
+RapidOCR3.10.0 / Certifi2026.10.23 profile and all18 local assets verified.
+The [behavior results](validation/document-ingestion/gate-a/behavior-evaluation/behavior-results.md)
+distinguish raw defaults, fail-closed structural admission, configured extraction
+and actual chunk content/token checks. Early setup/comparison attempts are retained
+as history without correctness credit. Retained minimal controls, parser/engine
+selectors, focused Ruff/format and private typing pass; no production source,
+configuration, lock, store or model-service change. Freeze evidence and dispatch
+the policy-required fresh read-only validator; whole Gate A and product work remain open.
+
+
+## 2026-11-12 — Independent Docling review identifies BE-REV-001
+
+The fresh bounded [review](validation/document-ingestion/gate-a/behavior-evaluation/validation/round1/report.md)
+reproduces real conversion/chunking and preserved state but requests one medium
+data-integrity correction: a timed-out rerun leaves earlier output eligible.
+[BE-REM-001](validation/document-ingestion/gate-a/behavior-evaluation/BE-REM-001.md)
+assigns this named test-runner correction to a separate remediator as policy requires.
+Measured extraction remains retained; corrected admission and fresh review are pending.
+No product, model, store, acceptance or delivery authority changes.
+
+
+## 2026-11-12 — Direct Docling behavior candidate and measurements
+
+Corrected test-only runner at `1ebc1690`. Standard private Docling2.150.0 /
+RapidOCR3.10.0 / Certifi2026.10.23 profile and all18 local assets verified.
+The [behavior results](validation/document-ingestion/gate-a/behavior-evaluation/behavior-results.md)
+distinguish raw defaults, fail-closed structural admission, configured extraction
+and actual chunk content/token checks. Early setup/comparison attempts are retained
+as history without correctness credit. Retained minimal controls, parser/engine
+selectors, focused Ruff/format and private typing pass; no production source,
+configuration, lock, store or model-service change. Freeze evidence and dispatch
+the policy-required fresh read-only validator; whole Gate A and product work remain open.
+
+
+## 2026-11-12 — Docling slice verified; maintainer requests end-to-end proof
+
+Fresh [bounded validation](validation/document-ingestion/gate-a/behavior-evaluation/validation/round2/report.md)
+closes BE-REV-001 and verifies all BE criteria:68 minimal,37 document/control,324
+chunk/content and81 default512 cases per mode; independent2017-chunk recount.
+Scores coverage9.3/overall9.2 do not close the whole9.5 readiness gate.
+Chuck requests complete end-to-end proof and confirms stopped production/loaded
+Nomic. The [scope amendment](validation/document-ingestion/gate-a/end-to-end-evaluation/scope-amendment.md)
+adds only isolated model requests and fresh test-store writes. Read-only server
+status reports context2048; CLI ttlMs=null and configuration JIT=false. No setting
+was changed and no embedding request has yet been sent. Product work remains later.
+
+## 2026-11-12 — Actual isolated ingestion path complete
+
+Source `c9777736` completed actual normal/optimized Docling conversion, document
+chunks, Friday-LLM/Nomic inference and shared Memory Chroma storage/retrieval.
+Each mode stored81 chunks, retrieved5 expected sources at rank1 and reopened
+network-free with identical text/provenance and retrieval IDs. The two refusal
+cases never entered model inputs or stores. Across both modes:18 embedding POSTs,
+172 vectors,41556 local prepared tokens; window57/64 requests including status.
+LM Studio reports zero usage tokens, so counter equivalence remains unqualified.
+[Results and evidence](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
+retain the actual disposable stores. Private combined packages include required
+Certifi2026.10.23.74 tests/mode,29-source typing, focused lint/format and admin
+checks pass;18574 files/26 symlinks/8 local records preserved. Freeze these
+receipts for fresh independent EE-01–08 validation. No production integration,
+whole9.5 readiness, acceptance or delivery claim.
+
+## 2026-11-12 — Independent end-to-end review; reporting correction
+
+[Round1](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round1/report.md)
+requests E2E-IV-001: canonical report accepts a changed copied behavior runner.
+The reviewer independently verified162 stored rows and10 reopened retrieval lists,
+367 evidence members,149 wheel payload members,74 tests/mode and29 new controls.
+Actual c977 inference remains attributable; there is no new live-execution claim.
+[EE-REM-001](validation/document-ingestion/gate-a/end-to-end-evaluation/EE-REM-001.md)
+assigns reporting-source binding to a separate data-integrity remediator, with
+offline-only positive/tamper proof and a fresh full bounded review. Preserve all
+original live receipts, stores and behavior.py. Chroma's prevented cache-open
+attempts are disclosed separately from successful outside access. No new model,
+production, acceptance or delivery authority.
+
+## 2026-11-12 — Reporting correction complete; fresh review pending
+
+The separate remediator corrected only e2e reporting, its tests and local README.
+Exact verified corpus bytes supply nonempty consistent runner digests; current
+physical source must match. All20 other definitions and behavior.py are unchanged.
+Full offline79 cases/mode and29-source typing pass; canonical CLI5 controls/mode
+remain distinct synthetic-reporting proof. An initial aggregate attempt rejected
+the unit test's unapproved subprocess launch; the test was changed to real in-
+process CLI dispatch, without loosening startup/stage guards. Genuine subprocess
+CLI proof remains separate. Preserve original c977 live experiment without
+rewriting or relabeling it. Freeze for fresh E2E-IV-001 delta plus full EE review.
+
+## 2026-11-12 — End-to-end reporting independently closed; Qwen discovery
+
+Fresh [round2](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
+VERIFIES1f5f86dc: E2E-IV-001 CLOSED, full bounded EE-01–08 pass. Fresh79 cases/mode,
+30 canonical controls, archive/origin checks and copied-store reopen cover162 rows
+and10 retrieval lists. Actual inference remains exclusively c977 evidence; all20
+other definitions and behavior bytes unchanged.No new model calls in review.
+Whole Gate-A9.5 and product construction/acceptance remain open. Current navigation
+now distinguishes verified test work from historical C0-only headers.
+Chuck proposes larger-context Qwen testing. Read-only CLI/native status shows
+qwen3-embedding-4b-mlx twice loaded with40960 reported context but type llm.
+[Assessment](validation/document-ingestion/gate-a/end-to-end-evaluation/qwen-read-only-assessment.md)
+records the serving qualification needed, official32K/2560 capability and separate
+read-only accounting. No model/production change or Qwen inference was performed.
+
+## 2026-11-12 — Controlled long-document corpus requested
+
+Chuck requests larger documents for future Qwen context testing. The bounded
+[scope](validation/document-ingestion/gate-a/large-documents-scope.md) adds only
+test generator/regressions, selector/README and fresh isolated assets:20 genuine
+PDF/DOCX/XLSX/PPTX plus5 reference texts at five lengths, with source facts and
+truncation/retrieval oracles. Qwen tokens remain unset and serving unqualified.
+No model request, production update or store operation is included. Frozen source,
+native-format validation and fresh independent review follow. Earlier real Nomic
+evidence and approved directives remain unchanged.
+
+## 2026-11-12 — Long-document corpus generated and natively validated
+
+Source3bf25f4e generates20 PDF/DOCX/XLSX/PPTX assets and5 references at five
+lengths,1358 to31534 canonical words. Largest:46 PDF pages,6 workbook sheets,
+96 slides. Normal/-O corpora are byte-identical. Native readers recover every
+section body/ID and all anchor facts in25 files/mode; representative PDF renders
+are legible.87 regressions/mode and31-source typing/lint/format pass. No Docling,
+model, chunking or store pass is claimed for these new files.
+[Results](validation/document-ingestion/gate-a/large-documents/results.md) retain
+the controlled inputs and oracles; exact Qwen tokens remain unset. Freeze for
+fresh LD-01–08 review. Production and earlier evaluated state are preserved.
+
+## 2026-11-12 — Cross-section-control correction and regenerated v2
+
+The first corpus reviewer was procedure-BLOCKED; a fresh review independently
+found LD-CORPUS-001: the tail repeated both answers. [LD-REM-001](validation/document-ingestion/gate-a/large-documents/LD-REM-001.md)
+bounds a mechanical fixture/text/assertion correction. f17b3d32 keeps the key only
+in the middle and the release code only in the tail; both source publication and
+actual native-text validation enforce joint evidence with no sufficient single
+section. Fresh v2 corpora preserve originals, are byte-identical across modes,
+and pass native25-file validation,88 tests/mode and31-source typing/lint. An
+integrity-valid modified DOCX is rejected specifically by the semantic checker.
+Qwen token counts remain null and no model/network/store action occurred.
+Freeze for delta-first and full LD review; no product or acceptance advancement.
+
+The archived v1 Markdown snapshot initially retained links relative to its old
+location; the lifecycle check correctly failed. Links were rebased only, and the
+canonical full documentation check now passes. That setup attempt has no green
+verification credit; current admin receipts are retained separately.
+
+## 2026-11-12 — Long-document corpus independently verified
+
+Fresh [correction review](validation/document-ingestion/gate-a/large-documents/validation/round2/review-report.md) verifies frozen4735e3e: LD-CORPUS-001 closed and full bounded LD-01–08 pass. Actual data source remains f17b3d32. All20 native documents plus5 references are retained at five lengths, with a largest31544-word source,46 PDF pages,6 sheets and96 slides. Original corpora and prior reports remain unchanged. Source and native cross-section controls require genuine joint evidence. No model request, dependency install, store operation or production update occurred. Qwen serving/tokenizer qualification, future isolated comparisons, whole Gate-A9.5 and product construction/acceptance remain open. Exact fresh-versus-inspected checks and limits are in the independent report.
+
+## 2026-11-12 — Product construction directives drafted from measured evidence
+
+Chuck directs “proceed” after the proposed production-directive next step.
+[Preparation authority](validation/document-ingestion/product-construction/preparation-authorization.json)
+binds documentation-only drafting. [INGEST](directives/CD-CMD-INGEST-001-product.md)
+and [TOOLS-DOC](directives/CD-CMD-TOOLS-DOC-001-adoption.md) remain separate
+conditional drafts. The measured handoff carries the qualified Docling/RapidOCR/
+Certifi stack, corrected serialization/headings, real Nomic/Chroma proof and
+honest limits into phased contracts/consumer integration/document delivery.
+RD-01–07 retain remaining whole-readiness, hidden-row selection, resources,
+API/identity/recovery, counter/model, installed-profile and migration/docs gates.
+No old verdict or score is extended to those open obligations. Freeze tracked
+static test/fixture inventory and proposed case seeds; they grant no case-body
+exception or executed coverage. Before product generation, complete exact phase
+appendices and obtain approved hashes. User reviews documents before a council;
+no new council/review loop, source/test/guide/configuration/dependency edit,
+provider request or user-store operation is activated. Preserve historical
+technical/evaluation bytes, two dirty examples and retained local state.
+
+Preparation checks: board36/dashboard, documentation lifecycle1129, metadata18
+and scoped planning/staged whitespace pass. All24 authority inputs and the static
+inventory (237 modules,3073 base definitions,72 fixture/conftest files) hash-match;
+these are not collected/executed test counts. Protected16690 nonplanning files,
+26 symlinks and8 retained metadata records match the opening boundary. Full
+worktree whitespace remains failed/unwaived on pre-existing, byte-identical
+user models-config.example.yaml whitespace; no configuration fix was made.
+[Checks](validation/document-ingestion/product-construction/preparation-checks.json)
+retain the actual failed full check alongside passing scoped checks. No product
+suite, model test or independent document council was executed for this draft.
+
+## 2026-11-12 — Product directive council round 1 requested
+
+Chuck explicitly requests independent review of CD-CMD-INGEST-001-product.md,
+seeking at least9.5 from all three maintained seats. Record one read-only round
+with Sol/Astra/Opus at high effort, both coverage/overall thresholds, zero
+mandatory findings and no automatic remediation/reissue budget. Review the
+conditional draft's authority, behavior/ownership/compatibility, phase feasibility,
+test/documentation and activation gates against pinned context. Missing unbuilt
+implementation is not itself a document defect; real contradictions or unsafe
+unknown authority are findings. Earlier before-council routing is satisfied by
+this explicit request. No product, model, store or delivery authority is granted.
+
+## 2026-11-12 — Product directive council round 1 reconciled; gate unmet
+
+All three fresh seats return CHANGES_REQUESTED on frozen fb587e7a. Coverage/
+overall: Sol9.6/9.2, Astra9.6/9.1, Opus9.4/8.6. No averaging or threshold
+inflation. [Reconciliation](validation/document-ingestion/product-construction/council-round1/report.md)
+retains verbatim reports/hashes, ledgers and compact reviewer evidence. Mandatory
+findings consolidate into three groups: downstream proof incorrectly required
+at earlier phase exits; actual installed-product proof made a preconstruction
+prerequisite; wrong DI/seed tags and unclear preservation of the required final
+three-seat review. The controller's draft contains these sequencing/traceability
+errors; no reviewed directive or seed bytes are repaired during closeout.
+Applicable advisories remain visible for a bounded later revision. Opus disclosed
+incidental delegate-inventory metadata exposure with no peer reasoning/findings/
+scores. Retain this conduct exception, unchanged scores and independently
+corroborated finding; no replacement or extra round. All reviewer and controller
+frozen closing checks pass:18715 tracked files,26 symlinks,8 preserved entries,
+37 pins and unchanged logical index measured before status. Seven admin checks
+per seat pass; historical behavior/model/store results were inspected, not rerun.
+One authorized round is closed with no active council. Obtain maintainer direction
+before bounded document correction/new review. Gate-A qualification, product
+construction, effects, UAT, acceptance and delivery remain separate open gates.
+
+## 2026-11-12 — Product directive bounded correction and fresh round 2
+
+Chuck directs “proceed” on the bounded document correction/fresh-council next
+step. [Authority](validation/document-ingestion/product-construction/council-round2/authorization.json)
+authorizes exactly one additional round (round2/2), no third automatic pass or
+product effect. Correct the three groups: scoped phase exits/aggregate/human
+sequence, Q qualification versus post-build installed acceptance, and DI/seed
+mapping plus mandatory post-code three-seat review. The new phase map preserves
+all36 original DI definitions/digests and14 FC dispositions with12 scoped exits;
+no implemented product/test proof is claimed. Related advisories add visible
+exceptions/remedies, B02-first qualification risk, conditional CLI, named
+worker/headless owners, exact root/excluded inventory scope, current routing,
+package/seed arithmetic and one canonical refined impact path/materiality.
+[Neutral brief](validation/document-ingestion/product-construction/council-round2/correction-brief.json)
+binds corrections without peer scores/reasoning. Static traceability checks pass:
+DAG/proof-group partition, parent definitions, seed origins/tags and inventory
+sums. Approved REM/annex/assessment/migration/architecture/guide and all product
+bytes remain unchanged. Freeze current inputs for fresh independent delta-first
+then full review; whole Gate-A9.5 and construction approval remain open.
+
+
+## 2026-11-12 — INGEST product directive council round2 closed; gate unmet
+
+Candidate `be3aed3a` was reviewed after the authorized bounded document correction.
+[Round2 reconciliation](validation/document-ingestion/product-construction/council-round2/report.md)
+records Sol BLOCKED (8.0/8.3 provisional, incomplete/nonqualifying), Astra
+conditional VERIFIED (9.4/9.4), and Opus CHANGES_REQUESTED (9.1/8.75). The
+all-seat9.5 gate is unmet. Both authorized rounds are complete; no replacement,
+third round or product construction is activated.
+
+Opus retains INGEST-PD-R2-OPUS-001: the revised Q/implementation split does not
+explicitly qualify N replacement-model identities before construction. The
+controller retains this parent-backed requirement despite Astra's closure
+opinion. Candidate operations remain post-build; deterministic fixtures cannot
+be relabelled as actual serving qualification.
+
+The controller also supplied an unsafe historical preparation receipt: its old
+whitespace stdout included fragments of the explicitly excluded dirty YAML.
+Sol stopped on exposure (SOL-R2-B01); no complete result is claimed for that
+seat. Original receipt and YAML stay untouched. The proposed future input is a
+metadata-only projection with command/exit/output digests and no stdout/stderr
+payloads. It was not substituted into the frozen review. Formal reviewer reports
+are preserved verbatim; potentially exposed detailed raw ledgers remain external
+and hash-bound rather than copied into this packet.
+
+[The concrete next-correction proposal](validation/document-ingestion/product-construction/council-round2/proposed-next-correction.md)
+awaits Chuck's direction. Current routing records validation/blocked within the
+started/local initiative, without changing historical gates or reviewed technical
+bytes. Reviewer and controller frozen boundaries passed; closeout admin and
+non-planning preservation results are recorded separately. No product/test/guide/
+dependency/model/store operation, cleanup, push or acceptance occurred.
+
+
+## 2026-11-12 — three additional bounded INGEST directive council passes authorized
+
+Chuck directs “proceed” and at most three additional councils with bounded changes.
+[Authorization](validation/document-ingestion/product-construction/correction-loop/authorization.json)
+records global rounds3–5, stopping on the all-seat9.5 gate or after the third
+additional pass. No fourth additional pass, replacement bypass, product generation
+or new effects are inferred. Prior rounds and original evidence stay historical.
+
+Additional pass1 corrects the Q/implementation dependency: actual B and N-DIM/
+N-SPACE/N-CAP qualification is explicit before I1, with identity/counter/asset/
+parity bindings still OPEN until evidenced. Candidate N positives/refusals remain
+post-build. No deterministic fixture is promoted into real serving feasibility.
+Phase source lists are honestly primary seams with exact A2/A3 coverage still
+required; DI24/33 exits and all19 named FC nodes are joined. Unwaived unchanged-
+scope regressions block intermediate exits. Thirty non-test support modules are
+statically inventoried with no test-count credit, and the known CLI default-
+origin forwarding gap must be resolved in A2.
+
+The raw historical preparation receipt is preserved and excluded from readable
+review inputs. A separate metadata-only projection retains commands/exits/output
+digests without stdout/stderr payloads. Approved parent requirements, product,
+tests, dependencies, guides, dirty YAML and user stores are unchanged. Conditional
+v0.3 and companion are document drafts; all A1–A5 and Q prerequisites still apply.
+
+
+## 2026-11-12 — additional INGEST pass1 closed; bounded pass2 prepared
+
+[Pass1 reconciliation](validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md)
+retains Sol VERIFIED9.3/9.3, Astra CHANGES_REQUESTED9.1/9.2 and Opus
+CHANGES_REQUESTED8.6/8.9. All-seat9.5 is unmet. Every original outcome/score and
+source-depth limit is preserved. All reviewer/controller frozen boundaries and
+seven admin checks pass. Opus's full terminal report is captured verbatim beside
+its short original on-disk summary; no missing audit script is fabricated.
+
+Within the existing three-pass authorization, pass2 corrects DI22's complete
+I3 role/source-derived caller joins, adds a disjoint three-file fixture supplement
+(including the retained SESSION/DIAG oracle) with tracked .DS_Store explicitly
+excluded, and reconciles current criteria and branch-handoff routing. Original
+gzip, node/oracle source and fixture bytes stay unchanged. Advisories bind CLI's
+four origins, I1 additive compatibility or an exact prior approved exception, and
+the I1 narrow-counter lock delta. Full allowed parent/source reading is made
+explicit in the new review checklist; no target score is presumed or inflated.
+
+Current additional pass2/3/globalround4 remains document/source feasibility only.
+One further additional pass may follow an unmet gate; no fourth additional pass
+or product construction/new effects are authorized. All Q/A1–A5, real B/N model/
+counter qualification, human acceptance and delivery gates remain open.
+
+
+## 2026-11-12 — additional pass2 blocked; final pass3 prepared
+
+[Pass2 reconciliation](validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md)
+preserves Sol BLOCKED4.0/4.5 provisional and Astra BLOCKED6.0/6.7 provisional
+for incomplete required parent/source reading. Opus VERIFIED9.1/9.4 is below
+threshold with7 advisories. No incomplete seat establishes zero findings or
+qualifying review. Every original score/limit is retained without replacement.
+All admin, static inventory/archive checks and frozen boundaries pass; these do
+not substitute for the incomplete source assessment.
+
+Final bounded clarifications stage preparation/roles/cache changes with I2
+binding (paired unchanged I1 witnesses), include I3 N scenarios, align CLI
+adapt/prove/stop wording, assign one A3 classification to six dual-role support
+files, separate TM03 companion approval from INGEST DI35 and fix small wording.
+No product behavior is implemented or parent requirement relaxed.
+
+Final pass3/3/globalround5 retains the full document/source scope and score
+threshold. Small verified source chunks recover ordinary truncation; reviewers
+complete substantive reading before concise reports rather than prematurely
+concluding after audits. No new effect, model, store, install or product work is
+authorized. After reconciling this council the controller stops regardless of
+outcome; no fourth additional pass or replacement is inferred.
+
+
+## 2026-11-12 — final additional council3/3 closed; mandatory stop
+
+[Final reconciliation](validation/document-ingestion/product-construction/correction-loop/pass3/results/report.md)
+preserves Sol CHANGES_REQUESTED7.0/8.0 provisional with incomplete coupled-source
+coverage; Astra BLOCKED4.0/overall withheld with incomplete review; and Opus
+VERIFIED(document only)8.8/9.4 with source-depth limits. No result is rounded,
+averaged, salvaged or carried forward. All-seat9.5 is unmet.
+
+SOL-R5-001 remains: the phase-map opening omits I3 from candidate N operations,
+although detailed map/readiness/qualification include it. Other seats treat the
+same wording as advisory; the controller retains the source-supported issue.
+It is not corrected after the final freeze. Astra conservatively interpreted
+Finance AST parsing as violating the live-module/credential-use exclusion. No
+execution, provider call or credential disclosure was reported. The controller
+packet did not clearly distinguish static parsing from live execution/credential
+handling while requiring inventory AST checks. That ambiguity does not qualify
+the blocked or incomplete seat. No credential payload is inspected here.
+
+All reviewer and controller frozen boundaries pass:18854tracked files,26symlinks,
+8preserved entries and52pins; all seven offline admin checks pass. Mechanical
+audits and inspected historical experiments are not complete source/runtime
+proof. Current status/routing and the authority-manifest routing pin are refreshed
+only for this closeout; its exact reviewed original is retained. Reviewed main/
+companion/readiness/maps/inventories/seed and all product/test/dependency/config/
+store bytes remain unchanged. Known baseline debt stays failed/unwaived.
+
+Three passes started, three complete, zero remaining. The controller stops as
+Chuck directed. No fourth pass, replacement, automatic correction, product work,
+new effects, UAT, acceptance, push or delivery follows. Remaining items are a
+human disposition handoff, not an activated new unit.
+
+
+## 2026-11-13 — new focused INGEST directive council authorized
+
+Chuck requests a more tightly focused three-round council of CD-CMD-INGEST-001.
+[New authorization](validation/document-ingestion/product-construction/focused-council/authorization.json)
+permits at most3 focused rounds with bounded planning corrections and the retained
+all-seat9.5 gate. Earlier broad loops remain closed; this is new scope/authority,
+not a replacement within an exhausted pass. Product implementation/effects are
+not authorized.
+
+The [eight-area brief](validation/document-ingestion/product-construction/focused-council/criteria.md)
+assesses the comprehensive nature, coherence and buildability of Friday ingestion.
+Completed Docling evaluation is established input. No standalone converter/model
+tests, archive/wheel audits, full AST inventory rebuild or exhaustive framework
+source audit is assigned. Targeted source checks answer actual interface/consumer
+questions; meaningful planned integration acceptance remains required. Finance's
+live-provider module is explicitly outside read/parse/execute scope, with no
+conflicting AST duty. Incomplete assessments withhold design-quality scores.
+
+Known I3 summary wording is corrected. Ephemeral round counters are removed from
+construction drafts, which remain conditional. CLI derived-root and strict typing
+clarifications stay within existing obligations. Current metadata routes to
+focused round1/3; user configuration, source/tests/dependencies/guides/stores are
+preserved. No construction, installation, model window, UAT or delivery follows.
+
+
+## 2026-11-13 — focused round1 complete; read lifecycle correction for round2
+
+[Focused round1](validation/document-ingestion/product-construction/focused-council/round1/results/report.md)
+completed F1–F8 for every seat: Sol VERIFIED10.0/9.6, Astra VERIFIED10.0/9.70,
+Opus CHANGES_REQUESTED9.5/9.34 with one concrete mandatory /read lifecycle/test
+gap. Original reports and limits remain unchanged; no majority waiver.
+
+Within the existing three-round authority, directive v0.7 gives document /read
+a Chat-owned awaitable adapter/request without Memory admission, using the same
+Tools-owned off-loop conversion job. Cancel/exit/shutdown invalidates output and
+joins/drains before return. Legacy synchronous text/table behavior remains.
+Three explicit responsiveness/cancel/shutdown acceptance witnesses and a genuine
+headless document-to-Memory/store witness are added to the phase plan, with
+reciprocal DI11/26/29 and headless joins. These are planned tests, not executions.
+
+Related bounded clarifications name Memory→injected Tools planning, neutral
+counting/preparation, actual raw-tail/default-handler dispatch, no-clamp capacity
+preflight, asset package/root ownership and Memory headless defaults (without
+new RuntimeConfig document YAML or affecting existing MCP ingestion settings).
+No product/test source, dependencies, user config, store, model or converter
+evaluation changes occur. Fresh round2 reviews this delta then all F1–F8; no
+standalone Docling test or mechanical inventory/archive audit is assigned.
+
+
+## 2026-11-13 — focused INGEST directive VERIFIED; loop closed at round2
+
+[Round2 reconciliation](validation/document-ingestion/product-construction/focused-council/round2/results/report.md)
+records three complete fresh F1–F8 assessments on `0144c539`, directive v0.7
+SHA256 `3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1`.
+Sol10.0/9.60, Astra10.0/9.60 and Opus9.6/9.57 (coverage/overall) each return
+VERIFIED with no mandatory finding. All C1–C5 corrections, including prior /read
+worker/cancellation/shutdown acceptance, are closed at design level. Original
+reports, rubric scores and limits remain unchanged. The requested gate is met
+and this authorization closes after two of at most three rounds; no third round
+or replacement is launched.
+
+Reviewer entry/exit identities and the controller frozen closing check pass
+before metadata writes. Reviewed directive, phase maps, REM/annex/companion,
+approved impact/readiness, all non-planning files and preserved user state remain
+unchanged. This is targeted static integration-plan review, not executed product
+proof, repeated Docling evaluation, inventory/archive audit or whole-framework
+runtime validation. No installs, network/model/store effects or delivery occur.
+
+[Implementation handoff](validation/document-ingestion/product-construction/focused-council/round2/results/implementation-handoff.md)
+records existing A2 duties for actual application read lifecycle, repeat-cancel/
+timeout/synchronous-reader semantics, retained document/planner identity, asset
+ownership and destination cache witnesses. The approved impact remains v0.6;
+its required post-readiness revision must preserve that history and obtain exact
+maintainer satisfaction. Current authority/board/navigation now route to the
+existing Q/RD-01–07 and A1–A5 activation records. This focused document verdict
+closes neither whole Gate A nor product construction approval, UAT, acceptance
+or delivery. No product generation follows.
+
+
+## 2026-11-13 — proposed INGEST activation appendices prepared
+
+Chuck's latest proceed authorizes preparation of exact shared interfaces,
+per-slice file/test maps and readiness dispositions for construction approval.
+[Activation package](validation/document-ingestion/product-construction/activation/README.md)
+records neutral values/protocols, typed errors, guarded embedding/namespace and
+v2 recovery signatures, a proposed owned process/read lifecycle, explicit local
+asset ownership and deterministic identity/plan/receipt vectors. The file map
+assigns exact source/metadata/doc paths to owners/exits; the case map reuses the
+frozen inventory without rebuilding ASTs and proposes 49 exact existing-case
+exceptions plus named new witnesses, with retain-by-default and no retirements.
+No test code, fixture, product source or current guide is generated.
+
+RD-01–07 dispositions reuse completed Docling/Nomic evidence rather than repeat
+vendor evaluation. Actual immutable B/N identities/counter parity, narrow Office
+coverage, measured worker/resource behavior and full dependency/asset qualification
+remain explicit open gates. Synthetic hash vectors and unit-test fixture identities
+are not real serving proof. A1–A5 remain unactivated; exact post-readiness impact
+refinement and maintainer approval are still required. No new endpoint window,
+model choice, installation, store/reset/production operation or council is inferred.
+
+The reviewed v0.7 directive, phase maps, approved impact v0.6, REM/compatibility/
+companion/readiness, old reports and all product/test/dependency bytes remain
+unchanged. The current routing manifest refreshes only its handoff pin and records
+this unapproved proposal; its pre-preparation bytes are preserved. Current board/
+packet/authority route to appendix review and exact Q evidence, separate from the
+closed VERIFIED focused directive. This is planning preparation, not construction,
+implementation verification, acceptance or delivery.
+
+
+## 2026-11-13 — maintainer removes separate model-qualification prerequisite
+
+Chuck says “1 - not needed” for the numbered model identity/tokenizer parity
+pre-construction qualification. The [decision](validation/document-ingestion/product-construction/activation/model-qualification-decision.md)
+removes that separate prerequisite without relabelling it as completed or moving
+a new qualification campaign after coding. Existing runtime guards and normal
+implementation compatibility coverage remain. Current gates/binding reflect
+the override; the prior frozen directive council retains its original scope.
+Chuck asks how Office exclusion would work; no Office-policy change, product
+implementation, provider/model call, install or new council is authorized here.
+
+
+## 2026-11-13 — maintainer approves workbook rejection policy
+
+Chuck selects clear rejection of affected XLSX workbooks instead of qualifying
+hidden-row/column filtering. The [amendment](validation/document-ingestion/product-construction/activation/office-visibility-decision.md)
+applies when included sheets contain hidden rows/columns, before conversion,
+chunking, embedding or storage. Explain the affected sheets and how to provide
+a copy with the intended content visible/removed; no content is ingested.
+Hidden-sheet default exclusion and other format rules remain unchanged.
+The planned I3 witness covers row/column/both refusals and positive visible-only
+controls. No product/test source, real workbook, model or store is changed.
+The worker-resource question is being explained separately; no new worker
+experiment, implementation or council is authorized by that question.
+
+
+## 2026-11-13 — shared process worker and frontend-neutral lifecycle
+
+Chuck confirms the process-worker direction and requires CLI/TUI reuse rather
+than Chat-specific optimization. The [shared worker record](validation/document-ingestion/product-construction/activation/shared-worker-decision.md)
+assigns one Tools implementation, Memory policy/orchestration and Core typed
+progress/cancel/result contracts. Frontends render and translate cancellation;
+Runtime existing shutdown owns service drain. Bounded one-active/one-queued
+behavior prevents unbounded worker fan-out. Processes avoid sharing the main
+interpreter GIL but retain machine CPU/RAM contention and resource obligations.
+
+Two planned headless/Runtime lifecycle witnesses supplement actual Chat adapter
+acceptance; they import no frontend and do not create a TUI or CLI executable.
+Shared contracts, exact maps, approval binding and current routing agree. No
+product/test implementation, process spawn, model/store call, install or council
+is authorized or executed by this planning clarification. Existing runtime checks
+and actual implementation acceptance remain; prior frozen reviews keep their
+original scope, and model/parity prequalification remains removed.
+
+
+## 2026-11-13 — activation council brief prepared for maintainer review
+
+Chuck requests an activation-package council with a9.5 target and a three-round
+limit, then explicitly directs that he review the instructions before invocation.
+[The exact proposed brief](validation/document-ingestion/product-construction/activation/council/review-instructions.md)
+uses Sol/Astra/Opus at high effort, eight focused design areas and one honest
+overall score per complete seat. It preserves current model-qualification removal,
+workbook refusal and shared headless process-worker decisions. It excludes repeated
+Docling evaluation, AST/archive/dependency audits and product/live operations.
+
+No reviewer has been launched; rounds started/completed are0. The controller
+waits for Chuck's review/direction. Fresh read-only seats, bounded document
+corrections and at most three rounds are proposed; no fourth/replacement/code
+activation follows. Current authority and routing record that hold, leaving the
+actual activation target/contracts and previous frozen evidence unchanged.
+
+
+## 2026-11-13 — reviewed activation council instructions authorized
+
+Chuck reviews the proposed common brief, then explicitly says “proceed with
+council.” The [authorization](validation/document-ingestion/product-construction/activation/council/authorization.json)
+pins the unchanged reviewed instructions and named Sol/Astra/Opus high-effort
+roster. At most three fresh full rounds, one honest overall score per completed
+eight-area seat, each >=9.5 and zero mandatory findings. Bounded planning fixes
+may occur between rounds; stop on the gate or after round3 for feedback. No
+fourth/replacement, source implementation or live effects is authorized.
+
+Round1 freezes the current activation package. Current decisions remove separate
+model/parity prequalification, select clear affected-workbook rejection and keep
+the process worker/progress/cancel/results reusable across frontends. Completed
+Docling evaluation stays input; no AST/archive/vendor replay or whole-framework
+source audit is assigned. Controller structural checks run once; fresh read-only
+reviewers assess package buildability and current contracts/maps. Original prior
+councils remain closed and do not substitute for this new review.
+
+
+## 2026-11-13 — INGEST activation round 1 reconciled; bounded round 2 preparation
+
+All three round-1 seats completed Review A1–A8 and requested changes. Their
+original reports are preserved under activation/council/round1/results with exact
+hashes; frozen controller close passed before correction. Nine mandatory IDs
+collapse into five bounded groups: live qualification wording, configured record
+admission, embedding injection, worker acceptance timing and exact lifecycle
+ownership. Corrections and related /read/fixture/map advisories are planning-only.
+The original approved common instructions remain byte-identical. Round 2 is the
+second of at most three fresh councils; no replacement/fourth round, construction,
+production/model/store/install effect or scope expansion is authorized. Current
+Gate A1–A5 remain incomplete. Controller checks and stable freeze precede launch.
+
+
+## 2026-11-13 — INGEST activation round 2 reconciled; final round 3 preparation
+
+All three seats completed all eight areas. Round 2 did not meet the gate; exact
+original reports/hashes and frozen controller close are retained in round2/results.
+The five mandatory IDs map to three bounded groups: selected worker module and
+connected IPC/private request root; /read lifecycle witness exit timing; exact
+configured manifest discovery/resolver/route binding. Related advisories clarify
+profile deadlines, lazy Chat composition, public headless destination access and
+raw text hashing. Only planning documents changed. The common brief is unchanged.
+Round 3 is final: stop for maintainer feedback afterwards, with no replacement,
+fourth council, construction, installs, models/stores or production effects.
+
+
+## 2026-11-13 — Final INGEST activation council closed; stop for maintainer
+
+All three final seats completed Review A1–A8. Sol 9.53 and Astra 9.595 are VERIFIED;
+Opus 9.27 is CHANGES_REQUESTED with one converter-settings discovery/binding gap.
+All D1–D3 corrections are satisfied; the per-seat 9.5/no-mandatory gate is unmet.
+Exact originals, request and frozen closing evidence are retained under
+activation/council/round3/results. The reviewed activation design is unchanged.
+Only outcome/state/navigation metadata is added. The authorized three-round
+budget is exhausted: no further technical correction, replacement, fourth review,
+construction or effects. Await Chuck's guidance. Product source/tests/dependencies,
+production configuration, stores and preserved state remain unchanged.
+
+
+## 2026-11-13 — Maintainer authorizes INGEST council recommendations and extension
+
+Latest request: update per council recommendations and continue 3 more rounds.
+Recorded three additional global rounds4–6, stop early on all-seat >=9.5 with no
+mandatory gaps, otherwise stop after round6. Original instructions/weights/roster
+are unchanged; only the old cap is superseded. Applied the converter-settings
+binding and related record-drift, startup/IPC, lifecycle and test-selector
+recommendations in planning only. Old round3 results remain byte-exact. No new
+source path, product/test/guide code, dependency/install or model/store effect.
+Current activation and per-phase execution approvals remain incomplete. Fresh
+pass1/3 reviews the corrected stable package, then bounded iteration may continue
+within this extension only. No replacement or seventh round is authorized.
+
+
+## 2026-11-13 — INGEST extension pass1 reconciled; pass2/global round5 prepared
+
+All three round4 seats completed all eight areas. Sol/Astra VERIFIED, Opus
+CHANGES_REQUESTED with one required parser/test-selector classification finding;
+E1–E5 are satisfied. Original reports and the Opus entry-order disclosure are
+retained byte-exact with the controller frozen closing record. No replacement is
+started. Bounded planning corrections classify/directly test the parser, retain
+API54/import regressions and select Runtime DI; related settings, runtime-absent
+read, single holder, cooperative audit, IPC state and existing RSS sampler details
+are explicit. No product/test/guide/dependency code changed or effects ran.
+Fresh pass2 of the three-round extension assesses a new stable candidate under
+the same user-reviewed brief and current budget override. Stop on success or
+after global round6; no seventh round or construction follows automatically.
+
+
+## 2026-11-13 — INGEST extension pass2 reconciled; FINAL pass3/global round6
+
+All round5 seats completed eight areas and F1–F4. Sol/Astra VERIFIED; Opus
+CHANGES_REQUESTED with one entry-registration coupling defect. Original reports
+and frozen closing evidence are retained byte-exact. Bounded planning fix makes
+converters optional for owned text entries and supports late attach with identity
+and close-order rules; adds text/entry-only positives and clarifies dependency
+metadata before use, size errors, snapshot batching, PPTX and cap wording.
+No product/test/guide/dependency implementation or effects occurred. Unchanged
+common brief and authorized roster/weights/gate apply. Round6 is final: stop for
+maintainer feedback afterwards regardless of outcome, no replacement/seventh
+round, further technical corrections, construction or live effects.
+
+
+## 2026-11-13 — New maintainer extension after round6; pass1/global round7
+
+Latest request again authorizes council recommendations and three more rounds.
+Recorded a distinct second extension for global rounds7–9; preserve the first
+extension and all original round6 reports/closing evidence. Gate remained unmet
+at6: Sol/Astra VERIFIED, Opus CHANGES_REQUESTED with counter-factory composition
+and functional late-attach gap. Bounded planning changes require that dependency
+at entry creation and prove actual text then real document storage through one
+entry/lifecycle. Related source/session, reuse, C3/C4 ownership, worker-slot and
+document environment rules are explicit. No product/test/guide/dependency code,
+install or model/store effect. Same common brief/roster/weights/9.5 gate; stop on
+success or after round9 for guidance, no replacement/tenth round or construction.
+
+
+## 2026-11-13 — Activation design VERIFIED; successful early stop at round7
+
+All three fresh seats complete A1–A8: Sol9.54, Astra9.55, Opus9.52, each VERIFIED
+with zero mandatory findings. H1–H3 and the full bounded design pass independently.
+Exact original reports and boundary records, frozen request/current controls and
+controller closing evidence are archived in activation/council/round7/results.
+All reviewed input bytes remain unchanged. This commit records outcome/routing
+only; optional implementation clarifications are retained without technical edits.
+Stop the loop on success; global rounds8/9 are unused and no delegates remain
+needed. Next prepare the exact final activation/impact approval package. Gate
+A1–A5 remain incomplete; no construction/effects, tests/imports, dependency install,
+model/store operation, production configuration change or acceptance occurred.
+
+
+## 2026-11-13 — Final construction approval package and impact v0.7 prepared
+
+Chuck's "ok proceed" follows the promise to prepare the revised package impact
+and exact approval package, then direct him to his review task. Updated the single
+canonical assessment to v0.7: selected measured dependencies, shared process and
+headless ownership, independent local settings, required counter factory/same-entry
+text-to-document lifecycle, test/docs and upgrade consequences. Retained all17
+package rows and existing8 implementation owners. Reviewed technical contracts,
+91-path map,49 exceptions,51 witnesses,18 modules and council reports are untouched.
+Prepared final-approval human index, exact request and prospective private execution
+profile with the existing CPython3.13.10 base identity. No run/environment/install
+is created or activated. Prior v0.6 approval remains exact historical authority;
+it is not approval of this revision. The new wrapper/impact are controller-checked,
+not a new independent VERIFIED result. Next task belongs to Chuck: review and
+approve/request changes to the impact, construction scope and private effects.
+No product/test/guide/dependency code, live configuration, model/store operation,
+new council, acceptance or delivery is performed under this preparation request.
+
+
+## 2026-11-13 — Final approval documents council explicitly requested
+
+Chuck requests a council on final-approval/README.md and impact assessment v0.7,
+while reviewing both in parallel. One fresh Sol/Astra/Opus read-only round is
+prepared, with eight bounded document criteria and the established per-seat9.5
+and zero-mandatory gate. This does not revive the closed activation rounds or
+permit automatic remediation/repeat. Freeze both targets and bound JSONs; scope
+is approval/impact completeness and consistency, not old Docling/AST/archive or
+whole-framework testing. Required target text may mention historical statuses;
+reviewers must not open prior reports or treat past scores as this verdict.
+No construction, installs, production change or model/store effect is authorized.
+
+
+## 2026-11-13 — Final approval document council closed with one bounded finding
+
+All fresh seats complete FD1–FD8. Sol9.6325 and Astra9.640 VERIFIED; Opus9.30
+CHANGES_REQUESTED with MF-1: unconditional new Certifi floor after every install
+conflicts with its I3-C1 introduction and earlier narrow phase deltas. Controller
+static lock/TOML reads confirm Certifi2025.11.12, tokenizers0.22.1 (Chroma/LiteLLM
+consumers) and no direct Certifi declaration. Recommend phase-correct Certifi
+wording and shared-tokenizer disclosure only if Chuck authorizes correction.
+Original reports/boundaries and closing preservation evidence archived; Opus's
+initial index-order disclosure retained. Targets, current bound JSONs, technical
+contracts/maps and production state unchanged. Single round exhausted; no repair,
+replacement/new council, product work, install/model/store effect or acceptance.
+Next task is Chuck's disposition of the finding alongside his parallel review.
+
+
+## 2026-11-13 — Authorized final-document correction and one additional council
+
+Chuck directs the requested edits and one more council. Impact v0.8 and requestv2
+make the current Certifi baseline explicit; early phases record it, I3-C1 introduces
+the selected upgrade/floor with Docling, later installed lanes enforce it where
+present and dependency-free lanes record absence. Disclose the shared tokenizers
+upgrade and existing legacy proof. Clarify universal guarded-embedding binding,
+phase activation under the started initiative and an exact document-revision
+receipt. Refresh profile/request/current hashes without changing technical maps,
+old cases/witnesses, source/test/guide/lock or user state. Fresh full FD1–FD8 at
+round2/2, then stop. No third round, automatic later repair or construction/effects.
+
+
+## 2026-11-13 — Final round closed; one-field correction completed, no new council
+
+All three final seats complete8/8 and confirm C1–C3; all flag the same stale A4
+v0.7 label against pinned impactv0.8. Original reports and scores preserved:
+Sol9.5725 reported (printed ratings sum9.570), Astra9.565, Opus9.365. Formal gate
+is unmet. Frozen closing passes before any target edit. Completing the already
+requested version alignment, changed only A4.requires to reference the current
+impact path/version/digest, committed at b357c3c4 and refreshed the presentation
+receipt. Every other request field and all other primary/profile/technical/source
+bytes are unchanged. Exact before/after and authority interpretation disclosed.
+No independent VERIFIED result or score increase is claimed for the correction.
+No third council or further automatic repair. Chuck decides acceptance of this
+bounded post-review fix and exact construction/private effects. No code, install,
+model/store/production effect, acceptance or delivery occurred.
+
+
+## 2026-11-13 — Planning approval and per-slice councils; Git discussion before coding
+
+Chuck explicitly accepts the current planning edits and approves all outstanding
+INGEST analysis/design/directive documents and impact v0.8. The approval record
+binds 31 exact document digests, accepts the disclosed A4 reference correction,
+and preserves all original council verdicts/scores. This is human document
+approval, not a manufactured independent VERIFIED result or product acceptance.
+
+The approval package now mandates Sol/Astra/Opus councils after I1, I2 and I3,
+at most three passes each (initial plus two correction/review cycles), all seats
+complete VERIFIED >=9.5 with no mandatory findings. I3 also returns aggregate
+I1–I3 disposition. Stop early on success; stop for Chuck after a third unsuccessful
+pass. Prior planning councils stay closed; no new council runs now.
+
+Before coding Chuck requests a Git discussion. Proposed handoff: checkpoint and
+publish the approved planning/readiness baseline PR to master after explicit Git
+authorization; merge it, then use feature/cmd-ingest-implementation in a clean
+worktree. Exact content commit and actual branch/private phase bindings remain
+pending that decision. Current branch stays feature/cmd-ingest-001. No commit,
+push, PR, branch creation, product/test/guide/lock change, install, model/store
+call or production mutation is made by this amendment. Document-only checks and
+protected-state preservation are the validation; existing readiness tests are
+not rerun. Follow the final approval Git proposal for the maintainer's next task.
+
+
+## 2026-11-13 — Git handoff explicitly authorized
+
+Chuck confirms the proposed sequence with “yes proceed”: checkpoint the approved
+planning/readiness baseline, push/open its PR to master, merge when checks permit,
+then create feature/cmd-ingest-implementation from merged master in a clean
+worktree. Current document digests and original approvals/review outcomes remain
+explicitly bound; receipt metadata records the content commit after it exists.
+Only planning changes are staged in this checkpoint. Production source, dirty
+YAML, stores and the working environment stay untouched. No new council or
+product coding is part of this Git checkpoint.
+
+
+## 2026-11-13 — Approved planning content checkpoint
+
+Committed the approved planning/council amendment at 67d79114f43c9a1048526458d6861efa1f6f5322.
+Presentation receipt now verifies each approved content hash against that commit;
+this receipt is subsequent metadata, avoiding a cyclic commit/hash binding.
+All five planning checks and protected-state checks pass; 91 source paths and
+49/51/18 case/witness/module counts remain unchanged. Only planning paths were
+staged. Next: push and open the authorized baseline PR to master, then regular
+merge when checks permit. No product implementation or runtime effects yet.

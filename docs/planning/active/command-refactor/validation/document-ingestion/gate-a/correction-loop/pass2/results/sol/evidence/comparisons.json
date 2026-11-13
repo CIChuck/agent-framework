@@ -1,0 +1,134 @@
+{
+  "numeric_comparison": {
+    "budgets": {
+      "equal_after_documented_time_key_rename": true,
+      "prior": {
+        "metadata_bytes": 67108864,
+        "metadata_requests": 500,
+        "package_download_bytes": 4294967296,
+        "asset_download_bytes": 1073741824,
+        "total_retained_disk_bytes": 17179869184,
+        "free_disk_before_start_bytes": 21474836480,
+        "peak_child_process_tree_rss_bytes": 8589934592,
+        "metadata_wall_seconds": 900,
+        "install_wall_seconds": 1200,
+        "single_conversion_wall_seconds": 300,
+        "warm_conversion_wall_seconds": 180,
+        "child_quiescence_seconds": 30,
+        "local_embedding_requests_max": 64,
+        "local_embedding_vectors_max": 256,
+        "local_embedding_total_input_tokens_max": 131072,
+        "overall_active_seconds": 7200
+      },
+      "current": {
+        "metadata_bytes": 67108864,
+        "metadata_requests": 500,
+        "package_download_bytes": 4294967296,
+        "asset_download_bytes": 1073741824,
+        "total_retained_disk_bytes": 17179869184,
+        "free_disk_before_start_bytes": 21474836480,
+        "peak_child_process_tree_rss_bytes": 8589934592,
+        "metadata_wall_seconds": 900,
+        "install_wall_seconds": 1200,
+        "single_conversion_wall_seconds": 300,
+        "warm_conversion_wall_seconds": 180,
+        "child_quiescence_seconds": 30,
+        "local_embedding_requests_max": 64,
+        "local_embedding_vectors_max": 256,
+        "local_embedding_total_input_tokens_max": 131072,
+        "overall_active_seconds": 7200
+      }
+    },
+    "document_probe_limits": {
+      "equal_after_documented_time_key_rename": true,
+      "prior": {
+        "compressed_file_bytes": 33554432,
+        "expanded_archive_bytes": 134217728,
+        "archive_members": 2048,
+        "pdf_pages": 50,
+        "xlsx_sheets": 32,
+        "xlsx_rows_per_sheet": 20000,
+        "xlsx_cells_total": 250000,
+        "pptx_slides": 100,
+        "pptx_shapes_total": 5000
+      },
+      "current": {
+        "compressed_file_bytes": 33554432,
+        "expanded_archive_bytes": 134217728,
+        "archive_members": 2048,
+        "pdf_pages": 50,
+        "xlsx_sheets": 32,
+        "xlsx_rows_per_sheet": 20000,
+        "xlsx_cells_total": 250000,
+        "pptx_slides": 100,
+        "pptx_shapes_total": 5000
+      }
+    },
+    "target": {
+      "equal_after_documented_time_key_rename": true,
+      "prior": {
+        "os": "macOS/Darwin",
+        "arch": "arm64",
+        "python": "3.13.10",
+        "device": "CPU",
+        "parallel_conversions": 1,
+        "threads": 4
+      },
+      "current": {
+        "os": "macOS/Darwin",
+        "arch": "arm64",
+        "python": "3.13.10",
+        "device": "CPU",
+        "parallel_conversions": 1,
+        "threads": 4
+      }
+    }
+  },
+  "business_parent_comparison": {
+    "docs/planning/active/command-refactor/package-impact-assessment.md": {
+      "prior_sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+      "current_sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+      "equal": true
+    },
+    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": {
+      "prior_sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+      "current_sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+      "equal": true
+    },
+    "docs/planning/active/command-refactor/test-migration-plan.md": {
+      "prior_sha256": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c",
+      "current_sha256": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c",
+      "equal": true
+    },
+    "docs/planning/active/command-refactor/command-architecture-update-plan.md": {
+      "prior_sha256": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1",
+      "current_sha256": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1",
+      "equal": true
+    },
+    "docs/planning/active/command-refactor/guide-update-handoff.md": {
+      "prior_sha256": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9",
+      "current_sha256": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9",
+      "equal": true
+    },
+    "docs/planning/active/command-refactor/embedding-compatibility-contract.md": {
+      "prior_sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+      "current_sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+      "equal": true
+    },
+    "docs/planning/active/command-refactor/proposals/tools-document-adoption.md": {
+      "prior_sha256": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998",
+      "current_sha256": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998",
+      "equal": true
+    },
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/review-criteria.md": {
+      "prior_sha256": "0bc426c0ed16c0feab720e7b4d597c0de28f924feb58e26945637457bb9aaf62",
+      "current_sha256": "0bc426c0ed16c0feab720e7b4d597c0de28f924feb58e26945637457bb9aaf62",
+      "equal": true
+    },
+    "docs/planning/active/command-refactor/validation/document-ingestion/package-impact/round6-authorization.json": {
+      "prior_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
+      "current_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
+      "equal": true
+    }
+  }
+}

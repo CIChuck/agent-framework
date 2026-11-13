@@ -1,0 +1,104 @@
+{
+  "scope": "Controller structural/preservation checks once for activation council round7; not semantic review or readiness proof",
+  "administration": [
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": "",
+      "name": "board"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": "",
+      "name": "dashboard"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1206 Markdown files checked\n",
+      "stderr": "",
+      "name": "docs"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": "",
+      "name": "metadata"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "name": "planning-whitespace"
+    }
+  ],
+  "input_bindings_match": true,
+  "reviewed_instruction_bytes_unchanged": true,
+  "planned_witness_ids_unique": true,
+  "planned_new_witnesses": 51,
+  "mapped_cases": 49,
+  "source_doc_paths": 91,
+  "preserved_nonplanning_files": 16690,
+  "preserved_symlinks": 26,
+  "preserved_metadata_entries": 8,
+  "execution_log_append_only": true,
+  "canonical_vectors_validated": 5,
+  "raw_utf8_content_vectors_validated": 1,
+  "no_product_or_vendor_tests": true,
+  "no_AST_or_archive_rebuild": true,
+  "new_effects": false
+}

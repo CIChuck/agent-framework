@@ -1,0 +1,62 @@
+{
+  ".venv/lib/python3.13/site-packages/litellm/__init__.py": {
+    "sha256": "5c71a49e87ab96a5967ea4c718765c1064ff3a0cb2dc2853920a2868bd4b8466",
+    "excerpts": [
+      {
+        "start": 14,
+        "end": 28,
+        "text": "# Load .env before any other litellm imports so env vars (e.g. LITELLM_UI_SESSION_DURATION) are available\nimport dotenv as _dotenv\n\n\ndef _dev_env_hot_reload_enabled() -> bool:\n    \"\"\"The proxy exports this flag when started with ``--reload``. A reloaded\n    worker is a fresh process that inherits the reloader's environment, so an\n    edited ``.env`` value stays masked by the stale inherited one unless we\n    let the file win; overriding makes the edit take effect on reload.\"\"\"\n    return os.getenv(\"LITELLM_DEV_ENV_HOT_RELOAD\") == \"True\"\n\n\nif os.getenv(\"LITELLM_MODE\", \"DEV\") == \"DEV\":\n    _dotenv.load_dotenv(override=_dev_env_hot_reload_enabled())\n"
+      },
+      {
+        "start": 534,
+        "end": 539,
+        "text": "output_parse_pii: bool = False\n#############################################\nfrom litellm.litellm_core_utils.get_model_cost_map import get_model_cost_map\n\nmodel_cost = get_model_cost_map(url=model_cost_map_url)\ncost_discount_config: Dict[str, float] = {}  # Provider-specific cost discounts {\"vertex_ai\": 0.05} = 5% discount"
+      }
+    ]
+  },
+  ".venv/lib/python3.13/site-packages/litellm/litellm_core_utils/get_model_cost_map.py": {
+    "sha256": "f37b5f4754280f4a31e2a31e54bba943bd9351fa23485fb7511253b864047728",
+    "excerpts": [
+      {
+        "start": 426,
+        "end": 453,
+        "text": "def get_model_cost_map(url: str) -> dict:\n    \"\"\"\n    Public entry point \u2014 returns the model cost map dict.\n\n    1. If ``LITELLM_LOCAL_MODEL_COST_MAP`` is set, uses the local backup only.\n    2. Otherwise fetches from ``url``, validates integrity, and falls back\n       to the local backup on any failure.\n\n    Only the backup model count is cached (a single int) for validation.\n    The full backup dict is only parsed when it must be *returned* as a\n    fallback \u2014 it is never held in memory long-term.\n    \"\"\"\n    _cost_map_source_info.loaded_at = datetime.now(timezone.utc)\n    # Note: can't use get_secret_bool here \u2014 this runs during litellm.__init__\n    # before litellm._key_management_settings is set.\n    if os.getenv(\"LITELLM_LOCAL_MODEL_COST_MAP\", \"\").lower() == \"true\":\n        _cost_map_source_info.source = \"local\"\n        _cost_map_source_info.url = None\n        _cost_map_source_info.is_env_forced = True\n        _cost_map_source_info.fallback_reason = None\n        return _finalize_model_cost_map(GetModelCostMap.load_local_model_cost_map())\n\n    _cost_map_source_info.url = url\n    _cost_map_source_info.is_env_forced = False\n\n    try:\n        content: Final = GetModelCostMap.fetch_remote_model_cost_map(url)\n    except Exception as e:"
+      }
+    ]
+  },
+  ".venv/lib/python3.13/site-packages/litellm-1.100.1.dist-info/METADATA": {
+    "sha256": "fd8dbb1ff59dc9c97aa7be89dc66eca58c7f9422329fe02c350c34e7382f331f",
+    "excerpts": [
+      {
+        "start": 1,
+        "end": 3,
+        "text": "Metadata-Version: 2.4\nName: litellm\nVersion: 1.100.1"
+      }
+    ]
+  },
+  "packages/friday-llm/src/friday_llm/embeddings.py": {
+    "sha256": "b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b",
+    "excerpts": [
+      {
+        "start": 16,
+        "end": 21,
+        "text": "from contextlib import nullcontext\nfrom typing import TYPE_CHECKING, Any\n\nimport litellm\nfrom friday_telemetry import TelemetryInterface\nfrom friday_telemetry.helpers.safe_llm import BatchTracker, RequestTracker"
+      },
+      {
+        "start": 330,
+        "end": 374,
+        "text": "        *, tracker: RequestTracker | None = None, batch: BatchTracker | None = None,\n    ) -> tuple[list[list[float]], TokenUsage]:\n        \"\"\"Execute embedding call with retry logic, timeout, and circuit breaker.\n\n        Returns:\n            Tuple of (embeddings, token_usage)\n        \"\"\"\n        retry_exceptions = self._resilience.get_retry_exceptions()\n        attempts = 0\n\n        @retry(\n            retry=retry_if_exception_type(retry_exceptions),\n            stop=stop_after_attempt(self._resilience.max_retries + 1),\n            wait=wait_exponential(\n                multiplier=self._resilience.backoff_multiplier,\n                min=self._resilience.backoff_min,\n                max=self._resilience.backoff_max,\n            ),\n            reraise=False,\n        )\n        async def _call() -> tuple[list[list[float]], TokenUsage]:\n            nonlocal attempts\n            attempts += 1\n\n            kwargs: dict[str, Any] = {\n                \"model\": self.model,\n                \"input\": texts,\n            }\n\n            if self.api_key:\n                kwargs[\"api_key\"] = self.api_key\n\n            if self.api_base:\n                kwargs[\"api_base\"] = self.api_base\n\n            with tracker.attempt(batch) if tracker is not None else nullcontext():\n                try:\n                    response = await asyncio.wait_for(\n                        litellm.aembedding(**kwargs),\n                        timeout=timeout,\n                    )\n                except TimeoutError as e:\n                    raise LLMTimeoutError(\n                        f\"Embedding call timed out after {timeout}s\",\n                        timeout_seconds=timeout,"
+      }
+    ]
+  },
+  "pyproject.toml": {
+    "sha256": "d1e8ff05afbe8f1a06d3ddaa07db520ff0a1378f6fae23baf3ee525b9619e9d7",
+    "excerpts": [
+      {
+        "start": 116,
+        "end": 135,
+        "text": "[tool.ruff]\nline-length = 88\ntarget-version = \"py313\"\n\n[tool.ruff.lint]\nselect = [\"E\", \"F\", \"I\", \"UP\", \"B\", \"SIM\"]\nignore = [\"E501\"]  # Line length handled by formatter\n\n[tool.mypy]\npython_version = \"3.13\"\nwarn_return_any = true\nwarn_unused_ignores = true\ndisallow_untyped_defs = true\nignore_missing_imports = true\nexclude = '(^|/|\\\\\\\\)(conftest\\\\.py|examples($|/|\\\\\\\\).*)'\nexplicit_package_bases = true\n\n[tool.pytest.ini_options]\ntestpaths = [\"packages/*/tests_*\", \"experiments/*/tests\"]\nasyncio_mode = \"auto\""
+      }
+    ]
+  }
+}

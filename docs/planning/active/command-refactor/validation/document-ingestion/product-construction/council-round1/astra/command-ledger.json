@@ -1,0 +1,242 @@
+{
+  "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "scratch": "/private/tmp/ingest-astra-r1-Xhb9MQAm",
+  "scratch_mode": "0o700",
+  "qualification": "No product or third-party import/execution; fixed admin checks are expressly authorized exception. All formal checks fresh unless marked inspected.",
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/shasum",
+        "-a",
+        "256",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r1-3346ng5a/request.json"
+      ],
+      "exit": 0,
+      "sha256": "6047aec2f9a5fa117055c41617b971edf01dd926a822a59b8fea8824891b4095",
+      "fresh": true
+    },
+    {
+      "argv": [
+        "/usr/bin/shasum",
+        "-a",
+        "256",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r1-3346ng5a/review_tools.py"
+      ],
+      "exit": 0,
+      "sha256": "2e20c4e5568d8501e04c6c3a8e7e3277c8f67500f2d43d30851f7d864a2c7e46",
+      "fresh": true
+    },
+    {
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r1-3346ng5a/review_tools.py",
+        "boundary",
+        "--request",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r1-3346ng5a/request.json",
+        "--scratch",
+        "/private/tmp/ingest-astra-r1-Xhb9MQAm",
+        "--label",
+        "opening"
+      ],
+      "exit": 0,
+      "fresh": true,
+      "evidence": "opening-integrity.json"
+    },
+    {
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r1-3346ng5a/review_tools.py",
+        "admin",
+        "--request",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r1-3346ng5a/request.json",
+        "--scratch",
+        "/private/tmp/ingest-astra-r1-Xhb9MQAm"
+      ],
+      "exit": 0,
+      "fresh": true,
+      "evidence": "admin-commands.json"
+    },
+    {
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r1-3346ng5a/review_tools.py",
+        "boundary",
+        "--request",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-council-r1-3346ng5a/request.json",
+        "--scratch",
+        "/private/tmp/ingest-astra-r1-Xhb9MQAm",
+        "--label",
+        "closing"
+      ],
+      "exit": 0,
+      "fresh": true,
+      "evidence": "closing-integrity.json"
+    },
+    {
+      "name": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "name": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "name": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1130 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "name": "range-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "8c36d8e26c618032c1ff536004a582c07ec56a5b..fb587e7a12f48ef0d6937e008045de1de2dd8cd2",
+        "--",
+        "docs/planning"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "owned-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "staged-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/private/tmp/ingest-astra-r1-Xhb9MQAm/static_audit.py"
+      ],
+      "exit": 0,
+      "fresh": true,
+      "evidence": "static-evidence.json"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "8c36d8e26c618032c1ff536004a582c07ec56a5b..fb587e7a12f48ef0d6937e008045de1de2dd8cd2"
+      ],
+      "exit": 0,
+      "stdout": "docs/planning/README.md\ndocs/planning/active/command-refactor/README.md\ndocs/planning/active/command-refactor/authority.json\ndocs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md\ndocs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md\ndocs/planning/active/command-refactor/execution-log.md\ndocs/planning/active/command-refactor/next-phase.md\ndocs/planning/active/command-refactor/tactical-plan.md\ndocs/planning/active/command-refactor/validation/document-ingestion/product-construction/authority-manifest.json\ndocs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-test-inventory.json.gz\ndocs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-test-summary.json\ndocs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round1/authorization.json\ndocs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round1/criteria.md\ndocs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round1/roster.json\ndocs/planning/active/command-refactor/validation/document-ingestion/product-construction/preparation-authorization.json\ndocs/planning/active/command-refactor/validation/document-ingestion/product-construction/preparation-checks.json\ndocs/planning/active/command-refactor/validation/document-ingestion/product-construction/readiness-decision.md\ndocs/planning/active/command-refactor/validation/document-ingestion/product-construction/test-migration-seed.json\ndocs/planning/board.yaml\n",
+      "stderr": ""
+    }
+  ],
+  "read_only_inspection_commands": {
+    "tools": [
+      "/bin/cat",
+      "sed -n",
+      "rg -n",
+      "wc -l"
+    ],
+    "exits": "All 0",
+    "scope": "Pinned documents except roster contents; targeted current source bodies and metadata. Full request/helper initially read after hash verification; governing full documents read, with truncated REM/policy outputs reread in chunks. No raw authority/navigation/log payloads. Finance live module AST-only; no credential display.",
+    "inline_python": "Qualified Python -I -S -B - with stdlib json/gzip/pathlib for inventory/facts/index parsing; separate stdlib hash comparison of three archive bytes against their indexes; exits 0. No archive extraction."
+  },
+  "inspected_only": {
+    "product_tests": "No executions. Counts in measured result docs remain inspected receipts.",
+    "preparation_full_whitespace_exit": 2,
+    "baseline_debt": "failed/unwaived",
+    "artifacts": "inspected-evidence.json"
+  }
+}

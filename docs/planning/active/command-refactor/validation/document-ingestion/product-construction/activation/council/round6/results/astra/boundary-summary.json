@@ -1,0 +1,16 @@
+{
+  "request_sha256": "19c218ef08b8dd4d0bb409e9ab24348218441cc42293c86741871385c11c4dfd",
+  "entry_exit_equal": true,
+  "required_pins_matched": 16,
+  "preserved_records_matched": 8,
+  "optional_read_pins": {
+    "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md": true,
+    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": true
+  },
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "verdict": "VERIFIED",
+  "overall_score": 9.55,
+  "mandatory_findings": [],
+  "report_sha256": "b839c5313edf1c5d8481d797b147b1c7efb15f45aee4c97c16167cf60a167351"
+}

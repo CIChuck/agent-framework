@@ -1,0 +1,160 @@
+{
+  "administration": [
+    {
+      "name": "render",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render"
+      ],
+      "exit": 0,
+      "stdout": "Rendered docs/planning/README.md\n",
+      "stderr": ""
+    },
+    {
+      "name": "board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "name": "dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "name": "docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1137 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "name": "owned-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "staged-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "authority_pins_verified": 31,
+  "protected_nonplanning_files": 16690,
+  "preserved_symlinks": 26,
+  "preserved_local_entries": 8,
+  "historical_round1_files_unchanged": 34,
+  "traceability": {
+    "scope": "Deterministic document consistency only; no runtime/test/model conformance claim",
+    "phase_dag": "PASS Q\u2192I1\u2192I2\u2192I3\u2192AG\u2192UAT",
+    "scoped_exit_count": 12,
+    "parent_DI_definition_hashes": 36,
+    "disjoint_proof_groups": 12,
+    "full_DI_ids": 36,
+    "FC_ids": 14,
+    "main_proof_groups_equal_machine_map": true,
+    "static_inventory_totals_reconcile": true,
+    "static_nodes_not_execution": true,
+    "seed_origin_hashes_match": true,
+    "seed_requirement_tags": {
+      "TM-01": [
+        "DI-01",
+        "DI-02",
+        "DI-04",
+        "DI-13",
+        "DI-14",
+        "DI-35"
+      ],
+      "TM-02": [
+        "DI-07",
+        "DI-35"
+      ],
+      "TM-03": [
+        "TD-02",
+        "TD-03",
+        "TD-04",
+        "DI-35"
+      ]
+    },
+    "construction_approved": false,
+    "readiness_qualified": false
+  },
+  "runtime_or_model_tests_run": false,
+  "product_construction_approved": false
+}

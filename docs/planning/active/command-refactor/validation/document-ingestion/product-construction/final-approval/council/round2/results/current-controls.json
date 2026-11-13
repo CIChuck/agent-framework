@@ -1,0 +1,14 @@
+{
+  "unit": "INGEST corrected final approval/impact document council",
+  "round": 2,
+  "maximum_rounds": 2,
+  "final_round": true,
+  "areas": 8,
+  "target_overall_each": 9.5,
+  "mandatory_findings_allowed": 0,
+  "current_impact_version": "0.8",
+  "approval_request_revision": 2,
+  "construction_approved": false,
+  "effects_approved": false,
+  "repair_or_third_round_authorized": false
+}

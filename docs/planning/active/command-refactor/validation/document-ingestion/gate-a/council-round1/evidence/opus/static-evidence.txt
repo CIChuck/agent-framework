@@ -1,0 +1,41 @@
+## input hashes
+6692e709d1167c48723fa853461d02d6538101cd4c9db5f95a730fb21b1d6508  /var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-council-r1-3kkwwzkk/inputs/current-controls.json
+d1fc0015ea83ef13ae62c8f96b881f072b524d62471f89030dddde01dfb32256  /var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-council-r1-3kkwwzkk/inputs/protected-manifest.json
+651d8edfa6d1afb952418ee393b5f1369eadce2ef6b73eeb63eeb61c37320a44  /var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-council-r1-3kkwwzkk/inputs/request.json
+7a7f2ef72d4b1e6592e6ba65d2762641865031a81e7bfdfc573b9ec5d56a11e5  /var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-harness-council-r1-3kkwwzkk/inputs/review_tools.py
+## directive + parents (14) + criteria/auth/roster hashes at candidate
+e44d4e4b28736d66a1de1e66314cb6da25343430dec0933be4ac9f1645ec91ad  docs/planning/active/command-refactor/directives/CD-CMD-INGEST-GATE-A-001-readiness-harness.md
+bc567702032c7734f548c33643eb105f2fd46e51e3e444d68e50c4fb18b69d21  docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/authorization.md
+3a183db5563d74aca98c1e41e021fec151a5ccee32f006793f3ed139f0e11fe8  docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/criteria.md
+65e788edb94a33dc3d0fa16755ed71d596f743c1e4a4029394cd6e73730a6904  docs/planning/active/command-refactor/validation/document-ingestion/gate-a/council-round1/roster.json
+## directive blob at construction source vs candidate
+b4c9b0dd55d926f91c42bcf0ab5c81890fa62cf1
+b4c9b0dd55d926f91c42bcf0ab5c81890fa62cf1
+## pytest testpaths
+134:testpaths = ["packages/*/tests_*", "experiments/*/tests"]
+## .gitignore friday/test entries
+12:.friday/
+23:scripts/source-friday-chat-example-env.sh
+## dirty tracked names only
+packages/friday-chat/config.example.yaml
+packages/friday-chat/models-config.example.yaml
+## dotenv in committed src
+none
+## exec-log deleted lines in range
+0
+## directive git/export/HOME/JIT wording
+71:rehearsals may alter a run-owned source export and must report those diffs; they
+80:activation and exact promoted manifests. Record each permission separately.
+84:and validation-tool dependencies must be explicit in the promoted manifest;
+97:   binds source/config/manifest hashes, copies the harness and source export and
+106:   Keep a minimal environment allowlist without repurposing HOME. Record module,
+148:Before A3, require a structured, run-specific receipt containing:
+160:Check the receipt before every model batch. Bind live observations where
+163:receipts block requests. Production stays stopped throughout A3. Do not read the
+165:to test-owned configuration. No receipt or endpoint is pre-approved by this draft.
+183:<test-python> -I -B <run-root>/harness/run.py run --config <run-config> --stage A3 --window-receipt <receipt>
+184:<test-python> -I -B <run-root>/harness/run.py run --config <run-config> --stage all --window-receipt <receipt>
+202:| HR-05 | Missing, false, stale, expired, revoked, mismatched or incomplete window receipts cause zero model calls; a valid simulated window allows only the exact endpoint and budgets. No server-control route is called. |
+209:| HR-12 | Source and installed/private-target checks, exact receipts, protected-state evidence and required independent implementation review are retained. No product-implementation/UAT/delivery claim is made. |
+## python
+3.14.2 (main, Dec  5 2025, 16:49:16) [Clang 17.0.0 (clang-1700.6.3.2)]
