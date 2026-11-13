@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Product directive council round1 closed CHANGES_REQUESTED; all three overall scores are below9.5. Review the three reconciled document corrections and advisories, then obtain direction for bounded revision and a fresh council. No further round/remediation or product construction is activated.",
+  "current_scope": "Corrected INGEST conditional directive v0.2: one fresh round2 Sol/Astra/Opus delta-first and full document review. Require each VERIFIED, zero mandatory findings and coverage/overall>=9.5. Q qualification and I/AG/UAT proofs remain distinct; no product/effect activation or automatic third round.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1896,7 +1896,7 @@
     "unit": "REM-CMD-INGEST-001",
     "status": "conditional_product_construction_draft",
     "execution_phase": "validation",
-    "validation_state": "changes_requested",
+    "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Product directive council round1 closed CHANGES_REQUESTED; all three overall scores are below9.5. Review the three reconciled document corrections and advisories, then obtain direction for bounded revision and a fresh council. No further round/remediation or product construction is activated.",
+    "next_gate": "Corrected INGEST conditional directive v0.2: one fresh round2 Sol/Astra/Opus delta-first and full document review. Require each VERIFIED, zero mandatory findings and coverage/overall>=9.5. Q qualification and I/AG/UAT proofs remain distinct; no product/effect activation or automatic third round.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Product directive council round1 closed CHANGES_REQUESTED; all three overall scores are below9.5. Review the three reconciled document corrections and advisories, then obtain direction for bounded revision and a fresh council. No further round/remediation or product construction is activated.",
+      "next_gate": "Corrected INGEST conditional directive v0.2: one fresh round2 Sol/Astra/Opus delta-first and full document review. Require each VERIFIED, zero mandatory findings and coverage/overall>=9.5. Q qualification and I/AG/UAT proofs remain distinct; no product/effect activation or automatic third round.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2954,8 +2954,8 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "product_directive_council_complete",
-    "validation_scope": "Round1 conditional document readiness/source feasibility council reconciled CHANGES_REQUESTED; no whole Gate-A or product-conformance result.",
+    "current_stage": "corrected_product_directive_review",
+    "validation_scope": "Fresh three-group correction delta and full PD01\u201316/PD-R01\u201303 conditional document/source-feasibility review; no runtime conformance or whole Gate-A claim.",
     "large_document_corpus": {
       "state": "verified",
       "scope": "validation/document-ingestion/gate-a/large-documents-scope.md",
@@ -2970,26 +2970,26 @@
       "review": "validation/document-ingestion/gate-a/large-documents/validation/round2/review-report.md"
     },
     "product_construction_preparation": {
-      "version": "0.1",
-      "status": "council_closed_changes_requested",
+      "version": "0.2",
+      "status": "corrected_document_council_in_review",
       "date": "2026-11-12",
       "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
       "files": {
         "ingest_directive": {
           "path": "directives/CD-CMD-INGEST-001-product.md",
-          "sha256": "da911b7e6f052ab27b0e37ee939e52a0555ca177c047f84b475c9fc72b5414c1"
+          "sha256": "be9b6611d725740bff401464c3b4be6e51bb18396d3b631009f92501bba1ad8c"
         },
         "tools_directive": {
           "path": "directives/CD-CMD-TOOLS-DOC-001-adoption.md",
-          "sha256": "fccf7b46f7ecd7074e920e3744c9f09f00bae779d0b7ca54eb7a10034edc2168"
+          "sha256": "456d280d1961b9d57ae9e94af0398253ac6e051a654a871deedc0d73d1b64707"
         },
         "readiness_decision": {
           "path": "validation/document-ingestion/product-construction/readiness-decision.md",
-          "sha256": "c1c16e2cff874c64534e47e8286422583ec6e6af4969aef1680b972f5d81ae2c"
+          "sha256": "db8f54c1e80173cf2e3bf8e8c9b09446222e2450170bb7e1bfbeffc8ca211859"
         },
         "authority_manifest": {
           "path": "validation/document-ingestion/product-construction/authority-manifest.json",
-          "sha256": "5ff24a7bd21a54596a2191a097fc8abea2c9f2eabfccbbeb3dd29c37b6a5ad43"
+          "sha256": "eddaf8d712dbc2437c611aae6c8284b603205535bfe197c10dccdff80e377d00"
         },
         "baseline_test_inventory": {
           "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
@@ -2997,15 +2997,27 @@
         },
         "test_migration_seed": {
           "path": "validation/document-ingestion/product-construction/test-migration-seed.json",
-          "sha256": "e9408e0216892f5b165189b5e34eeee4502b12974f9e8e137a9b7c0d8f8f605c"
+          "sha256": "01b0e983af3ae77692e8daa59765bbd2a3d7f6f3cdfb86ec091c990382069601"
         },
         "preparation_authorization": {
           "path": "validation/document-ingestion/product-construction/preparation-authorization.json",
           "sha256": "d57c864b280230ae7f0a351a6bedae1bfe83c843b81176619758c838c0636e0d"
+        },
+        "phase_map": {
+          "path": "validation/document-ingestion/product-construction/phase-evidence-map.md",
+          "sha256": "48a87bde31574763352f44eb9f1beb20e0be545d309aefe3240a66dd52ca994e"
+        },
+        "phase_map_json": {
+          "path": "validation/document-ingestion/product-construction/phase-evidence-map.json",
+          "sha256": "e7350f7810e5d7d51c93aba0fa66e3541e464134d4f815d6ec2d81707e7e2af1"
+        },
+        "inventory_summary": {
+          "path": "validation/document-ingestion/product-construction/baseline-test-summary.json",
+          "sha256": "d0b8cddd06bddfd3a1b74924b3d4dc14bdad15ea200878ec348617a7676bbf5a"
         }
       },
       "implementation_approval": "not_granted",
-      "council_active": false,
+      "council_active": true,
       "new_model_or_store_effects": false,
       "production_changes": false,
       "gate_a_threshold_met": false,
@@ -3021,62 +3033,85 @@
       "test_exception_map_approved": false,
       "lightweight_change_exemption": "Documentation-only preparation under explicit proceed; record contains exact scope and checks. No source/test/guide/config/dependency implementation.",
       "council": {
-        "round": 1,
-        "maximum_authorized_rounds": 1,
-        "authorization": "validation/document-ingestion/product-construction/council-round1/authorization.json",
-        "authorization_sha256": "0250f72f4fc512710680103d33f7f79e420aa2c63346de39c4f4a2afd973a749",
-        "criteria": "validation/document-ingestion/product-construction/council-round1/criteria.md",
-        "criteria_sha256": "7a7536c12becca40541c3b2368217c0ce47f7d3101365a273001bc007db7b9ce",
-        "roster": "validation/document-ingestion/product-construction/council-round1/roster.json",
+        "round": 2,
+        "maximum_authorized_rounds": 2,
+        "new_rounds_authorized": 1,
+        "previous_rounds_complete": 1,
+        "authorization": "validation/document-ingestion/product-construction/council-round2/authorization.json",
+        "authorization_sha256": "c593b36da42cb3897d7bb0bd272d28133e24321093aee27e7dda58534cc4ffbc",
+        "criteria": "validation/document-ingestion/product-construction/council-round2/criteria.md",
+        "criteria_sha256": "3e9f411962aa4b62d49df85ba014967aff394de213e068605bbcd2951c0dc02e",
+        "roster": "validation/document-ingestion/product-construction/council-round2/roster.json",
+        "status": "in_review",
         "threshold_each": 9.5,
-        "status": "closed_changes_requested",
-        "scope": "document readiness and selected-source feasibility only",
-        "automatic_remediation": false,
+        "scope": "Correction delta first, then full conditional document readiness/source feasibility only.",
         "construction_authority": false,
-        "outcome": "CHANGES_REQUESTED",
-        "all_seats_terminal": true,
-        "formal_council_complete": true,
-        "reviewed_candidate": "fb587e7a12f48ef0d6937e008045de1de2dd8cd2",
-        "report": "validation/document-ingestion/product-construction/council-round1/report.md",
-        "report_sha256": "07018412ebc8a6a9e0faea8e189da118f37a8abad422dd14968d527adba547a8",
-        "reconciliation": "validation/document-ingestion/product-construction/council-round1/reconciliation.json",
-        "reconciliation_sha256": "cd9e1e294b4bde0270897fc54f627aaf93b0299cbd43999fb99168f6ceca3474",
-        "threshold_met_each": false,
-        "mandatory_correction_groups": [
-          "INGEST-PD-R1-001",
-          "INGEST-PD-R1-002",
-          "INGEST-PD-R1-003"
-        ],
-        "results": {
-          "sol": {
-            "model": "gpt-6.1-sol",
-            "outcome": "CHANGES_REQUESTED",
-            "coverage": 9.6,
-            "overall": 9.2,
-            "report": "validation/document-ingestion/product-construction/council-round1/sol/report.md",
-            "report_sha256": "ca9e5fa60d0a66bd7639eaa0ff60a6b7b4054a52088b98fa4e659134c3f4768c",
-            "conduct": "Accepted fresh independent read-only evidence; preserved scope and boundaries."
+        "automatic_third_round": false
+      },
+      "council_history": [
+        {
+          "round": 1,
+          "maximum_authorized_rounds": 1,
+          "authorization": "validation/document-ingestion/product-construction/council-round1/authorization.json",
+          "authorization_sha256": "0250f72f4fc512710680103d33f7f79e420aa2c63346de39c4f4a2afd973a749",
+          "criteria": "validation/document-ingestion/product-construction/council-round1/criteria.md",
+          "criteria_sha256": "7a7536c12becca40541c3b2368217c0ce47f7d3101365a273001bc007db7b9ce",
+          "roster": "validation/document-ingestion/product-construction/council-round1/roster.json",
+          "threshold_each": 9.5,
+          "status": "closed_changes_requested",
+          "scope": "document readiness and selected-source feasibility only",
+          "automatic_remediation": false,
+          "construction_authority": false,
+          "outcome": "CHANGES_REQUESTED",
+          "all_seats_terminal": true,
+          "formal_council_complete": true,
+          "reviewed_candidate": "fb587e7a12f48ef0d6937e008045de1de2dd8cd2",
+          "report": "validation/document-ingestion/product-construction/council-round1/report.md",
+          "report_sha256": "07018412ebc8a6a9e0faea8e189da118f37a8abad422dd14968d527adba547a8",
+          "reconciliation": "validation/document-ingestion/product-construction/council-round1/reconciliation.json",
+          "reconciliation_sha256": "cd9e1e294b4bde0270897fc54f627aaf93b0299cbd43999fb99168f6ceca3474",
+          "threshold_met_each": false,
+          "mandatory_correction_groups": [
+            "INGEST-PD-R1-001",
+            "INGEST-PD-R1-002",
+            "INGEST-PD-R1-003"
+          ],
+          "results": {
+            "sol": {
+              "model": "gpt-6.1-sol",
+              "outcome": "CHANGES_REQUESTED",
+              "coverage": 9.6,
+              "overall": 9.2,
+              "report": "validation/document-ingestion/product-construction/council-round1/sol/report.md",
+              "report_sha256": "ca9e5fa60d0a66bd7639eaa0ff60a6b7b4054a52088b98fa4e659134c3f4768c",
+              "conduct": "Accepted fresh independent read-only evidence; preserved scope and boundaries."
+            },
+            "astra": {
+              "model": "gpt-6-astra",
+              "outcome": "CHANGES_REQUESTED",
+              "coverage": 9.6,
+              "overall": 9.1,
+              "report": "validation/document-ingestion/product-construction/council-round1/astra/report.md",
+              "report_sha256": "b8b06ce0108a867e6253aa78844ee2470a81609d7de522253d38ab894ee79f74",
+              "conduct": "Accepted fresh independent read-only evidence; preserved scope and boundaries."
+            },
+            "opus": {
+              "model": "claude-opus-5-5",
+              "outcome": "CHANGES_REQUESTED",
+              "coverage": 9.4,
+              "overall": 8.6,
+              "report": "validation/document-ingestion/product-construction/council-round1/opus/report.md",
+              "report_sha256": "ac0956b36f78ba8eaae30178fc4b9aa2eff22836f9a3214e61ecec222038c220",
+              "conduct": "Accepted with disclosed incidental delegate-inventory exposure: first400 bytes contained only a seat/status/opaque task ID, no peer review reasoning/findings/scores. This violates the requested inventory exclusion but not its substantive peer-reasoning BLOCKED trigger. Findings corroborated independently; scores and CHANGES_REQUESTED outcome are retained unchanged. No replacement or extra round."
+            }
           },
-          "astra": {
-            "model": "gpt-6-astra",
-            "outcome": "CHANGES_REQUESTED",
-            "coverage": 9.6,
-            "overall": 9.1,
-            "report": "validation/document-ingestion/product-construction/council-round1/astra/report.md",
-            "report_sha256": "b8b06ce0108a867e6253aa78844ee2470a81609d7de522253d38ab894ee79f74",
-            "conduct": "Accepted fresh independent read-only evidence; preserved scope and boundaries."
-          },
-          "opus": {
-            "model": "claude-opus-5-5",
-            "outcome": "CHANGES_REQUESTED",
-            "coverage": 9.4,
-            "overall": 8.6,
-            "report": "validation/document-ingestion/product-construction/council-round1/opus/report.md",
-            "report_sha256": "ac0956b36f78ba8eaae30178fc4b9aa2eff22836f9a3214e61ecec222038c220",
-            "conduct": "Accepted with disclosed incidental delegate-inventory exposure: first400 bytes contained only a seat/status/opaque task ID, no peer review reasoning/findings/scores. This violates the requested inventory exclusion but not its substantive peer-reasoning BLOCKED trigger. Findings corroborated independently; scores and CHANGES_REQUESTED outcome are retained unchanged. No replacement or extra round."
-          }
-        },
-        "further_automatic_review": false
+          "further_automatic_review": false
+        }
+      ],
+      "correction_groups": {
+        "INGEST-PD-R1-001": "corrected; independent closure pending",
+        "INGEST-PD-R1-002": "corrected; independent closure pending",
+        "INGEST-PD-R1-003": "corrected; independent closure pending"
       }
     }
   },

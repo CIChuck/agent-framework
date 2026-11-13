@@ -1,6 +1,6 @@
 # INGEST — measured readiness and construction handoff
 
-Version: **0.1 draft**, 2026-11-12; source baseline `8c36d8e2`.
+Version: **0.2 corrected draft**, 2026-11-12; source baseline `8c36d8e2`.
 
 **Engineering recommendation: use Docling with the measured configured profile.**
 There is genuine conversion/chunking/embedding/storage evidence, sufficient to
@@ -47,27 +47,56 @@ compatible product graph, supported install profiles and unavoidable lock delta
 remain required. Certifi must stay at least 2026.10.19 after every installation;
 the shared CA-bundle upgrade affects other HTTPS consumers too.
 
-## Remaining activation decisions and evidence
+## Qualification before construction versus acceptance afterwards
 
-Each row closes by exact proof or an explicit approved contract/impact amendment.
-It is not resolved by silently changing a fixture, disabling a subsystem or
-presenting refusal alone as backwards compatibility.
+The [phase map](phase-evidence-map.md) distinguishes **Q** (Gate-A qualification
+before product generation), **I1/I2/I3** (approved implementation and scoped exits),
+**AG** (full frozen-candidate verification) and **UAT** (human execution after the
+required code council). A1 closes only each row's Q disposition. It does not
+require new product extras, interfaces, guards or authored current-candidate
+guides to exist before permission to build them. Their actual product proofs
+remain mandatory at the named exits and aggregate, not waived or relabelled.
 
-| ID | Open item | Required bounded disposition |
+Q uses exact upstream packages/assets, unchanged baseline Friday code/wheels,
+private dependency feasibility/co-install experiments, model/deployment evidence,
+inert proposed requirements and planned source/test/documentation matrices.
+These are qualification artifacts, not shipped product metadata. Any separately
+permitted private metadata rehearsal retains that label and its own authority;
+it cannot establish actual installed-candidate support. No new effects are
+activated by this documentation correction.
+
+| ID | Q: required pre-construction disposition | Mandatory implementation / post-build acceptance |
 | --- | --- | --- |
-| RD-01 | Framework-wide embedding readiness | Complete source-linked call-site/configuration B01–08 and FC-01–14 matrix, public/direct openers and active/public/absent route dispositions. Qualify maintained baseline configurations with omitted new fields and their exact artifact/preparation/counter facts; require actual baseline and replacement-model positive operations plus refusals. Current Nomic E2E does not qualify all services, consumers or a replacement model. |
-| RD-02 | Hidden-row/column and Office selection contract | The measured profile refuses workbooks containing unsupported hidden rows/columns; the approved REM requires exclusions with truthful coverage. Prove the exclusion/Docling-provenance mapping, or present a specifically worded conservative-refusal amendment and revised impact for Chuck. No such amendment is approved here. Also freeze factory's explicit sheet/range/hidden selection and notes/comment distinction for the companion. |
-| RD-03 | Limits, resources and interruption | Qualify the selected byte/page/sheet/cell/slide/expanded-archive ceilings, numeric runtime/disk/RSS bounds, cold/warm timings and cancellation/quiescence against genuine boundary fixtures. Native guard is not an OS sandbox. The large corpus provides new inputs, not completed boundary/worker proof. |
-| RD-04 | Exact shared API and namespace/recovery data | Freeze runtime-validated immutable contracts, exact per-slice file list, source/chunk/receipt metadata, local counter interface, identity/digest vectors, fresh-path origin, graph/query envelopes, ready-marker publication and strict nested v1/v2 recovery. Bind a complete asset/provisioning manifest without new import cycles. Existing source public call shapes remain preserved. |
-| RD-05 | Token/model boundary | Nomic E2E observed loaded context 2048 and 768-dimensional finite vectors. Local preparation counts include prefixes/special tokens, but LM Studio usage returned zero: server/local equivalence is unqualified. Establish exact model-bound counter/limits and boundary/overflow evidence without treating zero usage as verification. Actual new calls need a new authorized window; the old consumed ledger is immutable. |
-| RD-06 | Product and Tools installation/provenance | Qualify default Chat with document extra, bare Tools text use, Tools-with-profile without Chat, Commands-only, and counter-enabled headless Memory/Runtime/CLI/Agent. Re-resolve the exact compatible graph, assets/licenses/origins, extra names and proposed lock delta. A private test target is not an installed product closure or proof of factory pagination. |
-| RD-07 | Migration, documentation and final readiness gate | Expand the exact phase/node/oracle maps from the baseline inventory; classify offline/live modules and retain all valid obligations. Complete the architecture/guide evidence matrix and scope any measured impact amendment. Obtain the required aggregate readiness review with the established 9.5/no-mandatory-findings gate, then bind Chuck's exact construction approval. No council is activated by this drafting instruction. |
+| RD-01 | Inventory current source/configuration B01–08 and FC-01–14 callers, direct openers and active/public/absent routes; qualify actual selected deployment identity/preparation/counter/capacity. Obtain unchanged-baseline positive operations with the baseline's original conventions in fresh disposable stores, and define candidate B/N/R nodes. **Check B02's hosted text-embedding-3-small immutable-identity risk first**; if unqualifiable, stop for maintainer disposition, without changing defaults, dropping the baseline or calling refusal compatibility. | I1 proves shared capabilities; I2 runs actual integrated existing consumer B/N/R; I3 adds ingestion paths; AG checks the complete trace and representative actual installed normal/-O operations. New-guard refusal tests are not required to exist at Q. |
+| RD-02 | Prove the selected converter/audit's hidden-unit/provenance/notes/formula semantics with standalone genuine fixtures, including companion selection needs; alternatively obtain a specifically approved REM/impact amendment for a materially narrower contract. Current whole-workbook refusal is not promised hidden-row/column exclusion. | I3 proves the same admitted scope through actual command/common-entry storage; separately activated TOOLS-DOC proves actual factory sheet/range and smart_read routes. Unsupported exclusion cannot silently become a new exception. |
+| RD-03 | Qualify standalone converter/counting ceilings, assets, cold/warm resource envelope and cancellable-work feasibility on genuine boundary fixtures; freeze numeric limits and the planned request/admission/cancellation assertions. Large native-valid corpus alone is insufficient. | I3 runs actual caller event-loop responsiveness, worker ownership/quiescence, before/during/after cancellation and zero late storage; AG checks preserved behavior/resource evidence on the candidate. No OS sandbox or hard native-kill claim. |
+| RD-04 | Freeze exact shared contract/schema/signature/digest vectors, phase-specific path lists, proposed source/chunk/receipt and namespace/recovery data, asset/provisioning manifest and planned positive/refusal oracles. No unimplemented protocol earns runtime credit. | I1 implements/tests foundation values, guards and Memory-v2 models; I2 executes actual Chat aggregate and consumer admission; I3 executes the common chunk/receipt path. AG reviews actual old/new public contracts and strict artifact combinations. |
+| RD-05 | Qualify exact served artifact, effective limit, dimensions, synchronous local counter/preparation and actual boundary parity using permitted external/unchanged-code probes. Nomic usage=0 is not parity proof; unknown parity still stops Q. Reserve any new live window separately; the consumed old ledger remains immutable. | I1 tests the implemented guard/preparation/batch API against qualified facts; I2/I3 exercise actual integrated callers, final document chunk budgets and refusals. AG installed normal/-O proof distinguishes real serving qualification from deterministic offline vectors. |
+| RD-06 | Resolve a compatible proposed package graph and local asset/license/origin set on the target profile, using upstream distributions plus unchanged Friday wheels/code. Rehearse the intended default-Chat/document, bare-Tools, Commands-only and narrow-counter headless dependency shapes as **proposed** requirements, without claiming nonexistent extra names are installed product features. Freeze exact proposed metadata/lock deltas and counter split. | I1 creates/validates its exact LLM/Memory metadata edges; I2 proves real headless candidate Memory/Runtime/CLI/Agent counters; I3 creates and proves actual Tools document-ingestion/default-Chat edges and bare-Tools/shared-extractor behavior. AG repeats or byte-attributes required clean candidate profiles/origins/security checks. Tools public routing/pagination remains the companion's proof. |
+| RD-07 | Freeze the initial inventory, planned per-phase case/oracle maps and offline/live classifications, planned requirement→document→source/example matrix, scope/material-impact disposition and exact approval artifacts. Obtain the required whole **readiness** 9.5 review on Q evidence; do not substitute a conditional-directive review. | Each slice proves only its own executed DI-35 migration and changed-contract documentation. I3/AG review whole-suite coverage and actual authored DI-36 content/verified examples. Required post-code DI-12 council follows freeze; human UAT remains a subsequent explicit stage. |
 
-These are requirements of the existing REM/assessment, not a request to repeat
-all package-metadata experiments. Reuse byte-bound suitable evidence, execute
-missing named behavioral witnesses, and distinguish inspections from fresh runs.
-Document current unknowns accurately. Preparation of the implementation directives
-can proceed while these dependent activation items remain open.
+For each Q item record evidence, interpreter/artifact identity, permitted effects
+and qualification outcome. A remaining Q unknown still stops dependent activation.
+For each constructed item record the source candidate and executed public witness
+at its eligible phase. No installed candidate artifact is required before its
+approved generation, and no experiment is renamed as final product acceptance.
+The underlying REM requirements and whole-readiness threshold remain binding.
+
+## Canonical impact refinement and materiality
+
+Keep one current `package-impact-assessment.md`. Preserve approved v0.6 in Git;
+after Q, refine that same canonical path into a measured new version and obtain
+Chuck's satisfaction against its exact hash before construction approval. This
+readiness handoff is supporting evidence, not a second assessment. The current
+correction leaves v0.6 bytes unchanged.
+
+| Measured difference | Scope/materiality disposition before construction |
+| --- | --- |
+| Certifi 2026.10.23 and compatible dateutil 2.9.0.post0 | Exact dependency/security refinements inside the planned graph; inventory and review the actual lock/profile delta. They add no package owner or behavior exception, but still bind the final assessment/approval. Shared Certifi affects other HTTPS consumers. |
+| Explicit furniture/headings/notes serialization and local OCR assets | Concrete implementation settings for already required source-content semantics; freeze hashes and limits, without claiming all Word/Office parts are supported. |
+| Unsupported hidden-row/column whole-workbook refusal | Material narrowing if substituted for the REM's exclusion contract. It requires the explicit REM/impact amendment in RD-02 or proven correct exclusion. No such amendment is approved now. |
+| Retained packaged explicit .friday/vector literal | Existing supplied-origin behavior under the approved fresh-store rule, not authority to stamp old data. Explain first-run/upgrade consequences in the refined canonical assessment and guides. |
+| Optional Qwen comparison/model switch | Separate qualification/selection decision, with fresh compatible data. Neither the correction nor Docling selection changes the production default. |
 
 ## Model selection and upgrade boundaries
 

@@ -110,5 +110,77 @@
       "test_modules": 4,
       "static_base_test_definitions": 25
     }
-  ]
+  ],
+  "root_integration": {
+    "path": "tests/integration",
+    "test_modules": 11,
+    "static_base_test_definitions": 61,
+    "paths": [
+      "tests/integration/reorganization/test_gate_a_reproductions.py",
+      "tests/integration/reorganization/test_maintenance_headless.py",
+      "tests/integration/reorganization/test_reorganization_recovery.py",
+      "tests/integration/test_development_board.py",
+      "tests/integration/test_documentation_lifecycle.py",
+      "tests/integration/test_mcp_execution_provenance.py",
+      "tests/integration/test_mcp_memory_ingestion.py",
+      "tests/integration/test_mcp_registry.py",
+      "tests/integration/test_mcp_runtime_lifecycle.py",
+      "tests/integration/test_package_cohort_metadata.py",
+      "tests/integration/test_typed_llm_boundary_audit.py"
+    ]
+  },
+  "inventory_scope": {
+    "includes": [
+      "Tracked package-local test_*.py under test directories",
+      "Tracked tests/integration/test_*.py",
+      "Tracked package/integration fixtures and conftest hashes"
+    ],
+    "excludes": {
+      "docs/dev-skills": [
+        "docs/dev-skills/babysit-pr/tests/test_pr_wait.py"
+      ],
+      "experiments/agent_quality": [
+        "experiments/agent_quality/tests/test_agent_quality.py"
+      ],
+      "experiments/prompt_transcript_audit": [
+        "experiments/prompt_transcript_audit/tests/test_prompt_transcript_audit.py"
+      ],
+      "experiments/provider_memory_smoke": [
+        "experiments/provider_memory_smoke/tests/test_provider_memory_smoke.py"
+      ],
+      "experiments/workflow_artifact_smoke": [
+        "experiments/workflow_artifact_smoke/tests/test_workflow_artifact_smoke.py"
+      ],
+      "tests/lab": [
+        "tests/lab/test_delegation_chain.py",
+        "tests/lab/test_headless_execution.py",
+        "tests/lab/test_legacy_compatibility.py"
+      ],
+      "tests/readiness/ingest/tests": [
+        "tests/readiness/ingest/tests/test_behavior.py",
+        "tests/readiness/ingest/tests/test_cli.py",
+        "tests/readiness/ingest/tests/test_e2e.py",
+        "tests/readiness/ingest/tests/test_environment.py",
+        "tests/readiness/ingest/tests/test_export.py",
+        "tests/readiness/ingest/tests/test_fixtures.py",
+        "tests/readiness/ingest/tests/test_large_documents.py",
+        "tests/readiness/ingest/tests/test_ledger.py",
+        "tests/readiness/ingest/tests/test_manifests.py",
+        "tests/readiness/ingest/tests/test_paths.py",
+        "tests/readiness/ingest/tests/test_protection.py",
+        "tests/readiness/ingest/tests/test_reports.py",
+        "tests/readiness/ingest/tests/test_startup.py",
+        "tests/readiness/ingest/tests/test_window.py"
+      ],
+      "tests/unit/security": [
+        "tests/unit/security/test_config.py",
+        "tests/unit/security/test_markers.py",
+        "tests/unit/security/test_output_processor.py",
+        "tests/unit/security/test_patterns.py",
+        "tests/unit/security/test_quarantine.py",
+        "tests/unit/security/test_sanitizer.py"
+      ]
+    },
+    "scope_note": "Static base-node inventory only, not all repository tests or runtime parameter collection. Lab/security/readiness/experiment suites are outside this initial product migration inventory; every newly affected obligation must be inventoried/mapped before change. Root pytest also discovers experiments/*/tests."
+  }
 }

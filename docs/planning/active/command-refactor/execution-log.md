@@ -3963,3 +3963,23 @@ per seat pass; historical behavior/model/store results were inspected, not rerun
 One authorized round is closed with no active council. Obtain maintainer direction
 before bounded document correction/new review. Gate-A qualification, product
 construction, effects, UAT, acceptance and delivery remain separate open gates.
+
+## 2026-11-12 — Product directive bounded correction and fresh round 2
+
+Chuck directs “proceed” on the bounded document correction/fresh-council next
+step. [Authority](validation/document-ingestion/product-construction/council-round2/authorization.json)
+authorizes exactly one additional round (round2/2), no third automatic pass or
+product effect. Correct the three groups: scoped phase exits/aggregate/human
+sequence, Q qualification versus post-build installed acceptance, and DI/seed
+mapping plus mandatory post-code three-seat review. The new phase map preserves
+all36 original DI definitions/digests and14 FC dispositions with12 scoped exits;
+no implemented product/test proof is claimed. Related advisories add visible
+exceptions/remedies, B02-first qualification risk, conditional CLI, named
+worker/headless owners, exact root/excluded inventory scope, current routing,
+package/seed arithmetic and one canonical refined impact path/materiality.
+[Neutral brief](validation/document-ingestion/product-construction/council-round2/correction-brief.json)
+binds corrections without peer scores/reasoning. Static traceability checks pass:
+DAG/proof-group partition, parent definitions, seed origins/tags and inventory
+sums. Approved REM/annex/assessment/migration/architecture/guide and all product
+bytes remain unchanged. Freeze current inputs for fresh independent delta-first
+then full review; whole Gate-A9.5 and construction approval remain open.

@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Product directive council round1 closed CHANGES_REQUESTED; all three overall scores are below9.5. Review the three reconciled document corrections and advisories, then obtain direction for bounded revision and a fresh council. No further round/remediation or product construction is activated."
+  next_gate: "Corrected INGEST conditional directive v0.2: one fresh round2 Sol/Astra/Opus delta-first and full document review. Require each VERIFIED, zero mandatory findings and coverage/overall>=9.5. Q qualification and I/AG/UAT proofs remain distinct; no product/effect activation or automatic third round."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

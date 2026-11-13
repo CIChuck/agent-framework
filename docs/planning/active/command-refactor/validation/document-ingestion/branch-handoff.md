@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Fresh LD-CORPUS-001 correction delta and full corpus review. V2 requires genuine middle/tail evidence; native25-file validation/mode and88 regressions pass. Original corpora preserved. No Qwen/model/store/production effect; serving and token counts remain unqualified.
+**Next gate:** Corrected conditional product directive is in fresh round2 review; exact construction approval and whole Gate-A remain open. No product/model/store effects are activated.
 
 ## Historical branch/design preparation (superseded for current evaluation routing)
 
@@ -62,16 +62,16 @@ their original branch/source identities. Do not broad-stage or clean this checko
 
 
 
-## Current harness directive council closeout
+## Historical frozen harness directive council closeout
 
 [Pass2 reconciliation](gate-a/verified-directive-report.md) meets the complete
 all-seat 9.5 gate and ends the authorized loop early. Candidate `474479df` and
 technical document bytes remain frozen; no construction or A0–A4 effects follow.
 Exact directive approval is next, followed only by its authorized test-only slice.
-Earlier preparation labels above describe their freezes; this closeout controls
-current readiness status, with no acceptance or production mutation.
+Earlier preparation labels above describe their freezes; this closeout controlled
+that frozen harness-design status, with no acceptance or production mutation.
 
 
-Current construction authority: [exact C0 approval](gate-a/construction-approval.md).
+Historical C0 construction authority: [exact C0 approval](gate-a/construction-approval.md).
 It supersedes earlier pending-construction routing only. Real A0–A4 effects and
 production/model/store operations remain unactivated.

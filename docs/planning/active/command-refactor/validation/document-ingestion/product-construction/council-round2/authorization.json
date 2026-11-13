@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "maintainer": "Chuck Russell",
+  "date": "2026-11-12",
+  "statement": "proceed",
+  "responds_to": "Recommended next step: bounded document corrections, followed by a fresh council round.",
+  "round": 2,
+  "previous_rounds_complete": 1,
+  "new_rounds_authorized": 1,
+  "maximum_total_rounds": 2,
+  "scope": "Correct INGEST-PD-R1-001/002/003 and related AD-01\u201309 within planning artifacts only, then one fresh delta-first/full conditional-directive council.",
+  "permitted_edits": [
+    "Main and companion drafts",
+    "Readiness boundary and phase-evidence map",
+    "Migration seed and readable inventory summary",
+    "Input pins, correction/authorization/criteria and current routing/status evidence"
+  ],
+  "immutable_runtime_scope": "No product source/tests/package metadata/lock/guides/user YAML/assets/store changes or model/network effects. Approved REM/annex/assessment/test/architecture/guide parent bytes remain unchanged.",
+  "models": [
+    "gpt-6.1-sol",
+    "gpt-6-astra",
+    "claude-opus-5-5"
+  ],
+  "effort": "high",
+  "required_each": {
+    "coverage": 9.5,
+    "overall": 9.5,
+    "outcome": "VERIFIED",
+    "mandatory_findings": 0
+  },
+  "automatic_third_round": false,
+  "product_construction_approved": false,
+  "new_effects_approved": false
+}

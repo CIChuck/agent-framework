@@ -1,15 +1,16 @@
 # CD-CMD-TOOLS-DOC-001 — public Tools document adoption
 
-Version: **0.1, conditional construction draft**, 2026-11-12.
-Execution phase: **planning**; validation state: **pending**.
+Version: **0.2, corrected conditional construction draft**, 2026-11-12.
+Execution phase: **validation**; validation state: **in_review as interaction context**.
 Branch: `feature/cmd-ingest-001`; planning baseline: `8c36d8e2`.
 
 This is the separately directed companion to
 [CD-CMD-INGEST-001](CD-CMD-INGEST-001-product.md). It implements the reviewed
 [TOOLS-DOC plan](../proposals/tools-document-adoption.md), TD-01–10, and the
 manifest-pinned [REM](../remediation/REM-CMD-INGEST-001-pdf-docx.md), compatibility
-annex and approved package assessment. Chuck currently authorizes drafting only.
-No construction/council/live-effects approval is recorded by this document.
+annex and approved package assessment. Chuck authorizes bounded document correction
+and one fresh review of the main directive, including this companion interaction.
+No companion construction or live-effects approval is recorded by this document.
 
 ## Activation and objective
 
@@ -86,7 +87,7 @@ and installed evidence. At minimum:
    separately selected XLSX ranges. Mock-only routing is insufficient.
 2. Both refuse corruption, empty/partial output, missing library/assets,
    unsafe structure and failed sandbox access, before storage or success-cache
-   publication. The existing corrupt `%PDF-1.4` seed does not become a genuine
+   publication. The existing corrupt eight-byte `%PDF-1.4` seed does not become a genuine
    positive PDF merely because its old test classified it as binary.
 3. Cache-hit/drift/reprocess, small/large/force_chunked and all three strategies
    prove exactly one shared source plan and truthful source/derived handling.

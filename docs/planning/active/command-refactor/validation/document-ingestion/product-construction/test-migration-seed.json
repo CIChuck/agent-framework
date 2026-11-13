@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "status": "proposed phase-map seeds; not approved case-level exceptions",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "inventory_sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4",
@@ -16,7 +16,9 @@
       "requirements": [
         "DI-01",
         "DI-02",
-        "DI-08",
+        "DI-04",
+        "DI-13",
+        "DI-14",
         "DI-35"
       ],
       "proposed_replacements": [
@@ -39,8 +41,7 @@
       "old_node": "test_ingest_records_source_metadata_and_list_ingested",
       "disposition": "retain requirement; evaluate fixture-only adaptation",
       "requirements": [
-        "DI-06",
-        "DI-08",
+        "DI-07",
         "DI-35"
       ],
       "reason": "Keep exact source/description/listing requirements while shared entry replaces Chat slicing; no removal of missing-description or metadata repair coverage.",
@@ -63,7 +64,7 @@
       "old_path": "packages/friday-tools/tests_tools/test_smart_read.py",
       "old_node": "TestBinaryFiles::test_pdf_is_binary",
       "disposition": "proposed replace",
-      "reason": "Four-format routing intentionally changes binary-skip behavior; existing five-byte PDF seed is corrupt and must fail conversion rather than become a positive.",
+      "reason": "Four-format routing intentionally changes binary-skip behavior; existing eight-byte PDF seed is corrupt and must fail conversion rather than become a positive.",
       "requirements": [
         "TD-02",
         "TD-03",

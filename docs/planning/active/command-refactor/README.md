@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/local; execution phase: validation; validation state: changes_requested
-for the conditional-product-directive council. Package impact v0.6 is approved.
+**Status:** started/local; execution phase: validation; validation state: in_review
+for corrected conditional-product-directive council round2. Package impact v0.6 is approved.
 Bounded Docling/Nomic/corpus evaluations remain independently verified. Whole
 Gate-A9.5, exact product construction approval and MAINT human UAT/acceptance
 remain open. Production source and state are unchanged.
@@ -44,7 +44,9 @@ proof, traceable tests and substantive architecture/guide updates. The
 [measured readiness decision](validation/document-ingestion/product-construction/readiness-decision.md)
 records RD-01–07 before activation; the draft does not silently close those gaps.
 [Round1 reconciliation](validation/document-ingestion/product-construction/council-round1/report.md)
-records all three CHANGES_REQUESTED; the9.5 gate is unmet and the round is closed.
+records the historical first-round findings. Their bounded document corrections
+are prepared, with fresh round2 closure pending. The [phase map](validation/document-ingestion/product-construction/phase-evidence-map.md)
+separates Q qualification, scoped I1/I2/I3 exits, final AG and human UAT.
 Product generation has not started. The earlier proceed
 is recorded as documentation-only preparation, with protected state preserved.
 
@@ -66,7 +68,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Product directive council round1 closed CHANGES_REQUESTED; all three overall scores are below9.5. Review the three reconciled document corrections and advisories, then obtain direction for bounded revision and a fresh council. No further round/remediation or product construction is activated.
+**Next gate:** Corrected INGEST conditional directive v0.2: one fresh round2 Sol/Astra/Opus delta-first and full document review. Require each VERIFIED, zero mandatory findings and coverage/overall>=9.5. Q qualification and I/AG/UAT proofs remain distinct; no product/effect activation or automatic third round.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

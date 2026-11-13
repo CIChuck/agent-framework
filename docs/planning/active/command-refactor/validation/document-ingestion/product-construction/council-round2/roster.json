@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "round": 2,
+  "providers": "two OpenAI, one Anthropic; maintained roster overrides skill default three-provider example",
+  "seats": [
+    {
+      "seat": "sol",
+      "providerInstanceId": "codex",
+      "model": "gpt-6.1-sol",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "astra",
+      "providerInstanceId": "codex",
+      "model": "gpt-6-astra",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "opus",
+      "providerInstanceId": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "options": {
+        "effort": "high"
+      }
+    }
+  ]
+}

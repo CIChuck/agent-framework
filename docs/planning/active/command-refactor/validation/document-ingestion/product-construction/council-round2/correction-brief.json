@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "scope": "Neutral correction requirements; peer verdicts/scores/reasoning are not supplied review inputs.",
+  "mandatory": [
+    {
+      "id": "INGEST-PD-R1-001",
+      "requirement": "Slice exit proof must depend only on implementation available in that slice or earlier. Full public DI23 shared plan/smart_read is I3, actual Chat recovery DI32 is I2; I1 has scoped contracts only. Whole-suite DI35 and technical aggregate review remain final; human DI12 UAT remains later.",
+      "changed_artifacts": [
+        "main section2",
+        "phase-evidence-map.md",
+        "phase-evidence-map.json"
+      ],
+      "verification": "Independently join every scoped exit to owner/path/prerequisite/planned witness; full DI01\u201336 and FC01\u201314 accounting remains without forward dependencies or mock-only final credit."
+    },
+    {
+      "id": "INGEST-PD-R1-002",
+      "requirement": "Q qualification and design/API/metadata proposals must be possible without new product implementation. Actual extras/installations/new guards/current-candidate verified docs are post-build acceptance under approved I1/I2/I3. Keep baseline/deployment qualification and readiness stops and 9.5 gate.",
+      "changed_artifacts": [
+        "main A1/A2",
+        "readiness-decision.md RD table",
+        "phase map"
+      ],
+      "verification": "Inspect RD01\u201307 pre/post columns and artifact/generation authority; no candidate artifact is required before approval to build it, and no missing qualification or final installed positive is waived."
+    },
+    {
+      "id": "INGEST-PD-R1-003",
+      "requirement": "Bind proof IDs and migration seed to exact original DI definitions. Retain required separately authorized post-code Sol/Astra/Opus review before human UAT.",
+      "changed_artifacts": [
+        "main section5/7",
+        "test-migration-seed.json",
+        "phase map"
+      ],
+      "verification": "Verify disjoint proof-group coverage of36 DIs, exact parent-definition digests, TM01 native/corrupt/XLSX/PPTX tags and TM02 DI07 metadata/storage tag; do not infer current tests executed."
+    }
+  ],
+  "advisories": [
+    {
+      "id": "AD-01",
+      "requirement": "Six intentional compatibility exceptions and remedies individually visible."
+    },
+    {
+      "id": "AD-02",
+      "requirement": "Check named B02 hosted-default identity qualification risk first, with no silent exclusion/default change."
+    },
+    {
+      "id": "AD-03",
+      "requirement": "CLI source remains conditional on actual forwarding; exact file disposition before activation."
+    },
+    {
+      "id": "AD-04",
+      "requirement": "Name Tools/Memory/LLM worker capabilities and frontend/headless request/admission ownership."
+    },
+    {
+      "id": "AD-05",
+      "requirement": "Explicit root integration row and omitted lab/security/readiness/experiment/static inventory scope; totals reconcile."
+    },
+    {
+      "id": "AD-06",
+      "requirement": "Current header/routing reflects authorized new review; prior reviews are historical only."
+    },
+    {
+      "id": "AD-07",
+      "requirement": "Correct eight potential owners plus nine indirect packages, including Agent."
+    },
+    {
+      "id": "AD-08",
+      "requirement": "One canonical post-readiness assessment path/version with exact approval; classify measured refinement versus material narrowing; current approved bytes preserved."
+    },
+    {
+      "id": "AD-09",
+      "requirement": "Corrupt %PDF-1.4 seed is eight bytes; preserve original test source."
+    }
+  ]
+}
