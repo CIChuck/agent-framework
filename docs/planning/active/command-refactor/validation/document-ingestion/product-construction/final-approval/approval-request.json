@@ -280,7 +280,7 @@
     },
     "A4": {
       "approved": false,
-      "requires": "Chuck approves this request SHA256 at its presented commit and impact v0.7."
+      "requires": "Chuck approves this request SHA256 at the document commit named by presented_revision, and the impact path, version and SHA256 identified by current_package_impact."
     },
     "A5": {
       "activated": false,
