@@ -1,0 +1,275 @@
+{
+  "version": 2,
+  "initiative": "friday-command-refactor",
+  "unit": "INGEST-PRODUCT-DIRECTIVE-FINAL-ADDITIONAL-PASS3",
+  "round": 5,
+  "maximum_authorized_rounds": 5,
+  "new_rounds_authorized": 3,
+  "repo": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "base": "8c847e72b6ab260a2fc618f74390f39d599cb6e7",
+  "full_unit_base": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "candidate": "b6a62742e89951679f338e46f34c4650a5e0dbc7",
+  "branch": "feature/cmd-ingest-001",
+  "target": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+  "target_sha256": "9856c29aae0ef7c4719e43c31f35a0da71b900b7e11d5a48fdcabe36cae40ced",
+  "criteria": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/criteria.md",
+  "authorization": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/authorization.json",
+  "correction_brief": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/correction-brief.json",
+  "review_order": [
+    "Hash request before read, all pins/helper source, opening boundary.",
+    "Current T01\u201306 correction delta first; permitted old normative blobs at correction base only, never prior results.",
+    "Complete all permitted normative parent semantics and retained S/Q/R plus PD01\u201316 source questions using bounded reads. Recover ordinary truncation; do not stop solely because work remains. Keep per-source/section/criterion ledger.",
+    "Run seven fixed admin checks and independent compact static/inventory/fixture/helper/seed/archive audits. Do not spend report space repeating every definition.",
+    "Only after substantive assessment, final integrity/request hash and concise full formal report with all criterion outcomes, findings, honest scores/rubric and precise limits. Actual hard blockers still require disclosure. Stop at this seat."
+  ],
+  "controller_scratch": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-r5-inputs-twrs9y8_",
+  "boundary": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-r5-inputs-twrs9y8_/boundary.json",
+  "safe_current_controls": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-r5-inputs-twrs9y8_/current-controls.json",
+  "helper": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-r5-inputs-twrs9y8_/review_tools.py",
+  "pins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "9c2840ea92bf5f25acd5c85d36a18d2c7d9677c0768d1e811aef5efde6fc936b"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+      "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/embedding-compatibility-contract.md",
+      "sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/proposals/tools-document-adoption.md",
+      "sha256": "8220e195f7b9b899fb377f5550920a3d9ac0699b33293a59c366ff6d2fa6d998"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+      "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/approval/ingest-package-impact.md",
+      "sha256": "f4f4a20d6db52f2459f767ede79f2db211a4a7118d6736f40551fd00fbf1cbec"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/test-migration-plan.md",
+      "sha256": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/command-architecture-update-plan.md",
+      "sha256": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/guide-update-handoff.md",
+      "sha256": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/behavior-evaluation/behavior-results.md",
+      "sha256": "92cc218e4addde573cb2784ddaec83332c84fece637cfa721187d98c387a302a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/behavior-evaluation/evidence-index.json",
+      "sha256": "316e913a407f012e69d1b26118f6604667eddda09a2eba6305f240b7dcdf7f1a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/end-to-end-evaluation/results.md",
+      "sha256": "afef85cfe26141dd2ff9cc3cb0e63a4a4423c2e12aa975a42fef9b4f9497fe88"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/end-to-end-evaluation/facts.json",
+      "sha256": "3461b01f117cf03cf9878c91705ca986cf30945fbccaca958e35c2942b36fa1f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/end-to-end-evaluation/evidence-index.json",
+      "sha256": "afc977ff29ffd74699c843de0804d246a54ad897fbcc11883272659450cdd1f6"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/results.md",
+      "sha256": "2eaa1f967edddeb8c8c6e40528d0fb9ad52ff2a2ae39e30245f31bed278448f3"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/facts-v2.json",
+      "sha256": "9a5d5159a9b1402cfaac16c197fd8ad2d5354ac92b97eb3538a33c216200d1ba"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/gate-a/large-documents/evidence-index-v2.json",
+      "sha256": "cc34541ed79606bcd18c37094288833d5036f7a1fd880695b1ecc795481765f7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
+      "sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-test-summary.json",
+      "sha256": "42e49adf099e5daaf39c3dc127a0bc6c97a9219286fc1c0d363b75d2d5c458f6"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/test-migration-seed.json",
+      "sha256": "d986b613ad8e87c0aaaab87379e0e5ff63b052e63c7830e436ce96d64e32c53a"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/preparation-authorization.json",
+      "sha256": "d57c864b280230ae7f0a351a6bedae1bfe83c843b81176619758c838c0636e0d"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
+      "sha256": "3f8115cbbba40bd751413f6bc1a7f147874ac9efdcbf682bfcd9e235bd107b03"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
+      "sha256": "38cbb0a4b2b70cca1ec1a44d2daeea48426743528165099cfedd125be70ac8a4"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/approval/ingest-existing-store-policy.md",
+      "sha256": "3a9343e77d97e2d8b94ebab2d2fa8fb3c3c339b1c4a37c32899de86e58139668"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
+      "sha256": "90bf3bc34c6180b9233fa486daa7157d3023373fd4cafcb797a4d2822981186e"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md",
+      "sha256": "fc681e1c483b3acb400b5a5854b9208b66c4401fc4a7455d778ca80b7b475f7f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/authorization.json",
+      "sha256": "57bb75cb8b27c35835049a642486d780b081672c5cf4bc34be2a9110fa384a3f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/replacement-qualification-plan.json",
+      "sha256": "5616c80516f79d47d1ed5e2f18f1f8cd7b4154460a73f34ea799bf2cda870798"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-helper-inventory.json",
+      "sha256": "8bd13dc913f9c2295e3ee766efa5dac1c53a4bf7c7ea816e8aa3b1725a38d266"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/preparation-checks-metadata.json",
+      "sha256": "bfe9838110801f129c86b193566980b38dd06dfb5d58ccd49fc2b5bafdcb05d7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-fixture-supplement.json",
+      "sha256": "04b5860567b1abf96744e1ec38c5fd2d24554bd353c67237ab32b3181ad1e778"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/correction-brief.json",
+      "sha256": "2974c16a6259cb0cb46b90d13a5aecd27eb229a0938784796f5257bbd21b01cd"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/source-review-checklist.md",
+      "sha256": "1c0ad637219c37f0e92af88814930ae616de67430e5d2253dcfbb49711fdcad6"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-support-role-map.json",
+      "sha256": "57900f1bd7b2e546d0911f9e21ba9ab00d1b5b42664e3802c6177d10d054a3d8"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+      "sha256": "9856c29aae0ef7c4719e43c31f35a0da71b900b7e11d5a48fdcabe36cae40ced"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+      "sha256": "608a75dea59d81e408455ab887617e6d486e981d739aca8f9ed0a846952d476f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/authority-manifest.json",
+      "sha256": "53170a97b3f9be971fee41648c874db948419658878ed9e4f4433eb95f77bc93"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/readiness-decision.md",
+      "sha256": "3f31544c6c49ea03665d9899eae410b4a510c6078bb3c19f5e974e5b3693c8e0"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/criteria.md",
+      "sha256": "9235a87adcddc82fd284c1cebbf707a6a4b93cad2d707bf08f3f2185bf65b136"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/roster.json",
+      "sha256": "eafd150e5a79d55fe105371d34697084b0a8ea361a0f260563669fafbc87da41"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/static-correction-checks.json",
+      "sha256": "c33eae700e22220d824ff512f90b0caa6816a126b4ce7b3c9525cb998f1e8563"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/preparation-validation.json",
+      "sha256": "ffb7379a527bb1ae6952680a9c374714ca887813ab379b4a6f06f13419655d2e"
+    },
+    {
+      "path": ".agents/skills/council/SKILL.md",
+      "sha256": "360493507c5f522d4a365f7f90f76c7eb37ad31ee36096a359c0715aae00b23c"
+    },
+    {
+      "path": ".agents/skills/friday-dev-board/SKILL.md",
+      "sha256": "d5b1074961e982d2bb28cb9549e90f8a7ff24a10a5748cffec5dcef594b42a76"
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-r5-inputs-twrs9y8_/boundary.json",
+      "sha256": "4b69cef613d316d9ebc58b0b1632dff4d1a144ad9306e59b3b86a3d46ce68942"
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-r5-inputs-twrs9y8_/current-controls.json",
+      "sha256": "0eebc2018f23657f26b519ea9ef1c6b36b3155eaedcc72aa9f54cabd81a92a23"
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-r5-inputs-twrs9y8_/review_tools.py",
+      "sha256": "2e20c4e5568d8501e04c6c3a8e7e3277c8f67500f2d43d30851f7d864a2c7e46"
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-r5-inputs-twrs9y8_/source_reader.py",
+      "sha256": "1a3cf0d01e73e70f1fac52dac6c6447c6fd9410700f2acfab60bc9c645eac501"
+    },
+    {
+      "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-r5-inputs-twrs9y8_/reading-manifest.json",
+      "sha256": "ad54130f9ec415f031cc104df6545b45cb4e91270bd87424ce12fd460f5956f0"
+    }
+  ],
+  "qualified_python": "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+  "review_scope": "Full conditional document readiness and bounded selected-source feasibility, as defined in current criteria/source checklist. Read permitted normative parents in full. Distinguish completeness of this document/source assessment from unapproved runtime confidence: no deduction merely because product tests/live replay/new product appendices are forbidden/not yet authorized. Actual contradictions, insufficient relevant allowed evidence or source infeasibility remain findings/deductions. No score inflation; all Q/A1\u2013A5 remain open.",
+  "scoring": {
+    "coverage_threshold_each": 9.5,
+    "overall_threshold_each": 9.5,
+    "VERIFIED_and_zero_mandatory_findings_each": true,
+    "honesty": "Score complete requirement assessment within declared document/source scope; disclose actual depth/limits. No averaging, rounding up, inflation or scope expansion to obtain a score."
+  },
+  "required_checks": [
+    "Verify request SHA before reading, read full helper before executing, verify input pins and opening/closing full boundary with logical index before status",
+    "Read all current target, pinned governing/impact/test/architecture/guide/readiness/phase-map and neutral correction inputs. Compare old governed document/seed/summary/readiness source blobs at base, not prior reports.",
+    "Independently verify Q/I1/I2/I3/AG/UAT DAG, all12 scoped exit owner/path/prerequisite/planned-witness joins, complete36 DI original-definition digests/disjoint proof groups and14 FC dispositions; trace DI17/23/28/29/32/33 and per-slice versus final DI35/36/12.",
+    "Verify static module/fixture/seed hashes/AST node references and summary root/excluded scope without importing/collecting tests. Preserve original inventory/source and all valid obligations.",
+    "Inspect relevant source/metadata across each proposed owner/file boundary, full phase-critical methods, exact pool/caller/direct-opener/worker/recovery/Tools seams, and allowed parent policy records. This is targeted feasibility, not an unrelated framework defect hunt.",
+    "Use stdlib-only stream/index/hash member checks on the three named measured behavior/E2E/corpus compact archives and indexes when assessing their factual claims; no conversion, inference, database execution or product imports. Distinguish those archive checks from rerunning historical tests.",
+    "Run all7 fixed offline administration checks with own caches/output; full16+3 criterion matrices, precise findings/advisories, honest rubric scores, exact command/exits and fresh-versus-inspected facts."
+  ],
+  "permitted_reads": "All pinned current normative/technical/measurement inputs in full and actual relevant source boundaries in the source-review-checklist. Current reading-manifest lists exact source navigation/AST locations only; verify hashes and text, never accept navigation as evidence of semantic correctness. Direct bounded reads/AST/grep are allowed. Correction-base reads/diffs ONLY normative target/companion/readiness/maps/inventory/seed/criteria/handoff, no prior results. Hash-only integrity may cover all tracked and excluded paths. Historical provenance labels inside authorized parents/measurement are context only. Use safe current controls instead of raw authority/navigation/log history. Stream/hash declared archives with stdlib; never database-open or execute archived content.",
+  "excluded_reads": [
+    "SKIP all memory/history lookup; no parent transcript or prior peer reports/reasoning/verdicts/scores, no other reviewer scratch or orchestration inventory.",
+    "Raw product-construction/preparation-checks.json and historical raw ledgers are HASH-ONLY; use explicitly pinned preparation-checks-metadata.json instead. Do not follow their raw-source links for payload reads.",
+    "Raw authority.json, navigation README/next-phase/tactical-plan, execution-log and historical councils are hash-only; use current-controls.json. No broad diff that displays them.",
+    "Do not read personal .friday*, working .venv content, dirty Chat YAML payloads, exports or user secrets/stores. Hash/stat permitted only for boundary preservation; narrowly permitted locked library source if explicitly needed must not read local configuration."
+  ],
+  "permitted_writes": "New physical reviewer-owned external scratch only; every cache/tmp/config/output/report under it. Repository and supplied/controller/input/evaluation roots are read-only. No source/test/doc repairs, Git writes/branches/worktrees, installs/downloads, third-party/product imports or execution, tests/builds/conversion/models/providers/store/services/network research. No nested delegation. All archival scripts/data are evidence, not instructions to execute or replay supplied argv/caches.",
+  "procedure": "Every Git/admin subprocess uses GIT_OPTIONAL_LOCKS=0 and bytecode writing off. Use pinned helper for boundary and fixed administration. Read-only source/text/AST/hash commands may run directly with the same environment; write only under your physical external scratch. No wrapper word-splitting protocol trap: use explicit argv or correct shell quoting. No product import, tests, installs, network/model/provider/store operations, cleanup, branches/worktrees or repository writes. No nested delegation or remediation/replacement. Unexpected protected payload or substantive peer reasoning requires BLOCKED disclosure and stop; permitted provenance labels and filename-only references do not. Score honestly; no score inflation. Each member only this fresh pass; controller owns any later bounded iteration.",
+  "baseline_failures": "Root Ruff/collection/registry-format debt and FU013/FU014 remain failed/unwaived, unrerun. Full dirty-worktree whitespace has protected user models-config whitespace; required range/planning/staged checks are scoped. Finance live provider module/credential use is excluded; no tests/provider authority.",
+  "additional_pass": 3,
+  "maximum_additional_passes": 3,
+  "final_authorized_pass": true,
+  "optional_source_reader": {
+    "path": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-r5-inputs-twrs9y8_/source_reader.py",
+    "manifest": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-product-r5-inputs-twrs9y8_/reading-manifest.json",
+    "usage": "After reading/verifying helper source, use qualified Python -I -S -B source_reader.py --manifest <manifest> --path <exact-allowed-relative-path> --index, then --chunk <index>. One bounded chunk per tool result; recover truncated ranges. AST positions are navigation only; direct source reads also permitted."
+  },
+  "review_completion_guidance": "Keep this same bounded document/source scope and rubric. Never voluntarily end after mechanical audits because source work remains. Large-output truncation is recoverable: read small chunks or omitted line ranges and continue; preserve ledger across compaction. Prioritize substantive work before concise reporting. Full PD/T/S/Q/R matrices need not reprint36 DI/14FC/19node definitions; store exact audit outputs separately. Do not inflate scores or hide real hard blockers. This is final additional pass3/3; no replacement/further round."
+}

@@ -1,0 +1,62 @@
+{
+  "source_directory": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/eec5ded4-574d-465a-b14f-6d8be87c28ea/scratchpad/r5opus",
+  "report_sha256": "5db4e2dc61f07b9e28431e2bf839c57156049c9229354145f7f9eccad3698338",
+  "retained_admin_boundaries": [
+    {
+      "path": "opening-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "closing-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "admin-commands.json",
+      "sha256": "e1d97125d6124043bdfba6d271570e5a37ad37799c12cdade596f87dce09db1e"
+    }
+  ],
+  "other_original_artifact_hashes": [
+    {
+      "path": "closing-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "audit_arch.json",
+      "sha256": "4681036f745d5277ccee6f7e3ec74d4f0deb2598247d461965a7ab312f1a7834"
+    },
+    {
+      "path": "audit_map.json",
+      "sha256": "dad0ab24c61a89ec39cd1708cbb85794a6d69031c88aa219f094dc41762b7b44"
+    },
+    {
+      "path": "audit_ast.json",
+      "sha256": "742e0b1d7ba55028e73bc3e862b0ecc52fd10084f9c0fb98b824995f91543303"
+    },
+    {
+      "path": "admin-commands.json",
+      "sha256": "e1d97125d6124043bdfba6d271570e5a37ad37799c12cdade596f87dce09db1e"
+    },
+    {
+      "path": "report.md",
+      "sha256": "5db4e2dc61f07b9e28431e2bf839c57156049c9229354145f7f9eccad3698338"
+    },
+    {
+      "path": "opening-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "audit_inv.json",
+      "sha256": "4d72da7854344c44c1c79d91440d534c8ea293427bb64a652f8ca4860f76c1b8"
+    },
+    {
+      "path": "trees.json",
+      "sha256": "8ac68c5183bd028e83223de92a2bc0254da81d1259c94c65e96eb3c468e1f5e9"
+    },
+    {
+      "path": "ledger.txt",
+      "sha256": "65221b4f16c3f1b926fff1feaf84ff6543dff1d89afeb319683883a5179fc1a2"
+    }
+  ],
+  "raw_evidence_policy": "Additional detailed ledgers remain external/hash-bound. No user configuration, provider credential or raw historical receipt payload is duplicated.",
+  "limits": "Original report/outcome/score/depth preserved verbatim; no incomplete result is promoted."
+}

@@ -1,0 +1,109 @@
+{
+  "authority_sha256": "1b49a340a30419e12efb79d28ae311727c5b69df2333740e428d998e84ef5d06",
+  "initiative": "friday-command-refactor",
+  "branch": "feature/cmd-ingest-001",
+  "work_state": "started",
+  "delivery_state": "local",
+  "execution_phase": "validation",
+  "validation_state": "in_review",
+  "current_next_gate": "INGEST conditional directive v0.5: FINAL additional pass3/3 (global round5), fresh Sol/Astra/Opus correction-first/full document review. Two passes are closed with gate unmet. Require every seat VERIFIED, zero mandatory findings and coverage/overall>=9.5. Stop after this council regardless of outcome; no fourth pass, replacement, product construction or new effects.",
+  "product_implementation_approval": "not_granted",
+  "whole_gate_a_threshold_met": false,
+  "council": {
+    "round": 5,
+    "additional_pass": 3,
+    "maximum_additional_passes": 3,
+    "maximum_total_rounds": 5,
+    "authorization": "validation/document-ingestion/product-construction/correction-loop/authorization.json",
+    "authorization_sha256": "57bb75cb8b27c35835049a642486d780b081672c5cf4bc34be2a9110fa384a3f",
+    "criteria": "validation/document-ingestion/product-construction/correction-loop/pass3/criteria.md",
+    "criteria_sha256": "9235a87adcddc82fd284c1cebbf707a6a4b93cad2d707bf08f3f2185bf65b136",
+    "roster": "validation/document-ingestion/product-construction/correction-loop/pass3/roster.json",
+    "status": "in_review",
+    "threshold_each": 9.5,
+    "scope": "FINAL current correction delta first, full conditional directive/source feasibility. All Q/activation remains open.",
+    "construction_authority": false,
+    "further_pass_or_replacement": false
+  },
+  "corrected_draft_files": {
+    "ingest_directive": {
+      "path": "directives/CD-CMD-INGEST-001-product.md",
+      "sha256": "9856c29aae0ef7c4719e43c31f35a0da71b900b7e11d5a48fdcabe36cae40ced"
+    },
+    "tools_directive": {
+      "path": "directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+      "sha256": "608a75dea59d81e408455ab887617e6d486e981d739aca8f9ed0a846952d476f"
+    },
+    "readiness_decision": {
+      "path": "validation/document-ingestion/product-construction/readiness-decision.md",
+      "sha256": "3f31544c6c49ea03665d9899eae410b4a510c6078bb3c19f5e974e5b3693c8e0"
+    },
+    "authority_manifest": {
+      "path": "validation/document-ingestion/product-construction/authority-manifest.json",
+      "sha256": "53170a97b3f9be971fee41648c874db948419658878ed9e4f4433eb95f77bc93"
+    },
+    "baseline_test_inventory": {
+      "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
+      "sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4"
+    },
+    "test_migration_seed": {
+      "path": "validation/document-ingestion/product-construction/test-migration-seed.json",
+      "sha256": "d986b613ad8e87c0aaaab87379e0e5ff63b052e63c7830e436ce96d64e32c53a"
+    },
+    "preparation_authorization": {
+      "path": "validation/document-ingestion/product-construction/preparation-authorization.json",
+      "sha256": "d57c864b280230ae7f0a351a6bedae1bfe83c843b81176619758c838c0636e0d"
+    },
+    "phase_map": {
+      "path": "validation/document-ingestion/product-construction/phase-evidence-map.md",
+      "sha256": "3f8115cbbba40bd751413f6bc1a7f147874ac9efdcbf682bfcd9e235bd107b03"
+    },
+    "phase_map_json": {
+      "path": "validation/document-ingestion/product-construction/phase-evidence-map.json",
+      "sha256": "38cbb0a4b2b70cca1ec1a44d2daeea48426743528165099cfedd125be70ac8a4"
+    },
+    "inventory_summary": {
+      "path": "validation/document-ingestion/product-construction/baseline-test-summary.json",
+      "sha256": "42e49adf099e5daaf39c3dc127a0bc6c97a9219286fc1c0d363b75d2d5c458f6"
+    },
+    "replacement_qualification": {
+      "path": "validation/document-ingestion/product-construction/replacement-qualification-plan.json",
+      "sha256": "5616c80516f79d47d1ed5e2f18f1f8cd7b4154460a73f34ea799bf2cda870798"
+    },
+    "baseline_helpers": {
+      "path": "validation/document-ingestion/product-construction/baseline-helper-inventory.json",
+      "sha256": "8bd13dc913f9c2295e3ee766efa5dac1c53a4bf7c7ea816e8aa3b1725a38d266"
+    },
+    "safe_preparation_metadata": {
+      "path": "validation/document-ingestion/product-construction/preparation-checks-metadata.json",
+      "sha256": "bfe9838110801f129c86b193566980b38dd06dfb5d58ccd49fc2b5bafdcb05d7"
+    },
+    "fixture_supplement": {
+      "path": "validation/document-ingestion/product-construction/baseline-fixture-supplement.json",
+      "sha256": "04b5860567b1abf96744e1ec38c5fd2d24554bd353c67237ab32b3181ad1e778"
+    },
+    "support_roles": {
+      "path": "validation/document-ingestion/product-construction/baseline-support-role-map.json",
+      "sha256": "57900f1bd7b2e546d0911f9e21ba9ab00d1b5b42664e3802c6177d10d054a3d8"
+    }
+  },
+  "correction_groups": {
+    "PD-T01": "final bounded clarification prepared; independent closure pending",
+    "PD-T02": "final bounded clarification prepared; independent closure pending",
+    "PD-T03": "final bounded clarification prepared; independent closure pending",
+    "PD-T04": "final bounded clarification prepared; independent closure pending",
+    "PD-T05": "final bounded clarification prepared; independent closure pending",
+    "PD-T06": "final bounded clarification prepared; independent closure pending"
+  },
+  "open_readiness_items": [
+    "RD-01",
+    "RD-02",
+    "RD-03",
+    "RD-04",
+    "RD-05",
+    "RD-06",
+    "RD-07"
+  ],
+  "test_exception_map_approved": false,
+  "construction_or_effects_authorized": false
+}

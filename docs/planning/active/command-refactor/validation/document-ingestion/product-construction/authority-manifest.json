@@ -4,7 +4,7 @@
   "unit": "INGEST-PRODUCT-DIRECTIVE-PREPARATION",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "branch": "feature/cmd-ingest-001",
-  "state": "conditional draft v0.5; FINAL additional pass3/3 review only",
+  "state": "Final conditional-directive council CLOSED BLOCKED; no construction activation",
   "inputs": [
     {
       "path": "AGENTS.md",
@@ -116,7 +116,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
-      "sha256": "90bf3bc34c6180b9233fa486daa7157d3023373fd4cafcb797a4d2822981186e"
+      "sha256": "fbdb7262d40cf9a0ece6aeb5b115ccfaefbffcee5c992ec107df3ba872b0e9a0"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md",
@@ -168,5 +168,12 @@
   "review_input_exclusions": {
     "preparation-checks.json": "Raw historical stdout/stderr is excluded and hash-only; metadata projection above supplies command/exit/digests.",
     "authority_navigation_log_and_old_councils": "Hash-only or safe current controls; no payload/history/peer report reads."
+  },
+  "review_closeout": {
+    "candidate": "b6a62742e89951679f338e46f34c4650a5e0dbc7",
+    "reviewed_manifest_sha256": "53170a97b3f9be971fee41648c874db948419658878ed9e4f4433eb95f77bc93",
+    "reviewed_original": "correction-loop/pass3/results/reviewed-authority-manifest.json",
+    "changes": "Current status and branch-handoff routing pin only. All technical parent/input/target bytes remain as reviewed; this is not a new qualifying verdict.",
+    "report": "correction-loop/pass3/results/report.md"
   }
 }

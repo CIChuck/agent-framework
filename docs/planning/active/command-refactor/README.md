@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/local; execution phase: validation; validation state: in_review
-for final additional conditional-product-directive pass3/3. Package impact v0.6 is approved.
+**Status:** started/local; execution phase: validation; validation state: blocked
+after final additional conditional-product-directive pass3/3. The three-pass allowance is exhausted. Package impact v0.6 is approved.
 Bounded Docling/Nomic/corpus evaluations remain independently verified. Whole
 Gate-A9.5, exact product construction approval and MAINT human UAT/acceptance
 remain open. Production source and state are unchanged.
@@ -54,7 +54,11 @@ records the unmet gate. The bounded DI22/fixture/routing corrections and related
 intermediate-compatibility/lock/origin joins were assessed in pass2. [Pass2 reconciliation](validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md)
 records incomplete Sol/Astra seats and below-threshold Opus, with original limits.
 The final preparation/N-stage/CLI/support-role/companion clarifications are prepared
-for final pass3/3; no additional review is authorized after it. The [phase map](validation/document-ingestion/product-construction/phase-evidence-map.md)
+for final pass3/3. [Final reconciliation](validation/document-ingestion/product-construction/correction-loop/pass3/results/report.md)
+records BLOCKED and the unmet9.5 gate. All3additional passes are complete; no
+replacement, correction or fourth pass follows. The drafts retain their exact
+reviewed in_review labels as frozen b6a62742 snapshots; current status is this
+closeout and authority. The [phase map](validation/document-ingestion/product-construction/phase-evidence-map.md)
 separates Q qualification, scoped I1/I2/I3 exits, final AG and human UAT.
 Product generation has not started. The earlier proceed
 is recorded as documentation-only preparation, with protected state preserved.
@@ -77,7 +81,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** INGEST conditional directive v0.5: FINAL additional pass3/3 (global round5), fresh Sol/Astra/Opus correction-first/full document review. Two passes are closed with gate unmet. Require every seat VERIFIED, zero mandatory findings and coverage/overall>=9.5. Stop after this council regardless of outcome; no fourth pass, replacement, product construction or new effects.
+**Next gate:** INGEST final additional council pass3/3 is closed BLOCKED; all-seat9.5 gate unmet and three-pass budget exhausted. Chuck to disposition remaining I3 summary inconsistency, incomplete source assessment and review-input ambiguity. Stop: no fourth pass, replacement, automatic correction, product construction or new effects.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

@@ -1,0 +1,58 @@
+{
+  "source_directory": "/private/tmp/sol-r5-review-hlUKlvb1",
+  "report_sha256": "2fac1302ad6a70ac06e83fa838af39162eef7555afb65242958b9b3a4b5d7b91",
+  "retained_admin_boundaries": [
+    {
+      "path": "opening-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "closing-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "admin-commands.json",
+      "sha256": "e1d97125d6124043bdfba6d271570e5a37ad37799c12cdade596f87dce09db1e"
+    }
+  ],
+  "other_original_artifact_hashes": [
+    {
+      "path": "closing-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "admin-commands.json",
+      "sha256": "e1d97125d6124043bdfba6d271570e5a37ad37799c12cdade596f87dce09db1e"
+    },
+    {
+      "path": "report.md",
+      "sha256": "2fac1302ad6a70ac06e83fa838af39162eef7555afb65242958b9b3a4b5d7b91"
+    },
+    {
+      "path": "opening-integrity.json",
+      "sha256": "adcb9e8d164266c8847eb64b6e5a4e8a930711d61d15c1f7aa3cb869e93d0aef"
+    },
+    {
+      "path": "baseline-audit.json",
+      "sha256": "32c667cf7a3a3470dd429928a3127f09649840d5f0b8183bc13189ea9ee6f040"
+    },
+    {
+      "path": "static-audit.json",
+      "sha256": "915c208124c9fdb568d5edab904649bceafc336a50ad40ef0c57730057f1dc14"
+    },
+    {
+      "path": "source-ledger.json",
+      "sha256": "17a691ef20cf3db9a64ea6cac83179a7c10d539cc24bf85da71d2b27abaee78a"
+    },
+    {
+      "path": "archive-audit.json",
+      "sha256": "92ba66c892fd4f4b6c19e70d659d00708da756cab6de701d9328dfeccad19d59"
+    },
+    {
+      "path": "exact-obligation-audit.json",
+      "sha256": "064049ed86b798dd72cf5c287f9ce47cf826c75f7a88cc4c060c9bd6439e3409"
+    }
+  ],
+  "raw_evidence_policy": "Additional detailed ledgers remain external/hash-bound. No user configuration, provider credential or raw historical receipt payload is duplicated.",
+  "limits": "Original report/outcome/score/depth preserved verbatim; no incomplete result is promoted."
+}

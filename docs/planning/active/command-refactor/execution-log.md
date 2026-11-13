@@ -4088,3 +4088,35 @@ complete substantive reading before concise reports rather than prematurely
 concluding after audits. No new effect, model, store, install or product work is
 authorized. After reconciling this council the controller stops regardless of
 outcome; no fourth additional pass or replacement is inferred.
+
+
+## 2026-11-12 — final additional council3/3 closed; mandatory stop
+
+[Final reconciliation](validation/document-ingestion/product-construction/correction-loop/pass3/results/report.md)
+preserves Sol CHANGES_REQUESTED7.0/8.0 provisional with incomplete coupled-source
+coverage; Astra BLOCKED4.0/overall withheld with incomplete review; and Opus
+VERIFIED(document only)8.8/9.4 with source-depth limits. No result is rounded,
+averaged, salvaged or carried forward. All-seat9.5 is unmet.
+
+SOL-R5-001 remains: the phase-map opening omits I3 from candidate N operations,
+although detailed map/readiness/qualification include it. Other seats treat the
+same wording as advisory; the controller retains the source-supported issue.
+It is not corrected after the final freeze. Astra conservatively interpreted
+Finance AST parsing as violating the live-module/credential-use exclusion. No
+execution, provider call or credential disclosure was reported. The controller
+packet did not clearly distinguish static parsing from live execution/credential
+handling while requiring inventory AST checks. That ambiguity does not qualify
+the blocked or incomplete seat. No credential payload is inspected here.
+
+All reviewer and controller frozen boundaries pass:18854tracked files,26symlinks,
+8preserved entries and52pins; all seven offline admin checks pass. Mechanical
+audits and inspected historical experiments are not complete source/runtime
+proof. Current status/routing and the authority-manifest routing pin are refreshed
+only for this closeout; its exact reviewed original is retained. Reviewed main/
+companion/readiness/maps/inventories/seed and all product/test/dependency/config/
+store bytes remain unchanged. Known baseline debt stays failed/unwaived.
+
+Three passes started, three complete, zero remaining. The controller stops as
+Chuck directed. No fourth pass, replacement, automatic correction, product work,
+new effects, UAT, acceptance, push or delivery follows. Remaining items are a
+human disposition handoff, not an activated new unit.

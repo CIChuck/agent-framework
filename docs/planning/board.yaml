@@ -711,11 +711,12 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "INGEST conditional directive v0.5: FINAL additional pass3/3 (global round5), fresh Sol/Astra/Opus correction-first/full document review. Two passes are closed with gate unmet. Require every seat VERIFIED, zero mandatory findings and coverage/overall>=9.5. Stop after this council regardless of outcome; no fourth pass, replacement, product construction or new effects."
+  next_gate: "INGEST final additional council pass3/3 is closed BLOCKED; all-seat9.5 gate unmet and three-pass budget exhausted. Chuck to disposition remaining I3 summary inconsistency, incomplete source assessment and review-input ambiguity. Stop: no fourth pass, replacement, automatic correction, product construction or new effects."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/results/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/report.md

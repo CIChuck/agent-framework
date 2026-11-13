@@ -2,10 +2,10 @@
   "version": 1,
   "authorized_additional_passes": 3,
   "passes_started": 3,
-  "passes_completed": 2,
+  "passes_completed": 3,
   "current_pass": 3,
   "global_round": 5,
-  "status": "final_pass3_in_review",
+  "status": "stopped_budget_exhausted_gate_unmet",
   "stop_on_all_seat_target": true,
   "stop_after_pass3": true,
   "fourth_additional_pass_authorized": false,
@@ -56,7 +56,37 @@
           "status": "bounded document review below threshold"
         }
       }
+    },
+    {
+      "additional_pass": 3,
+      "global_round": 5,
+      "candidate": "b6a62742e89951679f338e46f34c4650a5e0dbc7",
+      "outcome": "BLOCKED",
+      "report": "pass3/results/report.md",
+      "scores": {
+        "sol": {
+          "coverage": 7.0,
+          "overall": 8.0,
+          "scope": "incomplete/nonqualifying; overall provisional or withheld"
+        },
+        "astra": {
+          "coverage": 4.0,
+          "overall": null,
+          "scope": "incomplete/nonqualifying; overall provisional or withheld"
+        },
+        "opus": {
+          "coverage": 8.8,
+          "overall": 9.4,
+          "scope": "document-only below threshold with source-depth limits"
+        }
+      }
     }
   ],
-  "stop_after_this_council": true
+  "stop_after_this_council": true,
+  "remaining_passes": 0,
+  "all_seats_terminal": true,
+  "target_met": false,
+  "further_automatic_review": false,
+  "final_report": "pass3/results/report.md",
+  "final_report_sha256": "d2228b38ac6761c3e3f2160d7d8b4b6b9f188230d1a50726961d03c9a6131559"
 }
