@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Second activation council extension pass1/3, global round7/9, newly authorized after round6. Review required counter-factory composition and one-lifecycle text-to-document functionality, exact session/reuse/snapshot/slot semantics, then full unchanged Review A1–A8. Fresh Sol/Astra/Opus; complete 8/8, zero mandatory findings and overall>=9.5 each. Planning corrections only; stop on success or after round9 for guidance. No construction, replacement/tenth round, vendor/model campaign or live effects. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Activation design council VERIFIED at 9ddaf6f8 after global round7/9: Sol 9.54, Astra 9.55, Opus 9.52; each complete 8/8 with zero mandatory findings. Stop the loop early; no rounds8/9. Next prepare the final exact activation/impact approval package with revised canonical impact and applicable phase-local manifests/case exceptions, then maintainer review of scope and effects. Reviewed technical bytes stay frozen. Gate A1–A5 remain incomplete; no construction, installs, model/store effects or acceptance granted. |
 
 ## Completed
 

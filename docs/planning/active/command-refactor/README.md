@@ -93,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Second activation council extension pass1/3, global round7/9, newly authorized after round6. Review required counter-factory composition and one-lifecycle text-to-document functionality, exact session/reuse/snapshot/slot semantics, then full unchanged Review A1–A8. Fresh Sol/Astra/Opus; complete 8/8, zero mandatory findings and overall>=9.5 each. Planning corrections only; stop on success or after round9 for guidance. No construction, replacement/tenth round, vendor/model campaign or live effects.
+**Next gate:** Activation design council VERIFIED at 9ddaf6f8 after global round7/9: Sol 9.54, Astra 9.55, Opus 9.52; each complete 8/8 with zero mandatory findings. Stop the loop early; no rounds8/9. Next prepare the final exact activation/impact approval package with revised canonical impact and applicable phase-local manifests/case exceptions, then maintainer review of scope and effects. Reviewed technical bytes stay frozen. Gate A1–A5 remain incomplete; no construction, installs, model/store effects or acceptance granted.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
@@ -343,3 +343,5 @@ The [private typing approval](validation/document-ingestion/gate-a/construction/
 permits five pinned static-tool wheels only.
 
 Final activation council: [outcome and remaining converter-binding issue](validation/document-ingestion/product-construction/activation/council/round3/results/report.md). Historical three-round stop point; superseded by the current authorized three-round extension.
+
+Current activation council: [VERIFIED round7 outcome and next approval gate](validation/document-ingestion/product-construction/activation/council/round7/results/report.md). All three complete seats clear9.5; loop stopped early. Construction remains unapproved.

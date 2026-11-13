@@ -3,9 +3,9 @@
   "workflow": "activation_package_council",
   "maximum_rounds": 9,
   "rounds_started": 7,
-  "rounds_completed": 6,
-  "current_round": 7,
-  "status": "second_extension_pass1_round7_frozen_for_review",
+  "rounds_completed": 7,
+  "current_round": null,
+  "status": "completed_verified_gate_met",
   "instructions_approved": true,
   "history": [
     {
@@ -55,18 +55,28 @@
       "gate_met": false,
       "results": "round6/results/index.json",
       "reconciliation": "round6/reconciliation.md"
+    },
+    {
+      "round": 7,
+      "candidate": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a",
+      "result": "VERIFIED",
+      "gate_met": true,
+      "results": "round7/results/index.json",
+      "report": "round7/results/report.md"
     }
   ],
   "construction_approved": false,
   "effects_approved": false,
-  "active": true,
-  "gate_met": null,
-  "overall_result": "pending",
-  "remaining_rounds": 2,
+  "active": false,
+  "gate_met": true,
+  "overall_result": "VERIFIED",
+  "remaining_rounds": 0,
   "additional_rounds_authorized": 3,
   "additional_rounds_started": 1,
-  "additional_rounds_completed": 0,
+  "additional_rounds_completed": 1,
   "extension": "extension2-authorization.json",
   "extension_sha256": "9d468ca11029a8f3d9d4b2acf8ac8aeaa3debdf5c5e57e787d30d740d8bfbb05",
-  "extension_ordinal": 2
+  "extension_ordinal": 2,
+  "unused_authorized_rounds": 2,
+  "stop_reason": "all_three_complete_seats_verified_at_or_above_9_5"
 }

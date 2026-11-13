@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Second activation council extension pass1/3, global round7/9, newly authorized after round6. Review required counter-factory composition and one-lifecycle text-to-document functionality, exact session/reuse/snapshot/slot semantics, then full unchanged Review A1–A8. Fresh Sol/Astra/Opus; complete 8/8, zero mandatory findings and overall>=9.5 each. Planning corrections only; stop on success or after round9 for guidance. No construction, replacement/tenth round, vendor/model campaign or live effects.
+**Next gate:** Activation design council VERIFIED at 9ddaf6f8 after global round7/9: Sol 9.54, Astra 9.55, Opus 9.52; each complete 8/8 with zero mandatory findings. Stop the loop early; no rounds8/9. Next prepare the final exact activation/impact approval package with revised canonical impact and applicable phase-local manifests/case exceptions, then maintainer review of scope and effects. Reviewed technical bytes stay frozen. Gate A1–A5 remain incomplete; no construction, installs, model/store effects or acceptance granted.
 
 [Proposed activation package](product-construction/activation/README.md) contains exact draft contracts, slice/case maps and unresolved Q dispositions; it is not construction approval.
 

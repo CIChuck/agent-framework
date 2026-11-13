@@ -1,0 +1,91 @@
+{
+  "state": {
+    "logical_index_before_status": "fa0be09a85c95d9185bc1edc3fe8d83371ab1836b04d56bbb1598792c7a30b9b",
+    "head": "9ddaf6f87f12486ee0bea82dc1561046f2353d5a",
+    "branch": "feature/cmd-ingest-001",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+    "staged": ""
+  },
+  "preserved": {
+    "packages/friday-chat/config.example.yaml": {
+      "mode": 33188,
+      "size": 30129,
+      "mtime_ns": 1794334784972093361,
+      "ctime_ns": 1794334784972093361,
+      "birthtime": 1788446389.467035,
+      "sha256": "7c31a9ad3f6a7ff1cfc891cace6c4b3cde21d10202770c374a38c6cc28620f32"
+    },
+    "packages/friday-chat/models-config.example.yaml": {
+      "mode": 33188,
+      "size": 3962,
+      "mtime_ns": 1794264005521487739,
+      "ctime_ns": 1794264005521487739,
+      "birthtime": 1788446389.4671795,
+      "sha256": "5cf3d15ec469d3b8e495248d3aec9ed7bcdb48b68243668b6dbbbb3e0b0326c9"
+    },
+    ".friday": {
+      "mode": 16877,
+      "size": 224,
+      "mtime_ns": 1794335780595591896,
+      "ctime_ns": 1794335780595591896,
+      "birthtime": 1794312889.6114945
+    },
+    ".friday-old": {
+      "mode": 16877,
+      "size": 256,
+      "mtime_ns": 1794312848481691252,
+      "ctime_ns": 1794312880963718202,
+      "birthtime": 1793062680.0546615
+    },
+    ".venv": {
+      "mode": 16877,
+      "size": 288,
+      "mtime_ns": 1772940967050495003,
+      "ctime_ns": 1772940967050495003,
+      "birthtime": 1772940965.7368934
+    },
+    "exports": {
+      "mode": 16877,
+      "size": 128,
+      "mtime_ns": 1794172873430987983,
+      "ctime_ns": 1794172873430987983,
+      "birthtime": 1794172873.430393
+    },
+    "exports/friday_context.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419969663853,
+      "ctime_ns": 1794173419969663853,
+      "birthtime": 1794172873.4304848,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    },
+    "exports/friday_prompt.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419970166478,
+      "ctime_ns": 1794173419970166478,
+      "birthtime": 1794172873.4309843,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    }
+  },
+  "pins": {
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md": "288265f774e08a182083537160ed0fccd9a5304b949ec95d05bcd6bf0208a8ee",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md": "44791c3a431f3f4cc8876851cfa3248a20dc7cbd90739178f022c453e370794c",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md": "98da30a313539c9d550ac14a8dffa1454997c00f5353df33bf915f8ca09c8cc7",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md": "f6c0fee8046fa1d0e1d992a5640dfaca88f96f87f9b335a3e02cf172fc496cf9",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/approval-binding.json": "b6fb070ca1ec94014f0019e9e8647fc773d930185cd3594e8d3d39520cca4b3c",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/model-qualification-decision.md": "b2503902db78f9d01909c4d2c9d20a03dd4cdc772421c1ec100d5b614ed22d26",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/office-visibility-decision.md": "7eb7bf3224036d61f28059d8a1ab4c21d66b9deb4964e013de6a780b381775c7",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-worker-decision.md": "a828b757b213acc9481ba3053873f4d2243f3a106927ddade71eb97631bf938b",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json": "94d29682e2c9b813dd73f4bcdad95f7a327d139e03187ed8baf3931b6f8f7346",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json": "41229b36ae5f3f33eaf15d11322be290c837d6ab21c5a3023294f890879c509c",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/digest-vectors.json": "4b5bef7daf3400dca0c7058d967a66653d1c5e3aa59a7b0c9fe5770e3bd436e4",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/review-instructions.md": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/authorization.json": "c963bad985fb1a581c2ff6b307345d295519d335eef7bf305c070e2d301180d2",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md": "f787e83ed84916264277013ab4e8097e9f3fcba90da502ea5ec1819630c71d55",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/correction-requirements.json": "6660bda1a271dc91dfee9f1a9d6659e8a2c9f3bcd398620a880173e6bb111ed6",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/extension2-authorization.json": "9d468ca11029a8f3d9d4b2acf8ac8aeaa3debdf5c5e57e787d30d740d8bfbb05",
+    "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-activation-council-mo36ef_q/round7-inputs/current-controls.json": "65f07b3ca12a4db44ea71775f54d13591c5b59e51f5a581b26a36a0b8cef965f",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/controller-checks.json": "921e45da3048f77eb4bdf976e0cbae94d1b2bd04143c7a2729418128ff0743d4"
+  }
+}

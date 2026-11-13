@@ -1,0 +1,15 @@
+{
+  "seat": "sol",
+  "round": 7,
+  "verdict": "VERIFIED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall_score": 9.54,
+  "mandatory_findings": 0,
+  "report_sha256": "b2240c9fd5561463c233f89770bec1cfaffd69993cc52418f111db7121f28039",
+  "files": {
+    "report.md": "b2240c9fd5561463c233f89770bec1cfaffd69993cc52418f111db7121f28039",
+    "entry.json": "a20bdfbae607c8bbda330e009103039832726cad42f985d73cfeb0ddc33d8803",
+    "exit.json": "e14b6fd01f40c5a92094efc0cf503aba2b2edf2c039c59da55fafd340de81530"
+  }
+}
