@@ -1,6 +1,6 @@
 # INGEST — measured readiness and construction handoff
 
-Version: **0.4 bounded corrected draft**, 2026-11-12; source baseline `8c36d8e2`.
+Version: **0.5 final bounded corrected draft**, 2026-11-12; source baseline `8c36d8e2`.
 
 **Engineering recommendation: use Docling with the measured configured profile.**
 There is genuine conversion/chunking/embedding/storage evidence, sufficient to
@@ -101,7 +101,7 @@ keeps RD-01/RD-05 Q OPEN and stops A1. No replacement model is selected by this
 document; Qwen remains illustrative. No new inference or download is authorized.
 The annex permits deterministic operational witnesses after construction; those
 remain labelled as operational, never real serving or relevance-quality proof.
-I2/AG still execute candidate N positives and refusals after the code exists.
+I2/I3/AG still execute candidate N positives and refusals after the code exists.
 
 ## Canonical impact refinement and materiality
 
@@ -117,7 +117,7 @@ correction leaves v0.6 bytes unchanged.
 | Explicit furniture/headings/notes serialization and local OCR assets | Concrete implementation settings for already required source-content semantics; freeze hashes and limits, without claiming all Word/Office parts are supported. |
 | Unsupported hidden-row/column whole-workbook refusal | Material narrowing if substituted for the REM's exclusion contract. It requires the explicit REM/impact amendment in RD-02 or proven correct exclusion. No such amendment is approved now. |
 | Retained packaged explicit .friday/vector literal | Existing supplied-origin behavior under the approved fresh-store rule, not authority to stamp old data. Explain first-run/upgrade consequences in the refined canonical assessment and guides. |
-| Restored B and N preconstruction qualification versus post-build execution | Assessment v0.6's baseline **and replacement** feasibility remains Q, with exact scenario/asset bindings. Earlier Q wording named only the selected deployment; this correction restores the omitted explicit N dependency without changing parent requirements. Candidate N operations stay I2/AG; no readiness or construction approval is inferred. |
+| Restored B and N preconstruction qualification versus post-build execution | Assessment v0.6's baseline **and replacement** feasibility remains Q, with exact scenario/asset bindings. Earlier Q wording named only the selected deployment; this correction restores the omitted explicit N dependency without changing parent requirements. Candidate N operations stay I2/I3/AG; no readiness or construction approval is inferred. |
 | Optional Qwen comparison/model switch | Separate qualification/selection decision, with fresh compatible data. Neither the correction nor Docling selection changes the production default. |
 
 ## Model selection and upgrade boundaries

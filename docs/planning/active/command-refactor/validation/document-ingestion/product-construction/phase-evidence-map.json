@@ -1,5 +1,5 @@
 {
-  "version": "0.4",
+  "version": "0.5",
   "status": "conditional draft; planned witnesses are not executed tests or approved test-body exceptions",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "parent_rem_sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
@@ -87,7 +87,7 @@
       "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
       "planned_witness": "packages/friday-llm/tests_llm/test_embeddings.py::test_qualified_preparation_limits_and_indexed_batch_guards",
       "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
-      "exit_assertion": "Implement/test actual LLM preparation/count/batch boundary on supplied text and qualified facts; narrow counter edge. No document splitting, Runtime assembly or full document DI17/24 closure. Validate the exact I1 narrow-counter dependency/lock closure; later I3 document-stack delta is separate.",
+      "exit_assertion": "Implement/test actual LLM preparation/count/batch boundary on supplied text and qualified facts; narrow counter edge. No document splitting, Runtime assembly or full document DI17/24 closure. Validate the exact I1 narrow-counter dependency/lock closure; later I3 document-stack delta is separate. During I1 legacy/unbound callers retain identical preparation, roles/cache behavior and vectors under paired old/current witnesses; new preparation/role/cache identities apply only to new guarded qualified paths until I2 binding/wiring.",
       "traces_requirements": [
         "DI-17",
         "DI-18",
@@ -159,7 +159,7 @@
       "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
       "planned_witness": "tests/integration/test_embedding_compatibility.py::test_existing_embedding_configuration_and_origin",
       "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
-      "exit_assertion": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI is source-unchanged if forwarding suffices; otherwise exact approved paths. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism.",
+      "exit_assertion": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI must use the exact narrow adaptation, prove an existing origin-preserving mechanism, or stop and reconcile; forwarding the resolved string alone is insufficient. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism.",
       "traces_requirements": [
         "DI-18",
         "DI-21",
@@ -1189,5 +1189,5 @@
   "path_list_semantics": "exit_assertions.implemented_paths lists primary source seams, not an exhaustive file partition or independent allowlist. Before generation A2 assigns every selected parent-authorized path to slice/owner/purpose/exit and A3 binds tests/helpers; an unassigned path blocks that slice.",
   "Q_replacement_qualification_plan": "replacement-qualification-plan.json",
   "intermediate_regression_rule": "Any unwaived regression in previously supported unchanged scope blocks the current slice exit; a later planned repair is not a waiver. Only an exact maintainer-approved changed baseline/temporary integration exception with replacement coverage can permit exit. Missing clearly later features are not falsely certified or used to excuse broken old paths.",
-  "intermediate_I1_compatibility": "Before I1 activation A2 freezes an additive staging design: new typed contracts, guarded entry/factory and direct positive/refusal tests without changing existing maintained callers to require an unprovided binding before I2 wiring. Existing baseline flows must still pass I1. This is not final permission for an unguarded direct opener or a released legacy mode. If exact public shapes/file scope cannot support additive staging, stop before I1 and obtain a named maintainer-approved integration exception and coverage; no blanket temporary waiver."
+  "intermediate_I1_compatibility": "Before I1 activation A2 freezes an additive staging design: new typed contracts, guarded entry/factory and direct positive/refusal tests without changing existing maintained callers to require an unprovided binding before I2 wiring. Existing baseline flows must still pass I1. This is not final permission for an unguarded direct opener or a released legacy mode. If exact public shapes/file scope cannot support additive staging, stop before I1 and obtain a named maintainer-approved integration exception and coverage; no blanket temporary waiver. Preparation/role/cache-space changes are also staged: legacy/unbound inputs and vectors stay unchanged in I1, with paired I1-C2 witnesses; only newly guarded qualified paths use new preparation, until I2 binds and switches actual existing callers."
 }

@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Conditional product directive v0.4 is in additional pass2/3 (global round4) under the explicit three-pass authorization. Exact construction approval and whole Gate A remain open; no product/model/store effects are activated.
+**Next gate:** Conditional product directive v0.5 is in FINAL additional pass3/3 (global round5). Stop after this council regardless of outcome; no fourth pass or replacement. Construction approval and whole Gate A remain open, with no product/model/store effects activated.
 
 ## Historical branch/design preparation (superseded for current evaluation routing)
 

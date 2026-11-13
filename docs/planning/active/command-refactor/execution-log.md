@@ -4064,3 +4064,27 @@ Current additional pass2/3/globalround4 remains document/source feasibility only
 One further additional pass may follow an unmet gate; no fourth additional pass
 or product construction/new effects are authorized. All Q/A1–A5, real B/N model/
 counter qualification, human acceptance and delivery gates remain open.
+
+
+## 2026-11-12 — additional pass2 blocked; final pass3 prepared
+
+[Pass2 reconciliation](validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md)
+preserves Sol BLOCKED4.0/4.5 provisional and Astra BLOCKED6.0/6.7 provisional
+for incomplete required parent/source reading. Opus VERIFIED9.1/9.4 is below
+threshold with7 advisories. No incomplete seat establishes zero findings or
+qualifying review. Every original score/limit is retained without replacement.
+All admin, static inventory/archive checks and frozen boundaries pass; these do
+not substitute for the incomplete source assessment.
+
+Final bounded clarifications stage preparation/roles/cache changes with I2
+binding (paired unchanged I1 witnesses), include I3 N scenarios, align CLI
+adapt/prove/stop wording, assign one A3 classification to six dual-role support
+files, separate TM03 companion approval from INGEST DI35 and fix small wording.
+No product behavior is implemented or parent requirement relaxed.
+
+Final pass3/3/globalround5 retains the full document/source scope and score
+threshold. Small verified source chunks recover ordinary truncation; reviewers
+complete substantive reading before concise reports rather than prematurely
+concluding after audits. No new effect, model, store, install or product work is
+authorized. After reconciling this council the controller stops regardless of
+outcome; no fourth additional pass or replacement is inferred.

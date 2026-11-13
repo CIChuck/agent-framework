@@ -1,0 +1,53 @@
+{
+  "outcome": "BLOCKED",
+  "coverage": 4.0,
+  "overall": 4.5,
+  "boundary_match": true,
+  "files": [
+    {
+      "path": "admin-commands.json",
+      "bytes": 2533,
+      "sha256": "74f7036b17a1073f39716ff8d0cc5f0e5558d7aa6fa7549f002dfdc64934f33a"
+    },
+    {
+      "path": "archive-audit.json",
+      "bytes": 734,
+      "sha256": "55f497735d3b6a8420be74085f4cd744349b04b07eb0f6eba79e6db2110b8938"
+    },
+    {
+      "path": "archive_audit.py",
+      "bytes": 1867,
+      "sha256": "74f065a750fd29a82ba8d5aaa39b086622e23f4dc459720037d18625f4c24ac8"
+    },
+    {
+      "path": "audit.py",
+      "bytes": 4142,
+      "sha256": "b9a4d85184ac12a85ad2d2913183800d2692a8cf1d26108b1bfa254dfbb5aeca"
+    },
+    {
+      "path": "closing-integrity.json",
+      "bytes": 492,
+      "sha256": "03450d7e77e2720300311ad18fd6741da0893fb2ffcf034654eaa2e49ac3f266"
+    },
+    {
+      "path": "opening-integrity.json",
+      "bytes": 492,
+      "sha256": "03450d7e77e2720300311ad18fd6741da0893fb2ffcf034654eaa2e49ac3f266"
+    },
+    {
+      "path": "report.md",
+      "bytes": 72490,
+      "sha256": "87faf44fe1239a2e7754f54c7f2e871549cca9a359b3989ae092ed65f2b15b32"
+    },
+    {
+      "path": "report_build.py",
+      "bytes": 23863,
+      "sha256": "10782586a3553f639127975e161035d7b8cbfecc94f1eafb76830a34011f16b2"
+    },
+    {
+      "path": "static-audit.json",
+      "bytes": 792,
+      "sha256": "414ce7b0e1472620f1f139fa0a1998f672f02f11bc3f392bdd3c955a729b837a"
+    }
+  ]
+}

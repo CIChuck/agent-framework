@@ -1,6 +1,6 @@
 # INGEST — phase and evidence dependency map
 
-Version 0.4; conditional document contract. This map corrects the proof order;
+Version 0.5; conditional document contract. This map corrects the proof order;
 it does not waive a parent DI/FC obligation or authorize implementation.
 The [machine-readable join](phase-evidence-map.json) retains every original
 DI-01–36 definition and digest, all FC-01–14 dispositions, proposed witness IDs,
@@ -52,7 +52,11 @@ direct contracts with actual APIs, without demanding unprovided identities from
 old callers early. This is not a final unguarded-store mode or authority to stamp
 old data. If exact signatures/path scope cannot support additive staging, stop
 before I1 and obtain a named maintainer-approved integration exception plus
-coverage. No implicit temporary regression waiver is created.
+coverage. No implicit temporary regression waiver is created. I1-C2 also proves
+that existing legacy/unbound flows retain their exact preparation, roles/cache
+behavior and vectors. New Nomic/task preparation and related cache identities
+apply only to new guarded qualified paths until I2 binds/switches existing callers;
+there is no mixed-space write or released legacy mode.
 
 ## Slice exits and concrete planned witnesses
 
@@ -91,7 +95,7 @@ All existing named FC nodes remain required.
 | I3-C2 | Memory, Tools, Core contracts; `packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_headless_common_plan_and_destination_bound_receipts` — Real headless Memory factory → Core entry → smart_read text small/large/force_chunked/cache paths; DI22 source/derived role spies and batch-before-write; final DI24 counter-asset/boundary binding; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. |
 | I3-C3 | Commands, Chat, Memory; `packages/friday-commands/src/friday_commands/file_inputs.py` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_registry_stores_extracted_document_chunks` — DI22 command/common-entry role spies and batch-before-write. Actual raw-tail default-handler parsing and genuine registry document→common plan→stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. |
 | I3-C4 | Tools worker, Memory text planning, LLM counter, caller request owner; `packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py` and the exact listed JSON paths. | `packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_ingestion_waits_for_quiescence_without_late_storage` — Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. |
-| I3-C5 | Tools, Chat, all affected test/document owners; `packages/friday-tools/pyproject.toml` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_clean_installed_candidate_document_profiles` — Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Repeat DI24/33 actual installed counter/consumer B/N/R in normal/-O lanes. Earlier positive claims remain for exact source, final candidate reviewed at AG. |
+| I3-C5 | Tools, Chat, all affected test/document owners; `packages/friday-tools/pyproject.toml` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_clean_installed_candidate_document_profiles` — Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes. |
 
 ## Full requirement first-availability join
 

@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | INGEST conditional directive v0.4: additional pass2/3 (global round4), fresh Sol/Astra/Opus correction-first/full document review. Pass1 is closed with unmet all-seat9.5 gate. Require every seat VERIFIED, no mandatory findings and coverage/overall>=9.5; stop on success or after additional pass3. No product construction or new effects. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | INGEST conditional directive v0.5: FINAL additional pass3/3 (global round5), fresh Sol/Astra/Opus correction-first/full document review. Two passes are closed with gate unmet. Require every seat VERIFIED, zero mandatory findings and coverage/overall>=9.5. Stop after this council regardless of outcome; no fourth pass, replacement, product construction or new effects. |
 
 ## Completed
 

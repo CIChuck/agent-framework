@@ -1,0 +1,55 @@
+{
+  "original_directory": "/private/tmp/astra-r4-review-6uxiNk",
+  "report_sha256": "714a5b4423c0f9ab2a04500cc307c71c2fee025e03e802ad12f6c685ed3a094b",
+  "external_artifact_hashes": [
+    {
+      "path": "closing-integrity.json",
+      "sha256": "03450d7e77e2720300311ad18fd6741da0893fb2ffcf034654eaa2e49ac3f266"
+    },
+    {
+      "path": "audit.py",
+      "sha256": "5228fdfa2de3b644753bc9483ae9971de2a93979a28b0023bb6288583e7aa2f7"
+    },
+    {
+      "path": "admin-commands.json",
+      "sha256": "74f7036b17a1073f39716ff8d0cc5f0e5558d7aa6fa7549f002dfdc64934f33a"
+    },
+    {
+      "path": "opening-integrity.json",
+      "sha256": "03450d7e77e2720300311ad18fd6741da0893fb2ffcf034654eaa2e49ac3f266"
+    },
+    {
+      "path": "seed_audit.py",
+      "sha256": "c30f9d038fbfa7a93ac930f754273e461ed3313a55c512e3726505ed321c0ae1"
+    },
+    {
+      "path": "ASTRA-R4-formal-report.md",
+      "sha256": "714a5b4423c0f9ab2a04500cc307c71c2fee025e03e802ad12f6c685ed3a094b"
+    },
+    {
+      "path": "static-audit.json",
+      "sha256": "629b832e3789ab86846fa8213ad2cd479b6cc51dcae64e74b3f9d12842dd4b39"
+    },
+    {
+      "path": "archive_audit.py",
+      "sha256": "eb7bd533f99ddd7434f3edaa49e34c66581b030d05f4dcfb1f2059b22cad17ad"
+    },
+    {
+      "path": "archive-audit.json",
+      "sha256": "5d548353ce7d5b5922e6afd21aa84aabfd72f9892d9c6b8ec6bbc6f60f635308"
+    },
+    {
+      "path": "coverage-ledger.json",
+      "sha256": "aa7ff3cdc5f59b344350a2de6d7704c4001bcbbf1a49162e6e8a3518a5f0c885"
+    },
+    {
+      "path": "seed-audit.json",
+      "sha256": "4cbe3b70a6f7328ce5cfbb17c8fe4d9b2c1b6a4048a748a1249eda6408cfc958"
+    },
+    {
+      "path": "write_report.py",
+      "sha256": "44efc9ef997e010bd989fae2bf2eda105d0fa5aa6720881ae119894d2ffab808"
+    }
+  ],
+  "scope": "Verbatim original report; blocked/provisional scores retained as nonqualifying. No fabricated review completion."
+}

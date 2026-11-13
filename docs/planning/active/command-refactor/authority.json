@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "INGEST conditional directive v0.4: additional pass2/3 (global round4), fresh Sol/Astra/Opus correction-first/full document review. Pass1 is closed with unmet all-seat9.5 gate. Require every seat VERIFIED, no mandatory findings and coverage/overall>=9.5; stop on success or after additional pass3. No product construction or new effects.",
+  "current_scope": "INGEST conditional directive v0.5: FINAL additional pass3/3 (global round5), fresh Sol/Astra/Opus correction-first/full document review. Two passes are closed with gate unmet. Require every seat VERIFIED, zero mandatory findings and coverage/overall>=9.5. Stop after this council regardless of outcome; no fourth pass, replacement, product construction or new effects.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "INGEST conditional directive v0.4: additional pass2/3 (global round4), fresh Sol/Astra/Opus correction-first/full document review. Pass1 is closed with unmet all-seat9.5 gate. Require every seat VERIFIED, no mandatory findings and coverage/overall>=9.5; stop on success or after additional pass3. No product construction or new effects.",
+    "next_gate": "INGEST conditional directive v0.5: FINAL additional pass3/3 (global round5), fresh Sol/Astra/Opus correction-first/full document review. Two passes are closed with gate unmet. Require every seat VERIFIED, zero mandatory findings and coverage/overall>=9.5. Stop after this council regardless of outcome; no fourth pass, replacement, product construction or new effects.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2954,7 +2954,7 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "product_directive_additional_pass2",
+    "current_stage": "product_directive_final_additional_pass3",
     "validation_scope": "Round2 conditional document/source-feasibility council closed BLOCKED; no qualifying Sol aggregate review, one mandatory candidate gap and unmet all-seat9.5 gate. No runtime or whole Gate-A claim.",
     "large_document_corpus": {
       "state": "verified",
@@ -2970,26 +2970,26 @@
       "review": "validation/document-ingestion/gate-a/large-documents/validation/round2/review-report.md"
     },
     "product_construction_preparation": {
-      "version": "0.4",
-      "status": "bounded_correction_additional_pass2_in_review",
+      "version": "0.5",
+      "status": "final_bounded_correction_pass3_in_review",
       "date": "2026-11-12",
       "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
       "files": {
         "ingest_directive": {
           "path": "directives/CD-CMD-INGEST-001-product.md",
-          "sha256": "19f0a7e9a7ad467a912c38ed238b0a083fe2a412c3ee949e82db826c53bb7dfa"
+          "sha256": "9856c29aae0ef7c4719e43c31f35a0da71b900b7e11d5a48fdcabe36cae40ced"
         },
         "tools_directive": {
           "path": "directives/CD-CMD-TOOLS-DOC-001-adoption.md",
-          "sha256": "b72ca89c95f2b3ee14aa95e70797deb33aa5d8b5a9c79f76d811e886faeadc7b"
+          "sha256": "608a75dea59d81e408455ab887617e6d486e981d739aca8f9ed0a846952d476f"
         },
         "readiness_decision": {
           "path": "validation/document-ingestion/product-construction/readiness-decision.md",
-          "sha256": "bf38fa203e39c1f34c3d005878a8b6f342d2fab7cf052d8ace8ce4eac191197b"
+          "sha256": "3f31544c6c49ea03665d9899eae410b4a510c6078bb3c19f5e974e5b3693c8e0"
         },
         "authority_manifest": {
           "path": "validation/document-ingestion/product-construction/authority-manifest.json",
-          "sha256": "fb343cf42c3cd1cab118be31a8fcbec18ad8cd00a55a4d739c67f7611989d67e"
+          "sha256": "53170a97b3f9be971fee41648c874db948419658878ed9e4f4433eb95f77bc93"
         },
         "baseline_test_inventory": {
           "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
@@ -2997,7 +2997,7 @@
         },
         "test_migration_seed": {
           "path": "validation/document-ingestion/product-construction/test-migration-seed.json",
-          "sha256": "01b0e983af3ae77692e8daa59765bbd2a3d7f6f3cdfb86ec091c990382069601"
+          "sha256": "d986b613ad8e87c0aaaab87379e0e5ff63b052e63c7830e436ce96d64e32c53a"
         },
         "preparation_authorization": {
           "path": "validation/document-ingestion/product-construction/preparation-authorization.json",
@@ -3005,19 +3005,19 @@
         },
         "phase_map": {
           "path": "validation/document-ingestion/product-construction/phase-evidence-map.md",
-          "sha256": "01d8201e3e9153cbaa4f9094f98aaf534173cb323650751626a545edd73433ff"
+          "sha256": "3f8115cbbba40bd751413f6bc1a7f147874ac9efdcbf682bfcd9e235bd107b03"
         },
         "phase_map_json": {
           "path": "validation/document-ingestion/product-construction/phase-evidence-map.json",
-          "sha256": "1713297d0b8fa7da099b943dfb1f83ba19dc86abcd60e4980f519058bf0f1fab"
+          "sha256": "38cbb0a4b2b70cca1ec1a44d2daeea48426743528165099cfedd125be70ac8a4"
         },
         "inventory_summary": {
           "path": "validation/document-ingestion/product-construction/baseline-test-summary.json",
-          "sha256": "3ab4bf32be543e5971d35b2ad39ea73c1ee3a9999738ed8542ba297a4a5882c0"
+          "sha256": "42e49adf099e5daaf39c3dc127a0bc6c97a9219286fc1c0d363b75d2d5c458f6"
         },
         "replacement_qualification": {
           "path": "validation/document-ingestion/product-construction/replacement-qualification-plan.json",
-          "sha256": "10466424fb2cb6ef65d7bb86598abc030414e8a068bb105047a9a7a08c5f0b92"
+          "sha256": "5616c80516f79d47d1ed5e2f18f1f8cd7b4154460a73f34ea799bf2cda870798"
         },
         "baseline_helpers": {
           "path": "validation/document-ingestion/product-construction/baseline-helper-inventory.json",
@@ -3030,6 +3030,10 @@
         "fixture_supplement": {
           "path": "validation/document-ingestion/product-construction/baseline-fixture-supplement.json",
           "sha256": "04b5860567b1abf96744e1ec38c5fd2d24554bd353c67237ab32b3181ad1e778"
+        },
+        "support_roles": {
+          "path": "validation/document-ingestion/product-construction/baseline-support-role-map.json",
+          "sha256": "57900f1bd7b2e546d0911f9e21ba9ab00d1b5b42664e3802c6177d10d054a3d8"
         }
       },
       "implementation_approval": "not_granted",
@@ -3049,20 +3053,20 @@
       "test_exception_map_approved": false,
       "lightweight_change_exemption": "Documentation-only preparation under explicit proceed; record contains exact scope and checks. No source/test/guide/config/dependency implementation.",
       "council": {
-        "round": 4,
-        "additional_pass": 2,
+        "round": 5,
+        "additional_pass": 3,
         "maximum_additional_passes": 3,
         "maximum_total_rounds": 5,
         "authorization": "validation/document-ingestion/product-construction/correction-loop/authorization.json",
         "authorization_sha256": "57bb75cb8b27c35835049a642486d780b081672c5cf4bc34be2a9110fa384a3f",
-        "criteria": "validation/document-ingestion/product-construction/correction-loop/pass2/criteria.md",
-        "criteria_sha256": "c8763d5f34689ec0dfd6e4dfb0217c7bd191d6c74c21e24c270671e70eb7d0b2",
-        "roster": "validation/document-ingestion/product-construction/correction-loop/pass2/roster.json",
+        "criteria": "validation/document-ingestion/product-construction/correction-loop/pass3/criteria.md",
+        "criteria_sha256": "9235a87adcddc82fd284c1cebbf707a6a4b93cad2d707bf08f3f2185bf65b136",
+        "roster": "validation/document-ingestion/product-construction/correction-loop/pass3/roster.json",
         "status": "in_review",
         "threshold_each": 9.5,
-        "scope": "Current bounded correction delta first, full conditional directive/source feasibility. Q/activation remains open.",
+        "scope": "FINAL current correction delta first, full conditional directive/source feasibility. All Q/activation remains open.",
         "construction_authority": false,
-        "automatic_fourth_additional_pass": false
+        "further_pass_or_replacement": false
       },
       "council_history": [
         {
@@ -3242,23 +3246,76 @@
               "threshold_met": false
             }
           }
+        },
+        {
+          "round": 4,
+          "additional_pass": 2,
+          "maximum_additional_passes": 3,
+          "maximum_total_rounds": 5,
+          "authorization": "validation/document-ingestion/product-construction/correction-loop/authorization.json",
+          "authorization_sha256": "57bb75cb8b27c35835049a642486d780b081672c5cf4bc34be2a9110fa384a3f",
+          "criteria": "validation/document-ingestion/product-construction/correction-loop/pass2/criteria.md",
+          "criteria_sha256": "c8763d5f34689ec0dfd6e4dfb0217c7bd191d6c74c21e24c270671e70eb7d0b2",
+          "roster": "validation/document-ingestion/product-construction/correction-loop/pass2/roster.json",
+          "status": "closed_blocked",
+          "threshold_each": 9.5,
+          "scope": "Current bounded correction delta first, full conditional directive/source feasibility. Q/activation remains open.",
+          "construction_authority": false,
+          "automatic_fourth_additional_pass": false,
+          "outcome": "BLOCKED",
+          "all_seats_terminal": true,
+          "reviewed_candidate": "8c847e72b6ab260a2fc618f74390f39d599cb6e7",
+          "threshold_met_each": false,
+          "report": "validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md",
+          "report_sha256": "65652ae95003c6a293dcf5b120fa402e906aa3727f163f4bc42d9778814879c7",
+          "reconciliation": "validation/document-ingestion/product-construction/correction-loop/pass2/results/reconciliation.json",
+          "reconciliation_sha256": "dfb1a39b49810d0805f7a0ecb26236d0201f27dab40cb578902ba10c97ed11b4",
+          "results": {
+            "sol": {
+              "outcome": "BLOCKED",
+              "coverage": 4.0,
+              "overall": 4.5,
+              "score_status": "incomplete/nonqualifying; overall provisional",
+              "report": "sol/report.md",
+              "report_sha256": "87faf44fe1239a2e7754f54c7f2e871549cca9a359b3989ae092ed65f2b15b32"
+            },
+            "astra": {
+              "outcome": "BLOCKED",
+              "coverage": 6.0,
+              "overall": 6.7,
+              "score_status": "incomplete/nonqualifying; overall provisional",
+              "report": "astra/report.md",
+              "report_sha256": "714a5b4423c0f9ab2a04500cc307c71c2fee025e03e802ad12f6c685ed3a094b"
+            },
+            "opus": {
+              "outcome": "VERIFIED",
+              "coverage": 9.1,
+              "overall": 9.4,
+              "score_status": "bounded document review below threshold",
+              "report": "opus/report.md",
+              "report_sha256": "3e60339633830660f78be2315436fddafeea5dc39d338fc638f389e4ee15ec4e"
+            }
+          },
+          "review_completion_blockers": [
+            "SOL-R4-B01 incomplete parents/source",
+            "ASTRA-R4-LIMIT-001 incomplete source"
+          ]
         }
       ],
       "correction_groups": {
-        "PD-S01": "bounded document correction prepared; independent closure pending",
-        "PD-S02": "bounded document correction prepared; independent closure pending",
-        "PD-S03": "bounded document correction prepared; independent closure pending",
-        "PD-S04": "bounded document correction prepared; independent closure pending",
-        "PD-S05": "bounded document correction prepared; independent closure pending",
-        "PD-S06": "bounded document correction prepared; independent closure pending",
-        "PD-S07": "bounded document correction prepared; independent closure pending"
+        "PD-T01": "final bounded clarification prepared; independent closure pending",
+        "PD-T02": "final bounded clarification prepared; independent closure pending",
+        "PD-T03": "final bounded clarification prepared; independent closure pending",
+        "PD-T04": "final bounded clarification prepared; independent closure pending",
+        "PD-T05": "final bounded clarification prepared; independent closure pending",
+        "PD-T06": "final bounded clarification prepared; independent closure pending"
       },
       "bounded_correction_loop": {
         "authorization": "validation/document-ingestion/product-construction/correction-loop/authorization.json",
         "loop_state": "validation/document-ingestion/product-construction/correction-loop/loop-state.json",
         "maximum_passes": 3,
-        "passes_started": 2,
-        "passes_completed": 1,
+        "passes_started": 3,
+        "passes_completed": 2,
         "stop_on_target_or_third": true
       }
     }

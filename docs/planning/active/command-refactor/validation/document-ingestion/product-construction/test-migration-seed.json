@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "status": "proposed phase-map seeds; not approved case-level exceptions",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "inventory_sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4",
@@ -68,8 +68,7 @@
       "requirements": [
         "TD-02",
         "TD-03",
-        "TD-04",
-        "DI-35"
+        "TD-04"
       ],
       "proposed_replacements": [
         "packages/friday-tools/tests_tools/test_document_adoption.py::test_smart_read_refuses_corrupt_pdf",
@@ -82,7 +81,8 @@
       ],
       "phase_approval": "pending exact map",
       "old_file_sha256": "b75d66d9caf155b130daa222e17627b895e08b4eb76b93625a2e92a9ba02d0f8",
-      "old_definition_sha256": "40411bec6fdd1567db76718e43215c85ecb657ee99bf3d7870c63a2c029fd61c"
+      "old_definition_sha256": "40411bec6fdd1567db76718e43215c85ecb657ee99bf3d7870c63a2c029fd61c",
+      "migration_acceptance_owner": "Separate TOOLS-DOC directive case map and TD-02/03/04 verification. INGEST DI35 does not approve or close this companion exception."
     }
   ]
 }

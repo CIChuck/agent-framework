@@ -197,5 +197,11 @@
     "effective_fixture_conftest_total": 75,
     "excluded_nonfunctional_artifacts": 1
   },
-  "fixture_count_scope": "fixture_conftest_files=72 is the original gzip selection; effective disjoint union with supplement=75. All63 non-Python test-tree files are classified:62 included,1 OS artifact excluded."
+  "fixture_count_scope": "fixture_conftest_files=72 is the original gzip selection; effective disjoint union with supplement=75. All63 non-Python test-tree files are classified:62 included,1 OS artifact excluded.",
+  "dual_role_support": {
+    "path": "baseline-support-role-map.json",
+    "sha256": "57900f1bd7b2e546d0911f9e21ba9ab00d1b5b42664e3802c6177d10d054a3d8",
+    "paths": 6,
+    "extra_node_credit": 0
+  }
 }

@@ -1,14 +1,14 @@
 # CD-CMD-INGEST-001 — shared document ingestion implementation
 
-Version: **0.4, bounded corrected conditional draft — additional pass 2/3 (global round 4)**, 2026-11-12.
+Version: **0.5, bounded corrected conditional draft — final additional pass 3/3 (global round 5)**, 2026-11-12.
 Initiative: `friday-command-refactor`; branch: `feature/cmd-ingest-001`.
 Source and test baseline: `8c36d8e26c618032c1ff536004a582c07ec56a5b`.
-Execution phase: **validation**; validation state: **in_review, additional pass 2/3**.
+Execution phase: **validation**; validation state: **in_review, final additional pass 3/3**.
 
 Chuck authorizes bounded planning corrections and **at most three additional
 Sol/Astra/Opus council passes**, global rounds 3–5. Stop when every seat is
 VERIFIED with coverage/overall >=9.5 and no mandatory findings, or after the third
-additional council, whichever comes first. This is additional pass 2/3. Earlier
+additional council, whichever comes first. This is the final additional pass 3/3. Stop after this council regardless of outcome; no fourth additional pass is authorized. Earlier
 rounds are historical. This authorization grants no product construction, new
 installation, model/service window, configuration/store operation or Gate-A closure.
 
@@ -117,7 +117,13 @@ activation: new guarded entry/factory APIs and direct contract tests may be adde
 without switching existing maintained callers to an identity requirement they
 cannot yet supply until I2 wiring. Their valid baseline flows must still pass
 I1. No final unguarded opener, legacy mode or automatic store stamping is
-authorized. If exact signatures/path scope cannot support additive staging,
+authorized. During I1, keep new Nomic/task preparation, role corrections and
+preparation-dependent cache keys off existing unbound/legacy flows until their
+I2 binding/wiring. They must produce unchanged prepared inputs/vectors for the
+same existing calls. New preparation is limited to new guarded, qualified fresh
+paths in I1. I1-C2 requires paired old/current input/vector and role/cache witnesses;
+I2 then switches admitted callers together, never mixing legacy and new spaces.
+If exact signatures/path scope cannot support additive staging,
 stop before I1 for a named approved integration exception and replacement
 coverage; the unchanged-scope regression rule remains binding. I1's narrow-counter
 metadata changes include their exact `uv.lock` delta, ahead of I3's separate
@@ -360,12 +366,15 @@ and [readable summary](../validation/document-ingestion/product-construction/bas
 freeze their selected tracked test/fixture bytes and static base-node IDs without
 importing or running them. The [fixture supplement](../validation/document-ingestion/product-construction/baseline-fixture-supplement.json)
 adds omitted retained SESSION/DIAG and integration-support fixtures. The effective
-fixture set is the disjoint union:72 original selected fixture/conftest identities
-plus3 supplemental identities, total75. The tracked `.DS_Store` is explicitly
+fixture set is the disjoint union: 72 original selected fixture/conftest identities
+plus 3 supplemental identities, total 75. The tracked `.DS_Store` is explicitly
 excluded as nonfunctional OS metadata; it earns no behavioral coverage. No
 previous fixture/node is dropped and the original gzip remains unchanged. The [helper inventory](../validation/document-ingestion/product-construction/baseline-helper-inventory.json)
 additionally hashes tracked non-test Python support modules in the same package/
 integration trees, including fake servers, LLM helpers and test applications.
+[Six dual-role support files](../validation/document-ingestion/product-construction/baseline-support-role-map.json)
+appear as both fixture payload and support module. A3 uses one canonical record
+per path/hash with both roles, one disposition and no extra node/exception credit.
 Helpers earn no test-count credit; A3 must classify their offline/live imports
 and attach them to retained/replacement nodes before executing or editing them. They are an inventory, not collected parameter counts, an offline
 classification, or executed coverage. The [migration seed](../validation/document-ingestion/product-construction/test-migration-seed.json)

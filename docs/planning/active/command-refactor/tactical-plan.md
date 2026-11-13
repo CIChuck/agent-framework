@@ -1,14 +1,14 @@
 # INGEST product construction drafts — maintainer review
 
-Execution phase: validation; validation state: in_review for additional pass2/3 (global round4).
+Execution phase: validation; validation state: in_review for FINAL additional pass3/3 (global round5).
 [INGEST](directives/CD-CMD-INGEST-001-product.md) and
 [TOOLS-DOC](directives/CD-CMD-TOOLS-DOC-001-adoption.md) remain separately
 conditional, with [RD-01–07](validation/document-ingestion/product-construction/readiness-decision.md)
 activation requirements. Prior bounded evaluations remain verified at their
 frozen sources. Whole Gate-A9.5 and product construction approval remain open.
-The first [three-seat reconciliation](validation/document-ingestion/product-construction/council-round1/report.md) is historical. The [round2 reconciliation](validation/document-ingestion/product-construction/council-round2/report.md) records BLOCKED, an unmet all-seat9.5 gate and one remaining mandatory document finding. Those two rounds are historical. Chuck's [new authorization](validation/document-ingestion/product-construction/correction-loop/authorization.json) permits up to three additional bounded correction/review passes. [Additional pass1](validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md) is closed with the gate unmet. Additional pass2/3 is the current bounded document review; product construction and model/store/production effects remain unapproved.
+The first [three-seat reconciliation](validation/document-ingestion/product-construction/council-round1/report.md) is historical. The [round2 reconciliation](validation/document-ingestion/product-construction/council-round2/report.md) records BLOCKED, an unmet all-seat9.5 gate and one remaining mandatory document finding. Those two rounds are historical. Chuck's [new authorization](validation/document-ingestion/product-construction/correction-loop/authorization.json) permits up to three additional bounded correction/review passes. [Additional pass1](validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md) is closed with the gate unmet. [Additional pass2](validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md) is closed BLOCKED. Final additional pass3/3 is the current review and ends this authorization regardless of outcome; product construction and model/store/production effects remain unapproved.
 
-**Next gate:** INGEST conditional directive v0.4: additional pass2/3 (global round4), fresh Sol/Astra/Opus correction-first/full document review. Pass1 is closed with unmet all-seat9.5 gate. Require every seat VERIFIED, no mandatory findings and coverage/overall>=9.5; stop on success or after additional pass3. No product construction or new effects.
+**Next gate:** INGEST conditional directive v0.5: FINAL additional pass3/3 (global round5), fresh Sol/Astra/Opus correction-first/full document review. Two passes are closed with gate unmet. Require every seat VERIFIED, zero mandatory findings and coverage/overall>=9.5. Stop after this council regardless of outcome; no fourth pass, replacement, product construction or new effects.
 
 ## Separate MAINT closeout and historical checkpoints
 

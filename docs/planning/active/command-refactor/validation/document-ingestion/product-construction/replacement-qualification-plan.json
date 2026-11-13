@@ -41,8 +41,10 @@
       ],
       "candidate_positive_refusal_stages": [
         "I2",
+        "I3",
         "AG"
-      ]
+      ],
+      "I3_scope": "Common ingestion/document chunk-capacity positives/refusals including N-CAP; not reclassification of I2 existing-consumer scenarios."
     },
     {
       "id": "N-DIM",
@@ -58,8 +60,10 @@
       ],
       "candidate_positive_refusal_stages": [
         "I2",
+        "I3",
         "AG"
-      ]
+      ],
+      "I3_scope": "Common ingestion/document chunk-capacity positives/refusals including N-CAP; not reclassification of I2 existing-consumer scenarios."
     },
     {
       "id": "N-SPACE",
@@ -75,8 +79,10 @@
       ],
       "candidate_positive_refusal_stages": [
         "I2",
+        "I3",
         "AG"
-      ]
+      ],
+      "I3_scope": "Common ingestion/document chunk-capacity positives/refusals including N-CAP; not reclassification of I2 existing-consumer scenarios."
     },
     {
       "id": "N-CAP",
@@ -92,8 +98,10 @@
       ],
       "candidate_positive_refusal_stages": [
         "I2",
+        "I3",
         "AG"
-      ]
+      ],
+      "I3_scope": "Common ingestion/document chunk-capacity positives/refusals including N-CAP; not reclassification of I2 existing-consumer scenarios."
     }
   ],
   "scenario_reuse": "One real profile may serve multiple N slots only when each required distinction and parity/counter/capacity evidence is independently bound.",

@@ -1,10 +1,10 @@
 {
-  "version": 4,
+  "version": 5,
   "initiative": "friday-command-refactor",
   "unit": "INGEST-PRODUCT-DIRECTIVE-PREPARATION",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "branch": "feature/cmd-ingest-001",
-  "state": "conditional draft v0.4; additional pass2/3 review only",
+  "state": "conditional draft v0.5; FINAL additional pass3/3 review only",
   "inputs": [
     {
       "path": "AGENTS.md",
@@ -92,11 +92,11 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-test-summary.json",
-      "sha256": "3ab4bf32be543e5971d35b2ad39ea73c1ee3a9999738ed8542ba297a4a5882c0"
+      "sha256": "42e49adf099e5daaf39c3dc127a0bc6c97a9219286fc1c0d363b75d2d5c458f6"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/test-migration-seed.json",
-      "sha256": "01b0e983af3ae77692e8daa59765bbd2a3d7f6f3cdfb86ec091c990382069601"
+      "sha256": "d986b613ad8e87c0aaaab87379e0e5ff63b052e63c7830e436ce96d64e32c53a"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/preparation-authorization.json",
@@ -104,11 +104,11 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
-      "sha256": "01d8201e3e9153cbaa4f9094f98aaf534173cb323650751626a545edd73433ff"
+      "sha256": "3f8115cbbba40bd751413f6bc1a7f147874ac9efdcbf682bfcd9e235bd107b03"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
-      "sha256": "1713297d0b8fa7da099b943dfb1f83ba19dc86abcd60e4980f519058bf0f1fab"
+      "sha256": "38cbb0a4b2b70cca1ec1a44d2daeea48426743528165099cfedd125be70ac8a4"
     },
     {
       "path": "docs/planning/active/command-refactor/approval/ingest-existing-store-policy.md",
@@ -116,7 +116,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
-      "sha256": "bcdf6535cb8ebed268063be9f01dafd8e09f29e2a7731743947dc48178248cdb"
+      "sha256": "90bf3bc34c6180b9233fa486daa7157d3023373fd4cafcb797a4d2822981186e"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md",
@@ -128,7 +128,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/replacement-qualification-plan.json",
-      "sha256": "10466424fb2cb6ef65d7bb86598abc030414e8a068bb105047a9a7a08c5f0b92"
+      "sha256": "5616c80516f79d47d1ed5e2f18f1f8cd7b4154460a73f34ea799bf2cda870798"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-helper-inventory.json",
@@ -139,16 +139,20 @@
       "sha256": "bfe9838110801f129c86b193566980b38dd06dfb5d58ccd49fc2b5bafdcb05d7"
     },
     {
-      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass2/correction-brief.json",
-      "sha256": "d0d7d66db4f8f0dd4cc622cbc4a8c85053b109979f89cc41cb5e5b67b4b2ba88"
-    },
-    {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-fixture-supplement.json",
       "sha256": "04b5860567b1abf96744e1ec38c5fd2d24554bd353c67237ab32b3181ad1e778"
     },
     {
-      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass2/source-review-checklist.md",
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/correction-brief.json",
+      "sha256": "2974c16a6259cb0cb46b90d13a5aecd27eb229a0938784796f5257bbd21b01cd"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/source-review-checklist.md",
       "sha256": "1c0ad637219c37f0e92af88814930ae616de67430e5d2253dcfbb49711fdcad6"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-support-role-map.json",
+      "sha256": "57900f1bd7b2e546d0911f9e21ba9ab00d1b5b42664e3802c6177d10d054a3d8"
     }
   ],
   "required_final_activation_appendices": [
@@ -160,7 +164,7 @@
     "Actual B/N-DIM/N-SPACE/N-CAP qualification identity/counter/asset/parity manifest before I1, not merely node definitions"
   ],
   "all_technical_parent_bytes_preserved": true,
-  "correction_base": "af4e12bd66e19303b6b32dbd7a66c70eae6d3330",
+  "correction_base": "8c847e72b6ab260a2fc618f74390f39d599cb6e7",
   "review_input_exclusions": {
     "preparation-checks.json": "Raw historical stdout/stderr is excluded and hash-only; metadata projection above supplies command/exit/digests.",
     "authority_navigation_log_and_old_councils": "Hash-only or safe current controls; no payload/history/peer report reads."
