@@ -1,6 +1,6 @@
 # INGEST — final construction approval request
 
-Version 2, 2026-11-13. **Prepared for Chuck's review; not approved or activated.**
+Version 3, 2026-11-13. **Planning documents approved; execution held for the Git handoff.**
 
 ## What is finalized
 
@@ -13,30 +13,37 @@ The canonical [package impact assessment v0.8](../../../../package-impact-assess
 now describes the selected dependencies, shared process, independent document
 settings, text-first entry reuse, configured embedding guards, tests, substantive
 documentation and upgrade consequences. Its previous v0.6 approval remains
-historical; this changed version is presented for approval. This new assessment
-and approval assembly have controller checks, not a new independent council verdict.
+historical. Chuck's [current approval](../../../../approval/ingest-construction-documents-20261113.json)
+approves v0.8, the outstanding INGEST planning/design/directive documents and
+this bounded validation amendment. The final document council's original
+CHANGES_REQUESTED verdicts and scores remain historical evidence; human approval
+does not turn them into a new independent VERIFIED result.
 This revision corrects dependency baseline/timing and the shared tokenizer impact;
 the technical contracts, edit paths and test-case scope remain unchanged.
 
-## Your next task
+## Current Git handoff
 
-Read the impact assessment and the scope/effects below. Approve this request or
-identify changes. A clear approval can cover **all three construction slices and
-the bounded private execution profile**, with advancement conditional on each
-slice's required independent verification. It does not need repeated permission
-for already approved work within these bounds.
+Chuck confirmed the [Git sequence](git-handoff-plan.md) with “yes proceed”.
+Commit and publish the approved planning/readiness baseline, open its PR to
+`master`, merge when checks permit, then create `feature/cmd-ingest-implementation`
+in a clean worktree from the merged result. The [Git authorization](../../../../approval/ingest-git-handoff-20261113.json)
+records these bounded delivery actions. No further approval of unchanged planning
+documents is requested. Product execution still waits for the completed handoff
+and the required private phase binding.
 
 The [exact approval manifest](approval-request.json) pins the documents, maps,
-selected versions, phase responsibilities and [proposed execution profile](execution-profile.json).
-The recorded approval will bind its SHA256 and the presented commit before any
-product/test/guide change or dependency installation. The earlier “ok proceed”
-authorized preparation; the latest direction authorizes these corrections and
-one additional council round. Neither authorizes construction.
+selected versions, phase responsibilities, [execution profile](execution-profile.json)
+and [implementation council plan](implementation-council-plan.json).
+Chuck approves all three construction slices and their bounded private effects,
+subject to the per-slice council gates. Execution is not activated: complete the
+authorized Git handoff and record the coding branch, stable source and private phase binding
+before product/test/guide changes or dependency installation.
 
-The [presented revision](presented-revision.json) names the exact document commit
-and approval-request digest to bind. Later review-result metadata does not change
-that approval target unless its documents or scope change. The initiative is
-already `started`: record the exact maintainer approval and each eligible phase
+The [presented revision](presented-revision.json) records the exact approved
+document digests; its commit binding is completed at the authorized Git checkpoint.
+No coding proceeds against an uncommitted approval target. Later outcome-only
+metadata does not change the approved scope. The initiative is already `started`:
+record the exact maintainer approval and each eligible phase
 activation under it, without moving the initiative backward or treating its old
 authority flag as approval of INGEST.
 
@@ -46,14 +53,36 @@ that approval assembly for the revised impact and proposed execution effects,
 while retaining its exact technical design and case/file maps. Do not treat the
 old digest as a claim that the current canonical assessment is still v0.6.
 
-## What approval would authorize
+## Approved construction scope
 
 | Stage | Concrete work | Required exit before advancing |
 | --- | --- | --- |
-| I1 — shared foundations | Core ingestion/vector/open-intent contracts; LLM configured capabilities, local counters, preparation and full-batch checks; Memory namespace/v2 foundations; narrow counter metadata/lock changes. | Foundation and public-boundary tests; unchanged legacy positives; normal/optimized invariant controls; independent implementation verification. No early switch of legacy preparation or cache identity. |
-| I2 — existing consumers | Coordinate Chat/Runtime/CLI origin and startup wiring, existing embedding callers, tasks/errors, graph/vector identity and strict recovery compatibility. | Positive baseline/replacement consumer operations and separate refusals in disposable stores; supported configured defaults resolve; per-slice case migration and independent verification. No serving/parity campaign. |
+| I1 — shared foundations | Core ingestion/vector/open-intent contracts; LLM configured capabilities, local counters, preparation and full-batch checks; Memory namespace/v2 foundations; narrow counter metadata/lock changes. | Foundation and public-boundary tests; unchanged legacy positives; normal/optimized invariant controls; full three-model I1 council before I2. No early switch of legacy preparation or cache identity. |
+| I2 — existing consumers | Coordinate Chat/Runtime/CLI origin and startup wiring, existing embedding callers, tasks/errors, graph/vector identity and strict recovery compatibility. | Positive baseline/replacement consumer operations and separate refusals in disposable stores; supported configured defaults resolve; per-slice case migration; full three-model I2 council before I3. No serving/parity campaign. |
 | I3 — document ingestion | Tools shared converter/process and document extra at C1; Memory shared planning/storage and headless reuse at C2; Commands parser and Chat adoption/default document edge at C3; worker/lifecycle proof at C4; final installed profiles and authored docs at C5. | Genuine PDF/DOCX/XLSX/PPTX and text ingestion; registry-to-store readback/reopen; same-entry text then late document ingestion; real process/cancel/resource tests; installed normal/optimized lanes; migration and documentation acceptance. |
-| Aggregate | Freeze the implemented candidate and review the complete affected behavior, tests and authored documentation. | Fresh independent code council before human UAT. A runtime pass cannot be inferred from the current design verdict. |
+| I3 council and aggregate | Freeze the implemented candidate and review I3 plus the complete I1–I3 behavior, tests and authored documentation. | One fresh three-model council must return both I3 and aggregate VERIFIED dispositions before human UAT. A runtime pass cannot be inferred from the current design verdict. |
+
+## Mandatory council after each slice
+
+Each gate uses **GPT-6.1 Sol, GPT-6 Astra and Claude Opus 5.5**, with fresh,
+independent, read-only reviewers of the same frozen candidate. The first gate
+follows I1-C4, the second I2-C3, and the third I3-C5. Every seat must complete
+its assessment, return VERIFIED, score at least **9.5/10** and have no mandatory
+findings. No averaging or majority vote substitutes for an individual pass.
+
+Each gate permits **at most three council passes**: the initial assessment and
+up to two bounded correction/review cycles. Stop early when all seats pass.
+Otherwise stop after pass three and return unresolved findings to Chuck; do not
+start the next slice, replace failed seats or reset the budget. An incomplete or
+BLOCKED started pass counts. Review the correction first, then the full bounded
+candidate; a previous verdict does not carry over to changed code.
+
+Review actual code, affected consumer regressions, positive/negative integration
+evidence, test migration and authored documentation. Do not demand future-slice
+features at earlier exits or repeat the completed Docling evaluation/AST campaign.
+The I3 council also supplies the required aggregate code review; it is not a
+fourth separate gate. The machine-readable plan defines evidence, scope and stop
+rules. No implementation council starts during this planning handoff.
 
 The unchanged [91-path source/metadata/document map](../activation/slice-file-map.json)
 and [case map](../activation/test-case-map.json) are the exact edit boundaries.
@@ -103,7 +132,7 @@ resolved artifacts, asset manifests and private interpreter in its run binding.
 This is ordinary construction evidence preparation; it does not require a
 finished converter or a new package-evaluation project before coding starts.
 
-## Operator-visible behavior to approve
+## Approved operator-visible behavior
 
 1. `/ingest` uses real extraction, quoted paths and the common defaults:
    `document` chunking and 512 final embedding-input tokens. Command options
@@ -131,7 +160,7 @@ finished converter or a new package-evaluation project before coding starts.
 
 ## Execution and production boundary
 
-Approval would allow source/test/documentation edits only within the exact maps,
+Once the Git hold is released, approval allows source/test/documentation edits only within the exact maps,
 and private dependency resolution, builds, installs, fixture conversion, counters,
 deterministic embedding substitutes and disposable Chroma tests under the bound
 profile. Generated environments/configuration/assets/data/output live under a
@@ -148,7 +177,10 @@ may fetch only the selected, recorded public artifacts; tests run offline, with
 only explicitly owned local fixture-server connections where required. No LM
 Studio/OpenRouter/other model endpoint, credential-bearing Finance integration,
 production reset, package publication, push, merge or release is included.
-Live-model UAT requires its own later explicit window/effects authorization.
+Council inference calls are separately authorized review effects under the
+implementation council plan; they do not authorize product tests to contact
+model services. Live-model UAT requires its own later explicit window/effects
+authorization.
 
 ## Tests and documentation are construction deliverables
 
@@ -174,11 +206,12 @@ handoff, not every Tools document entry point. Existing MCP/backup adaptations
 are bounded compatibility work, not new projects. FU-013/014 remain unwaived.
 
 Implementation acceptance, human UAT, deployment and delivery are separate from
-this requested construction approval. If a phase discovers a material scope or
+this document/construction-scope approval. If a phase discovers a material scope or
 effects expansion, return that specific change for review; do not silently change
-models, paths, contracts or provider permissions. This package supplies no general
-review-loop authority. The separately authorized final round is recorded in
-[round 2 authorization](council/round2/authorization.json).
+models, paths, contracts or provider permissions. The new implementation councils
+have only the bounded authority defined above. The closed planning council's
+[round 2 authorization](council/round2/authorization.json) is historical and gains
+no additional rounds.
 
 The [preparation checks](preparation-checks.json) cover the exact hashes, all 17
 package rows, phase/case-map consistency, links, board/documentation/metadata and

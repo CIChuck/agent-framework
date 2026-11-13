@@ -1,20 +1,22 @@
-# INGEST product construction drafts — maintainer review
+# INGEST — approved planning, Git handoff before coding
 
-Execution phase: validation; validation state: in_review for activation-package council round1/3; product activation not_ready.
+Execution phase: planning; validation state: pending. Initiative stays started/local.
 
-[Proposed activation appendices](validation/document-ingestion/product-construction/activation/README.md)
-now specify exact contracts, per-slice paths/cases, worker/asset choices and the
-remaining Q facts. They require review/approval and actual qualification; no new
-code, effects or council follows. The focused directive verdict below remains
-frozen at 0144c539 and does not extend to these new appendices.
-[INGEST](directives/CD-CMD-INGEST-001-product.md) and
-[TOOLS-DOC](directives/CD-CMD-TOOLS-DOC-001-adoption.md) remain separately
-conditional, with [RD-01–07](validation/document-ingestion/product-construction/readiness-decision.md)
-activation requirements. Prior bounded evaluations remain verified at their
-frozen sources. Whole Gate-A9.5 and product construction approval remain open.
-The first [three-seat reconciliation](validation/document-ingestion/product-construction/council-round1/report.md) is historical. The [round2 reconciliation](validation/document-ingestion/product-construction/council-round2/report.md) records BLOCKED, an unmet all-seat9.5 gate and one remaining mandatory document finding. Those two rounds are historical. Chuck's [new authorization](validation/document-ingestion/product-construction/correction-loop/authorization.json) permits up to three additional bounded correction/review passes. [Additional pass1](validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md) is closed with the gate unmet. [Additional pass2](validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md) is closed BLOCKED. [Final additional pass3](validation/document-ingestion/product-construction/correction-loop/pass3/results/report.md) is closed BLOCKED. That historical allowance remains exhausted. Chuck authorizes a [focused F1–F8 council](validation/document-ingestion/product-construction/focused-council/authorization.json), closed VERIFIED after round2/3 with all three complete seats above both 9.5 thresholds and no mandatory findings; no third round is launched. [Round2 reconciliation](validation/document-ingestion/product-construction/focused-council/round2/results/report.md) and [implementation handoff](validation/document-ingestion/product-construction/focused-council/round2/results/implementation-handoff.md) retain the result and future binding duties. Completed Docling evaluation remains input; product construction and model/store/production effects remain unapproved.
+Chuck's [approval record](approval/ingest-construction-documents-20261113.json)
+approves all outstanding INGEST analysis/design/directive documents, impact v0.8
+and the current validation amendment. The [final approval package](validation/document-ingestion/product-construction/final-approval/README.md)
+requires complete Sol/Astra/Opus councils after I1, I2 and I3, at most three
+passes per gate. I3 includes full aggregate review; no implementation council
+has started. Historical document verdicts remain unchanged.
 
-**Next gate:** Final-document council round2/2 finished CHANGES_REQUESTED: all three complete8/8 and confirm substantive C1–C3, but A4 retained a stale impact label. Completed that same requested one-field version alignment after frozen close, with a new exact receipt at b357c3c4; other target documents unchanged. Original verdicts/scores remain, no independent VERIFIED or gate waiver claimed. Chuck now decides acceptance of the bounded post-review correction and exact construction/private effects. No third council, runtime effects or construction begun.
+**Next gate:** Chuck approved INGEST documents and the Git handoff. Commit/push the approved planning/readiness baseline, open its PR to master, merge when checks permit, then create feature/cmd-ingest-implementation in a clean worktree from the merged baseline. Preserve the original dirty YAML and stores. Product execution waits for that handoff and the private I1 binding; full Sol/Astra/Opus councils follow each slice, at most three passes per gate, with I3 aggregate review.
+
+[Git handoff proposal](validation/document-ingestion/product-construction/final-approval/git-handoff-plan.md):
+commit the approved planning/readiness baseline, publish its PR after explicit
+Git authorization, merge it, then create a separate clean implementation branch.
+No coding/install starts until that discussion and exact branch/private phase
+bindings are complete. Earlier planning and council records retain their dated
+historical scope; completed Docling evaluation is reused.
 
 ## Separate MAINT closeout and historical checkpoints
 

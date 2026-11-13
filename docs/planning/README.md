@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Final-document council round2/2 finished CHANGES_REQUESTED: all three complete8/8 and confirm substantive C1–C3, but A4 retained a stale impact label. Completed that same requested one-field version alignment after frozen close, with a new exact receipt at b357c3c4; other target documents unchanged. Original verdicts/scores remain, no independent VERIFIED or gate waiver claimed. Chuck now decides acceptance of the bounded post-review correction and exact construction/private effects. No third council, runtime effects or construction begun. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Chuck approved INGEST documents and the Git handoff. Commit/push the approved planning/readiness baseline, open its PR to master, merge when checks permit, then create feature/cmd-ingest-implementation in a clean worktree from the merged baseline. Preserve the original dirty YAML and stores. Product execution waits for that handoff and the private I1 binding; full Sol/Astra/Opus councils follow each slice, at most three passes per gate, with I3 aggregate review. |
 
 ## Completed
 

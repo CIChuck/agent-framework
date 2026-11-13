@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Final-document council round2/2 finished CHANGES_REQUESTED: all three complete8/8 and confirm substantive C1–C3, but A4 retained a stale impact label. Completed that same requested one-field version alignment after frozen close, with a new exact receipt at b357c3c4; other target documents unchanged. Original verdicts/scores remain, no independent VERIFIED or gate waiver claimed. Chuck now decides acceptance of the bounded post-review correction and exact construction/private effects. No third council, runtime effects or construction begun."
+  next_gate: "Chuck approved INGEST documents and the Git handoff. Commit/push the approved planning/readiness baseline, open its PR to master, merge when checks permit, then create feature/cmd-ingest-implementation in a clean worktree from the merged baseline. Preserve the original dirty YAML and stores. Product execution waits for that handoff and the private I1 binding; full Sol/Astra/Opus councils follow each slice, at most three passes per gate, with I3 aggregate review."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3377,3 +3377,19 @@ events:
   action: stopped final INGEST document council and disclosed one-field correction
   note: "All final seats complete8/8; shared stale A4 label only. Original CHANGES_REQUESTED scores/reports retained. Same requested reference alignment completed in one field, receipt refreshed; no independent VERIFIED/gate waiver claimed. No third council or runtime effects. Await explicit maintainer disposition/construction approval."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/results/report.md
+
+- task: friday-command-refactor
+  at: "2026-11-13T17:15:07.602644+00:00"
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved INGEST planning documents and required Git discussion before coding
+  note: "Explicitly approves all outstanding INGEST analysis/design/directive documents and current edits. Full Sol/Astra/Opus councils after each slice, at most three passes per gate; I3 includes aggregate. Exact approval recorded; historical reports unchanged. Git checkpoint/publication and new implementation branch await discussion; no code, installs, council or production effects."
+  evidence: docs/planning/active/command-refactor/approval/ingest-construction-documents-20261113.json
+
+- task: friday-command-refactor
+  at: "2026-11-13T17:20:42.239214+00:00"
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: authorized approved INGEST baseline publication and implementation branch handoff
+  note: "yes proceed confirms checkpoint, push/open PR to master, regular merge when checks permit, then clean feature/cmd-ingest-implementation from merged master. No force push or personal-state staging. Product code remains behind branch/private-phase binding and per-slice councils."
+  evidence: docs/planning/active/command-refactor/approval/ingest-git-handoff-20261113.json

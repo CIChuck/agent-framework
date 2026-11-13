@@ -1,24 +1,46 @@
 {
-  "scope": "Controller checks of final outcome and disclosed one-field post-review correction; not independent review or runtime conformance",
+  "scope": "Controller checks before the authorized planning Git checkpoint; not independent implementation validation",
+  "approved_documents": 31,
   "canonical_impact_version": "0.8",
-  "target_document_commit": "b357c3c4dd0c892aa57593d32cb236b7e832022c",
-  "approval_manifest_sha256": "c8946e081eeaa1d0b9f13033d9be8444f84c3906dde7f15a694434903038df3b",
-  "presented_revision_sha256": "96afc4b37b787dd82751e3726d6fe7a445541abdb5fc5a60db773bad5dd80a5f",
-  "exact_post_review_change": "gate_disposition.A4.requires only; all other request fields and three other presented documents unchanged",
-  "current_bindings_match_named_commit": true,
-  "all_original_reports_preserved": true,
-  "all_councils_finished": true,
-  "formal_council_result": "CHANGES_REQUESTED",
-  "formal_gate_met": false,
-  "post_review_fix_independently_verified": false,
-  "human_disposition_required": true,
-  "third_round_started": false,
+  "approval_manifest_sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71",
+  "presented_revision_sha256": "21b6ab9f5c46df763756f923e25c0dcdbefdc9ab600a985569e30abb494af166",
+  "approval_record_sha256": "ef88e0dbd07b0bf3fbf7b47bb05ad43ccdcbe8818565b93ebecbb266c6927d2e",
+  "target_document_commit": null,
+  "git_checkpoint_pending": true,
+  "implementation_councils": {
+    "gates": 3,
+    "maximum_passes_each": 3,
+    "started": 0,
+    "I3_includes_aggregate": true
+  },
+  "source_paths": 91,
+  "cases": {
+    "mapped": 49,
+    "new_witnesses": 51,
+    "modules": 18,
+    "retired": 0
+  },
+  "exact_bindings_match": true,
+  "links_resolve": true,
   "execution_log_append_only": true,
   "protected_nonplanning_files": 16690,
   "preserved_symlinks": 26,
   "preserved_records": 8,
+  "preservation_failures": [],
+  "git_identity_and_staging_unchanged": true,
+  "no_product_or_test_execution": true,
+  "no_commit_or_external_git_mutation": true,
+  "historical_final_document_council": {
+    "result": "CHANGES_REQUESTED",
+    "gate_met": false,
+    "original_results_unchanged": true
+  },
+  "human_document_approval_recorded": true,
+  "construction_activated": false,
+  "no_runtime_effects": true,
   "administrative_checks": [
     {
+      "name": "board",
       "argv": [
         "uv",
         "run",
@@ -33,10 +55,10 @@
       ],
       "exit": 0,
       "stdout": "Development board validation passed: 36 tasks\n",
-      "stderr": "",
-      "name": "board"
+      "stderr": ""
     },
     {
+      "name": "dashboard",
       "argv": [
         "uv",
         "run",
@@ -52,10 +74,10 @@
       ],
       "exit": 0,
       "stdout": "Planning dashboard is current\n",
-      "stderr": "",
-      "name": "dashboard"
+      "stderr": ""
     },
     {
+      "name": "docs",
       "argv": [
         "uv",
         "run",
@@ -68,11 +90,11 @@
         "scripts/check-documentation-lifecycle.py"
       ],
       "exit": 0,
-      "stdout": "Documentation lifecycle validation passed: 1221 Markdown files checked\n",
-      "stderr": "",
-      "name": "docs"
+      "stdout": "Documentation lifecycle validation passed: 1222 Markdown files checked\n",
+      "stderr": ""
     },
     {
+      "name": "metadata",
       "argv": [
         "uv",
         "run",
@@ -86,10 +108,10 @@
       ],
       "exit": 0,
       "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
-      "stderr": "",
-      "name": "metadata"
+      "stderr": ""
     },
     {
+      "name": "whitespace",
       "argv": [
         "git",
         "diff",
@@ -99,11 +121,9 @@
       ],
       "exit": 0,
       "stdout": "",
-      "stderr": "",
-      "name": "whitespace"
+      "stderr": ""
     }
   ],
-  "no_runtime_effects": true,
-  "construction_approved": false,
-  "result": "PASS"
+  "result": "PASS",
+  "git_handoff_authorized": true
 }

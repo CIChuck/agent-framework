@@ -1,16 +1,18 @@
-# INGEST-001 — scoped branch handoff
+# INGEST-001 — approved planning branch handoff
 
-Current: bounded test-only Docling behavior and actual Nomic end-to-end flow are
-independently verified, including the reporting-source correction. Original live
-receipts remain attributed to c977; corrected reporting proof is offline-only.
-The branch is started/local. Production source/configuration/stores are unchanged.
-Whole Gate-A9.5 and product construction/acceptance remain open.
-[Measured results](gate-a/end-to-end-evaluation/results.md) and
-[independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
+Chuck [approved all outstanding INGEST planning/design/directive documents](../../approval/ingest-construction-documents-20261113.json)
+and impact v0.8. The [approval package](product-construction/final-approval/README.md)
+requires full three-model councils after I1, I2 and I3, at most three passes per
+gate; I3 includes aggregate review. Historical review outcomes and completed
+Docling evidence are preserved. The initiative remains started/local.
 
-**Next gate:** Final-document council round2/2 finished CHANGES_REQUESTED: all three complete8/8 and confirm substantive C1–C3, but A4 retained a stale impact label. Completed that same requested one-field version alignment after frozen close, with a new exact receipt at b357c3c4; other target documents unchanged. Original verdicts/scores remain, no independent VERIFIED or gate waiver claimed. Chuck now decides acceptance of the bounded post-review correction and exact construction/private effects. No third council, runtime effects or construction begun.
+**Next gate:** Chuck approved INGEST documents and the Git handoff. Commit/push the approved planning/readiness baseline, open its PR to master, merge when checks permit, then create feature/cmd-ingest-implementation in a clean worktree from the merged baseline. Preserve the original dirty YAML and stores. Product execution waits for that handoff and the private I1 binding; full Sol/Astra/Opus councils follow each slice, at most three passes per gate, with I3 aggregate review.
 
-[Proposed activation package](product-construction/activation/README.md) contains exact draft contracts, slice/case maps and unresolved Q dispositions; it is not construction approval.
+The [Git proposal](product-construction/final-approval/git-handoff-plan.md)
+recommends a planning/readiness baseline PR, then a clean implementation branch
+from merged `master`. No commit, push, PR, merge, new branch or implementation
+is performed in this amendment. Preserve the two dirty Chat YAML examples,
+`.friday-old/`, production environments/stores and earlier private test runs.
 
 ## Historical branch/design preparation (superseded for current evaluation routing)
 

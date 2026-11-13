@@ -6,8 +6,8 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Final-document council round2/2 finished CHANGES_REQUESTED: all three complete8/8 and confirm substantive C1\u2013C3, but A4 retained a stale impact label. Completed that same requested one-field version alignment after frozen close, with a new exact receipt at b357c3c4; other target documents unchanged. Original verdicts/scores remain, no independent VERIFIED or gate waiver claimed. Chuck now decides acceptance of the bounded post-review correction and exact construction/private effects. No third council, runtime effects or construction begun.",
-  "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
+  "current_scope": "Chuck approved INGEST documents and the Git handoff. Commit/push the approved planning/readiness baseline, open its PR to master, merge when checks permit, then create feature/cmd-ingest-implementation in a clean worktree from the merged baseline. Preserve the original dirty YAML and stores. Product execution waits for that handoff and the private I1 binding; full Sol/Astra/Opus councils follow each slice, at most three passes per gate, with I3 aggregate review.",
+  "product_code_authority": "INGEST I1-I3 scope approved; Git handoff explicitly authorized and in progress. Product generation starts only on the recorded implementation branch after the merged baseline and eligible private binding. Mandatory per-slice councils; no product acceptance or delivery.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
   "destination_baseline": "3687cae7165c89e7fa8348214867de203f19de6d",
@@ -529,7 +529,7 @@
     "preparation_evidence_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "design_approval": "granted_by_subsequent_exact_approval",
     "construction_approval": "granted_by_subsequent_exact_approval",
-    "product_implementation": "SESSION-001 D1\u2013D3 and bounded aggregate independently verified and accepted; preparation fields remain historical",
+    "product_implementation": "SESSION-001 D1–D3 and bounded aggregate independently verified and accepted; preparation fields remain historical",
     "tests": "Historical preparation-era observations are preserved in historical_preparation_tests; current D1/D2 conformance is recorded in session_construction.",
     "pilot_acceptance": "approval/pilot-acceptance.md",
     "delivery": "local only",
@@ -548,7 +548,7 @@
     "preparation_sha256": "afa7acce7d32e4ef79947ac8db5b78593f49d1aa33b91fd028f28bcfb9205221",
     "product_baseline": "38a0c58a0b533edc29908992c8c6ee64fa04eb20",
     "state": "accepted",
-    "current_deliverable": "SESSION D1\u2013D3 accepted; next unit requires separate authority",
+    "current_deliverable": "SESSION D1–D3 accepted; next unit requires separate authority",
     "council_after_each_deliverable": true,
     "council_members": [
       "GPT-6.1 Sol/high",
@@ -557,7 +557,7 @@
     ],
     "deliverable1": {
       "state": "verified",
-      "scope": "SESSION-01\u201304; D1 preservation/compatibility subset only",
+      "scope": "SESSION-01–04; D1 preservation/compatibility subset only",
       "evidence": "validation/session/implementation/d1/export-fix-evidence.json",
       "source_revision": "4065a150cbfcacbcf71c6aab05e05d2920bf48e5",
       "S0": "passed scoped baseline; known root debt remains failed/unwaived",
@@ -601,7 +601,7 @@
     },
     "deliverable2": {
       "state": "verified",
-      "scope": "SESSION-05\u201308; S2/S3 and bounded preservation/source proof",
+      "scope": "SESSION-05–08; S2/S3 and bounded preservation/source proof",
       "construction_base": "d5d35825605104f74c325e25b6cd61faa7161072",
       "source_revision": "43d7732e84b1ca1a4ad4cf37b11484dcd24fde77",
       "evidence": "validation/session/implementation/d2/evidence.json",
@@ -689,7 +689,7 @@
       "candidate": "112e657fe3aebec97af00875583ff85abaaacd04",
       "pre_acceptance_metadata_HEAD": "4c7fa7a9922cc6419b3b837f12b00e8abb98bf03",
       "artifact_source": "8bb61e2c65ff33bc806050f0a55610b02533aa8e",
-      "scope": "SESSION-001 history/conversation-clear D1\u2013D3 and complete bounded aggregate only"
+      "scope": "SESSION-001 history/conversation-clear D1–D3 and complete bounded aggregate only"
     }
   },
   "historical_unit_summary_fields": [
@@ -712,7 +712,7 @@
     "instruction": "for The remaining council tasks use only GPT 6.1-Sol,  GPT-6-Astra  and Claude Opus 5.5."
   },
   "accepted_session_checkpoint_before_DIAG": {
-    "decision": "SESSION-001 D1\u2013D3 and bounded aggregate VERIFIED and accepted by Chuck Russell",
+    "decision": "SESSION-001 D1–D3 and bounded aggregate VERIFIED and accepted by Chuck Russell",
     "current_scope": "Accepted SESSION-001 closeout; await separate maintainer direction for a next bounded unit",
     "product_code_authority": "SESSION-001 construction completed, independently verified and accepted. No new family or external delivery authority."
   },
@@ -766,7 +766,7 @@
     "state": "accepted",
     "execution_phase": "closeout",
     "validation_state": "verified",
-    "current_deliverable": "DIAG D1\u2013D3 accepted; MEMQ-001 preparation is next and requires separate approval for construction",
+    "current_deliverable": "DIAG D1–D3 accepted; MEMQ-001 preparation is next and requires separate approval for construction",
     "deliverable1": {
       "state": "verified",
       "round": 2,
@@ -780,7 +780,7 @@
       "council": "validation/diagnostics/implementation/d1/council-round2.json",
       "remediation_cycle": 1,
       "remediation_directive": "remediation/REM-CMD-DIAG-D1-001-test-coverage.md",
-      "remediation_authority": "Existing exact DIAG approval and approved DG-T01\u201307/allowlist, mechanical completion under independent-validation policy; runtime bytes frozen",
+      "remediation_authority": "Existing exact DIAG approval and approved DG-T01–07/allowlist, mechanical completion under independent-validation policy; runtime bytes frozen",
       "current_evidence": "validation/diagnostics/implementation/d1/test-coverage-fix-evidence.json",
       "coverage_map": "validation/diagnostics/implementation/d1/test-coverage-map.json",
       "named_nodes": 7,
@@ -937,11 +937,11 @@
       "pre_acceptance_metadata_HEAD": "a1cee77374ffdc02f37d8821e6234eb39b325403",
       "artifact_source": "28c544fa67e934f03c212aed39ba20802b500b13",
       "UAT": "maintainer-reported successful; per-case detail not supplied",
-      "scope": "DIAG-001 six context-diagnostics commands D1\u2013D3 and complete bounded aggregate only"
+      "scope": "DIAG-001 six context-diagnostics commands D1–D3 and complete bounded aggregate only"
     }
   },
   "accepted_diag_checkpoint_before_MEMQ": {
-    "decision": "DIAG-001 D1\u2013D3 and bounded aggregate VERIFIED, maintainer-reported UAT passed, and accepted by Chuck Russell",
+    "decision": "DIAG-001 D1–D3 and bounded aggregate VERIFIED, maintainer-reported UAT passed, and accepted by Chuck Russell",
     "current_scope": "Accepted DIAG-001 closeout; MEMQ-001 planning preparation only (proposed contract/directive), no construction or delivery",
     "product_code_authority": "DIAG-001 construction completed, independently verified and accepted. No new family construction or external delivery authority; MEMQ-001 requires exact contract/directive approval."
   },
@@ -1419,7 +1419,7 @@
     "validation_state": "verified",
     "scope": "Committed-candidate closed builds/replay, full owning/root regressions, MEMQ installed probe and controls under the existing exact directive. No runtime scope expansion.",
     "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
-    "uat": "PASS \u2014 maintainer-reported; closed 2026-11-10",
+    "uat": "PASS — maintainer-reported; closed 2026-11-10",
     "acceptance": "accepted by Chuck Russell 2026-11-10",
     "delivery": "local only",
     "artifact_and_probe_source": "e4c0b9a2c5e80569829cc56af9addc8b3e358714",
@@ -1469,7 +1469,7 @@
     "report": "validation/memory-queries/implementation/d3/verified-report.md",
     "recorded_at": "2026-11-09T21:33:37.858454+00:00",
     "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
-    "uat": "PASS \u2014 maintainer-reported; closed 2026-11-10",
+    "uat": "PASS — maintainer-reported; closed 2026-11-10",
     "acceptance": "accepted by Chuck Russell 2026-11-10",
     "delivery": "local only",
     "uat_at_review_freeze": "NOT RUN",
@@ -1483,7 +1483,7 @@
     "directive": "remediation/REM-CMD-MEMQ-UAT-002-verification-diagnostics.md",
     "approval": "approval/memory-queries-verification-diagnostics.md",
     "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
-    "uat": "PASS \u2014 maintainer-reported; closed 2026-11-10",
+    "uat": "PASS — maintainer-reported; closed 2026-11-10",
     "recorded_at": "2026-11-10T01:33:14.473229+00:00",
     "live_provider_authority": "not granted",
     "functional_verification_repair": "not yet identified",
@@ -1511,7 +1511,7 @@
     "execution_phase": "closeout",
     "validation_state": "verified",
     "next_gate": "MEMQ and both UAT records are accepted/closed. FU-011 explicit --full argument defect is recorded separately; await maintainer priority and bounded scope for further work. Initiative remains started/local.",
-    "uat": "PASS \u2014 maintainer-reported; closed 2026-11-10",
+    "uat": "PASS — maintainer-reported; closed 2026-11-10",
     "acceptance": "accepted by Chuck Russell 2026-11-10",
     "council_roster": [
       "gpt-6-astra",
@@ -1542,8 +1542,8 @@
     "checkout_before_acceptance": "39a631a92190bc2a8dc54b0d20fb0fecf7e8c535",
     "product_source": "47134ad6404cb37916efac45e09d5378a286d387",
     "corrected_packet": "ead29d01c423be0bbc49e80247ff753521884e20",
-    "main_uat": "PASS \u2014 maintainer-reported; closed",
-    "combined_retest": "PASS \u2014 maintainer-reported; closed",
+    "main_uat": "PASS — maintainer-reported; closed",
+    "combined_retest": "PASS — maintainer-reported; closed",
     "meta": "maintainer reports positive results after full reorganization on exit",
     "per_case_logs_timings": "not supplied",
     "separate_open_issue": "FU-011 explicit --full argument rejected",
@@ -1894,16 +1894,16 @@
   },
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
-    "status": "final_round_stopped_post_review_correction_awaiting_maintainer",
-    "execution_phase": "validation",
-    "validation_state": "changes_requested",
+    "status": "approved_git_handoff_in_progress",
+    "execution_phase": "planning",
+    "validation_state": "pending",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
     "assessment": "validation/document-ingestion/assessment.md",
     "backend": "Measured Docling candidate; exact aggregate readiness and product deployment remain open",
     "scope": "PDF/DOCX/XLSX/PPTX extraction/local PDF OCR; shared all-source document/512 chunking with document/recursive/fixed overrides; shared LLM limits/dimension checks; retained fetching, admission, metadata/protection/storage semantics",
-    "implementation_approval": "not_granted",
+    "implementation_approval": "approved_scope_git_handoff_hold",
     "council": {
       "round": 8,
       "cycle_pass": 3,
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Final-document council round2/2 finished CHANGES_REQUESTED: all three complete8/8 and confirm substantive C1\u2013C3, but A4 retained a stale impact label. Completed that same requested one-field version alignment after frozen close, with a new exact receipt at b357c3c4; other target documents unchanged. Original verdicts/scores remain, no independent VERIFIED or gate waiver claimed. Chuck now decides acceptance of the bounded post-review correction and exact construction/private effects. No third council, runtime effects or construction begun.",
+    "next_gate": "Chuck approved INGEST documents and the Git handoff. Commit/push the approved planning/readiness baseline, open its PR to master, merge when checks permit, then create feature/cmd-ingest-implementation in a clean worktree from the merged baseline. Preserve the original dirty YAML and stores. Product execution waits for that handoff and the private I1 binding; full Sol/Astra/Opus councils follow each slice, at most three passes per gate, with I3 aggregate review.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2380,7 +2380,7 @@
     "framework_compatibility_contract": {
       "document": "embedding-compatibility-contract.md",
       "sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
-      "proofs": "FC-01 through FC-14; B01\u2013B08 and B/N/R scenarios",
+      "proofs": "FC-01 through FC-14; B01–B08 and B/N/R scenarios",
       "status": "proposed_not_implemented"
     },
     "correction_map": {
@@ -2410,9 +2410,9 @@
     },
     "package_impact_assessment": {
       "document": "package-impact-assessment.md",
-      "version": "0.8-proposed",
+      "version": "0.8",
       "sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f",
-      "status": "component_ready_aggregate_gate_unmet_awaiting_maintainer",
+      "status": "approved_by_maintainer",
       "prepared_from": "5e7efdb69a3d5cf9b5351a01b97cf70f7cffc007",
       "technical_pins_unchanged": false,
       "scope_change": "Consolidate evaluated stack and reviewed decisions: shared worker/headless ownership, independent bindings, required same-entry factory, current phase/test/docs/upgrade effects. No new implementation package or feature.",
@@ -2420,24 +2420,26 @@
       "proposed_implementation_packages": 8,
       "cli_source_edits_conditional": false,
       "source_unchanged_compatibility_packages": 9,
-      "new_assessment_council_review": "one_additional_round2_authorized",
+      "new_assessment_council_review": "historical_round2_closed_changes_requested",
       "approval_condition": "Chuck Russell must be satisfied with the overall per-package impact before approving the construction directive.",
       "directive_binding": "One canonical referenced appendix; bind approved version, commit and SHA256.",
       "material_impact_change": "Revise assessment and obtain maintainer review before construction.",
-      "approval_of_assessment": "not_granted_for_v0_8",
-      "gate_a_activation": "not_granted",
-      "construction_authority": "not_granted",
+      "approval_of_assessment": "granted_2026_11_13",
+      "gate_a_activation": "not_activated",
+      "construction_authority": "approved_scope_git_handoff_hold",
       "validation_state": "changes_requested",
       "test_migration_plan": "test-migration-plan.md",
       "architecture_documentation_plan": "command-architecture-update-plan.md",
       "prior_technical_reviewed_candidate": "f43368c503da19fd245730ee579806db95ed3748",
-      "approval_version": null,
+      "approval_version": "0.8",
       "post_gate_a_changed_version_requires_review": true,
       "prior_v0_6_approval_record": "approval/ingest-package-impact.md",
       "previous_report": "validation/document-ingestion/product-construction/final-approval/council/round1/results/report.md",
       "previous_reviewed_candidate": "c2fcee0db2fc5b8dbf3a4682bd31cd2ce95963a0",
       "current_report": "validation/document-ingestion/product-construction/final-approval/council/round2/results/report.md",
-      "reviewed_candidate": "b4eecbe804b862f606995c4c4e5197c9b9d37150"
+      "reviewed_candidate": "b4eecbe804b862f606995c4c4e5197c9b9d37150",
+      "approval_record": "approval/ingest-construction-documents-20261113.json",
+      "validation_state_note": "Historical independent document-council result, not the current human approval or an implementation result."
     },
     "conditional_maintainer_approval": {
       "recorded_date": "2026-11-11",
@@ -2587,19 +2589,15 @@
     },
     "package_impact_approval": {
       "maintainer": "Chuck Russell",
-      "recorded_date": "2026-11-11",
-      "statement": "approved, let's continue.",
-      "record": "approval/ingest-package-impact.md",
-      "record_sha256": "f4f4a20d6db52f2459f767ede79f2db211a4a7118d6736f40551fd00fbf1cbec",
+      "recorded_date": "2026-11-13",
+      "record": "approval/ingest-construction-documents-20261113.json",
+      "record_sha256": "ef88e0dbd07b0bf3fbf7b47bb05ad43ccdcbe8818565b93ebecbb266c6927d2e",
       "document": "package-impact-assessment.md",
-      "version": "0.6",
-      "document_sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
-      "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
-      "presented_at": "fd33d5f52277a4d5da0bc0897d97c9360f326ced",
-      "scope": "Exact current package impact and preparation of bounded Gate-A plan; no execution/construction approval.",
-      "changed_version_requires_new_binding": true,
-      "applies_to_current_version": false,
-      "historical_exact_version_only": true
+      "version": "0.8",
+      "document_sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f",
+      "applies_to_current_version": true,
+      "historical_exact_version_only": false,
+      "execution_activated": false
     },
     "readiness_preparation": {
       "plan": "validation/document-ingestion/gate-a/readiness-plan.md",
@@ -2789,7 +2787,7 @@
       "C0_current_review": {
         "unit": "INGEST-C0-FOUNDATION",
         "outcome": "VERIFIED",
-        "scope": "CC-01\u201310 bounded component only; full HR/A0\u2013A4 readiness remains not_ready",
+        "scope": "CC-01–10 bounded component only; full HR/A0–A4 readiness remains not_ready",
         "reviewed_candidate": "fbe8201dc7829c5e6464f57566875660a3ea0c99",
         "source_commit": "f90367e6c296b99799ff3e752fcc9d8a26c3aa6d",
         "report": "validation/document-ingestion/gate-a/construction/c0/review2/report.md",
@@ -2929,14 +2927,14 @@
     },
     "lightweight_planning_exemption": {
       "maintainer": "Chuck Russell",
-      "date": "2026-11-11",
-      "record": "approval/ingest-package-impact.md",
-      "reason": "Explicit proceed authorizes bounded document corrections and up to four read-only council passes; no runtime code/effects.",
-      "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
-      "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
+      "date": "2026-11-13",
+      "record": "approval/ingest-construction-documents-20261113.json",
+      "reason": "Explicit approval and request to define per-slice council validation; documentation-only scope with no runtime change.",
+      "scope": "Final approval and council plan, exact approval record, Git proposal and current routing/evidence. Technical/source/test maps unchanged.",
+      "validation": "Administrative, structural/hash/link/whitespace and preserved-state checks; no code generation or new council."
     },
-    "current_stage": "final_council_disposition_and_construction_approval_pending",
-    "validation_scope": "Reviewed activation design remains VERIFIED at 9ddaf6f8. New impact v0.7 and approval/profile assembly have controller checks only; maintainer construction/effects approval remains pending.",
+    "current_stage": "planning_baseline_git_handoff",
+    "validation_scope": "Current planning documents and impact v0.8 explicitly approved by Chuck; historical formal review results retain their exact scope and outcomes. Implementation tests/councils are not started. No new runtime conformance claim.",
     "large_document_corpus": {
       "state": "verified",
       "scope": "validation/document-ingestion/gate-a/large-documents-scope.md",
@@ -2952,7 +2950,7 @@
     },
     "product_construction_preparation": {
       "version": "0.7",
-      "status": "final_round_stopped_awaiting_maintainer_disposition",
+      "status": "approved_git_handoff_in_progress",
       "date": "2026-11-12",
       "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
       "files": {
@@ -3017,7 +3015,7 @@
           "sha256": "57900f1bd7b2e546d0911f9e21ba9ab00d1b5b42664e3802c6177d10d054a3d8"
         }
       },
-      "implementation_approval": "not_granted",
+      "implementation_approval": "approved_scope_git_handoff_hold",
       "council_active": false,
       "new_model_or_store_effects": false,
       "production_changes": false,
@@ -3031,7 +3029,7 @@
         "RD-06",
         "RD-07"
       ],
-      "test_exception_map_approved": false,
+      "test_exception_map_approved": true,
       "lightweight_change_exemption": "Documentation-only preparation under explicit proceed; record contains exact scope and checks. No source/test/guide/config/dependency implementation.",
       "council": {
         "workflow": "focused_directive_council",
@@ -3044,7 +3042,7 @@
         "correction_brief": "validation/document-ingestion/product-construction/focused-council/round2/correction-brief.json",
         "status": "closed_verified",
         "threshold_each": 9.5,
-        "assessment_scope": "C1\u2013C5 correction first, then complete same focused F1\u2013F8 directive assessment. No vendor/AST/archive reevaluation.",
+        "assessment_scope": "C1–C5 correction first, then complete same focused F1–F8 directive assessment. No vendor/AST/archive reevaluation.",
         "construction_authority": false,
         "new_effects": false,
         "correction_brief_sha256": "747c62569065d33900158f29a5b88a96fbb09cca5dbe5d7b07bf3457ac0a1ef5",
@@ -3409,7 +3407,7 @@
           "criteria_sha256": "f6772d98dec630005e6e7a9d4ff1007e1fab809399cd8fa917768be74170afcb",
           "status": "closed_changes_requested",
           "threshold_each": 9.5,
-          "assessment_scope": "Focused F1\u2013F8 directive completeness and buildability; targeted source questions, no inventory/archive/tool reevaluation.",
+          "assessment_scope": "Focused F1–F8 directive completeness and buildability; targeted source questions, no inventory/archive/tool reevaluation.",
           "construction_authority": false,
           "new_effects": false,
           "outcome": "CHANGES_REQUESTED",
@@ -3489,11 +3487,11 @@
       "activation_preparation": {
         "package": "validation/document-ingestion/product-construction/activation/README.md",
         "binding": "validation/document-ingestion/product-construction/final-approval/approval-request.json",
-        "binding_sha256": "c8946e081eeaa1d0b9f13033d9be8444f84c3906dde7f15a694434903038df3b",
+        "binding_sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71",
         "authority": "validation/document-ingestion/product-construction/activation/preparation-authorization.json",
-        "status": "corrected_final_proposal_awaiting_explicit_disposition",
+        "status": "approved_scope_execution_git_handoff_hold",
         "new_council_authorized": false,
-        "construction_approved": false,
+        "construction_approved": true,
         "new_effects": false,
         "current_dispositions": "validation/document-ingestion/product-construction/activation/requirement-reconciliation.md",
         "current_dispositions_sha256": "f787e83ed84916264277013ab4e8097e9f3fcba90da502ea5ec1819630c71d55",
@@ -3531,22 +3529,24 @@
       "final_approval_request": {
         "document": "validation/document-ingestion/product-construction/final-approval/README.md",
         "manifest": "validation/document-ingestion/product-construction/final-approval/approval-request.json",
-        "manifest_sha256": "c8946e081eeaa1d0b9f13033d9be8444f84c3906dde7f15a694434903038df3b",
+        "manifest_sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71",
         "profile": "validation/document-ingestion/product-construction/final-approval/execution-profile.json",
-        "profile_sha256": "fa964adcd72ee98c9a7aef8080fb1a9c142d86589cb0d6ffc9e2df414cc00014",
+        "profile_sha256": "bf8c1782ca833bcdd129d3c1f76ff5e52ebab71bfc3084699c73d762edc0134f",
         "impact_version": "0.8",
         "impact_sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f",
-        "status": "post_review_one_field_correction_awaiting_maintainer",
-        "approved": false,
+        "status": "approved_git_handoff_in_progress",
+        "approved": true,
         "effects_activated": false,
         "presented_revision": "validation/document-ingestion/product-construction/final-approval/presented-revision.json",
-        "presented_revision_sha256": "96afc4b37b787dd82751e3726d6fe7a445541abdb5fc5a60db773bad5dd80a5f",
-        "target_document_commit": "b357c3c4dd0c892aa57593d32cb236b7e832022c",
+        "presented_revision_sha256": "21b6ab9f5c46df763756f923e25c0dcdbefdc9ab600a985569e30abb494af166",
+        "target_document_commit": null,
         "post_review_correction": "validation/document-ingestion/product-construction/final-approval/post-review-correction.json",
-        "post_review_correction_sha256": "328d0d22be2c646c59c4d1718e17aca2e2d40c7dbaaf840ae32dec1014b9a007"
+        "post_review_correction_sha256": "328d0d22be2c646c59c4d1718e17aca2e2d40c7dbaaf840ae32dec1014b9a007",
+        "approval_record": "approval/ingest-construction-documents-20261113.json",
+        "approval_record_sha256": "ef88e0dbd07b0bf3fbf7b47bb05ad43ccdcbe8818565b93ebecbb266c6927d2e"
       },
       "final_document_council": {
-        "status": "stopped_after_final_round_awaiting_maintainer",
+        "status": "closed_historical_changes_requested_human_disposition_recorded",
         "active": false,
         "maximum_rounds": 2,
         "authorization": "validation/document-ingestion/product-construction/final-approval/council/round2/authorization.json",
@@ -3573,8 +3573,19 @@
         "result_sha256": "99016decf9ead8e313839989687cb25afa9aa4d2e40c1e426689ce340abc9169",
         "reviewed_candidate": "b4eecbe804b862f606995c4c4e5197c9b9d37150",
         "post_review_correction_applied": true,
-        "post_review_correction_independently_verified": false
-      }
+        "post_review_correction_independently_verified": false,
+        "human_disposition": "approval/ingest-construction-documents-20261113.json"
+      },
+      "implementation_councils": {
+        "plan": "validation/document-ingestion/product-construction/final-approval/implementation-council-plan.json",
+        "sha256": "b7abf1aa77d9f02efa0abc61d97ec35c56d5b622e52b4049fa3364a3932c6a3c",
+        "active": false,
+        "gates": 3,
+        "maximum_passes_per_gate": 3,
+        "completed_implementation_passes": 0,
+        "I3_includes_aggregate": true
+      },
+      "historical_readiness_state_note": "Earlier Gate-A fields/open items describe historical proposals; the selected requirement-reconciliation dispositions remain controlling. Do not revive the removed model/parity campaign; worker/integration proofs are due during implementation. No runtime gate is marked passed by this document approval."
     },
     "model_qualification_prerequisite_decision": {
       "date": "2026-11-13",
@@ -3685,6 +3696,37 @@
       "approval_record_sha256": "f4f4a20d6db52f2459f767ede79f2db211a4a7118d6736f40551fd00fbf1cbec",
       "approval_version": "0.6",
       "post_gate_a_changed_version_requires_review": true
+    },
+    "current_document_approval": {
+      "record": "approval/ingest-construction-documents-20261113.json",
+      "sha256": "ef88e0dbd07b0bf3fbf7b47bb05ad43ccdcbe8818565b93ebecbb266c6927d2e",
+      "scope": "All outstanding INGEST analysis/design/directive documents and impact v0.8; current validation amendment accepted. Exact hashes in record.",
+      "execution_hold": "Complete authorized baseline PR/merge/new branch and private phase binding before coding."
+    },
+    "previous_impact_approval_before_20261113": {
+      "maintainer": "Chuck Russell",
+      "recorded_date": "2026-11-11",
+      "statement": "approved, let's continue.",
+      "record": "approval/ingest-package-impact.md",
+      "record_sha256": "f4f4a20d6db52f2459f767ede79f2db211a4a7118d6736f40551fd00fbf1cbec",
+      "document": "package-impact-assessment.md",
+      "version": "0.6",
+      "document_sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+      "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
+      "presented_at": "fd33d5f52277a4d5da0bc0897d97c9360f326ced",
+      "scope": "Exact current package impact and preparation of bounded Gate-A plan; no execution/construction approval.",
+      "changed_version_requires_new_binding": true,
+      "applies_to_current_version": false,
+      "historical_exact_version_only": true
+    },
+    "git_handoff": {
+      "authorization": "approval/ingest-git-handoff-20261113.json",
+      "sha256": "e8d16cad21908331720769e4443a5da5aa6f1c61fdd14a5fb32286f060c5b38f",
+      "status": "in_progress",
+      "baseline_branch": "feature/cmd-ingest-001",
+      "target": "master",
+      "implementation_branch": "feature/cmd-ingest-implementation",
+      "implementation_worktree": "/Users/chuckrussell/Dev/gendev/agent-framework-ingest-implementation"
     }
   },
   "command_refactor_publication": {

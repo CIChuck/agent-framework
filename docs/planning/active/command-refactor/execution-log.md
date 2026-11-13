@@ -4497,3 +4497,40 @@ No independent VERIFIED result or score increase is claimed for the correction.
 No third council or further automatic repair. Chuck decides acceptance of this
 bounded post-review fix and exact construction/private effects. No code, install,
 model/store/production effect, acceptance or delivery occurred.
+
+
+## 2026-11-13 — Planning approval and per-slice councils; Git discussion before coding
+
+Chuck explicitly accepts the current planning edits and approves all outstanding
+INGEST analysis/design/directive documents and impact v0.8. The approval record
+binds 31 exact document digests, accepts the disclosed A4 reference correction,
+and preserves all original council verdicts/scores. This is human document
+approval, not a manufactured independent VERIFIED result or product acceptance.
+
+The approval package now mandates Sol/Astra/Opus councils after I1, I2 and I3,
+at most three passes each (initial plus two correction/review cycles), all seats
+complete VERIFIED >=9.5 with no mandatory findings. I3 also returns aggregate
+I1–I3 disposition. Stop early on success; stop for Chuck after a third unsuccessful
+pass. Prior planning councils stay closed; no new council runs now.
+
+Before coding Chuck requests a Git discussion. Proposed handoff: checkpoint and
+publish the approved planning/readiness baseline PR to master after explicit Git
+authorization; merge it, then use feature/cmd-ingest-implementation in a clean
+worktree. Exact content commit and actual branch/private phase bindings remain
+pending that decision. Current branch stays feature/cmd-ingest-001. No commit,
+push, PR, branch creation, product/test/guide/lock change, install, model/store
+call or production mutation is made by this amendment. Document-only checks and
+protected-state preservation are the validation; existing readiness tests are
+not rerun. Follow the final approval Git proposal for the maintainer's next task.
+
+
+## 2026-11-13 — Git handoff explicitly authorized
+
+Chuck confirms the proposed sequence with “yes proceed”: checkpoint the approved
+planning/readiness baseline, push/open its PR to master, merge when checks permit,
+then create feature/cmd-ingest-implementation from merged master in a clean
+worktree. Current document digests and original approvals/review outcomes remain
+explicitly bound; receipt metadata records the content commit after it exists.
+Only planning changes are staged in this checkpoint. Production source, dirty
+YAML, stores and the working environment stay untouched. No new council or
+product coding is part of this Git checkpoint.

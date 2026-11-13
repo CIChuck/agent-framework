@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "proposed_not_activated",
+  "status": "approved_scope_git_handoff_hold",
   "scope": "Isolated product construction validation; not a vendor evaluation or production deployment",
   "base_interpreter": {
     "path": "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
@@ -66,6 +66,7 @@
   },
   "local_binding_policy": "Use strict schemas from reviewed shared-contracts. Generate disposable test route/capability records with actual local tokenizer assets and declared deterministic test identities; do not copy production YAML or claim serving attestation. Record bytes/hashes/sizes/licenses and profiles before use. Text-only profiles omit document settings. Binary assets are provisioned explicitly before tests, never fetched on first use.",
   "per_phase_run_binding_required": [
+    "Actual coding branch/worktree/base after the agreed Git handoff; retain protection of the original checkout and personal state",
     "stable candidate and source export identity",
     "Python/tool artifact identities and installed origins",
     "exact phase lock and artifact manifest hashes",
@@ -104,7 +105,7 @@
     "local counting and deterministic-provider integration tests",
     "disposable Chroma/graph/WAL/recovery artifacts",
     "normal and optimized installed validation",
-    "fresh independent implementation validation at approved slice/aggregate gates"
+    "Full Sol/Astra/Opus council after each implementation slice, at most three passes per gate; I3 also reviews aggregate I1-I3, under implementation-council-plan.json"
   ],
   "excluded": [
     "production configurations/environments/stores and prior test run mutation",
@@ -117,5 +118,11 @@
     "push/merge/release/deployment/human acceptance"
   ],
   "effects_performed_now": [],
-  "revision": 2
+  "revision": 3,
+  "activation_hold": "Chuck approved the documents and bounded construction/private-effect scope. Before coding or any install, settle the requested Git handoff, commit the approval target and record the actual coding branch/base and each eligible private phase binding.",
+  "implementation_councils": {
+    "plan": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/implementation-council-plan.json",
+    "active": false,
+    "model_calls": "The three named review seats are authorized only at eligible implementation gates after activation. Product validation remains offline under this profile; review inference is not permission for product tests to call model endpoints."
+  }
 }

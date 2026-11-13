@@ -2,20 +2,25 @@
   "schema_version": 1,
   "id": "INGEST-FINAL-CONSTRUCTION-APPROVAL-001",
   "date": "2026-11-13",
-  "status": "awaiting_maintainer_review",
-  "maintainer_approval": null,
+  "status": "approved_git_handoff_in_progress",
+  "maintainer_approval": {
+    "maintainer": "Chuck Russell",
+    "date": "2026-11-13",
+    "record": "docs/planning/active/command-refactor/approval/ingest-construction-documents-20261113.json",
+    "scope": "All outstanding INGEST analysis/design/directive and impact documents, the current validation amendment and bounded I1-I3 construction scope. Execution waits for the requested Git discussion."
+  },
   "branch": "feature/cmd-ingest-001",
-  "prepared_from": "b0d166256015b090b4a5082389b1b4f47835d1a2",
-  "request": "Approve package-impact assessment v0.8, the unchanged reviewed technical design/maps and I1/I2/I3 construction with the bounded private execution profile. Advance through independent phase exits; no production/live-model/delivery effects.",
+  "prepared_from": "d12f9c6c24d43eb88c0a3bb1f612dd01774a57b8",
+  "request": "Execute the maintainer-approved Git baseline handoff, retaining the exact approved I1-I3 scope and mandatory per-slice councils. No coding until the merged baseline/new branch and private phase binding are recorded.",
   "request_document": {
     "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md",
-    "sha256": "a7f027e8a4b70f19dcdbda13ecf10172a9a786059371705b0662eba36c13d66f"
+    "sha256": "5039fe7d5b7db7a9808eca74c3e42012911c28d8e264741b8eda9da4c52dda14"
   },
   "current_package_impact": {
     "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
     "version": "0.8",
     "sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f",
-    "approval_status": "pending_for_changed_bytes"
+    "approval_status": "approved_by_Chuck_2026_11_13_exact_current_bytes"
   },
   "historical_impact_approval": {
     "version": "0.6",
@@ -137,7 +142,7 @@
   },
   "proposed_profile": {
     "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/execution-profile.json",
-    "sha256": "fa964adcd72ee98c9a7aef8080fb1a9c142d86589cb0d6ffc9e2df414cc00014",
+    "sha256": "bf8c1782ca833bcdd129d3c1f76ff5e52ebab71bfc3084699c73d762edc0134f",
     "activated": false
   },
   "phase_edit_paths": {
@@ -279,13 +284,15 @@
       "basis": "Exact frozen old-case exceptions and new witness/module classifications; expand phase selectors before execution; reconcile new exceptions before edit."
     },
     "A4": {
-      "approved": false,
-      "requires": "Chuck approves this request SHA256 at the document commit named by presented_revision, and the impact path, version and SHA256 identified by current_package_impact."
+      "approved": true,
+      "record": "docs/planning/active/command-refactor/approval/ingest-construction-documents-20261113.json",
+      "binding": "Chuck approves the current request and impact bytes identified by current_package_impact, including the disclosed A4 reference correction. Record the stable content commit at the agreed Git checkpoint before coding."
     },
     "A5": {
       "activated": false,
       "proposal_ready": true,
-      "basis": "Bounded private execution profile; after approval record each phase run binding before effects. No external model/provider window."
+      "basis": "Private scope approved; complete the now-authorized Git handoff and record each eligible private phase binding before implementation effects. No external embedding/model/provider window.",
+      "scope_approved": true
     }
   },
   "approval_scope": {
@@ -293,7 +300,10 @@
     "advance_only_after_required_independent_verification": true,
     "record_per_phase_activation_from_same_approval": true,
     "reask_only_for_material_scope_or_effects_expansion": true,
-    "board_mapping": "The initiative is already started. Record exact maintainer approval and subsequent eligible phase activations under it without moving the initiative backward or treating historical initiative authority as INGEST approval."
+    "board_mapping": "The initiative is already started. Record exact maintainer approval and subsequent eligible phase activations under it without moving the initiative backward or treating historical initiative authority as INGEST approval.",
+    "all_three_slices_approved_together": true,
+    "implementation_councils": "I1, I2 and I3 each require the three named seats, all VERIFIED >=9.5 and no mandatory findings, up to three passes per gate. I3 includes aggregate review.",
+    "no_reapproval_for_unchanged_approved_documents": true
   },
   "no_new_design_council_requested": true,
   "product_generation_allowed": false,
@@ -301,14 +311,29 @@
   "live_effects_allowed_now": false,
   "uat_or_acceptance_granted": false,
   "publication_or_delivery_granted": false,
-  "precedence": "This current request replaces the unchanged reviewed approval assembly only for the changed impact version and proposed phase execution/approval. The old v0.6 impact hash in activation/approval-binding.json is historical; technical contracts and maps retain their reviewed meanings.",
-  "revision": 2,
+  "precedence": "This approved assembly replaces the historical pending approval assembly and strengthens implementation validation to a full council after every slice. Technical contracts, source/test maps and impact v0.8 retain their exact bytes. Closed planning council results remain unchanged; execution remains held for the requested Git handoff.",
+  "revision": 3,
   "presented_revision": {
     "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/presented-revision.json",
-    "binding_rule": "After the document-content commit, record its exact SHA and this request digest in the presentation receipt. That receipt is pinned by the frozen council request/current authority; no cyclic hash is embedded here. Approval binds that named document commit and request digest; later outcome-only metadata is not a new technical approval target."
+    "binding_rule": "Chuck approved the exact current document digests and authorized their Git checkpoint. After the content commit, record and verify that immutable commit in the presentation receipt before coding. Do not change approved document bytes while completing outcome-only receipt metadata."
   },
   "phase_dependency_checks": {
     "I1_I2": "Record baseline Certifi version/module/CA origin where installed, or explicit absence in dependency-free profiles, with no unrelated early bump; tokenizers shared-lock change and unchanged-legacy positives belong to I1-C2.",
     "I3_C1_onward": "Introduce selected Certifi2026.10.23 with Tools/Docling and enforce >=2026.10.19 plus origins in applicable installs, including final normal/optimized headless/Chat profiles. Explicit absence is recorded for dependency-free profiles."
-  }
+  },
+  "implementation_validation": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/implementation-council-plan.json",
+    "sha256": "b7abf1aa77d9f02efa0abc61d97ec35c56d5b622e52b4049fa3364a3932c6a3c"
+  },
+  "git_handoff": {
+    "status": "approved_pending_baseline_publication_and_merge",
+    "proposal": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/git-handoff-plan.md",
+    "proposed_coding_branch": "feature/cmd-ingest-implementation",
+    "coding_branch_created": false,
+    "publication_authorized": true,
+    "merge_authorized": true,
+    "authorization": "docs/planning/active/command-refactor/approval/ingest-git-handoff-20261113.json",
+    "new_implementation_branch_authorized": true
+  },
+  "publication_or_delivery_scope": "No product publication/release/deployment; baseline planning/readiness push, PR and merge are separately authorized by the Git handoff record."
 }

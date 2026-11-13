@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "status": "presented_for_review_not_approved",
-  "target_document_commit": "b357c3c4dd0c892aa57593d32cb236b7e832022c",
+  "status": "approved_digests_awaiting_authorized_content_commit",
+  "target_document_commit": null,
   "branch": "feature/cmd-ingest-001",
-  "approval_request_sha256": "c8946e081eeaa1d0b9f13033d9be8444f84c3906dde7f15a694434903038df3b",
+  "approval_request_sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71",
   "documents": [
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md",
-      "sha256": "a7f027e8a4b70f19dcdbda13ecf10172a9a786059371705b0662eba36c13d66f"
+      "sha256": "5039fe7d5b7db7a9808eca74c3e42012911c28d8e264741b8eda9da4c52dda14"
     },
     {
       "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
@@ -15,17 +15,26 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/approval-request.json",
-      "sha256": "c8946e081eeaa1d0b9f13033d9be8444f84c3906dde7f15a694434903038df3b"
+      "sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/execution-profile.json",
-      "sha256": "fa964adcd72ee98c9a7aef8080fb1a9c142d86589cb0d6ffc9e2df414cc00014"
+      "sha256": "bf8c1782ca833bcdd129d3c1f76ff5e52ebab71bfc3084699c73d762edc0134f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/implementation-council-plan.json",
+      "sha256": "b7abf1aa77d9f02efa0abc61d97ec35c56d5b622e52b4049fa3364a3932c6a3c"
     }
   ],
-  "rule": "Approval binds this named document commit and request digest. Frozen review/result commits may add metadata while these document bytes remain identical. A changed document/scope requires a new receipt.",
-  "maintainer_approval": null,
-  "construction_approved": false,
-  "effects_approved": false,
-  "previous_target_document_commit": "115e4cecdb659d2af043c11e73964aca0a590d78",
-  "post_review_correction": "post-review-correction.json"
+  "rule": "Exact digests approved by Chuck, including automatic acceptance of the bounded validation wording and subsequent Git authorization. Complete the target commit after committing these content bytes; outcome-only metadata does not change them. Product scope, phase activation and delivery remain distinct.",
+  "maintainer_approval": {
+    "record": "docs/planning/active/command-refactor/approval/ingest-construction-documents-20261113.json",
+    "sha256": "ef88e0dbd07b0bf3fbf7b47bb05ad43ccdcbe8818565b93ebecbb266c6927d2e"
+  },
+  "construction_approved": true,
+  "effects_approved": true,
+  "previous_target_document_commit": "b357c3c4dd0c892aa57593d32cb236b7e832022c",
+  "post_review_correction": "post-review-correction.json",
+  "effects_activated": false,
+  "git_handoff_hold": true
 }

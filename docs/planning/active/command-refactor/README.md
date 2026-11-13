@@ -1,14 +1,13 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/local; execution phase: validation; validation state: in_review
-for the activation-package council, round1/3. Product activation remains not_ready. The new [activation package](validation/document-ingestion/product-construction/activation/README.md)
-contains proposed exact contracts, slice/case maps and Q dispositions for review.
-The unchanged focused directive remains VERIFIED after round2/3 with every seat
-meeting 9.5; its council is closed. Earlier broad loops remain closed. Package
-impact v0.6 remains the approved historical baseline.
-Bounded Docling/Nomic/corpus evaluations remain independently verified. Whole
-Gate-A9.5, exact product construction approval and MAINT human UAT/acceptance
-remain open. Production source and state are unchanged.
+**Status:** started/local; execution phase: planning; validation state: pending.
+Chuck has [approved the outstanding INGEST planning documents](approval/ingest-construction-documents-20261113.json),
+including impact v0.8 and the bounded I1–I3 construction scope. Execution is held
+for the requested Git discussion before coding. The [final approval package](validation/document-ingestion/product-construction/final-approval/README.md)
+requires a full Sol/Astra/Opus council after every slice, up to three passes per
+gate; the I3 council also reviews the complete aggregate. No product coding,
+installs or new councils start in this amendment. MAINT human UAT/acceptance
+remains separate.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -40,7 +39,7 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Current INGEST — product directives drafted for maintainer review:**
+**Historical INGEST directive/review preparation (superseded for current routing):**
 [INGEST construction draft](directives/CD-CMD-INGEST-001-product.md) and the
 [separate Tools adoption draft](directives/CD-CMD-TOOLS-DOC-001-adoption.md)
 bind phased shared contracts, consumer compatibility, actual file command/store
@@ -93,7 +92,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Final-document council round2/2 finished CHANGES_REQUESTED: all three complete8/8 and confirm substantive C1–C3, but A4 retained a stale impact label. Completed that same requested one-field version alignment after frozen close, with a new exact receipt at b357c3c4; other target documents unchanged. Original verdicts/scores remain, no independent VERIFIED or gate waiver claimed. Chuck now decides acceptance of the bounded post-review correction and exact construction/private effects. No third council, runtime effects or construction begun.
+**Next gate:** Chuck approved INGEST documents and the Git handoff. Commit/push the approved planning/readiness baseline, open its PR to master, merge when checks permit, then create feature/cmd-ingest-implementation in a clean worktree from the merged baseline. Preserve the original dirty YAML and stores. Product execution waits for that handoff and the private I1 binding; full Sol/Astra/Opus councils follow each slice, at most three passes per gate, with I3 aggregate review.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
@@ -344,10 +343,12 @@ permits five pinned static-tool wheels only.
 
 Final activation council: [outcome and remaining converter-binding issue](validation/document-ingestion/product-construction/activation/council/round3/results/report.md). Historical three-round stop point; superseded by the current authorized three-round extension.
 
-Current activation council: [VERIFIED round7 outcome and next approval gate](validation/document-ingestion/product-construction/activation/council/round7/results/report.md). All three complete seats clear9.5; loop stopped early. Construction remains unapproved.
+Historical activation council: [VERIFIED round7 outcome and next approval gate](validation/document-ingestion/product-construction/activation/council/round7/results/report.md). All three complete seats clear9.5; loop stopped early. Construction remains unapproved.
 
-Current review task: [Final construction approval package](validation/document-ingestion/product-construction/final-approval/README.md) and [canonical package impact v0.7](package-impact-assessment.md). Exact proposed scope/effects are prepared; construction and private installs await Chuck. The prior council stays closed.
+Historical approval preparation: [Final construction approval package](validation/document-ingestion/product-construction/final-approval/README.md) and [canonical package impact v0.7](package-impact-assessment.md). Exact proposed scope/effects are prepared; construction and private installs await Chuck. The prior council stays closed.
 
-Final approval document council: [complete outcome and bounded Certifi finding](validation/document-ingestion/product-construction/final-approval/council/round1/results/report.md). Single read-only round closed; awaiting Chuck's disposition. Reviewed targets remain unchanged.
+Historical final approval document council: [complete outcome and bounded Certifi finding](validation/document-ingestion/product-construction/final-approval/council/round1/results/report.md). Single read-only round closed; awaiting Chuck's disposition. Reviewed targets remain unchanged.
 
-Final additional council: [round2 outcome and exact one-field post-review correction](validation/document-ingestion/product-construction/final-approval/council/round2/results/report.md). Original CHANGES_REQUESTED verdicts remain; no third council. Await Chuck's explicit disposition and construction approval.
+Historical final additional council: [round2 outcome and exact one-field post-review correction](validation/document-ingestion/product-construction/final-approval/council/round2/results/report.md). Original CHANGES_REQUESTED verdicts remain; no third council. Await Chuck's explicit disposition and construction approval.
+
+Current approval and Git gate: [approved documents and mandatory slice councils](validation/document-ingestion/product-construction/final-approval/README.md). [Git handoff proposal](validation/document-ingestion/product-construction/final-approval/git-handoff-plan.md) awaits discussion before coding; no publication or implementation branch created.
