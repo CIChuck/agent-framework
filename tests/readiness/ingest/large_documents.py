@@ -105,7 +105,7 @@ def sections(size: int) -> tuple[Section, ...]:
         if index == size // 2:
             body += f" SOURCE_MIDDLE_{size}: The calibration key is COMPASS-{size}. Retain it for the final authorization."
         if index == size:
-            body += f" SOURCE_TAIL_{size}: The final authorized route is COBALT. AMBER is revoked. Authorization requires COMPASS-{size} and RELEASE-{size + 17}."
+            body += f" SOURCE_TAIL_{size}: The final authorized route is COBALT. AMBER is revoked. Authorization requires the calibration key recorded near the middle of this manual, paired with RELEASE-{size + 17}."
         result.append(Section(f"SECTION-{index:04d} {topic.title()}", body))
     return tuple(result)
 
@@ -148,6 +148,32 @@ def oracle(size: int) -> dict[str, object]:
             },
         ],
     }
+
+
+def cross_section_control(bodies: list[str], query: dict[str, object]) -> None:
+    positions = sequence(query.get("evidence_sections"))
+    answers = [text(value) for value in sequence(query.get("answers"))]
+    require(
+        len(positions) >= 2
+        and all(
+            type(position) is int and 1 <= position <= len(bodies)
+            for position in positions
+        )
+        and len(set(positions)) == len(positions)
+        and len(answers) >= 2
+        and all(answers)
+        and len(set(answers)) == len(answers),
+        "Cross-section control malformed",
+    )
+    selected = [bodies[int(str(position)) - 1] for position in positions]
+    require(
+        all(answer in " ".join(selected) for answer in answers),
+        "Cross-section answers missing",
+    )
+    require(
+        not any(all(answer in body for answer in answers) for body in bodies),
+        "Cross-section answers supplied by one section",
+    )
 
 
 def canonical(size: int) -> str:
@@ -292,6 +318,10 @@ def publish(root: Path, sizes: tuple[int, ...] = SIZES) -> dict[str, object]:
         files, units = document_files(size)
         reference = canonical(size)
         oracles[str(size)] = oracle(size)
+        cross_section_control(
+            [part.body for part in sections(size)],
+            object_value(sequence(oracle(size)["queries"])[-1]),
+        )
         for kind, raw in files.items():
             name = f"orion-{size:03d}.{kind}"
             payloads[name] = raw
@@ -539,6 +569,17 @@ def native_validate(root: Path, target: Path) -> dict[str, object]:
             )
         for section in sections(size):
             require(section.body in normalized, "Native source lost full section body")
+        offsets = [
+            normalized.index(f"SECTION-{index:04d}") for index in range(1, size + 1)
+        ]
+        require(offsets == sorted(offsets), "Native section order changed")
+        bodies = [
+            normalized[start:stop]
+            for start, stop in zip(
+                offsets, [*offsets[1:], len(normalized)], strict=True
+            )
+        ]
+        cross_section_control(bodies, object_value(sequence(expected["queries"])[-1]))
         checked.append(
             {
                 "path": row["path"],
@@ -546,6 +587,7 @@ def native_validate(root: Path, target: Path) -> dict[str, object]:
                 "sections": size,
                 "native_words": len(value.split()),
                 "exact_section_bodies_verified": size,
+                "cross_section_control": "PASS; joint evidence required",
                 "qwen_tokens": None,
             }
         )

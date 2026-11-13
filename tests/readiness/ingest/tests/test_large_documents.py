@@ -21,6 +21,31 @@ def root() -> Path:
 
 
 class LargeDocuments(unittest.TestCase):
+    def test_cross_section_answers_require_middle_and_tail_in_every_profile(
+        self,
+    ) -> None:
+        for size in corpus.SIZES:
+            parts = [part.body for part in corpus.sections(size)]
+            query = corpus.object_value(
+                corpus.sequence(corpus.oracle(size)["queries"])[-1]
+            )
+            answers = [
+                corpus.text(value) for value in corpus.sequence(query["answers"])
+            ]
+            middle, tail = parts[size // 2 - 1], parts[-1]
+            self.assertIn(answers[0], middle)
+            self.assertNotIn(
+                answers[0], " ".join(parts[: size // 2 - 1] + parts[size // 2 :])
+            )
+            self.assertIn(answers[1], tail)
+            self.assertNotIn(answers[1], " ".join(parts[:-1]))
+            self.assertFalse(all(answer in middle for answer in answers))
+            self.assertFalse(all(answer in tail for answer in answers))
+            corpus.cross_section_control(parts, query)
+            parts[-1] += " " + answers[0]
+            with self.assertRaisesRegex(ValueError, "supplied by one section"):
+                corpus.cross_section_control(parts, query)
+
     def test_length_progression_preserves_end_facts_and_does_not_claim_tokens(
         self,
     ) -> None:

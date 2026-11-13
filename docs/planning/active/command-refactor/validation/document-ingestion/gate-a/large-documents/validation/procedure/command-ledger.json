@@ -1,0 +1,634 @@
+{
+  "reviewer": "/root/large_document_corpus_independent_validation",
+  "date_utc": "2026-11-12 23:45:23 UTC",
+  "outcome": "BLOCKED",
+  "scope": "isolated long-document corpus preparation only",
+  "commands": [
+    {
+      "name": "admin-board",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": ""
+    },
+    {
+      "name": "admin-dashboard",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": ""
+    },
+    {
+      "name": "admin-docs",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1121 Markdown files checked\n",
+      "stderr": ""
+    },
+    {
+      "name": "admin-metadata",
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": ""
+    },
+    {
+      "name": "cached-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "candidate-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "641ad015a30ea0db1ef3d4a8c5ba6263c86cf7a3",
+        "b341a3c9f6c326b8f891b058fec642dd31d5efc4",
+        "--",
+        "docs/planning",
+        "tests/readiness/ingest"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "corpus-generate-normal",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-normal/source/ingest/large_documents.py",
+        "generate",
+        "--run-root",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-normal"
+      ],
+      "cwd": "/private/tmp/large-document-independent-review-HLnkri",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "{\"status\": \"PASS\", \"documents\": 25, \"inference_requests\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "corpus-generate-optimized",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-optimized/source/ingest/large_documents.py",
+        "generate",
+        "--run-root",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-optimized"
+      ],
+      "cwd": "/private/tmp/large-document-independent-review-HLnkri",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "{\"status\": \"PASS\", \"documents\": 25, \"inference_requests\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "corpus-validate-normal",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-normal/source/ingest/large_documents.py",
+        "validate",
+        "--run-root",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-normal",
+        "--target",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/docling-behavior-e2e-20261112/target"
+      ],
+      "cwd": "/private/tmp/large-document-independent-review-HLnkri",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "{\"status\": \"PASS\", \"documents\": 25, \"inference_requests\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "corpus-validate-optimized",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-optimized/source/ingest/large_documents.py",
+        "validate",
+        "--run-root",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-optimized",
+        "--target",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/docling-behavior-e2e-20261112/target"
+      ],
+      "cwd": "/private/tmp/large-document-independent-review-HLnkri",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "{\"status\": \"PASS\", \"documents\": 25, \"inference_requests\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "corpus-verify-normal",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-normal/source/ingest/large_documents.py",
+        "verify",
+        "--run-root",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-normal"
+      ],
+      "cwd": "/private/tmp/large-document-independent-review-HLnkri",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "{\"status\": \"PASS\", \"documents\": 25, \"inference_requests\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "corpus-verify-optimized",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-optimized/source/ingest/large_documents.py",
+        "verify",
+        "--run-root",
+        "/private/tmp/large-document-independent-review-HLnkri/.friday_test/runs/large-documents-review-optimized"
+      ],
+      "cwd": "/private/tmp/large-document-independent-review-HLnkri",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "{\"status\": \"PASS\", \"documents\": 25, \"inference_requests\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "owned-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        ".gitignore",
+        "docs/planning",
+        "tests/readiness/ingest"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ruff-check",
+      "argv": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/ruff",
+        "check",
+        "--config",
+        "/private/tmp/large-document-independent-review-HLnkri/pyproject.toml",
+        "--cache-dir",
+        "/private/tmp/large-document-independent-review-HLnkri/ruff-cache",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/behavior.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/bootstrap.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/config.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/e2e.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/environment.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/export.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/fixtures.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/large_documents.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/ledger.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/manifests.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/paths.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/protection.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/reports.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/run.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/stages.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/startup.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_behavior.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_cli.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_e2e.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_environment.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_export.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_fixtures.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_large_documents.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_ledger.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_manifests.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_paths.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_protection.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_reports.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_startup.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_window.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/window.py"
+      ],
+      "cwd": "/private/tmp/large-document-independent-review-HLnkri",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "name": "ruff-format",
+      "argv": [
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/validation-tools/ruff",
+        "format",
+        "--check",
+        "--config",
+        "/private/tmp/large-document-independent-review-HLnkri/pyproject.toml",
+        "--cache-dir",
+        "/private/tmp/large-document-independent-review-HLnkri/ruff-cache",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/behavior.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/bootstrap.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/config.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/e2e.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/environment.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/export.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/fixtures.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/large_documents.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/ledger.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/manifests.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/paths.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/protection.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/reports.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/run.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/stages.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/startup.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_behavior.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_cli.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_e2e.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_environment.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_export.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_fixtures.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_large_documents.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_ledger.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_manifests.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_paths.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_protection.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_reports.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_startup.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/tests/test_window.py",
+        "/private/tmp/large-document-independent-review-HLnkri/static-source/tests/readiness/ingest/window.py"
+      ],
+      "cwd": "/private/tmp/large-document-independent-review-HLnkri",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "31 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "name": "selftest-normal",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/private/tmp/large-document-independent-review-HLnkri/harness/bootstrap.py",
+        "selftest",
+        "--harness-manifest",
+        "/private/tmp/large-document-independent-review-HLnkri/manifest.json",
+        "--harness-manifest-sha256",
+        "2496a5e2be8035fa814a6153e33ba75bcb54c775f621ad64e3f59d9f3ce3d0a5",
+        "--scratch",
+        "/private/tmp/large-document-independent-review-HLnkri/selftest-normal"
+      ],
+      "cwd": "/private/tmp/large-document-independent-review-HLnkri",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "{\"status\": \"PASS\", \"scope\": \"offline controls and synthetic input preparation only\", \"cases\": 87, \"optimized\": false, \"upstream_qualified\": false}\n",
+      "stderr": "test_direct_and_never_started_supervised_attempts_revoke_before_setup (ingest.tests.test_behavior.Behavior.test_direct_and_never_started_supervised_attempts_revoke_before_setup) ... ok\ntest_empty_image_and_table_markup_is_not_meaningful_text (ingest.tests.test_behavior.Behavior.test_empty_image_and_table_markup_is_not_meaningful_text) ... ok\ntest_fixed_chunks_cover_every_character_and_prepared_token_limit (ingest.tests.test_behavior.Behavior.test_fixed_chunks_cover_every_character_and_prepared_token_limit) ... ok\ntest_invalid_limits_offsets_and_exhausted_prefix_refuse (ingest.tests.test_behavior.Behavior.test_invalid_limits_offsets_and_exhausted_prefix_refuse) ... ok\ntest_oracles_preserve_unicode_and_check_order_and_exclusion (ingest.tests.test_behavior.Behavior.test_oracles_preserve_unicode_and_check_order_and_exclusion) ... ok\ntest_pending_failed_and_mismatched_latest_attempts_preserve_siblings (ingest.tests.test_behavior.Behavior.test_pending_failed_and_mismatched_latest_attempts_preserve_siblings) ... ok\ntest_private_environment_omits_credentials_and_sets_cache_roots (ingest.tests.test_behavior.Behavior.test_private_environment_omits_credentials_and_sets_cache_roots) ... ok\ntest_recursive_chunks_retain_separators_and_unicode (ingest.tests.test_behavior.Behavior.test_recursive_chunks_retain_separators_and_unicode) ... ok\ntest_refused_partial_or_stale_documents_never_reach_chunking (ingest.tests.test_behavior.Behavior.test_refused_partial_or_stale_documents_never_reach_chunking) ... ok\ntest_structural_admission_refuses_unsupported_hidden_and_formula_data (ingest.tests.test_behavior.Behavior.test_structural_admission_refuses_unsupported_hidden_and_formula_data) ... ok\ntest_supervisor_must_confirm_even_a_published_worker_success (ingest.tests.test_behavior.Behavior.test_supervisor_must_confirm_even_a_published_worker_success) ... ok\ntest_manual_fixture_preparation_is_explicit_and_does_not_qualify_a2 (ingest.tests.test_cli.Cli.test_manual_fixture_preparation_is_explicit_and_does_not_qualify_a2) ... ok\ntest_nonempty_selftest_scratch_refuses_before_discovery (ingest.tests.test_cli.Cli.test_nonempty_selftest_scratch_refuses_before_discovery) ... ok\ntest_preflight_has_no_files_and_init_requires_absent_root (ingest.tests.test_cli.Cli.test_preflight_has_no_files_and_init_requires_absent_root) ... ok\ntest_unactivated_all_and_report_cannot_pass_readiness (ingest.tests.test_cli.Cli.test_unactivated_all_and_report_cannot_pass_readiness) ... ok\ntest_base64_decoding_preserves_float_values (ingest.tests.test_e2e.EndToEnd.test_base64_decoding_preserves_float_values) ... ok\ntest_budget_exhaustion_and_invalid_reservations_preserve_state (ingest.tests.test_e2e.EndToEnd.test_budget_exhaustion_and_invalid_reservations_preserve_state) ... ok\ntest_canonical_report_dispatch_binds_both_sources (ingest.tests.test_e2e.EndToEnd.test_canonical_report_dispatch_binds_both_sources) ... ok\ntest_loaded_identity_requires_selected_instance_and_exact_context (ingest.tests.test_e2e.EndToEnd.test_loaded_identity_requires_selected_instance_and_exact_context) ... ok\ntest_report_keeps_earlier_mode_after_admission_pointer_advances (ingest.tests.test_e2e.EndToEnd.test_report_keeps_earlier_mode_after_admission_pointer_advances) ... ok\ntest_report_refuses_aliased_corpus_binding (ingest.tests.test_e2e.EndToEnd.test_report_refuses_aliased_corpus_binding) ... ok\ntest_report_refuses_failed_stale_missing_or_modified_evidence (ingest.tests.test_e2e.EndToEnd.test_report_refuses_failed_stale_missing_or_modified_evidence) ... ok\ntest_report_refuses_missing_changed_and_aliased_conversion_source (ingest.tests.test_e2e.EndToEnd.test_report_refuses_missing_changed_and_aliased_conversion_source) ... ok\ntest_report_requires_valid_nonempty_consistent_conversion_bindings (ingest.tests.test_e2e.EndToEnd.test_report_requires_valid_nonempty_consistent_conversion_bindings) ... ok\ntest_store_receipt_cannot_redirect_reopen (ingest.tests.test_e2e.EndToEnd.test_store_receipt_cannot_redirect_reopen) ... ok\ntest_transport_requires_exact_identity_count_order_and_finite_vectors (ingest.tests.test_e2e.EndToEnd.test_transport_requires_exact_identity_count_order_and_finite_vectors) ... ok\ntest_secrets_proxies_and_python_state_not_inherited (ingest.tests.test_environment.Environment.test_secrets_proxies_and_python_state_not_inherited) ... ok\ntest_site_inventory_blocks_executable_files_before_tool (ingest.tests.test_environment.Environment.test_site_inventory_blocks_executable_files_before_tool) ... ok\ntest_actual_committed_blob_export_excludes_dirty_content (ingest.tests.test_export.Exports.test_actual_committed_blob_export_excludes_dirty_content) ... ok\ntest_all_pdf_objects_xref_pages_scan_and_encryption (ingest.tests.test_fixtures.Fixtures.test_all_pdf_objects_xref_pages_scan_and_encryption) ... ok\ntest_archive_escape_duplicate_and_expansion_refuse (ingest.tests.test_fixtures.Fixtures.test_archive_escape_duplicate_and_expansion_refuse) ... /Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/zipfile/__init__.py:1655: UserWarning: Duplicate name: 'duplicate'\n  return self._open_to_write(zinfo, force_zip64=force_zip64)\nok\ntest_c0_seed_publication_does_not_claim_a2_qualification (ingest.tests.test_fixtures.Fixtures.test_c0_seed_publication_does_not_claim_a2_qualification) ... ok\ntest_docx_is_real_xml_container_and_deterministic (ingest.tests.test_fixtures.Fixtures.test_docx_is_real_xml_container_and_deterministic) ... ok\ntest_full_matrix_counts_unique_bytes_and_determinism (ingest.tests.test_fixtures.Fixtures.test_full_matrix_counts_unique_bytes_and_determinism) ... ok\ntest_incomplete_oracle_rejects_before_publication (ingest.tests.test_fixtures.Fixtures.test_incomplete_oracle_rejects_before_publication) ... ok\ntest_matrix_publication_integrity_and_stop_are_not_conversion (ingest.tests.test_fixtures.Fixtures.test_matrix_publication_integrity_and_stop_are_not_conversion) ... ok\ntest_office_matrix_has_ordered_structural_facts_without_text (ingest.tests.test_fixtures.Fixtures.test_office_matrix_has_ordered_structural_facts_without_text) ... ok\ntest_office_resource_and_xml_declaration_refusals (ingest.tests.test_fixtures.Fixtures.test_office_resource_and_xml_declaration_refusals) ... ok\ntest_pdf_offsets_and_distinctive_source (ingest.tests.test_fixtures.Fixtures.test_pdf_offsets_and_distinctive_source) ... ok\ntest_presentation_hidden_notes_comments_and_external_are_distinct (ingest.tests.test_fixtures.Fixtures.test_presentation_hidden_notes_comments_and_external_are_distinct) ... ok\ntest_workbook_visibility_cached_formula_and_value_types (ingest.tests.test_fixtures.Fixtures.test_workbook_visibility_cached_formula_and_value_types) ... ok\ntest_changed_missing_and_unexpected_files_refuse (ingest.tests.test_large_documents.LargeDocuments.test_changed_missing_and_unexpected_files_refuse) ... ok\ntest_existing_corpus_refuses_without_overwriting_any_bytes (ingest.tests.test_large_documents.LargeDocuments.test_existing_corpus_refuses_without_overwriting_any_bytes) ... ok\ntest_file_aliases_and_invalid_sizes_refuse (ingest.tests.test_large_documents.LargeDocuments.test_file_aliases_and_invalid_sizes_refuse) ... ok\ntest_genuine_container_writers_are_deterministic_and_within_unit_limits (ingest.tests.test_large_documents.LargeDocuments.test_genuine_container_writers_are_deterministic_and_within_unit_limits) ... ok\ntest_length_progression_preserves_end_facts_and_does_not_claim_tokens (ingest.tests.test_large_documents.LargeDocuments.test_length_progression_preserves_end_facts_and_does_not_claim_tokens) ... ok\ntest_model_claims_or_removed_formats_cannot_keep_verify_pass (ingest.tests.test_large_documents.LargeDocuments.test_model_claims_or_removed_formats_cannot_keep_verify_pass) ... ok\ntest_published_inventory_has_explicit_unqualified_model_fields (ingest.tests.test_large_documents.LargeDocuments.test_published_inventory_has_explicit_unqualified_model_fields) ... ok\ntest_source_change_invalidates_verification (ingest.tests.test_large_documents.LargeDocuments.test_source_change_invalidates_verification) ... ok\ntest_cumulative_budget_survives_reopen_and_failure (ingest.tests.test_ledger.Ledgers.test_cumulative_budget_survives_reopen_and_failure) ... ok\ntest_operation_append_requires_live_same_instance_writer_lease (ingest.tests.test_ledger.Ledgers.test_operation_append_requires_live_same_instance_writer_lease) ... ok\ntest_partial_tamper_and_concurrent_writer_refuse (ingest.tests.test_ledger.Ledgers.test_partial_tamper_and_concurrent_writer_refuse) ... ok\ntest_promotion_requires_existing_candidate_actor_and_tip (ingest.tests.test_ledger.Ledgers.test_promotion_requires_existing_candidate_actor_and_tip) ... ok\ntest_stage_order_and_receipt_schema_refuse (ingest.tests.test_ledger.Ledgers.test_stage_order_and_receipt_schema_refuse) ... ok\ntest_stop_is_terminal_for_counters (ingest.tests.test_ledger.Ledgers.test_stop_is_terminal_for_counters) ... ok\ntest_canonical_positive_and_digest_binding (ingest.tests.test_manifests.Manifests.test_canonical_positive_and_digest_binding) ... ok\ntest_catalog_controls_refuse_before_optional_engine_import (ingest.tests.test_manifests.Manifests.test_catalog_controls_refuse_before_optional_engine_import) ... ok\ntest_dependency_schema_refuses_before_optional_parser_import (ingest.tests.test_manifests.Manifests.test_dependency_schema_refuses_before_optional_parser_import) ... ok\ntest_empty_target_tag_components_refuse_before_parser_import (ingest.tests.test_manifests.Manifests.test_empty_target_tag_components_refuse_before_parser_import) ... ok\ntest_integer_bool_and_artifact_boundaries (ingest.tests.test_manifests.Manifests.test_integer_bool_and_artifact_boundaries) ... ok\ntest_reject_duplicate_nonfinite_and_oversize (ingest.tests.test_manifests.Manifests.test_reject_duplicate_nonfinite_and_oversize) ... ok\ntest_escape_alias_and_symlink_refusals (ingest.tests.test_paths.Paths.test_escape_alias_and_symlink_refusals) ... ok\ntest_new_owned_layout_and_no_reopen (ingest.tests.test_paths.Paths.test_new_owned_layout_and_no_reopen) ... ok\ntest_unknown_config_and_upstream_activation_refuse (ingest.tests.test_paths.Paths.test_unknown_config_and_upstream_activation_refuse) ... ok\ntest_access_and_supported_discovery_refuse_present_absent_and_dir_fd (ingest.tests.test_protection.Protection.test_access_and_supported_discovery_refuse_present_absent_and_dir_fd) ... ok\ntest_all_qualified_dir_fd_mutations_refuse_and_preserve_targets (ingest.tests.test_protection.Protection.test_all_qualified_dir_fd_mutations_refuse_and_preserve_targets) ... ok\ntest_descriptor_mutations_and_discovery_refuse_unclassified_targets (ingest.tests.test_protection.Protection.test_descriptor_mutations_and_discovery_refuse_unclassified_targets) ... ok\ntest_dir_fd_threads_and_sockets_refuse_before_effect (ingest.tests.test_protection.Protection.test_dir_fd_threads_and_sockets_refuse_before_effect) ... ok\ntest_intercepted_reads_stat_and_writes_refuse_before_effect (ingest.tests.test_protection.Protection.test_intercepted_reads_stat_and_writes_refuse_before_effect) ... ok\ntest_missing_root_and_truncated_coverage (ingest.tests.test_protection.Protection.test_missing_root_and_truncated_coverage) ... ok\ntest_native_like_change_is_detected_not_called_prevented (ingest.tests.test_protection.Protection.test_native_like_change_is_detected_not_called_prevented) ... ok\ntest_standard_and_saved_low_level_thread_launches_refuse (ingest.tests.test_protection.Protection.test_standard_and_saved_low_level_thread_launches_refuse) ... ok\ntest_consistency_report_preserves_incomplete_and_evidence_classes (ingest.tests.test_reports.Reports.test_consistency_report_preserves_incomplete_and_evidence_classes) ... ok\ntest_prepared_fixture_receipt_is_not_current_byte_or_converter_proof (ingest.tests.test_reports.Reports.test_prepared_fixture_receipt_is_not_current_byte_or_converter_proof) ... ok\ntest_dirty_extra_and_pyc_refuse (ingest.tests.test_startup.Startup.test_dirty_extra_and_pyc_refuse) ... ok\ntest_guard_is_armed_during_verified_test_execution (ingest.tests.test_startup.Startup.test_guard_is_armed_during_verified_test_execution) ... ok\ntest_guarded_child_positive_and_unapproved_script_refusal (ingest.tests.test_startup.Startup.test_guarded_child_positive_and_unapproved_script_refusal) ... ok\ntest_positive_and_unapproved_manifest_refusal (ingest.tests.test_startup.Startup.test_positive_and_unapproved_manifest_refusal) ... ok\ntest_private_startup_canary_is_armed_but_not_processed_by_safe_loader (ingest.tests.test_startup.Startup.test_private_startup_canary_is_armed_but_not_processed_by_safe_loader) ... ok\ntest_verified_buffer_survives_path_swap (ingest.tests.test_startup.Startup.test_verified_buffer_survives_path_swap) ... ok\ntest_control_changes_after_fake_acceptance_bound_in_flight_work (ingest.tests.test_window.Windows.test_control_changes_after_fake_acceptance_bound_in_flight_work) ... ok\ntest_counter_and_reservation_changes_refuse_before_handoff_keep_charges (ingest.tests.test_window.Windows.test_counter_and_reservation_changes_refuse_before_handoff_keep_charges) ... ok\ntest_invalid_window_identity_expiry_and_policy (ingest.tests.test_window.Windows.test_invalid_window_identity_expiry_and_policy) ... ok\ntest_prepared_input_and_vector_budgets_precede_transport (ingest.tests.test_window.Windows.test_prepared_input_and_vector_budgets_precede_transport) ... ok\ntest_revocation_and_expiry_prevent_further_transport_attempts (ingest.tests.test_window.Windows.test_revocation_and_expiry_prevent_further_transport_attempts) ... ok\ntest_transport_attempts_status_retries_and_stop_share_budget (ingest.tests.test_window.Windows.test_transport_attempts_status_retries_and_stop_share_budget) ... ok\ntest_valid_loaded_identity_and_no_fallback (ingest.tests.test_window.Windows.test_valid_loaded_identity_and_no_fallback) ... ok\n\n----------------------------------------------------------------------\nRan 87 tests in 1.731s\n\nOK\n"
+    },
+    {
+      "name": "selftest-optimized",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "/private/tmp/large-document-independent-review-HLnkri/harness/bootstrap.py",
+        "selftest",
+        "--harness-manifest",
+        "/private/tmp/large-document-independent-review-HLnkri/manifest.json",
+        "--harness-manifest-sha256",
+        "2496a5e2be8035fa814a6153e33ba75bcb54c775f621ad64e3f59d9f3ce3d0a5",
+        "--scratch",
+        "/private/tmp/large-document-independent-review-HLnkri/selftest-optimized"
+      ],
+      "cwd": "/private/tmp/large-document-independent-review-HLnkri",
+      "env": {
+        "GIT_OPTIONAL_LOCKS": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_CACHE_DIR": "/private/tmp/large-document-independent-review-HLnkri/admin-uv-cache"
+      },
+      "exit": 0,
+      "stdout": "{\"status\": \"PASS\", \"scope\": \"offline controls and synthetic input preparation only\", \"cases\": 87, \"optimized\": true, \"upstream_qualified\": false}\n",
+      "stderr": "test_direct_and_never_started_supervised_attempts_revoke_before_setup (ingest.tests.test_behavior.Behavior.test_direct_and_never_started_supervised_attempts_revoke_before_setup) ... ok\ntest_empty_image_and_table_markup_is_not_meaningful_text (ingest.tests.test_behavior.Behavior.test_empty_image_and_table_markup_is_not_meaningful_text) ... ok\ntest_fixed_chunks_cover_every_character_and_prepared_token_limit (ingest.tests.test_behavior.Behavior.test_fixed_chunks_cover_every_character_and_prepared_token_limit) ... ok\ntest_invalid_limits_offsets_and_exhausted_prefix_refuse (ingest.tests.test_behavior.Behavior.test_invalid_limits_offsets_and_exhausted_prefix_refuse) ... ok\ntest_oracles_preserve_unicode_and_check_order_and_exclusion (ingest.tests.test_behavior.Behavior.test_oracles_preserve_unicode_and_check_order_and_exclusion) ... ok\ntest_pending_failed_and_mismatched_latest_attempts_preserve_siblings (ingest.tests.test_behavior.Behavior.test_pending_failed_and_mismatched_latest_attempts_preserve_siblings) ... ok\ntest_private_environment_omits_credentials_and_sets_cache_roots (ingest.tests.test_behavior.Behavior.test_private_environment_omits_credentials_and_sets_cache_roots) ... ok\ntest_recursive_chunks_retain_separators_and_unicode (ingest.tests.test_behavior.Behavior.test_recursive_chunks_retain_separators_and_unicode) ... ok\ntest_refused_partial_or_stale_documents_never_reach_chunking (ingest.tests.test_behavior.Behavior.test_refused_partial_or_stale_documents_never_reach_chunking) ... ok\ntest_structural_admission_refuses_unsupported_hidden_and_formula_data (ingest.tests.test_behavior.Behavior.test_structural_admission_refuses_unsupported_hidden_and_formula_data) ... ok\ntest_supervisor_must_confirm_even_a_published_worker_success (ingest.tests.test_behavior.Behavior.test_supervisor_must_confirm_even_a_published_worker_success) ... ok\ntest_manual_fixture_preparation_is_explicit_and_does_not_qualify_a2 (ingest.tests.test_cli.Cli.test_manual_fixture_preparation_is_explicit_and_does_not_qualify_a2) ... ok\ntest_nonempty_selftest_scratch_refuses_before_discovery (ingest.tests.test_cli.Cli.test_nonempty_selftest_scratch_refuses_before_discovery) ... ok\ntest_preflight_has_no_files_and_init_requires_absent_root (ingest.tests.test_cli.Cli.test_preflight_has_no_files_and_init_requires_absent_root) ... ok\ntest_unactivated_all_and_report_cannot_pass_readiness (ingest.tests.test_cli.Cli.test_unactivated_all_and_report_cannot_pass_readiness) ... ok\ntest_base64_decoding_preserves_float_values (ingest.tests.test_e2e.EndToEnd.test_base64_decoding_preserves_float_values) ... ok\ntest_budget_exhaustion_and_invalid_reservations_preserve_state (ingest.tests.test_e2e.EndToEnd.test_budget_exhaustion_and_invalid_reservations_preserve_state) ... ok\ntest_canonical_report_dispatch_binds_both_sources (ingest.tests.test_e2e.EndToEnd.test_canonical_report_dispatch_binds_both_sources) ... ok\ntest_loaded_identity_requires_selected_instance_and_exact_context (ingest.tests.test_e2e.EndToEnd.test_loaded_identity_requires_selected_instance_and_exact_context) ... ok\ntest_report_keeps_earlier_mode_after_admission_pointer_advances (ingest.tests.test_e2e.EndToEnd.test_report_keeps_earlier_mode_after_admission_pointer_advances) ... ok\ntest_report_refuses_aliased_corpus_binding (ingest.tests.test_e2e.EndToEnd.test_report_refuses_aliased_corpus_binding) ... ok\ntest_report_refuses_failed_stale_missing_or_modified_evidence (ingest.tests.test_e2e.EndToEnd.test_report_refuses_failed_stale_missing_or_modified_evidence) ... ok\ntest_report_refuses_missing_changed_and_aliased_conversion_source (ingest.tests.test_e2e.EndToEnd.test_report_refuses_missing_changed_and_aliased_conversion_source) ... ok\ntest_report_requires_valid_nonempty_consistent_conversion_bindings (ingest.tests.test_e2e.EndToEnd.test_report_requires_valid_nonempty_consistent_conversion_bindings) ... ok\ntest_store_receipt_cannot_redirect_reopen (ingest.tests.test_e2e.EndToEnd.test_store_receipt_cannot_redirect_reopen) ... ok\ntest_transport_requires_exact_identity_count_order_and_finite_vectors (ingest.tests.test_e2e.EndToEnd.test_transport_requires_exact_identity_count_order_and_finite_vectors) ... ok\ntest_secrets_proxies_and_python_state_not_inherited (ingest.tests.test_environment.Environment.test_secrets_proxies_and_python_state_not_inherited) ... ok\ntest_site_inventory_blocks_executable_files_before_tool (ingest.tests.test_environment.Environment.test_site_inventory_blocks_executable_files_before_tool) ... ok\ntest_actual_committed_blob_export_excludes_dirty_content (ingest.tests.test_export.Exports.test_actual_committed_blob_export_excludes_dirty_content) ... ok\ntest_all_pdf_objects_xref_pages_scan_and_encryption (ingest.tests.test_fixtures.Fixtures.test_all_pdf_objects_xref_pages_scan_and_encryption) ... ok\ntest_archive_escape_duplicate_and_expansion_refuse (ingest.tests.test_fixtures.Fixtures.test_archive_escape_duplicate_and_expansion_refuse) ... /Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/lib/python3.13/zipfile/__init__.py:1655: UserWarning: Duplicate name: 'duplicate'\n  return self._open_to_write(zinfo, force_zip64=force_zip64)\nok\ntest_c0_seed_publication_does_not_claim_a2_qualification (ingest.tests.test_fixtures.Fixtures.test_c0_seed_publication_does_not_claim_a2_qualification) ... ok\ntest_docx_is_real_xml_container_and_deterministic (ingest.tests.test_fixtures.Fixtures.test_docx_is_real_xml_container_and_deterministic) ... ok\ntest_full_matrix_counts_unique_bytes_and_determinism (ingest.tests.test_fixtures.Fixtures.test_full_matrix_counts_unique_bytes_and_determinism) ... ok\ntest_incomplete_oracle_rejects_before_publication (ingest.tests.test_fixtures.Fixtures.test_incomplete_oracle_rejects_before_publication) ... ok\ntest_matrix_publication_integrity_and_stop_are_not_conversion (ingest.tests.test_fixtures.Fixtures.test_matrix_publication_integrity_and_stop_are_not_conversion) ... ok\ntest_office_matrix_has_ordered_structural_facts_without_text (ingest.tests.test_fixtures.Fixtures.test_office_matrix_has_ordered_structural_facts_without_text) ... ok\ntest_office_resource_and_xml_declaration_refusals (ingest.tests.test_fixtures.Fixtures.test_office_resource_and_xml_declaration_refusals) ... ok\ntest_pdf_offsets_and_distinctive_source (ingest.tests.test_fixtures.Fixtures.test_pdf_offsets_and_distinctive_source) ... ok\ntest_presentation_hidden_notes_comments_and_external_are_distinct (ingest.tests.test_fixtures.Fixtures.test_presentation_hidden_notes_comments_and_external_are_distinct) ... ok\ntest_workbook_visibility_cached_formula_and_value_types (ingest.tests.test_fixtures.Fixtures.test_workbook_visibility_cached_formula_and_value_types) ... ok\ntest_changed_missing_and_unexpected_files_refuse (ingest.tests.test_large_documents.LargeDocuments.test_changed_missing_and_unexpected_files_refuse) ... ok\ntest_existing_corpus_refuses_without_overwriting_any_bytes (ingest.tests.test_large_documents.LargeDocuments.test_existing_corpus_refuses_without_overwriting_any_bytes) ... ok\ntest_file_aliases_and_invalid_sizes_refuse (ingest.tests.test_large_documents.LargeDocuments.test_file_aliases_and_invalid_sizes_refuse) ... ok\ntest_genuine_container_writers_are_deterministic_and_within_unit_limits (ingest.tests.test_large_documents.LargeDocuments.test_genuine_container_writers_are_deterministic_and_within_unit_limits) ... ok\ntest_length_progression_preserves_end_facts_and_does_not_claim_tokens (ingest.tests.test_large_documents.LargeDocuments.test_length_progression_preserves_end_facts_and_does_not_claim_tokens) ... ok\ntest_model_claims_or_removed_formats_cannot_keep_verify_pass (ingest.tests.test_large_documents.LargeDocuments.test_model_claims_or_removed_formats_cannot_keep_verify_pass) ... ok\ntest_published_inventory_has_explicit_unqualified_model_fields (ingest.tests.test_large_documents.LargeDocuments.test_published_inventory_has_explicit_unqualified_model_fields) ... ok\ntest_source_change_invalidates_verification (ingest.tests.test_large_documents.LargeDocuments.test_source_change_invalidates_verification) ... ok\ntest_cumulative_budget_survives_reopen_and_failure (ingest.tests.test_ledger.Ledgers.test_cumulative_budget_survives_reopen_and_failure) ... ok\ntest_operation_append_requires_live_same_instance_writer_lease (ingest.tests.test_ledger.Ledgers.test_operation_append_requires_live_same_instance_writer_lease) ... ok\ntest_partial_tamper_and_concurrent_writer_refuse (ingest.tests.test_ledger.Ledgers.test_partial_tamper_and_concurrent_writer_refuse) ... ok\ntest_promotion_requires_existing_candidate_actor_and_tip (ingest.tests.test_ledger.Ledgers.test_promotion_requires_existing_candidate_actor_and_tip) ... ok\ntest_stage_order_and_receipt_schema_refuse (ingest.tests.test_ledger.Ledgers.test_stage_order_and_receipt_schema_refuse) ... ok\ntest_stop_is_terminal_for_counters (ingest.tests.test_ledger.Ledgers.test_stop_is_terminal_for_counters) ... ok\ntest_canonical_positive_and_digest_binding (ingest.tests.test_manifests.Manifests.test_canonical_positive_and_digest_binding) ... ok\ntest_catalog_controls_refuse_before_optional_engine_import (ingest.tests.test_manifests.Manifests.test_catalog_controls_refuse_before_optional_engine_import) ... ok\ntest_dependency_schema_refuses_before_optional_parser_import (ingest.tests.test_manifests.Manifests.test_dependency_schema_refuses_before_optional_parser_import) ... ok\ntest_empty_target_tag_components_refuse_before_parser_import (ingest.tests.test_manifests.Manifests.test_empty_target_tag_components_refuse_before_parser_import) ... ok\ntest_integer_bool_and_artifact_boundaries (ingest.tests.test_manifests.Manifests.test_integer_bool_and_artifact_boundaries) ... ok\ntest_reject_duplicate_nonfinite_and_oversize (ingest.tests.test_manifests.Manifests.test_reject_duplicate_nonfinite_and_oversize) ... ok\ntest_escape_alias_and_symlink_refusals (ingest.tests.test_paths.Paths.test_escape_alias_and_symlink_refusals) ... ok\ntest_new_owned_layout_and_no_reopen (ingest.tests.test_paths.Paths.test_new_owned_layout_and_no_reopen) ... ok\ntest_unknown_config_and_upstream_activation_refuse (ingest.tests.test_paths.Paths.test_unknown_config_and_upstream_activation_refuse) ... ok\ntest_access_and_supported_discovery_refuse_present_absent_and_dir_fd (ingest.tests.test_protection.Protection.test_access_and_supported_discovery_refuse_present_absent_and_dir_fd) ... ok\ntest_all_qualified_dir_fd_mutations_refuse_and_preserve_targets (ingest.tests.test_protection.Protection.test_all_qualified_dir_fd_mutations_refuse_and_preserve_targets) ... ok\ntest_descriptor_mutations_and_discovery_refuse_unclassified_targets (ingest.tests.test_protection.Protection.test_descriptor_mutations_and_discovery_refuse_unclassified_targets) ... ok\ntest_dir_fd_threads_and_sockets_refuse_before_effect (ingest.tests.test_protection.Protection.test_dir_fd_threads_and_sockets_refuse_before_effect) ... ok\ntest_intercepted_reads_stat_and_writes_refuse_before_effect (ingest.tests.test_protection.Protection.test_intercepted_reads_stat_and_writes_refuse_before_effect) ... ok\ntest_missing_root_and_truncated_coverage (ingest.tests.test_protection.Protection.test_missing_root_and_truncated_coverage) ... ok\ntest_native_like_change_is_detected_not_called_prevented (ingest.tests.test_protection.Protection.test_native_like_change_is_detected_not_called_prevented) ... ok\ntest_standard_and_saved_low_level_thread_launches_refuse (ingest.tests.test_protection.Protection.test_standard_and_saved_low_level_thread_launches_refuse) ... ok\ntest_consistency_report_preserves_incomplete_and_evidence_classes (ingest.tests.test_reports.Reports.test_consistency_report_preserves_incomplete_and_evidence_classes) ... ok\ntest_prepared_fixture_receipt_is_not_current_byte_or_converter_proof (ingest.tests.test_reports.Reports.test_prepared_fixture_receipt_is_not_current_byte_or_converter_proof) ... ok\ntest_dirty_extra_and_pyc_refuse (ingest.tests.test_startup.Startup.test_dirty_extra_and_pyc_refuse) ... ok\ntest_guard_is_armed_during_verified_test_execution (ingest.tests.test_startup.Startup.test_guard_is_armed_during_verified_test_execution) ... ok\ntest_guarded_child_positive_and_unapproved_script_refusal (ingest.tests.test_startup.Startup.test_guarded_child_positive_and_unapproved_script_refusal) ... ok\ntest_positive_and_unapproved_manifest_refusal (ingest.tests.test_startup.Startup.test_positive_and_unapproved_manifest_refusal) ... ok\ntest_private_startup_canary_is_armed_but_not_processed_by_safe_loader (ingest.tests.test_startup.Startup.test_private_startup_canary_is_armed_but_not_processed_by_safe_loader) ... ok\ntest_verified_buffer_survives_path_swap (ingest.tests.test_startup.Startup.test_verified_buffer_survives_path_swap) ... ok\ntest_control_changes_after_fake_acceptance_bound_in_flight_work (ingest.tests.test_window.Windows.test_control_changes_after_fake_acceptance_bound_in_flight_work) ... ok\ntest_counter_and_reservation_changes_refuse_before_handoff_keep_charges (ingest.tests.test_window.Windows.test_counter_and_reservation_changes_refuse_before_handoff_keep_charges) ... ok\ntest_invalid_window_identity_expiry_and_policy (ingest.tests.test_window.Windows.test_invalid_window_identity_expiry_and_policy) ... ok\ntest_prepared_input_and_vector_budgets_precede_transport (ingest.tests.test_window.Windows.test_prepared_input_and_vector_budgets_precede_transport) ... ok\ntest_revocation_and_expiry_prevent_further_transport_attempts (ingest.tests.test_window.Windows.test_revocation_and_expiry_prevent_further_transport_attempts) ... ok\ntest_transport_attempts_status_retries_and_stop_share_budget (ingest.tests.test_window.Windows.test_transport_attempts_status_retries_and_stop_share_budget) ... ok\ntest_valid_loaded_identity_and_no_fallback (ingest.tests.test_window.Windows.test_valid_loaded_identity_and_no_fallback) ... ok\n\n----------------------------------------------------------------------\nRan 87 tests in 1.760s\n\nOK\n"
+    },
+    {
+      "name": "independent_native-normal",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/tmp/large-document-independent-review-HLnkri/independent_native.py",
+        "normal"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "provenance": "fresh execution observed through exec_command; output retained in mode-specific JSON report",
+      "effect_boundary": "reviewer-owned scratch; native dependency target read-only"
+    },
+    {
+      "name": "independent_native-optimized",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "/tmp/large-document-independent-review-HLnkri/independent_native.py",
+        "optimized"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "provenance": "fresh execution observed through exec_command; output retained in mode-specific JSON report",
+      "effect_boundary": "reviewer-owned scratch; native dependency target read-only"
+    },
+    {
+      "name": "controls-normal",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/tmp/large-document-independent-review-HLnkri/controls.py",
+        "normal"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "provenance": "fresh execution observed through exec_command; output retained in mode-specific JSON report",
+      "effect_boundary": "reviewer-owned scratch; native dependency target read-only"
+    },
+    {
+      "name": "controls-optimized",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "/tmp/large-document-independent-review-HLnkri/controls.py",
+        "optimized"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "provenance": "fresh execution observed through exec_command; output retained in mode-specific JSON report",
+      "effect_boundary": "reviewer-owned scratch; native dependency target read-only"
+    },
+    {
+      "name": "guard_controls-normal",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/tmp/large-document-independent-review-HLnkri/guard_controls.py",
+        "normal"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "provenance": "fresh execution observed through exec_command; output retained in mode-specific JSON report",
+      "effect_boundary": "reviewer-owned scratch; native dependency target read-only"
+    },
+    {
+      "name": "guard_controls-optimized",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "/tmp/large-document-independent-review-HLnkri/guard_controls.py",
+        "optimized"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "provenance": "fresh execution observed through exec_command; output retained in mode-specific JSON report",
+      "effect_boundary": "reviewer-owned scratch; native dependency target read-only"
+    },
+    {
+      "name": "prepare-check",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/tmp/large-document-independent-review-HLnkri/prepare.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "provenance": "fresh execution observed through exec_command; output retained in named JSON evidence",
+      "effect_boundary": "reviewer-owned scratch; all repository Git uses GIT_OPTIONAL_LOCKS=0 and PYTHONDONTWRITEBYTECODE=1"
+    },
+    {
+      "name": "equivalence-check",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/tmp/large-document-independent-review-HLnkri/equivalence.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "provenance": "fresh execution observed through exec_command; output retained in named JSON evidence",
+      "effect_boundary": "reviewer-owned scratch; all repository Git uses GIT_OPTIONAL_LOCKS=0 and PYTHONDONTWRITEBYTECODE=1"
+    },
+    {
+      "name": "archive_source-check",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/tmp/large-document-independent-review-HLnkri/archive_source.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "provenance": "fresh execution observed through exec_command; output retained in named JSON evidence",
+      "effect_boundary": "reviewer-owned scratch; all repository Git uses GIT_OPTIONAL_LOCKS=0 and PYTHONDONTWRITEBYTECODE=1"
+    },
+    {
+      "name": "boundary-opening",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/tmp/large-document-independent-review-HLnkri/boundary.py",
+        "opening"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "provenance": "fresh execution observed through exec_command; output retained in named JSON evidence",
+      "effect_boundary": "reviewer-owned scratch; all repository Git uses GIT_OPTIONAL_LOCKS=0 and PYTHONDONTWRITEBYTECODE=1"
+    },
+    {
+      "name": "boundary-closing",
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/tmp/large-document-independent-review-HLnkri/boundary.py",
+        "closing"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "provenance": "fresh execution observed through exec_command; output retained in named JSON evidence",
+      "effect_boundary": "reviewer-owned scratch; all repository Git uses GIT_OPTIONAL_LOCKS=0 and PYTHONDONTWRITEBYTECODE=1"
+    }
+  ],
+  "typing": {
+    "classification": "INSPECTED, not rerun",
+    "receipt": "archive/checks/mypy-last.json",
+    "source_equality_proof": "typing-inspection.json",
+    "source_files": 31,
+    "config_bytes_equal": true,
+    "exit": 0,
+    "result": "Success: no issues found in 31 source files"
+  },
+  "procedure_deviation": "LD-PROC-001: excluded unrelated historical review fields appeared in one lifecycle search; no corpus peer review opened or used."
+}
