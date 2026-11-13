@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Final INGEST construction approval package prepared for Chuck: review package-impact assessment v0.7 and final-approval/README.md with exact approval-request.json and private offline execution profile. Design remains VERIFIED at 9ddaf6f8; wrapper/current impact are new proposed bytes, not independently reviewed or approved. Requested future scope is I1/I2/I3 with independent exits. No product generation, installs, provider/model/store effects or delivery until explicit exact approval. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh read-only final-document council round1/1: final-approval/README.md and canonical package-impact assessment v0.7, frozen for Sol/Astra/Opus while Chuck reviews in parallel. Assess eight bounded document-readiness areas, target >=9.5 per complete seat with zero mandatory findings. Report findings only; no automatic repair/repeat, vendor/parity evaluation, construction, installs, provider/model/store effects or acceptance. |
 
 ## Completed
 

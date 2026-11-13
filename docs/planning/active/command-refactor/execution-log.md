@@ -4440,3 +4440,16 @@ not a new independent VERIFIED result. Next task belongs to Chuck: review and
 approve/request changes to the impact, construction scope and private effects.
 No product/test/guide/dependency code, live configuration, model/store operation,
 new council, acceptance or delivery is performed under this preparation request.
+
+
+## 2026-11-13 — Final approval documents council explicitly requested
+
+Chuck requests a council on final-approval/README.md and impact assessment v0.7,
+while reviewing both in parallel. One fresh Sol/Astra/Opus read-only round is
+prepared, with eight bounded document criteria and the established per-seat9.5
+and zero-mandatory gate. This does not revive the closed activation rounds or
+permit automatic remediation/repeat. Freeze both targets and bound JSONs; scope
+is approval/impact completeness and consistency, not old Docling/AST/archive or
+whole-framework testing. Required target text may mention historical statuses;
+reviewers must not open prior reports or treat past scores as this verdict.
+No construction, installs, production change or model/store effect is authorized.

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "status": "frozen_for_single_read_only_round",
+  "round": 1,
+  "maximum_rounds": 1,
+  "active": true,
+  "rounds_started": 1,
+  "rounds_completed": 0,
+  "gate_met": null,
+  "construction_approved": false,
+  "effects_approved": false
+}

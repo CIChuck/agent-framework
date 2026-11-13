@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "date": "2026-11-13",
+  "maintainer": "Chuck Russell",
+  "request": "run the council on these 2 docs - i will also review.",
+  "scope": "One fresh independent three-seat read-only review of final approval request and canonical impact v0.7, with directly relevant bound manifests; maintainer parallel review.",
+  "maximum_rounds": 1,
+  "automatic_remediation_or_repeat": false,
+  "roster": [
+    {
+      "provider": "codex",
+      "model": "gpt-6.1-sol",
+      "effort": "high"
+    },
+    {
+      "provider": "codex",
+      "model": "gpt-6-astra",
+      "effort": "high"
+    },
+    {
+      "provider": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "effort": "high"
+    }
+  ],
+  "gate_each": {
+    "assessment_complete": true,
+    "areas": 8,
+    "mandatory_findings": 0,
+    "overall_minimum": 9.5
+  },
+  "instruction_path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round1/review-instructions.md",
+  "instruction_sha256": "978c8637bda6c0656bf7c03c27d27b05a20436108adc5eca3d314947a02a822b",
+  "construction_approved": false,
+  "effects_approved": false,
+  "not_revival_of_old_council_budget": true
+}
