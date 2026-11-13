@@ -1,6 +1,6 @@
 # INGEST activation — validation execution plan
 
-Version 0.2, proposed A3/A5 plan. **No commands here were run as product validation.**
+Version 0.3, proposed A3/A5 plan. **No commands here were run as product validation.**
 Only execute a phase after its exact approval and prepared isolated interpreter,
 source snapshot, qualified assets and permitted effects have been bound. No
 working `.venv`, dirty configuration or user `.friday*` store is a test target.
@@ -71,3 +71,11 @@ The shared process service must pass lifecycle tests without importing a fronten
 The separate Chat adapter test does not substitute for that proof. Runtime
 shutdown and the renderer-free consumer exercise the same implementation and
 structured progress/results; no UI-specific parsing or duplicate worker pool.
+
+At I3-C3 run basic /read extraction and option/refusal tests. The three /read
+responsiveness, repeated-cancel/join and app-shutdown/drain nodes run at I3-C4,
+after the selected lifecycle edits. I3-C4 and installed normal/-O probes execute
+the exact selected nested worker module from private request_root with connected
+pipes and real IPC exchange; an argv mock alone earns no launch/cleanup proof.
+I2-C1 covers manifest/API/environment precedence, successful existing route records
+and no-effects configuration refusals. Neither adds a live qualification gate.

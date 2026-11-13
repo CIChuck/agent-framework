@@ -1,6 +1,6 @@
 # INGEST activation — current requirement dispositions
 
-Version 0.2, 2026-11-13. These are bounded applications of the recorded maintainer
+Version 0.3, 2026-11-13. These are bounded applications of the recorded maintainer
 [model decision](model-qualification-decision.md), [Office decision](office-visibility-decision.md)
 and [shared-worker decision](shared-worker-decision.md). No product or effects
 approval is supplied. Historical directive/REM/annex and evidence bytes stay in
@@ -32,3 +32,14 @@ A1–A8**. Gate A1 now binds these dispositions and existing evidence, Gate A2 t
 exact design/assets, Gate A3 case exceptions, Gate A4 maintainer approval and final
 impact satisfaction, and Gate A5 the isolated execution profile. None is complete
 merely because a document council passes. Product acceptance follows construction.
+
+
+For current exact implementation choices, the activation slice/case maps control
+specific sub-exit assignments over the older phase-map shorthand: basic /read
+content/refusal at I3-C3, responsiveness/cancellation/drain at I3-C4. Manifest
+provisioning is an offline deployment binding (explicit resolver path or
+FRIDAY_EMBEDDING_MANIFEST), with unchanged model YAML and no new model campaign.
+It must be included in the final operator impact/guide and exact approval package.
+The model-decision record's older "no new council follows" describes that earlier
+preparation point; the later user-approved council authorization controls these
+three review rounds. No technical parent or historical record is rewritten.

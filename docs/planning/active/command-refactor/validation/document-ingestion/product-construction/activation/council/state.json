@@ -2,10 +2,10 @@
   "version": 1,
   "workflow": "activation_package_council",
   "maximum_rounds": 3,
-  "rounds_started": 2,
-  "rounds_completed": 1,
-  "current_round": 2,
-  "status": "round2_frozen_for_review",
+  "rounds_started": 3,
+  "rounds_completed": 2,
+  "current_round": 3,
+  "status": "final_round3_frozen_for_review",
   "instructions_approved": true,
   "history": [
     {
@@ -15,6 +15,14 @@
       "gate_met": false,
       "results": "round1/results/index.json",
       "reconciliation": "round1/reconciliation.md"
+    },
+    {
+      "round": 2,
+      "candidate": "c24ff0998010e960fb86c1a89b150ada079bbd46",
+      "result": "CHANGES_REQUESTED",
+      "gate_met": false,
+      "results": "round2/results/index.json",
+      "reconciliation": "round2/reconciliation.md"
     }
   ],
   "construction_approved": false,

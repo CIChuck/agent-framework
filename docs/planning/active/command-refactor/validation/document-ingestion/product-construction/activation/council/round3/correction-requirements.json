@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "scope": "Neutral requirements first, then full Review A1-A8; no supplied verdicts.",
+  "groups": [
+    {
+      "id": "D1",
+      "requirement": "Canonical selected worker module, explicit scratch/request root and connected framed stdin/stdout/stderr with bounded concurrent drains. Actual installed launch/exchange and cancel/reap proof at I3, no new pre-coding experiment."
+    },
+    {
+      "id": "D2",
+      "requirement": "Read responsiveness/cancel/drain witnesses at I3-C4, agreeing with permitted lifecycle edits; basic content/refusal tests at I3-C3."
+    },
+    {
+      "id": "D3",
+      "requirement": "Exact capability deployment-manifest discovery/precedence/schema/route binding and public resolver in existing I1/I2 paths; unchanged model YAML parseable, supported defaults positively resolve from provisioned local assets. No serving/parity gate."
+    }
+  ],
+  "retained_requirements": "Configured records with optional evidence, injected broker, post-build worker acceptance, exact shared lifecycle, unchanged source scope and current maintainer decisions.",
+  "instructions_unchanged": true,
+  "final_round": true,
+  "new_product_or_effects_authority": false
+}

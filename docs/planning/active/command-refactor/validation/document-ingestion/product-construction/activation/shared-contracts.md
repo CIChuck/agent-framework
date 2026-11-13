@@ -1,6 +1,6 @@
 # INGEST activation appendix A2 — shared contracts
 
-Version 0.2, 2026-11-13. **Proposed exact design; not activated.** Prepared from
+Version 0.3, 2026-11-13. **Proposed exact design; not activated.** Prepared from
 `7a3e00bc9ef77adee25b61fc52ff91875e172738` and the unchanged
 [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md).
 The directive, REM and compatibility annex control except for the explicit
@@ -43,7 +43,7 @@ No implicit whitespace/Unicode normalization applies to source or model text.
 | `PreparedVector` | `space_sha256: Digest`, `role: EmbeddingRole`, `input_sha256: Digest`, `prepared_sha256: Digest`, `values: tuple[float,...]`; exact declared dimension, finite real values, no booleans. |
 | `PreparedBatch` | `inputs: tuple[PreparedInput,...]`, `vectors: tuple[PreparedVector,...]`; equal lengths, elementwise identities/roles/digests equal, every vector checked before returning any batch for storage. |
 | `PlannedChunk` | `index: int`, `text: str`, `coverage_spans: tuple[SourceSpan,...]`, `context_spans: tuple[SourceSpan,...]`, `prepared: PreparedInput`; index zero-based contiguous, text nonempty, prepared input binds SHA256 of text. Context is source-backed repeated headings/headers, never invented content. |
-| `ChunkPlan` | `schema_version: Literal[1]`, `source_id: Id`, `source_sha256: Digest`, `content_sha256: Digest`, `conversion_profile_sha256: Digest | None`, `options: ResolvedChunkingOptions`, `space_sha256: Digest`, `chunks: tuple[PlannedChunk,...]`, `plan_sha256: Digest`; nonempty, complete coverage/order, all prepared counts within both requested and effective limits. |
+| `ChunkPlan` | `schema_version: Literal[1]`, `source_id: Id`, `source_sha256: Digest`, `content_sha256: Digest`, `conversion_profile_sha256: Digest | None`, `options: ResolvedChunkingOptions`, `space_sha256: Digest`, `chunks: tuple[PlannedChunk,...]`, `plan_sha256: Digest`; source_sha256 equals SourceDocument.raw_sha256; nonempty, complete coverage/order, all prepared counts within both requested and effective limits. |
 | `DestinationBinding` | `namespace_id: Id`, `incarnation: Id`, `space_sha256: Digest`, `layout_sha256: Digest`, `collection: str`; exact admitted physical destination, not multi-agent visibility label. |
 | `DestinationNamespaceBinding` | `namespace_id: Id`, `incarnation: Id`, `space_sha256: Digest`, `layout_sha256: Digest`; identical namespace fields to DestinationBinding with no collection field. |
 | `IngestionProgressEvent` | `attempt_id: Id`, `stage: Literal['queued','audit','conversion','planning','embedding','storage','completed','cancelled','failed']`, `completed: int | None`, `total: int | None`, `code: str`; counts nonnegative, completed <= total when both known. No frontend-rendered string or source text. |
@@ -87,7 +87,7 @@ Signatures are exact; existing unrelated public methods remain unchanged.
 | Core `IngestionEntry` | `async ingest(self, source: SourceDocument, *, options: ChunkingOptions = ChunkingOptions(), description: str | None = None, document_session: OwnedDocumentSession | None = None, observer: IngestionObserver | None = None) -> IngestionResult`; Memory implements; converted document source/session identity must match. Caller owns admission and session lifetime. `async aclose(self) -> None` rejects new ingests, cancels/invalidate-and-joins active operations, and idempotently drains owned tasks before returning; shared clients/stores are not closed by this entry. |
 | Memory public factory | `create_ingestion_entry(*, destination: DestinationBinding, vector_store: PreparedVectorStore, counter: TokenCounter, embedder: PreparedEmbeddingService, defaults: ChunkingOptions = ChunkingOptions(), counter_factory: CounterFactory | None = None) -> IngestionEntry` in `friday_memory.ingestion`. No Tools/Chat import; converted-document planning requires the supplied pure counter factory. |
 | Core `PreparedEmbeddingService` | Read-only `.space: EmbeddingSpaceIdentity`; `async embed_prepared(self, inputs: tuple[PreparedInput,...], timeout: float | None = None) -> PreparedBatch`. The LLM implementation owns provider I/O, once-only preparation validation and full response validation. No conversion/store dependency. |
-| Core `PreparedVectorStore` | `async write_prepared(self, *, texts: tuple[str,...], metadatas: tuple[tuple[tuple[str,Scalar],...],...], ids: tuple[str,...], batch: PreparedBatch) -> PreparedWriteResult`; validates all lengths, text digests and document roles before write. |
+| Core `PreparedVectorStore` | Read-only `.destination: DestinationBinding` is exposed by the admitted Memory store; accessing it never creates/rebinds a namespace. `async write_prepared(self, *, texts: tuple[str,...], metadatas: tuple[tuple[tuple[str,Scalar],...],...], ids: tuple[str,...], batch: PreparedBatch) -> PreparedWriteResult`; validates all lengths, text digests and document roles before write. |
 | Core `PreparedWriteResult` | Frozen value `confirmed_ids: tuple[str,...]`, `unconfirmed_ids: tuple[str,...]`, `errors: tuple[IngestionFailure,...]`; every proposed ID appears exactly once in confirmed/unconfirmed; false/ambiguous backend outcomes cannot confirm IDs without readback. |
 | LLM additive method | `async embed_prepared(self, inputs: tuple[PreparedInput,...], timeout: float | None = None) -> PreparedBatch`; validates exact identity/count/role; sends already prepared text once, never prepares a second time. |
 
@@ -128,7 +128,8 @@ and prepared writing; it never embeds an already supplied prepared batch twice.
 ### Exact concrete constructors and pure file-input adapter
 
 Tools exposes `DoclingDocumentConverter(*, assets_root: Path,
-profile_id: str, asset_manifest_sha256: Digest)` in its new document submodule.
+profile_id: str, asset_manifest_sha256: Digest, scratch_root: Path)` in
+`friday_tools.filesystem.readers.document_ingestion`, the exact selected file.
 Construction is inert: no import of heavyweight document engines, worker spawn,
 model/counter/store creation or asset fetch until the relevant operation.
 LLM exposes `LocalTokenCounterFactory(*, assets_root: Path,
@@ -169,6 +170,68 @@ The deployment manifest binds an absolute `assets_root`; every tokenizer, OCR,
 converter and capability asset has a relative path, hash, size, license/source
 and backend identity. Resolve beneath that root; refuse traversal/escaping symlinks,
 hash before opening and never fetch on first use or consult HOME/global caches.
+
+### Exact manifest discovery and resolver
+
+`friday_llm.embedding_limits` declares the following public pure resolver:
+`resolve_embedding_capabilities(*, model_name: str,
+model_target: ModelTarget | None = None, max_input_tokens: int | None = None,
+expected_dimensions: int | None = None, manifest_path: Path | None = None,
+environment: Mapping[str, str]) -> ResolvedEmbeddingCapabilities`.
+`ModelTarget` is the existing LLM target type; no target-module edit is implied.
+The resolver performs only bounded local validation/reads, no provider or store I/O.
+Each manifest/record JSON is capped at 1 MiB with at most 2,048 routes/records;
+malformed or oversized input refuses explicitly.
+
+Discovery is exact: explicit `manifest_path` wins; otherwise use the single
+`FRIDAY_EMBEDDING_MANIFEST` value from the supplied environment snapshot. The
+selected path must be absolute; empty, absent, unreadable or malformed values
+produce typed `readiness` configuration failure for embedding operations. An
+invalid explicit path never falls back to the environment. No cwd/upward/HOME/
+production-YAML search and no implicit remote or global-cache fetch. Disabled
+memory/read-only startup and /read do not resolve this manifest. This is the
+concrete discovery of the already required deployment asset binding, not a new
+model-config schema. The final impact/guide revision must explain this operator
+manifest/API binding along with the existing fresh-store requirement.
+
+Strict `EmbeddingDeploymentManifest` JSON fields are exactly:
+`schema_version: 1`, `assets_root: absolute path`,
+`asset_manifest_path: relative path`, `asset_manifest_sha256: Digest`,
+`records: array[{record_id: str, sha256: Digest}]`,
+`routes: array[{model_id: str, family: str | null, revision: str | null,
+record_id: str}]`. Unknown/duplicate keys, duplicate record IDs or duplicate route
+triples refuse. Each route points to exactly one listed record; IDs match
+`[A-Za-z0-9][A-Za-z0-9_.-]{0,63}`. Records are at
+`<assets_root>/embedding-capabilities/<record_id>.json`, hash-bound by `records`.
+The asset manifest lists tokenizer/converter/profile assets with their existing
+hash/size/license/backend fields, **excluding capability records and the deployment
+manifest** so record-to-asset hashes have no self-referential cycle. Resolve every
+relative asset beneath the declared root, rejecting escaping symlinks/traversal.
+Phase Gate A2/A5 binds the deployment manifest's own SHA256 before use; once loaded,
+composition retains its immutable snapshot/hash for the service lifetime.
+
+Route selection is exact and case-sensitive. With `model_target`, the triple is
+its `model_id`, `family`, `revision`; otherwise it is the unchanged legacy
+`model_name`, null, null. No prefix stripping, guessed revision, endpoint-keyed
+space or wildcard fallback. Multiple explicitly listed route triples may point
+to one record, preserving aliases without duplicating identity. No match,
+contradictory configured capacity/dimensions or record/asset mismatch refuses
+before provider/cache/store effects. Optional evidence remains optional.
+
+I1-C2 implements this schema/resolver in the already selected embedding_limits
+module; I2-C1 composition in model_library/embeddings, Chat adapters/runtime,
+Runtime DI and CLI forwarding consumes the same resolved value/environment.
+`from_spec` passes spec.model, spec.execution_target.model and the two optional
+max_input_tokens/expected_dimensions overrides to the resolver;
+legacy direct construction passes its existing model_name/model_target. When
+`capabilities` is explicitly injected, validate its selected route and configured
+limit/dimension overrides locally and do not rediscover another record. When omitted, existing constructor/from_spec shapes remain valid
+and use this resolver with one environment snapshot. No new constructor-required
+parameter or YAML key. Deployment/test setup provisions manifests and local assets;
+all supported selected defaults must resolve positively at I2, including hosted
+and non-pool/legacy variants. Ordinary missing/conflicting-manifest tests are
+negative controls, never replacements for default positive coverage. I1 legacy
+flows stay unchanged until the coordinated I2 switch.
 
 The strict LLM capability record has `schema_version=1`, `record_id`, `space`,
 `asset_manifest_sha256`, `tokenizer_manifest_sha256`, `preparation`,
@@ -273,10 +336,19 @@ conversion constructs no Memory entry/admission/embedding service.
 
 One fresh interpreter per owned document session is launched using
 `asyncio.create_subprocess_exec(sys.executable, '-I', '-B', '-m',
-'friday_tools.document_ingestion', '--worker', env=child_env, cwd=request_root,
+'friday_tools.filesystem.readers.document_ingestion', '--worker',
+stdin=asyncio.subprocess.PIPE, stdout=asyncio.subprocess.PIPE,
+stderr=asyncio.subprocess.PIPE, env=child_env, cwd=request_root,
 start_new_session=True)` on the supported POSIX profile. This is subprocess exec,
 not `multiprocessing.spawn`; never mutate parent `os.environ` or fork a live client.
-The worker entry is in the already mapped Tools module. A private child environment
+The selected module contains the guarded worker main; no top-level shim is added.
+`scratch_root` is an explicit absolute constructor argument bound by the execution
+profile. Validate it without upward search; no implicit production fallback.
+`request_root` is an owner-only per-session temporary directory created beneath
+that scratch root, outside the source tree,
+production stores and shared caches. It holds the admitted immutable input snapshot
+and bounded worker files only; close removes it only after confirmed reap. No
+working-tree fallback or inferred .friday path. A private child environment
 contains required native/locale paths, bound assets/offline settings and
 `LITELLM_MODE=PRODUCTION` / `LITELLM_LOCAL_MODEL_COST_MAP=True` before counter imports.
 It omits provider credentials, proxies and production config paths. Counter imports
@@ -291,8 +363,15 @@ length-bounded pickle frame (max 1 MiB) for parent-to-child transfer; never unpi
 document data, result frames, command input or a user-supplied module name.
 The child creates its local counter only when planning is requested. It retains
 the converted Docling object until planning/close so no second conversion occurs.
-Only validated immutable Core values reach the parent. stdout is framed IPC;
-stderr is a bounded diagnostic sink, never source text in an ingestion payload.
+Only validated immutable Core values reach the parent. Parent writes framed
+control/factory input through child stdin, concurrently reads framed results from
+child stdout and drains stderr to a max 1 MiB diagnostic ring while continuing to
+consume/discard excess. Vendor stdout is redirected inside the child to stderr
+before imports; only protocol frames use stdout. Writer, result reader and stderr
+drain are retained tasks started with the child and joined on close; no inherited
+terminal stream or full-pipe deadlock. EOF/truncated frame is worker_failed; any
+oversize frame is resource_limit and invalidates the attempt. Diagnostic text is
+never ingested or rendered as document content.
 
 A service permits one active session and one queued request. Further opens fail
 with `worker_busy` before source I/O/spawn. Queued cancellation never launches.
@@ -301,6 +380,15 @@ Each session keeps the same cancellation scope from conversion through planning;
 late output is discarded. Cancellation and timeout signal the owned process group,
 then reap it before releasing admission. Separate processes avoid sharing the
 frontend GIL; they are not an OS sandbox.
+
+The bound `document-profiles/<profile-id>.json` supplies optional positive
+`conversion_timeout_seconds`, `planning_timeout_seconds` and
+`repeat_timeout_seconds`, default 300, 300 and 180. Values may reduce but never
+exceed those caps. Parent monotonic deadlines are authoritative: conversion starts
+at snapshot admission, planning at the plan request, and repeat at the new repeat
+session's admission; queue time is separately reported, not charged to a session
+not yet admitted. Deadline expiration follows the same invalidation/TERM/KILL/reap
+path. Passing a profile timeout never relies only on a vendor's internal timer.
 
 ### RD-03 implementation acceptance (I3-C4)
 
@@ -314,7 +402,7 @@ thresholds, not new measurements:
 | --- | --- |
 | Cold conversion | Snapshot admission through converted result <=300 s, including interpreter startup. |
 | Warm asset-cache repeat | New session, same installed assets/input; result <=180 s. No global cache or reused orphan worker. |
-| Process tree memory | Worker plus owned descendants <=8,589,934,592 bytes RSS; monitor tree, exceedance invalidates output and terminates. Record peak/startup/IPC timings, profile and platform. |
+| Process tree memory | Worker plus owned descendants <=8,589,934,592 bytes RSS; sample owned descendants at <=100 ms intervals, record sampling method and peak; exceedance invalidates output and terminates. Unavailable process accounting fails the supported-profile witness. Record peak/startup/IPC timings, profile and platform. |
 | Responsive parent | Representative genuine PDF/OCR/Office lane has a 100 ms async heartbeat with no gap >1 s while conversion/counting is active. |
 | Queue/backpressure | One active/one queued; third busy before I/O; queued cancel never launches. |
 | Cancel/timeout | Invalidate output, TERM owned group, wait <=2 s, KILL if needed, await OS reap with a further 2 s observation bound. No late output or provider/store write after cancellation wins. |
@@ -349,9 +437,24 @@ Chat does not use this container: its existing lifecycle builder and
 `FrameworkAsyncClientLifecycle` gain optional keyword-only
 `ingestion_entry: IngestionEntry | None = None` and
 `document_converter: DocumentConverter | None = None`. A real-client composition
-passes the same entry/converter used by registry adapters. `close()` rejects new
+passes the same entry/converter used by registry adapters. In the selected runtime.py
+assembly, move the lifecycle builder after embedding/memory wrappers and the
+inert converter are constructed. Pass entry=None until a destination is admitted;
+wrapper construction stays inert under the lazy-admission contract. Do not access a persistent store simply to register
+cleanup. Any operation needing an admitted destination creates/binds its entry
+after successful admission, with a retained owner ensuring failure cleanup; no
+eager placeholder entry is allowed. `close()` rejects new
 requests, drains entry then converter, then closes existing LLM clients, with the
 same retained-task/failure rules. Fake runtime constructs no worker.
+
+For lazy Chat admission the lifecycle adds
+`bind_ingestion(self, *, entry: IngestionEntry,
+document_converter: DocumentConverter) -> None` with the same successful-transfer,
+same-pair idempotence and closing/rebinding refusal rules as Runtime DI. Its
+constructor keywords may remain None until first admitted use. Read-only sessions
+are tracked by the converter already owned through the constructor and create no
+entry; converter.aclose drains them even if entry remains None. The runtime/adapters own this binding,
+not app.py, so the existing app finally path remains source-unchanged.
 
 Renderer-free CLI/TUI composition can call these public factories and
 `friday_runtime.di.DIContainer.bind_ingestion`, or explicitly own the pair in
@@ -359,6 +462,17 @@ try/finally around the existing RuntimeKernel. RuntimeKernel, its private `_di`,
 its exports and existing CLI executable surfaces remain unchanged; this is a
 reusable public capability, not a new wired CLI/TUI command. No private-field
 access, RuntimeKernel patch or frontend-specific conversion engine is implied.
+
+For headless store composition, explicitly construct the already public
+`friday_memory.adapters.vector.ChromaVectorStore(collection_name=...,
+embedding_function=embedder, persist_directory=..., open_request=request)` using
+the Core StoreOpenRequest and LLM resolved counter/broker. After admission, the
+new read-only `store.destination` supplies the exact DestinationBinding and the
+store implements PreparedVectorStore. Pass both to create_ingestion_entry, then
+register the pair with a directly owned DIContainer or own it in try/finally.
+This recipe creates an explicit ingestion destination; it does not obtain or
+claim to share RuntimeKernel's private store. If using the kernel alongside it,
+select an explicit compatible namespace instead of discovering kernel internals.
 
 Chat adds `async SmartFileReader.read_document(path, *, attempt_id)` backed by
 this session. Existing synchronous `read` retains text/JSON/table behavior and
@@ -385,7 +499,8 @@ silently edit app.py or weaken the witness.
 
 ## 5. Namespace identity, vectors and recovery
 
-Memory implements `StoreOpenRequest` in the Core submodule with exact fields:
+Core declares `StoreOpenRequest` in its ingestion submodule; Memory implements
+its admission behavior. Exact fields:
 `intent: Literal['create_fresh','open_matching','ephemeral']`,
 `vector_root: Path | None`, `graph_path: Path | None`, `wal_path: Path | None`,
 `recovery_root: Path | None`, `log_root: Path | None`,
@@ -413,7 +528,7 @@ admitted namespace but do not construct embeddings merely to inspect it.
 
 Per-kernel ephemeral clients use a unique explicit Chroma tenant/database scope
 bound to the ephemeral identity for every vector/CollectionManager participant;
-no persistent CollectionManager inside an ephemeral/testing profile. Qualification
+no persistent CollectionManager inside an ephemeral/testing profile. Ordinary I2 implementation tests
 must prove two kernels cannot see or mutate each other's collections; unsupported
 pinned-client behavior stops FC-09 rather than falling back to shared defaults.
 

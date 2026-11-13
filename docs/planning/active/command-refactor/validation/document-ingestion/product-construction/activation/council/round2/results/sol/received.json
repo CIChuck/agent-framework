@@ -1,0 +1,15 @@
+{
+  "seat": "sol",
+  "round": 2,
+  "candidate": "c24ff0998010e960fb86c1a89b150ada079bbd46",
+  "report_sha256": "f40f684a2777cd2b0ab651015525335ab8696c4f481c3359158e003c73ae40e5",
+  "verdict": "CHANGES_REQUESTED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.25,
+  "mandatory_findings": [
+    "F1: worker module path and IPC pipe wiring"
+  ],
+  "report_hash_verified": true,
+  "repo_unchanged_by_collection": true
+}

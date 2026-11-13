@@ -4,7 +4,7 @@
   "unit": "CD-CMD-INGEST-001-activation-preparation",
   "base": "7a3e00bc9ef77adee25b61fc52ff91875e172738",
   "branch": "feature/cmd-ingest-001",
-  "status": "proposed_round2_activation_package_not_approved",
+  "status": "proposed_final_round3_activation_package_not_approved",
   "reviewed_directive_candidate": "0144c53908afb6f8288425c58c7a3bbff651faef",
   "inputs": [
     {
@@ -51,31 +51,31 @@
   "appendices": [
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
-      "sha256": "3ca048a20de9cd902d29f660fbbd58b48b2e1f6086b7c63981e80a56bcebc520"
+      "sha256": "c2d6a38dc938b00208ab35d91a8a73c6dcb2f79d44428d127eb6744de2a82608"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md",
-      "sha256": "375289701c453d45eb927d5e65bdc47f3854174c02e02b2c1bddbeaf6d6e263f"
+      "sha256": "903b206a36ccb33da7c8e0027a9a1cb37dc76f39b8ce7c92c7da5a1de7453622"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json",
-      "sha256": "a30c748cf90a794c912d00a9d0a401f96b6e31c2116c32f4a1f827b951f18064"
+      "sha256": "59a0b01fed31f2c614933fa7a566f3a918519321535007c36bdb5901fcc4bdd3"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json",
-      "sha256": "f578960cd9fb3752b328b5161ac8ca6eeb286406ca8d719b8661074207a6fb5b"
+      "sha256": "b1a53ffc92dea43a6c2e481243a50b969ff15850b0da471bfeb8e319dea05bff"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/digest-vectors.json",
-      "sha256": "ef235158a9cf773717c10558895cee5756b314f4fd6f1bd700e61a5db26a1607"
+      "sha256": "4b5bef7daf3400dca0c7058d967a66653d1c5e3aa59a7b0c9fe5770e3bd436e4"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md",
-      "sha256": "c07eeb6faf0cfcb7d50e31e18bc813a06aa8aa97662f1c4fa28717c1bfff53b4"
+      "sha256": "d4ddd07648349c6693e92172d089b842ee5d4c549d8defda17c5c6c55218bde4"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md",
-      "sha256": "bf2431fa4b13f1644b28cea93c96eee6aee7e32c5f59d48b2be72e0aa65592e1"
+      "sha256": "1105e592135e5bc907c9017e1d957d537d5251e71fcf30038c9f7a74c72b0e5f"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/preparation-authorization.json",
@@ -83,7 +83,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md",
-      "sha256": "27189044aedeabd136b0e3996c937e2c15dee6dee398c37bcd30aa43485779dc"
+      "sha256": "caa24adaf7866ca2429460147801be4892f6de1f201b0206360b2e021944c158"
     }
   ],
   "gates": {
@@ -94,7 +94,7 @@
     "A2": {
       "complete": false,
       "design": "Exact signatures/field/protocol/path choices prepared for review.",
-      "missing": "Phase-local configured assets, exact design approval and final impact binding; no finished-worker or serving/parity evidence prerequisite."
+      "missing": "Phase-local configured deployment/asset manifests via the exact API/environment binding, exact design approval and final impact satisfaction; no pre-built-worker or serving/parity prerequisite."
     },
     "A3": {
       "complete": false,

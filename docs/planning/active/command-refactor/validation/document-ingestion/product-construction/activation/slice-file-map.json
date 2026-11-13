@@ -683,6 +683,11 @@
           "slice": "I1",
           "exit": "I1-C2",
           "purpose": "Configured capability record/resolver and phase-local assets; optional evidence hashes do not gate defaults. Retain exact capacity/preparation/response checks."
+        },
+        {
+          "slice": "I1",
+          "exit": "I1-C2",
+          "purpose": "Exact deployment manifest discovery (explicit path then FRIDAY_EMBEDDING_MANIFEST), strict route/record lookup and public resolver; no YAML additions or remote lookup."
         }
       ]
     },
@@ -702,6 +707,11 @@
           "slice": "I2",
           "exit": "I2-C2",
           "purpose": "Retire temporary I1 unguarded branch only with coordinated admitted consumer switch."
+        },
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Bind catalog spec/legacy construction to the same configured resolver and environment snapshot; supported defaults positive with bound assets, no signature break."
         }
       ]
     },
@@ -721,6 +731,11 @@
           "slice": "I2",
           "exit": "I2-C2",
           "purpose": "Carry qualified capabilities for all selected catalog routes; preserve omitted-field load."
+        },
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Bind catalog spec/legacy construction to the same configured resolver and environment snapshot; supported defaults positive with bound assets, no signature break."
         }
       ]
     },
@@ -834,6 +849,11 @@
           "slice": "I2",
           "exit": "I2-C2",
           "purpose": "Route all maintained query/document operations through admitted prepared vectors."
+        },
+        {
+          "slice": "I2",
+          "exit": "I2-C1",
+          "purpose": "Expose read-only admitted store.destination as DestinationBinding through PreparedVectorStore; no implicit reopen or kernel-private access."
         }
       ]
     },
@@ -1355,6 +1375,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Exact installed nested module launch with connected stdin/stdout/stderr pipes, private request root, concurrent bounded IPC/diagnostic drains and profile deadlines; actual exchange and malformed/oversize/timeout/reap witnesses."
         }
       ]
     },

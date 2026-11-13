@@ -1292,7 +1292,7 @@
         "DI-34",
         "DI-35"
       ],
-      "assertions": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI must use the exact narrow adaptation, prove an existing origin-preserving mechanism, or stop and reconcile; forwarding the resolved string alone is insufficient. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism.",
+      "assertions": "Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI must use the exact narrow adaptation, prove an existing origin-preserving mechanism, or stop and reconcile; forwarding the resolved string alone is insufficient. Read-only text uses no embedding prerequisite. Explicitly exercise default-derived, environment, constructor and for_testing origins through the actual CLI\u2192Runtime path; A2 has already bound the source adaptation or proven retained mechanism. Exact resolver explicit/env precedence; no fallback for invalid explicit path; positive catalog/pool/default/legacy route-to-record binding and local assets with unchanged YAML, absent/duplicate/contradictory bindings refuse; origin forwarding unchanged.",
       "status": "planned_not_executed"
     },
     {
@@ -1372,7 +1372,7 @@
         "DI-22",
         "DI-08"
       ],
-      "assertions": "No Chat import: explicit Tools converter/session + LLM local counter and injected PreparedEmbeddingService + public Memory factory -> full plan -> one validated batch -> real disposable Chroma. Missing/mismatched broker space and invalid batch refuse before writes; same session converts once.",
+      "assertions": "No Chat import: explicit Tools converter/session + LLM local counter and injected PreparedEmbeddingService + public Memory factory -> full plan -> one validated batch -> real disposable Chroma. Missing/mismatched broker space and invalid batch refuse before writes; same session converts once. Construct public admitted ChromaVectorStore, obtain read-only store.destination without RuntimeKernel internals and supply the exact factory dependencies.",
       "status": "planned_not_executed"
     },
     {
@@ -1396,7 +1396,7 @@
     {
       "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_document_read_keeps_event_loop_responsive",
       "phase": "I3",
-      "exit": "I3-C3",
+      "exit": "I3-C4",
       "requirements": [
         "DI-05",
         "DI-06",
@@ -1414,7 +1414,7 @@
     {
       "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_document_read_discards_output_and_joins_worker",
       "phase": "I3",
-      "exit": "I3-C3",
+      "exit": "I3-C4",
       "requirements": [
         "DI-05",
         "DI-06",
@@ -1432,7 +1432,7 @@
     {
       "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_shutdown_drains_document_read_worker",
       "phase": "I3",
-      "exit": "I3-C3",
+      "exit": "I3-C4",
       "requirements": [
         "DI-05",
         "DI-06",
@@ -1444,7 +1444,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success.",
+      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success. Exercise lazy lifecycle bind after admission and read-only request owner without eager Memory construction.",
       "status": "planned_not_executed"
     },
     {
@@ -1734,7 +1734,7 @@
         "DI-23",
         "DI-26"
       ],
-      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication.",
+      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication. Launch the actual installed friday_tools.filesystem.readers.document_ingestion module from private request_root, verify installed origin and framed stdin/stdout exchange plus concurrent stderr flooding/drain; malformed/oversize/EOF, profile deadline defaults/overrides and no terminal output. Run in normal and optimized installed lanes.",
       "status": "planned_not_executed"
     },
     {
@@ -1758,6 +1758,21 @@
         "DI-26"
       ],
       "assertions": "Genuine row-only, column-only and combined hidden-dimension workbook on /read: unsupported_workbook_visibility with safe explanation, no converter worker/Memory/provider/store initialization. Hidden-sheet-only positive still extracts included visible sheets.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_read_extracts_genuine_document_content",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-01",
+        "DI-02",
+        "DI-04",
+        "DI-13",
+        "DI-14",
+        "DI-35"
+      ],
+      "assertions": "TM-A048 replacement: actual default /read extracts genuine PDF/DOCX/XLSX/PPTX source markers and metadata, rejects corrupt inputs; retains separate text/table/JSON dispatch assertions. Lifecycle cancellation/resource proof belongs to I3-C4.",
       "status": "planned_not_executed"
     }
   ],

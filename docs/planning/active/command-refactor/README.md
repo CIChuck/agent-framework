@@ -93,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Activation-package council round2/3 under the unchanged user-reviewed instructions: fresh Sol/Astra/Opus, complete Review A1–A8, zero mandatory findings and overall>=9.5 per seat. Bounded document corrections only; stop on success or after round3 for feedback. Configured capability records replace removed serving/parity prerequisites; shared worker proof is I3-C4 acceptance after build; affected workbooks are rejected clearly. No product generation or live effects.
+**Next gate:** FINAL activation-package council round3/3 under unchanged user-reviewed instructions: fresh Sol/Astra/Opus, complete Review A1–A8, zero mandatory findings and overall>=9.5 each. Review bounded worker launch/IPC, read-test timing and manifest discovery corrections plus the full activation package. Stop after this council for maintainer feedback regardless of outcome; no replacement/fourth round. No product generation, model campaign or live effects.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

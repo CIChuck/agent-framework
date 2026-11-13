@@ -4324,3 +4324,16 @@ The original approved common instructions remain byte-identical. Round 2 is the
 second of at most three fresh councils; no replacement/fourth round, construction,
 production/model/store/install effect or scope expansion is authorized. Current
 Gate A1–A5 remain incomplete. Controller checks and stable freeze precede launch.
+
+
+## 2026-11-13 — INGEST activation round 2 reconciled; final round 3 preparation
+
+All three seats completed all eight areas. Round 2 did not meet the gate; exact
+original reports/hashes and frozen controller close are retained in round2/results.
+The five mandatory IDs map to three bounded groups: selected worker module and
+connected IPC/private request root; /read lifecycle witness exit timing; exact
+configured manifest discovery/resolver/route binding. Related advisories clarify
+profile deadlines, lazy Chat composition, public headless destination access and
+raw text hashing. Only planning documents changed. The common brief is unchanged.
+Round 3 is final: stop for maintainer feedback afterwards, with no replacement,
+fourth council, construction, installs, models/stores or production effects.

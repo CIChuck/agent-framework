@@ -1,0 +1,18 @@
+{
+  "seat": "opus",
+  "round": 2,
+  "candidate": "c24ff0998010e960fb86c1a89b150ada079bbd46",
+  "report_sha256": "2f4dc8fcfa207afd6f1ec33b7758bd87d0f007c2f6ac665390e7b4b95c5370b6",
+  "verdict": "CHANGES_REQUESTED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 8.8,
+  "report_raw_total": 8.895,
+  "mandatory_findings": [
+    "M1 worker module/request root",
+    "M2 read test exit timing",
+    "M3 capability manifest discovery/resolver"
+  ],
+  "report_hash_verified": true,
+  "boundary_evidence": "Reported in original report; retained without fabrication."
+}
