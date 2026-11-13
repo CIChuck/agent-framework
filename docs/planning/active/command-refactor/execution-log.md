@@ -4364,3 +4364,18 @@ source path, product/test/guide code, dependency/install or model/store effect.
 Current activation and per-phase execution approvals remain incomplete. Fresh
 pass1/3 reviews the corrected stable package, then bounded iteration may continue
 within this extension only. No replacement or seventh round is authorized.
+
+
+## 2026-11-13 — INGEST extension pass1 reconciled; pass2/global round5 prepared
+
+All three round4 seats completed all eight areas. Sol/Astra VERIFIED, Opus
+CHANGES_REQUESTED with one required parser/test-selector classification finding;
+E1–E5 are satisfied. Original reports and the Opus entry-order disclosure are
+retained byte-exact with the controller frozen closing record. No replacement is
+started. Bounded planning corrections classify/directly test the parser, retain
+API54/import regressions and select Runtime DI; related settings, runtime-absent
+read, single holder, cooperative audit, IPC state and existing RSS sampler details
+are explicit. No product/test/guide/dependency code changed or effects ran.
+Fresh pass2 of the three-round extension assesses a new stable candidate under
+the same user-reviewed brief and current budget override. Stop on success or
+after global round6; no seventh round or construction follows automatically.

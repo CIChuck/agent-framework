@@ -1,0 +1,21 @@
+{
+  "initiative": "friday-command-refactor",
+  "branch": "feature/cmd-ingest-001",
+  "work_state": "started",
+  "delivery": "local",
+  "workflow": "activation_package_council",
+  "round": 4,
+  "maximum_rounds": 6,
+  "instructions_approved": true,
+  "current_review": "activation overview and linked contracts/maps/decision records",
+  "model_parity_precoding_campaign": "removed",
+  "hidden_rows_columns_in_included_sheet": "reject_workbook_actionably",
+  "worker": "shared Tools process service with Core typed lifecycle and Memory policy; frontend adapters",
+  "construction_approved": false,
+  "new_effects": false,
+  "additional_pass": 1,
+  "maximum_additional_passes": 3,
+  "document_binding": "Independent explicit path/environment resolver; no embedding manifest for read-only use",
+  "worker_acceptance": "I3-C4 after implementation; no pre-coding worker proof",
+  "capability_records": "configured identity and local assets; optional serving/parity evidence never gates operation"
+}

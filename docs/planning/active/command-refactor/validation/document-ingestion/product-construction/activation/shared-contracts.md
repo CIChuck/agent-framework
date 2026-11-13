@@ -1,6 +1,6 @@
 # INGEST activation appendix A2 — shared contracts
 
-Version 0.4, 2026-11-13. **Proposed exact design; not activated.** Prepared from
+Version 0.5, 2026-11-13. **Proposed exact design; not activated.** Prepared from
 `7a3e00bc9ef77adee25b61fc52ff91875e172738` and the unchanged
 [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md).
 The directive, REM and compatibility annex control except for the explicit
@@ -149,8 +149,14 @@ command: Literal['read','ingest']) -> FileCommandInput` only in `file_inputs`.
 It follows REM C exactly for quote/opaque-description/terminator semantics and
 returns raw recognized line-option tokens to Chat's retained `parse_line_limit`
 helper. It imports no Core/Memory types; Chat maps validated option primitives to
-Core's `ChunkingOptions`. Any document line option is refused before conversion;
-legacy malformed text-line behavior is retained. The new parser has no filesystem,
+Core's `ChunkingOptions`. For .pdf/.docx/.xlsx/.pptx paths, recognized unquoted
+line-option tokens before
+the terminator are rejected by this pure helper using only lexical suffix tests,
+before any filesystem access. Return retained raw line tokens for text/table
+paths; legacy malformed text-line behavior stays in Chat parse_line_limit. Tokens
+after -- are opaque description, never line options, and quoted option-like
+filenames remain paths. No path resolution or existence check occurs here. The
+new parser has no filesystem,
 provider or environment access. Handler-identity selection stays in Chat registry.
 
 ## 3. Configuration, assets and deterministic planning
@@ -215,8 +221,11 @@ revalidate assets at open rather than silently adopting changed files.
 
 Missing/unreadable settings or contradictory schema is typed `readiness` with a
 safe actionable message naming the document binding. Missing profile/assets is
-`missing_asset`, absent document libraries `missing_dependency`; tampered settings/manifest/profile
-bytes are `identity`. These binding/admission errors refuse before worker spawn,
+`missing_asset`, absent document libraries `missing_dependency`; manifest/profile bytes mismatching the hashes declared in the selected binding
+are `identity`. Settings content/schema errors are `readiness`; no settings-file
+tamper detection is claimed without an externally supplied expected hash. Record
+the settings-file hash when loaded and at Gate A2/A5 for traceability, not as
+implicit runtime attestation of operator-configured values. These binding/admission errors refuse before worker spawn,
 scratch creation, embedding or storage. Later binary drift is an identity failure
 in the worker before conversion; it cannot produce success or stored content.
 Plain-text `/read` remains available. The resolver validates scratch
@@ -398,6 +407,21 @@ Hidden worksheets retain their separate default exclusion. Visible-only workbook
 conversion and all other format rules are unchanged. No row/column filtering
 qualification is required for files refused under this approved policy.
 
+The Tools-owned read-only XLSX structural preflight runs before the conversion
+process, inside the same request/admission/cancellation scope and cold deadline.
+It is an async streaming scan with bounded cooperative batches (at most 64 KiB of
+XML input or 64 structural records per batch, yielding to the event loop after
+each batch). The existing compressed/member/expanded/row/cell caps remain hard. XML DTD/entity
+declarations are refused without expansion or linked-resource reads.
+Never parse an entire worksheet tree or build an unbounded list on the event
+loop; stop before conversion when included hidden dimensions are detected.
+The audit emits only safe counts/unit labels and performs no extraction fallback.
+The 100 ms heartbeat / <=1 s gap witness includes this preflight, not just the
+subprocess interval. Cancellation between batches discards audit state; no
+converter process, embedding or store operation starts for a refused workbook.
+If these bounded steps cannot meet responsiveness on the supported profile, fail
+I3-C4 and reconcile rather than silently moving blocking work into a frontend.
+
 ## 4. Worker, read-only request and publication
 
 The [shared worker decision](shared-worker-decision.md) applies to every frontend.
@@ -463,7 +487,7 @@ Version-1 IPC envelopes have exactly `version: 1`, `attempt_id: Id`,
 | new | parent -> child `open` | admitted snapshot locator/hash and bound conversion profile; enters converting |
 | converting | child -> parent `opened` | SourceDocument; enters converted |
 | converted | parent -> child `plan` | ResolvedChunkingOptions, expected space digest and declared trusted-factory frame length; reads one bounded factory frame, enters planning |
-| planning | child -> parent `planned` | ChunkPlan; returns converted, with one completed plan per session |
+| planning | child -> parent `planned` | ChunkPlan; enters planned, with no further plan allowed |
 | converting/planning | child -> parent `progress` | IngestionProgressEvent; state unchanged |
 | any live state | parent -> child `close` | empty record; discard work, then child `closed` with empty record; terminal |
 | any live state | child -> parent `failure` | IngestionFailure; terminal, output ineligible and parent drains/reaps |
@@ -510,6 +534,18 @@ thresholds, not new measurements:
 | Failed reap | Report `worker_not_quiescent`; mark service unhealthy and retain cleanup ownership/admission exclusion. No success or new work. Later confirmed reap may finish cleanup; unknown quiescence is not silently released. |
 | Ownership | No frontend import; progress, direct cancel, repeated cancel, timeout, close, headless/Runtime shutdown all exercise the same service. |
 
+Tools uses its already declared `psutil>=7.2.1` product dependency for RSS
+sampling: the retained child Process plus children(recursive=True), identified
+with PID/create-time, and memory_info().rss summed conservatively (not PSS).
+Sample at <=100 ms intervals, retain previously observed owned descendants through
+cleanup and record sampler/interval/platform and peak. PID reuse, lost accounting
+or denied access cannot be silently ignored as zero; fail the supported-profile
+resource witness and invalidate success. Signal/reap uses the owned process group
+and tracked child identities. No global process sweep or new dependency is added;
+A5 binds the existing locked version and supported OS profile. Installed witnesses
+report initializer/setup/conversion time separately while retaining the same
+combined cold deadline, and make closing/terminal IPC state bookkeeping visible.
+
 Input ceilings remain those below in readiness-disposition; boundary refusal is
 proved without an exhaustive performance benchmark. A bound that cannot be met
 fails I3-C4 for reconciliation, never auto-increases limits or relaxes cleanup.
@@ -537,10 +573,13 @@ false success. Existing extraction drains remain ordered before closing clients.
 Chat does not use this container. Its existing builder and public
 `FrameworkAsyncClientLifecycle` preserve no-argument construction and `close`,
 adding optional keyword-only `ingestion_entry: IngestionEntry | None = None` and
-`document_converter: DocumentConverter | None = None`. Keep the public dataclass
-frozen if desired, but put mutable bindings/closing state/retained close tasks in
-a typed private `_OwnedIngestionState` holder declared in adapters.py, not in
-frozen fields. A short synchronous lock protects binding/closing transitions; no
+`document_converter: DocumentConverter | None = None`. Use the public frozen dataclass with a custom keyword-only constructor
+(`init=False`) that creates exactly one typed private `_OwnedIngestionState`
+holder in adapters.py. The two constructor arguments seed that holder directly;
+read-only accessors read the holder. Do not also retain stale constructor copies
+in separate frozen fields: the holder is the single source of truth for bindings,
+closing state and retained tasks. Initial assignment to the frozen wrapper occurs
+only in construction; all later binding mutations are inside the holder. A short synchronous lock protects binding/closing transitions; no
 I/O or await occurs under it. Async cleanup awaits outside the lock. This adds no
 helper module and no repeated object.__setattr__ mutation of the frozen wrapper.
 
@@ -572,6 +611,16 @@ try/finally around the existing RuntimeKernel. RuntimeKernel, its private `_di`,
 its exports and existing CLI executable surfaces remain unchanged; this is a
 reusable public capability, not a new wired CLI/TUI command. No private-field
 access, RuntimeKernel patch or frontend-specific conversion engine is implied.
+
+When the default file handler receives CommandContext.runtime=None, document
+/read still uses the same public Tools factory with a request-entry snapshot of
+the environment. No new file-command setting flag is added; explicit-path
+injection remains the public Tools API option. The handler owns that
+converter/session locally in retained try/finally cleanup, including repeated
+cancellation, and closes it before returning or propagating an error. It does not
+invent a runtime, Memory, model client or shared global owner. Plain text retains
+its existing direct read path. This registry/files adapter work is I3-C3, and
+its responsive/cancel/drain proof is I3-C4; no app.py or CommandContext edit.
 
 For headless read-only use, call the public Tools settings resolver/factory
 with settings_path or the explicit environment snapshot, then

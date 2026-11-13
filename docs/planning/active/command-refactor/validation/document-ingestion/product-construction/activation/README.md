@@ -5,7 +5,7 @@ maintainer decisions directly: no separate model/parity qualification campaign;
 clear whole-workbook refusal for affected XLSX inputs; one shared process service.
 Worker proof is implementation acceptance at I3-C4, not a pre-coding prerequisite.
 
-Version 0.4, 2026-11-13. Prepared under Chuck's latest **proceed**, following
+Version 0.5, 2026-11-13. Prepared under Chuck's latest **proceed**, following
 [verified focused council round 2](../focused-council/round2/results/report.md).
 This direction authorizes this planning package. **Product construction is not
 activated.** The reviewed [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md)

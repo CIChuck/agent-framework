@@ -1,0 +1,19 @@
+{
+  "seat": "astra",
+  "round": 4,
+  "additional_pass": 1,
+  "candidate": "a4b18fe5743ea8543bd000f6f85d8225d4dbb676",
+  "report_sha256": "d1834522f6fd7f667c919816b1f102f923f9f5a5d17d59c05f949a8d282203a2",
+  "verdict": "VERIFIED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.555,
+  "mandatory_findings": [],
+  "report_hash_verified": true,
+  "compared_boundary_fields": [
+    "boundary",
+    "pins",
+    "preserved"
+  ],
+  "repo_unchanged_by_collection": true
+}

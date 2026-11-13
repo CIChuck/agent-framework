@@ -387,6 +387,11 @@
           "slice": "I3",
           "exit": "I3-C3",
           "purpose": "Lazily resolve/register one shared converter for four-format commands through the public Tools binding; no document settings resolution at startup/plain reads or Memory initialization for /read. Private typed mutable lifecycle holder is within adapters.py. C4 retains full cancel/drain proof."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Constructor kwargs seed one typed mutable holder under frozen custom-init wrapper; accessors read holder, no stale duplicated state."
         }
       ]
     },
@@ -406,6 +411,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "runtime=None document /read uses same public Tools binding with locally owned converter/session in retained try/finally; no new runtime, Memory or app/context file edit. Full cancellation proof C4."
         }
       ]
     },
@@ -425,6 +435,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "runtime=None document /read uses same public Tools binding with locally owned converter/session in retained try/finally; no new runtime, Memory or app/context file edit. Full cancellation proof C4."
         }
       ]
     },
@@ -670,6 +685,11 @@
           "slice": "I3",
           "exit": "I3-C3",
           "purpose": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Direct classified parser witness and retained API54/stdlib regressions; lexical document line-option refusal without filesystem or environment access."
         }
       ]
     },
@@ -1530,6 +1550,11 @@
           "slice": "I3",
           "exit": "I3-C1",
           "purpose": "Public document-settings resolver and converter factory: explicit path then FRIDAY_DOCUMENT_CONVERSION_MANIFEST, strict independent asset/profile/scratch binding, no embedding lookup. Implement versioned IPC states and early fd redirection after silent parent-package initialization within existing scope."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Bounded cooperative XML visibility audit included in heartbeat/cancellation window before converter process; existing psutil product sampler and explicit planned/terminal IPC state, honest settings errors."
         }
       ]
     },

@@ -1,6 +1,6 @@
 # INGEST activation — current requirement dispositions
 
-Version 0.4, 2026-11-13. These are bounded applications of the recorded maintainer
+Version 0.5, 2026-11-13. These are bounded applications of the recorded maintainer
 [model decision](model-qualification-decision.md), [Office decision](office-visibility-decision.md)
 and [shared-worker decision](shared-worker-decision.md). No product or effects
 approval is supplied. Historical directive/REM/annex and evidence bytes stay in
@@ -41,8 +41,8 @@ provisioning is an offline deployment binding (explicit resolver path or
 FRIDAY_EMBEDDING_MANIFEST), with unchanged model YAML and no new model campaign.
 It must be included in the final operator impact/guide and exact approval package.
 The model-decision record's older "no new council follows" describes that earlier
-preparation point; the later user-approved council authorization controls these
-three review rounds. No technical parent or historical record is rewritten.
+preparation point; the later user-approved council authorization controlled the original three rounds; the current extension controls global
+rounds 4–6. No technical parent or historical record is rewritten.
 
 
 The current document settings binding is separate from the embedding manifest:
@@ -52,3 +52,12 @@ or embeddings, and is unnecessary for plain-text reads. I3-C1/C3 owns its resolv
 and composition, C4 its lifecycle, C5 installed/documentation acceptance. This
 closes a construction-settings omission without adding Runtime YAML, new source
 paths, asset downloads, vendor evaluation or serving-qualification gates.
+
+
+Direct file-parser and retained import/API witnesses are classified and selected
+at I3-C3, while Runtime shutdown remains I3-C4. Document settings are trusted
+operator configuration with schema errors distinguished from bound asset hash
+mismatches. A runtime-absent /read handler owns/drains its converter locally;
+existing runtime paths use the one mutable holder. Bounded cooperative workbook
+preflight stays in the shared Tools layer, before conversion, with heartbeat
+proof; process RSS sampling uses the already declared psutil dependency.

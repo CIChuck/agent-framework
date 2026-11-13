@@ -1426,7 +1426,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Cancel actual /read before start, during conversion and after child completion before registry return; repeat cancellation during shielded join. No late result, orphan child, Memory/provider/store effect.",
+      "assertions": "Cancel actual /read before start, during conversion and after child completion before registry return; repeat cancellation during shielded join. No late result, orphan child, Memory/provider/store effect. runtime=None owner also joins/drains on repeated cancellation before returning.",
       "status": "planned_not_executed"
     },
     {
@@ -1444,7 +1444,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success. Exercise lazy lifecycle bind after admission and read-only request owner without eager Memory construction. Lazy converter-only bind uses typed mutable holder under frozen wrapper; close and bind/start race is ordered, no worker after closing, no required entry.",
+      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success. Exercise lazy lifecycle bind after admission and read-only request owner without eager Memory construction. Lazy converter-only bind uses typed mutable holder under frozen wrapper; close and bind/start race is ordered, no worker after closing, no required entry. Constructor kwargs seed the single holder; accessors reflect later bind; no stale frozen copies.",
       "status": "planned_not_executed"
     },
     {
@@ -1721,7 +1721,7 @@
         "DI-25"
       ],
       "authority": "office-visibility-decision.md",
-      "assertions": "Row-only, column-only and combined hidden dimensions in included worksheets return unsupported_workbook_visibility with actionable explanation; no conversion, embedding or storage. Visible-only and hidden-sheet-excluded controls retain success; source unchanged.",
+      "assertions": "Row-only, column-only and combined hidden dimensions in included worksheets return unsupported_workbook_visibility with actionable explanation; no conversion, embedding or storage. Visible-only and hidden-sheet-excluded controls retain success; source unchanged. Include large synthetic structural fixture: streaming audit yields bounded batches inside heartbeat window before any converter process; rejection/cancel has no conversion, embedding or store effects.",
       "status": "planned_not_executed"
     },
     {
@@ -1734,7 +1734,7 @@
         "DI-23",
         "DI-26"
       ],
-      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication. Launch the actual installed friday_tools.filesystem.readers.document_ingestion module from private request_root, verify installed origin and framed stdin/stdout exchange plus concurrent stderr flooding/drain; malformed/oversize/EOF, profile deadline defaults/overrides and no terminal output. Run in normal and optimized installed lanes. Exercise v1 IPC message/state transitions, unknown/out-of-order frames and capability-record mutation before child counter creation. Parent package imports are silent/offline; count their time/RSS in limits; no shim/init-source edits.",
+      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication. Launch the actual installed friday_tools.filesystem.readers.document_ingestion module from private request_root, verify installed origin and framed stdin/stdout exchange plus concurrent stderr flooding/drain; malformed/oversize/EOF, profile deadline defaults/overrides and no terminal output. Run in normal and optimized installed lanes. Exercise v1 IPC message/state transitions, unknown/out-of-order frames and capability-record mutation before child counter creation. Parent package imports are silent/offline; count their time/RSS in limits; no shim/init-source edits. Explicit planned/closing/terminal transitions reject duplicate plans; sample RSS with bound psutil profile/PID identity, never treat denied/lost accounting as zero; report startup/conversion timing separately.",
       "status": "planned_not_executed"
     },
     {
@@ -1757,7 +1757,7 @@
         "DI-13",
         "DI-26"
       ],
-      "assertions": "Genuine row-only, column-only and combined hidden-dimension workbook on /read: unsupported_workbook_visibility with safe explanation, no converter worker/Memory/provider/store initialization. Hidden-sheet-only positive still extracts included visible sheets.",
+      "assertions": "Genuine row-only, column-only and combined hidden-dimension workbook on /read: unsupported_workbook_visibility with safe explanation, no converter worker/Memory/provider/store initialization. Hidden-sheet-only positive still extracts included visible sheets. Include large synthetic structural fixture: streaming audit yields bounded batches inside heartbeat window before any converter process; rejection/cancel has no conversion, embedding or store effects.",
       "status": "planned_not_executed"
     },
     {
@@ -1785,7 +1785,7 @@
         "DI-29",
         "DI-35"
       ],
-      "assertions": "Explicit settings path wins over environment; valid provisioned local profile/assets bind exactly; invalid explicit never falls back. Unknown/duplicate keys, relative roots, hash/size/path escape and missing binding refuse before scratch creation, worker, Memory or embedding. No heavyweight import or asset fetch.",
+      "assertions": "Explicit settings path wins over environment; valid provisioned local profile/assets bind exactly; invalid explicit never falls back. Unknown/duplicate keys, relative roots, hash/size/path escape and missing binding refuse before scratch creation, worker, Memory or embedding. No heavyweight import or asset fetch. Distinguish schema/content readiness errors from bound manifest/profile hash identity errors; record settings digest without claiming undeclared tamper detection.",
       "status": "planned_not_executed"
     },
     {
@@ -1797,7 +1797,7 @@
         "DI-29",
         "DI-35"
       ],
-      "assertions": "Actual default /read plain text succeeds with document and embedding bindings absent. Genuine document /read uses provisioned document binding with poisoned/absent embedding manifest and no Memory/embedding initialization. Missing/invalid document binding gives actionable format-local refusal, zero worker/store effects; /ingest shares that binding.",
+      "assertions": "Actual default /read plain text succeeds with document and embedding bindings absent. Genuine document /read uses provisioned document binding with poisoned/absent embedding manifest and no Memory/embedding initialization. Missing/invalid document binding gives actionable format-local refusal, zero worker/store effects; /ingest shares that binding. Also invoke default handler with runtime=None: same factory/config, local try/finally ownership, no constructed runtime/Memory and unaffected plain text.",
       "status": "planned_not_executed"
     },
     {
@@ -1822,6 +1822,20 @@
         "DI-35"
       ],
       "assertions": "Resolved factory carries selected record digest; serialized roundtrip preserves it. Same bound bytes create counter; mutated record before create refuses without following a new manifest or embedding/store effects. I3 separately proves parent-to-worker transfer drift.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-commands/tests_commands/test_file_inputs.py::test_parse_file_input_rem_c_semantics_and_document_option_refusal",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-05",
+        "DI-06",
+        "DI-07",
+        "DI-11",
+        "DI-35"
+      ],
+      "assertions": "Direct public helper: quoted/unquoted paths, repeated interior whitespace, Unicode/apostrophes/backslashes, invalid/empty/unmatched quote paths, option order, -- opaque suffix and literal description quotes, prefix lookalikes/default-handler scope. /read chunk overrides and recognized document line tokens before -- refuse lexically before I/O; after -- remains literal. Text/table raw line tokens retain legacy downstream behavior. Fresh module closure stdlib-only, no Core/Memory/frontend imports or filesystem/environment access; retained separate API54/import-boundary witnesses run.",
       "status": "planned_not_executed"
     }
   ],
@@ -1929,6 +1943,46 @@
       "execution_class": "offline_disposable_or_mocked_provider_required",
       "execution_approval": false,
       "rule": "Only new shared-worker shutdown node; unmapped existing assertion bodies retained."
+    },
+    {
+      "path": "packages/friday-commands/tests_commands/test_file_inputs.py",
+      "exists_at_baseline": false,
+      "baseline_sha256": null,
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "New pure parser tests at I3-C3; synthetic strings, no provider/store/filesystem effects. Classify helpers before execution."
+    },
+    {
+      "path": "packages/friday-commands/tests_commands/test_import_boundary.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "d4e9d0761a0a83648dea7419384484f303b1ac0737271e21e3b7010f7abc6318",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Retain existing stdlib/optimized import-boundary regression bodies unchanged; offline fresh interpreter only."
+    },
+    {
+      "path": "packages/friday-commands/tests_commands/test_memory_queries.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "f68e058a46ed7907882c6c53218437d208735256adc4efcf1565e9edbb24029b",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Only retained test_memory_query_specs_exports_and_factory selector is added for API54; other nodes need their existing phase approval. No body edits."
+    },
+    {
+      "path": "packages/friday-llm/tests_llm/test_model_library.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "d7a48c564ad05498700722539026090657d68f44a2554bbccea031b429d189de",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Existing explicitly selected I1 local resolver/model-constructor regressions, no live requests; private environment/asset setup at later guarded phases requires mapped approval before edit."
+    },
+    {
+      "path": "packages/friday-finance/tests/test_basics.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "4fc47aa91dd2a8631c8cad6cdc1ea4956438544bff89027d734739b1c1a3d7d3",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Already approved retained offline non-default Finance basics selector; source bytes match baseline. No live integration or credential module, no body changes or provider calls. Existing live-module exclusion is unchanged."
     }
   ],
   "helper_rule": "Keep all existing helper/fixture bytes by default. Only the exact local mock-response/embedding fixtures in mapped modules, packages/friday-memory/tests_memory/conftest.py, and named new test modules may gain synthetic capabilities. No shared session/diagnostic fixture rewrite; six dual-role files retain one identity and no extra node credit. Add opt-in fixtures for mapped nodes; do not replace a widely shared fixture globally. Any shared fixture body change requires enumerating its dependent cases first. Named opt-in fixtures: qualified_mock_embedding_model, admitted_vector_store, synthetic_embedding_capability; use per-case dimensions.",
@@ -2000,5 +2054,19 @@
     "hidden-rows.xlsx": "Included sheet hidden-row rejection.",
     "hidden-columns.xlsx": "Included sheet hidden-column rejection.",
     "hidden-rows-columns.xlsx": "Included sheet combined hidden-row/column rejection."
-  }
+  },
+  "retained_regression_selectors": [
+    {
+      "selector": "packages/friday-commands/tests_commands/test_import_boundary.py",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "rule": "Bodies unchanged; stdlib/optimized boundary."
+    },
+    {
+      "selector": "packages/friday-commands/tests_commands/test_memory_queries.py::test_memory_query_specs_exports_and_factory",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "rule": "Body unchanged; exact API54/root exports."
+    }
+  ]
 }

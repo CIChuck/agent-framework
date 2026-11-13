@@ -1,6 +1,6 @@
 # INGEST activation — validation execution plan
 
-Version 0.4, proposed A3/A5 plan. **No commands here were run as product validation.**
+Version 0.5, proposed A3/A5 plan. **No commands here were run as product validation.**
 Only execute a phase after its exact approval and prepared isolated interpreter,
 source snapshot, qualified assets and permitted effects have been bound. No
 working `.venv`, dirty configuration or user `.friday*` store is a test target.
@@ -18,7 +18,7 @@ Arguments below are future argv, not shell commands to replay against production
 | --- | --- |
 | I1 | `-m pytest packages/friday-core/tests_core/test_interfaces.py packages/friday-llm/tests_llm/test_embedding_limits.py packages/friday-llm/tests_llm/test_embeddings.py packages/friday-llm/tests_llm/test_model_library.py packages/friday-memory/tests_memory/test_adapters/test_vector.py packages/friday-memory/tests_memory/test_adapters/test_simple_vector.py packages/friday-memory/tests_memory/test_maintenance/test_recovery_participant.py`. New foundation witnesses must exist with exact node binding; missing files do not earn proof. Existing unmodified legacy positives retain original preparation through I1. |
 | I2 | `-m pytest tests/integration/test_embedding_compatibility.py` plus exact module/node selectors from the approved phase case map for changed adapters, recovery, extraction/tasks, Runtime/CLI and existing wrappers. Full B/N positive operations and R controls are distinct; no passing refusal-only profile. |
-| I3 | `-m pytest packages/friday-commands/tests_commands/test_file_inputs.py packages/friday-tools/tests_tools/test_document_ingestion.py packages/friday-memory/tests_memory/test_document_ingestion.py packages/friday-chat/tests_chat/test_document_ingestion.py packages/friday-chat/tests_chat/test_files_replay_shell.py tests/integration/test_document_ingestion.py tests/integration/test_embedding_compatibility.py`. Retain all earlier unwaived regressions. |
+| I3 | `-m pytest packages/friday-commands/tests_commands/test_file_inputs.py packages/friday-commands/tests_commands/test_import_boundary.py packages/friday-commands/tests_commands/test_memory_queries.py::test_memory_query_specs_exports_and_factory packages/friday-runtime/tests_runtime/test_di.py packages/friday-tools/tests_tools/test_document_ingestion.py packages/friday-memory/tests_memory/test_document_ingestion.py packages/friday-chat/tests_chat/test_document_ingestion.py packages/friday-chat/tests_chat/test_files_replay_shell.py tests/integration/test_document_ingestion.py tests/integration/test_embedding_compatibility.py`. Retain all earlier unwaived regressions. |
 | AG | Full affected offline module allowlist after helper/live classification, explicit `packages/friday-transcript/tests/`, `packages/friday-finance/tests/test_basics.py` and all named root integration nodes. Actual installed profile probe below in ordinary and optimized modes; final test migration and authored documentation review. |
 
 Installed probe argv is `-I -B tests/integration/ingest_installed_probe.py` and
@@ -90,3 +90,11 @@ with plain-text /read and embedding-independent document /read still usable.
 The installed probe uses this same binding. I3-C4 covers IPC state invalidity,
 parent-package import behavior/cost, cross-process counter-record drift and
 converter-only lifecycle ownership. These are post-build acceptance obligations.
+
+I3-C3 directly runs the classified new parser witness in test_file_inputs.py,
+retains the existing import-boundary module and exact API54 node unchanged, and
+I3-C4 runs the classified Runtime test_di.py shutdown witness. Every explicit
+new/retained module above has an offline module classification; exact helper and
+node expansion still precedes execution. No import/setup failure earns refusal
+credit. Include cooperative preflight in heartbeat timing, runtime=None local
+/read ownership and the named psutil sampler in the existing C4 profile.
