@@ -182,5 +182,12 @@
       ]
     },
     "scope_note": "Static base-node inventory only, not all repository tests or runtime parameter collection. Lab/security/readiness/experiment suites are outside this initial product migration inventory; every newly affected obligation must be inventoried/mapped before change. Root pytest also discovers experiments/*/tests."
+  },
+  "helper_inventory": {
+    "path": "baseline-helper-inventory.json",
+    "sha256": "8bd13dc913f9c2295e3ee766efa5dac1c53a4bf7c7ea816e8aa3b1725a38d266",
+    "helper_modules": 30,
+    "test_node_credit": 0,
+    "classification": "Separate support inventory; offline/live reviewed before execution."
   }
 }

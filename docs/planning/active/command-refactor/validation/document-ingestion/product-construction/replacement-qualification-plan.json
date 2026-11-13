@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "status": "required_before_A1_not_qualified",
+  "authority": "No model is selected or inference authorized by this document. All identities below are logical scenario slots.",
+  "Q_gate": [
+    "RD-01",
+    "RD-05",
+    "A1"
+  ],
+  "qualification_before": "I1 activation",
+  "real_serving_required": true,
+  "deterministic_operational_proof": "Permitted later under the annex; not a substitute for actual model/dependency/counter feasibility or quality evidence.",
+  "required_manifest_fields": [
+    "scenario_id",
+    "qualification_type=actual_serving",
+    "service_profile_and_configuration_family",
+    "immutable_model_artifact_identity",
+    "serving_endpoint_instance_evidence",
+    "preparation_and_normalization_identity",
+    "counter_asset_paths_and_sha256",
+    "effective_input_capacity_and_batch_limit",
+    "output_dimensions",
+    "boundary_parity_evidence",
+    "dependency_profile_and_artifact_manifest",
+    "approved_effects_receipt",
+    "planned_positive_and_refusal_nodes",
+    "fresh_namespace_and_installed_lanes"
+  ],
+  "scenarios": [
+    {
+      "id": "B",
+      "required_distinction": "Selected baseline and unchanged configuration families",
+      "required_proof": "Baseline qualification, original versus corrected preparation explicitly distinguished.",
+      "qualified": false,
+      "immutable_identity": null,
+      "evidence": null,
+      "counter_assets": [],
+      "planned_witnesses": [
+        "test_existing_embedding_configuration_and_origin",
+        "test_model_change_preserves_operational_contract"
+      ],
+      "candidate_positive_refusal_stages": [
+        "I2",
+        "AG"
+      ]
+    },
+    {
+      "id": "N-DIM",
+      "required_distinction": "Replacement output dimension differs from B",
+      "required_proof": "Actual qualified deployment and fresh coherent namespace; positive consumers plus dimension/foreign-space refusals.",
+      "qualified": false,
+      "immutable_identity": null,
+      "evidence": null,
+      "counter_assets": [],
+      "planned_witnesses": [
+        "test_existing_embedding_configuration_and_origin",
+        "test_model_change_preserves_operational_contract"
+      ],
+      "candidate_positive_refusal_stages": [
+        "I2",
+        "AG"
+      ]
+    },
+    {
+      "id": "N-SPACE",
+      "required_distinction": "Dimensions equal B; different model/artifact/preparation identity",
+      "required_proof": "Actual qualified deployment and fresh namespace; same-dimension foreign identity must refuse.",
+      "qualified": false,
+      "immutable_identity": null,
+      "evidence": null,
+      "counter_assets": [],
+      "planned_witnesses": [
+        "test_existing_embedding_configuration_and_origin",
+        "test_model_change_preserves_operational_contract"
+      ],
+      "candidate_positive_refusal_stages": [
+        "I2",
+        "AG"
+      ]
+    },
+    {
+      "id": "N-CAP",
+      "required_distinction": "Replacement effective input capacity is smaller than B",
+      "required_proof": "Actual qualified deployment; valid below-limit positives and overflow refusal without truncation.",
+      "qualified": false,
+      "immutable_identity": null,
+      "evidence": null,
+      "counter_assets": [],
+      "planned_witnesses": [
+        "test_existing_embedding_configuration_and_origin",
+        "test_model_change_preserves_operational_contract"
+      ],
+      "candidate_positive_refusal_stages": [
+        "I2",
+        "AG"
+      ]
+    }
+  ],
+  "scenario_reuse": "One real profile may serve multiple N slots only when each required distinction and parity/counter/capacity evidence is independently bound.",
+  "activation_rule": "Any missing identity, asset, parity or authorized-effects evidence stops Q/A1. No fixture-only completion, silent default model change or installation is allowed."
+}

@@ -4015,3 +4015,28 @@ started/local initiative, without changing historical gates or reviewed technica
 bytes. Reviewer and controller frozen boundaries passed; closeout admin and
 non-planning preservation results are recorded separately. No product/test/guide/
 dependency/model/store operation, cleanup, push or acceptance occurred.
+
+
+## 2026-11-12 — three additional bounded INGEST directive council passes authorized
+
+Chuck directs “proceed” and at most three additional councils with bounded changes.
+[Authorization](validation/document-ingestion/product-construction/correction-loop/authorization.json)
+records global rounds3–5, stopping on the all-seat9.5 gate or after the third
+additional pass. No fourth additional pass, replacement bypass, product generation
+or new effects are inferred. Prior rounds and original evidence stay historical.
+
+Additional pass1 corrects the Q/implementation dependency: actual B and N-DIM/
+N-SPACE/N-CAP qualification is explicit before I1, with identity/counter/asset/
+parity bindings still OPEN until evidenced. Candidate N positives/refusals remain
+post-build. No deterministic fixture is promoted into real serving feasibility.
+Phase source lists are honestly primary seams with exact A2/A3 coverage still
+required; DI24/33 exits and all19 named FC nodes are joined. Unwaived unchanged-
+scope regressions block intermediate exits. Thirty non-test support modules are
+statically inventoried with no test-count credit, and the known CLI default-
+origin forwarding gap must be resolved in A2.
+
+The raw historical preparation receipt is preserved and excluded from readable
+review inputs. A separate metadata-only projection retains commands/exits/output
+digests without stdout/stderr payloads. Approved parent requirements, product,
+tests, dependencies, guides, dirty YAML and user stores are unchanged. Conditional
+v0.3 and companion are document drafts; all A1–A5 and Q prerequisites still apply.

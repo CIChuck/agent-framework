@@ -1,10 +1,10 @@
 {
-  "version": 2,
+  "version": 3,
   "initiative": "friday-command-refactor",
   "unit": "INGEST-PRODUCT-DIRECTIVE-PREPARATION",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "branch": "feature/cmd-ingest-001",
-  "state": "corrected conditional draft; round2 document review only",
+  "state": "conditional draft v0.3; additional pass1/3 review only",
   "inputs": [
     {
       "path": "AGENTS.md",
@@ -92,7 +92,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-test-summary.json",
-      "sha256": "d0b8cddd06bddfd3a1b74924b3d4dc14bdad15ea200878ec348617a7676bbf5a"
+      "sha256": "a3f2c03e5b9a0f3955d2f209f67e5988c2f21e7ba8f8ca35dc61d12adc8d4069"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/test-migration-seed.json",
@@ -104,19 +104,11 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
-      "sha256": "48a87bde31574763352f44eb9f1beb20e0be545d309aefe3240a66dd52ca994e"
+      "sha256": "5a332d18ef7511e13fd222cd49f2cabaa90a0bf092e37c072481c119688f183d"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
-      "sha256": "e7350f7810e5d7d51c93aba0fa66e3541e464134d4f815d6ec2d81707e7e2af1"
-    },
-    {
-      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/authorization.json",
-      "sha256": "c593b36da42cb3897d7bb0bd272d28133e24321093aee27e7dda58534cc4ffbc"
-    },
-    {
-      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/correction-brief.json",
-      "sha256": "0940534768dfcd42340e76a63d8ce9e1ee796d87703e658e934e0fc80d32360f"
+      "sha256": "2be1e401aa68d8fdff29811ef622c8c5c6ee1cd46b811be211787f2a3ad49bea"
     },
     {
       "path": "docs/planning/active/command-refactor/approval/ingest-existing-store-policy.md",
@@ -129,6 +121,26 @@
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md",
       "sha256": "fc681e1c483b3acb400b5a5854b9208b66c4401fc4a7455d778ca80b7b475f7f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/authorization.json",
+      "sha256": "57bb75cb8b27c35835049a642486d780b081672c5cf4bc34be2a9110fa384a3f"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass1/correction-brief.json",
+      "sha256": "3cac3865da115473536529782a609e47b4319efb51ce7e3ca8fb493fbe1aec93"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/replacement-qualification-plan.json",
+      "sha256": "10466424fb2cb6ef65d7bb86598abc030414e8a068bb105047a9a7a08c5f0b92"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-helper-inventory.json",
+      "sha256": "8bd13dc913f9c2295e3ee766efa5dac1c53a4bf7c7ea816e8aa3b1725a38d266"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/preparation-checks-metadata.json",
+      "sha256": "bfe9838110801f129c86b193566980b38dd06dfb5d58ccd49fc2b5bafdcb05d7"
     }
   ],
   "required_final_activation_appendices": [
@@ -136,8 +148,13 @@
     "exact shared contracts/signatures/serialization/vectors/assets/limits",
     "per-slice exact file allowlist and case-level migration exceptions",
     "exact post-readiness impact binding and maintainer approval",
-    "prepared validation environment and effects/window record"
+    "prepared validation environment and effects/window record",
+    "Actual B/N-DIM/N-SPACE/N-CAP qualification identity/counter/asset/parity manifest before I1, not merely node definitions"
   ],
   "all_technical_parent_bytes_preserved": true,
-  "correction_base": "5f43d424e3b695c3fb85227f74830a7d1dc895cf"
+  "correction_base": "be3aed3a9ba5629c548e36437e7e01a7333210d1",
+  "review_input_exclusions": {
+    "preparation-checks.json": "Raw historical stdout/stderr is excluded and hash-only; metadata projection above supplies command/exit/digests.",
+    "authority_navigation_log_and_old_councils": "Hash-only or safe current controls; no payload/history/peer report reads."
+  }
 }

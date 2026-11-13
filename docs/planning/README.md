@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | INGEST conditional directive council round2 is closed BLOCKED: Sol incomplete due to excluded receipt text, Astra below9.5, and Opus retains N replacement qualification finding. Chuck to disposition the bounded correction proposal and any further round; no automatic third round, product construction or new effects. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | INGEST conditional directive v0.3: additional pass1/3 (global round3) of fresh Sol/Astra/Opus correction-first/full document review. Require every seat VERIFIED, no mandatory findings and coverage/overall>=9.5; stop on success or after additional pass3. No product construction or new effects. |
 
 ## Completed
 

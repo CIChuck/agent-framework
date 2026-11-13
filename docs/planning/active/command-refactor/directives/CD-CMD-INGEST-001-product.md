@@ -1,15 +1,16 @@
 # CD-CMD-INGEST-001 — shared document ingestion implementation
 
-Version: **0.2, corrected conditional construction draft — council round 2**, 2026-11-12.
+Version: **0.3, bounded corrected conditional draft — additional pass 1/3 (global round 3)**, 2026-11-12.
 Initiative: `friday-command-refactor`; branch: `feature/cmd-ingest-001`.
 Source and test baseline: `8c36d8e26c618032c1ff536004a582c07ec56a5b`.
-Execution phase: **validation**; validation state: **in_review, round 2**.
+Execution phase: **validation**; validation state: **in_review, additional pass 1/3**.
 
-Chuck's latest “proceed” authorizes the bounded document correction and one fresh
-Sol/Astra/Opus review after his document review. It does not approve these bytes
-for product construction or close Gate A. Product code, tests, dependencies,
-configuration and stores remain untouched. The prior round is historical;
-no automatic third round or implementation is authorized.
+Chuck authorizes bounded planning corrections and **at most three additional
+Sol/Astra/Opus council passes**, global rounds 3–5. Stop when every seat is
+VERIFIED with coverage/overall >=9.5 and no mandatory findings, or after the third
+additional council, whichever comes first. This is additional pass 1/3. Earlier
+rounds are historical. This authorization grants no product construction, new
+installation, model/service window, configuration/store operation or Gate-A closure.
 
 ## 1. Authority, objective and activation
 
@@ -47,7 +48,7 @@ Activation requires **all** of the following, recorded against exact bytes:
 
 | Gate | Required record before product generation |
 | --- | --- |
-| A1 — measured readiness | Close the **Q, pre-construction qualification** column for RD-01–07 in the readiness decision and phase map: exact upstream packages/assets/model/counter feasibility, unchanged-baseline positives, proposed dependency graph and approved behavioral dispositions. Gate A still requires its own aggregate readiness review at the existing 9.5 threshold. New product extras, guards, consumer integration and installed candidate proofs are **post-build** obligations at their named I/AG exits, not prerequisites for permission to create them. No unqualified baseline is labelled compatible; no parent requirement is waived. |
+| A1 — measured readiness | Close the **Q, pre-construction qualification** column for RD-01–07 in the readiness decision and phase map: exact upstream packages/assets/model/counter feasibility for B **and all three N replacement scenarios** in the [qualification plan](../validation/document-ingestion/product-construction/replacement-qualification-plan.json), unchanged-baseline positives, proposed dependency graph and approved behavioral dispositions. Each N identity/counter/dimension/capacity/preparation must be qualified and asset-manifest-bound before I1; merely naming future N tests is insufficient. Gate A still requires its own aggregate readiness review at the existing 9.5 threshold. New product extras, guards, consumer integration and installed candidate proofs are **post-build** obligations at their named I/AG exits, not prerequisites for permission to create them. No unqualified baseline is labelled compatible; no parent requirement is waived. |
 | A2 — exact contracts | Freeze exact signatures, model fields/runtime invariants, errors, serialization/digest vectors, imports, capability/asset manifests and limits as an approved **design appendix**, including Tools selection/provenance needs. A names-only sketch is insufficient. This does not require product classes to exist before permission to create them: implementation validation occurs at I1/I2/I3 exits. An unimplemented protocol never earns runtime/integration credit. |
 | A3 — test exceptions | Complete and incorporate the phase's case-level migration map from the frozen inventory before its first test rewrite. Identify exact old/new nodes, oracles and exceptions; default disposition is retain. |
 | A4 — maintainer approval | Record Chuck's approval of this directive's SHA256, its frozen appendices and any explicit readiness/impact amendments. A draft review or approval of the old assessment does not satisfy this gate. |
@@ -77,7 +78,7 @@ candidate. Earlier verdicts do not cover changed bytes.
 
 The [phase/evidence map](../validation/document-ingestion/product-construction/phase-evidence-map.md)
 and [machine-readable requirement join](../validation/document-ingestion/product-construction/phase-evidence-map.json)
-define Q → I1 → I2 → I3 → AG → UAT, each exit's owner/path/prerequisites and
+define Q → I1 → I2 → I3 → AG → UAT, each exit's owner/primary paths/prerequisites and
 planned witness. Q uses qualification artifacts, unchanged baseline code and
 inert proposed metadata; it makes no new product implementation claim. DI-23's
 actual headless factory/entry/smart_read/storage proof first executes in I3;
@@ -100,9 +101,15 @@ library only. Chat and Runtime compose capabilities and present results. New
 Tools→Memory or Memory→Tools imports are prohibited; use the neutral injected
 entry. Existing legacy edges remain disclosed, not broadened.
 
-CLI is a **conditional** source owner: A2 records source unchanged with executed
-compatibility tests if existing delegation suffices, or pins its exact narrowly
-necessary container/profile adaptations. Naming CLI grants no speculative edit.
+CLI remains a **bounded** source owner. Current `FridayConfig.to_runtime_config()`
+forwards its resolved `chroma_path`, losing whether the value came from a
+constructor, environment or default. A2 must settle that known origin gap before
+I1 activation: bind the exact narrow container/profile adaptation and I2-C1 tests,
+or demonstrate an existing source-unchanged mechanism that preserves provenance.
+A default-derived value, including `.friday/chroma`, cannot become an explicit
+fresh-store choice merely by forwarding. `for_testing()` is an explicit test
+selection, not production creation authority. Preserve public call shapes and
+re-exports; no speculative CLI feature or fallback.
 
 ## 3. Frozen behavior to implement
 
@@ -312,7 +319,13 @@ at its manifest-pinned hash. The implementation allowlist is its intersection
 with the slice/owner scope above, not whole-package write permission. Before
 activation, its shorthand rows must be expanded into a machine-readable exact
 file list in A2/A3, including selected optional/new modules and test nodes.
-An unexpanded row does not authorize a newly chosen helper path.
+An unexpanded row does not authorize a newly chosen helper path. The phase-map
+path lists are **primary seams, not an exhaustive file partition or independent
+allowlist**. A2 must assign every selected parent-authorized source/metadata/doc
+path to its slice(s), owner, purpose and exit; A3 does the same for tests/helpers.
+Missing assignment blocks that slice before generation. For example, existing
+pruner/synthesizer/fact-checker admission belongs to I2, not an unassigned later
+implicit change. Shared files may have different narrowly approved edits per slice.
 
 Core/Commands/LLM/Memory/Tools/Chat/Runtime/CLI are the eight implementation owners.
 Agent and the other eight indirect package rows receive only the specifically
@@ -333,7 +346,11 @@ route, TUI feature or complete FILE-001 extraction.
 The [baseline inventory](../validation/document-ingestion/product-construction/baseline-test-inventory.json.gz)
 and [readable summary](../validation/document-ingestion/product-construction/baseline-test-summary.json)
 freeze tracked test/fixture bytes and static base-node IDs without importing or
-running them. They are an inventory, not collected parameter counts, an offline
+running them. The [helper inventory](../validation/document-ingestion/product-construction/baseline-helper-inventory.json)
+additionally hashes tracked non-test Python support modules in the same package/
+integration trees, including fake servers, LLM helpers and test applications.
+Helpers earn no test-count credit; A3 must classify their offline/live imports
+and attach them to retained/replacement nodes before executing or editing them. They are an inventory, not collected parameter counts, an offline
 classification, or executed coverage. The [migration seed](../validation/document-ingestion/product-construction/test-migration-seed.json)
 identifies known cases; it is not an approved blanket test-body exception.
 
@@ -427,6 +444,13 @@ links and generated tables are necessary structural checks, not acceptance of
 technical content. No unrelated guide rewrite or automatic publication.
 
 ## 7. Freeze, review, stop and handoff
+
+An unwaived regression in previously supported, unchanged scope blocks **every**
+intermediate exit. Report it even when later work is planned to fix it; do not
+claim temporary breakage as compatibility. A deliberately changed baseline or
+temporary integration exception needs exact maintainer-approved disposition and
+replacement coverage before that exit. An absent future feature is not a failure
+of an earlier scoped contract, but it cannot be used to excuse a broken old path.
 
 Each slice and the aggregate have a stable commit, exact authority/contract/map
 pins, source/installed profile, commands/exits and fresh-versus-inspected evidence.

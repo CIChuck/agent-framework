@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "authorized_additional_passes": 3,
+  "passes_started": 1,
+  "passes_completed": 0,
+  "current_pass": 1,
+  "global_round": 3,
+  "status": "pass1_in_review",
+  "stop_on_all_seat_target": true,
+  "stop_after_pass3": true,
+  "fourth_additional_pass_authorized": false,
+  "construction_approved": false,
+  "source_changes_authorized": false,
+  "passes": []
+}

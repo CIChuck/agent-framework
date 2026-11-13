@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": "0.3",
   "status": "conditional draft; planned witnesses are not executed tests or approved test-body exceptions",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "parent_rem_sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
@@ -7,7 +7,7 @@
     {
       "id": "Q",
       "requires": [],
-      "scope": "Upstream/deployment qualification and unchanged-baseline experiments; no new product feature claim."
+      "scope": "Actual upstream/deployment B and N-DIM/N-SPACE/N-CAP model/dependency/counter/parity qualification and unchanged-baseline experiments; no new product feature claim."
     },
     {
       "id": "I1",
@@ -180,7 +180,13 @@
         "packages/friday-memory/src/friday_memory/context/assembler.py",
         "packages/friday-memory/src/friday_memory/context/extractor.py",
         "packages/friday-chat/src/friday_chat/memory_mcp.py",
-        "packages/friday-tools/src/friday_tools/memory/maintenance.py"
+        "packages/friday-tools/src/friday_tools/memory/maintenance.py",
+        "packages/friday-memory/src/friday_memory/maintenance/pruner.py",
+        "packages/friday-memory/src/friday_memory/maintenance/synthesizer.py",
+        "packages/friday-memory/src/friday_memory/maintenance/fact_checker.py",
+        "packages/friday-memory/src/friday_memory/maintenance/backup.py",
+        "packages/friday-memory/src/friday_memory/maintenance/analyzer.py",
+        "packages/friday-memory/src/friday_memory/maintenance/mutation.py"
       ],
       "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
       "planned_witness": "tests/integration/test_embedding_compatibility.py::test_model_change_preserves_operational_contract",
@@ -259,14 +265,15 @@
       "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
       "planned_witness": "tests/integration/test_document_ingestion.py::test_headless_common_plan_and_destination_bound_receipts",
       "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
-      "exit_assertion": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split.",
+      "exit_assertion": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting.",
       "traces_requirements": [
         "DI-16",
         "DI-17",
         "DI-19",
         "DI-23",
         "DI-30",
-        "DI-31"
+        "DI-31",
+        "DI-24"
       ]
     },
     {
@@ -336,7 +343,7 @@
       "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
       "planned_witness": "tests/integration/test_document_ingestion.py::test_clean_installed_candidate_document_profiles",
       "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
-      "exit_assertion": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG.",
+      "exit_assertion": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes.",
       "traces_requirements": [
         "DI-08",
         "DI-09",
@@ -345,7 +352,9 @@
         "DI-20",
         "DI-34",
         "DI-35",
-        "DI-36"
+        "DI-36",
+        "DI-24",
+        "DI-33"
       ]
     }
   ],
@@ -616,7 +625,9 @@
       "parent_definition": "Synchronous offline tokenizer resolves only the manifest root; no network per split/global-cache lookup/download/custom-code escape. Boundary parity against actual serving behavior includes special tokens/headers and the serving physical ceiling. Unknown parity refuses readiness.",
       "parent_definition_sha256": "a977ad7393533c8a6b95a34433c02d76d867ba1eb3a513cf1be9c1ec604cb150",
       "scoped_exit_references": [
-        "I1-C2"
+        "I1-C2",
+        "I3-C2",
+        "I3-C5"
       ],
       "earliest_complete_evidence_stage": "I3",
       "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
@@ -722,7 +733,8 @@
       "parent_definition_sha256": "f92d2be74f1da9af25c1a9eb3371f68ded4ebe6b9a8dd314e922c7f5acadb791",
       "scoped_exit_references": [
         "I2-C1",
-        "I2-C2"
+        "I2-C2",
+        "I3-C5"
       ],
       "earliest_complete_evidence_stage": "I3",
       "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
@@ -776,115 +788,295 @@
   "compatibility_requirements": [
     {
       "id": "FC-01",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Admitted owner-specific logging initialization, reconfigure/close and no old-root effects.",
+      "I3": "No new logging capability; recheck common request cancellation through I3-C4.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_rejection_logging_obeys_namespace_admission",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C1",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new logging capability; recheck common request cancellation through I3-C4.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-02",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual unsplit MCP persist/observer/ownership, pending same-ID retry and existing reasons.",
+      "I3": "Common ingestion does not activate/split MCP; recheck shared guard interaction at I3-C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_mcp_snapshot_embedding_compatibility",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Common ingestion does not activate/split MCP; recheck shared guard interaction at I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        },
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_mcp_pending_retry_and_existing_telemetry_reasons",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Common ingestion does not activate/split MCP; recheck shared guard interaction at I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-03",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Existing public backup create/verify/restore baseline with admitted same-incarnation receipt and marker exclusion.",
+      "I3": "No new backup work in I3; preserved public baseline rechecked at I3-C5, FU014 unwaived.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_legacy_backup_guarded_namespace_disposition",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new backup work in I3; preserved public baseline rechecked at I3-C5, FU014 unwaived.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        },
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_public_backup_identity_and_unchanged_baselines",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new backup work in I3; preserved public baseline rechecked at I3-C5, FU014 unwaived.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-04",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual offline analyzer SQLite/graph admission and no opener on refusal.",
+      "I3": "Source-unchanged analyzer behavior rechecked after common entry at I3-C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_analyzer_store_only_namespace_admission",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Source-unchanged analyzer behavior rechecked after common entry at I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-05",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual legacy synthesizer/module embedder handoff and no hidden Chroma default.",
+      "I3": "No new synthesis strategy; qualified roles remain guarded after I3 integration.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_legacy_synthesis_never_uses_default_embedder",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new synthesis strategy; qualified roles remain guarded after I3 integration.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-06",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual extraction/consolidation acknowledgement, retry and owned background task status/shutdown.",
+      "I3": "Document requests add I3-C4 worker joins; do not claim Agent source rewrite.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_consolidation_acknowledges_only_stored_batches",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Document requests add I3-C4 worker joins; do not claim Agent source rewrite.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        },
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_extraction_acknowledges_only_stored_outputs",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Document requests add I3-C4 worker joins; do not claim Agent source rewrite.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        },
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_background_extraction_status_observes_owned_task",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Document requests add I3-C4 worker joins; do not claim Agent source rewrite.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-07",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Real lifecycle effects and public Tools text/structured partial-failure projection.",
+      "I3": "No algorithm change; retained effects rechecked with final I3 namespace/plan.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_lifecycle_counts_and_tool_text_report_actual_effects",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No algorithm change; retained effects rechecked with final I3 namespace/plan.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-08",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Maintained unscored recall plus actual public injected scorer B/N/R, fallbacks and typed failures.",
+      "I3": "No new scorer wiring; final document retrieval/destination binding rechecked I3-C2/C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_recall_propagates_embedding_refusals",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new scorer wiring; final document retrieval/destination binding rechecked I3-C2/C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        },
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_injected_graph_scorer_binding_and_unscored_routes",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No new scorer wiring; final document retrieval/destination binding rechecked I3-C2/C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-09",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual profile persistence/origin and independent ephemeral-kernel isolation.",
+      "I3": "Recheck final candidate headless/document profiles at I3-C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_runtime_memory_profile_identity_and_persistence",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C1",
+          "final_review_stage": "AG",
+          "I3_interaction": "Recheck final candidate headless/document profiles at I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-10",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "B01\u201308 service/default/origin selection including known CLI forwarded-default gap.",
+      "I3": "New chunking YAML/command options are I3; no model selection change.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_existing_embedding_configuration_and_origin",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C1",
+          "final_review_stage": "AG",
+          "I3_interaction": "New chunking YAML/command options are I3; no model selection change.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-11",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Provider readiness after admission, empty fresh collection dimensions and graph-only operation.",
+      "I3": "No maintenance ordering change; final installed guard parity rechecked I3-C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_maintenance_probe_and_empty_store_dimensions",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "No maintenance ordering change; final installed guard parity rechecked I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-12",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual headless candidate Memory/Runtime/CLI/Agent/direct LLM counter-only profiles.",
+      "I3": "Actual default-Chat/document/bare-Tools profiles added at I3-C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_headless_embedding_install_profiles",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C1",
+          "final_review_stage": "AG",
+          "I3_interaction": "Actual default-Chat/document/bare-Tools profiles added at I3-C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-13",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual Agent/multi-agent/MEMQ/public wrappers and visibility/partial effects; classify absent routes.",
+      "I3": "Actual supplied payload/common-entry and smart_read ingestion handoffs complete at I3-C2/C3/C5.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_indirect_memory_consumers_and_inspection",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Actual supplied payload/common-entry and smart_read ingestion handoffs complete at I3-C2/C3/C5.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     },
     {
       "id": "FC-14",
-      "Q": "Classify current active/public/absent route, baseline facts and planned B/N/R witnesses; no new candidate guard credit.",
-      "I1": "Only underlying counter/identity/interface/model subcontracts where applicable; no full consumer proof.",
-      "I2": "Actual existing consumers and named positive/refusal scenarios, excluding new common document-plan integration.",
-      "I3": "Recheck new common-entry/source-derived/installed interactions where applicable; FC13 public ingestion handoffs are completed here.",
-      "AG": "All original named FC witnesses and preserved public behaviors independently reviewed; no omitted baseline or refusal-only compatibility."
+      "Q": "Inventory this actual/public/absent consumer, original-convention baseline positives and required B/N/R cases; bind B and N real qualifications before I1. No new guard runtime credit.",
+      "I1": "Underlying typed counter/space/admission/role/v2 contracts only where relevant; not consumer closure.",
+      "I2": "Actual existing consumer extraction\u2192store\u2192recall\u2192lifecycle/maintenance B/N/R, using Q-qualified B and N scenario manifest.",
+      "I3": "Add common document entry/command flows at I3-C2/C3/C5; semantic model-quality evaluation remains separately authorized.",
+      "AG": "Independently verify every original named witness and all final interactions on frozen source and representative actual normal/optimized installed lanes; no refusal-only compatibility.",
+      "named_witnesses": [
+        {
+          "node": "tests/integration/test_embedding_compatibility.py::test_model_change_preserves_operational_contract",
+          "first_execution_stage": "I2",
+          "scoped_exit": "I2-C2",
+          "final_review_stage": "AG",
+          "I3_interaction": "Add common document entry/command flows at I3-C2/C3/C5; semantic model-quality evaluation remains separately authorized.",
+          "status": "required planned node, exact A3 case/selector binding before rewriting"
+        }
+      ]
     }
   ],
   "proof_groups": [
@@ -985,6 +1177,9 @@
       ]
     }
   ],
-  "qualification_implementation_boundary": "A1 requires Q dispositions only. Actual new extras, interfaces, current-candidate operations, installed profiles and authored/verified current docs are created under approved I1/I2/I3 and proved at their exits/AG. Required existing baseline/deployment qualification remains before activation.",
-  "not_claimed": "No completed Gate A, construction approval, runtime test, installed profile, council/UAT execution or acceptance is inferred from this map."
+  "qualification_implementation_boundary": "A1 requires completed Q dispositions, including manifest-bound actual B and all N scenario identities, assets/counters/dimensions/capacity/preparation/parity before I1. Candidate operations, new extras and installed profiles remain I1/I2/I3/AG. Deterministic operational vectors are not a replacement for real serving qualification.",
+  "not_claimed": "No completed Gate A, construction approval, runtime test, installed profile, council/UAT execution or acceptance is inferred from this map.",
+  "path_list_semantics": "exit_assertions.implemented_paths lists primary source seams, not an exhaustive file partition or independent allowlist. Before generation A2 assigns every selected parent-authorized path to slice/owner/purpose/exit and A3 binds tests/helpers; an unassigned path blocks that slice.",
+  "Q_replacement_qualification_plan": "replacement-qualification-plan.json",
+  "intermediate_regression_rule": "Any unwaived regression in previously supported unchanged scope blocks the current slice exit; a later planned repair is not a waiver. Only an exact maintainer-approved changed baseline/temporary integration exception with replacement coverage can permit exit. Missing clearly later features are not falsely certified or used to excuse broken old paths."
 }

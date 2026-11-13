@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "date": "2026-11-12",
+  "maintainer": "Chuck Russell",
+  "statement": "proceed. Execute at most three more council passes. Make bounded changes. When asked, stop after the third council. Unit of work",
+  "scope": "Apply the bounded post-round2 document correction proposal; fresh delta-first/full conditional-directive council after each correction within this loop. No product construction or new effects.",
+  "maximum_additional_passes": 3,
+  "global_rounds": [
+    3,
+    4,
+    5
+  ],
+  "stop_when": "All three seats VERIFIED, zero mandatory findings and coverage/overall>=9.5, or after the third additional council pass, whichever is first. No fourth additional pass or replacement bypass.",
+  "roster": [
+    {
+      "seat": "sol",
+      "provider": "codex",
+      "model": "gpt-6.1-sol",
+      "effort": "high"
+    },
+    {
+      "seat": "astra",
+      "provider": "codex",
+      "model": "gpt-6-astra",
+      "effort": "high"
+    },
+    {
+      "seat": "opus",
+      "provider": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "effort": "high"
+    }
+  ],
+  "allowed_edits": [
+    "conditional main/companion drafts",
+    "readiness and phase/path/witness/inventory planning artifacts",
+    "safe review-input projection and criteria",
+    "authority/current routing and append-only evidence"
+  ],
+  "frozen_parents": "Approved REM, compatibility annex, impact assessment, test-migration/architecture/guide plans and all product/test/config/metadata/lock/store bytes remain unchanged.",
+  "base": "99341fe7b25cc659edb15f6a399cb82da3d87c76",
+  "implementation_authority": false,
+  "new_network_model_install_store_effects": false,
+  "policy_disposition": "This explicit three-pass authorization bounds continued document remediation despite prior unsuccessful councils; stop at its cap rather than infer any further cycle."
+}
