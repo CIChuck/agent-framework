@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "date": "2026-11-13",
+  "maintainer": "Chuck Russell",
+  "request": "Let's run a more tightly focused three-round council of the CD-CMD-INGEST-001 \u2014 shared document ingestion implementation. Any questions?",
+  "scope": "Comprehensiveness, coherence and buildability of the Friday ingestion implementation directive. Completed Docling behavior evaluation is established input, not a repeat vendor/tool qualification task.",
+  "maximum_rounds": 3,
+  "stop_when": "Every seat completes the focused assessment and returns VERIFIED, zero mandatory findings, coverage/overall>=9.5; otherwise stop after round3.",
+  "bounded_corrections": "Planning-only corrections directly addressing implementation-plan gaps, plus current review/status metadata. No product implementation or new effects.",
+  "roster": [
+    {
+      "seat": "sol",
+      "provider": "codex",
+      "model": "gpt-6.1-sol",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "astra",
+      "provider": "codex",
+      "model": "gpt-6-astra",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "opus",
+      "provider": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "options": {
+        "effort": "high"
+      }
+    }
+  ],
+  "historical_broad_review_loops": "Remain closed and unchanged; this is a newly authorized focused workflow, not an extension or replacement within those loops.",
+  "construction_approval": false,
+  "network_install_model_store_effects": false
+}

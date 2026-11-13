@@ -1,16 +1,17 @@
 # CD-CMD-INGEST-001 — shared document ingestion implementation
 
-Version: **0.5, bounded corrected conditional draft — final additional pass 3/3 (global round 5)**, 2026-11-12.
+Version: **0.6, conditional construction draft**, 2026-11-13.
 Initiative: `friday-command-refactor`; branch: `feature/cmd-ingest-001`.
 Source and test baseline: `8c36d8e26c618032c1ff536004a582c07ec56a5b`.
-Execution phase: **validation**; validation state: **in_review, final additional pass 3/3**.
+Status: **proposed implementation scope; construction not activated**.
 
-Chuck authorizes bounded planning corrections and **at most three additional
-Sol/Astra/Opus council passes**, global rounds 3–5. Stop when every seat is
-VERIFIED with coverage/overall >=9.5 and no mandatory findings, or after the third
-additional council, whichever comes first. This is the final additional pass 3/3. Stop after this council regardless of outcome; no fourth additional pass is authorized. Earlier
-rounds are historical. This authorization grants no product construction, new
-installation, model/service window, configuration/store operation or Gate-A closure.
+This directive specifies the Friday integration work and its acceptance duties.
+Completed Docling evaluations are established inputs. New integration assumptions
+receive specific dispositions; this document does not reopen standalone tool
+qualification or close any remaining activation requirement. Current council
+authority and round limits live in the review authorization, separately from
+these implementation requirements. Product generation requires exact A1–A5
+activation below; document review alone grants no implementation or new effects.
 
 ## 1. Authority, objective and activation
 
@@ -107,6 +108,8 @@ forwards its resolved `chroma_path`, losing whether the value came from a
 constructor, environment or default. A2 must settle that known origin gap before
 I1 activation: bind the exact narrow container/profile adaptation and I2-C1 tests,
 or demonstrate an existing source-unchanged mechanism that preserves provenance.
+The forwarded default-derived `runtime_data_root`, `workspace_root` and
+`install_root` also remain derived values, not explicit-origin evidence.
 A default-derived value, including `.friday/chroma`, cannot become an explicit
 fresh-store choice merely by forwarding. `for_testing()` is an explicit test
 selection, not production creation authority. Preserve public call shapes and
@@ -439,9 +442,11 @@ credential and no retained offline-coverage credit. Require an offline Finance
 tool-registration witness. Bind any new Optimization dependency-only witness to
 an exact path; do not invent a maintained source consumer.
 
-Use focused root-rule Ruff/format, strict typing for changed public boundaries,
-package/cohort metadata, artifact/install/lock/origin checks and the approved
-behavior captures with exact named oracle exceptions. Keep root Ruff debt,
+Use focused root-rule Ruff/format and strict typing for changed public boundaries.
+A2 binds a per-file strict-check disposition for changed boundaries in legacy
+`ignore-errors` modules: narrow removal or a separately strict boundary check,
+with no new blanket suppression. Run package/cohort metadata, artifact/install/
+lock/origin checks and approved behavior captures with exact named oracle exceptions. Keep root Ruff debt,
 root collection's test_display collision and baseline registry formatting
 explicitly failed/unwaived; re-establish actual counts at the frozen candidate.
 Setup/import/collection errors earn no mutant-rejection credit. Required negative

@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/local; execution phase: validation; validation state: blocked
-after final additional conditional-product-directive pass3/3. The three-pass allowance is exhausted. Package impact v0.6 is approved.
+**Status:** started/local; execution phase: validation; validation state: in_review
+for a newly authorized focused implementation-directive council, round1/3. Earlier broad review loops remain closed. Package impact v0.6 is approved.
 Bounded Docling/Nomic/corpus evaluations remain independently verified. Whole
 Gate-A9.5, exact product construction approval and MAINT human UAT/acceptance
 remain open. Production source and state are unchanged.
@@ -55,10 +55,12 @@ intermediate-compatibility/lock/origin joins were assessed in pass2. [Pass2 reco
 records incomplete Sol/Astra seats and below-threshold Opus, with original limits.
 The final preparation/N-stage/CLI/support-role/companion clarifications are prepared
 for final pass3/3. [Final reconciliation](validation/document-ingestion/product-construction/correction-loop/pass3/results/report.md)
-records BLOCKED and the unmet9.5 gate. All3additional passes are complete; no
-replacement, correction or fourth pass follows. The drafts retain their exact
-reviewed in_review labels as frozen b6a62742 snapshots; current status is this
-closeout and authority. The [phase map](validation/document-ingestion/product-construction/phase-evidence-map.md)
+records the historical BLOCKED outcome and exhausted broad-review allowance.
+Chuck now authorizes a [new focused council](validation/document-ingestion/product-construction/focused-council/authorization.json).
+Its [eight-area brief](validation/document-ingestion/product-construction/focused-council/criteria.md)
+assesses the ingestion implementation plan; Docling evaluations remain established
+input. Directive v0.6 has stable conditional status, with review rounds managed
+separately. No construction is activated. The [phase map](validation/document-ingestion/product-construction/phase-evidence-map.md)
 separates Q qualification, scoped I1/I2/I3 exits, final AG and human UAT.
 Product generation has not started. The earlier proceed
 is recorded as documentation-only preparation, with protected state preserved.
@@ -81,7 +83,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** INGEST final additional council pass3/3 is closed BLOCKED; all-seat9.5 gate unmet and three-pass budget exhausted. Chuck to disposition remaining I3 summary inconsistency, incomplete source assessment and review-input ambiguity. Stop: no fourth pass, replacement, automatic correction, product construction or new effects.
+**Next gate:** Focused INGEST implementation-directive council round1/3: assess comprehensive, coherent, buildable Friday integration across F1–F8. Completed Docling evaluation is established input; no repeated tool tests, AST reconstruction, archive/wheel audits or exhaustive framework source review. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5; bounded planning corrections only, stop on gate or round3. No product construction or effects.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

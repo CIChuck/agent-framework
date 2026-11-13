@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "workflow": "focused directive council",
+  "maximum_rounds": 3,
+  "rounds_started": 1,
+  "rounds_completed": 0,
+  "current_round": 1,
+  "status": "round1_in_review",
+  "stop_on_gate_or_round3": true,
+  "construction_approved": false,
+  "history": []
+}

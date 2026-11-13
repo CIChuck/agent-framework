@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | INGEST final additional council pass3/3 is closed BLOCKED; all-seat9.5 gate unmet and three-pass budget exhausted. Chuck to disposition remaining I3 summary inconsistency, incomplete source assessment and review-input ambiguity. Stop: no fourth pass, replacement, automatic correction, product construction or new effects. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Focused INGEST implementation-directive council round1/3: assess comprehensive, coherent, buildable Friday integration across F1–F8. Completed Docling evaluation is established input; no repeated tool tests, AST reconstruction, archive/wheel audits or exhaustive framework source review. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5; bounded planning corrections only, stop on gate or round3. No product construction or effects. |
 
 ## Completed
 

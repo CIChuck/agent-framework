@@ -1,10 +1,10 @@
 {
-  "version": 5,
+  "version": 6,
   "initiative": "friday-command-refactor",
   "unit": "INGEST-PRODUCT-DIRECTIVE-PREPARATION",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "branch": "feature/cmd-ingest-001",
-  "state": "Final conditional-directive council CLOSED BLOCKED; no construction activation",
+  "state": "Conditional draft v0.6; focused implementation-directive review only",
   "inputs": [
     {
       "path": "AGENTS.md",
@@ -104,7 +104,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
-      "sha256": "3f8115cbbba40bd751413f6bc1a7f147874ac9efdcbf682bfcd9e235bd107b03"
+      "sha256": "0b4b9e8e89ef6a3a1ad880a6a49c44597a4a1023928fa846148cede31992da7d"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
@@ -116,15 +116,11 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
-      "sha256": "fbdb7262d40cf9a0ece6aeb5b115ccfaefbffcee5c992ec107df3ba872b0e9a0"
+      "sha256": "02634741cd0f3591080b6178c31e86176746f0d51242034c358ad5b04405c6d8"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md",
       "sha256": "fc681e1c483b3acb400b5a5854b9208b66c4401fc4a7455d778ca80b7b475f7f"
-    },
-    {
-      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/authorization.json",
-      "sha256": "57bb75cb8b27c35835049a642486d780b081672c5cf4bc34be2a9110fa384a3f"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/replacement-qualification-plan.json",
@@ -143,16 +139,20 @@
       "sha256": "04b5860567b1abf96744e1ec38c5fd2d24554bd353c67237ab32b3181ad1e778"
     },
     {
-      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/correction-brief.json",
-      "sha256": "2974c16a6259cb0cb46b90d13a5aecd27eb229a0938784796f5257bbd21b01cd"
-    },
-    {
-      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/source-review-checklist.md",
-      "sha256": "1c0ad637219c37f0e92af88814930ae616de67430e5d2253dcfbb49711fdcad6"
-    },
-    {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-support-role-map.json",
       "sha256": "57900f1bd7b2e546d0911f9e21ba9ab00d1b5b42664e3802c6177d10d054a3d8"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/authorization.json",
+      "sha256": "4b7435d516830347409cc7204936f3e7f3a1343f37026646c9c525df626e53a3"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/criteria.md",
+      "sha256": "f6772d98dec630005e6e7a9d4ff1007e1fab809399cd8fa917768be74170afcb"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/review-context.md",
+      "sha256": "34b9bc82755e60ad3c266afb5a7f0fe6596e25c14cc8eadf2ad7144c09d1d170"
     }
   ],
   "required_final_activation_appendices": [
@@ -169,11 +169,12 @@
     "preparation-checks.json": "Raw historical stdout/stderr is excluded and hash-only; metadata projection above supplies command/exit/digests.",
     "authority_navigation_log_and_old_councils": "Hash-only or safe current controls; no payload/history/peer report reads."
   },
-  "review_closeout": {
+  "prior_broad_review_closeout": {
     "candidate": "b6a62742e89951679f338e46f34c4650a5e0dbc7",
     "reviewed_manifest_sha256": "53170a97b3f9be971fee41648c874db948419658878ed9e4f4433eb95f77bc93",
     "reviewed_original": "correction-loop/pass3/results/reviewed-authority-manifest.json",
     "changes": "Current status and branch-handoff routing pin only. All technical parent/input/target bytes remain as reviewed; this is not a new qualifying verdict.",
     "report": "correction-loop/pass3/results/report.md"
-  }
+  },
+  "review_scope_note": "Input identity is not a demand to reread/rederive all historical evidence. Focused brief controls this council; standalone Docling efficacy/provenance audits are out of scope. Construction parent requirements and future integration proofs remain binding."
 }

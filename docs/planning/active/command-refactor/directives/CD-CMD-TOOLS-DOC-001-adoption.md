@@ -1,18 +1,17 @@
 # CD-CMD-TOOLS-DOC-001 — public Tools document adoption
 
-Version: **0.5, final bounded corrected conditional construction draft**, 2026-11-12.
-Execution phase: **validation**; validation state: **in_review as interaction context**.
+Version: **0.6, conditional construction draft**, 2026-11-13.
+Status: **proposed implementation scope; construction not activated**.
 Branch: `feature/cmd-ingest-001`; planning baseline: `8c36d8e2`.
 
 This is the separately directed companion to
 [CD-CMD-INGEST-001](CD-CMD-INGEST-001-product.md). It implements the reviewed
 [TOOLS-DOC plan](../proposals/tools-document-adoption.md), TD-01–10, and the
 manifest-pinned [REM](../remediation/REM-CMD-INGEST-001-pdf-docx.md), compatibility
-annex and approved package assessment. Chuck authorizes bounded document corrections
-and at most three additional reviews of the main directive, including this
-companion interaction. This is the final additional pass3/3; stop on a passing all-seat9.5
-result or after the third additional council. The INGEST Q replacement-model
-qualification remains a dependency of this companion too.
+annex and approved package assessment. This companion remains separately
+activated. Current review authority is recorded outside these implementation
+requirements; INGEST's applicable shared readiness/contract gates remain a
+dependency, without re-running completed standalone Docling evaluations.
 No companion construction or live-effects approval is recorded by this document.
 
 ## Activation and objective

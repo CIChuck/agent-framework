@@ -14,7 +14,8 @@ and unchanged-baseline behavior under separately authorized effects. The
 [replacement qualification plan](replacement-qualification-plan.json) binds all
 three N distinctions, actual immutable identities/counters/parity/assets and
 planned B/N/R nodes **before I1**. Unknown or deterministic-only serving evidence
-keeps Q/A1 open; candidate N public operations remain I2/AG. A1 requires
+keeps Q/A1 open; candidate N public operations run at I2 for existing consumers, I3 for common
+ingestion/chunk capacity, and AG for final aggregate verification. A1 requires
 Q's RD dispositions, not the downstream product acceptance column. Inert proposed
 metadata and co-installed upstream distributions are not new product extras.
 

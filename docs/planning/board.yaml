@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "INGEST final additional council pass3/3 is closed BLOCKED; all-seat9.5 gate unmet and three-pass budget exhausted. Chuck to disposition remaining I3 summary inconsistency, incomplete source assessment and review-input ambiguity. Stop: no fourth pass, replacement, automatic correction, product construction or new effects."
+  next_gate: "Focused INGEST implementation-directive council round1/3: assess comprehensive, coherent, buildable Friday integration across F1–F8. Completed Docling evaluation is established input; no repeated tool tests, AST reconstruction, archive/wheel audits or exhaustive framework source review. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5; bounded planning corrections only, stop on gate or round3. No product construction or effects."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

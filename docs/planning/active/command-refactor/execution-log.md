@@ -4120,3 +4120,28 @@ Three passes started, three complete, zero remaining. The controller stops as
 Chuck directed. No fourth pass, replacement, automatic correction, product work,
 new effects, UAT, acceptance, push or delivery follows. Remaining items are a
 human disposition handoff, not an activated new unit.
+
+
+## 2026-11-13 — new focused INGEST directive council authorized
+
+Chuck requests a more tightly focused three-round council of CD-CMD-INGEST-001.
+[New authorization](validation/document-ingestion/product-construction/focused-council/authorization.json)
+permits at most3 focused rounds with bounded planning corrections and the retained
+all-seat9.5 gate. Earlier broad loops remain closed; this is new scope/authority,
+not a replacement within an exhausted pass. Product implementation/effects are
+not authorized.
+
+The [eight-area brief](validation/document-ingestion/product-construction/focused-council/criteria.md)
+assesses the comprehensive nature, coherence and buildability of Friday ingestion.
+Completed Docling evaluation is established input. No standalone converter/model
+tests, archive/wheel audits, full AST inventory rebuild or exhaustive framework
+source audit is assigned. Targeted source checks answer actual interface/consumer
+questions; meaningful planned integration acceptance remains required. Finance's
+live-provider module is explicitly outside read/parse/execute scope, with no
+conflicting AST duty. Incomplete assessments withhold design-quality scores.
+
+Known I3 summary wording is corrected. Ephemeral round counters are removed from
+construction drafts, which remain conditional. CLI derived-root and strict typing
+clarifications stay within existing obligations. Current metadata routes to
+focused round1/3; user configuration, source/tests/dependencies/guides/stores are
+preserved. No construction, installation, model window, UAT or delivery follows.

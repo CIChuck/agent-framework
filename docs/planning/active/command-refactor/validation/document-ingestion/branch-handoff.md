@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Final additional council pass3/3 is closed BLOCKED; all-seat9.5 unmet and budget exhausted. Chuck to disposition the remaining document/source-review items. No fourth pass, replacement, automatic correction, product construction or new effects.
+**Next gate:** New focused INGEST implementation-directive council round1/3. Assess plan completeness/buildability; completed Docling evaluation is input. No product construction, tool retest or new effects are activated.
 
 ## Historical branch/design preparation (superseded for current evaluation routing)
 
