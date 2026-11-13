@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Large-document corpus independently verified. Qualify Qwen embedding-serving identity and tokenizer, then reserve an isolated test window before larger-document Docling/chunking/embedding comparisons. Production model/default and product construction remain separate decisions."
+  next_gate: "Review the conditional INGEST and separate TOOLS-DOC product construction drafts, measured readiness gaps and phase activation requirements. Complete remaining Gate-A/contract/test-map evidence and bind exact maintainer approval before product generation. Qwen qualification remains separate; no production/model/store effects or council is activated."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

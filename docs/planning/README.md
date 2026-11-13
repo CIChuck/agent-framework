@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Large-document corpus independently verified. Qualify Qwen embedding-serving identity and tokenizer, then reserve an isolated test window before larger-document Docling/chunking/embedding comparisons. Production model/default and product construction remain separate decisions. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Review the conditional INGEST and separate TOOLS-DOC product construction drafts, measured readiness gaps and phase activation requirements. Complete remaining Gate-A/contract/test-map evidence and bind exact maintainer approval before product generation. Qwen qualification remains separate; no production/model/store effects or council is activated. |
 
 ## Completed
 

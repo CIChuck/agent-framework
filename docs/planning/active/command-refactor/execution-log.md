@@ -3899,3 +3899,33 @@ verification credit; current admin receipts are retained separately.
 ## 2026-11-12 — Long-document corpus independently verified
 
 Fresh [correction review](validation/document-ingestion/gate-a/large-documents/validation/round2/review-report.md) verifies frozen4735e3e: LD-CORPUS-001 closed and full bounded LD-01–08 pass. Actual data source remains f17b3d32. All20 native documents plus5 references are retained at five lengths, with a largest31544-word source,46 PDF pages,6 sheets and96 slides. Original corpora and prior reports remain unchanged. Source and native cross-section controls require genuine joint evidence. No model request, dependency install, store operation or production update occurred. Qwen serving/tokenizer qualification, future isolated comparisons, whole Gate-A9.5 and product construction/acceptance remain open. Exact fresh-versus-inspected checks and limits are in the independent report.
+
+## 2026-11-12 — Product construction directives drafted from measured evidence
+
+Chuck directs “proceed” after the proposed production-directive next step.
+[Preparation authority](validation/document-ingestion/product-construction/preparation-authorization.json)
+binds documentation-only drafting. [INGEST](directives/CD-CMD-INGEST-001-product.md)
+and [TOOLS-DOC](directives/CD-CMD-TOOLS-DOC-001-adoption.md) remain separate
+conditional drafts. The measured handoff carries the qualified Docling/RapidOCR/
+Certifi stack, corrected serialization/headings, real Nomic/Chroma proof and
+honest limits into phased contracts/consumer integration/document delivery.
+RD-01–07 retain remaining whole-readiness, hidden-row selection, resources,
+API/identity/recovery, counter/model, installed-profile and migration/docs gates.
+No old verdict or score is extended to those open obligations. Freeze tracked
+static test/fixture inventory and proposed case seeds; they grant no case-body
+exception or executed coverage. Before product generation, complete exact phase
+appendices and obtain approved hashes. User reviews documents before a council;
+no new council/review loop, source/test/guide/configuration/dependency edit,
+provider request or user-store operation is activated. Preserve historical
+technical/evaluation bytes, two dirty examples and retained local state.
+
+Preparation checks: board36/dashboard, documentation lifecycle1129, metadata18
+and scoped planning/staged whitespace pass. All24 authority inputs and the static
+inventory (237 modules,3073 base definitions,72 fixture/conftest files) hash-match;
+these are not collected/executed test counts. Protected16690 nonplanning files,
+26 symlinks and8 retained metadata records match the opening boundary. Full
+worktree whitespace remains failed/unwaived on pre-existing, byte-identical
+user models-config.example.yaml whitespace; no configuration fix was made.
+[Checks](validation/document-ingestion/product-construction/preparation-checks.json)
+retain the actual failed full check alongside passing scoped checks. No product
+suite, model test or independent document council was executed for this draft.

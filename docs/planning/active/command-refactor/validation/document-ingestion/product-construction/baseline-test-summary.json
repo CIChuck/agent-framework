@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "inventory_sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4",
+  "uncompressed_json_sha256": "3c513e8f4c6d7c4abcf6560b3456ea8b936570cfb0ac6eaa901632091e0deb56",
+  "test_modules": 237,
+  "static_base_test_definitions": 3073,
+  "fixture_conftest_files": 72,
+  "actual_collection_or_execution": false,
+  "workspace_packages": [
+    {
+      "path": "packages/friday-agent",
+      "distribution": "friday-framework-agent",
+      "test_modules": 11,
+      "static_base_test_definitions": 209
+    },
+    {
+      "path": "packages/friday-chat",
+      "distribution": "friday-chat",
+      "test_modules": 60,
+      "static_base_test_definitions": 587
+    },
+    {
+      "path": "packages/friday-cli",
+      "distribution": "friday-framework-cli",
+      "test_modules": 6,
+      "static_base_test_definitions": 155
+    },
+    {
+      "path": "packages/friday-commands",
+      "distribution": "friday-framework-commands",
+      "test_modules": 8,
+      "static_base_test_definitions": 65
+    },
+    {
+      "path": "packages/friday-core",
+      "distribution": "friday-framework-core",
+      "test_modules": 7,
+      "static_base_test_definitions": 128
+    },
+    {
+      "path": "packages/friday-finance",
+      "distribution": "friday-framework-finance",
+      "test_modules": 2,
+      "static_base_test_definitions": 19
+    },
+    {
+      "path": "packages/friday-llm",
+      "distribution": "friday-framework-llm",
+      "test_modules": 18,
+      "static_base_test_definitions": 198
+    },
+    {
+      "path": "packages/friday-mcp",
+      "distribution": "friday-framework-mcp",
+      "test_modules": 24,
+      "static_base_test_definitions": 342
+    },
+    {
+      "path": "packages/friday-memory",
+      "distribution": "friday-framework-memory",
+      "test_modules": 45,
+      "static_base_test_definitions": 717
+    },
+    {
+      "path": "packages/friday-moltbook",
+      "distribution": "friday-framework-moltbook",
+      "test_modules": 1,
+      "static_base_test_definitions": 4
+    },
+    {
+      "path": "packages/friday-optimization",
+      "distribution": "friday-framework-optimization",
+      "test_modules": 0,
+      "static_base_test_definitions": 0
+    },
+    {
+      "path": "packages/friday-runtime",
+      "distribution": "friday-framework-runtime",
+      "test_modules": 8,
+      "static_base_test_definitions": 150
+    },
+    {
+      "path": "packages/friday-sandbox",
+      "distribution": "friday-framework-sandbox",
+      "test_modules": 3,
+      "static_base_test_definitions": 38
+    },
+    {
+      "path": "packages/friday-speech",
+      "distribution": "friday-framework-speech",
+      "test_modules": 5,
+      "static_base_test_definitions": 15
+    },
+    {
+      "path": "packages/friday-telemetry",
+      "distribution": "friday-framework-telemetry",
+      "test_modules": 11,
+      "static_base_test_definitions": 115
+    },
+    {
+      "path": "packages/friday-tools",
+      "distribution": "friday-framework-tools",
+      "test_modules": 13,
+      "static_base_test_definitions": 245
+    },
+    {
+      "path": "packages/friday-transcript",
+      "distribution": "friday-framework-transcript",
+      "test_modules": 4,
+      "static_base_test_definitions": 25
+    }
+  ]
+}

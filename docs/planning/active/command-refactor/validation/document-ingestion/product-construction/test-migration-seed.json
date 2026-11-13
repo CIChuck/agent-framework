@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "status": "proposed phase-map seeds; not approved case-level exceptions",
+  "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
+  "inventory_sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4",
+  "approved_exceptions": [],
+  "default": "Retain all unmapped bodies and public signatures/classes. Complete exact phase appendix before approval/rewrite.",
+  "entries": [
+    {
+      "id": "TM-01",
+      "unit": "INGEST/I3",
+      "old_path": "packages/friday-chat/tests_chat/test_files_replay_shell.py",
+      "old_node": "test_read_dispatches_supported_extensions",
+      "disposition": "proposed split/replace",
+      "reason": "Legacy document positives write fake extension-only text; preserve valid text/table/JSON assertions and replace placeholder assertions with genuine extraction.",
+      "requirements": [
+        "DI-01",
+        "DI-02",
+        "DI-08",
+        "DI-35"
+      ],
+      "proposed_replacements": [
+        "packages/friday-chat/tests_chat/test_files_replay_shell.py::test_read_dispatches_supported_text_extensions",
+        "packages/friday-chat/tests_chat/test_document_ingestion.py::test_read_extracts_genuine_document_content"
+      ],
+      "required_assertions": [
+        "All retained text/table/JSON dispatch behavior",
+        "Actual default registry to shared converter and real full source markers/metadata for all four document formats",
+        "No placeholder success for corrupt document"
+      ],
+      "phase_approval": "pending exact map",
+      "old_file_sha256": "94443a42877ea53b35ca5f1f7d204d90ebf6e71ce8d59dd0cd92ab735f53daf7",
+      "old_definition_sha256": "31d7e815e1a374d158ac96f043ee4e10d959a34db8ef8c02fba331f36faf1746"
+    },
+    {
+      "id": "TM-02",
+      "unit": "INGEST/I3",
+      "old_path": "packages/friday-chat/tests_chat/test_files_replay_shell.py",
+      "old_node": "test_ingest_records_source_metadata_and_list_ingested",
+      "disposition": "retain requirement; evaluate fixture-only adaptation",
+      "requirements": [
+        "DI-06",
+        "DI-08",
+        "DI-35"
+      ],
+      "reason": "Keep exact source/description/listing requirements while shared entry replaces Chat slicing; no removal of missing-description or metadata repair coverage.",
+      "proposed_replacements": [
+        "packages/friday-chat/tests_chat/test_files_replay_shell.py::test_ingest_records_source_metadata_and_list_ingested",
+        "tests/integration/test_document_ingestion.py::test_registry_stores_extracted_document_chunks"
+      ],
+      "required_assertions": [
+        "Exact source and description metadata preserved",
+        "Common plan is used once and stored chunks match it",
+        "Actual disposable store inspected rather than listing-only extraction proof"
+      ],
+      "phase_approval": "pending exact map",
+      "old_file_sha256": "94443a42877ea53b35ca5f1f7d204d90ebf6e71ce8d59dd0cd92ab735f53daf7",
+      "old_definition_sha256": "63213c865af6f48837e8d6f4f7beb2a90dce96008851daa5e5e2410ab655376c"
+    },
+    {
+      "id": "TM-03",
+      "unit": "TOOLS-DOC",
+      "old_path": "packages/friday-tools/tests_tools/test_smart_read.py",
+      "old_node": "TestBinaryFiles::test_pdf_is_binary",
+      "disposition": "proposed replace",
+      "reason": "Four-format routing intentionally changes binary-skip behavior; existing five-byte PDF seed is corrupt and must fail conversion rather than become a positive.",
+      "requirements": [
+        "TD-02",
+        "TD-03",
+        "TD-04",
+        "DI-35"
+      ],
+      "proposed_replacements": [
+        "packages/friday-tools/tests_tools/test_document_adoption.py::test_smart_read_refuses_corrupt_pdf",
+        "packages/friday-tools/tests_tools/test_document_adoption.py::test_smart_read_extracts_genuine_documents"
+      ],
+      "required_assertions": [
+        "Corrupt PDF yields typed failure and no storage/cache success",
+        "Genuine PDF/DOCX/XLSX/PPTX reach shared converter",
+        "Unrelated PNG/binary and text behavior retained"
+      ],
+      "phase_approval": "pending exact map",
+      "old_file_sha256": "b75d66d9caf155b130daa222e17627b895e08b4eb76b93625a2e92a9ba02d0f8",
+      "old_definition_sha256": "40411bec6fdd1567db76718e43215c85ecb657ee99bf3d7870c63a2c029fd61c"
+    }
+  ]
+}

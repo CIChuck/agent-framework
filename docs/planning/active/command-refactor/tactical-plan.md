@@ -1,15 +1,14 @@
-# INGEST isolated evaluation verified; product construction open
+# INGEST product construction drafts — maintainer review
 
-Execution phase: planning; product validation: pending. Bounded test-only
-Docling behavior and end-to-end conformance are independently verified. The
-actual c977 Nomic experiment stored162 chunks across two modes; its reporter
-correction at1f5f86dc is verified through fresh offline proof. Production source,
-configuration and stores are unchanged. Whole Gate-A9.5, product construction,
-MAINT UAT/acceptance and delivery remain separate open gates.
-See [actual results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
-and [independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md).
+Execution phase: planning; validation state: pending for the new directives.
+[INGEST](directives/CD-CMD-INGEST-001-product.md) and
+[TOOLS-DOC](directives/CD-CMD-TOOLS-DOC-001-adoption.md) remain separately
+conditional, with [RD-01–07](validation/document-ingestion/product-construction/readiness-decision.md)
+activation requirements. Prior bounded evaluations remain verified at their
+frozen sources. Whole Gate-A9.5 and product construction approval remain open.
+No model/store/production effect or council invocation is authorized by drafting.
 
-**Next gate:** Large-document corpus independently verified. Qualify Qwen embedding-serving identity and tokenizer, then reserve an isolated test window before larger-document Docling/chunking/embedding comparisons. Production model/default and product construction remain separate decisions.
+**Next gate:** Review the conditional INGEST and separate TOOLS-DOC product construction drafts, measured readiness gaps and phase activation requirements. Complete remaining Gate-A/contract/test-map evidence and bind exact maintainer approval before product generation. Qwen qualification remains separate; no production/model/store effects or council is activated.
 
 ## Separate MAINT closeout and historical checkpoints
 

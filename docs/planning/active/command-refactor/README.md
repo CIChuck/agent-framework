@@ -1,9 +1,10 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/local. Package impact v0.6 is approved. Isolated Docling
-behavior and bounded Nomic end-to-end conformance are independently verified,
-including the reporting correction. Whole Gate-A9.5, product construction and
-MAINT human UAT/acceptance remain open. Production source and state are unchanged.
+**Status:** started/local; execution phase: planning; validation state: pending
+for the new conditional product directives. Package impact v0.6 is approved.
+Bounded Docling/Nomic/corpus evaluations remain independently verified. Whole
+Gate-A9.5, exact product construction approval and MAINT human UAT/acceptance
+remain open. Production source and state are unchanged.
 
 **Delivery:** [PR #15](https://github.com/CIChuck/agent-framework/pull/15)
 is merged into `master` at `c36e7ee5`; its remote retirement branch is deleted.
@@ -35,7 +36,17 @@ candidate `b15ee091`; product/artifact source `ae15a537`. Execution phase:
 closeout; validation state: verified. [Targeted human UAT](uat/maintenance-reorganization-uat.md)
 is ready, all cases NOT RUN. Acceptance and delivery remain ungranted.
 
-**Current INGEST — isolated evaluation verified; product construction open:**
+**Current INGEST — product directives drafted for maintainer review:**
+[INGEST construction draft](directives/CD-CMD-INGEST-001-product.md) and the
+[separate Tools adoption draft](directives/CD-CMD-TOOLS-DOC-001-adoption.md)
+bind phased shared contracts, consumer compatibility, actual file command/store
+proof, traceable tests and substantive architecture/guide updates. The
+[measured readiness decision](validation/document-ingestion/product-construction/readiness-decision.md)
+records RD-01–07 before activation; the draft does not silently close those gaps.
+No council is active and product generation has not started. The latest proceed
+is recorded as documentation-only preparation, with protected state preserved.
+
+**Earlier scoped evaluation and package-impact authority:**
 Chuck [approved exact assessment v0.6](approval/ingest-package-impact.md),
 SHA256 `f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176`.
 The [assessment](package-impact-assessment.md), [REM](remediation/REM-CMD-INGEST-001-pdf-docx.md),
@@ -53,7 +64,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Large-document corpus independently verified. Qualify Qwen embedding-serving identity and tokenizer, then reserve an isolated test window before larger-document Docling/chunking/embedding comparisons. Production model/default and product construction remain separate decisions.
+**Next gate:** Review the conditional INGEST and separate TOOLS-DOC product construction drafts, measured readiness gaps and phase activation requirements. Complete remaining Gate-A/contract/test-map evidence and bind exact maintainer approval before product generation. Qwen qualification remains separate; no production/model/store effects or council is activated.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
