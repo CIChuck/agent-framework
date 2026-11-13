@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
-**Status:** started/local; execution phase: planning; validation state: pending
-for the new conditional product directives. Package impact v0.6 is approved.
+**Status:** started/local; execution phase: validation; validation state: in_review
+for one conditional-product-directive council round. Package impact v0.6 is approved.
 Bounded Docling/Nomic/corpus evaluations remain independently verified. Whole
 Gate-A9.5, exact product construction approval and MAINT human UAT/acceptance
 remain open. Production source and state are unchanged.
@@ -43,7 +43,7 @@ bind phased shared contracts, consumer compatibility, actual file command/store
 proof, traceable tests and substantive architecture/guide updates. The
 [measured readiness decision](validation/document-ingestion/product-construction/readiness-decision.md)
 records RD-01–07 before activation; the draft does not silently close those gaps.
-No council is active and product generation has not started. The latest proceed
+One read-only council round is explicitly requested; product generation has not started. The earlier proceed
 is recorded as documentation-only preparation, with protected state preserved.
 
 **Earlier scoped evaluation and package-impact authority:**
@@ -64,7 +64,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Review the conditional INGEST and separate TOOLS-DOC product construction drafts, measured readiness gaps and phase activation requirements. Complete remaining Gate-A/contract/test-map evidence and bind exact maintainer approval before product generation. Qwen qualification remains separate; no production/model/store effects or council is activated.
+**Next gate:** One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

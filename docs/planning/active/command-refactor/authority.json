@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Review the conditional INGEST and separate TOOLS-DOC product construction drafts, measured readiness gaps and phase activation requirements. Complete remaining Gate-A/contract/test-map evidence and bind exact maintainer approval before product generation. Qwen qualification remains separate; no production/model/store effects or council is activated.",
+  "current_scope": "One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1895,8 +1895,8 @@
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
     "status": "conditional_product_construction_draft",
-    "execution_phase": "planning",
-    "validation_state": "pending",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Review the conditional INGEST and separate TOOLS-DOC product construction drafts, measured readiness gaps and phase activation requirements. Complete remaining Gate-A/contract/test-map evidence and bind exact maintainer approval before product generation. Qwen qualification remains separate; no production/model/store effects or council is activated.",
+    "next_gate": "One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Review the conditional INGEST and separate TOOLS-DOC product construction drafts, measured readiness gaps and phase activation requirements. Complete remaining Gate-A/contract/test-map evidence and bind exact maintainer approval before product generation. Qwen qualification remains separate; no production/model/store effects or council is activated.",
+      "next_gate": "One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2971,7 +2971,7 @@
     },
     "product_construction_preparation": {
       "version": "0.1",
-      "status": "conditional_drafts_for_maintainer_review",
+      "status": "document_council_in_review",
       "date": "2026-11-12",
       "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
       "files": {
@@ -3005,7 +3005,7 @@
         }
       },
       "implementation_approval": "not_granted",
-      "council_active": false,
+      "council_active": true,
       "new_model_or_store_effects": false,
       "production_changes": false,
       "gate_a_threshold_met": false,
@@ -3019,7 +3019,21 @@
         "RD-07"
       ],
       "test_exception_map_approved": false,
-      "lightweight_change_exemption": "Documentation-only preparation under explicit proceed; record contains exact scope and checks. No source/test/guide/config/dependency implementation."
+      "lightweight_change_exemption": "Documentation-only preparation under explicit proceed; record contains exact scope and checks. No source/test/guide/config/dependency implementation.",
+      "council": {
+        "round": 1,
+        "maximum_authorized_rounds": 1,
+        "authorization": "validation/document-ingestion/product-construction/council-round1/authorization.json",
+        "authorization_sha256": "0250f72f4fc512710680103d33f7f79e420aa2c63346de39c4f4a2afd973a749",
+        "criteria": "validation/document-ingestion/product-construction/council-round1/criteria.md",
+        "criteria_sha256": "7a7536c12becca40541c3b2368217c0ce47f7d3101365a273001bc007db7b9ce",
+        "roster": "validation/document-ingestion/product-construction/council-round1/roster.json",
+        "threshold_each": 9.5,
+        "status": "in_review",
+        "scope": "document readiness and selected-source feasibility only",
+        "automatic_remediation": false,
+        "construction_authority": false
+      }
     }
   },
   "command_refactor_publication": {

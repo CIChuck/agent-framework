@@ -1,14 +1,14 @@
 # INGEST product construction drafts — maintainer review
 
-Execution phase: planning; validation state: pending for the new directives.
+Execution phase: validation; validation state: in_review for the document council.
 [INGEST](directives/CD-CMD-INGEST-001-product.md) and
 [TOOLS-DOC](directives/CD-CMD-TOOLS-DOC-001-adoption.md) remain separately
 conditional, with [RD-01–07](validation/document-ingestion/product-construction/readiness-decision.md)
 activation requirements. Prior bounded evaluations remain verified at their
 frozen sources. Whole Gate-A9.5 and product construction approval remain open.
-No model/store/production effect or council invocation is authorized by drafting.
+The latest request authorizes one read-only three-seat council round. No model/store/production effect is authorized.
 
-**Next gate:** Review the conditional INGEST and separate TOOLS-DOC product construction drafts, measured readiness gaps and phase activation requirements. Complete remaining Gate-A/contract/test-map evidence and bind exact maintainer approval before product generation. Qwen qualification remains separate; no production/model/store effects or council is activated.
+**Next gate:** One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery.
 
 ## Separate MAINT closeout and historical checkpoints
 

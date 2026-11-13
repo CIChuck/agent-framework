@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Review the conditional INGEST and separate TOOLS-DOC product construction drafts, measured readiness gaps and phase activation requirements. Complete remaining Gate-A/contract/test-map evidence and bind exact maintainer approval before product generation. Qwen qualification remains separate; no production/model/store effects or council is activated. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery. |
 
 ## Completed
 

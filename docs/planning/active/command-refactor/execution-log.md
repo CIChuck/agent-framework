@@ -3929,3 +3929,15 @@ user models-config.example.yaml whitespace; no configuration fix was made.
 [Checks](validation/document-ingestion/product-construction/preparation-checks.json)
 retain the actual failed full check alongside passing scoped checks. No product
 suite, model test or independent document council was executed for this draft.
+
+## 2026-11-12 — Product directive council round 1 requested
+
+Chuck explicitly requests independent review of CD-CMD-INGEST-001-product.md,
+seeking at least9.5 from all three maintained seats. Record one read-only round
+with Sol/Astra/Opus at high effort, both coverage/overall thresholds, zero
+mandatory findings and no automatic remediation/reissue budget. Review the
+conditional draft's authority, behavior/ownership/compatibility, phase feasibility,
+test/documentation and activation gates against pinned context. Missing unbuilt
+implementation is not itself a document defect; real contradictions or unsafe
+unknown authority are findings. Earlier before-council routing is satisfied by
+this explicit request. No product, model, store or delivery authority is granted.

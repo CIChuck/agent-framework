@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Review the conditional INGEST and separate TOOLS-DOC product construction drafts, measured readiness gaps and phase activation requirements. Complete remaining Gate-A/contract/test-map evidence and bind exact maintainer approval before product generation. Qwen qualification remains separate; no production/model/store effects or council is activated."
+  next_gate: "One read-only Sol/Astra/Opus council round reviews the frozen conditional INGEST product directive. Require each seat VERIFIED, no mandatory findings, coverage and overall at least 9.5; reconcile all three before any disposition. No automatic remediation/reissue, construction, provider/store effects or delivery."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

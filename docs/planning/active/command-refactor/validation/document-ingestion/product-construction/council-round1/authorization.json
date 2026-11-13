@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "maintainer": "Chuck Russell",
+  "date": "2026-11-12",
+  "request": "That the council to review the docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md document. Seeking a 9.5 or better approval rating amongst the three council members. Have any questions regarding this request?",
+  "scope": "One fresh three-seat read-only review of the conditional product directive and necessary authority/evidence/source context.",
+  "round": 1,
+  "maximum_authorized_rounds": 1,
+  "models": [
+    "gpt-6.1-sol",
+    "gpt-6-astra",
+    "claude-opus-5-5"
+  ],
+  "effort": "high",
+  "required_each": {
+    "coverage_minimum": 9.5,
+    "overall_minimum": 9.5,
+    "mandatory_findings": 0,
+    "outcome": "VERIFIED"
+  },
+  "scoring": "Score honestly; no rounding up/inflation or averaging to meet the threshold. Scores do not waive mandatory findings.",
+  "no_automatic_remediation_or_reissue": true,
+  "no_product_construction_or_effects": true,
+  "scope_note": "An expressly deferred activation prerequisite is not missing runtime implementation in this document-readiness review. Assess completeness, consistency, feasibility and safe gating; report real contradictions or unfulfillable/underspecified required behavior.",
+  "previous_before_council_routing": "Latest explicit request authorizes this review only; earlier condition that Chuck sees documents first has now been satisfied by his direction."
+}
