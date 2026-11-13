@@ -93,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Model identity/tokenizer parity pre-construction qualification is removed by Chuck. Explain and settle Office coverage; retain the separate worker/resource question and exact contracts, case/impact approval and bounded execution before I1. No product code or live effects authorized by this discussion.
+**Next gate:** Workbook visibility policy settled: reject affected included-sheet hidden rows/columns with an actionable explanation and zero ingestion. Model identity/tokenizer parity pre-coding qualification is removed. Worker/resource approach is under discussion; exact contracts, case/impact approval and bounded execution still precede I1. No product code or live effects authorized by this discussion.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

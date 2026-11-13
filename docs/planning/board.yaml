@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Model identity/tokenizer parity pre-construction qualification is removed by Chuck. Explain and settle Office coverage; retain the separate worker/resource question and exact contracts, case/impact approval and bounded execution before I1. No product code or live effects authorized by this discussion."
+  next_gate: "Workbook visibility policy settled: reject affected included-sheet hidden rows/columns with an actionable explanation and zero ingestion. Model identity/tokenizer parity pre-coding qualification is removed. Worker/resource approach is under discussion; exact contracts, case/impact approval and bounded execution still precede I1. No product code or live effects authorized by this discussion."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

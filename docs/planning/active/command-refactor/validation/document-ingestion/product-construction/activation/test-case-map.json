@@ -1710,6 +1710,19 @@
       ],
       "assertions": "All strategies/defaults/independent overrides; exact Unicode coverage/context provenance; refuse budgets above capacity; final batch preflight; headless text requires no Docling.",
       "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_hidden_rows_or_columns_reject_entire_workbook_before_ingestion",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-04",
+        "DI-13",
+        "DI-25"
+      ],
+      "authority": "office-visibility-decision.md",
+      "assertions": "Row-only, column-only and combined hidden dimensions in included worksheets return unsupported_workbook_visibility with actionable explanation; no conversion, embedding or storage. Visible-only and hidden-sheet-excluded controls retain success; source unchanged.",
+      "status": "planned_not_executed"
     }
   ],
   "modules": [
@@ -1858,7 +1871,15 @@
     "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-slides.pptx",
     "packages/friday-tools/tests_tools/fixtures/document-ingestion/corrupt.pptx",
     "packages/friday-tools/tests_tools/fixtures/document-ingestion/oracles.json",
-    "packages/friday-tools/tests_tools/fixtures/document-ingestion/resource-boundaries.json"
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/resource-boundaries.json",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-rows.xlsx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-columns.xlsx"
   ],
-  "fixture_rule": "Synthetic generated fixtures only. oracles.json binds expected meaningful source strings/order/unit counts independently; no personal documents, diagnostic placeholders or copied user store. Boundary fixtures are generated in private test output from resource-boundaries.json, not huge committed blobs."
+  "fixture_rule": "Synthetic generated fixtures only. oracles.json binds expected meaningful source strings/order/unit counts independently; no personal documents, diagnostic placeholders or copied user store. Boundary fixtures are generated in private test output from resource-boundaries.json, not huge committed blobs.",
+  "approved_requirement_amendments": [
+    {
+      "path": "office-visibility-decision.md",
+      "scope": "Workbook refusal policy only; no test code edit or execution approval."
+    }
+  ]
 }

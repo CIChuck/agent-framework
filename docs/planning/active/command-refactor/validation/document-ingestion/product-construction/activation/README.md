@@ -4,8 +4,9 @@
 tokenizer-parity pre-coding qualification is removed](model-qualification-decision.md).
 Earlier RD-01/RD-05 prerequisite descriptions below are retained as superseded
 background for that item only. Runtime guards and ordinary implementation
-compatibility tests remain; no later parity campaign is substituted. Office
-coverage and worker/resource decisions remain open.
+compatibility tests remain; no later parity campaign is substituted. The [Office amendment](office-visibility-decision.md) now selects clear whole-
+workbook refusal for hidden rows/columns. The worker/resource question remains
+under discussion; no new qualification or execution is authorized by this notice.
 
 Version 0.1, 2026-11-13. Prepared under Chuck's latest **proceed**, following
 [verified focused council round 2](../focused-council/round2/results/report.md).

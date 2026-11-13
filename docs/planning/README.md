@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Model identity/tokenizer parity pre-construction qualification is removed by Chuck. Explain and settle Office coverage; retain the separate worker/resource question and exact contracts, case/impact approval and bounded execution before I1. No product code or live effects authorized by this discussion. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Workbook visibility policy settled: reject affected included-sheet hidden rows/columns with an actionable explanation and zero ingestion. Model identity/tokenizer parity pre-coding qualification is removed. Worker/resource approach is under discussion; exact contracts, case/impact approval and bounded execution still precede I1. No product code or live effects authorized by this discussion. |
 
 ## Completed
 

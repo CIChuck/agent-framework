@@ -63,7 +63,8 @@ retryable: bool, safe_message: str, source_id: Id | None, attempt_id: Id | None)
 raw document text, credentials, provider bodies or arbitrary exception repr.
 Codes are exactly `usage`, `unsupported_format`, `source_unreadable`,
 `source_changed`, `missing_dependency`, `missing_asset`, `encrypted`, `corrupt`,
-`partial_conversion`, `empty_content`, `coverage_unproven`, `resource_limit`,
+`partial_conversion`, `empty_content`, `coverage_unproven`,
+`unsupported_workbook_visibility`, `resource_limit`,
 `timeout`, `cancelled`, `readiness`, `identity`, `overflow`, `response_invalid`,
 `store_refused`, `storage_failed`, `worker_failed`, `worker_not_quiescent`.
 Existing domain exceptions remain public; adapters preserve typed shared errors
@@ -202,6 +203,17 @@ New flat reserved fields use `friday_ingest_` (schema, source/plan/space/profile
 hashes, strategy, max_tokens, index/count and provenance JSON string). No None or
 nested object is sent to Chroma metadata. MCP and derived maintenance records
 remain unsplit; their role/capability checks still apply.
+
+### XLSX visibility admission
+
+The [maintainer amendment](office-visibility-decision.md) selects whole-workbook
+refusal when any included worksheet has hidden rows or columns. Read-only
+structural detection occurs before Docling conversion or ingestion. Return
+`unsupported_workbook_visibility`, sheet names/counts and an actionable safe
+explanation; no partial success, hidden-value disclosure or input mutation.
+Hidden worksheets retain their separate default exclusion. Visible-only workbook
+conversion and all other format rules are unchanged. No row/column filtering
+qualification is required for files refused under this approved policy.
 
 ## 4. Worker, read-only request and publication
 

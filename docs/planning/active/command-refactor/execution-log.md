@@ -4241,3 +4241,17 @@ implementation compatibility coverage remain. Current gates/binding reflect
 the override; the prior frozen directive council retains its original scope.
 Chuck asks how Office exclusion would work; no Office-policy change, product
 implementation, provider/model call, install or new council is authorized here.
+
+
+## 2026-11-13 — maintainer approves workbook rejection policy
+
+Chuck selects clear rejection of affected XLSX workbooks instead of qualifying
+hidden-row/column filtering. The [amendment](validation/document-ingestion/product-construction/activation/office-visibility-decision.md)
+applies when included sheets contain hidden rows/columns, before conversion,
+chunking, embedding or storage. Explain the affected sheets and how to provide
+a copy with the intended content visible/removed; no content is ingested.
+Hidden-sheet default exclusion and other format rules remain unchanged.
+The planned I3 witness covers row/column/both refusals and positive visible-only
+controls. No product/test source, real workbook, model or store is changed.
+The worker-resource question is being explained separately; no new worker
+experiment, implementation or council is authorized by that question.

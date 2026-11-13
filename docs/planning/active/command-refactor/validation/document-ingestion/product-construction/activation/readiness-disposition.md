@@ -4,8 +4,9 @@
 tokenizer-parity pre-coding qualification is removed](model-qualification-decision.md).
 Earlier RD-01/RD-05 prerequisite descriptions below are retained as superseded
 background for that item only. Runtime guards and ordinary implementation
-compatibility tests remain; no later parity campaign is substituted. Office
-coverage and worker/resource decisions remain open.
+compatibility tests remain; no later parity campaign is substituted. The [Office amendment](office-visibility-decision.md) now selects clear whole-
+workbook refusal for hidden rows/columns. The worker/resource question remains
+under discussion; no new qualification or execution is authorized by this notice.
 
 Version 0.1, 2026-11-13. This is an evidence disposition for the existing
 [RD-01–07 requirements](../readiness-decision.md), not a new Docling evaluation.
@@ -49,7 +50,7 @@ exact approval; they do not supply absent empirical evidence or amend the REM.
 | ID | Reused evidence / prepared artifact | Current disposition | Exact evidence or decision still required |
 | --- | --- | --- | --- |
 | RD-01 | Approved compatibility annex inventories B01–08/FC01–14; earlier Nomic source-to-store evidence; exact slice/test assignments. | **Open: actual identities and B/N qualification.** | Actual baseline and N-DIM/N-SPACE/N-CAP identities, immutable serving evidence, real counter assets and old-convention baseline positives in disposable stores. Check B02 hosted immutable identity first. No test double or model-name echo qualifies it. |
-| RD-02 | Completed configured four-format/OCR behavior and genuine Office fixtures; sole-Docling-text and non-text audit contract retained. | **Open: narrow Office coverage mapping.** | Prove hidden sheet/row/column/slide exclusion, notes-versus-comments and formula-cache mapping to the selected output through public APIs. Current hidden-row/column whole-workbook refusal is not exclusion support. If not feasible, present a precise narrower REM/impact amendment for approval; no silent change. |
+| RD-02 | Completed configured four-format/OCR behavior and genuine Office fixtures; [approved visibility amendment](office-visibility-decision.md). | **Hidden-row/column policy resolved: reject the affected workbook clearly.** | No pre-coding row/column filtering qualification. I3 preserves visible-only successes and proves real command refusal before conversion/embedding/storage. Other required format/notes/formula behavior remains ordinary implementation acceptance; the measured rejection is not relabeled exclusion support. |
 | RD-03 | Existing document/input ceilings and measured bounded conversion results; proposed process/session and cancellation design. | **Open: product envelope and worker feasibility.** | Qualify the proposed worker, full representative boundaries, cold/warm resource limits, spawn/IPC/local-counter operation, cancellation, 300-second deadline and two-second terminate grace. The old corpus's native validity does not establish these results. No claim of OS sandboxing/immediate native kill. |
 | RD-04 | A2 signatures/fields, plan/receipt/namespace identities, strict v2 versions and five canonical design vectors; exact path map. | **Prepared design, not approved/runtime-qualified.** | Review and freeze this appendix; bind actual qualified asset/capability records and finalize measured RD-02/03-specific profile values. Exact product invariants are validated after generation, at the assigned exits. |
 | RD-05 | Friday-LLM/Nomic/Chroma E2E: 768 dimensions, observed context 2048, real persisted/reopened chunks. Model ID and old evidence remain exact. | **Open: immutable serving identity and boundary parity.** | The recorded server usage=0 cannot prove token parity. Bind served artifact/counter/preparation, effective per-input/batch limits and positive/overflow boundary evidence for B and every N scenario. No use of the consumed old request ledger for new calls. |
