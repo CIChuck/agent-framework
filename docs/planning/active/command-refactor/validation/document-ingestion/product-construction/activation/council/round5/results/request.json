@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "repo": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "candidate": "34981199842ef73891605a20f3b4275eeb37e943",
+  "branch": "feature/cmd-ingest-001",
+  "workflow": "INGEST activation package council",
+  "round": 5,
+  "maximum_rounds": 6,
+  "target": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
+  "target_sha256": "cf9dff2de4757c3ad811baeeb4c2fc2545375185221b337bd5248c725de1f033",
+  "approved_instructions": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/review-instructions.md",
+  "approved_instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
+  "expected_entry_exit": {
+    "head": "34981199842ef73891605a20f3b4275eeb37e943",
+    "branch": "feature/cmd-ingest-001",
+    "logical_index_before_status": "f3deff5e446fbd09635f0fef65ab49ee9fd1088b4f380372fe9b8e32df9cd849",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+    "staged": ""
+  },
+  "preserved_metadata": {
+    "packages/friday-chat/config.example.yaml": {
+      "mode": 33188,
+      "size": 30129,
+      "mtime_ns": 1794334784972093361,
+      "ctime_ns": 1794334784972093361,
+      "birthtime": 1788446389.467035,
+      "sha256": "7c31a9ad3f6a7ff1cfc891cace6c4b3cde21d10202770c374a38c6cc28620f32"
+    },
+    "packages/friday-chat/models-config.example.yaml": {
+      "mode": 33188,
+      "size": 3962,
+      "mtime_ns": 1794264005521487739,
+      "ctime_ns": 1794264005521487739,
+      "birthtime": 1788446389.4671795,
+      "sha256": "5cf3d15ec469d3b8e495248d3aec9ed7bcdb48b68243668b6dbbbb3e0b0326c9"
+    },
+    ".friday": {
+      "mode": 16877,
+      "size": 224,
+      "mtime_ns": 1794335780595591896,
+      "ctime_ns": 1794335780595591896,
+      "birthtime": 1794312889.6114945
+    },
+    ".friday-old": {
+      "mode": 16877,
+      "size": 256,
+      "mtime_ns": 1794312848481691252,
+      "ctime_ns": 1794312880963718202,
+      "birthtime": 1793062680.0546615
+    },
+    ".venv": {
+      "mode": 16877,
+      "size": 288,
+      "mtime_ns": 1772940967050495003,
+      "ctime_ns": 1772940967050495003,
+      "birthtime": 1772940965.7368934
+    },
+    "exports": {
+      "mode": 16877,
+      "size": 128,
+      "mtime_ns": 1794172873430987983,
+      "ctime_ns": 1794172873430987983,
+      "birthtime": 1794172873.430393
+    },
+    "exports/friday_context.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419969663853,
+      "ctime_ns": 1794173419969663853,
+      "birthtime": 1794172873.4304848,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    },
+    "exports/friday_prompt.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419970166478,
+      "ctime_ns": 1794173419970166478,
+      "birthtime": 1794172873.4309843,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    }
+  },
+  "required_inputs": [
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
+      "sha256": "cf9dff2de4757c3ad811baeeb4c2fc2545375185221b337bd5248c725de1f033",
+      "read_scope": "full activation overview"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md",
+      "sha256": "b61d933bd2792e84b85a1a373e027bf723e40d689db316ec1e552c20b4116fb5",
+      "read_scope": "full exact shared contracts and lifecycle design"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md",
+      "sha256": "e001b2b6c3d0acddac5729f8ba8c9f57fb88f7cebe5f538aa35e12844920ccf3",
+      "read_scope": "full current dispositions with maintainer overrides controlling superseded clauses"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md",
+      "sha256": "7764f1d79d655015c234cd56b9d188648db8d773b0a013d5faa7cf24b386bfd7",
+      "read_scope": "full proposed implementation acceptance and staging"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/approval-binding.json",
+      "sha256": "df6b1fef28d3fd41ac2944d10463b378d98789177b06e21e3120641526be9440",
+      "read_scope": "full current input/appendix and activation state"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/model-qualification-decision.md",
+      "sha256": "b2503902db78f9d01909c4d2c9d20a03dd4cdc772421c1ec100d5b614ed22d26",
+      "read_scope": "full explicit current override"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/office-visibility-decision.md",
+      "sha256": "7eb7bf3224036d61f28059d8a1ab4c21d66b9deb4964e013de6a780b381775c7",
+      "read_scope": "full approved bounded narrowing"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-worker-decision.md",
+      "sha256": "a828b757b213acc9481ba3053873f4d2243f3a106927ddade71eb97631bf938b",
+      "read_scope": "full frontend-neutral process ownership and acceptance"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json",
+      "sha256": "dfa7810367b4f67ee8572c51750ca03b2cb7fd93d5aa668646dcd34c45dfcb5d",
+      "read_scope": "inspect complete selected owner/slice/exit and scope meaning; focused views for repeated rows, no provenance reconstruction"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json",
+      "sha256": "52f454c985f8c26fdd413ad08476f6347aa6c68ce66a37a9504e5cdd53220e5e",
+      "read_scope": "inspect concrete mapped cases, retain default, helper/live dispositions and planned witnesses; no AST inventory rebuild"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/digest-vectors.json",
+      "sha256": "4b5bef7daf3400dca0c7058d967a66653d1c5e3aa59a7b0c9fe5770e3bd436e4",
+      "read_scope": "inspect design field/hash coverage; controller pin checks are provided, no bulk historical audit"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/review-instructions.md",
+      "sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
+      "read_scope": "full user-approved common brief; draft preface retained verbatim as historical proposal, authorization.json is current launch authority"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/authorization.json",
+      "sha256": "0acc84a2bd755273eefca8ab19f3c146d6f50087c4ff176c1f0235ad611a7b75",
+      "read_scope": "full current authorization/roster/limit"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md",
+      "sha256": "f36ae3349c9666a8d2e5fbdd3277f6df73fe592a8984952bfe585082b4a49590",
+      "read_scope": "Full current parent dispositions; removed campaign is not a later gate."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round5/correction-requirements.json",
+      "sha256": "8ee43cc9efc220a444634384aaed3f16a3c5534d409c453643114df7acbaafcb",
+      "read_scope": "Neutral F1-F4 requirements; assess bounded corrections then all eight unchanged approved areas."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/extension-authorization.json",
+      "sha256": "f16397daf645003799e78635eb1941aa88af56874180c7279cc0c34109c5df43",
+      "read_scope": "Read this current maintainer extension FIRST. It overrides only the original brief round3 cap, permitting global rounds4-6 with the same scope/roster/criteria; stop early on all-seat success."
+    }
+  ],
+  "optional_references": [
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+      "sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1",
+      "read_scope": "Only relevant sections for a concrete requirement/integration question. Current explicit maintainer overrides control; do not reimpose removed qualification. No full-parent read prerequisite."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+      "sha256": "b7d93caf2d302e0802b3c6b7f523de42d2ab98f625b5a8a02326f21a8fec2f9f",
+      "read_scope": "Only relevant sections for a concrete requirement/integration question. Current explicit maintainer overrides control; do not reimpose removed qualification. No full-parent read prerequisite."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md",
+      "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+      "read_scope": "Only relevant sections for a concrete requirement/integration question. Current explicit maintainer overrides control; do not reimpose removed qualification. No full-parent read prerequisite."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/embedding-compatibility-contract.md",
+      "sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+      "read_scope": "Only relevant sections for a concrete requirement/integration question. Current explicit maintainer overrides control; do not reimpose removed qualification. No full-parent read prerequisite."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+      "sha256": "f570318f704fe3c5ba29b62860148b45eb31d15243fcf0eb6acd76bc9d218176",
+      "read_scope": "Only relevant sections for a concrete requirement/integration question. Current explicit maintainer overrides control; do not reimpose removed qualification. No full-parent read prerequisite."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
+      "sha256": "601babef2d35c11b65d5c224e082b191b3212b973e287d16740be604b54ccbc4",
+      "read_scope": "Only relevant sections for a concrete requirement/integration question. Current explicit maintainer overrides control; do not reimpose removed qualification. No full-parent read prerequisite."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
+      "sha256": "e7b3b3afa0ad3ab46313f180ac3b23a62c90fe3cc5a26da6b91bcd7b90d3e909",
+      "read_scope": "Only relevant sections for a concrete requirement/integration question. Current explicit maintainer overrides control; do not reimpose removed qualification. No full-parent read prerequisite."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/test-migration-plan.md",
+      "sha256": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c",
+      "read_scope": "Only relevant sections for a concrete requirement/integration question. Current explicit maintainer overrides control; do not reimpose removed qualification. No full-parent read prerequisite."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/command-architecture-update-plan.md",
+      "sha256": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1",
+      "read_scope": "Only relevant sections for a concrete requirement/integration question. Current explicit maintainer overrides control; do not reimpose removed qualification. No full-parent read prerequisite."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/guide-update-handoff.md",
+      "sha256": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9",
+      "read_scope": "Only relevant sections for a concrete requirement/integration question. Current explicit maintainer overrides control; do not reimpose removed qualification. No full-parent read prerequisite."
+    }
+  ],
+  "safe_current_controls": {
+    "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-activation-council-mo36ef_q/round5-inputs/current-controls.json",
+    "sha256": "46064767f6d3b4c2769ff85c4ab7de7aee72cbc5ccbd1f0fcf5b4ef103802ad9"
+  },
+  "controller_checks": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round5/controller-checks.json",
+    "sha256": "078cde0004d7e469a3cf85374e37dceb3628fda21b68fd64baf3ee671f46457a",
+    "classification": "Controller structural checks only; not your semantic correctness evidence. No admin suite is assigned to reviewers."
+  },
+  "scope": "Assess neutral corrections then full exact user-reviewed Review A1-A8 activation-package brief. No product-code conformance, completed vendor evaluation or whole-framework source audit. Complete all eight before one overall score.",
+  "report": "Durable compact report, completion flag, A1-A8 table/contributions, honest overall score (null if truly incomplete), mandatory findings, separate advisories and boundaries/limits. No separate numerical coverage grade.",
+  "threshold": {
+    "each_seat_overall_minimum": 9.5,
+    "each_seat_complete_areas": 8,
+    "each_seat_mandatory_findings": 0,
+    "no_inflation_averaging_or_rounding_up": true
+  },
+  "conduct": "Fresh read-only; own external physical scratch; verify request hash before reading. GIT_OPTIONAL_LOCKS=0 and bytecode off. No memory, past/peer reports/private reasoning or raw authority/navigation/history. Permitted current-doc provenance labels are context, not inherited proof or automatic disqualification. No product imports/tests/builds/installs/network/model/provider/store calls, AST/inventory/archive/dependency audit or old harness replay. Finance test_integration_massive.py wholly excluded from reading/parsing/execution. No user YAML/state/credentials/.friday*/exports/.venv contents. Declared hash/metadata-only preserved checks allowed. No repository/input writes, delegates, repairs, replacements or additional pass by this seat. Stop after report.",
+  "additional_pass": 2,
+  "maximum_additional_passes": 3,
+  "budget_precedence": "Current extension-authorization.json supersedes only the original common brief round3 stopping cap. This is additional pass2/3, global round5/6. No replacement/seventh round or product/effects authority."
+}

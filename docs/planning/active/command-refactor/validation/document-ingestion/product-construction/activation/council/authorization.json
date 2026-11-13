@@ -10,7 +10,7 @@
   "target": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
   "maximum_rounds": 6,
   "stop_when": "Stop early on every seat complete 8/8, VERIFIED, zero mandatory findings and overall>=9.5; otherwise stop after global round6 for guidance.",
-  "bounded_corrections": "Planning-document corrections directly addressing review findings; stable new candidate and fresh seats per subsequent round. No source/test implementation, expanded project, effects or fourth/replacement round.",
+  "bounded_corrections": "Planning-document corrections directly addressing review findings, stable changed candidate and fresh full council per round within global rounds4-6. No source/test implementation, expanded project, effects, replacement seat or seventh round.",
   "roster": [
     {
       "seat": "sol",

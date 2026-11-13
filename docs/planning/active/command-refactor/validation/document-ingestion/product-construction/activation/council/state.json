@@ -2,10 +2,10 @@
   "version": 1,
   "workflow": "activation_package_council",
   "maximum_rounds": 6,
-  "rounds_started": 5,
-  "rounds_completed": 4,
-  "current_round": 5,
-  "status": "extension_pass2_round5_frozen_for_review",
+  "rounds_started": 6,
+  "rounds_completed": 5,
+  "current_round": 6,
+  "status": "final_extension_pass3_round6_frozen_for_review",
   "instructions_approved": true,
   "history": [
     {
@@ -39,6 +39,14 @@
       "gate_met": false,
       "results": "round4/results/index.json",
       "reconciliation": "round4/reconciliation.md"
+    },
+    {
+      "round": 5,
+      "candidate": "34981199842ef73891605a20f3b4275eeb37e943",
+      "result": "CHANGES_REQUESTED",
+      "gate_met": false,
+      "results": "round5/results/index.json",
+      "reconciliation": "round5/reconciliation.md"
     }
   ],
   "construction_approved": false,
@@ -46,10 +54,10 @@
   "active": true,
   "gate_met": null,
   "overall_result": "pending",
-  "remaining_rounds": 1,
+  "remaining_rounds": 0,
   "additional_rounds_authorized": 3,
-  "additional_rounds_started": 2,
-  "additional_rounds_completed": 1,
+  "additional_rounds_started": 3,
+  "additional_rounds_completed": 2,
   "extension": "extension-authorization.json",
   "extension_sha256": "f16397daf645003799e78635eb1941aa88af56874180c7279cc0c34109c5df43"
 }

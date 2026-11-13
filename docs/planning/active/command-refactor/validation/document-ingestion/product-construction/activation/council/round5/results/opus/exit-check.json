@@ -1,0 +1,18 @@
+{
+ "summary": {
+  "pins": true,
+  "optional": true,
+  "preserved": true,
+  "controller_checks": true
+ },
+ "counts": {
+  "pins": 16,
+  "optional": 10,
+  "preserved": 8
+ },
+ "fail": {
+  "pins": [],
+  "optional": [],
+  "preserved": []
+ }
+}

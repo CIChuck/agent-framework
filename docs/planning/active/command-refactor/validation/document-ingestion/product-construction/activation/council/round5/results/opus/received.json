@@ -1,0 +1,17 @@
+{
+  "seat": "opus",
+  "round": 5,
+  "additional_pass": 2,
+  "candidate": "34981199842ef73891605a20f3b4275eeb37e943",
+  "report_sha256": "df3d6d792bac736e08f61cb766c6b6efde1f49811b467ed7a0e2067071066a42",
+  "verdict": "CHANGES_REQUESTED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.32,
+  "raw_total": 9.325,
+  "mandatory_findings": [
+    "M1 entry-only ingestion registration incompatible with required converter"
+  ],
+  "report_hash_verified": true,
+  "boundary_evidence": "Original report and available boundary files retained without fabrication."
+}

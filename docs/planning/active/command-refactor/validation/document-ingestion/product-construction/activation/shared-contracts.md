@@ -1,6 +1,6 @@
 # INGEST activation appendix A2 — shared contracts
 
-Version 0.5, 2026-11-13. **Proposed exact design; not activated.** Prepared from
+Version 0.6, 2026-11-13. **Proposed exact design; not activated.** Prepared from
 `7a3e00bc9ef77adee25b61fc52ff91875e172738` and the unchanged
 [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md).
 The directive, REM and compatibility annex control except for the explicit
@@ -159,6 +159,19 @@ filenames remain paths. No path resolution or existence check occurs here. The
 new parser has no filesystem,
 provider or environment access. Handler-identity selection stays in Chat registry.
 
+### Dependency declaration before use
+
+At I3-C1, the selected Tools pyproject declares its document-ingestion extra and
+uv.lock gains the narrow already selected Docling/OCR stack, before any genuine
+conversion test/import requiring that stack. At I3-C3, the selected Chat pyproject
+adds the default document-extra edge before command adoption, with the matching
+narrow lock update. I1 counter declarations remain I1-C2. I3-C5 still owns clean
+installed normal/-O profile/origin/Certifi verification and final documentation.
+Each earlier test interpreter is separately bound by its phase Gate A5 from that
+phase's declared metadata and dependency/asset manifest; no implicit sync/install
+or undeclared tool dependency is permitted. This specifies future construction
+ordering, not installation authority or a repeat Docling evaluation.
+
 ## 3. Configuration, assets and deterministic planning
 
 Add only optional strict `max_input_tokens: int | None` and
@@ -221,7 +234,8 @@ revalidate assets at open rather than silently adopting changed files.
 
 Missing/unreadable settings or contradictory schema is typed `readiness` with a
 safe actionable message naming the document binding. Missing profile/assets is
-`missing_asset`, absent document libraries `missing_dependency`; manifest/profile bytes mismatching the hashes declared in the selected binding
+`missing_asset`; a present asset with a declared-size mismatch is `identity`, as
+is a declared hash mismatch. Absent document libraries are `missing_dependency`; manifest/profile bytes mismatching the hashes declared in the selected binding
 are `identity`. Settings content/schema errors are `readiness`; no settings-file
 tamper detection is claimed without an externally supplied expected hash. Record
 the settings-file hash when loaded and at Gate A2/A5 for traceability, not as
@@ -453,6 +467,15 @@ It omits provider credentials, proxies and production config paths. Counter impo
 must not read .env or fetch a cost map. Installed-profile no-network checks are
 ordinary I3 acceptance, not a new vendor evaluation.
 
+The input snapshot copy is Tools-owned cooperative I/O inside the same heartbeat,
+cancellation and cold-deadline window: copy/hash at most 64 KiB per step and yield
+after each step, rather than one read_bytes/copyfile of the full 32 MiB input.
+Check source descriptor/identity before and after; changed source yields
+source_changed. Cancellation/deadline closes descriptors and removes only the
+request-owned incomplete snapshot before returning; no child starts from it.
+The converted worker receives only a complete immutable snapshot and bound digest.
+The C4 heartbeat witness includes maximum-size copy/preflight, not just conversion.
+
 Control/result IPC uses four-byte unsigned big-endian length followed by strict
 UTF-8 JSON, max 128 MiB per frame and bounded control/diagnostic fields; reject
 oversize/malformed/unknown messages. No vendor object crosses IPC. The one trusted
@@ -556,15 +579,17 @@ fails I3-C4 for reconciliation, never auto-increases limits or relaxes cleanup.
 `ingestion_entry: IngestionEntry | None` and
 `document_converter: DocumentConverter | None`, initially None, and
 `bind_ingestion(self, *, entry: IngestionEntry,
-document_converter: DocumentConverter) -> None`. Registration is inert and
-transfers lifecycle ownership only on success. Same object pair is idempotent;
-different pair/rebinding during or after shutdown raises a typed readiness error
-without closing caller-owned arguments. Composition creates the Tools converter,
-LLM counter/embedder and Memory entry explicitly and registers the exact pair.
-No default boot creates Docling, and no document YAML policy is added.
+document_converter: DocumentConverter | None = None) -> None`. Registration is inert and transfers lifecycle ownership only on
+success.
+An entry alone is valid: it can serve text/Markdown/code/JSON/table/web/tool text
+without resolving document settings or constructing a converter. The optional
+argument never clears an already bound converter. Binding and late-attachment
+rules below apply to both Runtime and Chat owners. No default boot creates
+Docling or resolves document settings; no document YAML policy is added.
 
-`DIContainer.shutdown` stops new ingestion, awaits `entry.aclose()`, then
-`document_converter.aclose()`, then existing MCP shutdown. Retained close tasks
+`DIContainer.shutdown` stops new ingestion, awaits `entry.aclose()` if present,
+then `document_converter.aclose()` if present, then existing MCP shutdown.
+Retained close tasks
 are shielded/drained across repeated cancellation. A finally path attempts each
 cleanup even if an earlier close fails; preserve/report the first failure and
 unknown quiescence. Repeated shutdown joins the same cleanup task, never returns
@@ -588,15 +613,36 @@ until needed. It does not resolve document settings or create a converter at boo
 It adds `bind_document_converter(self, *, document_converter: DocumentConverter)
 -> None` for read-only/lazy ownership, and
 `bind_ingestion(self, *, entry: IngestionEntry,
-document_converter: DocumentConverter) -> None` for an admitted entry.
-Both synchronously reject closing/closed or different-object rebinds; repeating
-the same converter/pair is idempotent. Successful bind transfers cleanup ownership;
-a rejected bind leaves the caller responsible for its arguments. A later entry
-must use the already bound converter. The runtime/adapters factory resolves the
+document_converter: DocumentConverter | None = None) -> None` for an admitted entry.
+Both synchronously reject closing/closed or different-object rebinds. The
+same entry, converter or pair is idempotent. An entry-only registration is valid;
+bind_document_converter may attach a converter later. A supplied converter must
+be the identical object if one is already owned. Omitting it leaves existing
+converter ownership unchanged; no settings are resolved merely to bind an entry.
+A failed bind neither adopts new objects nor relinquishes previously owned ones:
+the caller remains responsible only for its previously unowned arguments. The runtime/adapters factory resolves the
 document-specific settings only on a four-format request and registers the
 converter before open; no Memory entry is required for /read. An entry is created
 and bound only after its destination is admitted. This avoids both the old
 assembly-order problem and an eager placeholder entry or persistent-store access.
+
+The exact ownership-state rules are common to both implementations:
+
+| Existing owner state | Operation | Result |
+| --- | --- | --- |
+| neither | bind_ingestion(entry=E) | own E only; no converter lookup |
+| E only | bind_document_converter(document_converter=C), or bind_ingestion(entry=E, document_converter=C) | own E and C; attach C once |
+| C only | bind_ingestion(entry=E) | own E and existing C; omission never clears C |
+| E/C, either may be absent | repeat same supplied objects | idempotent; fill only missing slots |
+| any | different already-bound E or C, or binding while closing/closed | readiness error; no partial mutation or ownership transfer |
+
+Composed four-format ingestion requires an owned converter before document
+conversion; absent converter/settings refuses readiness before embedding/storage.
+Direct Memory ingest of a converted source independently requires a matching
+owned document_session, otherwise readiness. Memory does not import Tools or
+consult frontend bindings. Non-document ingest requires neither converter nor
+session; its default document chunking strategy uses Memory's non-Docling planner.
+Register such entries for cleanup just like document entries.
 
 `close()` rejects new requests, drains the entry if any, closes the converter and
 all its read-only sessions if any, then closes existing LLM clients, retaining the
@@ -606,7 +652,7 @@ no request can start after closing wins. Fake runtime owns no worker. These edit
 stay in selected adapters.py/runtime.py; the app.py finally path is unchanged.
 
 Renderer-free CLI/TUI composition can call these public factories and
-`friday_runtime.di.DIContainer.bind_ingestion`, or explicitly own the pair in
+`friday_runtime.di.DIContainer.bind_ingestion`, or explicitly own an entry and optional converter in
 try/finally around the existing RuntimeKernel. RuntimeKernel, its private `_di`,
 its exports and existing CLI executable surfaces remain unchanged; this is a
 reusable public capability, not a new wired CLI/TUI command. No private-field
@@ -627,7 +673,8 @@ with settings_path or the explicit environment snapshot, then
 `await converter.open(...)` and `await converter.aclose()` in try/finally. Runtime
 DI adds the same `bind_document_converter` method to register a converter alone;
 its shutdown closes it even if ingestion_entry stays None. Later bind_ingestion
-must reference that converter. No settings lookup occurs in default Runtime boot.
+may omit the converter, retaining the same owned object, or explicitly supply
+that identical object. No settings lookup occurs in default Runtime boot.
 For /ingest, compose this converter with the separately resolved LLM/Memory pieces
 below. Missing embedding manifests cannot prevent a correctly bound read-only
 conversion; missing document binding cannot prevent plain-text reads.
@@ -638,7 +685,8 @@ embedding_function=embedder, persist_directory=..., open_request=request)` using
 the Core StoreOpenRequest and LLM resolved counter/broker. After admission, the
 new read-only `store.destination` supplies the exact DestinationBinding and the
 store implements PreparedVectorStore. Pass both to create_ingestion_entry, then
-register the pair with a directly owned DIContainer or own it in try/finally.
+register the entry with a directly owned DIContainer, adding a converter only for
+document use, or explicitly own the entry and optional converter in try/finally.
 This recipe creates an explicit ingestion destination; it does not obtain or
 claim to share RuntimeKernel's private store. If using the kernel alongside it,
 select an explicit compatible namespace instead of discovering kernel internals.
@@ -646,8 +694,9 @@ select an explicit compatible namespace instead of discovering kernel internals.
 Chat adds `async SmartFileReader.read_document(path, *, attempt_id)` backed by
 this session. Existing synchronous `read` retains text/JSON/table behavior and
 **refuses the four document formats with a use-async-document-reader error**;
-it must not silently block on them. Default async `/read` dispatch selects the
-new method. A request holds the same cancellation state through conversion and,
+it must not silently block on them. Chat files.py adds .pptx to SUPPORTED_EXTENSIONS alongside .pdf/.docx/.xlsx
+and selects the shared async converter for all four; existing text/table entries
+remain. Default async `/read` dispatch selects the new method. A request holds the same cancellation state through conversion and,
 for ingestion, planning/preflight; owned sessions are closed/joined before any
 success is exposed. Persistent requests separately retain shared admission until
 all owned work and storage eligibility checks finish.

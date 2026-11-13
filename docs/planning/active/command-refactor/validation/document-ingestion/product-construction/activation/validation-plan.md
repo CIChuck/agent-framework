@@ -1,6 +1,6 @@
 # INGEST activation — validation execution plan
 
-Version 0.5, proposed A3/A5 plan. **No commands here were run as product validation.**
+Version 0.6, proposed A3/A5 plan. **No commands here were run as product validation.**
 Only execute a phase after its exact approval and prepared isolated interpreter,
 source snapshot, qualified assets and permitted effects have been bound. No
 working `.venv`, dirty configuration or user `.friday*` store is a test target.
@@ -98,3 +98,13 @@ new/retained module above has an offline module classification; exact helper and
 node expansion still precedes execution. No import/setup failure earns refusal
 credit. Include cooperative preflight in heartbeat timing, runtime=None local
 /read ownership and the named psutil sampler in the existing C4 profile.
+
+I3-C1 declares/locks the selected Tools document stack before its real conversion
+suite. I3-C3 declares/locks Chat's default document edge before command adoption;
+earlier source suites use their own Gate-A5-bound phase environment. I3-C5 still
+proves final clean installed profiles, origins and Certifi floor. No install is
+implicit in a test selector. Text-ingest C3 and Chat/Runtime C4 witnesses exercise
+entry-only registration with no document binding, late converter attachment,
+mismatch refusal and entry-then-optional-converter shutdown. Include maximum-size
+snapshot copy in responsiveness/cancel/deadline controls and .pptx in reader
+extension/format tests. Preserve TM-A049's text behavior without Docling setup.

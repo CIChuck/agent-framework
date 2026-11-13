@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Activation council extension pass2/3, global round5/6. Review direct parser test/module classification and I3 Runtime selector correction, related settings/lifecycle/audit/RSS advisories, then full unchanged Review A1–A8. Fresh Sol/Astra/Opus; complete 8/8, zero mandatory findings and overall>=9.5 each. Bounded planning corrections only; stop on success or after round6 for guidance. No product generation, replacement/seventh round, vendor/model campaign or live effects. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | FINAL activation council extension pass3/3, global round6/6. Review optional-converter entry registration and text-ingest/drain positives, related declaration-before-use and bounded snapshot clarifications, then full unchanged Review A1–A8. Fresh Sol/Astra/Opus, complete 8/8, zero mandatory findings and overall>=9.5 each. STOP for maintainer feedback after this council regardless of outcome. No further correction/replacement/seventh round, product generation, vendor/model campaign or live effects. |
 
 ## Completed
 

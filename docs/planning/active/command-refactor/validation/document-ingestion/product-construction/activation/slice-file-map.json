@@ -337,6 +337,11 @@
       "assignments": [
         {
           "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Add default Tools document-extra dependency before Chat document command adoption; clean final installed verification remains C5."
+        },
+        {
+          "slice": "I3",
           "exit": "I3-C5",
           "purpose": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes."
         }
@@ -392,6 +397,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Constructor kwargs seed one typed mutable holder under frozen custom-init wrapper; accessors read holder, no stale duplicated state."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Optional-converter bind_ingestion: own text entry alone, attach converter later, reject different objects atomically; drain entry then optional converter before existing MCP/LLM cleanup."
         }
       ]
     },
@@ -416,6 +426,11 @@
           "slice": "I3",
           "exit": "I3-C3",
           "purpose": "runtime=None document /read uses same public Tools binding with locally owned converter/session in retained try/finally; no new runtime, Memory or app/context file edit. Full cancellation proof C4."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Explicit .pptx extension admission and shared four-format async route; preserve all existing text/table extension behavior."
         }
       ]
     },
@@ -1488,6 +1503,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Read-only bind_document_converter ownership and headless public settings factory recipe; no document YAML/Kernel private access or boot lookup."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Optional-converter bind_ingestion: own text entry alone, attach converter later, reject different objects atomically; drain entry then optional converter before existing MCP/LLM cleanup."
         }
       ]
     },
@@ -1517,6 +1537,11 @@
       "exists_at_preparation": true,
       "baseline_sha256": "40f234b2f32bac75010ea6bbaa7b09e5d712e6d3d839a1963b485f6c1efd5b76",
       "assignments": [
+        {
+          "slice": "I3",
+          "exit": "I3-C1",
+          "purpose": "Declare selected document-ingestion extra and pins before real Docling/OCR source tests; clean final installed verification remains C5."
+        },
         {
           "slice": "I3",
           "exit": "I3-C5",
@@ -1555,6 +1580,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Bounded cooperative XML visibility audit included in heartbeat/cancellation window before converter process; existing psutil product sampler and explicit planned/terminal IPC state, honest settings errors."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Chunked/yielding maximum-size source snapshot/hash and cancellation cleanup within heartbeat/deadline, plus explicit asset size mismatch identity error."
         }
       ]
     },
@@ -1616,6 +1646,16 @@
           "slice": "I3",
           "exit": "I3-C5",
           "purpose": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C1",
+          "purpose": "Narrow selected Tools document-stack lock delta before conversion tests; no unrelated upgrade."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Lock matching Chat default document-extra edge before command adoption; C5 verifies final closed installed profiles."
         }
       ]
     }

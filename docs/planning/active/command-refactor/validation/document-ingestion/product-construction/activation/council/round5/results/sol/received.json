@@ -1,0 +1,19 @@
+{
+  "seat": "sol",
+  "round": 5,
+  "additional_pass": 2,
+  "candidate": "34981199842ef73891605a20f3b4275eeb37e943",
+  "report_sha256": "38314c3e2e6c87a490e9c648ac1d381feb527d7dc6725e3df17338989d998e06",
+  "verdict": "VERIFIED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.5775,
+  "mandatory_findings": [],
+  "report_hash_verified": true,
+  "compared_boundary_fields": [
+    "identity",
+    "preserved_metadata",
+    "required_pins"
+  ],
+  "repo_unchanged_by_collection": true
+}

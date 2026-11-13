@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Activation council extension pass2/3, global round5/6. Review direct parser test/module classification and I3 Runtime selector correction, related settings/lifecycle/audit/RSS advisories, then full unchanged Review A1–A8. Fresh Sol/Astra/Opus; complete 8/8, zero mandatory findings and overall>=9.5 each. Bounded planning corrections only; stop on success or after round6 for guidance. No product generation, replacement/seventh round, vendor/model campaign or live effects."
+  next_gate: "FINAL activation council extension pass3/3, global round6/6. Review optional-converter entry registration and text-ingest/drain positives, related declaration-before-use and bounded snapshot clarifications, then full unchanged Review A1–A8. Fresh Sol/Astra/Opus, complete 8/8, zero mandatory findings and overall>=9.5 each. STOP for maintainer feedback after this council regardless of outcome. No further correction/replacement/seventh round, product generation, vendor/model campaign or live effects."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

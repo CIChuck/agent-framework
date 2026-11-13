@@ -1222,9 +1222,10 @@
       "retained_or_replacement_assertions": [
         "Exact source and description metadata preserved",
         "Common plan is used once and stored chunks match it",
-        "Actual disposable store inspected rather than listing-only extraction proof"
+        "Actual disposable store inspected rather than listing-only extraction proof",
+        "Plain-text ingestion setup needs no document binding/converter; its common entry is owned and drained."
       ],
-      "permitted_edit": "TM-01: retain all text/table/JSON assertions and replace fake document positives with genuine four-format successes plus corrupt refusal. TM-02: setup/common-entry adaptation only; preserve source/description/listing and add actual stored-plan proof.",
+      "permitted_edit": "TM-01: retain all text/table/JSON assertions and replace fake document positives with genuine four-format successes plus corrupt refusal. TM-02: setup/common-entry adaptation only; preserve source/description/listing and add actual stored-plan proof. No document converter/settings fixture is required for the retained text-ingest behavior.",
       "approved": false
     }
   ],
@@ -1444,7 +1445,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success. Exercise lazy lifecycle bind after admission and read-only request owner without eager Memory construction. Lazy converter-only bind uses typed mutable holder under frozen wrapper; close and bind/start race is ordered, no worker after closing, no required entry. Constructor kwargs seed the single holder; accessors reflect later bind; no stale frozen copies.",
+      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success. Exercise lazy lifecycle bind after admission and read-only request owner without eager Memory construction. Lazy converter-only bind uses typed mutable holder under frozen wrapper; close and bind/start race is ordered, no worker after closing, no required entry. Constructor kwargs seed the single holder; accessors reflect later bind; no stale frozen copies. Same optional-converter entry registration/late-attach/drain matrix in actual Chat lifecycle, constructor seeding and read-only conversion preserved.",
       "status": "planned_not_executed"
     },
     {
@@ -1734,7 +1735,7 @@
         "DI-23",
         "DI-26"
       ],
-      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication. Launch the actual installed friday_tools.filesystem.readers.document_ingestion module from private request_root, verify installed origin and framed stdin/stdout exchange plus concurrent stderr flooding/drain; malformed/oversize/EOF, profile deadline defaults/overrides and no terminal output. Run in normal and optimized installed lanes. Exercise v1 IPC message/state transitions, unknown/out-of-order frames and capability-record mutation before child counter creation. Parent package imports are silent/offline; count their time/RSS in limits; no shim/init-source edits. Explicit planned/closing/terminal transitions reject duplicate plans; sample RSS with bound psutil profile/PID identity, never treat denied/lost accounting as zero; report startup/conversion timing separately.",
+      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication. Launch the actual installed friday_tools.filesystem.readers.document_ingestion module from private request_root, verify installed origin and framed stdin/stdout exchange plus concurrent stderr flooding/drain; malformed/oversize/EOF, profile deadline defaults/overrides and no terminal output. Run in normal and optimized installed lanes. Exercise v1 IPC message/state transitions, unknown/out-of-order frames and capability-record mutation before child counter creation. Parent package imports are silent/offline; count their time/RSS in limits; no shim/init-source edits. Explicit planned/closing/terminal transitions reject duplicate plans; sample RSS with bound psutil profile/PID identity, never treat denied/lost accounting as zero; report startup/conversion timing separately. Include bounded maximum-input snapshot copy/hash, cancellation between copy batches and before spawn, and partial snapshot cleanup under heartbeat/cold deadline.",
       "status": "planned_not_executed"
     },
     {
@@ -1745,7 +1746,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Construct public DIContainer; register exact entry/converter pair, same-pair idempotence and rejected different/reclosing pair preserve caller ownership. Shutdown closes entry then converter then MCP; repeated cancellation joins retained task, fails honestly on unknown reap. No RuntimeKernel private field or Chat import. Converter-only registration drains without an entry; later entry uses the same converter; default boot performs no settings lookup.",
+      "assertions": "Construct public DIContainer; register exact entry/converter pair, same-pair idempotence and rejected different/reclosing pair preserve caller ownership. Shutdown closes entry then converter then MCP; repeated cancellation joins retained task, fails honestly on unknown reap. No RuntimeKernel private field or Chat import. Converter-only registration drains without an entry; later entry uses the same converter; default boot performs no settings lookup. Matrix entry-only, converter-only and both: text entry registers with converter omitted, late attachment, same-object idempotence, different-object rejection and entry-then-optional-converter close order; no document settings lookup for text.",
       "status": "planned_not_executed"
     },
     {
@@ -1785,7 +1786,7 @@
         "DI-29",
         "DI-35"
       ],
-      "assertions": "Explicit settings path wins over environment; valid provisioned local profile/assets bind exactly; invalid explicit never falls back. Unknown/duplicate keys, relative roots, hash/size/path escape and missing binding refuse before scratch creation, worker, Memory or embedding. No heavyweight import or asset fetch. Distinguish schema/content readiness errors from bound manifest/profile hash identity errors; record settings digest without claiming undeclared tamper detection.",
+      "assertions": "Explicit settings path wins over environment; valid provisioned local profile/assets bind exactly; invalid explicit never falls back. Unknown/duplicate keys, relative roots, hash/size/path escape and missing binding refuse before scratch creation, worker, Memory or embedding. No heavyweight import or asset fetch. Distinguish schema/content readiness errors from bound manifest/profile hash identity errors; record settings digest without claiming undeclared tamper detection. Present declared-size mismatch is identity, absent asset missing_asset; no worker on resolver failure.",
       "status": "planned_not_executed"
     },
     {
@@ -1836,6 +1837,35 @@
         "DI-35"
       ],
       "assertions": "Direct public helper: quoted/unquoted paths, repeated interior whitespace, Unicode/apostrophes/backslashes, invalid/empty/unmatched quote paths, option order, -- opaque suffix and literal description quotes, prefix lookalikes/default-handler scope. /read chunk overrides and recognized document line tokens before -- refuse lexically before I/O; after -- remains literal. Text/table raw line tokens retain legacy downstream behavior. Fresh module closure stdlib-only, no Core/Memory/frontend imports or filesystem/environment access; retained separate API54/import-boundary witnesses run.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_text_ingestion_needs_no_document_binding",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-16",
+        "DI-17",
+        "DI-19",
+        "DI-23",
+        "DI-29",
+        "DI-35"
+      ],
+      "assertions": "Actual default plain-text /ingest stores the common plan with document binding absent, owns an entry alone and never calls document settings resolver/converter. Default document/512 chunking uses Memory non-Docling planner. Preserve source/description/listing and actual disposable-store readback. Four-format request without a bound converter/settings refuses readiness before embedding/storage.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_lifecycle_drains_entry_with_optional_late_converter",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-11",
+        "DI-19",
+        "DI-23",
+        "DI-26",
+        "DI-35"
+      ],
+      "assertions": "Actual frozen-wrapper mutable-holder lifecycle: construct/bind entry only with no document settings; shutdown drains it and LLM clients without converter. Separately attach converter later, preserve it when omitted on repeat, reject mismatched entry/converter with no partial mutation, and drain entry then converter then clients under repeated cancel. Previously owned objects remain owned after refused bind.",
       "status": "planned_not_executed"
     }
   ],
@@ -2014,7 +2044,7 @@
       "path": "tests/integration/ingest_installed_probe.py",
       "baseline_sha256": null,
       "phase": "I3",
-      "purpose": "Actual installed normal/-O public command/headless/guard proof, explicit require-style checks and no source fallback. Use the same public document binding and converter-only headless /read path; no direct test-only injection shortcut.",
+      "purpose": "Actual installed normal/-O public command/headless/guard proof, explicit require-style checks and no source fallback. Use the same public document binding and converter-only headless /read path; no direct test-only injection shortcut. Include text entry-only positive and shutdown without document assets; retain separate real document positive through the public binding.",
       "execution_class": "offline_with_qualified_local_assets_and_deterministic_vectors"
     }
   ],

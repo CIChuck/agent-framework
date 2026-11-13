@@ -4,7 +4,7 @@
   "unit": "CD-CMD-INGEST-001-activation-preparation",
   "base": "7a3e00bc9ef77adee25b61fc52ff91875e172738",
   "branch": "feature/cmd-ingest-001",
-  "status": "proposed_extension_round5_activation_package_not_approved",
+  "status": "proposed_final_extension_round6_activation_package_not_approved",
   "reviewed_directive_candidate": "0144c53908afb6f8288425c58c7a3bbff651faef",
   "inputs": [
     {
@@ -51,19 +51,19 @@
   "appendices": [
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
-      "sha256": "cf9dff2de4757c3ad811baeeb4c2fc2545375185221b337bd5248c725de1f033"
+      "sha256": "da16c57b34d5a8f4016d67837c4a1dea85074bfcd6aa09cf8e362d42d540ede5"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md",
-      "sha256": "b61d933bd2792e84b85a1a373e027bf723e40d689db316ec1e552c20b4116fb5"
+      "sha256": "c01a8adf43f474196cbc82424483c3ced9b1d8c5d129a795fcbd31f3c0f4a169"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json",
-      "sha256": "dfa7810367b4f67ee8572c51750ca03b2cb7fd93d5aa668646dcd34c45dfcb5d"
+      "sha256": "d42beb17c01f1d39e6553eab07d886a609ac5be40b50517072f3b859f842fb79"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json",
-      "sha256": "52f454c985f8c26fdd413ad08476f6347aa6c68ce66a37a9504e5cdd53220e5e"
+      "sha256": "2b10720145e6d15acc8d75c3269fde4c5def21f0e92b7b700a26dc378d65aaca"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/digest-vectors.json",
@@ -71,11 +71,11 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md",
-      "sha256": "e001b2b6c3d0acddac5729f8ba8c9f57fb88f7cebe5f538aa35e12844920ccf3"
+      "sha256": "c6253d85b14c2aa16dfc31cb633391ad76c080dd92e65669847b520306304dd0"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md",
-      "sha256": "7764f1d79d655015c234cd56b9d188648db8d773b0a013d5faa7cf24b386bfd7"
+      "sha256": "d37057be96ff18f62247f552042a2e93f378253a4b8521655da608c8ee92152d"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/preparation-authorization.json",
@@ -83,7 +83,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md",
-      "sha256": "f36ae3349c9666a8d2e5fbdd3277f6df73fe592a8984952bfe585082b4a49590"
+      "sha256": "32dae93f40363c91bff411ea1fbb3b0416500a1b8c1386b6b267dc5f8c5427c5"
     }
   ],
   "gates": {

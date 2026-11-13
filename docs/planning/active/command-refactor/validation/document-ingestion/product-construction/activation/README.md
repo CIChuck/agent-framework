@@ -5,7 +5,7 @@ maintainer decisions directly: no separate model/parity qualification campaign;
 clear whole-workbook refusal for affected XLSX inputs; one shared process service.
 Worker proof is implementation acceptance at I3-C4, not a pre-coding prerequisite.
 
-Version 0.5, 2026-11-13. Prepared under Chuck's latest **proceed**, following
+Version 0.6, 2026-11-13. Prepared under Chuck's latest **proceed**, following
 [verified focused council round 2](../focused-council/round2/results/report.md).
 This direction authorizes this planning package. **Product construction is not
 activated.** The reviewed [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md)
@@ -108,3 +108,11 @@ The [current extension authorization](council/extension-authorization.json) perm
 at most three additional councils, global rounds 4–6. It supersedes only the old
 brief's three-round cap; scope, roster, weights and 9.5-per-seat gate are unchanged.
 The previous stop point and reports remain historical evidence, not current limits.
+
+
+Text ingestion registers an entry independently of the document converter. A
+converter may be attached later for document requests; shutdown drains the entry
+and then the converter if present. Missing document settings cannot disable text
+ingestion. Dependency declarations precede first use; final installed verification
+remains I3-C5. The current global round6 is the final authorized council and is
+followed by a maintainer handoff regardless of its result.

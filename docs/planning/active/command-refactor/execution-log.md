@@ -4379,3 +4379,17 @@ are explicit. No product/test/guide/dependency code changed or effects ran.
 Fresh pass2 of the three-round extension assesses a new stable candidate under
 the same user-reviewed brief and current budget override. Stop on success or
 after global round6; no seventh round or construction follows automatically.
+
+
+## 2026-11-13 — INGEST extension pass2 reconciled; FINAL pass3/global round6
+
+All round5 seats completed eight areas and F1–F4. Sol/Astra VERIFIED; Opus
+CHANGES_REQUESTED with one entry-registration coupling defect. Original reports
+and frozen closing evidence are retained byte-exact. Bounded planning fix makes
+converters optional for owned text entries and supports late attach with identity
+and close-order rules; adds text/entry-only positives and clarifies dependency
+metadata before use, size errors, snapshot batching, PPTX and cap wording.
+No product/test/guide/dependency implementation or effects occurred. Unchanged
+common brief and authorized roster/weights/gate apply. Round6 is final: stop for
+maintainer feedback afterwards regardless of outcome, no replacement/seventh
+round, further technical corrections, construction or live effects.

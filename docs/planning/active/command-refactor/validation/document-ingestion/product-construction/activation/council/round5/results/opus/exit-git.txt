@@ -1,0 +1,8 @@
+logical_index=f3deff5e446fbd09635f0fef65ab49ee9fd1088b4f380372fe9b8e32df9cd849
+head=34981199842ef73891605a20f3b4275eeb37e943
+branch=feature/cmd-ingest-001
+status:
+ M packages/friday-chat/config.example.yaml
+ M packages/friday-chat/models-config.example.yaml
+?? .friday-old/
+staged=[]
