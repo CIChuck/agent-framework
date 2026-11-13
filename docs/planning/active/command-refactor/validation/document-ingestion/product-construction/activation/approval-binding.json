@@ -13,7 +13,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/authority-manifest.json",
-      "sha256": "4e6a8dfea2533c18741587ef41dce479a378f1bb2a17ff33e238c4428dfee61d"
+      "sha256": "e46d0b430c0a94696d079fc62676542a805c086944e6504ea2adefab5d35522b"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
@@ -51,7 +51,7 @@
   "appendices": [
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
-      "sha256": "0fce33b0d3464fe86d0c7b56133d0e54717f87fd020befe83852a0259b182ea5"
+      "sha256": "13eee863e7c2486ed73b60107597216c168641ad9dab26bcde7aaf05be6ac0e5"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md",

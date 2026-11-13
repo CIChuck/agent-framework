@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Chuck reviews the proposed activation-package council instructions before any reviewer launch. Planned roster Sol/Astra/Opus at high effort, at most three rounds, each complete/VERIFIED with no mandatory findings and overall >=9.5; after round3 await feedback. Zero rounds started. Product construction and live effects remain unapproved. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Activation-package council round1/3 under the exact user-reviewed instructions: fresh Sol/Astra/Opus, complete A1–A8, zero mandatory findings and overall>=9.5 for each seat. Bounded document corrections only; stop on success or after round3 for feedback. Model/parity prequalification stays removed, affected workbooks are rejected clearly and the process worker remains shared across frontends. No product generation or live effects. |
 
 ## Completed
 

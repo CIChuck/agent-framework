@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "workflow": "activation_package_council",
+  "maximum_rounds": 3,
+  "rounds_started": 1,
+  "rounds_completed": 0,
+  "current_round": 1,
+  "status": "round1_frozen_for_review",
+  "instructions_approved": true,
+  "history": [],
+  "construction_approved": false,
+  "effects_approved": false
+}

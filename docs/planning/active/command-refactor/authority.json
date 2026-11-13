@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Chuck reviews the proposed activation-package council instructions before any reviewer launch. Planned roster Sol/Astra/Opus at high effort, at most three rounds, each complete/VERIFIED with no mandatory findings and overall >=9.5; after round3 await feedback. Zero rounds started. Product construction and live effects remain unapproved.",
+  "current_scope": "Activation-package council round1/3 under the exact user-reviewed instructions: fresh Sol/Astra/Opus, complete A1\u2013A8, zero mandatory findings and overall>=9.5 for each seat. Bounded document corrections only; stop on success or after round3 for feedback. Model/parity prequalification stays removed, affected workbooks are rejected clearly and the process worker remains shared across frontends. No product generation or live effects.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1895,8 +1895,8 @@
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
     "status": "activation_appendices_prepared_readiness_pending",
-    "execution_phase": "planning",
-    "validation_state": "not_ready",
+    "execution_phase": "validation",
+    "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Chuck reviews the proposed activation-package council instructions before any reviewer launch. Planned roster Sol/Astra/Opus at high effort, at most three rounds, each complete/VERIFIED with no mandatory findings and overall >=9.5; after round3 await feedback. Zero rounds started. Product construction and live effects remain unapproved.",
+    "next_gate": "Activation-package council round1/3 under the exact user-reviewed instructions: fresh Sol/Astra/Opus, complete A1\u2013A8, zero mandatory findings and overall>=9.5 for each seat. Bounded document corrections only; stop on success or after round3 for feedback. Model/parity prequalification stays removed, affected workbooks are rejected clearly and the process worker remains shared across frontends. No product generation or live effects.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2954,7 +2954,7 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "activation_council_instructions_maintainer_review",
+    "current_stage": "activation_package_council_round1",
     "validation_scope": "New proposed exact appendices have structural checks only; focused directive remains independently VERIFIED at 0144c539, Q/activation open.",
     "large_document_corpus": {
       "state": "verified",
@@ -2989,7 +2989,7 @@
         },
         "authority_manifest": {
           "path": "validation/document-ingestion/product-construction/authority-manifest.json",
-          "sha256": "4e6a8dfea2533c18741587ef41dce479a378f1bb2a17ff33e238c4428dfee61d"
+          "sha256": "e46d0b430c0a94696d079fc62676542a805c086944e6504ea2adefab5d35522b"
         },
         "baseline_test_inventory": {
           "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
@@ -3508,7 +3508,7 @@
       "activation_preparation": {
         "package": "validation/document-ingestion/product-construction/activation/README.md",
         "binding": "validation/document-ingestion/product-construction/activation/approval-binding.json",
-        "binding_sha256": "b5cd52ece0958166d45df91ef832bf5cfb7e00334cc79a21973884d2740ede45",
+        "binding_sha256": "3d9ff672d5c9e3cad0baa3705bdd781f82ce18f2518494ec025c7254b94c9380",
         "authority": "validation/document-ingestion/product-construction/activation/preparation-authorization.json",
         "status": "proposed_not_approved",
         "new_council_authorized": false,
@@ -3516,12 +3516,16 @@
         "new_effects": false
       },
       "activation_council": {
-        "status": "awaiting_maintainer_instruction_review",
-        "active": false,
-        "rounds_started": 0,
+        "status": "round1_frozen_for_review",
+        "active": true,
+        "rounds_started": 1,
         "maximum_rounds": 3,
         "instructions": "validation/document-ingestion/product-construction/activation/council/review-instructions.md",
-        "instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894"
+        "instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
+        "rounds_completed": 0,
+        "authorization": "validation/document-ingestion/product-construction/activation/council/authorization.json",
+        "authorization_sha256": "63e64263cbcc6fe887b6c01995ccab133fdca03ed9f8a78c8e628d3b0e4a0efc",
+        "state": "validation/document-ingestion/product-construction/activation/council/state.json"
       }
     },
     "model_qualification_prerequisite_decision": {
@@ -3559,8 +3563,8 @@
       "target": "validation/document-ingestion/product-construction/activation/README.md",
       "instructions": "validation/document-ingestion/product-construction/activation/council/review-instructions.md",
       "instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
-      "status": "awaiting_maintainer_instruction_review",
-      "reviewer_launch_permitted_now": false,
+      "status": "instructions_approved_round1",
+      "reviewer_launch_permitted_now": true,
       "roster": [
         "gpt-6.1-sol",
         "gpt-6-astra",
@@ -3568,11 +3572,14 @@
       ],
       "effort": "high",
       "maximum_rounds": 3,
-      "rounds_started": 0,
+      "rounds_started": 1,
       "rounds_completed": 0,
       "overall_target_each": 9.5,
       "completion": "8 of 8 areas; zero mandatory findings; no separate numerical coverage grade",
-      "bounded_corrections": "Planning-only findings within current scope between fresh rounds, after brief review/direction. No code, effects or fourth round."
+      "bounded_corrections": "Planning-only findings within current scope between fresh rounds, after brief review/direction. No code, effects or fourth round.",
+      "latest_authorization": "proceed with council",
+      "authorization": "validation/document-ingestion/product-construction/activation/council/authorization.json",
+      "authorization_sha256": "63e64263cbcc6fe887b6c01995ccab133fdca03ed9f8a78c8e628d3b0e4a0efc"
     }
   },
   "command_refactor_publication": {

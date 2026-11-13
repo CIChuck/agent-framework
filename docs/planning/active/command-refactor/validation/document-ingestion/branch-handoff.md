@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Chuck reviews the proposed activation-package council instructions before any reviewer launch. Planned roster Sol/Astra/Opus at high effort, at most three rounds, each complete/VERIFIED with no mandatory findings and overall >=9.5; after round3 await feedback. Zero rounds started. Product construction and live effects remain unapproved.
+**Next gate:** Activation-package council round1/3 under the exact user-reviewed instructions: fresh Sol/Astra/Opus, complete A1–A8, zero mandatory findings and overall>=9.5 for each seat. Bounded document corrections only; stop on success or after round3 for feedback. Model/parity prequalification stays removed, affected workbooks are rejected clearly and the process worker remains shared across frontends. No product generation or live effects.
 
 [Proposed activation package](product-construction/activation/README.md) contains exact draft contracts, slice/case maps and unresolved Q dispositions; it is not construction approval.
 

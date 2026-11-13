@@ -4291,3 +4291,22 @@ waits for Chuck's review/direction. Fresh read-only seats, bounded document
 corrections and at most three rounds are proposed; no fourth/replacement/code
 activation follows. Current authority and routing record that hold, leaving the
 actual activation target/contracts and previous frozen evidence unchanged.
+
+
+## 2026-11-13 — reviewed activation council instructions authorized
+
+Chuck reviews the proposed common brief, then explicitly says “proceed with
+council.” The [authorization](validation/document-ingestion/product-construction/activation/council/authorization.json)
+pins the unchanged reviewed instructions and named Sol/Astra/Opus high-effort
+roster. At most three fresh full rounds, one honest overall score per completed
+eight-area seat, each >=9.5 and zero mandatory findings. Bounded planning fixes
+may occur between rounds; stop on the gate or after round3 for feedback. No
+fourth/replacement, source implementation or live effects is authorized.
+
+Round1 freezes the current activation package. Current decisions remove separate
+model/parity prequalification, select clear affected-workbook rejection and keep
+the process worker/progress/cancel/results reusable across frontends. Completed
+Docling evaluation stays input; no AST/archive/vendor replay or whole-framework
+source audit is assigned. Controller structural checks run once; fresh read-only
+reviewers assess package buildability and current contracts/maps. Original prior
+councils remain closed and do not substitute for this new review.

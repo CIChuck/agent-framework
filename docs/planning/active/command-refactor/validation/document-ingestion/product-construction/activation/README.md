@@ -12,7 +12,8 @@ Version 0.1, 2026-11-13. Prepared under Chuck's latest **proceed**, following
 [verified focused council round 2](../focused-council/round2/results/report.md).
 This direction authorizes this planning package. **Product construction is not
 activated.** The reviewed [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md)
-and its technical parents remain unchanged. No new council is launched.
+and its technical parents remain unchanged. The [activation-package council](council/authorization.json)
+is separately authorized under the user-reviewed instructions; construction remains unactivated.
 
 [Shared process-worker ownership](shared-worker-decision.md) is now explicit for
 Chat, CLI/Runtime and future TUI consumers. Progress/cancel/drain is UI-neutral,
@@ -100,7 +101,7 @@ validation environment and permitted effects. No mark of document readiness
 silently closes these requirements.
 
 This package does not request production changes, an automatic model switch,
-reset/re-embedding, hosted calls, a new dependency installation or further council
-rounds. The initiative stays started/local. The next bounded preparation is to
+reset/re-embedding, hosted calls, a new dependency installation. Council rounds follow their separate reviewed
+authorization. The initiative stays started/local. The next bounded preparation is to
 resolve the explicitly named Q facts, starting with hosted identity feasibility,
 and present the fully bound activation record for approval before I1 generation.
