@@ -5,8 +5,8 @@ tokenizer-parity pre-coding qualification is removed](model-qualification-decisi
 Earlier RD-01/RD-05 prerequisite descriptions below are retained as superseded
 background for that item only. Runtime guards and ordinary implementation
 compatibility tests remain; no later parity campaign is substituted. The [Office amendment](office-visibility-decision.md) now selects clear whole-
-workbook refusal for hidden rows/columns. The worker/resource question remains
-under discussion; no new qualification or execution is authorized by this notice.
+workbook refusal for hidden rows/columns. Shared process-worker ownership is now explicit across frontends; resource and
+lifecycle acceptance remains required. No new execution is authorized here.
 
 Version 0.1, 2026-11-13. This is an evidence disposition for the existing
 [RD-01–07 requirements](../readiness-decision.md), not a new Docling evaluation.

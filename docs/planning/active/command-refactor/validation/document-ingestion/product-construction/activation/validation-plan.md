@@ -26,7 +26,7 @@ Installed probe argv is `-I -B tests/integration/ingest_installed_probe.py` and
 lane. The helper must load declared installed packages, use explicit checks that
 survive optimization, genuine fixtures, real counter assets, deterministic exact-
 dimension vectors and an actual disposable Chroma store. Include separate-process
-reopen, no Chat import for headless document composition and real application
+reopen, no Chat import for headless document composition and headless progress/cancel/timeout/backpressure plus real application
 /read cancellation/drain. No network/model calls under this offline profile.
 A separately approved actual-serving window supplies Q parity/identity facts.
 
@@ -61,3 +61,8 @@ execution; no credential is read or copied. All effects, costs, provider/window
 and test roots must be explicit in A5. Known baseline failures remain recorded
 and unwaived. Actual implementation review, human UAT/acceptance and publication
 remain subsequent gates.
+
+The shared process service must pass lifecycle tests without importing a frontend.
+The separate Chat adapter test does not substitute for that proof. Runtime
+shutdown and the renderer-free consumer exercise the same implementation and
+structured progress/results; no UI-specific parsing or duplicate worker pool.

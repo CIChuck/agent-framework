@@ -45,6 +45,7 @@ No implicit whitespace/Unicode normalization applies to source or model text.
 | `ChunkPlan` | `schema_version: Literal[1]`, `source_id: Id`, `source_sha256: Digest`, `content_sha256: Digest`, `conversion_profile_sha256: Digest | None`, `options: ResolvedChunkingOptions`, `space_sha256: Digest`, `chunks: tuple[PlannedChunk,...]`, `plan_sha256: Digest`; nonempty, complete coverage/order, all prepared counts within both requested and effective limits. |
 | `DestinationBinding` | `namespace_id: Id`, `incarnation: Id`, `space_sha256: Digest`, `layout_sha256: Digest`, `collection: str`; exact admitted physical destination, not multi-agent visibility label. |
 | `DestinationNamespaceBinding` | `namespace_id: Id`, `incarnation: Id`, `space_sha256: Digest`, `layout_sha256: Digest`; identical namespace fields to DestinationBinding with no collection field. |
+| `IngestionProgressEvent` | `attempt_id: Id`, `stage: Literal['queued','audit','conversion','planning','embedding','storage','completed','cancelled','failed']`, `completed: int | None`, `total: int | None`, `code: str`; counts nonnegative, completed <= total when both known. No frontend-rendered string or source text. |
 | `IngestionReceipt` | `schema_version: Literal[1]`, `attempt_id: Id`, `source_sha256: Digest`, `plan_sha256: Digest`, `destination: DestinationBinding`, `record_ids: tuple[str,...]`, `stored_count: int`, `complete: Literal[True]`; count positive and equal to unique record IDs and accepted chunks. Only readback-confirmed storage earns this receipt. |
 | `IngestionResult` | `attempt_id: Id`, `status: Literal['stored','partial','failed','cancelled']`, `options: ResolvedChunkingOptions`, `planned_count: int`, `confirmed_record_ids: tuple[str,...]`, `unconfirmed_record_ids: tuple[str,...]`, `receipt: IngestionReceipt | None`, `errors: tuple[IngestionFailure,...]`; receipt iff complete stored success. Partial/unknown effects never become a success receipt. |
 
@@ -66,6 +67,7 @@ Codes are exactly `usage`, `unsupported_format`, `source_unreadable`,
 `partial_conversion`, `empty_content`, `coverage_unproven`,
 `unsupported_workbook_visibility`, `resource_limit`,
 `timeout`, `cancelled`, `readiness`, `identity`, `overflow`, `response_invalid`,
+`worker_busy`,
 `store_refused`, `storage_failed`, `worker_failed`, `worker_not_quiescent`.
 Existing domain exceptions remain public; adapters preserve typed shared errors
 rather than broad-catching them as empty data or completion.
@@ -75,12 +77,13 @@ Signatures are exact; existing unrelated public methods remain unchanged.
 
 | Owner / protocol | Signature and contract |
 | --- | --- |
+| Core `IngestionObserver` | `on_progress(self, event: IngestionProgressEvent) -> None`; nonblocking parent-side event delivery. Frontends render or enqueue the event; no frontend callable enters the child. Observer failure is reported as a delivery diagnostic and never fabricates storage success/failure or changes an issued receipt. |
 | Core `TokenCounter` | `prepare(self, text: str, *, role: EmbeddingRole) -> PreparedInput`; synchronous, local, deterministic, no network/storage/truncation. `validate(self, value: PreparedInput) -> None` independently verifies wire/effective identity and exact count without appending a prefix again. `.space: EmbeddingSpaceIdentity`, `.effective_max_tokens: int`. |
 | Core `CounterFactory` | `create(self) -> TokenCounter`; immutable picklable factory containing only manifest-bound local asset paths and deterministic preparation config. No model client/store/credential reference. Composition root injects it; Tools imports no LLM module by name. |
 | Core `OwnedDocumentSession` | `.source: SourceDocument`; `async plan(self, options: ResolvedChunkingOptions, *, counter_factory: CounterFactory) -> ChunkPlan`; `cancel(self) -> None`; `async aclose(self) -> None`. Close invalidates further use and joins; idempotent, including after failed/cancelled plan. |
-| Core `DocumentConverter` | `async open(self, path: Path, *, attempt_id: Id) -> OwnedDocumentSession`; local conversion only. No counter needed for opening/read-only display. Source/vendor structure belongs to the owned session. |
+| Core `DocumentConverter` | `async open(self, path: Path, *, attempt_id: Id, observer: IngestionObserver | None = None) -> OwnedDocumentSession`; local conversion only. No counter needed for opening/read-only display. Source/vendor structure belongs to the owned session. |
 | Core `DocumentPlanner` | `async plan(self, source: SourceDocument, options: ResolvedChunkingOptions, *, counter: TokenCounter) -> ChunkPlan`; only non-Docling implementation runs directly in Memory. Converted documents use `OwnedDocumentSession.plan`, keeping vendor structure internal. |
-| Core `IngestionEntry` | `async ingest(self, source: SourceDocument, *, options: ChunkingOptions = ChunkingOptions(), description: str | None = None, document_session: OwnedDocumentSession | None = None) -> IngestionResult`; Memory implements; converted document source/session identity must match. Caller owns admission and session lifetime. |
+| Core `IngestionEntry` | `async ingest(self, source: SourceDocument, *, options: ChunkingOptions = ChunkingOptions(), description: str | None = None, document_session: OwnedDocumentSession | None = None, observer: IngestionObserver | None = None) -> IngestionResult`; Memory implements; converted document source/session identity must match. Caller owns admission and session lifetime. |
 | Memory public factory | `create_ingestion_entry(*, destination: DestinationBinding, vector_store: PreparedVectorStore, counter: TokenCounter, defaults: ChunkingOptions = ChunkingOptions(), counter_factory: CounterFactory | None = None) -> IngestionEntry` in `friday_memory.ingestion`. No Tools/Chat import; converted-document planning requires the supplied pure counter factory. |
 | Core `PreparedVectorStore` | `async write_prepared(self, *, texts: tuple[str,...], metadatas: tuple[tuple[tuple[str,Scalar],...],...], ids: tuple[str,...], batch: PreparedBatch) -> PreparedWriteResult`; validates all lengths, text digests and document roles before write. |
 | Core `PreparedWriteResult` | Frozen value `confirmed_ids: tuple[str,...]`, `unconfirmed_ids: tuple[str,...]`, `errors: tuple[IngestionFailure,...]`; every proposed ID appears exactly once in confirmed/unconfirmed; false/ambiguous backend outcomes cannot confirm IDs without readback. |
@@ -216,6 +219,24 @@ conversion and all other format rules are unchanged. No row/column filtering
 qualification is required for files refused under this approved policy.
 
 ## 4. Worker, read-only request and publication
+
+The [shared worker decision](shared-worker-decision.md) applies to every frontend.
+Tools implements process/session management once. Core progress events and
+cancel/join/result contracts have no UI imports. Memory orchestrates common
+planning/storage through injection; actual embedding clients/stores stay outside
+the converter process. Chat only adapts its requests and presentation; CLI/Runtime
+and a future TUI consume the same public capabilities. Runtime's existing
+DIContainer.shutdown drains the owned shared converter service. Standalone
+headless callers explicitly close/cancel it. Document read-only use remains free
+of Memory admission/embedding initialization.
+
+Add `async aclose(self) -> None` to `DocumentConverter`; it cancels/drains its
+outstanding sessions and queue idempotently. A service permits one active session
+and one queued request; further requests fail before source I/O/spawn with
+`worker_busy`. Cancellation while queued never starts a process. No unbounded
+fan-out or frontend-specific worker pool. Worker resources remain bounded even
+though separate interpreters avoid sharing the frontend's GIL.
+
 
 The proposed Tools worker is **one spawned process per owned document session**,
 never forked from a live model/store client. A `spawn` job receives only an input

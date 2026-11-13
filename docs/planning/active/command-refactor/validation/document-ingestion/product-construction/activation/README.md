@@ -5,14 +5,18 @@ tokenizer-parity pre-coding qualification is removed](model-qualification-decisi
 Earlier RD-01/RD-05 prerequisite descriptions below are retained as superseded
 background for that item only. Runtime guards and ordinary implementation
 compatibility tests remain; no later parity campaign is substituted. The [Office amendment](office-visibility-decision.md) now selects clear whole-
-workbook refusal for hidden rows/columns. The worker/resource question remains
-under discussion; no new qualification or execution is authorized by this notice.
+workbook refusal for hidden rows/columns. Shared process-worker ownership is now explicit across frontends; resource and
+lifecycle acceptance remains required. No new execution is authorized here.
 
 Version 0.1, 2026-11-13. Prepared under Chuck's latest **proceed**, following
 [verified focused council round 2](../focused-council/round2/results/report.md).
 This direction authorizes this planning package. **Product construction is not
 activated.** The reviewed [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md)
 and its technical parents remain unchanged. No new council is launched.
+
+[Shared process-worker ownership](shared-worker-decision.md) is now explicit for
+Chat, CLI/Runtime and future TUI consumers. Progress/cancel/drain is UI-neutral,
+with bounded concurrency and headless lifecycle proof.
 
 Review these together:
 

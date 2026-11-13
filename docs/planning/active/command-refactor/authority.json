@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Workbook visibility policy settled: reject affected included-sheet hidden rows/columns with an actionable explanation and zero ingestion. Model identity/tokenizer parity pre-coding qualification is removed. Worker/resource approach is under discussion; exact contracts, case/impact approval and bounded execution still precede I1. No product code or live effects authorized by this discussion.",
+  "current_scope": "Shared ingestion worker is a frontend-neutral Tools process service, Memory orchestration and Core progress/cancel/result contracts, reusable by Chat, CLI/Runtime and future TUI. Bind headless/resource/lifecycle acceptance and exact construction approval before I1. Workbook rejection policy is settled; separate model/parity prerequisite remains removed. No product code or live effects authorized by this planning discussion.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Workbook visibility policy settled: reject affected included-sheet hidden rows/columns with an actionable explanation and zero ingestion. Model identity/tokenizer parity pre-coding qualification is removed. Worker/resource approach is under discussion; exact contracts, case/impact approval and bounded execution still precede I1. No product code or live effects authorized by this discussion.",
+    "next_gate": "Shared ingestion worker is a frontend-neutral Tools process service, Memory orchestration and Core progress/cancel/result contracts, reusable by Chat, CLI/Runtime and future TUI. Bind headless/resource/lifecycle acceptance and exact construction approval before I1. Workbook rejection policy is settled; separate model/parity prerequisite remains removed. No product code or live effects authorized by this planning discussion.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2989,7 +2989,7 @@
         },
         "authority_manifest": {
           "path": "validation/document-ingestion/product-construction/authority-manifest.json",
-          "sha256": "e40af9d98c640367b4c6f8de04f7c561cf450646c9dcb87cafffb048d63402f2"
+          "sha256": "eb2fe60d3c377ea0f547bd87d56935d8745a37dbc8f25882d361760a64037270"
         },
         "baseline_test_inventory": {
           "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
@@ -3508,7 +3508,7 @@
       "activation_preparation": {
         "package": "validation/document-ingestion/product-construction/activation/README.md",
         "binding": "validation/document-ingestion/product-construction/activation/approval-binding.json",
-        "binding_sha256": "de9de46bd388620b443d40c7fd25ec9aee8fe0a39f20a718df953ae4ae322b21",
+        "binding_sha256": "512c7d8511433f3e441cc23b326ad87e5719a5a8dcb3a9c51556d5c14fa08442",
         "authority": "validation/document-ingestion/product-construction/activation/preparation-authorization.json",
         "status": "proposed_not_approved",
         "new_council_authorized": false,
@@ -3532,6 +3532,19 @@
       "policy": "reject_workbook_for_hidden_dimensions_in_included_sheets",
       "preconstruction_filtering_qualification_required": false,
       "actual_command_acceptance_required": true
+    },
+    "shared_worker_decision": {
+      "date": "2026-11-13",
+      "record": "validation/document-ingestion/product-construction/activation/shared-worker-decision.md",
+      "sha256": "a828b757b213acc9481ba3053873f4d2243f3a106927ddade71eb97631bf938b",
+      "owner": "shared Tools capability; Memory orchestration; Core protocols; frontend adapters",
+      "worker": "separate process",
+      "frontends": [
+        "Chat",
+        "CLI/Runtime",
+        "future TUI"
+      ],
+      "new_frontend_implementation": false
     }
   },
   "command_refactor_publication": {

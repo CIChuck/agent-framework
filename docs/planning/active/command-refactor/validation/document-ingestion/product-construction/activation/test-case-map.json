@@ -1723,6 +1723,30 @@
       "authority": "office-visibility-decision.md",
       "assertions": "Row-only, column-only and combined hidden dimensions in included worksheets return unsupported_workbook_visibility with actionable explanation; no conversion, embedding or storage. Visible-only and hidden-sheet-excluded controls retain success; source unchanged.",
       "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_document_ingestion.py::test_headless_document_worker_progress_cancel_timeout_and_backpressure",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-08",
+        "DI-11",
+        "DI-23",
+        "DI-26"
+      ],
+      "assertions": "No frontend imports: genuine conversion/planning uses shared process service; typed progress, one active/one queued, busy refusal before I/O, queued cancel never starts, active cancel/timeout joins with no late storage.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-runtime/tests_runtime/test_di.py::test_shutdown_drains_shared_document_worker",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-11",
+        "DI-26"
+      ],
+      "assertions": "Existing DI shutdown drains all owned shared document sessions, independent of Chat. No late output/provider/storage and no orphan process.",
+      "status": "planned_not_executed"
     }
   ],
   "modules": [
@@ -1821,6 +1845,14 @@
       "execution_class": "offline_disposable_or_mocked_provider_required",
       "execution_approval": false,
       "rule": "Only pure policy tests and qualified local counter fixtures; no provider call."
+    },
+    {
+      "path": "packages/friday-runtime/tests_runtime/test_di.py",
+      "exists_at_baseline": true,
+      "baseline_sha256": "38e7627347db26894047113cfb02f56757aae7f23bee4b4760ba1c886f5f44b1",
+      "execution_class": "offline_disposable_or_mocked_provider_required",
+      "execution_approval": false,
+      "rule": "Only new shared-worker shutdown node; unmapped existing assertion bodies retained."
     }
   ],
   "helper_rule": "Keep all existing helper/fixture bytes by default. Only the exact local mock-response/embedding fixtures in mapped modules, packages/friday-memory/tests_memory/conftest.py, and named new test modules may gain synthetic capabilities. No shared session/diagnostic fixture rewrite; six dual-role files retain one identity and no extra node credit. Add opt-in fixtures for mapped nodes; do not replace a widely shared fixture globally. Any shared fixture body change requires enumerating its dependent cases first. Named opt-in fixtures: qualified_mock_embedding_model, admitted_vector_store, synthetic_embedding_capability; use per-case dimensions.",

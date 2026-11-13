@@ -4255,3 +4255,22 @@ The planned I3 witness covers row/column/both refusals and positive visible-only
 controls. No product/test source, real workbook, model or store is changed.
 The worker-resource question is being explained separately; no new worker
 experiment, implementation or council is authorized by that question.
+
+
+## 2026-11-13 — shared process worker and frontend-neutral lifecycle
+
+Chuck confirms the process-worker direction and requires CLI/TUI reuse rather
+than Chat-specific optimization. The [shared worker record](validation/document-ingestion/product-construction/activation/shared-worker-decision.md)
+assigns one Tools implementation, Memory policy/orchestration and Core typed
+progress/cancel/result contracts. Frontends render and translate cancellation;
+Runtime existing shutdown owns service drain. Bounded one-active/one-queued
+behavior prevents unbounded worker fan-out. Processes avoid sharing the main
+interpreter GIL but retain machine CPU/RAM contention and resource obligations.
+
+Two planned headless/Runtime lifecycle witnesses supplement actual Chat adapter
+acceptance; they import no frontend and do not create a TUI or CLI executable.
+Shared contracts, exact maps, approval binding and current routing agree. No
+product/test implementation, process spawn, model/store call, install or council
+is authorized or executed by this planning clarification. Existing runtime checks
+and actual implementation acceptance remain; prior frozen reviews keep their
+original scope, and model/parity prequalification remains removed.
