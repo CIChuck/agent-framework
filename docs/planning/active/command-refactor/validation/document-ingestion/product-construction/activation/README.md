@@ -1,5 +1,12 @@
 # INGEST — proposed construction activation package
 
+**Current maintainer adjustment — 2026-11-13:** [The separate model identity/
+tokenizer-parity pre-coding qualification is removed](model-qualification-decision.md).
+Earlier RD-01/RD-05 prerequisite descriptions below are retained as superseded
+background for that item only. Runtime guards and ordinary implementation
+compatibility tests remain; no later parity campaign is substituted. Office
+coverage and worker/resource decisions remain open.
+
 Version 0.1, 2026-11-13. Prepared under Chuck's latest **proceed**, following
 [verified focused council round 2](../focused-council/round2/results/report.md).
 This direction authorizes this planning package. **Product construction is not

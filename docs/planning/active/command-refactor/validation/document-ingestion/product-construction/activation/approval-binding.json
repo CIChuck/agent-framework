@@ -13,7 +13,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/authority-manifest.json",
-      "sha256": "6d0d893165d865372c3a8de78a6dff9a74053fcfeebe7fb8e07046de50847116"
+      "sha256": "de93c5d3af66fc790ffa83a43c64d51b6d0c2ec45208480a1e5995c638e08827"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
@@ -51,7 +51,7 @@
   "appendices": [
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
-      "sha256": "4d14d7fcb189152c5360ab903c6d58b5db49c2c75f0021d83096ea2dd02b5321"
+      "sha256": "9cfd358270d65083f223df16ecbf7989085c156d9ce0904deb44d2c95bf6e2e2"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md",
@@ -71,7 +71,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md",
-      "sha256": "7d6457d06ffd29fa86d9a5cdccfa1be85c2398290b6c6d837c351959a1178e5d"
+      "sha256": "6fa0b64b05bfacacc6d60133b0baf26740e9075e154956d2d0db2cad8febaace"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md",
@@ -85,12 +85,12 @@
   "gates": {
     "A1": {
       "complete": false,
-      "reason": "RD-01/02/03/05/06/07 qualification and independent readiness threshold remain open; no actual serving identity or parity manufactured."
+      "reason": "Separate model identity/tokenizer parity qualification removed by maintainer. Office coverage, worker/resource and remaining non-model preparation/approval requirements stay open."
     },
     "A2": {
       "complete": false,
       "design": "Exact signatures/field/protocol/path choices prepared for review.",
-      "missing": "Actual qualified asset/capability manifests and measured format/worker profile attachment; exact approval."
+      "missing": "Non-model format/worker profile attachments, explicit asset provisioning and exact design approval; no separate model identity/parity qualification prerequisite."
     },
     "A3": {
       "complete": false,
@@ -111,5 +111,12 @@
   },
   "product_generation_allowed": false,
   "council_result_scope": "Prior focused directive only at its frozen candidate; does not review these new appendices or close Q.",
-  "case_map_not_runtime_proof": true
+  "case_map_not_runtime_proof": true,
+  "current_maintainer_adjustments": [
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/model-qualification-decision.md",
+      "sha256": "b2503902db78f9d01909c4d2c9d20a03dd4cdc772421c1ec100d5b614ed22d26",
+      "effect": "Remove separate pre-coding model identity/tokenizer parity qualification; retain runtime guards and normal implementation compatibility coverage."
+    }
+  ]
 }

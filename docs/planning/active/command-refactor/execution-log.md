@@ -4229,3 +4229,15 @@ this unapproved proposal; its pre-preparation bytes are preserved. Current board
 packet/authority route to appendix review and exact Q evidence, separate from the
 closed VERIFIED focused directive. This is planning preparation, not construction,
 implementation verification, acceptance or delivery.
+
+
+## 2026-11-13 — maintainer removes separate model-qualification prerequisite
+
+Chuck says “1 - not needed” for the numbered model identity/tokenizer parity
+pre-construction qualification. The [decision](validation/document-ingestion/product-construction/activation/model-qualification-decision.md)
+removes that separate prerequisite without relabelling it as completed or moving
+a new qualification campaign after coding. Existing runtime guards and normal
+implementation compatibility coverage remain. Current gates/binding reflect
+the override; the prior frozen directive council retains its original scope.
+Chuck asks how Office exclusion would work; no Office-policy change, product
+implementation, provider/model call, install or new council is authorized here.

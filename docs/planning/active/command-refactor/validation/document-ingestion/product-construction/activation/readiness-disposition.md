@@ -1,5 +1,12 @@
 # INGEST activation — readiness dispositions and remaining evidence
 
+**Current maintainer adjustment — 2026-11-13:** [The separate model identity/
+tokenizer-parity pre-coding qualification is removed](model-qualification-decision.md).
+Earlier RD-01/RD-05 prerequisite descriptions below are retained as superseded
+background for that item only. Runtime guards and ordinary implementation
+compatibility tests remain; no later parity campaign is substituted. Office
+coverage and worker/resource decisions remain open.
+
 Version 0.1, 2026-11-13. This is an evidence disposition for the existing
 [RD-01–07 requirements](../readiness-decision.md), not a new Docling evaluation.
 No live request, import, install, conversion, model switch or store operation is

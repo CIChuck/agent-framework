@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Review the proposed INGEST activation appendices and resolve existing Q gaps: immutable B/N serving/counter evidence, Office coverage mapping, worker/resource qualification and exact asset/dependency binding. Then bind the canonical impact revision and A1\u2013A5 approval before I1. Focused directive council is closed VERIFIED; no product code, live effects or new council is authorized by this preparation.",
+  "current_scope": "Model identity/tokenizer parity pre-construction qualification is removed by Chuck. Explain and settle Office coverage; retain the separate worker/resource question and exact contracts, case/impact approval and bounded execution before I1. No product code or live effects authorized by this discussion.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Review the proposed INGEST activation appendices and resolve existing Q gaps: immutable B/N serving/counter evidence, Office coverage mapping, worker/resource qualification and exact asset/dependency binding. Then bind the canonical impact revision and A1\u2013A5 approval before I1. Focused directive council is closed VERIFIED; no product code, live effects or new council is authorized by this preparation.",
+    "next_gate": "Model identity/tokenizer parity pre-construction qualification is removed by Chuck. Explain and settle Office coverage; retain the separate worker/resource question and exact contracts, case/impact approval and bounded execution before I1. No product code or live effects authorized by this discussion.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2989,7 +2989,7 @@
         },
         "authority_manifest": {
           "path": "validation/document-ingestion/product-construction/authority-manifest.json",
-          "sha256": "6d0d893165d865372c3a8de78a6dff9a74053fcfeebe7fb8e07046de50847116"
+          "sha256": "de93c5d3af66fc790ffa83a43c64d51b6d0c2ec45208480a1e5995c638e08827"
         },
         "baseline_test_inventory": {
           "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
@@ -3508,13 +3508,21 @@
       "activation_preparation": {
         "package": "validation/document-ingestion/product-construction/activation/README.md",
         "binding": "validation/document-ingestion/product-construction/activation/approval-binding.json",
-        "binding_sha256": "28d6bf1f9c3a37e3b6337c0fd3b9b4ac8e48d6bcac0795910aa35ebe18867767",
+        "binding_sha256": "93e05cec234f69a432200641dc993f40f948e46070df480cb7e470b6eebf7e88",
         "authority": "validation/document-ingestion/product-construction/activation/preparation-authorization.json",
         "status": "proposed_not_approved",
         "new_council_authorized": false,
         "construction_approved": false,
         "new_effects": false
       }
+    },
+    "model_qualification_prerequisite_decision": {
+      "date": "2026-11-13",
+      "statement": "1 - not needed",
+      "record": "validation/document-ingestion/product-construction/activation/model-qualification-decision.md",
+      "sha256": "b2503902db78f9d01909c4d2c9d20a03dd4cdc772421c1ec100d5b614ed22d26",
+      "separate_precoding_model_qualification_required": false,
+      "runtime_guards_unchanged": true
     }
   },
   "command_refactor_publication": {
