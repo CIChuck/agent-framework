@@ -3538,8 +3538,8 @@
         "approved": true,
         "effects_activated": false,
         "presented_revision": "validation/document-ingestion/product-construction/final-approval/presented-revision.json",
-        "presented_revision_sha256": "21b6ab9f5c46df763756f923e25c0dcdbefdc9ab600a985569e30abb494af166",
-        "target_document_commit": null,
+        "presented_revision_sha256": "97c8479d459bcc464d71ea9cccfe6527ae261b448724218caaca93c55d4eb632",
+        "target_document_commit": "67d79114f43c9a1048526458d6861efa1f6f5322",
         "post_review_correction": "validation/document-ingestion/product-construction/final-approval/post-review-correction.json",
         "post_review_correction_sha256": "328d0d22be2c646c59c4d1718e17aca2e2d40c7dbaaf840ae32dec1014b9a007",
         "approval_record": "approval/ingest-construction-documents-20261113.json",
@@ -3722,11 +3722,12 @@
     "git_handoff": {
       "authorization": "approval/ingest-git-handoff-20261113.json",
       "sha256": "e8d16cad21908331720769e4443a5da5aa6f1c61fdd14a5fb32286f060c5b38f",
-      "status": "in_progress",
+      "status": "checkpoint_committed_pr_next",
       "baseline_branch": "feature/cmd-ingest-001",
       "target": "master",
       "implementation_branch": "feature/cmd-ingest-implementation",
-      "implementation_worktree": "/Users/chuckrussell/Dev/gendev/agent-framework-ingest-implementation"
+      "implementation_worktree": "/Users/chuckrussell/Dev/gendev/agent-framework-ingest-implementation",
+      "planning_content_commit": "67d79114f43c9a1048526458d6861efa1f6f5322"
     }
   },
   "command_refactor_publication": {

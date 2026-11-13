@@ -4534,3 +4534,14 @@ explicitly bound; receipt metadata records the content commit after it exists.
 Only planning changes are staged in this checkpoint. Production source, dirty
 YAML, stores and the working environment stay untouched. No new council or
 product coding is part of this Git checkpoint.
+
+
+## 2026-11-13 — Approved planning content checkpoint
+
+Committed the approved planning/council amendment at 67d79114f43c9a1048526458d6861efa1f6f5322.
+Presentation receipt now verifies each approved content hash against that commit;
+this receipt is subsequent metadata, avoiding a cyclic commit/hash binding.
+All five planning checks and protected-state checks pass; 91 source paths and
+49/51/18 case/witness/module counts remain unchanged. Only planning paths were
+staged. Next: push and open the authorized baseline PR to master, then regular
+merge when checks permit. No product implementation or runtime effects yet.

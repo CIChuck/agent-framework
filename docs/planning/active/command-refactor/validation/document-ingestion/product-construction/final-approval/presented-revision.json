@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "status": "approved_digests_awaiting_authorized_content_commit",
-  "target_document_commit": null,
+  "status": "approved_at_committed_planning_checkpoint",
+  "target_document_commit": "67d79114f43c9a1048526458d6861efa1f6f5322",
   "branch": "feature/cmd-ingest-001",
   "approval_request_sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71",
   "documents": [
@@ -26,7 +26,7 @@
       "sha256": "b7abf1aa77d9f02efa0abc61d97ec35c56d5b622e52b4049fa3364a3932c6a3c"
     }
   ],
-  "rule": "Exact digests approved by Chuck, including automatic acceptance of the bounded validation wording and subsequent Git authorization. Complete the target commit after committing these content bytes; outcome-only metadata does not change them. Product scope, phase activation and delivery remain distinct.",
+  "rule": "The exact approved document bytes are present at target_document_commit and match every digest. This receipt is later outcome-only metadata and is intentionally not inside the content commit. Private execution waits for the baseline merge/new implementation branch and eligible phase binding.",
   "maintainer_approval": {
     "record": "docs/planning/active/command-refactor/approval/ingest-construction-documents-20261113.json",
     "sha256": "ef88e0dbd07b0bf3fbf7b47bb05ad43ccdcbe8818565b93ebecbb266c6927d2e"
@@ -36,5 +36,9 @@
   "previous_target_document_commit": "b357c3c4dd0c892aa57593d32cb236b7e832022c",
   "post_review_correction": "post-review-correction.json",
   "effects_activated": false,
-  "git_handoff_hold": true
+  "git_handoff_hold": true,
+  "git_authorization": {
+    "path": "docs/planning/active/command-refactor/approval/ingest-git-handoff-20261113.json",
+    "sha256": "e8d16cad21908331720769e4443a5da5aa6f1c61fdd14a5fb32286f060c5b38f"
+  }
 }

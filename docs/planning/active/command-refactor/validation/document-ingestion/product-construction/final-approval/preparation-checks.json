@@ -1,12 +1,12 @@
 {
-  "scope": "Controller checks before the authorized planning Git checkpoint; not independent implementation validation",
+  "scope": "Controller checks of approved planning checkpoint and exact committed presentation binding; no independent implementation or vendor replay claim",
   "approved_documents": 31,
   "canonical_impact_version": "0.8",
   "approval_manifest_sha256": "d7f412e83cc717eec6372427c12842052f0ac9de1b3659ec8744abeecafe6a71",
-  "presented_revision_sha256": "21b6ab9f5c46df763756f923e25c0dcdbefdc9ab600a985569e30abb494af166",
+  "presented_revision_sha256": "97c8479d459bcc464d71ea9cccfe6527ae261b448724218caaca93c55d4eb632",
   "approval_record_sha256": "ef88e0dbd07b0bf3fbf7b47bb05ad43ccdcbe8818565b93ebecbb266c6927d2e",
-  "target_document_commit": null,
-  "git_checkpoint_pending": true,
+  "target_document_commit": "67d79114f43c9a1048526458d6861efa1f6f5322",
+  "git_checkpoint_pending": false,
   "implementation_councils": {
     "gates": 3,
     "maximum_passes_each": 3,
@@ -29,7 +29,7 @@
   "preservation_failures": [],
   "git_identity_and_staging_unchanged": true,
   "no_product_or_test_execution": true,
-  "no_commit_or_external_git_mutation": true,
+  "no_commit_or_external_git_mutation": false,
   "historical_final_document_council": {
     "result": "CHANGES_REQUESTED",
     "gate_met": false,
@@ -125,5 +125,9 @@
     }
   ],
   "result": "PASS",
-  "git_handoff_authorized": true
+  "git_handoff_authorized": true,
+  "current_bindings_match_named_commit": true,
+  "git_actions_so_far": [
+    "Authorized planning content commit"
+  ]
 }
