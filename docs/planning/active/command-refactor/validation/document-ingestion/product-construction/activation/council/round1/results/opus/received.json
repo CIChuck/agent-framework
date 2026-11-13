@@ -1,0 +1,10 @@
+{
+  "seat": "opus",
+  "round": 1,
+  "report_sha256": "a53e8837639af7ee28f45da23af93f5de9c1a0de2deef87379748b33a3409ee9",
+  "original": "/private/tmp/claude-501/-Users-chuckrussell-Dev-gendev-agent-framework/ddcbb487-0b30-46ab-bf20-db19bfc441b8/scratchpad/opus-seat-r1/opus-round1-report.md",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 7.4,
+  "outcome": "CHANGES_REQUESTED"
+}

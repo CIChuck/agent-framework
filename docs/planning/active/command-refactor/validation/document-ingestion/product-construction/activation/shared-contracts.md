@@ -1,11 +1,12 @@
 # INGEST activation appendix A2 — shared contracts
 
-Version 0.1, 2026-11-13. **Proposed exact design; not activated.** Prepared from
+Version 0.2, 2026-11-13. **Proposed exact design; not activated.** Prepared from
 `7a3e00bc9ef77adee25b61fc52ff91875e172738` and the unchanged
 [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md).
-The directive, REM and compatibility annex control. This appendix supplies
-implementation choices for approval; it does not close measured readiness or
-amend a parent requirement. No product declarations below exist yet.
+The directive, REM and compatibility annex control except for the explicit
+[current requirement dispositions](requirement-reconciliation.md). This appendix
+supplies exact implementation choices for approval; no product declarations below
+exist yet and no document assertion is measured product evidence.
 
 ## 1. Package surfaces and value rules
 
@@ -37,9 +38,9 @@ No implicit whitespace/Unicode normalization applies to source or model text.
 | `SourceBlock` | `block_id: str`, `kind: Literal['text','heading','table','separator','label']`, `span: SourceSpan`, `heading_spans: tuple[SourceSpan,...]`, `table: TableStructure | None`; table populated only for declared structured tables. Labels/separators cannot establish meaningful source content. |
 | `CoverageWarning` | `code: str`, `unit_indices: tuple[int,...]`, `count: int | None`; codes are selected from the versioned format-profile allowlist. Human messages are sideband, not source text. |
 | `SourceDocument` | `source_id: Id`, `source_kind: Literal['text','markdown','code','json','yaml','csv','tsv','web_text','tool_text','pdf','docx','xlsx','pptx']`, `locator: str`, `raw_sha256: Digest`, `content: str`, `content_sha256: Digest`, `conversion_profile_sha256: Digest | None`, `units: tuple[SourceUnit,...]`, `blocks: tuple[SourceBlock,...]`, `warnings: tuple[CoverageWarning,...]`, `complete: Literal[True]`; content nonempty and contains actual meaningful source text. |
-| `EmbeddingSpaceIdentity` | `schema_version: Literal[1]`, `model_identity: str`, `artifact_identity: str`, `tokenizer_sha256: Digest`, `preparation_sha256: Digest`, `dimensions: int`, `normalization: Literal['none','l2']`, `metric: Literal['cosine','l2','ip']`; dimensions positive. Model/artifact identity must be independently qualified, never an alias invented as immutable. |
+| `EmbeddingSpaceIdentity` | `schema_version: Literal[1]`, `model_identity: str`, `artifact_identity: str`, `tokenizer_sha256: Digest`, `preparation_sha256: Digest`, `dimensions: int`, `normalization: Literal['none','l2']`, `metric: Literal['cosine','l2','ip']`; dimensions positive. Model/artifact identity records the configured space under section 3; a declared identity is never labelled immutable serving evidence. |
 | `PreparedInput` | `space_sha256: Digest`, `role: EmbeddingRole`, `input_sha256: Digest`, `prepared_sha256: Digest`, `text: str`, `token_count: int`; text is the exact wire payload; prepared_sha256 hashes effective formatted UTF-8 input after declared client/server preparation. Count includes special tokens. Never persist embedding preparation instead of source content. |
-| `PreparedVector` | `space_sha256: Digest`, `role: EmbeddingRole`, `input_sha256: Digest`, `prepared_sha256: Digest`, `values: tuple[float,...]`; exact qualified dimension, finite real values, no booleans. |
+| `PreparedVector` | `space_sha256: Digest`, `role: EmbeddingRole`, `input_sha256: Digest`, `prepared_sha256: Digest`, `values: tuple[float,...]`; exact declared dimension, finite real values, no booleans. |
 | `PreparedBatch` | `inputs: tuple[PreparedInput,...]`, `vectors: tuple[PreparedVector,...]`; equal lengths, elementwise identities/roles/digests equal, every vector checked before returning any batch for storage. |
 | `PlannedChunk` | `index: int`, `text: str`, `coverage_spans: tuple[SourceSpan,...]`, `context_spans: tuple[SourceSpan,...]`, `prepared: PreparedInput`; index zero-based contiguous, text nonempty, prepared input binds SHA256 of text. Context is source-backed repeated headings/headers, never invented content. |
 | `ChunkPlan` | `schema_version: Literal[1]`, `source_id: Id`, `source_sha256: Digest`, `content_sha256: Digest`, `conversion_profile_sha256: Digest | None`, `options: ResolvedChunkingOptions`, `space_sha256: Digest`, `chunks: tuple[PlannedChunk,...]`, `plan_sha256: Digest`; nonempty, complete coverage/order, all prepared counts within both requested and effective limits. |
@@ -81,10 +82,11 @@ Signatures are exact; existing unrelated public methods remain unchanged.
 | Core `TokenCounter` | `prepare(self, text: str, *, role: EmbeddingRole) -> PreparedInput`; synchronous, local, deterministic, no network/storage/truncation. `validate(self, value: PreparedInput) -> None` independently verifies wire/effective identity and exact count without appending a prefix again. `.space: EmbeddingSpaceIdentity`, `.effective_max_tokens: int`. |
 | Core `CounterFactory` | `create(self) -> TokenCounter`; immutable picklable factory containing only manifest-bound local asset paths and deterministic preparation config. No model client/store/credential reference. Composition root injects it; Tools imports no LLM module by name. |
 | Core `OwnedDocumentSession` | `.source: SourceDocument`; `async plan(self, options: ResolvedChunkingOptions, *, counter_factory: CounterFactory) -> ChunkPlan`; `cancel(self) -> None`; `async aclose(self) -> None`. Close invalidates further use and joins; idempotent, including after failed/cancelled plan. |
-| Core `DocumentConverter` | `async open(self, path: Path, *, attempt_id: Id, observer: IngestionObserver | None = None) -> OwnedDocumentSession`; local conversion only. No counter needed for opening/read-only display. Source/vendor structure belongs to the owned session. |
+| Core `DocumentConverter` | `async aclose(self) -> None` cancels/drains owned sessions and rejects new work idempotently; `async open(self, path: Path, *, attempt_id: Id, observer: IngestionObserver | None = None) -> OwnedDocumentSession`; local conversion only. No counter needed for opening/read-only display. Source/vendor structure belongs to the owned session. |
 | Core `DocumentPlanner` | `async plan(self, source: SourceDocument, options: ResolvedChunkingOptions, *, counter: TokenCounter) -> ChunkPlan`; only non-Docling implementation runs directly in Memory. Converted documents use `OwnedDocumentSession.plan`, keeping vendor structure internal. |
-| Core `IngestionEntry` | `async ingest(self, source: SourceDocument, *, options: ChunkingOptions = ChunkingOptions(), description: str | None = None, document_session: OwnedDocumentSession | None = None, observer: IngestionObserver | None = None) -> IngestionResult`; Memory implements; converted document source/session identity must match. Caller owns admission and session lifetime. |
-| Memory public factory | `create_ingestion_entry(*, destination: DestinationBinding, vector_store: PreparedVectorStore, counter: TokenCounter, defaults: ChunkingOptions = ChunkingOptions(), counter_factory: CounterFactory | None = None) -> IngestionEntry` in `friday_memory.ingestion`. No Tools/Chat import; converted-document planning requires the supplied pure counter factory. |
+| Core `IngestionEntry` | `async ingest(self, source: SourceDocument, *, options: ChunkingOptions = ChunkingOptions(), description: str | None = None, document_session: OwnedDocumentSession | None = None, observer: IngestionObserver | None = None) -> IngestionResult`; Memory implements; converted document source/session identity must match. Caller owns admission and session lifetime. `async aclose(self) -> None` rejects new ingests, cancels/invalidate-and-joins active operations, and idempotently drains owned tasks before returning; shared clients/stores are not closed by this entry. |
+| Memory public factory | `create_ingestion_entry(*, destination: DestinationBinding, vector_store: PreparedVectorStore, counter: TokenCounter, embedder: PreparedEmbeddingService, defaults: ChunkingOptions = ChunkingOptions(), counter_factory: CounterFactory | None = None) -> IngestionEntry` in `friday_memory.ingestion`. No Tools/Chat import; converted-document planning requires the supplied pure counter factory. |
+| Core `PreparedEmbeddingService` | Read-only `.space: EmbeddingSpaceIdentity`; `async embed_prepared(self, inputs: tuple[PreparedInput,...], timeout: float | None = None) -> PreparedBatch`. The LLM implementation owns provider I/O, once-only preparation validation and full response validation. No conversion/store dependency. |
 | Core `PreparedVectorStore` | `async write_prepared(self, *, texts: tuple[str,...], metadatas: tuple[tuple[tuple[str,Scalar],...],...], ids: tuple[str,...], batch: PreparedBatch) -> PreparedWriteResult`; validates all lengths, text digests and document roles before write. |
 | Core `PreparedWriteResult` | Frozen value `confirmed_ids: tuple[str,...]`, `unconfirmed_ids: tuple[str,...]`, `errors: tuple[IngestionFailure,...]`; every proposed ID appears exactly once in confirmed/unconfirmed; false/ambiguous backend outcomes cannot confirm IDs without readback. |
 | LLM additive method | `async embed_prepared(self, inputs: tuple[PreparedInput,...], timeout: float | None = None) -> PreparedBatch`; validates exact identity/count/role; sends already prepared text once, never prepares a second time. |
@@ -97,13 +99,22 @@ in `friday_llm.embedding_limits` owns exact artifact/asset references, effective
 input/batch limits, order contract, preparation and counter factory; source
 serialization into Core identities uses only the fields in section 1.
 
-I1 adds guarded methods/new qualified construction without changing legacy
+I1 adds guarded methods/new configured construction without changing legacy
 prepared inputs, cache keys or public positive flows. I2 switches maintained
 constructors/callers together and removes the internal unguarded branch: missing
 resolved capability then refuses before provider/cache effects. This is staged
 construction, not a final legacy-mode config. Direct old call shapes still work
-when capabilities resolve through the qualified record. Never invent a record
-from a mutable model name. Empty document batches retain `[]` with zero I/O.
+when capabilities resolve through the configured record defined below. Missing
+optional serving/parity evidence never refuses a configured record. Empty document
+batches retain `[]` with zero I/O.
+
+The Memory factory checks destination/counter/embedder space equality locally,
+before source/provider/store effects. Memory validates the entire plan, calls the
+injected embedder, independently validates the returned entire batch and only
+then calls `write_prepared`. No hidden client attribute, global broker or frontend
+import supplies the missing dependency. Embedding failure/timeout/cancellation
+causes no source-chunk write; partial backend effects remain truthful in the
+structured result. Closing an entry waits for all such eligibility decisions.
 
 Core's existing vector `query` adds `PreparedVector` to the optional
 `query_embedding` annotation without changing positional order/defaults. Existing
@@ -147,31 +158,63 @@ omitted keys remain parseable. Existing batch/cache/resilience/default-service,
 endpoint, extraction/maintenance selection and credentials keep their semantics.
 Explicit contradictions refuse operation, unselected profiles/read-only startup
 remain usable. Capability/schema resolution and local assets belong to LLM.
-LLM's proposed `embedding-limits` extra contains `tokenizers==0.23.3` (the measured
-local JSON tokenizer backend) plus the selected hosted counter only if separately
-qualified. Existing Memory `tiktoken` dependency is not removed here. Final graph
-and hosted counter qualification remain RD-06/05; this proposal is not an install.
+LLM's proposed `embedding-limits` extra contains `tokenizers==0.23.3`, the
+measured local JSON-tokenizer backend. Existing Memory `tiktoken` is retained;
+any hosted counter backend required for the supported default is explicitly bound
+in the phase asset/dependency manifest before its use. No Core/Commands weights
+or tokenizer binaries. This is an implementation dependency binding, not a new
+hosted model qualification campaign or installation authority.
 
-No model weights/tokenizer binaries ship inside Core or Commands. The deployment
-manifest has an explicit absolute `assets_root`; every tokenizer, OCR, converter
-and capability record is a relative file with SHA256, size, license/source and
-package/backend identity. Resolve beneath that root, reject traversal/symlinks
-escaping it, hash before opening; no HOME/global-cache lookup or first-use fetch.
-The strict capability record contains `schema_version=1`, `record_id`, `space`,
+The deployment manifest binds an absolute `assets_root`; every tokenizer, OCR,
+converter and capability asset has a relative path, hash, size, license/source
+and backend identity. Resolve beneath that root; refuse traversal/escaping symlinks,
+hash before opening and never fetch on first use or consult HOME/global caches.
+
+The strict LLM capability record has `schema_version=1`, `record_id`, `space`,
 `asset_manifest_sha256`, `tokenizer_manifest_sha256`, `preparation`,
 `verified_input_limit`, `serving_input_limit`, `serving_batch_input_limit`,
-`verified_batch_size`, `parity_evidence_sha256`, `serving_identity_evidence_sha256`
-and `index_contract` (`indexed` or `qualified_ordered`). Preparation is a strict
-record with `query_owner`/`document_owner` (`client` or `server`) and
+`verified_batch_size`, `parity_evidence_sha256: Digest | None`,
+`serving_identity_evidence_sha256: Digest | None`, and `index_contract`
+(`indexed` or `qualified_ordered`). Retained `verified_*` field names now mean
+locally validated configured limits, not evidence of a new serving experiment.
+Input/batch limits and batch size are positive; the minimum applicable configured,
+model and deployment input limit wins. Unknown required capacity/dimension/counter
+fails with an explicit configuration error, never guessed values or truncation.
+Evidence hashes are optional history: null is admissible and is not a runtime gate.
+
+Preparation is strict: `query_owner`/`document_owner` (`client` or `server`) and
 `query_template`/`document_template` (one literal `{text}` substitution each).
-Apply the declared convention once: client-owned formatting changes wire text;
-server-owned formatting is represented locally for counts/digest only and is not
-also prefixed by the client. Its exact serving behavior must be qualified.
-`embed_prepared` revalidates wire/effective digest/count through `validate`, never
-trusts a caller-supplied count and never formats the wire payload twice.
-Limits are positive; minimum resolved input limit wins. Null evidence is unqualified. The local factory
-contains only `assets_root`, `asset_manifest_sha256`, `record_id`; it validates
-that record before creating the pure counter. No endpoint/key/client is retained.
+Client formatting changes wire text once; configured server formatting is counted
+locally without also prefixing it client-side. `embed_prepared` independently
+recounts and revalidates exact wire/effective digests; it never trusts supplied
+counts. `qualified_ordered` means a configured order-preserving transport contract,
+not a new empirical campaign. Indexed responses must have unique complete indices;
+all count/order/dimension/finiteness checks apply before returning vectors.
+
+LLM provisions schema/resolver support in I1 and binds all selected existing pool,
+non-pool/default/legacy routes in I2 composition using unchanged model config plus
+an explicit local capability manifest. Selecting a known default does not require
+new YAML fields or a provider probe. A supported default must have an offline
+configured record/counter at the ordinary I2 positive test; unresolved defaults
+block that slice rather than quietly disabling a consumer. Record assets and their
+backend dependency belong to LLM's phase manifest, with the same assets available
+to Memory/Runtime/CLI headless installation profiles. No new Tools-to-LLM import.
+
+`artifact_identity` is an already supplied artifact digest when available;
+otherwise it is `declared:` plus the SHA256 of canonical JSON containing the
+resolved configured model ID and optional revision (null if absent). A hosted
+model can use this declared basis. Endpoint, service alias, keys and resilience/
+cache/batch knobs are excluded; aliases resolving to the same model/revision,
+preparation/tokenizer/dimensions yield the same space. Resolver records explicitly
+label configured identity versus attested immutable identity. No attestation is
+required. An out-of-band swap behind an unchanged server alias is undetectable;
+operators must update the declared identity and choose a fresh namespace when
+changing models. Existing files are never migrated/stamped. Optional historical
+evidence does not turn a configured record into a stronger identity claim.
+
+The pure `LocalTokenCounterFactory` contains only `assets_root`,
+`asset_manifest_sha256`, `record_id`; it validates the record locally and retains
+no endpoint, credential or model/store client.
 
 LLM loads `embedding-capabilities/<record-id>.json` and tokenizer files from
 `tokenizers/<artifact-id>/`; Tools loads `document-profiles/<profile-id>.json`
@@ -221,51 +264,101 @@ qualification is required for files refused under this approved policy.
 ## 4. Worker, read-only request and publication
 
 The [shared worker decision](shared-worker-decision.md) applies to every frontend.
-Tools implements process/session management once. Core progress events and
-cancel/join/result contracts have no UI imports. Memory orchestrates common
-planning/storage through injection; actual embedding clients/stores stay outside
-the converter process. Chat only adapts its requests and presentation; CLI/Runtime
-and a future TUI consume the same public capabilities. Runtime's existing
-DIContainer.shutdown drains the owned shared converter service. Standalone
-headless callers explicitly close/cancel it. Document read-only use remains free
-of Memory admission/embedding initialization.
+Tools implements conversion/session/process management once. Core events, results
+and close protocols are UI-neutral. Memory plans/embeds/stores via injected
+interfaces; actual provider clients and stores stay in the parent. Read-only
+conversion constructs no Memory entry/admission/embedding service.
 
-Add `async aclose(self) -> None` to `DocumentConverter`; it cancels/drains its
-outstanding sessions and queue idempotently. A service permits one active session
-and one queued request; further requests fail before source I/O/spawn with
-`worker_busy`. Cancellation while queued never starts a process. No unbounded
-fan-out or frontend-specific worker pool. Worker resources remain bounded even
-though separate interpreters avoid sharing the frontend's GIL.
+### Exact process and IPC mechanism
 
+One fresh interpreter per owned document session is launched using
+`asyncio.create_subprocess_exec(sys.executable, '-I', '-B', '-m',
+'friday_tools.document_ingestion', '--worker', env=child_env, cwd=request_root,
+start_new_session=True)` on the supported POSIX profile. This is subprocess exec,
+not `multiprocessing.spawn`; never mutate parent `os.environ` or fork a live client.
+The worker entry is in the already mapped Tools module. A private child environment
+contains required native/locale paths, bound assets/offline settings and
+`LITELLM_MODE=PRODUCTION` / `LITELLM_LOCAL_MODEL_COST_MAP=True` before counter imports.
+It omits provider credentials, proxies and production config paths. Counter imports
+must not read .env or fetch a cost map. Installed-profile no-network checks are
+ordinary I3 acceptance, not a new vendor evaluation.
 
-The proposed Tools worker is **one spawned process per owned document session**,
-never forked from a live model/store client. A `spawn` job receives only an input
-snapshot, fixed converter profile/local asset manifest, attempt ID and optional
-pure local counter factory for planning. It retains the vendor document between
-conversion and planning; parent messages/results contain only validated Core
-values. `/read` uses no counter factory or Memory entry. No second conversion.
-This choice is subject to RD-03's measured feasibility before activation; it is
-not a claim that the old harness used or qualified this product worker.
-Launch a fresh interpreter with subprocess `env`, not a temporary mutation of
-parent `os.environ` or a fork of the application. The worker entry stays inside
-the new Tools module; no additional helper source path is implied. Its request-
-owned working directory and environment carry only required native/locale paths,
-explicit asset paths, local/offline tokenizer/OCR settings and
-`LITELLM_MODE=PRODUCTION` / `LITELLM_LOCAL_MODEL_COST_MAP=True` before any injected
-counter import. Provider credentials, proxies and production config paths are
-not forwarded. Counter-module import must not load .env or fetch a cost map;
-RD-03/06 import/no-network witnesses qualify this exact profile. Caller-injected
-factory code is trusted application composition, never deserialized from a user
-document or accepted as an arbitrary module name in file-command input.
+Control/result IPC uses four-byte unsigned big-endian length followed by strict
+UTF-8 JSON, max 128 MiB per frame and bounded control/diagnostic fields; reject
+oversize/malformed/unknown messages. No vendor object crosses IPC. The one trusted
+application-injected pure CounterFactory may be serialized once in a separate
+length-bounded pickle frame (max 1 MiB) for parent-to-child transfer; never unpickle
+document data, result frames, command input or a user-supplied module name.
+The child creates its local counter only when planning is requested. It retains
+the converted Docling object until planning/close so no second conversion occurs.
+Only validated immutable Core values reach the parent. stdout is framed IPC;
+stderr is a bounded diagnostic sink, never source text in an ingestion payload.
 
-The 300-second conversion deadline makes output ineligible and requests process
-termination; join/reap is mandatory. If the child has not exited after a two-
-second termination grace, request kill and join. OS-confirmed quiescence is
-required before cleanup returns or Memory admission releases. Failure to confirm
-exit yields `worker_not_quiescent`, never successful shutdown or new admission.
-Cancellation is idempotent and follows the same discard/drain path; there is no
-claim of immediate native cancellation or OS sandboxing. Startup, IPC/counting,
-resource/termination behavior and the two-second grace require RD-03 proof.
+A service permits one active session and one queued request. Further opens fail
+with `worker_busy` before source I/O/spawn. Queued cancellation never launches.
+`DocumentConverter.aclose` invalidates and drains all sessions/queue idempotently.
+Each session keeps the same cancellation scope from conversion through planning;
+late output is discarded. Cancellation and timeout signal the owned process group,
+then reap it before releasing admission. Separate processes avoid sharing the
+frontend GIL; they are not an OS sandbox.
+
+### RD-03 implementation acceptance (I3-C4)
+
+Build conversion in I3-C1, then measure the implemented worker at I3-C4 **before
+accepting I3**. Neither finished worker evidence nor a spike is required for I1/I2
+construction approval. Existing four-format evidence is reused as input selection,
+not relabelled product-worker proof. These fixed limits are proposed acceptance
+thresholds, not new measurements:
+
+| Criterion | Pass/fail rule |
+| --- | --- |
+| Cold conversion | Snapshot admission through converted result <=300 s, including interpreter startup. |
+| Warm asset-cache repeat | New session, same installed assets/input; result <=180 s. No global cache or reused orphan worker. |
+| Process tree memory | Worker plus owned descendants <=8,589,934,592 bytes RSS; monitor tree, exceedance invalidates output and terminates. Record peak/startup/IPC timings, profile and platform. |
+| Responsive parent | Representative genuine PDF/OCR/Office lane has a 100 ms async heartbeat with no gap >1 s while conversion/counting is active. |
+| Queue/backpressure | One active/one queued; third busy before I/O; queued cancel never launches. |
+| Cancel/timeout | Invalidate output, TERM owned group, wait <=2 s, KILL if needed, await OS reap with a further 2 s observation bound. No late output or provider/store write after cancellation wins. |
+| Failed reap | Report `worker_not_quiescent`; mark service unhealthy and retain cleanup ownership/admission exclusion. No success or new work. Later confirmed reap may finish cleanup; unknown quiescence is not silently released. |
+| Ownership | No frontend import; progress, direct cancel, repeated cancel, timeout, close, headless/Runtime shutdown all exercise the same service. |
+
+Input ceilings remain those below in readiness-disposition; boundary refusal is
+proved without an exhaustive performance benchmark. A bound that cannot be met
+fails I3-C4 for reconciliation, never auto-increases limits or relaxes cleanup.
+
+### Exact composition, registration and close ownership
+
+`DIContainer` in `friday_runtime.di` adds public read-only slots
+`ingestion_entry: IngestionEntry | None` and
+`document_converter: DocumentConverter | None`, initially None, and
+`bind_ingestion(self, *, entry: IngestionEntry,
+document_converter: DocumentConverter) -> None`. Registration is inert and
+transfers lifecycle ownership only on success. Same object pair is idempotent;
+different pair/rebinding during or after shutdown raises a typed readiness error
+without closing caller-owned arguments. Composition creates the Tools converter,
+LLM counter/embedder and Memory entry explicitly and registers the exact pair.
+No default boot creates Docling, and no document YAML policy is added.
+
+`DIContainer.shutdown` stops new ingestion, awaits `entry.aclose()`, then
+`document_converter.aclose()`, then existing MCP shutdown. Retained close tasks
+are shielded/drained across repeated cancellation. A finally path attempts each
+cleanup even if an earlier close fails; preserve/report the first failure and
+unknown quiescence. Repeated shutdown joins the same cleanup task, never returns
+false success. Existing extraction drains remain ordered before closing clients.
+
+Chat does not use this container: its existing lifecycle builder and
+`FrameworkAsyncClientLifecycle` gain optional keyword-only
+`ingestion_entry: IngestionEntry | None = None` and
+`document_converter: DocumentConverter | None = None`. A real-client composition
+passes the same entry/converter used by registry adapters. `close()` rejects new
+requests, drains entry then converter, then closes existing LLM clients, with the
+same retained-task/failure rules. Fake runtime constructs no worker.
+
+Renderer-free CLI/TUI composition can call these public factories and
+`friday_runtime.di.DIContainer.bind_ingestion`, or explicitly own the pair in
+try/finally around the existing RuntimeKernel. RuntimeKernel, its private `_di`,
+its exports and existing CLI executable surfaces remain unchanged; this is a
+reusable public capability, not a new wired CLI/TUI command. No private-field
+access, RuntimeKernel patch or frontend-specific conversion engine is implied.
 
 Chat adds `async SmartFileReader.read_document(path, *, attempt_id)` backed by
 this session. Existing synchronous `read` retains text/JSON/table behavior and

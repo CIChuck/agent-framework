@@ -1354,7 +1354,7 @@
         "DI-22",
         "DI-08"
       ],
-      "assertions": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write.",
+      "assertions": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply current DI24 offline asset integrity, final-input counting/preparation and overflow guards to the complete document plan; no actual-serving parity campaign or remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write.",
       "status": "planned_not_executed"
     },
     {
@@ -1372,7 +1372,7 @@
         "DI-22",
         "DI-08"
       ],
-      "assertions": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write.",
+      "assertions": "No Chat import: explicit Tools converter/session + LLM local counter and injected PreparedEmbeddingService + public Memory factory -> full plan -> one validated batch -> real disposable Chroma. Missing/mismatched broker space and invalid batch refuse before writes; same session converts once.",
       "status": "planned_not_executed"
     },
     {
@@ -1408,7 +1408,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit.",
+      "assertions": "Actual async /read of genuine slow/OCR document maintains 100 ms heartbeat with <=1 s gap; no Memory admission/embedding construction; same Tools service.",
       "status": "planned_not_executed"
     },
     {
@@ -1426,7 +1426,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit.",
+      "assertions": "Cancel actual /read before start, during conversion and after child completion before registry return; repeat cancellation during shielded join. No late result, orphan child, Memory/provider/store effect.",
       "status": "planned_not_executed"
     },
     {
@@ -1444,7 +1444,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit.",
+      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success.",
       "status": "planned_not_executed"
     },
     {
@@ -1734,7 +1734,7 @@
         "DI-23",
         "DI-26"
       ],
-      "assertions": "No frontend imports: genuine conversion/planning uses shared process service; typed progress, one active/one queued, busy refusal before I/O, queued cancel never starts, active cancel/timeout joins with no late storage.",
+      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication.",
       "status": "planned_not_executed"
     },
     {
@@ -1745,7 +1745,19 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Existing DI shutdown drains all owned shared document sessions, independent of Chat. No late output/provider/storage and no orphan process.",
+      "assertions": "Construct public DIContainer; register exact entry/converter pair, same-pair idempotence and rejected different/reclosing pair preserve caller ownership. Shutdown closes entry then converter then MCP; repeated cancellation joins retained task, fails honestly on unknown reap. No RuntimeKernel private field or Chat import.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_document_read_rejects_hidden_workbook_before_conversion",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-11",
+        "DI-13",
+        "DI-26"
+      ],
+      "assertions": "Genuine row-only, column-only and combined hidden-dimension workbook on /read: unsupported_workbook_visibility with safe explanation, no converter worker/Memory/provider/store initialization. Hidden-sheet-only positive still extracts included visible sheets.",
       "status": "planned_not_executed"
     }
   ],
@@ -1905,13 +1917,24 @@
     "packages/friday-tools/tests_tools/fixtures/document-ingestion/oracles.json",
     "packages/friday-tools/tests_tools/fixtures/document-ingestion/resource-boundaries.json",
     "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-rows.xlsx",
-    "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-columns.xlsx"
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-columns.xlsx",
+    "packages/friday-tools/tests_tools/fixtures/document-ingestion/hidden-rows-columns.xlsx"
   ],
   "fixture_rule": "Synthetic generated fixtures only. oracles.json binds expected meaningful source strings/order/unit counts independently; no personal documents, diagnostic placeholders or copied user store. Boundary fixtures are generated in private test output from resource-boundaries.json, not huge committed blobs.",
   "approved_requirement_amendments": [
     {
       "path": "office-visibility-decision.md",
       "scope": "Workbook refusal policy only; no test code edit or execution approval."
+    },
+    {
+      "path": "requirement-reconciliation.md",
+      "scope": "Current model/parity removal and worker acceptance timing; no test edit/execution approval."
     }
-  ]
+  ],
+  "fixture_oracles": {
+    "hidden-units.xlsx": "Hidden-sheet-only positive: visible-sheet markers present, excluded hidden sheet markers absent. Hidden dimensions solely in excluded hidden sheet do not reject.",
+    "hidden-rows.xlsx": "Included sheet hidden-row rejection.",
+    "hidden-columns.xlsx": "Included sheet hidden-column rejection.",
+    "hidden-rows-columns.xlsx": "Included sheet combined hidden-row/column rejection."
+  }
 }

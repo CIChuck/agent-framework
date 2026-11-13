@@ -4310,3 +4310,17 @@ Docling evaluation stays input; no AST/archive/vendor replay or whole-framework
 source audit is assigned. Controller structural checks run once; fresh read-only
 reviewers assess package buildability and current contracts/maps. Original prior
 councils remain closed and do not substitute for this new review.
+
+
+## 2026-11-13 — INGEST activation round 1 reconciled; bounded round 2 preparation
+
+All three round-1 seats completed Review A1–A8 and requested changes. Their
+original reports are preserved under activation/council/round1/results with exact
+hashes; frozen controller close passed before correction. Nine mandatory IDs
+collapse into five bounded groups: live qualification wording, configured record
+admission, embedding injection, worker acceptance timing and exact lifecycle
+ownership. Corrections and related /read/fixture/map advisories are planning-only.
+The original approved common instructions remain byte-identical. Round 2 is the
+second of at most three fresh councils; no replacement/fourth round, construction,
+production/model/store/install effect or scope expansion is authorized. Current
+Gate A1–A5 remain incomplete. Controller checks and stable freeze precede launch.

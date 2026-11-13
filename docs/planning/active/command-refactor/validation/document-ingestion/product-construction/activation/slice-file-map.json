@@ -22,7 +22,7 @@
     {
       "path": "docs/architecture/command-execution.md",
       "owner": "workspace",
-      "mode": "edit",
+      "mode": "new",
       "exists_at_preparation": false,
       "baseline_sha256": null,
       "assignments": [
@@ -292,6 +292,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Owned request drain before existing async-client close; shielded repeated-cancel cleanup."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Lifecycle builder and FrameworkAsyncClientLifecycle accept optional entry/converter pair, drain in order before LLM clients; no Chat-owned conversion engine."
         }
       ]
     },
@@ -552,7 +557,7 @@
     {
       "path": "packages/friday-commands/src/friday_commands/file_inputs.py",
       "owner": "friday-commands",
-      "mode": "edit",
+      "mode": "new",
       "exists_at_preparation": false,
       "baseline_sha256": null,
       "assignments": [
@@ -585,7 +590,7 @@
     {
       "path": "packages/friday-core/src/friday_core/ingestion.py",
       "owner": "friday-core",
-      "mode": "edit",
+      "mode": "new",
       "exists_at_preparation": false,
       "baseline_sha256": null,
       "assignments": [
@@ -593,6 +598,11 @@
           "slice": "I1",
           "exit": "I1-C1",
           "purpose": "Validate neutral values/protocol shape and old public interfaces; no Tools/Memory backend import and no actual smart_read/common plan claim."
+        },
+        {
+          "slice": "I1",
+          "exit": "I1-C1",
+          "purpose": "Declare PreparedEmbeddingService and closeable IngestionEntry/DocumentConverter; broker injected into exact Memory factory, never global or frontend-owned."
         }
       ]
     },
@@ -660,7 +670,7 @@
     {
       "path": "packages/friday-llm/src/friday_llm/embedding_limits.py",
       "owner": "friday-llm",
-      "mode": "edit",
+      "mode": "new",
       "exists_at_preparation": false,
       "baseline_sha256": null,
       "assignments": [
@@ -668,6 +678,11 @@
           "slice": "I1",
           "exit": "I1-C2",
           "purpose": "New narrow pure counter/capability/preparation implementation and strict local manifest resolution; no document policy."
+        },
+        {
+          "slice": "I1",
+          "exit": "I1-C2",
+          "purpose": "Configured capability record/resolver and phase-local assets; optional evidence hashes do not gate defaults. Retain exact capacity/preparation/response checks."
         }
       ]
     },
@@ -908,20 +923,25 @@
           "slice": "I3",
           "exit": "I3-C2",
           "purpose": "Export public injected ingestion factory and typed entry."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C2",
+          "purpose": "Exact create_ingestion_entry requires embedder; check spaces, preflight whole plan, await broker, validate full batch before any write; own active tasks and close."
         }
       ]
     },
     {
       "path": "packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py",
       "owner": "friday-memory",
-      "mode": "edit",
+      "mode": "new",
       "exists_at_preparation": false,
       "baseline_sha256": null,
       "assignments": [
         {
           "slice": "I3",
           "exit": "I3-C2",
-          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
+          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply current DI24 offline asset integrity, final-input counting/preparation and overflow guards to the complete document plan; no actual-serving parity campaign or remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
         },
         {
           "slice": "I3",
@@ -933,7 +953,7 @@
     {
       "path": "packages/friday-memory/src/friday_memory/ingestion/embedding_space.py",
       "owner": "friday-memory",
-      "mode": "edit",
+      "mode": "new",
       "exists_at_preparation": false,
       "baseline_sha256": null,
       "assignments": [
@@ -954,7 +974,7 @@
         {
           "slice": "I3",
           "exit": "I3-C2",
-          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
+          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply current DI24 offline asset integrity, final-input counting/preparation and overflow guards to the complete document plan; no actual-serving parity campaign or remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
         }
       ]
     },
@@ -982,7 +1002,7 @@
         {
           "slice": "I3",
           "exit": "I3-C2",
-          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
+          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply current DI24 offline asset integrity, final-input counting/preparation and overflow guards to the complete document plan; no actual-serving parity campaign or remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
         }
       ]
     },
@@ -1283,6 +1303,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Own and drain the same injected frontend-neutral document worker service in existing shutdown; no Chat import/new engine."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Public bind_ingestion(entry=..., document_converter=...), typed read-only slots and ownership transfer; shutdown drains entry then converter then existing clients/MCP, no private RuntimeKernel access."
         }
       ]
     },
@@ -1317,7 +1342,7 @@
     {
       "path": "packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py",
       "owner": "friday-tools",
-      "mode": "edit",
+      "mode": "new",
       "exists_at_preparation": false,
       "baseline_sha256": null,
       "assignments": [
@@ -1343,7 +1368,7 @@
         {
           "slice": "I3",
           "exit": "I3-C2",
-          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply DI24 offline asset-root and actual-serving parity qualifications to the final common document plan and counter; no remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
+          "purpose": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply current DI24 offline asset integrity, final-input counting/preparation and overflow guards to the complete document plan; no actual-serving parity campaign or remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write."
         }
       ]
     },

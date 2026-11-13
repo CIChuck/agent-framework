@@ -1,0 +1,32 @@
+{
+  "seat": "sol",
+  "round": 1,
+  "outcome": "CHANGES_REQUESTED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 8.25,
+  "report_sha256": "28e27acd34f2895bc706ebccd215dfd32cd88b58835de3dd90519005f5b959f6",
+  "original": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/sol-activation-r1-1vcfow5k/sol-report.md",
+  "frozen_checkout_changed": false,
+  "mandatory_finding_ids": [
+    "SOL-R1-01",
+    "SOL-R1-02",
+    "SOL-R1-03"
+  ],
+  "boundaries_match": true,
+  "files": [
+    {
+      "path": "entry.json",
+      "sha256": "ea06d91654e32d8c1ab14453eb3f0a83bcb4e2ba85cc0651a6e6d2d8003fed64"
+    },
+    {
+      "path": "exit.json",
+      "sha256": "66c7601c7f212036b60d31d2c3a6a09813466166e11411a8eab04637c1b785cb"
+    },
+    {
+      "path": "report.md",
+      "sha256": "28e27acd34f2895bc706ebccd215dfd32cd88b58835de3dd90519005f5b959f6"
+    }
+  ],
+  "boundary_comparison": "git and preserved fields identical; exit also adds required_input_hashes_match=true"
+}

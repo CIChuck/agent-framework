@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Activation-package council round1/3 under the exact user-reviewed instructions: fresh Sol/Astra/Opus, complete A1\u2013A8, zero mandatory findings and overall>=9.5 for each seat. Bounded document corrections only; stop on success or after round3 for feedback. Model/parity prequalification stays removed, affected workbooks are rejected clearly and the process worker remains shared across frontends. No product generation or live effects.",
+  "current_scope": "Activation-package council round2/3 under the unchanged user-reviewed instructions: fresh Sol/Astra/Opus, complete Review A1\u2013A8, zero mandatory findings and overall>=9.5 per seat. Bounded document corrections only; stop on success or after round3 for feedback. Configured capability records replace removed serving/parity prerequisites; shared worker proof is I3-C4 acceptance after build; affected workbooks are rejected clearly. No product generation or live effects.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Activation-package council round1/3 under the exact user-reviewed instructions: fresh Sol/Astra/Opus, complete A1\u2013A8, zero mandatory findings and overall>=9.5 for each seat. Bounded document corrections only; stop on success or after round3 for feedback. Model/parity prequalification stays removed, affected workbooks are rejected clearly and the process worker remains shared across frontends. No product generation or live effects.",
+    "next_gate": "Activation-package council round2/3 under the unchanged user-reviewed instructions: fresh Sol/Astra/Opus, complete Review A1\u2013A8, zero mandatory findings and overall>=9.5 per seat. Bounded document corrections only; stop on success or after round3 for feedback. Configured capability records replace removed serving/parity prerequisites; shared worker proof is I3-C4 acceptance after build; affected workbooks are rejected clearly. No product generation or live effects.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2954,7 +2954,7 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "activation_package_council_round1",
+    "current_stage": "activation_package_council_round2",
     "validation_scope": "New proposed exact appendices have structural checks only; focused directive remains independently VERIFIED at 0144c539, Q/activation open.",
     "large_document_corpus": {
       "state": "verified",
@@ -3508,21 +3508,23 @@
       "activation_preparation": {
         "package": "validation/document-ingestion/product-construction/activation/README.md",
         "binding": "validation/document-ingestion/product-construction/activation/approval-binding.json",
-        "binding_sha256": "3d9ff672d5c9e3cad0baa3705bdd781f82ce18f2518494ec025c7254b94c9380",
+        "binding_sha256": "b54cbd8149ae4c9871df960febe0327b99d5baa19be44eb820c480fa75776068",
         "authority": "validation/document-ingestion/product-construction/activation/preparation-authorization.json",
         "status": "proposed_not_approved",
-        "new_council_authorized": false,
+        "new_council_authorized": true,
         "construction_approved": false,
-        "new_effects": false
+        "new_effects": false,
+        "current_dispositions": "validation/document-ingestion/product-construction/activation/requirement-reconciliation.md",
+        "current_dispositions_sha256": "27189044aedeabd136b0e3996c937e2c15dee6dee398c37bcd30aa43485779dc"
       },
       "activation_council": {
-        "status": "round1_frozen_for_review",
+        "status": "round2_frozen_for_review",
         "active": true,
-        "rounds_started": 1,
+        "rounds_started": 2,
         "maximum_rounds": 3,
         "instructions": "validation/document-ingestion/product-construction/activation/council/review-instructions.md",
         "instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
-        "rounds_completed": 0,
+        "rounds_completed": 1,
         "authorization": "validation/document-ingestion/product-construction/activation/council/authorization.json",
         "authorization_sha256": "63e64263cbcc6fe887b6c01995ccab133fdca03ed9f8a78c8e628d3b0e4a0efc",
         "state": "validation/document-ingestion/product-construction/activation/council/state.json"
@@ -3563,7 +3565,7 @@
       "target": "validation/document-ingestion/product-construction/activation/README.md",
       "instructions": "validation/document-ingestion/product-construction/activation/council/review-instructions.md",
       "instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
-      "status": "instructions_approved_round1",
+      "status": "instructions_approved_round2",
       "reviewer_launch_permitted_now": true,
       "roster": [
         "gpt-6.1-sol",
@@ -3572,8 +3574,8 @@
       ],
       "effort": "high",
       "maximum_rounds": 3,
-      "rounds_started": 1,
-      "rounds_completed": 0,
+      "rounds_started": 2,
+      "rounds_completed": 1,
       "overall_target_each": 9.5,
       "completion": "8 of 8 areas; zero mandatory findings; no separate numerical coverage grade",
       "bounded_corrections": "Planning-only findings within current scope between fresh rounds, after brief review/direction. No code, effects or fourth round.",

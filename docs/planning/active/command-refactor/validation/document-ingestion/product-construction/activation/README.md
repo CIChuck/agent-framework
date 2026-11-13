@@ -1,14 +1,11 @@
 # INGEST — proposed construction activation package
 
-**Current maintainer adjustment — 2026-11-13:** [The separate model identity/
-tokenizer-parity pre-coding qualification is removed](model-qualification-decision.md).
-Earlier RD-01/RD-05 prerequisite descriptions below are retained as superseded
-background for that item only. Runtime guards and ordinary implementation
-compatibility tests remain; no later parity campaign is substituted. The [Office amendment](office-visibility-decision.md) now selects clear whole-
-workbook refusal for hidden rows/columns. Shared process-worker ownership is now explicit across frontends; resource and
-lifecycle acceptance remains required. No new execution is authorized here.
+[Current requirement dispositions](requirement-reconciliation.md) apply the
+maintainer decisions directly: no separate model/parity qualification campaign;
+clear whole-workbook refusal for affected XLSX inputs; one shared process service.
+Worker proof is implementation acceptance at I3-C4, not a pre-coding prerequisite.
 
-Version 0.1, 2026-11-13. Prepared under Chuck's latest **proceed**, following
+Version 0.2, 2026-11-13. Prepared under Chuck's latest **proceed**, following
 [verified focused council round 2](../focused-council/round2/results/report.md).
 This direction authorizes this planning package. **Product construction is not
 activated.** The reviewed [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md)
@@ -23,6 +20,7 @@ Review these together:
 
 | Artifact | Review purpose |
 | --- | --- |
+| [Current requirement dispositions](requirement-reconciliation.md) | Exact superseded parent obligations and retained runtime/acceptance safeguards. |
 | [Shared contracts](shared-contracts.md) | Exact neutral types, public signatures, errors, preparation/counting and plan/storage handoffs, async read lifecycle, worker choice and versioned namespace/recovery rules. |
 | [Exact slice file map](slice-file-map.json) | Each selected source/metadata/guide path, owner, purpose and eligible exit. No whole-package write permission or implicit helper choice. |
 | [Case-level test map](test-case-map.json) | Named retained/adapted/replaced nodes with frozen old identities, expected assertions and new public witnesses. All unlisted bodies remain retained. |
@@ -46,7 +44,7 @@ source-unchanged witnesses are not edit permission. Existing optional new module
 are selected explicitly; no app.py or indirect-package product source expansion
 is granted. The canonical approved impact is still
 [assessment v0.6](../../../../package-impact-assessment.md), not this file map.
-A post-qualification revision of that same assessment path remains required.
+A pre-activation revision of that same assessment path remains required.
 
 ## Assigned package work
 
@@ -55,12 +53,12 @@ This is a slice index into the exact file map, not a replacement impact assessme
 | Owner | Assigned implementation |
 | --- | --- |
 | Core | I1 neutral ingestion/vector/open-intent protocols; I2 existing factory forwards admission. |
-| LLM | I1 qualified counter/preparation/batch APIs; I2 coordinated guarded caller switch. |
+| LLM | I1 configured counter/preparation/batch APIs; I2 coordinated guarded caller switch. |
 | Memory | I1 namespace and v2 foundations; I2 existing consumer/role/recovery/task safety; I3 shared plan and entry. |
 | Tools | I2 narrow existing memory wrappers; I3 shared converter/worker and existing text storage/cache. Document factory routing stays TOOLS-DOC. |
 | Commands | I3 pure file-tail parsing; API54 and stdlib-only imports retained. |
 | Chat | I2 lazy wiring/recovery/propagation; I3 configuration, commands and owned read/ingest lifecycle. |
-| Runtime | I2 origin, profiles, admission and owned-task drain; no new document YAML policy. |
+| Runtime | I2 origin, profiles, admission and owned-task drain; I3 explicit public shared-service registration and close. No new document YAML policy. |
 | CLI | I2 preserve explicit path origins through existing Runtime delegation; no executable or independent memory client. |
 | Other nine packages | Source-unchanged consumer/import/contract witnesses, with exact test-only scope where approved. |
 
@@ -91,17 +89,16 @@ Tests using real embeddings need a separately bound provider/model window.
 
 ## Activation status and next decision
 
-A2 signatures/path choices and A3's known exact case map are prepared for review.
-A1 still needs the [specific Q dispositions](readiness-disposition.md), actual
-qualified asset/serving records and its required independent readiness gate.
-A2's measured asset/profile attachments and any newly discovered case exceptions
-must be complete before their phase activates. A4 must bind Chuck's approval to
-the directive, appendices and final impact revision. A5 must bind an isolated
-validation environment and permitted effects. No mark of document readiness
-silently closes these requirements.
+Gate A2 signatures/path choices and Gate A3's known case map are prepared for
+review. Gate A1 binds the [current dispositions](readiness-disposition.md) and
+reused evidence; it requires no separate serving/parity or pre-built worker proof.
+Before each phase, bind the required local asset/profile records and exact case
+exceptions. Gate A4 must bind Chuck's approval to the directive, appendices and
+revised canonical package impact; Gate A5 binds isolated execution and permitted
+effects. No document verdict closes these gates or grants construction authority.
 
-This package does not request production changes, an automatic model switch,
-reset/re-embedding, hosted calls, a new dependency installation. Council rounds follow their separate reviewed
-authorization. The initiative stays started/local. The next bounded preparation is to
-resolve the explicitly named Q facts, starting with hosted identity feasibility,
-and present the fully bound activation record for approval before I1 generation.
+The next step after this bounded council is the final exact activation/impact
+approval package. No product generation, production change, model switch, reset,
+re-embedding, hosted call or install occurs under the current review authorization.
+The initiative remains started/local. Stop on a passing council or after round 3
+for maintainer feedback under the unchanged user-approved instructions.

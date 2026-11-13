@@ -4,7 +4,7 @@
   "unit": "CD-CMD-INGEST-001-activation-preparation",
   "base": "7a3e00bc9ef77adee25b61fc52ff91875e172738",
   "branch": "feature/cmd-ingest-001",
-  "status": "proposed_unreviewed_activation_package",
+  "status": "proposed_round2_activation_package_not_approved",
   "reviewed_directive_candidate": "0144c53908afb6f8288425c58c7a3bbff651faef",
   "inputs": [
     {
@@ -51,19 +51,19 @@
   "appendices": [
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
-      "sha256": "13eee863e7c2486ed73b60107597216c168641ad9dab26bcde7aaf05be6ac0e5"
+      "sha256": "3ca048a20de9cd902d29f660fbbd58b48b2e1f6086b7c63981e80a56bcebc520"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md",
-      "sha256": "b5d64720d67125c65da37b56982725f893426d5cb1c6b9d90a22840fc58945ac"
+      "sha256": "375289701c453d45eb927d5e65bdc47f3854174c02e02b2c1bddbeaf6d6e263f"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json",
-      "sha256": "346818cbffcb9d32d5dea9d995ee03b0ab5d205b7adab60a8f471a35a69b4aca"
+      "sha256": "a30c748cf90a794c912d00a9d0a401f96b6e31c2116c32f4a1f827b951f18064"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json",
-      "sha256": "2fa047e15d0ea4f96819f2bd77b17a6e03b8d59f9742ee3464131d867b72698e"
+      "sha256": "f578960cd9fb3752b328b5161ac8ca6eeb286406ca8d719b8661074207a6fb5b"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/digest-vectors.json",
@@ -71,26 +71,30 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md",
-      "sha256": "cf90180c89444aa584ffdf528da5b7d7047dddd1ecc1e0200b341923c94700b3"
+      "sha256": "c07eeb6faf0cfcb7d50e31e18bc813a06aa8aa97662f1c4fa28717c1bfff53b4"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md",
-      "sha256": "cbed7bf21b015e88ffce092049a1091a4a422a11ba311f93ca9bed8e2a5cc6bd"
+      "sha256": "bf2431fa4b13f1644b28cea93c96eee6aee7e32c5f59d48b2be72e0aa65592e1"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/preparation-authorization.json",
       "sha256": "84d03ffd3798d18bf5778d79bceca6318a46a58af27c08192c7591aaddaadc0d"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md",
+      "sha256": "27189044aedeabd136b0e3996c937e2c15dee6dee398c37bcd30aa43485779dc"
     }
   ],
   "gates": {
     "A1": {
       "complete": false,
-      "reason": "Separate model/parity prerequisite removed and XLSX rejection policy settled. Shared process/resource/lifecycle acceptance and exact remaining preparation/approval bindings stay required; no new qualification campaign is started."
+      "reason": "Bind current dispositions and reused evidence; separate serving/parity campaign removed. Worker acceptance is I3-C4, not a pre-coding gate. Gate remains unapproved."
     },
     "A2": {
       "complete": false,
       "design": "Exact signatures/field/protocol/path choices prepared for review.",
-      "missing": "Non-model format/worker profile attachments, explicit asset provisioning and exact design approval; no separate model identity/parity qualification prerequisite."
+      "missing": "Phase-local configured assets, exact design approval and final impact binding; no finished-worker or serving/parity evidence prerequisite."
     },
     "A3": {
       "complete": false,
@@ -110,7 +114,7 @@
     }
   },
   "product_generation_allowed": false,
-  "council_result_scope": "Prior focused directive only at its frozen candidate; does not review these new appendices or close Q.",
+  "council_result_scope": "Changed activation package requires its own current council; no prior verdict supplies construction or acceptance authority.",
   "case_map_not_runtime_proof": true,
   "current_maintainer_adjustments": [
     {

@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "scope": "Neutral requirements to assess first, then all eight user-approved Review areas; not supplied conclusions.",
+  "groups": [
+    {
+      "id": "C1",
+      "requirement": "Apply model/parity removal directly to current overview, readiness, validation and I3 maps; explicitly reconcile DI24. No live or later qualification campaign."
+    },
+    {
+      "id": "C2",
+      "requirement": "Admissible configured capability records; optional serving/parity evidence never gates operation. Define hosted/declared identity, provisioning slices and alias-swap limit. Preserve local count, batch, vector and store safeguards and ordinary positives."
+    },
+    {
+      "id": "C3",
+      "requirement": "Core PreparedEmbeddingService and required Memory factory embedder injection; space agreement, whole plan/batch validation before writes, explicit headless construction."
+    },
+    {
+      "id": "C4",
+      "requirement": "Worker proof at I3-C4 after build; exact subprocess, bounded IPC/resource/cleanup thresholds. No pre-coding circular gate."
+    },
+    {
+      "id": "C5",
+      "requirement": "Exact public Runtime registration and Chat independent lifecycle signatures, ownership transfer, idempotent shutdown and source boundaries. /read workbook-refusal and per-node lifecycle assertions."
+    }
+  ],
+  "instructions_unchanged": true,
+  "new_product_or_effects_authority": false
+}

@@ -1,6 +1,6 @@
 # INGEST activation — validation execution plan
 
-Version 0.1, proposed A3/A5 plan. **No commands here were run as product validation.**
+Version 0.2, proposed A3/A5 plan. **No commands here were run as product validation.**
 Only execute a phase after its exact approval and prepared isolated interpreter,
 source snapshot, qualified assets and permitted effects have been bound. No
 working `.venv`, dirty configuration or user `.friday*` store is a test target.
@@ -28,7 +28,9 @@ survive optimization, genuine fixtures, real counter assets, deterministic exact
 dimension vectors and an actual disposable Chroma store. Include separate-process
 reopen, no Chat import for headless document composition and headless progress/cancel/timeout/backpressure plus real application
 /read cancellation/drain. No network/model calls under this offline profile.
-A separately approved actual-serving window supplies Q parity/identity facts.
+No serving/parity campaign is required; current DI-24 dispositions are in
+[the requirement reconciliation](requirement-reconciliation.md). Deterministic
+provider responses prove operational guards, not model efficacy or server parity.
 
 Before each phase, expand these node references and the phase-map/FC named tests
 into exact selectors and fixture/helper classifications. Unclassified modules,
@@ -47,6 +49,9 @@ The case map's retain default is no authority to run an unknown live module.
 - Complete-content, dropped-tail/order, role/count, stale receipt/source/profile,
   index/dimension, foreign identity, namespace fallback, worker late-output and
   v1/v2 mixed-artifact controls fail at the required assertion/call boundary.
+- At I3-C4 apply the exact worker threshold table, Runtime public registration/
+  close and Chat real-application cancellation/drain witnesses. No such finished
+  worker proof is required to approve I1/I2 construction.
 - Every mapped old case retains its valid oracle or obtains executed replacement
   coverage. Fixture/synthetic model qualification is labelled honestly; it is not
   real serving parity or general retrieval-quality evidence.
