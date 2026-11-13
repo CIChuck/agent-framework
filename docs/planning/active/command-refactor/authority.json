@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Fresh independent review of the isolated long-document corpus:20 genuine documents plus5 references, native complete-text validation and87 tests per mode. Qwen token counts/serving and larger-context inference remain pending; no production or model/default change.",
+  "current_scope": "Fresh LD-CORPUS-001 correction delta and full corpus review. V2 requires genuine middle/tail evidence; native25-file validation/mode and88 regressions pass. Original corpora preserved. No Qwen/model/store/production effect; serving and token counts remain unqualified.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Fresh independent review of the isolated long-document corpus:20 genuine documents plus5 references, native complete-text validation and87 tests per mode. Qwen token counts/serving and larger-context inference remain pending; no production or model/default change.",
+    "next_gate": "Fresh LD-CORPUS-001 correction delta and full corpus review. V2 requires genuine middle/tail evidence; native25-file validation/mode and88 regressions pass. Original corpora preserved. No Qwen/model/store/production effect; serving and token counts remain unqualified.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2113,7 +2113,7 @@
       "council_round": 6,
       "maximum_total_rounds": 6,
       "gate_a_or_construction_authority": false,
-      "next_gate": "Fresh independent review of the isolated long-document corpus:20 genuine documents plus5 references, native complete-text validation and87 tests per mode. Qwen token counts/serving and larger-context inference remain pending; no production or model/default change.",
+      "next_gate": "Fresh LD-CORPUS-001 correction delta and full corpus review. V2 requires genuine middle/tail evidence; native25-file validation/mode and88 regressions pass. Original corpora preserved. No Qwen/model/store/production effect; serving and token counts remain unqualified.",
       "correction_record": "validation/document-ingestion/package-impact/round6-authorization.json",
       "correction_record_sha256": "b8b23887d51bcccab3bd32ace39fdde33e18e5fdf2abcf85fbc71d21bdd9492b",
       "reviewed_candidate": "ae813002a8537b35feb2d9492338b65fa13bff4b",
@@ -2961,8 +2961,13 @@
       "scope": "validation/document-ingestion/gate-a/large-documents-scope.md",
       "inference_authorized": false,
       "production_changes": false,
-      "source_candidate": "3bf25f4ebac0497f43862783c0652312cebd998c",
-      "results": "validation/document-ingestion/gate-a/large-documents/results.md"
+      "source_candidate": "f17b3d32b647d0df4e56963733bd606ab363e699",
+      "results": "validation/document-ingestion/gate-a/large-documents/results.md",
+      "version": 2,
+      "mandatory_findings": [
+        "LD-CORPUS-001"
+      ],
+      "mandatory_findings_status": "corrected; independent closure pending"
     }
   },
   "command_refactor_publication": {

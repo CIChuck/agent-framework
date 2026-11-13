@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Fresh independent review of the isolated long-document corpus:20 genuine documents plus5 references, native complete-text validation and87 tests per mode. Qwen token counts/serving and larger-context inference remain pending; no production or model/default change."
+  next_gate: "Fresh LD-CORPUS-001 correction delta and full corpus review. V2 requires genuine middle/tail evidence; native25-file validation/mode and88 regressions pass. Original corpora preserved. No Qwen/model/store/production effect; serving and token counts remain unqualified."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []

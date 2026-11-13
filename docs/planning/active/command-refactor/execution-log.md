@@ -3877,3 +3877,16 @@ model, chunking or store pass is claimed for these new files.
 [Results](validation/document-ingestion/gate-a/large-documents/results.md) retain
 the controlled inputs and oracles; exact Qwen tokens remain unset. Freeze for
 fresh LD-01–08 review. Production and earlier evaluated state are preserved.
+
+## 2026-11-12 — Cross-section-control correction and regenerated v2
+
+The first corpus reviewer was procedure-BLOCKED; a fresh review independently
+found LD-CORPUS-001: the tail repeated both answers. [LD-REM-001](validation/document-ingestion/gate-a/large-documents/LD-REM-001.md)
+bounds a mechanical fixture/text/assertion correction. f17b3d32 keeps the key only
+in the middle and the release code only in the tail; both source publication and
+actual native-text validation enforce joint evidence with no sufficient single
+section. Fresh v2 corpora preserve originals, are byte-identical across modes,
+and pass native25-file validation,88 tests/mode and31-source typing/lint. An
+integrity-valid modified DOCX is rejected specifically by the semantic checker.
+Qwen token counts remain null and no model/network/store action occurred.
+Freeze for delta-first and full LD review; no product or acceptance advancement.

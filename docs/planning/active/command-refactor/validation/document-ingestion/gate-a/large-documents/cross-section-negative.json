@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "mechanism": "integrity-valid native DOCX appends the middle key to tail; native semantic checker refuses",
+  "source_original_unchanged": true,
+  "receipts": [
+    {
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-cross-negative/.friday_test/runs/large-documents-tail-mutant/source/ingest/large_documents.py",
+        "verify",
+        "--run-root",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-cross-negative/.friday_test/runs/large-documents-tail-mutant"
+      ],
+      "exit": 0,
+      "stdout": "{\"status\": \"PASS\", \"documents\": 25, \"inference_requests\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+        "-I",
+        "-S",
+        "-B",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-cross-negative/.friday_test/runs/large-documents-tail-mutant/source/ingest/large_documents.py",
+        "validate",
+        "--run-root",
+        "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-cross-negative/.friday_test/runs/large-documents-tail-mutant",
+        "--target",
+        "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/runs/docling-behavior-e2e-20261112/target"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-cross-negative/.friday_test/runs/large-documents-tail-mutant/source/ingest/large_documents.py\", line 672, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-cross-negative/.friday_test/runs/large-documents-tail-mutant/source/ingest/large_documents.py\", line 656, in main\n    result = native_validate(root, args.target)\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-cross-negative/.friday_test/runs/large-documents-tail-mutant/source/ingest/large_documents.py\", line 582, in native_validate\n    cross_section_control(bodies, object_value(sequence(expected[\"queries\"])[-1]))\n    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-cross-negative/.friday_test/runs/large-documents-tail-mutant/source/ingest/large_documents.py\", line 173, in cross_section_control\n    require(\n    ~~~~~~~^\n        not any(all(answer in body for answer in answers) for body in bodies),\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        \"Cross-section answers supplied by one section\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-behavior-focus-5ns8oj8n/large-cross-negative/.friday_test/runs/large-documents-tail-mutant/source/ingest/large_documents.py\", line 41, in require\n    raise ValueError(message)\nValueError: Cross-section answers supplied by one section\n"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ MAINT UAT/acceptance and delivery remain separate open gates.
 See [actual results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Fresh independent review of the isolated long-document corpus:20 genuine documents plus5 references, native complete-text validation and87 tests per mode. Qwen token counts/serving and larger-context inference remain pending; no production or model/default change.
+**Next gate:** Fresh LD-CORPUS-001 correction delta and full corpus review. V2 requires genuine middle/tail evidence; native25-file validation/mode and88 regressions pass. Original corpora preserved. No Qwen/model/store/production effect; serving and token counts remain unqualified.
 
 ## Separate MAINT closeout and historical checkpoints
 
