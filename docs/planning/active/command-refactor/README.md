@@ -93,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Requested final-document corrections prepared for exactly one additional council, round2/2: impact v0.8 and approval request v2 clarify Certifi baseline/enforcement from I3-C1, tokenizers shared-lock effects, embedding prerequisites, existing-started phase activation and exact presented revision. Fresh full Sol/Astra/Opus FD1–FD8, complete8/8, zero mandatory findings and >=9.5 each. Stop after this council; no third round, automatic repair, construction or runtime effects.
+**Next gate:** Final-document council round2/2 finished CHANGES_REQUESTED: all three complete8/8 and confirm substantive C1–C3, but A4 retained a stale impact label. Completed that same requested one-field version alignment after frozen close, with a new exact receipt at b357c3c4; other target documents unchanged. Original verdicts/scores remain, no independent VERIFIED or gate waiver claimed. Chuck now decides acceptance of the bounded post-review correction and exact construction/private effects. No third council, runtime effects or construction begun.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
@@ -349,3 +349,5 @@ Current activation council: [VERIFIED round7 outcome and next approval gate](val
 Current review task: [Final construction approval package](validation/document-ingestion/product-construction/final-approval/README.md) and [canonical package impact v0.7](package-impact-assessment.md). Exact proposed scope/effects are prepared; construction and private installs await Chuck. The prior council stays closed.
 
 Final approval document council: [complete outcome and bounded Certifi finding](validation/document-ingestion/product-construction/final-approval/council/round1/results/report.md). Single read-only round closed; awaiting Chuck's disposition. Reviewed targets remain unchanged.
+
+Final additional council: [round2 outcome and exact one-field post-review correction](validation/document-ingestion/product-construction/final-approval/council/round2/results/report.md). Original CHANGES_REQUESTED verdicts remain; no third council. Await Chuck's explicit disposition and construction approval.

@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Requested final-document corrections prepared for exactly one additional council, round2/2: impact v0.8 and approval request v2 clarify Certifi baseline/enforcement from I3-C1, tokenizers shared-lock effects, embedding prerequisites, existing-started phase activation and exact presented revision. Fresh full Sol/Astra/Opus FD1–FD8, complete8/8, zero mandatory findings and >=9.5 each. Stop after this council; no third round, automatic repair, construction or runtime effects."
+  next_gate: "Final-document council round2/2 finished CHANGES_REQUESTED: all three complete8/8 and confirm substantive C1–C3, but A4 retained a stale impact label. Completed that same requested one-field version alignment after frozen close, with a new exact receipt at b357c3c4; other target documents unchanged. Original verdicts/scores remain, no independent VERIFIED or gate waiver claimed. Chuck now decides acceptance of the bounded post-review correction and exact construction/private effects. No third council, runtime effects or construction begun."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3369,3 +3369,11 @@ events:
   action: reconciled final INGEST approval document council with changes requested
   note: "All8 areas assessed by each seat; Sol9.6325/Astra9.640 VERIFIED, Opus9.30 with Certifi timing finding. Source confirmed; reports/disclosure preserved, targets unchanged. One read-only round complete, no automatic correction/repeat. Await Chuck, no construction or effects."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round1/results/report.md
+
+- task: friday-command-refactor
+  at: "2026-11-13T16:32:06.147242+00:00"
+  actor: Codex
+  actor_role: agent
+  action: stopped final INGEST document council and disclosed one-field correction
+  note: "All final seats complete8/8; shared stale A4 label only. Original CHANGES_REQUESTED scores/reports retained. Same requested reference alignment completed in one field, receipt refreshed; no independent VERIFIED/gate waiver claimed. No third council or runtime effects. Await explicit maintainer disposition/construction approval."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/results/report.md

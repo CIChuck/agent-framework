@@ -1,0 +1,52 @@
+{
+ "logical_index_before_status": "e5341c157e69e60314a7320e53a7cdb4a1f80ebb66d2fc0a6a9bc6056a9734e4",
+ "head": "b4eecbe804b862f606995c4c4e5197c9b9d37150",
+ "branch": "feature/cmd-ingest-001",
+ "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+ "staged": "",
+ "identity_match": {
+  "head": true,
+  "branch": true,
+  "logical_index_before_status": true,
+  "status": true,
+  "staged": true
+ },
+ "preserved_match": {
+  "packages/friday-chat/config.example.yaml": true,
+  "packages/friday-chat/models-config.example.yaml": true,
+  ".friday": true,
+  ".friday-old": true,
+  ".venv": true,
+  "exports": true,
+  "exports/friday_context.txt": true,
+  "exports/friday_prompt.txt": true
+ },
+ "input_hash_match": {
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md": true,
+  "docs/planning/active/command-refactor/package-impact-assessment.md": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/approval-request.json": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/execution-profile.json": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/authorization.json": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/review-instructions.md": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md": true,
+  "AGENTS.md": true,
+  "docs/reference/policies/repository-engineering-policy.md": true,
+  "docs/reference/policies/development-task-lifecycle.md": true,
+  "docs/reference/policies/independent-validation-policy.md": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/correction-requirements.json": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/presented-revision.json": true,
+  "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md": true,
+  "docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md": true,
+  "docs/planning/active/command-refactor/embedding-compatibility-contract.md": true,
+  "docs/planning/active/command-refactor/test-migration-plan.md": true,
+  "docs/planning/active/command-refactor/command-architecture-update-plan.md": true,
+  "docs/planning/active/command-refactor/guide-update-handoff.md": true,
+  "docs/planning/active/command-refactor/approval/ingest-package-impact.md": true,
+  "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/controller-checks.json": true
+ },
+ "all_inputs_match": true
+}

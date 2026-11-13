@@ -1,28 +1,22 @@
 {
-  "scope": "Controller corrected-document preparation and preservation only; not independent or runtime validation",
+  "scope": "Controller checks of final outcome and disclosed one-field post-review correction; not independent review or runtime conformance",
   "canonical_impact_version": "0.8",
-  "target_document_commit": "115e4cecdb659d2af043c11e73964aca0a590d78",
-  "approval_manifest_sha256": "7fbc2fa7b21c9ea14c8eeac5246563faba4d69e2e7359967639595b4d2155b27",
-  "presented_revision_sha256": "2b5f9a94198729a247779299d1be3ca79518200ade8ff9d4e89e0994b9eb047f",
-  "all_target_hashes_match_named_commit": true,
-  "existing_technical_contracts_maps_unchanged": true,
-  "known_baseline_versions": {
-    "certifi": "2025.11.12",
-    "tokenizers": "0.22.1"
-  },
-  "certifi_floor_starts_I3_C1": true,
-  "package_rows": 17,
-  "exact_scope": {
-    "paths": 91,
-    "old_case_exceptions": 49,
-    "new_witnesses": 51,
-    "classified_modules": 18
-  },
-  "relative_links_checked": 29,
+  "target_document_commit": "b357c3c4dd0c892aa57593d32cb236b7e832022c",
+  "approval_manifest_sha256": "c8946e081eeaa1d0b9f13033d9be8444f84c3906dde7f15a694434903038df3b",
+  "presented_revision_sha256": "96afc4b37b787dd82751e3726d6fe7a445541abdb5fc5a60db773bad5dd80a5f",
+  "exact_post_review_change": "gate_disposition.A4.requires only; all other request fields and three other presented documents unchanged",
+  "current_bindings_match_named_commit": true,
+  "all_original_reports_preserved": true,
+  "all_councils_finished": true,
+  "formal_council_result": "CHANGES_REQUESTED",
+  "formal_gate_met": false,
+  "post_review_fix_independently_verified": false,
+  "human_disposition_required": true,
+  "third_round_started": false,
+  "execution_log_append_only": true,
   "protected_nonplanning_files": 16690,
   "preserved_symlinks": 26,
   "preserved_records": 8,
-  "execution_log_append_only": true,
   "administrative_checks": [
     {
       "argv": [
@@ -74,7 +68,7 @@
         "scripts/check-documentation-lifecycle.py"
       ],
       "exit": 0,
-      "stdout": "Documentation lifecycle validation passed: 1217 Markdown files checked\n",
+      "stdout": "Documentation lifecycle validation passed: 1221 Markdown files checked\n",
       "stderr": "",
       "name": "docs"
     },
@@ -109,9 +103,7 @@
       "name": "whitespace"
     }
   ],
-  "no_product_import_tests_installs_models_or_stores": true,
+  "no_runtime_effects": true,
   "construction_approved": false,
-  "result": "PASS",
-  "review_brief_current_impact_version": "0.8",
-  "review_brief_and_authorization_pins_match": true
+  "result": "PASS"
 }

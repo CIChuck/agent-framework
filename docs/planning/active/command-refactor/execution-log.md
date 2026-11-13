@@ -4481,3 +4481,19 @@ phase activation under the started initiative and an exact document-revision
 receipt. Refresh profile/request/current hashes without changing technical maps,
 old cases/witnesses, source/test/guide/lock or user state. Fresh full FD1–FD8 at
 round2/2, then stop. No third round, automatic later repair or construction/effects.
+
+
+## 2026-11-13 — Final round closed; one-field correction completed, no new council
+
+All three final seats complete8/8 and confirm C1–C3; all flag the same stale A4
+v0.7 label against pinned impactv0.8. Original reports and scores preserved:
+Sol9.5725 reported (printed ratings sum9.570), Astra9.565, Opus9.365. Formal gate
+is unmet. Frozen closing passes before any target edit. Completing the already
+requested version alignment, changed only A4.requires to reference the current
+impact path/version/digest, committed at b357c3c4 and refreshed the presentation
+receipt. Every other request field and all other primary/profile/technical/source
+bytes are unchanged. Exact before/after and authority interpretation disclosed.
+No independent VERIFIED result or score increase is claimed for the correction.
+No third council or further automatic repair. Chuck decides acceptance of this
+bounded post-review fix and exact construction/private effects. No code, install,
+model/store/production effect, acceptance or delivery occurred.

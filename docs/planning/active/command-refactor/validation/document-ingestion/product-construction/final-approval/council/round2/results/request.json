@@ -1,0 +1,249 @@
+{
+  "version": 1,
+  "unit": "INGEST-FINAL-APPROVAL-DOCUMENTS-COUNCIL",
+  "round": 2,
+  "maximum_rounds": 2,
+  "workdir": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "candidate": "b4eecbe804b862f606995c4c4e5197c9b9d37150",
+  "branch": "feature/cmd-ingest-001",
+  "base": "b0d166256015b090b4a5082389b1b4f47835d1a2",
+  "diff_scope": "Bounded current-document/profile/hash corrections and review/presentation metadata after the first council. Product source/tests/guides/lock unchanged. Assess neutral C1-C3 first, then both full targets and all eight unchanged FD areas. No earlier verdict supplies this review.",
+  "primary_targets": [
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md",
+      "sha256": "a7f027e8a4b70f19dcdbda13ecf10172a9a786059371705b0662eba36c13d66f",
+      "read_scope": "PRIMARY TARGET: read fully; final human construction approval request."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+      "sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f",
+      "read_scope": "PRIMARY TARGET: read fully; canonical corrected impact v0.8."
+    }
+  ],
+  "required_inputs": [
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md",
+      "sha256": "a7f027e8a4b70f19dcdbda13ecf10172a9a786059371705b0662eba36c13d66f",
+      "read_scope": "PRIMARY TARGET: read fully; final human construction approval request."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/package-impact-assessment.md",
+      "sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f",
+      "read_scope": "PRIMARY TARGET: read fully; canonical corrected impact v0.8."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/approval-request.json",
+      "sha256": "7fbc2fa7b21c9ea14c8eeac5246563faba4d69e2e7359967639595b4d2155b27",
+      "read_scope": "Read fully: exact current assembly/hashes/scope/gate proposal, not activation."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/execution-profile.json",
+      "sha256": "fa964adcd72ee98c9a7aef8080fb1a9c142d86589cb0d6ffc9e2df414cc00014",
+      "read_scope": "Read fully: proposed private execution and effects; not performed."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/authorization.json",
+      "sha256": "1d940de3407b29b32669ea96edf65b0a01cc47e2a4c0457105635902a93522f5",
+      "read_scope": "Read first: final single additional round2/2 explicitly authorized after round1; no third round."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/review-instructions.md",
+      "sha256": "9f8cf7d6812717e6f1993e2e92604a2febecc54a78f0bb0dba560c54d44dbdfe",
+      "read_scope": "Read first after authorization: unchanged brief for all three seats, eight bounded areas/weights."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md",
+      "sha256": "f787e83ed84916264277013ab4e8097e9f3fcba90da502ea5ec1819630c71d55",
+      "read_scope": "Targeted relevant decision/preference precedence. Historical budget captions are not current council authority."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md",
+      "sha256": "44791c3a431f3f4cc8876851cfa3248a20dc7cbd90739178f022c453e370794c",
+      "read_scope": "Relevant exact ownership, configuration, process/lifecycle and namespace rules as needed. No full-parent reading requirement."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json",
+      "sha256": "94d29682e2c9b813dd73f4bcdad95f7a327d139e03187ed8baf3931b6f8f7346",
+      "read_scope": "Relevant exact paths/owners/phase assignments; no full source audit."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json",
+      "sha256": "41229b36ae5f3f33eaf15d11322be290c837d6ab21c5a3023294f890879c509c",
+      "read_scope": "Relevant known case/witness/helper/module boundaries; no AST/inventory rebuild or test execution."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md",
+      "sha256": "98da30a313539c9d550ac14a8dffa1454997c00f5353df33bf915f8ca09c8cc7",
+      "read_scope": "Relevant reused stack facts and future duties; no vendor/model replay."
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "9c2840ea92bf5f25acd5c85d36a18d2c7d9677c0768d1e811aef5efde6fc936b",
+      "read_scope": "Read applicable operating and preservation policies."
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "read_scope": "Read applicable contract/typing/boundary principles."
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "2c0241fd353145a4704699e69000dd8c4bd8404cb616e224fe77dee03165d844",
+      "read_scope": "Read approval versus work/delivery distinctions relevant to proposal."
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "read_scope": "Read applicable independent/document-review scope; future implementation gates are not current test duties."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/correction-requirements.json",
+      "sha256": "6d453d0b24049afc8b1eaaea3ecca0c47601053e1f3610582cdf123231630bb6",
+      "read_scope": "Neutral C1-C3 correction questions first; then full unchanged FD1-FD8 aggregate."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/presented-revision.json",
+      "sha256": "2b5f9a94198729a247779299d1be3ca79518200ade8ff9d4e89e0994b9eb047f",
+      "read_scope": "Exact named content commit/request digest; four bound document bytes must match the named commit and current files. No circular hash."
+    }
+  ],
+  "optional_references": [
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+      "sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1",
+      "read_scope": "Targeted normative requirements only; current dispositions control named superseded clauses."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+      "sha256": "b7d93caf2d302e0802b3c6b7f523de42d2ab98f625b5a8a02326f21a8fec2f9f",
+      "read_scope": "Targeted separate delivery boundary only."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/embedding-compatibility-contract.md",
+      "sha256": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb",
+      "read_scope": "Targeted retained compatibility claims only; no full framework audit."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/test-migration-plan.md",
+      "sha256": "b422be6964d7dd3a7c464285a43721cea7f9d380edb4ac7817bcd55ff7b9396c",
+      "read_scope": "Targeted test restructuring and retained-coverage obligations."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/command-architecture-update-plan.md",
+      "sha256": "449b3f967318035498577058fd91b14bb04b506c249cd4d53d547695a25d15a1",
+      "read_scope": "Targeted authored architecture/guide requirements."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/guide-update-handoff.md",
+      "sha256": "0186c106f91da906213decb53ebc41c311b321ee3db65ed6072d46d641dae5a9",
+      "read_scope": "Targeted guide sections only."
+    },
+    {
+      "path": "docs/planning/active/command-refactor/approval/ingest-package-impact.md",
+      "sha256": "f4f4a20d6db52f2459f767ede79f2db211a4a7118d6736f40551fd00fbf1cbec",
+      "read_scope": "Historical exact v0.6 approval context only; it does not approve new bytes."
+    }
+  ],
+  "scope": "One fresh bounded read-only review of final construction approval request and canonical impact v0.7; document completeness/consistency/buildability and bounded proposed effects. No current implementation conformance, vendor, package investigation, archive/AST replay or exhaustive framework audit.",
+  "authority": "Latest explicit direction authorizes requested document edits and exactly one further council. This is final round2/2; stop after this round regardless of result. No third round, replacement, further automatic repair, construction or effects.",
+  "instructions": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/review-instructions.md",
+  "instructions_sha256": "9f8cf7d6812717e6f1993e2e92604a2febecc54a78f0bb0dba560c54d44dbdfe",
+  "controller_checks": {
+    "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/controller-checks.json",
+    "sha256": "ba498c5739c19559f98d6f695b10bcf3673c7cd43d2817768668935652c7f802",
+    "read_scope": "Hash only; not correctness evidence; do not replay administrative checks."
+  },
+  "safe_current_controls": {
+    "path": "/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/ingest-final-docs-council-vohkh1em/round2-inputs/current-controls.json",
+    "sha256": "879178ca8c79b08f77be3ae1a2e40b3f3dce642545fa313e025efb9ffa25bba6"
+  },
+  "expected_entry_exit": {
+    "head": "b4eecbe804b862f606995c4c4e5197c9b9d37150",
+    "branch": "feature/cmd-ingest-001",
+    "logical_index_before_status": "e5341c157e69e60314a7320e53a7cdb4a1f80ebb66d2fc0a6a9bc6056a9734e4",
+    "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+    "staged": ""
+  },
+  "preserved_metadata": {
+    "packages/friday-chat/config.example.yaml": {
+      "mode": 33188,
+      "size": 30129,
+      "mtime_ns": 1794334784972093361,
+      "ctime_ns": 1794334784972093361,
+      "birthtime": 1788446389.467035,
+      "sha256": "7c31a9ad3f6a7ff1cfc891cace6c4b3cde21d10202770c374a38c6cc28620f32"
+    },
+    "packages/friday-chat/models-config.example.yaml": {
+      "mode": 33188,
+      "size": 3962,
+      "mtime_ns": 1794264005521487739,
+      "ctime_ns": 1794264005521487739,
+      "birthtime": 1788446389.4671795,
+      "sha256": "5cf3d15ec469d3b8e495248d3aec9ed7bcdb48b68243668b6dbbbb3e0b0326c9"
+    },
+    ".friday": {
+      "mode": 16877,
+      "size": 224,
+      "mtime_ns": 1794335780595591896,
+      "ctime_ns": 1794335780595591896,
+      "birthtime": 1794312889.6114945
+    },
+    ".friday-old": {
+      "mode": 16877,
+      "size": 256,
+      "mtime_ns": 1794312848481691252,
+      "ctime_ns": 1794312880963718202,
+      "birthtime": 1793062680.0546615
+    },
+    ".venv": {
+      "mode": 16877,
+      "size": 288,
+      "mtime_ns": 1772940967050495003,
+      "ctime_ns": 1772940967050495003,
+      "birthtime": 1772940965.7368934
+    },
+    "exports": {
+      "mode": 16877,
+      "size": 128,
+      "mtime_ns": 1794172873430987983,
+      "ctime_ns": 1794172873430987983,
+      "birthtime": 1794172873.430393
+    },
+    "exports/friday_context.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419969663853,
+      "ctime_ns": 1794173419969663853,
+      "birthtime": 1794172873.4304848,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    },
+    "exports/friday_prompt.txt": {
+      "mode": 33188,
+      "size": 6,
+      "mtime_ns": 1794173419970166478,
+      "ctime_ns": 1794173419970166478,
+      "birthtime": 1794172873.4309843,
+      "sha256": "3673014e72b67383be302485694555a57ad393afdebaed6ded110a775bd0556d"
+    }
+  },
+  "read_only_git_environment": {
+    "GIT_OPTIONAL_LOCKS": "0",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "excluded": [
+    "memory/history/private reasoning/peer or old review report bodies",
+    "raw authority/navigation/execution-log history",
+    "Finance test_integration_massive.py: no read/parse/execute",
+    "dirty YAML contents, credentials, .friday* stores, .venv, exports and caches: metadata/hash-only listed records",
+    "product imports/tests/builds/installs/network/model/provider/store operations",
+    "old vendor/harness/AST/archive/inventory campaigns",
+    "nested agents, repository writes, automatic repairs/new rounds"
+  ],
+  "allowed_historical_reference_rule": "Required target/JSON text may contain historical review/status references. Reading required text is allowed and does not disqualify independence. Do not open linked prior reports or rely on earlier verdicts as proof of the new documents.",
+  "coverage_rule": "Complete eight bounded FD1-FD8 before one honest score. No requirement to read entire framework/parents. Score null only if genuinely incomplete; report exact gaps.",
+  "output": "Fresh reviewer-owned external report plus minimal entry/exit identity, input hashes and eight preserved metadata/hash evidence; per-document and aggregate verdict; eight-area weighted matrix; mandatory findings/bounded fixes/future-proof implications; separate advice; evidence limits. Roughly1200-2000words. Return path and SHA256, then stop.",
+  "future_authority": "No construction, effects, acceptance or delivery authority follows from review.",
+  "final_round": true,
+  "allowed_presented_revision_check": "Read-only git show of the four exact document paths at the commit explicitly named by presented-revision.json is allowed and required; it is a current binding check, not a prohibited history search. Review candidate is later metadata-only; those four bytes are unchanged.",
+  "correction_scope": "C1 Certifi baseline and from-I3-C1 enforcement/absence policy; C2 tokenizers shared-lock consequence/legacy positives; C3 embedding prerequisite, existing-started phase activation, exact noncyclic presentation binding. No new product scope."
+}

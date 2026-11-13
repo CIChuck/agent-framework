@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "status": "presented_for_review_not_approved",
-  "target_document_commit": "115e4cecdb659d2af043c11e73964aca0a590d78",
+  "target_document_commit": "b357c3c4dd0c892aa57593d32cb236b7e832022c",
   "branch": "feature/cmd-ingest-001",
-  "approval_request_sha256": "7fbc2fa7b21c9ea14c8eeac5246563faba4d69e2e7359967639595b4d2155b27",
+  "approval_request_sha256": "c8946e081eeaa1d0b9f13033d9be8444f84c3906dde7f15a694434903038df3b",
   "documents": [
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md",
@@ -15,7 +15,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/approval-request.json",
-      "sha256": "7fbc2fa7b21c9ea14c8eeac5246563faba4d69e2e7359967639595b4d2155b27"
+      "sha256": "c8946e081eeaa1d0b9f13033d9be8444f84c3906dde7f15a694434903038df3b"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/execution-profile.json",
@@ -25,5 +25,7 @@
   "rule": "Approval binds this named document commit and request digest. Frozen review/result commits may add metadata while these document bytes remain identical. A changed document/scope requires a new receipt.",
   "maintainer_approval": null,
   "construction_approved": false,
-  "effects_approved": false
+  "effects_approved": false,
+  "previous_target_document_commit": "115e4cecdb659d2af043c11e73964aca0a590d78",
+  "post_review_correction": "post-review-correction.json"
 }

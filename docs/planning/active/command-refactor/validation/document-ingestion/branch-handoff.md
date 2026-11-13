@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Requested final-document corrections prepared for exactly one additional council, round2/2: impact v0.8 and approval request v2 clarify Certifi baseline/enforcement from I3-C1, tokenizers shared-lock effects, embedding prerequisites, existing-started phase activation and exact presented revision. Fresh full Sol/Astra/Opus FD1–FD8, complete8/8, zero mandatory findings and >=9.5 each. Stop after this council; no third round, automatic repair, construction or runtime effects.
+**Next gate:** Final-document council round2/2 finished CHANGES_REQUESTED: all three complete8/8 and confirm substantive C1–C3, but A4 retained a stale impact label. Completed that same requested one-field version alignment after frozen close, with a new exact receipt at b357c3c4; other target documents unchanged. Original verdicts/scores remain, no independent VERIFIED or gate waiver claimed. Chuck now decides acceptance of the bounded post-review correction and exact construction/private effects. No third council, runtime effects or construction begun.
 
 [Proposed activation package](product-construction/activation/README.md) contains exact draft contracts, slice/case maps and unresolved Q dispositions; it is not construction approval.
 

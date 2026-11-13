@@ -1,0 +1,48 @@
+{
+  "round": 2,
+  "maximum_rounds": 2,
+  "reviewed_candidate": "b4eecbe804b862f606995c4c4e5197c9b9d37150",
+  "presented_content_commit_at_review": "115e4cecdb659d2af043c11e73964aca0a590d78",
+  "reports": [
+    {
+      "seat": "sol",
+      "verdict": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "reported_overall": 9.5725,
+      "mandatory_findings": 1,
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/results/sol/report.md",
+      "report_sha256": "55d4118d1e70cce678e86413d02ab56ac5164ca55c4798192c2929aa8e3a66c8"
+    },
+    {
+      "seat": "astra",
+      "verdict": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "reported_overall": 9.565,
+      "mandatory_findings": 1,
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/results/astra/report.md",
+      "report_sha256": "c97b33108a2421d20db8e10ca56ebedf3e313ab249cf9dba6a08a34177e8c192"
+    },
+    {
+      "seat": "opus",
+      "verdict": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "reported_overall": 9.365,
+      "mandatory_findings": 1,
+      "report": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/council/round2/results/opus/report.md",
+      "report_sha256": "20d214a0ba8f14880866e3acba6125dcbd355137f98e39d517e7973f28b78d3e"
+    }
+  ],
+  "overall_result": "CHANGES_REQUESTED",
+  "gate_met": false,
+  "unique_mandatory_findings": 1,
+  "finding": "A4 approval reference says v0.7 while current pinned impact is v0.8",
+  "C1_C2_C3_substantively_satisfied_by_all": true,
+  "original_reports_preserved": true,
+  "post_review_correction": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/post-review-correction.json",
+  "scores_not_reassigned_after_correction": true,
+  "construction_approved": false,
+  "no_third_round": true
+}

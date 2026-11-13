@@ -1,0 +1,23 @@
+{
+  "seat": "sol",
+  "verdict": "CHANGES_REQUESTED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "reported_overall": 9.5725,
+  "mandatory_findings": 1,
+  "report_sha256": "55d4118d1e70cce678e86413d02ab56ac5164ca55c4798192c2929aa8e3a66c8",
+  "entry_exit_identical": true,
+  "frozen_identity_matches": true,
+  "files": {
+    "report.md": "55d4118d1e70cce678e86413d02ab56ac5164ca55c4798192c2929aa8e3a66c8",
+    "entry.json": "e2f06550a2d387b691fbb3abe09a51882574e16627c7bbe693707acf2b54c47f",
+    "exit.json": "e2f06550a2d387b691fbb3abe09a51882574e16627c7bbe693707acf2b54c47f",
+    "presentation-check.json": "03ab36a13f9cf63c9991daace94433372caf70aa045902676e463f23e1cf4012"
+  },
+  "controller_arithmetic_note": {
+    "sum_from_displayed_area_ratings": "9.570",
+    "reported_score": "9.5725",
+    "difference": "FD8 rating9.5 at weight0.5 implies0.475; report contribution0.4775. Original report preserved; both totals exceed9.5 and mandatory finding still blocks."
+  },
+  "finding_source_checked": "A4 requires v0.7 while current_package_impact/request/primary docs specify v0.8; no repair applied."
+}

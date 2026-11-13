@@ -1,0 +1,16 @@
+{
+  "seat": "opus",
+  "verdict": "CHANGES_REQUESTED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "reported_overall": 9.365,
+  "mandatory_findings": 1,
+  "entry_exit_identical": true,
+  "frozen_identity_matches": true,
+  "files": {
+    "report.md": "20d214a0ba8f14880866e3acba6125dcbd355137f98e39d517e7973f28b78d3e",
+    "entry-evidence.json": "f65636d4304c24627a6c6346972236359016b788a43555d5b8c36375f1969e4d",
+    "exit-evidence.json": "f65636d4304c24627a6c6346972236359016b788a43555d5b8c36375f1969e4d",
+    "hashes.json": "47a01e1d3d65f6c3b868750fb88e93531915c8ba8aa51d9605cd917761ff6662"
+  }
+}
