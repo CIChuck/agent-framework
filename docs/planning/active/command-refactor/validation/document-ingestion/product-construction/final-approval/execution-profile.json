@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "status": "proposed_not_activated",
+  "scope": "Isolated product construction validation; not a vendor evaluation or production deployment",
+  "base_interpreter": {
+    "path": "/Users/chuckrussell/.local/share/uv/python/cpython-3.13.10-macos-aarch64-none/bin/python3.13",
+    "sha256": "e2adf1814122d8b26166917ef7d294d7426963e0f59e28d0d5aef773f67c4bb0",
+    "version": "3.13.10",
+    "platform": "darwin",
+    "machine": "arm64",
+    "use": "read-only base for new private phase interpreters; never install into it"
+  },
+  "run_root_parent": "/Users/chuckrussell/Dev/gendev/agent-framework/.friday_test/ingest-product",
+  "run_root_rule": "After approval choose a new absent run ID, reject symlink/ownership collisions, record absolute path and stable candidate. Never reuse a prior run or live store.",
+  "phase_directories": [
+    "source",
+    "venv",
+    "wheelhouse",
+    "cache",
+    "config",
+    "assets",
+    "fixtures",
+    "scratch",
+    "stores",
+    "reports"
+  ],
+  "test_code_scope": [
+    "selected package-local suites from the frozen case map",
+    "tests/integration named modules/helpers only"
+  ],
+  "source_install_policy": "Export each stable phase candidate to private source without dirty/untracked files. Build candidate wheels privately and check installed origins. Source tests use only that declared private snapshot; do not sync the working environment.",
+  "dependency_policy": {
+    "selected_document_requirements": [
+      "docling[rapidocr]==2.150.0",
+      "docling-core==2.106.0",
+      "rapidocr==3.10.0",
+      "python-dateutil==2.9.0.post0",
+      "certifi==2026.10.23"
+    ],
+    "counter_requirement": "tokenizers==0.23.3",
+    "retain_existing_tiktoken": true,
+    "certifi_floor": ">=2026.10.19",
+    "phases": {
+      "I1-C2": "narrow LLM/Memory counter metadata and lock delta",
+      "I3-C1": "Tools document extra and lock delta before conversion tests",
+      "I3-C3": "Chat default document edge and lock delta before command adoption",
+      "I3-C5": "clean final installed profile and Certifi/origin verification"
+    },
+    "resolution": "Record exact phase lock and artifact URLs/hashes/licenses before install; selected scope only. No unrelated package upgrade. Missing/incompatible intended artifacts stop the affected phase.",
+    "validation_tools": "Use existing locked pytest/asyncio, Ruff, mypy and declared test dependencies in private environments. Do not add an undeclared helper tool or inherit prior harness tool activation."
+  },
+  "local_binding_paths": {
+    "embedding_manifest": "<run-root>/<phase>/config/embedding-deployment.json",
+    "document_settings": "<run-root>/<phase>/config/document-conversion.json",
+    "asset_manifest": "<run-root>/<phase>/assets/asset-manifest.json",
+    "capability_records": "<run-root>/<phase>/assets/embedding-capabilities/<record-id>.json",
+    "document_profiles": "<run-root>/<phase>/assets/document-profiles/<profile-id>.json",
+    "scratch_root": "<run-root>/<phase>/scratch"
+  },
+  "local_binding_policy": "Use strict schemas from reviewed shared-contracts. Generate disposable test route/capability records with actual local tokenizer assets and declared deterministic test identities; do not copy production YAML or claim serving attestation. Record bytes/hashes/sizes/licenses and profiles before use. Text-only profiles omit document settings. Binary assets are provisioned explicitly before tests, never fetched on first use.",
+  "per_phase_run_binding_required": [
+    "stable candidate and source export identity",
+    "Python/tool artifact identities and installed origins",
+    "exact phase lock and artifact manifest hashes",
+    "fixture and local asset identities",
+    "embedding/deployment and document-settings hashes where relevant",
+    "exact classified module/node/helper selectors and expected normal/optimized lanes",
+    "all owned paths and network/effect dispositions",
+    "opening/closing preserved-state checks and command evidence"
+  ],
+  "network": {
+    "preparation_only": [
+      "selected public PyPI artifacts with recorded hashes",
+      "explicitly pinned public local-counter/OCR/layout assets from preserved evaluated manifests"
+    ],
+    "tests": "No external network/provider/model calls. Only explicitly owned local fixture-server connections for named offline MCP/integration cases are allowed; record endpoints and teardown. No connection to LM Studio or other model services.",
+    "configuration": "Installer/tool isolated or no-config modes and private caches; no inherited proxy/credential/index fallback. Disable automatic model/hub downloads in tests. An unresolved channel refuses instead of falling back."
+  },
+  "protected_paths": [
+    "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/.friday",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/.friday-old",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/exports",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/config.example.yaml",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-chat/models-config.example.yaml"
+  ],
+  "additional_preservation": "Preserve earlier .friday_test runs, global model/package caches and all user documents/state. Changes are limited to selected feature-branch source/test/docs/lock paths after approval and this new private run. No production installation, reset, model switch or cleanup.",
+  "isolation_limit": "Private roots and guarded/no-config execution are not an OS security sandbox. Distinguish prevention, detection and residual native-tool behavior; stop on an unexplained protected-state change.",
+  "provider_behavior": "Deterministic dimension-correct provider responses, real local tokenizers/counters and actual disposable Chroma readback/reopen. These prove integration and guards, not embedding-model quality or serving parity.",
+  "worker_thresholds": "Unchanged reviewed shared-contracts section4/RD-03: construct at I3-C1; real process/IPC/resource/cancel/timeout/drain proof I3-C4, including actual app and headless consumers.",
+  "permitted_after_approval": [
+    "mapped feature-branch product/test/guide/metadata/lock edits",
+    "private bounded dependency resolution/download/build/install",
+    "provisioning selected recorded local assets",
+    "synthetic fixtures and four-format conversion",
+    "local counting and deterministic-provider integration tests",
+    "disposable Chroma/graph/WAL/recovery artifacts",
+    "normal and optimized installed validation",
+    "fresh independent implementation validation at approved slice/aggregate gates"
+  ],
+  "excluded": [
+    "production configurations/environments/stores and prior test run mutation",
+    "external model/provider calls or model load/unload",
+    "Finance live integration or credential reads",
+    "user-document ingestion or legacy placeholder cleanup",
+    "production reset/re-embedding/migration",
+    "new CLI/TUI application",
+    "TOOLS-DOC completion under INGEST authority",
+    "push/merge/release/deployment/human acceptance"
+  ],
+  "effects_performed_now": []
+}

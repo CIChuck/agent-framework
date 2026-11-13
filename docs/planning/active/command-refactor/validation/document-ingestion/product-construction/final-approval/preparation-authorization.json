@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-13",
+  "maintainer": "Chuck Russell",
+  "statement": "ok proceed",
+  "context": "Proceed with the promised updated canonical impact assessment and exact construction approval package. User asked to be told what was finalized and then directed to the next review task.",
+  "scope": [
+    "planning-only canonical impact revision",
+    "current exact approval wrapper/profile and unchanged-design hash binding",
+    "authority/board/navigation/log reconciliation and local planning commit",
+    "bounded controller preservation/link/metadata checks"
+  ],
+  "not_authorized_now": [
+    "product/test/guide implementation",
+    "dependency installation",
+    "provider/model/store operations",
+    "new design council",
+    "construction activation",
+    "push/merge/release/acceptance"
+  ],
+  "lightweight_documentation_exemption": "Explicit preparation request; shipped behavior and user state remain untouched."
+}

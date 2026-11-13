@@ -93,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Activation design council VERIFIED at 9ddaf6f8 after global round7/9: Sol 9.54, Astra 9.55, Opus 9.52; each complete 8/8 with zero mandatory findings. Stop the loop early; no rounds8/9. Next prepare the final exact activation/impact approval package with revised canonical impact and applicable phase-local manifests/case exceptions, then maintainer review of scope and effects. Reviewed technical bytes stay frozen. Gate A1–A5 remain incomplete; no construction, installs, model/store effects or acceptance granted.
+**Next gate:** Final INGEST construction approval package prepared for Chuck: review package-impact assessment v0.7 and final-approval/README.md with exact approval-request.json and private offline execution profile. Design remains VERIFIED at 9ddaf6f8; wrapper/current impact are new proposed bytes, not independently reviewed or approved. Requested future scope is I1/I2/I3 with independent exits. No product generation, installs, provider/model/store effects or delivery until explicit exact approval.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
@@ -345,3 +345,5 @@ permits five pinned static-tool wheels only.
 Final activation council: [outcome and remaining converter-binding issue](validation/document-ingestion/product-construction/activation/council/round3/results/report.md). Historical three-round stop point; superseded by the current authorized three-round extension.
 
 Current activation council: [VERIFIED round7 outcome and next approval gate](validation/document-ingestion/product-construction/activation/council/round7/results/report.md). All three complete seats clear9.5; loop stopped early. Construction remains unapproved.
+
+Current review task: [Final construction approval package](validation/document-ingestion/product-construction/final-approval/README.md) and [canonical package impact v0.7](package-impact-assessment.md). Exact proposed scope/effects are prepared; construction and private installs await Chuck. The prior council stays closed.

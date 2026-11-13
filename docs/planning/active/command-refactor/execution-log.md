@@ -4421,3 +4421,22 @@ Stop the loop on success; global rounds8/9 are unused and no delegates remain
 needed. Next prepare the exact final activation/impact approval package. Gate
 A1–A5 remain incomplete; no construction/effects, tests/imports, dependency install,
 model/store operation, production configuration change or acceptance occurred.
+
+
+## 2026-11-13 — Final construction approval package and impact v0.7 prepared
+
+Chuck's "ok proceed" follows the promise to prepare the revised package impact
+and exact approval package, then direct him to his review task. Updated the single
+canonical assessment to v0.7: selected measured dependencies, shared process and
+headless ownership, independent local settings, required counter factory/same-entry
+text-to-document lifecycle, test/docs and upgrade consequences. Retained all17
+package rows and existing8 implementation owners. Reviewed technical contracts,
+91-path map,49 exceptions,51 witnesses,18 modules and council reports are untouched.
+Prepared final-approval human index, exact request and prospective private execution
+profile with the existing CPython3.13.10 base identity. No run/environment/install
+is created or activated. Prior v0.6 approval remains exact historical authority;
+it is not approval of this revision. The new wrapper/impact are controller-checked,
+not a new independent VERIFIED result. Next task belongs to Chuck: review and
+approve/request changes to the impact, construction scope and private effects.
+No product/test/guide/dependency code, live configuration, model/store operation,
+new council, acceptance or delivery is performed under this preparation request.

@@ -711,7 +711,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Activation design council VERIFIED at 9ddaf6f8 after global round7/9: Sol 9.54, Astra 9.55, Opus 9.52; each complete 8/8 with zero mandatory findings. Stop the loop early; no rounds8/9. Next prepare the final exact activation/impact approval package with revised canonical impact and applicable phase-local manifests/case exceptions, then maintainer review of scope and effects. Reviewed technical bytes stay frozen. Gate A1–A5 remain incomplete; no construction, installs, model/store effects or acceptance granted."
+  next_gate: "Final INGEST construction approval package prepared for Chuck: review package-impact assessment v0.7 and final-approval/README.md with exact approval-request.json and private offline execution profile. Design remains VERIFIED at 9ddaf6f8; wrapper/current impact are new proposed bytes, not independently reviewed or approved. Requested future scope is I1/I2/I3 with independent exits. No product generation, installs, provider/model/store effects or delivery until explicit exact approval."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []
@@ -3353,3 +3353,11 @@ events:
   action: reconciled successful INGEST activation design council and stopped early
   note: "Round7 all-seat VERIFIED: Sol9.54, Astra9.55, Opus9.52; complete8/8 and no mandatory findings. Original reports and frozen boundaries archived; technical inputs unchanged. Rounds8/9 unused. Next exact activation/impact approval preparation; Gate A1-A5 remain incomplete. No product/effects or acceptance authority."
   evidence: docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/results/report.md
+
+- task: friday-command-refactor
+  at: "2026-11-13T15:35:07.277699+00:00"
+  actor: Codex
+  actor_role: agent
+  action: prepared final INGEST construction approval request and revised package impact
+  note: "Explicit planning proceed; impact v0.7 and exact scope/private-profile request prepared for Chuck. Reviewed design/contracts/maps and council originals unchanged. Historical v0.6 approval does not approve new bytes. No product, install, model/store, council or delivery effects; next is maintainer review."
+  evidence: docs/planning/active/command-refactor/validation/document-ingestion/product-construction/final-approval/README.md
