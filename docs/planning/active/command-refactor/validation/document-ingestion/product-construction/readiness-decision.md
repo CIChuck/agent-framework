@@ -1,6 +1,6 @@
 # INGEST — measured readiness and construction handoff
 
-Version: **0.3 bounded corrected draft**, 2026-11-12; source baseline `8c36d8e2`.
+Version: **0.4 bounded corrected draft**, 2026-11-12; source baseline `8c36d8e2`.
 
 **Engineering recommendation: use Docling with the measured configured profile.**
 There is genuine conversion/chunking/embedding/storage evidence, sufficient to

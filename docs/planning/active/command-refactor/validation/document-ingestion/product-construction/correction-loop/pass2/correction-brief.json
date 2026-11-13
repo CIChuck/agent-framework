@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "base": "af4e12bd66e19303b6b32dbd7a66c70eae6d3330",
+  "loop_pass": 2,
+  "maximum_loop_passes": 3,
+  "global_round": 4,
+  "scope": "Neutral bounded correction requirements; no peer verdict/score/reasoning. Delta first, then FULL conditional directive assessment.",
+  "groups": [
+    {
+      "id": "PD-S01",
+      "requirement": "DI22 complete caller-role/source-derived validation matrix starts I3, with reciprocal I3-C2/C3 traces; I1 contracts and I2 existing callers are scoped portions."
+    },
+    {
+      "id": "PD-S02",
+      "requirement": "Primary immutable fixture selection plus disjoint supplement classify all63 non-Python test-tree files, with omitted retained SESSION/DIAG oracle and integration support included; OS metadata explicitly excluded. Preserve original gzip/AST/seed bytes and no count inflation."
+    },
+    {
+      "id": "PD-S03",
+      "requirement": "Current review criteria, target, controls and authorization agree on additional pass2/3/globalround4; no stale current round2/no-third-round restriction. Historical original criteria remain preserved and noncontrolling."
+    },
+    {
+      "id": "PD-S04",
+      "requirement": "Refresh only current branch-handoff Next gate while preserving original branch/merge provenance."
+    },
+    {
+      "id": "PD-S05",
+      "requirement": "CLI container/profiles primary seams and actual default/env/constructor/testing-origin duties are explicit in I2-C1 JSON/MD; A2 settles its narrow design before I1."
+    },
+    {
+      "id": "PD-S06",
+      "requirement": "A2 must bind an additive I1 intermediate-compatibility design or obtain an exact approved exception before I1; unwaived old-consumer regressions still block exits. No released unguarded-store mode or broad temporary waiver."
+    },
+    {
+      "id": "PD-S07",
+      "requirement": "I1 narrow LLM/Memory metadata changes include exact compatible uv.lock delta; I3 document-stack delta remains separately bounded."
+    }
+  ],
+  "retained_corrections": [
+    {
+      "id": "PD-Q01",
+      "requirement": "Before I1 retain actual B and N-DIM/N-SPACE/N-CAP model/dependency/counter/parity qualification, immutable identities/assets, scenario/node/namespace/lane bindings; candidate N execution stays post-build. Do not treat deterministic vectors as real serving feasibility.",
+      "artifacts": [
+        "directives/CD-CMD-INGEST-001-product.md A1",
+        "readiness RD01/RD05 Q and materiality",
+        "replacement-qualification-plan.json",
+        "phase-evidence-map.md/json"
+      ]
+    },
+    {
+      "id": "PD-Q02",
+      "requirement": "Safe review input: historical raw preparation receipt remains preserved/hash-only; metadata-only projection contains no stdout/stderr payload. No supplied peer material or protected configuration payload is in readable inputs."
+    },
+    {
+      "id": "PD-Q03",
+      "requirement": "Primary phase source lists are honestly labelled; every selected parent path still requires exact A2/A3 slice/owner/exit assignment before generation. Name existing maintenance admission in I2."
+    },
+    {
+      "id": "PD-Q04",
+      "requirement": "DI24/33 complete stages have actual eligible exit references in both directions; map every original named FC witness individually with specific per-contract dispositions."
+    },
+    {
+      "id": "PD-Q05",
+      "requirement": "An unwaived unchanged-scope regression blocks every intermediate exit; future work is not a silent waiver."
+    },
+    {
+      "id": "PD-Q06",
+      "requirement": "Supplement base inventory with non-test support modules including integration fake server/LLM helpers and test apps; hash/classify without test-count inflation or executing unclassified modules."
+    },
+    {
+      "id": "PD-Q07",
+      "requirement": "A2 must resolve the known CLI default-origin loss before I1; preserve public call shapes and bounded conditional scope. Actual I2 tests distinguish default/env/constructor/testing origins."
+    }
+  ],
+  "immutable_parents": "REM/annex/approved impact/test-migration/architecture/guide contracts and all source/test/dependency/config/store bytes unchanged; inventories are additive planning identities only.",
+  "no_effects": true
+}

@@ -4040,3 +4040,27 @@ review inputs. A separate metadata-only projection retains commands/exits/output
 digests without stdout/stderr payloads. Approved parent requirements, product,
 tests, dependencies, guides, dirty YAML and user stores are unchanged. Conditional
 v0.3 and companion are document drafts; all A1–A5 and Q prerequisites still apply.
+
+
+## 2026-11-12 — additional INGEST pass1 closed; bounded pass2 prepared
+
+[Pass1 reconciliation](validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md)
+retains Sol VERIFIED9.3/9.3, Astra CHANGES_REQUESTED9.1/9.2 and Opus
+CHANGES_REQUESTED8.6/8.9. All-seat9.5 is unmet. Every original outcome/score and
+source-depth limit is preserved. All reviewer/controller frozen boundaries and
+seven admin checks pass. Opus's full terminal report is captured verbatim beside
+its short original on-disk summary; no missing audit script is fabricated.
+
+Within the existing three-pass authorization, pass2 corrects DI22's complete
+I3 role/source-derived caller joins, adds a disjoint three-file fixture supplement
+(including the retained SESSION/DIAG oracle) with tracked .DS_Store explicitly
+excluded, and reconciles current criteria and branch-handoff routing. Original
+gzip, node/oracle source and fixture bytes stay unchanged. Advisories bind CLI's
+four origins, I1 additive compatibility or an exact prior approved exception, and
+the I1 narrow-counter lock delta. Full allowed parent/source reading is made
+explicit in the new review checklist; no target score is presumed or inflated.
+
+Current additional pass2/3/globalround4 remains document/source feasibility only.
+One further additional pass may follow an unmet gate; no fourth additional pass
+or product construction/new effects are authorized. All Q/A1–A5, real B/N model/
+counter qualification, human acceptance and delivery gates remain open.

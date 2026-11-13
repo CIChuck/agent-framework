@@ -1,15 +1,37 @@
 {
   "version": 1,
   "authorized_additional_passes": 3,
-  "passes_started": 1,
-  "passes_completed": 0,
-  "current_pass": 1,
-  "global_round": 3,
-  "status": "pass1_in_review",
+  "passes_started": 2,
+  "passes_completed": 1,
+  "current_pass": 2,
+  "global_round": 4,
+  "status": "pass2_in_review",
   "stop_on_all_seat_target": true,
   "stop_after_pass3": true,
   "fourth_additional_pass_authorized": false,
   "construction_approved": false,
   "source_changes_authorized": false,
-  "passes": []
+  "passes": [
+    {
+      "additional_pass": 1,
+      "global_round": 3,
+      "candidate": "af4e12bd66e19303b6b32dbd7a66c70eae6d3330",
+      "outcome": "CHANGES_REQUESTED",
+      "report": "pass1/results/report.md",
+      "scores": {
+        "sol": {
+          "coverage": 9.3,
+          "overall": 9.3
+        },
+        "astra": {
+          "coverage": 9.1,
+          "overall": 9.2
+        },
+        "opus": {
+          "coverage": 8.6,
+          "overall": 8.9
+        }
+      }
+    }
+  ]
 }

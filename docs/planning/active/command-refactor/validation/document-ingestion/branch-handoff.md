@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Corrected conditional product directive is in fresh round2 review; exact construction approval and whole Gate-A remain open. No product/model/store effects are activated.
+**Next gate:** Conditional product directive v0.4 is in additional pass2/3 (global round4) under the explicit three-pass authorization. Exact construction approval and whole Gate A remain open; no product/model/store effects are activated.
 
 ## Historical branch/design preparation (superseded for current evaluation routing)
 

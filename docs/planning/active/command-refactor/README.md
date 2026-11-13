@@ -1,7 +1,7 @@
 # Shared Friday command refactor — TUI effort, first phase
 
 **Status:** started/local; execution phase: validation; validation state: in_review
-for additional conditional-product-directive pass1/3. Package impact v0.6 is approved.
+for additional conditional-product-directive pass2/3. Package impact v0.6 is approved.
 Bounded Docling/Nomic/corpus evaluations remain independently verified. Whole
 Gate-A9.5, exact product construction approval and MAINT human UAT/acceptance
 remain open. Production source and state are unchanged.
@@ -49,7 +49,9 @@ records a blocked seat, below-threshold scores and the remaining replacement-mod
 qualification finding. Those two rounds are historical. Chuck's [three-pass authorization](validation/document-ingestion/product-construction/correction-loop/authorization.json)
 now permits bounded corrections and up to three additional fresh councils.
 [The replacement qualification plan](validation/document-ingestion/product-construction/replacement-qualification-plan.json)
-and safe review-input projection are prepared for additional pass1/3. The [phase map](validation/document-ingestion/product-construction/phase-evidence-map.md)
+and safe review-input projection remain required. [Additional pass1 reconciliation](validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md)
+records the unmet gate. The bounded DI22/fixture/routing corrections and related
+intermediate-compatibility/lock/origin joins are prepared for additional pass2/3. The [phase map](validation/document-ingestion/product-construction/phase-evidence-map.md)
 separates Q qualification, scoped I1/I2/I3 exits, final AG and human UAT.
 Product generation has not started. The earlier proceed
 is recorded as documentation-only preparation, with protected state preserved.
@@ -72,7 +74,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** INGEST conditional directive v0.3: additional pass1/3 (global round3) of fresh Sol/Astra/Opus correction-first/full document review. Require every seat VERIFIED, no mandatory findings and coverage/overall>=9.5; stop on success or after additional pass3. No product construction or new effects.
+**Next gate:** INGEST conditional directive v0.4: additional pass2/3 (global round4), fresh Sol/Astra/Opus correction-first/full document review. Pass1 is closed with unmet all-seat9.5 gate. Require every seat VERIFIED, no mandatory findings and coverage/overall>=9.5; stop on success or after additional pass3. No product construction or new effects.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

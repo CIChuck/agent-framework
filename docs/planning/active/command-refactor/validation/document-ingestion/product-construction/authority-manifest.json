@@ -1,10 +1,10 @@
 {
-  "version": 3,
+  "version": 4,
   "initiative": "friday-command-refactor",
   "unit": "INGEST-PRODUCT-DIRECTIVE-PREPARATION",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "branch": "feature/cmd-ingest-001",
-  "state": "conditional draft v0.3; additional pass1/3 review only",
+  "state": "conditional draft v0.4; additional pass2/3 review only",
   "inputs": [
     {
       "path": "AGENTS.md",
@@ -92,7 +92,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-test-summary.json",
-      "sha256": "a3f2c03e5b9a0f3955d2f209f67e5988c2f21e7ba8f8ca35dc61d12adc8d4069"
+      "sha256": "3ab4bf32be543e5971d35b2ad39ea73c1ee3a9999738ed8542ba297a4a5882c0"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/test-migration-seed.json",
@@ -104,11 +104,11 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
-      "sha256": "5a332d18ef7511e13fd222cd49f2cabaa90a0bf092e37c072481c119688f183d"
+      "sha256": "01d8201e3e9153cbaa4f9094f98aaf534173cb323650751626a545edd73433ff"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
-      "sha256": "2be1e401aa68d8fdff29811ef622c8c5c6ee1cd46b811be211787f2a3ad49bea"
+      "sha256": "1713297d0b8fa7da099b943dfb1f83ba19dc86abcd60e4980f519058bf0f1fab"
     },
     {
       "path": "docs/planning/active/command-refactor/approval/ingest-existing-store-policy.md",
@@ -116,7 +116,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
-      "sha256": "2b0efb34438bba1394de63c00026b079af9eee4ec950a1bf42d0983411cb6ae0"
+      "sha256": "bcdf6535cb8ebed268063be9f01dafd8e09f29e2a7731743947dc48178248cdb"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md",
@@ -125,10 +125,6 @@
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/authorization.json",
       "sha256": "57bb75cb8b27c35835049a642486d780b081672c5cf4bc34be2a9110fa384a3f"
-    },
-    {
-      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass1/correction-brief.json",
-      "sha256": "3cac3865da115473536529782a609e47b4319efb51ce7e3ca8fb493fbe1aec93"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/replacement-qualification-plan.json",
@@ -141,6 +137,18 @@
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/preparation-checks-metadata.json",
       "sha256": "bfe9838110801f129c86b193566980b38dd06dfb5d58ccd49fc2b5bafdcb05d7"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass2/correction-brief.json",
+      "sha256": "d0d7d66db4f8f0dd4cc622cbc4a8c85053b109979f89cc41cb5e5b67b4b2ba88"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/baseline-fixture-supplement.json",
+      "sha256": "04b5860567b1abf96744e1ec38c5fd2d24554bd353c67237ab32b3181ad1e778"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass2/source-review-checklist.md",
+      "sha256": "1c0ad637219c37f0e92af88814930ae616de67430e5d2253dcfbb49711fdcad6"
     }
   ],
   "required_final_activation_appendices": [
@@ -152,7 +160,7 @@
     "Actual B/N-DIM/N-SPACE/N-CAP qualification identity/counter/asset/parity manifest before I1, not merely node definitions"
   ],
   "all_technical_parent_bytes_preserved": true,
-  "correction_base": "be3aed3a9ba5629c548e36437e7e01a7333210d1",
+  "correction_base": "af4e12bd66e19303b6b32dbd7a66c70eae6d3330",
   "review_input_exclusions": {
     "preparation-checks.json": "Raw historical stdout/stderr is excluded and hash-only; metadata projection above supplies command/exit/digests.",
     "authority_navigation_log_and_old_councils": "Hash-only or safe current controls; no payload/history/peer report reads."

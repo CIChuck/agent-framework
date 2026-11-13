@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "additional_pass": 1,
+  "maximum_additional_passes": 3,
+  "global_round": 3,
+  "candidate": "af4e12bd66e19303b6b32dbd7a66c70eae6d3330",
+  "outcome": "CHANGES_REQUESTED",
+  "all_seats_terminal": true,
+  "threshold_met_each": false,
+  "results": {
+    "sol": {
+      "outcome": "VERIFIED",
+      "coverage": 9.3,
+      "overall": 9.3,
+      "report": "sol/report.md",
+      "report_sha256": "6b4b4adab2a80de5afa93383a980ae7eae4c2eb35e86695862ef2b1f70c1541b",
+      "threshold_met": false
+    },
+    "astra": {
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 9.1,
+      "overall": 9.2,
+      "report": "astra/report.md",
+      "report_sha256": "3feadf58637596c235a120108973d43b3e89713c57b9e58b58791fe27cb2a00d",
+      "threshold_met": false
+    },
+    "opus": {
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 8.6,
+      "overall": 8.9,
+      "report": "opus/report.md",
+      "report_sha256": "818f67ad58d5c9b57abd8a1d71bc1fb2fa5a272e6abcf38ed7f6f72c019214f7",
+      "threshold_met": false
+    }
+  },
+  "mandatory_groups": [
+    {
+      "id": "PD-P1-01",
+      "source": "Opus F1",
+      "requirement": "DI22 complete source/derived role matrix needs I3-C2/C3 and earliest complete I3."
+    },
+    {
+      "id": "PD-P1-02",
+      "source": "Opus F2",
+      "requirement": "Identify omitted retained fixtures and explicitly classify nonfunctional test-tree artifacts."
+    },
+    {
+      "id": "PD-P1-03",
+      "source": "Astra ASTRA-R3-001; Sol advisory SOL-R3-A01",
+      "requirement": "Current criteria must use new additional-pass cap, no obsolete round2 prohibition."
+    },
+    {
+      "id": "PD-P1-04",
+      "source": "Opus F3; Astra advisory ASTRA-R3-A01",
+      "requirement": "Refresh current branch-handoff routing without changing historical provenance."
+    }
+  ],
+  "advisories": [
+    "Explicit CLI primary seam and four-origin witness",
+    "A2 must preserve intermediate I1 compatibility additively or through exact approved exception before I1 exits",
+    "uv.lock dependency delta begins in I1 as well as I3"
+  ],
+  "disagreements": "Sol treated stale criteria as advisory; Astra made it mandatory. Both original outcomes retained; controller corrects it. Sol/Astra did not identify DI22/fixture gaps, but Opus source-backed findings remain. No majority override.",
+  "source_depth_limits": "All seats disclosed targeted/incomplete source depth; Opus also incompletely read some permitted normative parents. Original scores retained. Next fresh reviewers must complete the bounded parent/source assessment, without equating forbidden runtime proof with document completeness.",
+  "remaining_passes": 2,
+  "implementation_or_new_effects_approved": false,
+  "preservation": "All reviewer boundaries and controller closing boundary pass for frozen candidate, index,18790 files,26 symlinks,8 preserved entries,47pins before any closeout changes."
+}

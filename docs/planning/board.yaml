@@ -711,11 +711,12 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "INGEST conditional directive v0.3: additional pass1/3 (global round3) of fresh Sol/Astra/Opus correction-first/full document review. Require every seat VERIFIED, no mandatory findings and coverage/overall>=9.5; stop on success or after additional pass3. No product construction or new effects."
+  next_gate: "INGEST conditional directive v0.4: additional pass2/3 (global round4), fresh Sol/Astra/Opus correction-first/full document review. Pass1 is closed with unmet all-seat9.5 gate. Require every seat VERIFIED, no mandatory findings and coverage/overall>=9.5; stop on success or after additional pass3. No product construction or new effects."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/council-round2/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/gate-a/verified-directive-report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/gate-a/correction-loop/pass2/results/report.md

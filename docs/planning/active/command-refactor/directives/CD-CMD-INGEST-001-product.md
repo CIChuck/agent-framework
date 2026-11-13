@@ -1,14 +1,14 @@
 # CD-CMD-INGEST-001 — shared document ingestion implementation
 
-Version: **0.3, bounded corrected conditional draft — additional pass 1/3 (global round 3)**, 2026-11-12.
+Version: **0.4, bounded corrected conditional draft — additional pass 2/3 (global round 4)**, 2026-11-12.
 Initiative: `friday-command-refactor`; branch: `feature/cmd-ingest-001`.
 Source and test baseline: `8c36d8e26c618032c1ff536004a582c07ec56a5b`.
-Execution phase: **validation**; validation state: **in_review, additional pass 1/3**.
+Execution phase: **validation**; validation state: **in_review, additional pass 2/3**.
 
 Chuck authorizes bounded planning corrections and **at most three additional
 Sol/Astra/Opus council passes**, global rounds 3–5. Stop when every seat is
 VERIFIED with coverage/overall >=9.5 and no mandatory findings, or after the third
-additional council, whichever comes first. This is additional pass 1/3. Earlier
+additional council, whichever comes first. This is additional pass 2/3. Earlier
 rounds are historical. This authorization grants no product construction, new
 installation, model/service window, configuration/store operation or Gate-A closure.
 
@@ -83,7 +83,8 @@ planned witness. Q uses qualification artifacts, unchanged baseline code and
 inert proposed metadata; it makes no new product implementation claim. DI-23's
 actual headless factory/entry/smart_read/storage proof first executes in I3;
 DI-32's actual Chat aggregate handoff executes in I2. Foundation models/doubles
-in I1 receive only scoped contract credit. DI-35 is per-slice acceptance until
+in I1 receive only scoped contract credit. DI22's complete role/source-derived
+batch matrix starts at I3-C2/C3; I2 only closes its existing-caller portion. DI-35 is per-slice acceptance until
 its whole-suite AG review. Full requirement accounting at AG does not falsely
 mark the later human UAT portion of DI-12 as run.
 
@@ -110,6 +111,17 @@ A default-derived value, including `.friday/chroma`, cannot become an explicit
 fresh-store choice merely by forwarding. `for_testing()` is an explicit test
 selection, not production creation authority. Preserve public call shapes and
 re-exports; no speculative CLI feature or fallback.
+
+A2 must also bind I1's additive intermediate-compatibility design before I1
+activation: new guarded entry/factory APIs and direct contract tests may be added
+without switching existing maintained callers to an identity requirement they
+cannot yet supply until I2 wiring. Their valid baseline flows must still pass
+I1. No final unguarded opener, legacy mode or automatic store stamping is
+authorized. If exact signatures/path scope cannot support additive staging,
+stop before I1 for a named approved integration exception and replacement
+coverage; the unchanged-scope regression rule remains binding. I1's narrow-counter
+metadata changes include their exact `uv.lock` delta, ahead of I3's separate
+document-stack delta.
 
 ## 3. Frozen behavior to implement
 
@@ -345,8 +357,13 @@ route, TUI feature or complete FILE-001 extraction.
 
 The [baseline inventory](../validation/document-ingestion/product-construction/baseline-test-inventory.json.gz)
 and [readable summary](../validation/document-ingestion/product-construction/baseline-test-summary.json)
-freeze tracked test/fixture bytes and static base-node IDs without importing or
-running them. The [helper inventory](../validation/document-ingestion/product-construction/baseline-helper-inventory.json)
+freeze their selected tracked test/fixture bytes and static base-node IDs without
+importing or running them. The [fixture supplement](../validation/document-ingestion/product-construction/baseline-fixture-supplement.json)
+adds omitted retained SESSION/DIAG and integration-support fixtures. The effective
+fixture set is the disjoint union:72 original selected fixture/conftest identities
+plus3 supplemental identities, total75. The tracked `.DS_Store` is explicitly
+excluded as nonfunctional OS metadata; it earns no behavioral coverage. No
+previous fixture/node is dropped and the original gzip remains unchanged. The [helper inventory](../validation/document-ingestion/product-construction/baseline-helper-inventory.json)
 additionally hashes tracked non-test Python support modules in the same package/
 integration trees, including fake servers, LLM helpers and test applications.
 Helpers earn no test-count credit; A3 must classify their offline/live imports

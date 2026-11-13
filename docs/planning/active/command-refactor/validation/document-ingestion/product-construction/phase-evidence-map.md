@@ -1,6 +1,6 @@
 # INGEST — phase and evidence dependency map
 
-Version 0.3; conditional document contract. This map corrects the proof order;
+Version 0.4; conditional document contract. This map corrects the proof order;
 it does not waive a parent DI/FC obligation or authorize implementation.
 The [machine-readable join](phase-evidence-map.json) retains every original
 DI-01–36 definition and digest, all FC-01–14 dispositions, proposed witness IDs,
@@ -45,6 +45,15 @@ Full DI-35/36 review covers all changed phases at AG, while I1/I2 review only
 their own maps/content. This preserves required verification without a forward
 phase dependency.
 
+Before I1 activation, A2 must freeze the **intermediate compatibility design**:
+introduce contracts/guarded entry paths additively while existing maintained
+callers retain working baseline behavior until their I2 wiring. Prove the new
+direct contracts with actual APIs, without demanding unprovided identities from
+old callers early. This is not a final unguarded-store mode or authority to stamp
+old data. If exact signatures/path scope cannot support additive staging, stop
+before I1 and obtain a named maintainer-approved integration exception plus
+coverage. No implicit temporary regression waiver is created.
+
 ## Slice exits and concrete planned witnesses
 
 Each following assertion joins its owner and **primary source seams**, its phase's input
@@ -62,7 +71,7 @@ All existing named FC nodes remain required.
 | Exit | Owners / implementation | Planned witness and scope |
 | --- | --- | --- |
 | I1-C1 | Core; `packages/friday-core/src/friday_core/ingestion.py` and the exact listed JSON paths. | `packages/friday-core/tests_core/test_interfaces.py::test_ingestion_contracts_are_immutable_and_backend_neutral` — Validate neutral values/protocol shape and old public interfaces; no Tools/Memory backend import and no actual smart_read/common plan claim. |
-| I1-C2 | LLM, Memory metadata; `packages/friday-llm/src/friday_llm/embeddings.py` and the exact listed JSON paths. | `packages/friday-llm/tests_llm/test_embeddings.py::test_qualified_preparation_limits_and_indexed_batch_guards` — Implement/test actual LLM preparation/count/batch boundary on supplied text and qualified facts; narrow counter edge. No document splitting, Runtime assembly or full document DI17/24 closure. |
+| I1-C2 | LLM, Memory metadata and `uv.lock`; `packages/friday-llm/src/friday_llm/embeddings.py` and the exact listed JSON paths. | `packages/friday-llm/tests_llm/test_embeddings.py::test_qualified_preparation_limits_and_indexed_batch_guards` — Implement/test actual LLM preparation/count/batch boundary on supplied text and qualified facts; narrow counter edge. No document splitting, Runtime assembly or full document DI17/24 closure. |
 | I1-C3 | Memory; `packages/friday-memory/src/friday_memory/ingestion/embedding_space.py` and the exact listed JSON paths. | `packages/friday-memory/tests_memory/test_adapters/test_vector.py::test_direct_namespace_admission_contracts` — Direct factory/store admission and identity values, matching reopen and foreign/missing identity refusals; no Chat/Runtime startup claim. |
 | I1-C4 | Memory; `packages/friday-memory/src/friday_memory/maintenance/recovery_models.py` and the exact listed JSON paths. | `packages/friday-memory/tests_memory/test_maintenance/test_recovery_participant.py::test_memory_v2_models_and_typed_loader_contract` — Memory-v2 model/loader, old v1 strictness and fingerprint inputs only; no actual Chat aggregate/rollback claim. I1 map and changed-contract notes accepted for I1 only. |
 
@@ -70,8 +79,8 @@ All existing named FC nodes remain required.
 
 | Exit | Owners / implementation | Planned witness and scope |
 | --- | --- | --- |
-| I2-C1 | Memory, Chat, Runtime, Core profiles, CLI conditional; `packages/friday-runtime/src/friday_runtime/di.py` and the exact listed JSON paths. | `tests/integration/test_embedding_compatibility.py::test_existing_embedding_configuration_and_origin` — Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI is source-unchanged if forwarding suffices; otherwise exact approved paths. Read-only text uses no embedding prerequisite. |
-| I2-C2 | Memory, Chat, Runtime, listed Tools wrappers; `packages/friday-memory/src/friday_memory/context/assembler.py` and the exact listed JSON paths. | `tests/integration/test_embedding_compatibility.py::test_model_change_preserves_operational_contract` — Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. No common document chunk plan or unwired route credit. |
+| I2-C1 | Memory, Chat, Runtime, Core profiles, CLI conditional; `packages/friday-runtime/src/friday_runtime/di.py` and the exact listed JSON paths. | `tests/integration/test_embedding_compatibility.py::test_existing_embedding_configuration_and_origin` — Actual existing pool/non-pool startup/admission, logging, ephemeral isolation and headless counter installs. CLI `container.py`/`profiles.py` are primary seams: execute all four default/env/constructor/testing origins; A2 binds the needed narrow adaptation or proves an existing mechanism. Read-only text uses no embedding prerequisite. |
+| I2-C2 | Memory, Chat, Runtime, listed Tools wrappers; `packages/friday-memory/src/friday_memory/context/assembler.py` and the exact listed JSON paths. | `tests/integration/test_embedding_compatibility.py::test_model_change_preserves_operational_contract` — Actual existing conversation/graph/recall/MCP/task/maintenance/lifecycle/inspection/multi-agent B/N/R and truthful effects. DI22 here covers existing callers only. No common document chunk plan or unwired route credit. |
 | I2-C3 | Memory, Chat; `packages/friday-memory/src/friday_memory/maintenance/recovery.py` and the exact listed JSON paths. | `tests/integration/test_embedding_compatibility.py::test_chat_v2_snapshot_roundtrip_and_same_namespace_rollback` — Actual Memory-v2 → Chat aggregate-v2 write/read/reparse → admitted same-namespace restore/automatic rollback; strict mixed/version/identity negatives. I2-only map/docs review. |
 
 ### I3 scoped exit
@@ -79,8 +88,8 @@ All existing named FC nodes remain required.
 | Exit | Owners / implementation | Planned witness and scope |
 | --- | --- | --- |
 | I3-C1 | Tools; `packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py` and the exact listed JSON paths. | `packages/friday-tools/tests_tools/test_document_ingestion.py::test_genuine_format_scope_and_complete_success_admission` — Real native/OCR formats, order/coverage, selected-release structural mapping, no fallback or diagnostic content, resource admission and missing-assets independence. |
-| I3-C2 | Memory, Tools, Core contracts; `packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_headless_common_plan_and_destination_bound_receipts` — Real headless Memory factory → Core entry → smart_read text small/large/force_chunked/cache paths; final DI24 counter-asset/boundary binding; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. |
-| I3-C3 | Commands, Chat, Memory; `packages/friday-commands/src/friday_commands/file_inputs.py` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_registry_stores_extracted_document_chunks` — Actual raw-tail default-handler parsing and genuine registry document→common plan→stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. |
+| I3-C2 | Memory, Tools, Core contracts; `packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_headless_common_plan_and_destination_bound_receipts` — Real headless Memory factory → Core entry → smart_read text small/large/force_chunked/cache paths; DI22 source/derived role spies and batch-before-write; final DI24 counter-asset/boundary binding; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. |
+| I3-C3 | Commands, Chat, Memory; `packages/friday-commands/src/friday_commands/file_inputs.py` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_registry_stores_extracted_document_chunks` — DI22 command/common-entry role spies and batch-before-write. Actual raw-tail default-handler parsing and genuine registry document→common plan→stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. |
 | I3-C4 | Tools worker, Memory text planning, LLM counter, caller request owner; `packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py` and the exact listed JSON paths. | `packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_ingestion_waits_for_quiescence_without_late_storage` — Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. |
 | I3-C5 | Tools, Chat, all affected test/document owners; `packages/friday-tools/pyproject.toml` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_clean_installed_candidate_document_profiles` — Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Repeat DI24/33 actual installed counter/consumer B/N/R in normal/-O lanes. Earlier positive claims remain for exact source, final candidate reviewed at AG. |
 
@@ -114,7 +123,7 @@ The full original definition/digest is in the JSON, not abbreviated away here.
 | DI-19 | I3 | I3-C2, I3-C3 |
 | DI-20 | I3 | I3-C5 |
 | DI-21 | I2 | I1-C3, I2-C1 |
-| DI-22 | I2 | I1-C2, I2-C2 |
+| DI-22 | I3 | I1-C2, I2-C2, I3-C2, I3-C3 |
 | DI-23 | I3 | I1-C1, I3-C2 |
 | DI-24 | I3 | I1-C2, I3-C2, I3-C5 |
 | DI-25 | I3 | I3-C1 |
@@ -134,6 +143,10 @@ DI-23: I1-C1 proves neutral entry contracts only; I3-C2 implements and exercises
 actual Memory factory → entry → smart_read text small/large/force_chunked and
 warm-cache storage. DI-32: I1-C4 proves Memory-v2 values/loaders only; I2-C3
 executes actual Chat aggregate-v2 write/read/reparse and same-namespace rollback.
+DI-22: I1 supplies role/count contracts, I2-C2 exercises existing callers only.
+I3-C2/C3 must execute role spies for the newly created/restructured common entry,
+smart_read/large-file/tool source and derived records and command storage, with
+whole-batch validation before the first write. Full original evidence starts I3.
 DI-17: supplied-text counter guard in I1-C2 is not document/table/slide chunking;
 I3-C2 proves final real chunk budgets/content. DI-29's existing startup/text
 portion is I2-C1; the actual document `/read` embedding-independence portion
@@ -178,7 +191,7 @@ is implied by resolving this known gap.
 
 RD-06 Q graph feasibility uses upstream artifacts and unchanged Friday code,
 with proposed extra declarations labelled as proposals. I1 creates the narrow
-LLM/Memory counter metadata; I2 tests actual headless candidate installs. I3
+LLM/Memory counter metadata **and its exact uv.lock delta**; I2 tests actual headless candidate installs. I3
 creates Tools' document extra/default Chat edge and proves clean document/bare
 Tools/shared-extractor profiles. AG validates actual final installations and
 security/origins. Separate TOOLS-DOC activation later proves factory/smart_read
