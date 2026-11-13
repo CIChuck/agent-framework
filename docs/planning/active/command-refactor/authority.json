@@ -3537,10 +3537,13 @@
         "impact_sha256": "f5334ee1dfbcf9b73a70c6f884153ff8145472efe00b3509bb1c409015db025f",
         "status": "corrected_for_final_council",
         "approved": false,
-        "effects_activated": false
+        "effects_activated": false,
+        "presented_revision": "validation/document-ingestion/product-construction/final-approval/presented-revision.json",
+        "presented_revision_sha256": "2b5f9a94198729a247779299d1be3ca79518200ade8ff9d4e89e0994b9eb047f",
+        "target_document_commit": "115e4cecdb659d2af043c11e73964aca0a590d78"
       },
       "final_document_council": {
-        "status": "round2_preparing_final_additional_review",
+        "status": "round2_frozen_for_final_review",
         "active": true,
         "maximum_rounds": 2,
         "authorization": "validation/document-ingestion/product-construction/final-approval/council/round2/authorization.json",
@@ -3555,11 +3558,11 @@
         "construction_approved": false,
         "effects_approved": false,
         "new_independent_review_of_wrapper_and_impact": true,
-        "rounds_started": 1,
+        "rounds_started": 2,
         "rounds_completed": 1,
         "gate_met": null,
         "overall_result": "pending",
-        "remaining_rounds": 1,
+        "remaining_rounds": 0,
         "repair_or_repeat_authorized": "Only current bounded corrections plus final round2; no subsequent repair/third round.",
         "round": 2,
         "latest_request": "make the requested edits,  1 more council round"

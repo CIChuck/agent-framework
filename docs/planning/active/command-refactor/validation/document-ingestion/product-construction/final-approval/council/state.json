@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "status": "round2_preparing_final_additional_review",
+  "status": "round2_frozen_for_final_review",
   "round": 2,
   "maximum_rounds": 2,
   "active": true,
-  "rounds_started": 1,
+  "rounds_started": 2,
   "rounds_completed": 1,
   "gate_met": null,
   "construction_approved": false,
   "effects_approved": false,
   "overall_result": "pending",
-  "remaining_rounds": 1,
+  "remaining_rounds": 0,
   "prior_result": "round1/results/report.md"
 }
