@@ -1,0 +1,44 @@
+{
+  "verdict": "VERIFIED",
+  "assessment_complete": true,
+  "areas_complete": 8,
+  "mandatory_findings": [],
+  "overall": "9.6325",
+  "per_document": {
+    "final-approval/README.md": "VERIFIED",
+    "package-impact-assessment.md": "VERIFIED"
+  },
+  "bound_technical_hash_checks": {
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md": "288265f774e08a182083537160ed0fccd9a5304b949ec95d05bcd6bf0208a8ee",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-contracts.md": "44791c3a431f3f4cc8876851cfa3248a20dc7cbd90739178f022c453e370794c",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/readiness-disposition.md": "98da30a313539c9d550ac14a8dffa1454997c00f5353df33bf915f8ca09c8cc7",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/validation-plan.md": "f6c0fee8046fa1d0e1d992a5640dfaca88f96f87f9b335a3e02cf172fc496cf9",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/approval-binding.json": "b6fb070ca1ec94014f0019e9e8647fc773d930185cd3594e8d3d39520cca4b3c",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/model-qualification-decision.md": "b2503902db78f9d01909c4d2c9d20a03dd4cdc772421c1ec100d5b614ed22d26",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/office-visibility-decision.md": "7eb7bf3224036d61f28059d8a1ab4c21d66b9deb4964e013de6a780b381775c7",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/shared-worker-decision.md": "a828b757b213acc9481ba3053873f4d2243f3a106927ddade71eb97631bf938b",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/slice-file-map.json": "94d29682e2c9b813dd73f4bcdad95f7a327d139e03187ed8baf3931b6f8f7346",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/test-case-map.json": "41229b36ae5f3f33eaf15d11322be290c837d6ab21c5a3023294f890879c509c",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/digest-vectors.json": "4b5bef7daf3400dca0c7058d967a66653d1c5e3aa59a7b0c9fe5770e3bd436e4",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/review-instructions.md": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/authorization.json": "c963bad985fb1a581c2ff6b307345d295519d335eef7bf305c070e2d301180d2",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/requirement-reconciliation.md": "f787e83ed84916264277013ab4e8097e9f3fcba90da502ea5ec1819630c71d55",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/round7/correction-requirements.json": "6660bda1a271dc91dfee9f1a9d6659e8a2c9f3bcd398620a880173e6bb111ed6",
+    "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/extension2-authorization.json": "9d468ca11029a8f3d9d4b2acf8ac8aeaa3debdf5c5e57e787d30d740d8bfbb05",
+    "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1",
+    "docs/planning/active/command-refactor/directives/CD-CMD-TOOLS-DOC-001-adoption.md": "b7d93caf2d302e0802b3c6b7f523de42d2ab98f625b5a8a02326f21a8fec2f9f",
+    "docs/planning/active/command-refactor/remediation/REM-CMD-INGEST-001-pdf-docx.md": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
+    "docs/planning/active/command-refactor/embedding-compatibility-contract.md": "1092a332684e3f6a5f9edc3f2355c768775b0f2c01b82bcc97242932334faabb"
+  },
+  "phase_paths_exact": true,
+  "map_counts": {
+    "paths": 91,
+    "old_cases": 49,
+    "new_witnesses": 51,
+    "modules": 18,
+    "retirements": 0
+  },
+  "construction_authority": false,
+  "effects_authority": false,
+  "acceptance_authority": false
+}

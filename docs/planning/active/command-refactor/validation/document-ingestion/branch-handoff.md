@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** Fresh read-only final-document council round1/1: final-approval/README.md and canonical package-impact assessment v0.7, frozen for Sol/Astra/Opus while Chuck reviews in parallel. Assess eight bounded document-readiness areas, target >=9.5 per complete seat with zero mandatory findings. Report findings only; no automatic repair/repeat, vendor/parity evaluation, construction, installs, provider/model/store effects or acceptance.
+**Next gate:** Final-document council round1/1 complete: CHANGES_REQUESTED. All three assess8/8; Sol9.6325 and Astra9.640 VERIFIED, Opus9.30 with mandatory Certifi baseline/per-install phase conflict. Targets and bound JSONs remain frozen at c2fcee0d. Next Chuck reviews the finding and his document comments, then authorizes any bounded wording/profile/hash correction and fresh review. No automatic repair/repeat, construction, install, model/store effect, acceptance or delivery.
 
 [Proposed activation package](product-construction/activation/README.md) contains exact draft contracts, slice/case maps and unresolved Q dispositions; it is not construction approval.
 

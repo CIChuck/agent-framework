@@ -1,0 +1,15 @@
+{
+  "seat": "astra",
+  "verdict": "VERIFIED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.64,
+  "mandatory_findings": 0,
+  "entry_exit_shared_fields_match": true,
+  "frozen_git_identity_matches": true,
+  "files": {
+    "report.md": "18088d0187d1ddcd746abad5072d678e79805cb52835166241751758fde0a9c5",
+    "entry.json": "f94f4d45bd04d7b9f29bef9f470ea36af192f990f8c05affb30ec446d0f2538f",
+    "exit.json": "744e1ee81fdb128a4422669aa6af4c68241aab6058abad49d732626f8d8bf6bf"
+  }
+}

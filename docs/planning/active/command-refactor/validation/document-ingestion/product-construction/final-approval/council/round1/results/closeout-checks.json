@@ -1,0 +1,102 @@
+{
+  "scope": "Council outcome/navigation only; no target fix, new review or runtime validation",
+  "reviewed_candidate": "c2fcee0db2fc5b8dbf3a4682bd31cd2ce95963a0",
+  "targets_and_all_frozen_inputs_unchanged": true,
+  "original_reports_and_disclosure_preserved": true,
+  "relative_links_valid": 9,
+  "execution_log_append_only": true,
+  "protected_nonplanning_files": 16690,
+  "preserved_symlinks": 26,
+  "preserved_records": 8,
+  "administration": [
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "exit": 0,
+      "stdout": "Development board validation passed: 36 tasks\n",
+      "stderr": "",
+      "name": "board"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/friday-dev-board.py",
+        "render",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": "Planning dashboard is current\n",
+      "stderr": "",
+      "name": "dashboard"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "exit": 0,
+      "stdout": "Documentation lifecycle validation passed: 1216 Markdown files checked\n",
+      "stderr": "",
+      "name": "docs"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--offline",
+        "--frozen",
+        "--no-sync",
+        "--no-python-downloads",
+        "python",
+        "-B",
+        "scripts/check-package-metadata.py"
+      ],
+      "exit": 0,
+      "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+      "stderr": "",
+      "name": "metadata"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "docs/planning"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "name": "whitespace"
+    }
+  ],
+  "no_runtime_effects": true,
+  "council_active": false,
+  "gate_met": false,
+  "repair_or_repeat_authorized": false,
+  "result": "PASS"
+}

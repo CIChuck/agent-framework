@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Fresh read-only final-document council round1/1: final-approval/README.md and canonical package-impact assessment v0.7, frozen for Sol/Astra/Opus while Chuck reviews in parallel. Assess eight bounded document-readiness areas, target >=9.5 per complete seat with zero mandatory findings. Report findings only; no automatic repair/repeat, vendor/parity evaluation, construction, installs, provider/model/store effects or acceptance. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Final-document council round1/1 complete: CHANGES_REQUESTED. All three assess8/8; Sol9.6325 and Astra9.640 VERIFIED, Opus9.30 with mandatory Certifi baseline/per-install phase conflict. Targets and bound JSONs remain frozen at c2fcee0d. Next Chuck reviews the finding and his document comments, then authorizes any bounded wording/profile/hash correction and fresh review. No automatic repair/repeat, construction, install, model/store effect, acceptance or delivery. |
 
 ## Completed
 

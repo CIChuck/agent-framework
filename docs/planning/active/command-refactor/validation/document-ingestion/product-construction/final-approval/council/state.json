@@ -1,12 +1,15 @@
 {
   "version": 1,
-  "status": "frozen_for_single_read_only_round",
+  "status": "completed_changes_requested_awaiting_maintainer",
   "round": 1,
   "maximum_rounds": 1,
-  "active": true,
+  "active": false,
   "rounds_started": 1,
-  "rounds_completed": 0,
-  "gate_met": null,
+  "rounds_completed": 1,
+  "gate_met": false,
   "construction_approved": false,
-  "effects_approved": false
+  "effects_approved": false,
+  "overall_result": "CHANGES_REQUESTED",
+  "remaining_rounds": 0,
+  "result": "round1/results/report.md"
 }

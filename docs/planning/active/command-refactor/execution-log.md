@@ -4453,3 +4453,18 @@ is approval/impact completeness and consistency, not old Docling/AST/archive or
 whole-framework testing. Required target text may mention historical statuses;
 reviewers must not open prior reports or treat past scores as this verdict.
 No construction, installs, production change or model/store effect is authorized.
+
+
+## 2026-11-13 — Final approval document council closed with one bounded finding
+
+All fresh seats complete FD1–FD8. Sol9.6325 and Astra9.640 VERIFIED; Opus9.30
+CHANGES_REQUESTED with MF-1: unconditional new Certifi floor after every install
+conflicts with its I3-C1 introduction and earlier narrow phase deltas. Controller
+static lock/TOML reads confirm Certifi2025.11.12, tokenizers0.22.1 (Chroma/LiteLLM
+consumers) and no direct Certifi declaration. Recommend phase-correct Certifi
+wording and shared-tokenizer disclosure only if Chuck authorizes correction.
+Original reports/boundaries and closing preservation evidence archived; Opus's
+initial index-order disclosure retained. Targets, current bound JSONs, technical
+contracts/maps and production state unchanged. Single round exhausted; no repair,
+replacement/new council, product work, install/model/store effect or acceptance.
+Next task is Chuck's disposition of the finding alongside his parallel review.

@@ -1,0 +1,16 @@
+{
+  "seat": "opus",
+  "verdict": "CHANGES_REQUESTED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.3,
+  "mandatory_findings": 1,
+  "entry_exit_shared_fields_match": true,
+  "frozen_git_identity_matches": true,
+  "files": {
+    "report.md": "4a07dee0d7637bb4d4c4efc89c5ba705b9574bb3dcc930091a506262b49b1187",
+    "entry.json": "295d690cdc6705a9c2a068148ca99ba14ec42ea34b84e5140897cb5bf46ff7db",
+    "exit.json": "295d690cdc6705a9c2a068148ca99ba14ec42ea34b84e5140897cb5bf46ff7db"
+  },
+  "disclosed_protocol_deviation": "Initial raw-index/status sequence before required logical-index measurement; later entry and exit match. Retained transparently; no automatic disqualification trigger in current brief."
+}

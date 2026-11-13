@@ -93,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** Fresh read-only final-document council round1/1: final-approval/README.md and canonical package-impact assessment v0.7, frozen for Sol/Astra/Opus while Chuck reviews in parallel. Assess eight bounded document-readiness areas, target >=9.5 per complete seat with zero mandatory findings. Report findings only; no automatic repair/repeat, vendor/parity evaluation, construction, installs, provider/model/store effects or acceptance.
+**Next gate:** Final-document council round1/1 complete: CHANGES_REQUESTED. All three assess8/8; Sol9.6325 and Astra9.640 VERIFIED, Opus9.30 with mandatory Certifi baseline/per-install phase conflict. Targets and bound JSONs remain frozen at c2fcee0d. Next Chuck reviews the finding and his document comments, then authorizes any bounded wording/profile/hash correction and fresh review. No automatic repair/repeat, construction, install, model/store effect, acceptance or delivery.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
@@ -347,3 +347,5 @@ Final activation council: [outcome and remaining converter-binding issue](valida
 Current activation council: [VERIFIED round7 outcome and next approval gate](validation/document-ingestion/product-construction/activation/council/round7/results/report.md). All three complete seats clear9.5; loop stopped early. Construction remains unapproved.
 
 Current review task: [Final construction approval package](validation/document-ingestion/product-construction/final-approval/README.md) and [canonical package impact v0.7](package-impact-assessment.md). Exact proposed scope/effects are prepared; construction and private installs await Chuck. The prior council stays closed.
+
+Final approval document council: [complete outcome and bounded Certifi finding](validation/document-ingestion/product-construction/final-approval/council/round1/results/report.md). Single read-only round closed; awaiting Chuck's disposition. Reviewed targets remain unchanged.

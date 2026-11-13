@@ -1,0 +1,13 @@
+{
+  "unit": "INGEST final approval and impact documents",
+  "round": 1,
+  "maximum_rounds": 1,
+  "review_only": true,
+  "maintainer_parallel_review": true,
+  "overall_target_each": 9.5,
+  "areas_to_assess": 8,
+  "mandatory_findings_allowed": 0,
+  "construction_approved": false,
+  "installs_or_runtime_effects_approved": false,
+  "automatic_fix_or_repeat": false
+}

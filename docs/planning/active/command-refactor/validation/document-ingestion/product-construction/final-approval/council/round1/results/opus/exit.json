@@ -1,0 +1,13 @@
+{
+ "logical_index_before_status": "1c5fd5f6d7964d9583618532d969b7a7da1653afc3e2bb217107ee28d143d2b8",
+ "head": "c2fcee0db2fc5b8dbf3a4682bd31cd2ce95963a0",
+ "branch": "feature/cmd-ingest-001",
+ "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+ "staged": "",
+ "request_sha256": "6cde584b32ba6afaa32b92581ec20eaa5973f95ad786bd3abd549726fb002289",
+ "identity_ok": true,
+ "inputs_checked": 25,
+ "input_mismatches": [],
+ "metadata_checked": 8,
+ "metadata_mismatches": []
+}

@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Fresh read-only final-document council round1/1: final-approval/README.md and canonical package-impact assessment v0.7, frozen for Sol/Astra/Opus while Chuck reviews in parallel. Assess eight bounded document-readiness areas, target >=9.5 per complete seat with zero mandatory findings. Report findings only; no automatic repair/repeat, vendor/parity evaluation, construction, installs, provider/model/store effects or acceptance.",
+  "current_scope": "Final-document council round1/1 complete: CHANGES_REQUESTED. All three assess8/8; Sol9.6325 and Astra9.640 VERIFIED, Opus9.30 with mandatory Certifi baseline/per-install phase conflict. Targets and bound JSONs remain frozen at c2fcee0d. Next Chuck reviews the finding and his document comments, then authorizes any bounded wording/profile/hash correction and fresh review. No automatic repair/repeat, construction, install, model/store effect, acceptance or delivery.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1894,9 +1894,9 @@
   },
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
-    "status": "final_approval_documents_in_council_and_maintainer_review",
+    "status": "final_approval_document_council_changes_requested",
     "execution_phase": "validation",
-    "validation_state": "in_review",
+    "validation_state": "changes_requested",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Fresh read-only final-document council round1/1: final-approval/README.md and canonical package-impact assessment v0.7, frozen for Sol/Astra/Opus while Chuck reviews in parallel. Assess eight bounded document-readiness areas, target >=9.5 per complete seat with zero mandatory findings. Report findings only; no automatic repair/repeat, vendor/parity evaluation, construction, installs, provider/model/store effects or acceptance.",
+    "next_gate": "Final-document council round1/1 complete: CHANGES_REQUESTED. All three assess8/8; Sol9.6325 and Astra9.640 VERIFIED, Opus9.30 with mandatory Certifi baseline/per-install phase conflict. Targets and bound JSONs remain frozen at c2fcee0d. Next Chuck reviews the finding and his document comments, then authorizes any bounded wording/profile/hash correction and fresh review. No automatic repair/repeat, construction, install, model/store effect, acceptance or delivery.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2412,7 +2412,7 @@
       "document": "package-impact-assessment.md",
       "version": "0.7-proposed",
       "sha256": "f2cf35435eb829c878f770e4358f0bb6c417b1659407d591d46105dfabaefd78",
-      "status": "awaiting_maintainer_review_of_updated_impact",
+      "status": "final_document_council_changes_requested",
       "prepared_from": "5e7efdb69a3d5cf9b5351a01b97cf70f7cffc007",
       "technical_pins_unchanged": false,
       "scope_change": "Consolidate evaluated stack and reviewed decisions: shared worker/headless ownership, independent bindings, required same-entry factory, current phase/test/docs/upgrade effects. No new implementation package or feature.",
@@ -2420,21 +2420,22 @@
       "proposed_implementation_packages": 8,
       "cli_source_edits_conditional": false,
       "source_unchanged_compatibility_packages": 9,
-      "new_assessment_council_review": "not_requested_current_wrapper_and_impact_not_independently_reviewed",
+      "new_assessment_council_review": "final_document_council_round1_complete_changes_requested",
       "approval_condition": "Chuck Russell must be satisfied with the overall per-package impact before approving the construction directive.",
       "directive_binding": "One canonical referenced appendix; bind approved version, commit and SHA256.",
       "material_impact_change": "Revise assessment and obtain maintainer review before construction.",
       "approval_of_assessment": "not_granted_for_v0_7",
       "gate_a_activation": "not_granted",
       "construction_authority": "not_granted",
-      "validation_state": "controller_checked_proposal",
+      "validation_state": "changes_requested",
       "test_migration_plan": "test-migration-plan.md",
       "architecture_documentation_plan": "command-architecture-update-plan.md",
       "prior_technical_reviewed_candidate": "f43368c503da19fd245730ee579806db95ed3748",
-      "current_report": "validation/document-ingestion/product-construction/final-approval/README.md",
+      "current_report": "validation/document-ingestion/product-construction/final-approval/council/round1/results/report.md",
       "approval_version": null,
       "post_gate_a_changed_version_requires_review": true,
-      "prior_v0_6_approval_record": "approval/ingest-package-impact.md"
+      "prior_v0_6_approval_record": "approval/ingest-package-impact.md",
+      "reviewed_candidate": "c2fcee0db2fc5b8dbf3a4682bd31cd2ce95963a0"
     },
     "conditional_maintainer_approval": {
       "recorded_date": "2026-11-11",
@@ -2932,7 +2933,7 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "final_approval_documents_read_only_council",
+    "current_stage": "final_document_council_awaiting_maintainer_disposition",
     "validation_scope": "Reviewed activation design remains VERIFIED at 9ddaf6f8. New impact v0.7 and approval/profile assembly have controller checks only; maintainer construction/effects approval remains pending.",
     "large_document_corpus": {
       "state": "verified",
@@ -2949,7 +2950,7 @@
     },
     "product_construction_preparation": {
       "version": "0.7",
-      "status": "final_approval_documents_in_council_and_maintainer_review",
+      "status": "final_approval_document_council_changes_requested",
       "date": "2026-11-12",
       "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
       "files": {
@@ -3488,7 +3489,7 @@
         "binding": "validation/document-ingestion/product-construction/final-approval/approval-request.json",
         "binding_sha256": "50f2a937a10b8e39e2eec0fb12ef0b4522dcdd17eb58068a3f802b9f4184bb9f",
         "authority": "validation/document-ingestion/product-construction/activation/preparation-authorization.json",
-        "status": "final_proposal_awaiting_maintainer",
+        "status": "final_proposal_changes_requested",
         "new_council_authorized": false,
         "construction_approved": false,
         "new_effects": false,
@@ -3533,13 +3534,13 @@
         "profile_sha256": "302cc61d3ce3d955930a07922665c571bf54b6de7274e54d8e1c4d26129a66c9",
         "impact_version": "0.7",
         "impact_sha256": "f2cf35435eb829c878f770e4358f0bb6c417b1659407d591d46105dfabaefd78",
-        "status": "under_council_and_maintainer_review",
+        "status": "council_changes_requested_maintainer_review_pending",
         "approved": false,
         "effects_activated": false
       },
       "final_document_council": {
-        "status": "frozen_for_single_read_only_round",
-        "active": true,
+        "status": "completed_changes_requested_awaiting_maintainer",
+        "active": false,
         "maximum_rounds": 1,
         "authorization": "validation/document-ingestion/product-construction/final-approval/council/round1/authorization.json",
         "authorization_sha256": "0ca80dbb9b6e183204fb045a77968d2154ea5f41f4811a3bc622c89b4544e9d0",
@@ -3552,7 +3553,17 @@
         ],
         "construction_approved": false,
         "effects_approved": false,
-        "new_independent_review_of_wrapper_and_impact": true
+        "new_independent_review_of_wrapper_and_impact": true,
+        "rounds_started": 1,
+        "rounds_completed": 1,
+        "gate_met": false,
+        "overall_result": "CHANGES_REQUESTED",
+        "remaining_rounds": 0,
+        "result": "validation/document-ingestion/product-construction/final-approval/council/round1/results/report.md",
+        "result_sha256": "843ee1e45f242d6f2870353de820539b68ba856efde92788a4c8c9b03aa5b998",
+        "reviewed_candidate": "c2fcee0db2fc5b8dbf3a4682bd31cd2ce95963a0",
+        "mandatory_finding": "MF-1 Certifi baseline/per-install phase timing",
+        "repair_or_repeat_authorized": false
       }
     },
     "model_qualification_prerequisite_decision": {
