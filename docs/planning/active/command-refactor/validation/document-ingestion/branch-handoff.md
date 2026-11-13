@@ -8,7 +8,7 @@ Whole Gate-A9.5 and product construction/acceptance remain open.
 [Measured results](gate-a/end-to-end-evaluation/results.md) and
 [independent report](gate-a/end-to-end-evaluation/validation/round2/report.md).
 
-**Next gate:** New focused INGEST implementation-directive council round1/3. Assess plan completeness/buildability; completed Docling evaluation is input. No product construction, tool retest or new effects are activated.
+**Next gate:** Focused INGEST directive council round2/3. Assess /read lifecycle correction first, then full eight-area integration plan. Completed Docling evaluation remains input; no product work or new effects.
 
 ## Historical branch/design preparation (superseded for current evaluation routing)
 

@@ -4145,3 +4145,27 @@ construction drafts, which remain conditional. CLI derived-root and strict typin
 clarifications stay within existing obligations. Current metadata routes to
 focused round1/3; user configuration, source/tests/dependencies/guides/stores are
 preserved. No construction, installation, model window, UAT or delivery follows.
+
+
+## 2026-11-13 — focused round1 complete; read lifecycle correction for round2
+
+[Focused round1](validation/document-ingestion/product-construction/focused-council/round1/results/report.md)
+completed F1–F8 for every seat: Sol VERIFIED10.0/9.6, Astra VERIFIED10.0/9.70,
+Opus CHANGES_REQUESTED9.5/9.34 with one concrete mandatory /read lifecycle/test
+gap. Original reports and limits remain unchanged; no majority waiver.
+
+Within the existing three-round authority, directive v0.7 gives document /read
+a Chat-owned awaitable adapter/request without Memory admission, using the same
+Tools-owned off-loop conversion job. Cancel/exit/shutdown invalidates output and
+joins/drains before return. Legacy synchronous text/table behavior remains.
+Three explicit responsiveness/cancel/shutdown acceptance witnesses and a genuine
+headless document-to-Memory/store witness are added to the phase plan, with
+reciprocal DI11/26/29 and headless joins. These are planned tests, not executions.
+
+Related bounded clarifications name Memory→injected Tools planning, neutral
+counting/preparation, actual raw-tail/default-handler dispatch, no-clamp capacity
+preflight, asset package/root ownership and Memory headless defaults (without
+new RuntimeConfig document YAML or affecting existing MCP ingestion settings).
+No product/test source, dependencies, user config, store, model or converter
+evaluation changes occur. Fresh round2 reviews this delta then all F1–F8; no
+standalone Docling test or mechanical inventory/archive audit is assigned.

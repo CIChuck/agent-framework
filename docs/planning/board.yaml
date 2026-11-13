@@ -711,11 +711,12 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/command-refactor/
-  next_gate: "Focused INGEST implementation-directive council round1/3: assess comprehensive, coherent, buildable Friday integration across F1–F8. Completed Docling evaluation is established input; no repeated tool tests, AST reconstruction, archive/wheel audits or exhaustive framework source review. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5; bounded planning corrections only, stop on gate or round3. No product construction or effects."
+  next_gate: "Focused INGEST directive council round2/3: correct document /read owned async conversion/cancellation/shutdown and acceptance, plus related headless/planner/dispatch/capacity/asset/default clarifications; then reassess full F1–F8 completeness/buildability. Completed Docling evaluation remains input. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5. No product work or new effects."
   delivery_state: local
   branch: feature/cmd-ingest-001
   depends_on: []
   validation:
+  - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/round1/results/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass3/results/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass2/results/report.md
   - docs/planning/active/command-refactor/validation/document-ingestion/product-construction/correction-loop/pass1/results/report.md

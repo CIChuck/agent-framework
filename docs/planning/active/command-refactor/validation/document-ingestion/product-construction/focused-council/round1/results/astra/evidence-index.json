@@ -1,0 +1,19 @@
+{
+  "original_directory": "/private/var/folders/dh/wfnmsgpn1yl83xlbmc109sf40000gn/T/astra-ingest-r1-kqz6q7b7",
+  "report_sha256": "353947b7b20790b24b4bc2b4afe23c92b520a0a536988bec6a4c2ccb2fef646a",
+  "artifacts": [
+    {
+      "path": "entry.json",
+      "sha256": "b2f62cb5c265f56221ab95a7f9927732d54d48cae764586362bc66c23a651d73"
+    },
+    {
+      "path": "exit.json",
+      "sha256": "b2f62cb5c265f56221ab95a7f9927732d54d48cae764586362bc66c23a651d73"
+    },
+    {
+      "path": "astra-report.md",
+      "sha256": "353947b7b20790b24b4bc2b4afe23c92b520a0a536988bec6a4c2ccb2fef646a"
+    }
+  ],
+  "scope": "Original completed focused document assessment; no product conformance or readiness/effect approval."
+}

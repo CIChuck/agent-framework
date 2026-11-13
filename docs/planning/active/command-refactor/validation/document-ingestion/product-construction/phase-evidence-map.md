@@ -1,6 +1,6 @@
 # INGEST — phase and evidence dependency map
 
-Version 0.5; conditional document contract. This map corrects the proof order;
+Version 0.7; conditional document contract. This map corrects the proof order;
 it does not waive a parent DI/FC obligation or authorize implementation.
 The [machine-readable join](phase-evidence-map.json) retains every original
 DI-01–36 definition and digest, all FC-01–14 dispositions, proposed witness IDs,
@@ -93,10 +93,43 @@ All existing named FC nodes remain required.
 | Exit | Owners / implementation | Planned witness and scope |
 | --- | --- | --- |
 | I3-C1 | Tools; `packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py` and the exact listed JSON paths. | `packages/friday-tools/tests_tools/test_document_ingestion.py::test_genuine_format_scope_and_complete_success_admission` — Real native/OCR formats, order/coverage, selected-release structural mapping, no fallback or diagnostic content, resource admission and missing-assets independence. |
-| I3-C2 | Memory, Tools, Core contracts; `packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_headless_common_plan_and_destination_bound_receipts` — Real headless Memory factory → Core entry → smart_read text small/large/force_chunked/cache paths; DI22 source/derived role spies and batch-before-write; final DI24 counter-asset/boundary binding; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. |
-| I3-C3 | Commands, Chat, Memory; `packages/friday-commands/src/friday_commands/file_inputs.py` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_registry_stores_extracted_document_chunks` — DI22 command/common-entry role spies and batch-before-write. Actual raw-tail default-handler parsing and genuine registry document→common plan→stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. |
-| I3-C4 | Tools worker, Memory text planning, LLM counter, caller request owner; `packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py` and the exact listed JSON paths. | `packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_ingestion_waits_for_quiescence_without_late_storage` — Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. |
+| I3-C2 | Memory, Tools, Core contracts; `packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_headless_common_plan_and_destination_bound_receipts` — Real headless Memory factory → Core entry → smart_read text small/large/force_chunked/cache paths; DI22 source/derived role spies and batch-before-write; final DI24 counter-asset/boundary binding; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Headless document witness below is additionally required; Memory invokes injected Tools document strategy, no Chat import. |
+| I3-C3 | Commands, Chat, Memory; `packages/friday-commands/src/friday_commands/file_inputs.py` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_registry_stores_extracted_document_chunks` — DI22 command/common-entry role spies and batch-before-write. Actual raw-tail default-handler parsing and genuine registry document→common plan→stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. Separate document /read responsiveness/cancel/shutdown witnesses below require no Memory admission. |
+| I3-C4 | Tools worker, Memory text planning, LLM counter, caller request owner; `packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py` and the exact listed JSON paths. | `packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_ingestion_waits_for_quiescence_without_late_storage` — Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Both ingestion-with-lease and document-read-without-lease lifecycles are mandatory; see additional witnesses below. |
 | I3-C5 | Tools, Chat, all affected test/document owners; `packages/friday-tools/pyproject.toml` and the exact listed JSON paths. | `tests/integration/test_document_ingestion.py::test_clean_installed_candidate_document_profiles` — Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes. |
+
+## Document read and headless document witnesses
+
+I3-C3/C4 include a **separate document /read lifecycle**, not an assumption that
+/read holds ingestion's Memory lease. Chat's awaitable document-read adapter in
+registry/files/runtime owns a read-only request handle and awaits the Tools-owned
+conversion worker off the event loop. Preserve the synchronous legacy text/table
+API. A2 freezes the adapter/job and actual request tracking/drain hooks. No Memory
+admission, profile, embedding or storage is required for /read.
+
+Cancel before start prevents launch. Cancel during or after completion-before-
+render invalidates output eligibility; exit/shutdown drains owned handles before
+returning. Cleanup joins the bounded worker even when the caller is cancelled;
+no orphan or late CommandResult/display may escape. Ingestion still separately
+holds its Memory admission through quiescence. Headless owners use the same
+worker contract without Chat imports.
+
+| Exit | Planned additional witness | Required proof |
+| --- | --- | --- |
+| I3-C3/C4 | `packages/friday-chat/tests_chat/test_document_ingestion.py::test_document_read_keeps_event_loop_responsive` | Actual slow/scanned default /read remains responsive; zero Memory admission/embedding/storage even with absent/unready Memory. DI-11/26/29. |
+| I3-C3/C4 | `packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_document_read_discards_output_and_joins_worker` | Before/during/after-completion-before-render cancellation, no cancelled queued launch, join and no orphan/late output. DI-11/26. |
+| I3-C3/C4 | `packages/friday-chat/tests_chat/test_document_ingestion.py::test_shutdown_drains_document_read_worker` | Actual request/exit drain completes before shutdown returns; no Memory lease or hard native-kill claim. DI-11/26. |
+| I3-C2 | `tests/integration/test_document_ingestion.py::test_headless_document_ingestion_uses_injected_tools_planner` | Genuine document → Tools planner/counter injected into Memory → actual disposable store; no Chat import; exact one-plan source chunks/receipt. DI-08/23. |
+
+Memory invokes the injected Tools document strategy through Core protocols;
+Docling structures remain internal to Tools. Core's counting/preparation protocol
+is supplied by the qualified LLM adapter; no new default Tools→LLM import. A2
+assigns exact package/install or provisioned-root locations for each capability
+record/tokenizer asset. Headless document defaults are Memory built-ins plus
+per-call options, with no new RuntimeConfig document-chunking YAML; existing MCP
+ingestion settings remain independent. Processor character chunk settings cannot
+override or re-split common source chunks. Resolved budgets above effective model
+capacity are refused, never clamped, including the default 512 N-CAP case.
 
 ## Full requirement first-availability join
 
@@ -114,10 +147,10 @@ The full original definition/digest is in the JSON, not abbreviated away here.
 | DI-05 | I3 | I3-C3 |
 | DI-06 | I3 | I3-C3 |
 | DI-07 | I3 | I3-C3 |
-| DI-08 | I3 | I3-C5 |
+| DI-08 | I3 | I3-C5, I3-C2 |
 | DI-09 | I3 | I3-C5 |
 | DI-10 | AG | I3-C5 |
-| DI-11 | I3 | I3-C4 |
+| DI-11 | I3 | I3-C4, I3-C3 |
 | DI-12 | UAT | Original requirement is checked directly in full at AG; no early exit substitutes. |
 | DI-13 | I3 | I3-C1 |
 | DI-14 | I3 | I3-C1 |
@@ -132,10 +165,10 @@ The full original definition/digest is in the JSON, not abbreviated away here.
 | DI-23 | I3 | I1-C1, I3-C2 |
 | DI-24 | I3 | I1-C2, I3-C2, I3-C5 |
 | DI-25 | I3 | I3-C1 |
-| DI-26 | I3 | I3-C4 |
+| DI-26 | I3 | I3-C4, I3-C3 |
 | DI-27 | I2 | I1-C4, I2-C3 |
 | DI-28 | I2 | I2-C1, I2-C2, I2-C3 |
-| DI-29 | I3 | I1-C3, I2-C1, I3-C3 |
+| DI-29 | I3 | I1-C3, I2-C1, I3-C3, I3-C4 |
 | DI-30 | I3 | I3-C2 |
 | DI-31 | I3 | I3-C2 |
 | DI-32 | I2 | I1-C4, I2-C3 |

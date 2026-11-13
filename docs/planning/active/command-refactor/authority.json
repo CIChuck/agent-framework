@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Focused INGEST implementation-directive council round1/3: assess comprehensive, coherent, buildable Friday integration across F1\u2013F8. Completed Docling evaluation is established input; no repeated tool tests, AST reconstruction, archive/wheel audits or exhaustive framework source review. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5; bounded planning corrections only, stop on gate or round3. No product construction or effects.",
+  "current_scope": "Focused INGEST directive council round2/3: correct document /read owned async conversion/cancellation/shutdown and acceptance, plus related headless/planner/dispatch/capacity/asset/default clarifications; then reassess full F1\u2013F8 completeness/buildability. Completed Docling evaluation remains input. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5. No product work or new effects.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Focused INGEST implementation-directive council round1/3: assess comprehensive, coherent, buildable Friday integration across F1\u2013F8. Completed Docling evaluation is established input; no repeated tool tests, AST reconstruction, archive/wheel audits or exhaustive framework source review. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5; bounded planning corrections only, stop on gate or round3. No product construction or effects.",
+    "next_gate": "Focused INGEST directive council round2/3: correct document /read owned async conversion/cancellation/shutdown and acceptance, plus related headless/planner/dispatch/capacity/asset/default clarifications; then reassess full F1\u2013F8 completeness/buildability. Completed Docling evaluation remains input. Require completed VERIFIED seats, no mandatory findings and coverage/overall>=9.5. No product work or new effects.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2954,7 +2954,7 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "focused_directive_council_round1",
+    "current_stage": "focused_directive_council_round2",
     "validation_scope": "Focused F1\u2013F8 completeness/coherence/buildability of the implementation directive; accepted Docling evaluation as input, targeted integration source checks only, no vendor retest or whole-framework audit.",
     "large_document_corpus": {
       "state": "verified",
@@ -2970,14 +2970,14 @@
       "review": "validation/document-ingestion/gate-a/large-documents/validation/round2/review-report.md"
     },
     "product_construction_preparation": {
-      "version": "0.6",
-      "status": "focused_directive_council_round1_in_review",
+      "version": "0.7",
+      "status": "focused_directive_council_round2_in_review",
       "date": "2026-11-12",
       "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
       "files": {
         "ingest_directive": {
           "path": "directives/CD-CMD-INGEST-001-product.md",
-          "sha256": "8abad750e6346b7118c6c23ea0fd2f2550f19a880179d23e134487c4d32495f2"
+          "sha256": "3b998de0ec87d2a2a581a5b5734cf2703a5ca950a1876707e854557cadce4db1"
         },
         "tools_directive": {
           "path": "directives/CD-CMD-TOOLS-DOC-001-adoption.md",
@@ -2989,7 +2989,7 @@
         },
         "authority_manifest": {
           "path": "validation/document-ingestion/product-construction/authority-manifest.json",
-          "sha256": "f563aa3b484935b22557df88176474423398ccce1c2ebe8ca77e8369ca01fb6c"
+          "sha256": "32225e8d0ef07c63e0bbb2482995e2f2b0f6e2724c579555fd4411fdb80ae4dd"
         },
         "baseline_test_inventory": {
           "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
@@ -3005,11 +3005,11 @@
         },
         "phase_map": {
           "path": "validation/document-ingestion/product-construction/phase-evidence-map.md",
-          "sha256": "0b4b9e8e89ef6a3a1ad880a6a49c44597a4a1023928fa846148cede31992da7d"
+          "sha256": "601babef2d35c11b65d5c224e082b191b3212b973e287d16740be604b54ccbc4"
         },
         "phase_map_json": {
           "path": "validation/document-ingestion/product-construction/phase-evidence-map.json",
-          "sha256": "38cbb0a4b2b70cca1ec1a44d2daeea48426743528165099cfedd125be70ac8a4"
+          "sha256": "e7b3b3afa0ad3ab46313f180ac3b23a62c90fe3cc5a26da6b91bcd7b90d3e909"
         },
         "inventory_summary": {
           "path": "validation/document-ingestion/product-construction/baseline-test-summary.json",
@@ -3054,17 +3054,19 @@
       "lightweight_change_exemption": "Documentation-only preparation under explicit proceed; record contains exact scope and checks. No source/test/guide/config/dependency implementation.",
       "council": {
         "workflow": "focused_directive_council",
-        "round": 1,
+        "round": 2,
         "maximum_rounds": 3,
         "authorization": "validation/document-ingestion/product-construction/focused-council/authorization.json",
         "authorization_sha256": "4b7435d516830347409cc7204936f3e7f3a1343f37026646c9c525df626e53a3",
         "criteria": "validation/document-ingestion/product-construction/focused-council/criteria.md",
         "criteria_sha256": "f6772d98dec630005e6e7a9d4ff1007e1fab809399cd8fa917768be74170afcb",
+        "correction_brief": "validation/document-ingestion/product-construction/focused-council/round2/correction-brief.json",
         "status": "in_review",
         "threshold_each": 9.5,
-        "assessment_scope": "Focused F1\u2013F8 directive completeness and buildability; targeted source questions, no inventory/archive/tool reevaluation.",
+        "assessment_scope": "C1\u2013C5 correction first, then complete same focused F1\u2013F8 directive assessment. No vendor/AST/archive reevaluation.",
         "construction_authority": false,
-        "new_effects": false
+        "new_effects": false,
+        "correction_brief_sha256": "747c62569065d33900158f29a5b88a96fbb09cca5dbe5d7b07bf3457ac0a1ef5"
       },
       "council_history": [
         {
@@ -3360,10 +3362,71 @@
           },
           "further_automatic_review": false,
           "further_correction": false
+        },
+        {
+          "workflow": "focused_directive_council",
+          "round": 1,
+          "maximum_rounds": 3,
+          "authorization": "validation/document-ingestion/product-construction/focused-council/authorization.json",
+          "authorization_sha256": "4b7435d516830347409cc7204936f3e7f3a1343f37026646c9c525df626e53a3",
+          "criteria": "validation/document-ingestion/product-construction/focused-council/criteria.md",
+          "criteria_sha256": "f6772d98dec630005e6e7a9d4ff1007e1fab809399cd8fa917768be74170afcb",
+          "status": "closed_changes_requested",
+          "threshold_each": 9.5,
+          "assessment_scope": "Focused F1\u2013F8 directive completeness and buildability; targeted source questions, no inventory/archive/tool reevaluation.",
+          "construction_authority": false,
+          "new_effects": false,
+          "outcome": "CHANGES_REQUESTED",
+          "all_seats_terminal": true,
+          "all_assessments_complete": true,
+          "reviewed_candidate": "92e356d17bc3a97be18d3d7cc4fed740b06795d1",
+          "threshold_met_each": false,
+          "report": "validation/document-ingestion/product-construction/focused-council/round1/results/report.md",
+          "report_sha256": "8245b56abfc2293428ee944a7b13937efd669a97083e54df0796228195ec585d",
+          "reconciliation": "validation/document-ingestion/product-construction/focused-council/round1/results/reconciliation.json",
+          "reconciliation_sha256": "f1f4923a2d231219159ba4fb8eaf8e6a07bf3947dd125a3391a6aa8d7354b74d",
+          "mandatory_findings": [
+            "FOCUSED-R1-OPUS-M1"
+          ],
+          "results": {
+            "sol": {
+              "outcome": "VERIFIED",
+              "assessment_complete": true,
+              "areas_assessed": 8,
+              "coverage": 10.0,
+              "overall": 9.6,
+              "mandatory_findings": [],
+              "report_sha256": "c072292921a5f358984a16a8ec81db78bd7121d3689d370b4980045e4d5ff8cc",
+              "report": "validation/document-ingestion/product-construction/focused-council/round1/results/sol/report.md"
+            },
+            "astra": {
+              "outcome": "VERIFIED",
+              "assessment_complete": true,
+              "areas_assessed": 8,
+              "coverage": 10.0,
+              "overall": 9.7,
+              "mandatory_findings": [],
+              "report_sha256": "353947b7b20790b24b4bc2b4afe23c92b520a0a536988bec6a4c2ccb2fef646a",
+              "report": "validation/document-ingestion/product-construction/focused-council/round1/results/astra/report.md"
+            },
+            "opus": {
+              "outcome": "CHANGES_REQUESTED",
+              "assessment_complete": true,
+              "areas_assessed": 8,
+              "coverage": 9.5,
+              "overall": 9.34,
+              "mandatory_findings": [
+                "M1 document read lifecycle/acceptance"
+              ],
+              "report_sha256": "1f1dadbd9a00ca901114dd584cffc2b99596110ba1ac6574ecacd01bf3bc1ab0",
+              "report": "validation/document-ingestion/product-construction/focused-council/round1/results/opus/report.md"
+            }
+          }
         }
       ],
       "correction_groups": {
-        "focused_preparation": "Known I3 summary corrected; ephemeral round restrictions removed from directive; focused scope/Finance exclusion and completion scoring clarified. Independent review pending."
+        "FOCUSED-R1-OPUS-M1": "Document correction prepared; independently verify full read-only worker/admission/cancel/shutdown duties and tests, then aggregate focused directive.",
+        "related_advisories": "Headless document witness, injection direction, exact dispatch seam, no clamp, asset and headless/default duties made explicit."
       },
       "bounded_correction_loop": {
         "authorization": "validation/document-ingestion/product-construction/correction-loop/authorization.json",
@@ -3380,8 +3443,8 @@
         "authorization": "validation/document-ingestion/product-construction/focused-council/authorization.json",
         "state": "validation/document-ingestion/product-construction/focused-council/state.json",
         "maximum_rounds": 3,
-        "rounds_started": 1,
-        "rounds_completed": 0
+        "rounds_started": 2,
+        "rounds_completed": 1
       }
     }
   },

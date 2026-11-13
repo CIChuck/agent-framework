@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "head": "92e356d17bc3a97be18d3d7cc4fed740b06795d1",
+  "branch": "feature/cmd-ingest-001",
+  "logical_index_before_status": "610562634bfd1122e9bdf85414be29b202a7608f97626fe5a0c61c1a2a31cf26",
+  "status": " M packages/friday-chat/config.example.yaml\n M packages/friday-chat/models-config.example.yaml\n?? .friday-old/\n",
+  "staged": "",
+  "required_optional_hashes_match": true,
+  "nonplanning_files_unchanged": 16690,
+  "symlinks_unchanged": 26,
+  "preserved_metadata_unchanged": 8
+}

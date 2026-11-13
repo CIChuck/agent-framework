@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "scope": "Neutral bounded correction requirements, not prior peer verdicts or reasoning. Evaluate correction then full same F1\u2013F8 scope.",
+  "base": "92e356d17bc3a97be18d3d7cc4fed740b06795d1",
+  "round": 2,
+  "maximum_rounds": 3,
+  "corrections": [
+    {
+      "id": "C1",
+      "requirement": "Document /read must use a Chat-owned awaitable adapter over Tools-owned off-event-loop conversion, without Memory lease/profile/entry. Cancel/exit/shutdown invalidates output and joins/drains owned work, including after completion-before-render; no orphan/late output. Preserve legacy sync text/table behavior. A2 freezes concrete adapter/request/drain hooks in existing registry/files/runtime paths.",
+      "acceptance": "I3-C3/C4 planned responsiveness, before/during/after-completion cancellation and actual shutdown witnesses, DI11/26/29; zero Memory/provider/store side effects."
+    },
+    {
+      "id": "C2",
+      "requirement": "Memory entry invokes an injected Tools document planner through Core counting/preparation protocols; vendor structure remains Tools-internal. Add genuine headless document composition to actual Memory/disposable store with no Chat import, one shared plan and receipt."
+    },
+    {
+      "id": "C3",
+      "requirement": "Name raw-tail preservation at Chat CommandRegistry.execute/_parse_command_input and actual resolved default-handler identity selection; custom/alias paths retain existing semantics."
+    },
+    {
+      "id": "C4",
+      "requirement": "Explicit/YAML/built-in chunk budget above effective prepared-input capacity is refused, never silently clamped; include default 512 under N-CAP and whole-batch preflight."
+    },
+    {
+      "id": "C5",
+      "requirement": "LLM owns narrow counter/profile schema support; A2 assigns exact shipping/install or provisioned-root identity/license/hash and headless availability for capability/tokenizer assets. No global cache/first-use resolution. Headless document policy uses Memory built-ins/per-call options; no new RuntimeConfig document YAML, existing MCP ingestion settings preserved. Processor char settings cannot override/re-split source plan."
+    }
+  ],
+  "inherited_rules": "No vendor/tool retest, inventory/AST/archive audit or full framework source review. Product construction/effects remain unapproved."
+}

@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "workflow": "focused INGEST implementation-directive review",
+  "round": 1,
+  "maximum_rounds": 3,
+  "candidate": "92e356d17bc3a97be18d3d7cc4fed740b06795d1",
+  "target_sha256": "8abad750e6346b7118c6c23ea0fd2f2550f19a880179d23e134487c4d32495f2",
+  "outcome": "CHANGES_REQUESTED",
+  "all_seats_terminal": true,
+  "all_assessments_complete": true,
+  "threshold_met_each": false,
+  "results": {
+    "sol": {
+      "outcome": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "coverage": 10.0,
+      "overall": 9.6,
+      "mandatory_findings": [],
+      "report_sha256": "c072292921a5f358984a16a8ec81db78bd7121d3689d370b4980045e4d5ff8cc",
+      "report": "sol/report.md"
+    },
+    "astra": {
+      "outcome": "VERIFIED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "coverage": 10.0,
+      "overall": 9.7,
+      "mandatory_findings": [],
+      "report_sha256": "353947b7b20790b24b4bc2b4afe23c92b520a0a536988bec6a4c2ccb2fef646a",
+      "report": "astra/report.md"
+    },
+    "opus": {
+      "outcome": "CHANGES_REQUESTED",
+      "assessment_complete": true,
+      "areas_assessed": 8,
+      "coverage": 9.5,
+      "overall": 9.34,
+      "mandatory_findings": [
+        "M1 document read lifecycle/acceptance"
+      ],
+      "report_sha256": "1f1dadbd9a00ca901114dd584cffc2b99596110ba1ac6574ecacd01bf3bc1ab0",
+      "report": "opus/report.md"
+    }
+  },
+  "mandatory_findings": [
+    {
+      "id": "FOCUSED-R1-OPUS-M1",
+      "source_id": "M1",
+      "severity": "medium",
+      "gap": "Document /read lacks an explicit non-Memory-admission owned worker/cancellation/shutdown lifecycle and corresponding integration acceptance.",
+      "source_basis": "Chat read handler calls synchronous SmartFileReader.read; read is not a shared-admission command. Current generic worker clause specifies admission lease and ingestion-only witness.",
+      "disposition": "Retain and correct; complete source-backed gap is not waived by other VERIFIED seats."
+    }
+  ],
+  "advisory_groups": [
+    "headless document composition witness",
+    "Memory entry\u2192injected Tools planner call direction and neutral counting protocol",
+    "raw-tail default-handler dispatch seam",
+    "refuse over-capacity resolved chunk budget without clamping",
+    "counter/profile asset deployment ownership",
+    "headless defaults and processor settings boundary"
+  ],
+  "authority": "Bounded planning correction and fresh full focused round2 under existing max3 authorization; no product/effect activation."
+}

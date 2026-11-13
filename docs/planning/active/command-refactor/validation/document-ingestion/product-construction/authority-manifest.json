@@ -1,10 +1,10 @@
 {
-  "version": 6,
+  "version": 7,
   "initiative": "friday-command-refactor",
   "unit": "INGEST-PRODUCT-DIRECTIVE-PREPARATION",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "branch": "feature/cmd-ingest-001",
-  "state": "Conditional draft v0.6; focused implementation-directive review only",
+  "state": "Conditional draft v0.7; focused round2 review only",
   "inputs": [
     {
       "path": "AGENTS.md",
@@ -104,11 +104,11 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.md",
-      "sha256": "0b4b9e8e89ef6a3a1ad880a6a49c44597a4a1023928fa846148cede31992da7d"
+      "sha256": "601babef2d35c11b65d5c224e082b191b3212b973e287d16740be604b54ccbc4"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/phase-evidence-map.json",
-      "sha256": "38cbb0a4b2b70cca1ec1a44d2daeea48426743528165099cfedd125be70ac8a4"
+      "sha256": "e7b3b3afa0ad3ab46313f180ac3b23a62c90fe3cc5a26da6b91bcd7b90d3e909"
     },
     {
       "path": "docs/planning/active/command-refactor/approval/ingest-existing-store-policy.md",
@@ -116,7 +116,7 @@
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/branch-handoff.md",
-      "sha256": "02634741cd0f3591080b6178c31e86176746f0d51242034c358ad5b04405c6d8"
+      "sha256": "efb22a3c61fc7aa9f22f73b25a4bbfbe75db6f40624ae187d845599626261267"
     },
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/assessment.md",
@@ -153,6 +153,10 @@
     {
       "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/review-context.md",
       "sha256": "34b9bc82755e60ad3c266afb5a7f0fe6596e25c14cc8eadf2ad7144c09d1d170"
+    },
+    {
+      "path": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/focused-council/round2/correction-brief.json",
+      "sha256": "747c62569065d33900158f29a5b88a96fbb09cca5dbe5d7b07bf3457ac0a1ef5"
     }
   ],
   "required_final_activation_appendices": [

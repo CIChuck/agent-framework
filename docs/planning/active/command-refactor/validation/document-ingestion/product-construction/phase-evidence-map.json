@@ -1,5 +1,5 @@
 {
-  "version": "0.5",
+  "version": "0.7",
   "status": "conditional draft; planned witnesses are not executed tests or approved test-body exceptions",
   "baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
   "parent_rem_sha256": "5f8978fcd71cb38f561fefcb9e2dd0c263ba97a8551cda97746fad5be2b3bdc7",
@@ -277,7 +277,18 @@
         "DI-30",
         "DI-31",
         "DI-24",
-        "DI-22"
+        "DI-22",
+        "DI-08"
+      ],
+      "additional_planned_witnesses": [
+        {
+          "node": "tests/integration/test_document_ingestion.py::test_headless_document_ingestion_uses_injected_tools_planner",
+          "assertions": "Genuine converted document, injected Tools document planner and neutral qualified counter through real Memory entry/disposable store, no Chat import; exact one-plan source chunks and destination receipt.",
+          "requirements": [
+            "DI-08",
+            "DI-23"
+          ]
+        }
       ]
     },
     {
@@ -297,7 +308,7 @@
       "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
       "planned_witness": "tests/integration/test_document_ingestion.py::test_registry_stores_extracted_document_chunks",
       "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
-      "exit_assertion": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write.",
+      "exit_assertion": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit.",
       "traces_requirements": [
         "DI-05",
         "DI-06",
@@ -305,7 +316,36 @@
         "DI-16",
         "DI-19",
         "DI-29",
-        "DI-22"
+        "DI-22",
+        "DI-11",
+        "DI-26"
+      ],
+      "additional_planned_witnesses": [
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_document_read_keeps_event_loop_responsive",
+          "assertions": "Actual default document /read with slow/scanned conversion leaves event loop responsive; no Memory admission/embedding/storage and no Memory readiness dependency.",
+          "requirements": [
+            "DI-11",
+            "DI-26",
+            "DI-29"
+          ]
+        },
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_document_read_discards_output_and_joins_worker",
+          "assertions": "Before-start/during/after-completion-before-render cancellation discards output, does not launch cancelled queued work, joins owned Tools job and leaves no orphan or late CommandResult/display.",
+          "requirements": [
+            "DI-11",
+            "DI-26"
+          ]
+        },
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_shutdown_drains_document_read_worker",
+          "assertions": "Actual owning Chat request/exit lifecycle cancels/discards/drains read handles before shutdown returns, without Memory admission; bounded native work may finish before join.",
+          "requirements": [
+            "DI-11",
+            "DI-26"
+          ]
+        }
       ]
     },
     {
@@ -320,15 +360,45 @@
       "implemented_paths": [
         "packages/friday-tools/src/friday_tools/filesystem/readers/document_ingestion.py",
         "packages/friday-memory/src/friday_memory/ingestion/document_ingestion.py",
-        "packages/friday-chat/src/friday_chat/runtime.py"
+        "packages/friday-chat/src/friday_chat/runtime.py",
+        "packages/friday-chat/src/friday_chat/commands/registry.py",
+        "packages/friday-chat/src/friday_chat/commands/files.py"
       ],
       "source_input": "This phase's approved frozen implementation candidate, plus completed earlier phases; Q never supplies nonexistent candidate features.",
       "planned_witness": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_ingestion_waits_for_quiescence_without_late_storage",
       "witness_status": "planned; exact path/node/oracle must bind approved A2/A3 before generation; no current execution claim",
-      "exit_assertion": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence.",
+      "exit_assertion": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests.",
       "traces_requirements": [
         "DI-11",
-        "DI-26"
+        "DI-26",
+        "DI-29"
+      ],
+      "additional_planned_witnesses": [
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_document_read_keeps_event_loop_responsive",
+          "assertions": "Actual default document /read with slow/scanned conversion leaves event loop responsive; no Memory admission/embedding/storage and no Memory readiness dependency.",
+          "requirements": [
+            "DI-11",
+            "DI-26",
+            "DI-29"
+          ]
+        },
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_cancelled_document_read_discards_output_and_joins_worker",
+          "assertions": "Before-start/during/after-completion-before-render cancellation discards output, does not launch cancelled queued work, joins owned Tools job and leaves no orphan or late CommandResult/display.",
+          "requirements": [
+            "DI-11",
+            "DI-26"
+          ]
+        },
+        {
+          "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_shutdown_drains_document_read_worker",
+          "assertions": "Actual owning Chat request/exit lifecycle cancels/discards/drains read handles before shutdown returns, without Memory admission; bounded native work may finish before join.",
+          "requirements": [
+            "DI-11",
+            "DI-26"
+          ]
+        }
       ]
     },
     {
@@ -446,7 +516,8 @@
       "parent_definition": "Headless consumers import shared tokenizer/extractor without Chat/TUI; no Docling dependency in Commands. Default clean Chat install contains the declared converter stack and Certifi>=2026.10.19, verified after all installs; plain Tools without the extra fails lazily/actionably for documents. Both ordinary and `-O` installed real conversions/OCR/storage run.",
       "parent_definition_sha256": "86e20564e4922ab6d5d73d5079c51a0adad256244604806accf45d46afda1d94",
       "scoped_exit_references": [
-        "I3-C5"
+        "I3-C5",
+        "I3-C2"
       ],
       "earliest_complete_evidence_stage": "I3",
       "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
@@ -479,7 +550,8 @@
       "parent_definition": "Bound cold/warm startup and representative document elapsed time, progress/cancellation behavior and file/resource-limit refusal. Cancelled extraction cannot trigger later background ingestion. No unsupported hard-timeout or cross-platform claim.",
       "parent_definition_sha256": "42c72210f4538dfdd972b65310dae1fb6649f8d4280a75ad6671fe37d069f546",
       "scoped_exit_references": [
-        "I3-C4"
+        "I3-C4",
+        "I3-C3"
       ],
       "earliest_complete_evidence_stage": "I3",
       "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
@@ -656,7 +728,8 @@
       "parent_definition": "Event loop remains responsive during conversion/counting; cancellation before worker start, during work and immediately after completion cannot cause ingestion. Admission stays held until worker quiescence, late results discarded and cleanup idempotent. No hard-thread-timeout/OS-sandbox claim.",
       "parent_definition_sha256": "1141674213e700eaad213f914db38ddc42bbe54d792459dffcf3b7bfb9010960",
       "scoped_exit_references": [
-        "I3-C4"
+        "I3-C4",
+        "I3-C3"
       ],
       "earliest_complete_evidence_stage": "I3",
       "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
@@ -694,7 +767,8 @@
       "scoped_exit_references": [
         "I1-C3",
         "I2-C1",
-        "I3-C3"
+        "I3-C3",
+        "I3-C4"
       ],
       "earliest_complete_evidence_stage": "I3",
       "aggregate_disposition": "AG independently verifies the full original obligation on the final candidate; earlier scoped checks do not alone close it.",
@@ -1189,5 +1263,14 @@
   "path_list_semantics": "exit_assertions.implemented_paths lists primary source seams, not an exhaustive file partition or independent allowlist. Before generation A2 assigns every selected parent-authorized path to slice/owner/purpose/exit and A3 binds tests/helpers; an unassigned path blocks that slice.",
   "Q_replacement_qualification_plan": "replacement-qualification-plan.json",
   "intermediate_regression_rule": "Any unwaived regression in previously supported unchanged scope blocks the current slice exit; a later planned repair is not a waiver. Only an exact maintainer-approved changed baseline/temporary integration exception with replacement coverage can permit exit. Missing clearly later features are not falsely certified or used to excuse broken old paths.",
-  "intermediate_I1_compatibility": "Before I1 activation A2 freezes an additive staging design: new typed contracts, guarded entry/factory and direct positive/refusal tests without changing existing maintained callers to require an unprovided binding before I2 wiring. Existing baseline flows must still pass I1. This is not final permission for an unguarded direct opener or a released legacy mode. If exact public shapes/file scope cannot support additive staging, stop before I1 and obtain a named maintainer-approved integration exception and coverage; no blanket temporary waiver. Preparation/role/cache-space changes are also staged: legacy/unbound inputs and vectors stay unchanged in I1, with paired I1-C2 witnesses; only newly guarded qualified paths use new preparation, until I2 binds and switches actual existing callers."
+  "intermediate_I1_compatibility": "Before I1 activation A2 freezes an additive staging design: new typed contracts, guarded entry/factory and direct positive/refusal tests without changing existing maintained callers to require an unprovided binding before I2 wiring. Existing baseline flows must still pass I1. This is not final permission for an unguarded direct opener or a released legacy mode. If exact public shapes/file scope cannot support additive staging, stop before I1 and obtain a named maintainer-approved integration exception and coverage; no blanket temporary waiver. Preparation/role/cache-space changes are also staged: legacy/unbound inputs and vectors stay unchanged in I1, with paired I1-C2 witnesses; only newly guarded qualified paths use new preparation, until I2 binds and switches actual existing callers.",
+  "document_read_lifecycle": {
+    "frontend_owner": "Chat default read handler and existing registry/files/runtime request lifecycle",
+    "execution_owner": "Tools converter worker",
+    "adapter_contract": "Awaitable Chat document-read adapter; A2 freezes signature and typed owned job. Existing sync legacy text/table API retained.",
+    "memory_admission": null,
+    "embedding_or_store_requirement": false,
+    "cancel_exit_rule": "Invalidate output eligibility, cancel queued work or await owned running job, join/drain before owning lifecycle returns, no late result/display or orphan.",
+    "headless_rule": "Equivalent caller ownership over same shared worker API, no Chat import."
+  }
 }

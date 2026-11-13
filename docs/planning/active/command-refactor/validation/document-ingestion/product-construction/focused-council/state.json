@@ -2,11 +2,33 @@
   "version": 1,
   "workflow": "focused directive council",
   "maximum_rounds": 3,
-  "rounds_started": 1,
-  "rounds_completed": 0,
-  "current_round": 1,
-  "status": "round1_in_review",
+  "rounds_started": 2,
+  "rounds_completed": 1,
+  "current_round": 2,
+  "status": "round2_in_review",
   "stop_on_gate_or_round3": true,
   "construction_approved": false,
-  "history": []
+  "history": [
+    {
+      "round": 1,
+      "candidate": "92e356d17bc3a97be18d3d7cc4fed740b06795d1",
+      "outcome": "CHANGES_REQUESTED",
+      "report": "round1/results/report.md",
+      "assessment_complete": true,
+      "scores": {
+        "sol": {
+          "coverage": 10.0,
+          "overall": 9.6
+        },
+        "astra": {
+          "coverage": 10.0,
+          "overall": 9.7
+        },
+        "opus": {
+          "coverage": 9.5,
+          "overall": 9.34
+        }
+      }
+    }
+  ]
 }

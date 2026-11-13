@@ -1,6 +1,6 @@
 # CD-CMD-INGEST-001 — shared document ingestion implementation
 
-Version: **0.6, conditional construction draft**, 2026-11-13.
+Version: **0.7, conditional construction draft**, 2026-11-13.
 Initiative: `friday-command-refactor`; branch: `feature/cmd-ingest-001`.
 Source and test baseline: `8c36d8e26c618032c1ff536004a582c07ec56a5b`.
 Status: **proposed implementation scope; construction not activated**.
@@ -143,7 +143,13 @@ new `document-ingestion` extra and bind exact compatible artifacts in the lock.
 Default Chat requests that extra. Retain the legacy Tools `documents`,
 `spreadsheets` and `all-formats` extras; they are not aliases for Docling support.
 Memory requests LLM's narrow counter extra, without pulling Docling into
-headless Memory/Runtime/CLI/Agent installations.
+headless Memory/Runtime/CLI/Agent installations. LLM owns the narrow-counter
+package support and qualified capability-record schema/resolution; readiness/A2
+assigns every selected capability record and tokenizer asset to an exact shipping
+package/install path or explicitly provisioned manifest root, with identity/hash,
+license and headless-profile availability. Tools consumes injected capabilities,
+not global caches or first-use downloads. This asset assignment is an explicit
+A2 deliverable, not an implicit dependency choice.
 
 The combined test used python-dateutil **2.9.0.post0**, compatible with the current
 Friday-LLM dependency constraints. Do not copy the standalone experiment's 4.0.0
@@ -192,6 +198,13 @@ only after resolving a **default** file handler. Preserve custom handlers,
 aliases' actual targets and the parser for all unrelated commands. Root API54
 and its literal tests stay unchanged.
 
+Chat `CommandRegistry.execute` preserves the original raw tail before
+`_parse_command_input` loses quoting, resolves the canonical command and actual
+registered handler, and selects the new file parser only when that handler is
+the registered default `/read` or `/ingest` handler. Match actual handler identity,
+not a name string; custom overrides retain their current argument path, and
+aliases follow the resolved target.
+
 Implement REM C's exact quoted-path/opaque-description contract, including
 repeated spaces, Unicode and no shell interpolation. Recognize exactly
 `--chunking=<document|recursive|fixed>` and `--chunk-tokens=<positive integer>`
@@ -203,7 +216,16 @@ effective limit/truncation. Do not replace the global parser with shlex.
 
 `SmartFileReader` delegates the four formats to the shared converter. `/read`
 renders actual content and sideband metadata, without chunking/embedding solely
-to display it. `/ingest` passes the successful source into the common entry once.
+to display it. Its **document** path uses a Chat-owned awaitable SmartFileReader
+adapter over the same Tools-owned conversion worker; it must not call blocking
+conversion directly on the event loop. Preserve the synchronous legacy text/table
+API and behavior; A2 binds the exact async document adapter and request-handle
+signatures in existing registry/files/runtime seams. This read-only handle takes
+**no Memory admission**, requires no embedding profile/store, and follows the
+cancel/discard/join/shutdown rules in §3.5. Read-only conversion does not construct
+the Memory entry, embedding counter/profile or Docling chunk planner merely to
+display a document. `/ingest` passes the successful source
+into the common entry once.
 Remove its Chat-owned character slicing. Success requires the exact positive
 stored-chunk count returned by Memory. Render effective strategy/budget and
 truthful coverage/partial-failure details; do not infer success from a source
@@ -220,14 +242,30 @@ ingestion:
 
 Resolve each option independently: per-ingestion override → YAML → built-in.
 Both YAML keys are optional; strict invalid values refuse configuration preflight.
+A resolved explicit, YAML or built-in budget above the qualified effective model
+capacity, including required preparation overhead, is refused with the supported
+limit; **never silently clamp** it. Validate known capacity before conversion
+and preflight the complete final embedding batch before provider/storage calls.
+The N-CAP case includes a smaller capacity than the built-in 512 default.
 The budget counts the **final embedding input**, including contextual headers,
 model preparation and special tokens; it is neither characters nor an exact
 requested length. `smart_file.chunk_size/chunk_overlap` cease governing `/ingest`
 and are not token aliases. No new overlap option.
 
-Tools' injected Docling adapter implements document-aware chunking for converted
-documents. Memory implements deterministic document-block segmentation for
-supplied text/Markdown/code/JSON/YAML/CSV/TSV/web text, plus shared recursive and
+This unit adds no document-chunking YAML subtree to `RuntimeConfig`. Headless
+consumers use Memory built-ins plus per-call typed options; existing MCP ingestion
+configuration is preserved for its separate unsplit snapshot protocol. Existing
+smart_read/processor character chunk settings cannot override common-plan source
+chunks or trigger another split; they are not token-policy aliases.
+
+Memory's shared entry **invokes an injected Tools document planner**. That
+adapter retains Docling structures internally and returns Core-owned neutral
+source/plan values, without exposing vendor objects across package boundaries.
+The composition root injects the Core counting/preparation protocol implemented
+by the qualified LLM counter; Tools acquires no default LLM dependency. A2 freezes
+that protocol and these call directions. Tools' adapter implements document-aware
+chunking for converted documents. Memory implements deterministic document-block
+segmentation for supplied text/Markdown/code/JSON/YAML/CSV/TSV/web text, plus shared recursive and
 fixed strategies. Preserve Unicode, source spans/order and provenance; preserve
 structured table headers and sheet/slide boundaries. Plain delimited text has
 no inferred header and reports absent supplied table structure. Freeze exact
@@ -318,12 +356,27 @@ Apply **all FC-01–14**, including the following narrow safeguards:
 ### 3.5 Worker and admission lifecycle
 
 Conversion/OCR/audit/repeated chunk counting run off the event loop in owned
-bounded work. That worker has no model-provider or storage capability. Hold the
-request's shared admission through quiescence. Cancellation invalidates storage
-eligibility, discards late output and waits for owned work before releasing
-admission. A timeout cannot leave an earlier success eligible. Freeze the
-attempt/source/profile/plan identities and failure cases; do not copy test-only
-audit hooks into product code as a claim of OS sandboxing.
+bounded work. That worker has no model-provider or storage capability. For
+`/ingest` and other persistence requests, hold the request's shared Memory
+admission through quiescence. Cancellation invalidates storage eligibility,
+discards late output and joins owned work before releasing that admission.
+
+For document `/read`, Chat owns a separate read-only request handle without a
+Memory lease. The async handler awaits the Tools-owned job. Cancel before start
+must not launch work; cancel during work or after completion but before rendering
+invalidates output eligibility. No late `CommandResult`/display may escape.
+The owning command lifecycle cancels/discards and drains all outstanding read
+handles on exit/shutdown before that lifecycle returns. Per-request cleanup joins
+the worker even if its caller is cancelled; it cannot orphan a thread/task or
+abandon a late completion. Native conversion need not stop immediately: join is
+awaitable and the existing bounded resource/time envelope still applies.
+Read-only work never acquires Memory admission merely to reuse this lifecycle.
+
+A timeout cannot leave earlier output/storage success eligible. A2 freezes the
+actual request registry/drain hooks and typed await/cancel/join contract in the
+existing Chat registry/files/runtime and Tools worker paths, including headless
+ownership. Freeze attempt/source/profile/plan identities and failure cases; do
+not copy test-only audit hooks into product code as a claim of OS sandboxing.
 
 **Owners:** Tools owns the converter/audit/Docling-planning worker implementation
 and its join/quiescence. LLM supplies the side-effect-free synchronous model
@@ -331,7 +384,10 @@ counter. Memory owns non-Docling planning and its bounded offload, never a secon
 converter. Chat owns its request and admission lease; a headless composition
 root owns the equivalent request/lease and uses the same await/cancel/join
 contract without Chat imports. A2 freezes those typed handles and cleanup rules.
-No caller may release admission or persist a late result before owned work ends.
+No caller may release admission, persist a late result or emit a stale read result
+before its owned cleanup has completed. Read-only request tracking belongs to
+Chat; conversion policy/worker execution remains in Tools and is reusable by a
+headless caller without importing Chat.
 
 ## 4. Exact file boundaries
 
@@ -414,6 +470,19 @@ no placeholder/diagnostic text, retained missing-description behavior. Query
 and reopen the store in a separate process. Run zero-ingestion checks for corrupt,
 empty/OCR-no-text, missing dependency/assets, known partial conversion, unsafe
 Office structure, source change, limits, cancellation and model/vector refusal.
+Also execute a genuine **headless document** composition: Tools converter/
+document-planner capability injected into the Memory entry, real disposable
+storage and model-matched counting, with no Friday Chat import. Assert source
+chunks equal the one shared plan and the injected counter/planner is used; a
+text-only headless test cannot prove this document path.
+
+Document `/read` acceptance is separate from ingestion: a deliberately slow or
+scanned conversion must leave the event loop responsive; cancel before start,
+during conversion and after completion-before-render must discard output and
+join work; shutdown must drain the owned handle. Assert zero Memory admission,
+embedding and storage calls, including absent/unready Memory, and no orphan task/
+worker or late display. These are DI-11/26 I3-C3/C4 witnesses in the phase map.
+
 Use deterministic vectors for offline integration and real model-matched counting;
 reserve actual Friday-LLM inference for a separately bounded approved window.
 
