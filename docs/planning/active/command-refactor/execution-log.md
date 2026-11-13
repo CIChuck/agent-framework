@@ -3890,3 +3890,8 @@ and pass native25-file validation,88 tests/mode and31-source typing/lint. An
 integrity-valid modified DOCX is rejected specifically by the semantic checker.
 Qwen token counts remain null and no model/network/store action occurred.
 Freeze for delta-first and full LD review; no product or acceptance advancement.
+
+The archived v1 Markdown snapshot initially retained links relative to its old
+location; the lifecycle check correctly failed. Links were rebased only, and the
+canonical full documentation check now passes. That setup attempt has no green
+verification credit; current admin receipts are retained separately.

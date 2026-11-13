@@ -43,9 +43,9 @@ An identical optimized copy is in the corresponding `-optimized` run. The files
 are named `orion-016` through `orion-384` with format extensions. `oracles.json`
 contains facts/questions; `manifest.json` binds source and every asset hash.
 Both complete copies and reproducible source/receipts are retained in the
-[compact archive](evidence.tar.gz), with [member hashes](evidence-index.json)
-and [measured facts](facts.json). Dependencies are excluded. Manual commands are
-in the [harness README](../../../../../../../../tests/readiness/ingest/README.md).
+[compact archive](../../evidence.tar.gz), with [member hashes](../../evidence-index.json)
+and [measured facts](../../facts.json). Dependencies are excluded. Manual commands are
+in the [harness README](../../../../../../../../../../tests/readiness/ingest/README.md).
 
 Offline regressions87 per mode, focused Ruff/format and private mypy31 sources
 pass. Prior evaluated `behavior.py`, `e2e.py` and existing fixtures retain exact
@@ -53,7 +53,7 @@ bytes. Known repository debt remains unwaived; broad product suites were not
 rerun for this test-only addition. Native validation uses a Python audit guard,
 not an OS sandbox; native-library I/O retains that declared limitation.
 
-Next: fresh [LD-01–08](criteria.md) review, then qualify Qwen's embedding-serving
+Next: fresh [LD-01–08](../../criteria.md) review, then qualify Qwen's embedding-serving
 mode and tokenizer before any larger-context inference comparison. A production
 model switch remains a separate decision. Whole Gate-A9.5, product construction,
 acceptance and delivery are not granted here.
