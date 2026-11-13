@@ -93,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** STOPPED for maintainer feedback after activation council round3/3. Final complete scores: Sol 9.53 VERIFIED; Astra 9.595 VERIFIED; Opus 9.27 CHANGES_REQUESTED with converter deployment-binding gap. The 9.5-per-seat/no-mandatory-findings gate is unmet. No further technical corrections, replacement/fourth round, product generation or live effects without new direction. Reviewed activation design remains frozen at fd7d9f5d.
+**Next gate:** Activation council extension pass1/3, global round4/6, authorized by update per council recommendations and continue 3 more rounds. Review independent converter settings binding and final-council recommendations plus full unchanged Review A1–A8. Fresh Sol/Astra/Opus, complete 8/8, zero mandatory findings and overall>=9.5 each. Bounded planning corrections only; stop on success or after round6 for guidance. No construction, replacement/seventh round, vendor/model campaign or live effects.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)
@@ -342,4 +342,4 @@ and fresh implementation validation remain separate from full A0–A4 constructi
 The [private typing approval](validation/document-ingestion/gate-a/construction/c0/private-typecheck-approval.json)
 permits five pinned static-tool wheels only.
 
-Final activation council: [outcome and remaining converter-binding issue](validation/document-ingestion/product-construction/activation/council/round3/results/report.md). Three-round review authorization is exhausted; awaiting maintainer direction.
+Final activation council: [outcome and remaining converter-binding issue](validation/document-ingestion/product-construction/activation/council/round3/results/report.md). Historical three-round stop point; superseded by the current authorized three-round extension.

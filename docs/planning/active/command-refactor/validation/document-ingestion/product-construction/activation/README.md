@@ -5,7 +5,7 @@ maintainer decisions directly: no separate model/parity qualification campaign;
 clear whole-workbook refusal for affected XLSX inputs; one shared process service.
 Worker proof is implementation acceptance at I3-C4, not a pre-coding prerequisite.
 
-Version 0.3, 2026-11-13. Prepared under Chuck's latest **proceed**, following
+Version 0.4, 2026-11-13. Prepared under Chuck's latest **proceed**, following
 [verified focused council round 2](../focused-council/round2/results/report.md).
 This direction authorizes this planning package. **Product construction is not
 activated.** The reviewed [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md)
@@ -21,7 +21,7 @@ Review these together:
 | Artifact | Review purpose |
 | --- | --- |
 | [Current requirement dispositions](requirement-reconciliation.md) | Exact superseded parent obligations and retained runtime/acceptance safeguards. |
-| [Shared contracts](shared-contracts.md) | Exact neutral types, public signatures, errors, preparation/counting and plan/storage handoffs, async read lifecycle, worker choice and versioned namespace/recovery rules. |
+| [Shared contracts](shared-contracts.md) | Exact neutral types, document-settings and embedding resolvers, injected factory/plan/storage handoffs, read lifecycle, worker/IPC and namespace/recovery rules. |
 | [Exact slice file map](slice-file-map.json) | Each selected source/metadata/guide path, owner, purpose and eligible exit. No whole-package write permission or implicit helper choice. |
 | [Case-level test map](test-case-map.json) | Named retained/adapted/replaced nodes with frozen old identities, expected assertions and new public witnesses. All unlisted bodies remain retained. |
 | [Digest vectors](digest-vectors.json) | Five canonical JSON examples plus one raw UTF-8 content hash: space, preparation drift, Unicode, plan and receipt. Synthetic examples earn no real-model qualification. |
@@ -100,5 +100,11 @@ effects. No document verdict closes these gates or grants construction authority
 The next step after this bounded council is the final exact activation/impact
 approval package. No product generation, production change, model switch, reset,
 re-embedding, hosted call or install occurs under the current review authorization.
-The initiative remains started/local. Stop on a passing council or after round 3
+The initiative remains started/local. Stop on a passing council or after round 6
 for maintainer feedback under the unchanged user-approved instructions.
+
+
+The [current extension authorization](council/extension-authorization.json) permits
+at most three additional councils, global rounds 4–6. It supersedes only the old
+brief's three-round cap; scope, roster, weights and 9.5-per-seat gate are unchanged.
+The previous stop point and reports remain historical evidence, not current limits.

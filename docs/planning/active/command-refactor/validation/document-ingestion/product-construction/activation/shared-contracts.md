@@ -1,6 +1,6 @@
 # INGEST activation appendix A2 — shared contracts
 
-Version 0.3, 2026-11-13. **Proposed exact design; not activated.** Prepared from
+Version 0.4, 2026-11-13. **Proposed exact design; not activated.** Prepared from
 `7a3e00bc9ef77adee25b61fc52ff91875e172738` and the unchanged
 [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md).
 The directive, REM and compatibility annex control except for the explicit
@@ -38,6 +38,7 @@ No implicit whitespace/Unicode normalization applies to source or model text.
 | `SourceBlock` | `block_id: str`, `kind: Literal['text','heading','table','separator','label']`, `span: SourceSpan`, `heading_spans: tuple[SourceSpan,...]`, `table: TableStructure | None`; table populated only for declared structured tables. Labels/separators cannot establish meaningful source content. |
 | `CoverageWarning` | `code: str`, `unit_indices: tuple[int,...]`, `count: int | None`; codes are selected from the versioned format-profile allowlist. Human messages are sideband, not source text. |
 | `SourceDocument` | `source_id: Id`, `source_kind: Literal['text','markdown','code','json','yaml','csv','tsv','web_text','tool_text','pdf','docx','xlsx','pptx']`, `locator: str`, `raw_sha256: Digest`, `content: str`, `content_sha256: Digest`, `conversion_profile_sha256: Digest | None`, `units: tuple[SourceUnit,...]`, `blocks: tuple[SourceBlock,...]`, `warnings: tuple[CoverageWarning,...]`, `complete: Literal[True]`; content nonempty and contains actual meaningful source text. |
+| `DocumentConversionSettings` | `schema_version: Literal[1]`, `assets_root: Path`, `profile_id: str`, `asset_manifest_sha256: Digest`, `scratch_root: Path`; both roots absolute, profile ID matches `[A-Za-z0-9][A-Za-z0-9_.-]{0,63}`. Frozen neutral deployment value; no embedding, Memory or frontend reference and no filesystem effects in value construction. |
 | `EmbeddingSpaceIdentity` | `schema_version: Literal[1]`, `model_identity: str`, `artifact_identity: str`, `tokenizer_sha256: Digest`, `preparation_sha256: Digest`, `dimensions: int`, `normalization: Literal['none','l2']`, `metric: Literal['cosine','l2','ip']`; dimensions positive. Model/artifact identity records the configured space under section 3; a declared identity is never labelled immutable serving evidence. |
 | `PreparedInput` | `space_sha256: Digest`, `role: EmbeddingRole`, `input_sha256: Digest`, `prepared_sha256: Digest`, `text: str`, `token_count: int`; text is the exact wire payload; prepared_sha256 hashes effective formatted UTF-8 input after declared client/server preparation. Count includes special tokens. Never persist embedding preparation instead of source content. |
 | `PreparedVector` | `space_sha256: Digest`, `role: EmbeddingRole`, `input_sha256: Digest`, `prepared_sha256: Digest`, `values: tuple[float,...]`; exact declared dimension, finite real values, no booleans. |
@@ -133,7 +134,8 @@ profile_id: str, asset_manifest_sha256: Digest, scratch_root: Path)` in
 Construction is inert: no import of heavyweight document engines, worker spawn,
 model/counter/store creation or asset fetch until the relevant operation.
 LLM exposes `LocalTokenCounterFactory(*, assets_root: Path,
-asset_manifest_sha256: Digest, record_id: str)` in `embedding_limits`.
+asset_manifest_sha256: Digest, record_id: str,
+capability_record_sha256: Digest)` in `embedding_limits`.
 Memory store adapters add only keyword-only
 `open_request: StoreOpenRequest | None = None`; new guarded factory paths require
 it. I2 admission forwards it explicitly, preserving all old positional parameters.
@@ -170,6 +172,70 @@ The deployment manifest binds an absolute `assets_root`; every tokenizer, OCR,
 converter and capability asset has a relative path, hash, size, license/source
 and backend identity. Resolve beneath that root; refuse traversal/escaping symlinks,
 hash before opening and never fetch on first use or consult HOME/global caches.
+
+### Document-conversion settings binding (independent of embeddings)
+
+Tools, in the selected `friday_tools.filesystem.readers.document_ingestion`
+module, provides exactly:
+`resolve_document_conversion_settings(*, settings_path: Path | None = None,
+environment: Mapping[str, str]) -> DocumentConversionSettings` and
+`create_document_converter(*, settings_path: Path | None = None,
+environment: Mapping[str, str]) -> DocumentConverter`.
+The factory calls the resolver, then the already specified Docling constructor
+with those four settings. These public functions import no new Memory/LLM/frontend
+implementation. Resolution does bounded local reads only; no worker, directory,
+model client, package install, asset fetch or document conversion starts here.
+
+Precedence: explicit `settings_path`, else the one
+`FRIDAY_DOCUMENT_CONVERSION_MANIFEST` value in the supplied environment snapshot.
+Selected path must be absolute. An empty/invalid explicit path refuses without
+falling back. There is no cwd/upward/HOME/.friday lookup, default temp-dir guess,
+new Runtime document YAML or use of FRIDAY_EMBEDDING_MANIFEST. Disabled Memory,
+plain text/JSON/table reads and non-document ingestion do not resolve this binding.
+The four document formats alone require it. `/read` is explicitly allowed to
+resolve this document binding without constructing Memory/embedding services.
+
+Strict JSON fields are exactly `schema_version: 1`, `assets_root: absolute path`,
+`profile_id: string`, `asset_manifest_sha256: Digest`, `scratch_root: absolute path`.
+Cap the settings and asset-manifest JSON at 1 MiB; reject duplicate/unknown keys,
+booleans in integer fields, malformed IDs/digests, relative roots and symlink/path
+escapes. The fixed asset-manifest path is `<assets_root>/asset-manifest.json`;
+its bytes must match asset_manifest_sha256. That manifest has `schema_version: 1`
+and `assets: array[{path: relative string, sha256: Digest, size: nonnegative int,
+license: nonempty string, source: nonempty string, backend: nonempty string}]`,
+at most 2,048 unique paths. It excludes deployment/capability manifests as already
+required. The profile is the bound `document-profiles/<profile_id>.json` entry;
+profile/tokenizer/OCR/converter asset resolution stays beneath assets_root.
+Resolver reads only bounded settings/manifest/profile bytes and checks required
+asset path containment, existence and sizes. Large binary byte-hash validation
+belongs to the owned worker before conversion/use, not the frontend event loop. Embedding deployments sharing these
+assets may explicitly name asset-manifest.json; document binding never resolves
+an embedding record. Retain the parsed immutable settings for service lifetime;
+revalidate assets at open rather than silently adopting changed files.
+
+Missing/unreadable settings or contradictory schema is typed `readiness` with a
+safe actionable message naming the document binding. Missing profile/assets is
+`missing_asset`, absent document libraries `missing_dependency`; tampered settings/manifest/profile
+bytes are `identity`. These binding/admission errors refuse before worker spawn,
+scratch creation, embedding or storage. Later binary drift is an identity failure
+in the worker before conversion; it cannot produce success or stored content.
+Plain-text `/read` remains available. The resolver validates scratch
+path shape/ownership policy without creating it; only an admitted converter.open
+creates the owned request directory. If runtime permission/containment checks fail,
+refuse before spawning, without altering an unrelated directory.
+
+I3-C1 owns the Tools resolver/factory and Core settings value (Core declaration may
+land additively at I1-C1). Chat runtime/adapters wire the lazy factory at I3-C3,
+not at startup: after selecting an actual document command, use the captured
+explicit environment snapshot or explicitly injected path, resolve once, create
+one inert converter and register it before opening. `/read` takes no Memory lease;
+`/ingest` separately performs its existing admission and capability checks.
+Runtime/headless callers use the same two public functions and pass the returned
+converter through DI ownership or an explicit try/finally; no RuntimeKernel private
+state is consulted. Future TUI consumes this public binding without a new engine.
+I3-C5 architecture, guide and README work must explain both environment bindings,
+API precedence, provisioned assets, scratch requirements and format-local refusals.
+Synthetic test bindings are generated in disposable roots, never production config.
 
 ### Exact manifest discovery and resolver
 
@@ -227,7 +293,7 @@ legacy direct construction passes its existing model_name/model_target. When
 `capabilities` is explicitly injected, validate its selected route and configured
 limit/dimension overrides locally and do not rediscover another record. When omitted, existing constructor/from_spec shapes remain valid
 and use this resolver with one environment snapshot. No new constructor-required
-parameter or YAML key. Deployment/test setup provisions manifests and local assets;
+parameter or required YAML key. Deployment/test setup provisions manifests and local assets;
 all supported selected defaults must resolve positively at I2, including hosted
 and non-pool/legacy variants. Ordinary missing/conflicting-manifest tests are
 negative controls, never replacements for default positive coverage. I1 legacy
@@ -276,8 +342,16 @@ changing models. Existing files are never migrated/stamped. Optional historical
 evidence does not turn a configured record into a stronger identity claim.
 
 The pure `LocalTokenCounterFactory` contains only `assets_root`,
-`asset_manifest_sha256`, `record_id`; it validates the record locally and retains
-no endpoint, credential or model/store client.
+`asset_manifest_sha256`, `record_id`, `capability_record_sha256`. The resolver
+retains the originally selected record hash from the deployment manifest in
+ResolvedEmbeddingCapabilities and passes it to the factory. Each create, including
+after transfer to the child, reads the record once into a bounded byte buffer,
+compares its SHA256 to that retained value, then parses exactly those bytes.
+Changed/missing record or asset binding refuses with identity/readiness before
+planning/provider/storage; it never silently follows a new manifest or record.
+The serialized factory carries the same expected hash. No endpoint, credential,
+client, store or mutable record reference is retained. Parent plan/prepared-vector
+validation remains independently required even when child creation succeeds.
 
 LLM loads `embedding-capabilities/<record-id>.json` and tokenizer files from
 `tokenizers/<artifact-id>/`; Tools loads `document-profiles/<profile-id>.json`
@@ -366,12 +440,39 @@ the converted Docling object until planning/close so no second conversion occurs
 Only validated immutable Core values reach the parent. Parent writes framed
 control/factory input through child stdin, concurrently reads framed results from
 child stdout and drains stderr to a max 1 MiB diagnostic ring while continuing to
-consume/discard excess. Vendor stdout is redirected inside the child to stderr
-before imports; only protocol frames use stdout. Writer, result reader and stderr
+consume/discard excess. Python executes the existing parent package initializers before the selected
+worker module. Those initializers must remain stdout-silent/offline in the
+supported installed profile; their time and memory count in the cold/RSS limits.
+No edit of package initializers or new bootstrap shim is authorized. At the
+worker module's first executable setup, duplicate fd 1 for the protocol writer,
+then redirect fd 1 to stderr before heavyweight/vendor imports; native vendor
+stdout is thereby drained as diagnostics. Only the retained protocol descriptor
+writes frames. Unexpected parent-initializer stdout is a protocol failure, never
+source content or success. The installed launch witness proves this boundary;
+if selected seams cannot satisfy it, stop for scope reconciliation. Writer, result reader and stderr
 drain are retained tasks started with the child and joined on close; no inherited
 terminal stream or full-pipe deadlock. EOF/truncated frame is worker_failed; any
 oversize frame is resource_limit and invalidates the attempt. Diagnostic text is
 never ingested or rendered as document content.
+
+Version-1 IPC envelopes have exactly `version: 1`, `attempt_id: Id`,
+`kind: string`, `payload: strict typed record`. The small state table is normative:
+
+| State | Direction / kind | Payload and transition |
+| --- | --- | --- |
+| new | parent -> child `open` | admitted snapshot locator/hash and bound conversion profile; enters converting |
+| converting | child -> parent `opened` | SourceDocument; enters converted |
+| converted | parent -> child `plan` | ResolvedChunkingOptions, expected space digest and declared trusted-factory frame length; reads one bounded factory frame, enters planning |
+| planning | child -> parent `planned` | ChunkPlan; returns converted, with one completed plan per session |
+| converting/planning | child -> parent `progress` | IngestionProgressEvent; state unchanged |
+| any live state | parent -> child `close` | empty record; discard work, then child `closed` with empty record; terminal |
+| any live state | child -> parent `failure` | IngestionFailure; terminal, output ineligible and parent drains/reaps |
+
+Unknown version/kind/key, wrong attempt, duplicate terminal/plan or invalid state
+transition refuses the attempt. User-controlled data is always JSON/source bytes,
+never a trusted-factory frame. The sole length-announced factory transfer is read
+only after a validated parent plan message. OS cancellation/timeout still owns
+TERM/KILL/reap; IPC close acknowledgment alone is not proof of process exit.
 
 A service permits one active session and one queued request. Further opens fail
 with `worker_busy` before source I/O/spawn. Queued cancellation never launches.
@@ -433,28 +534,37 @@ cleanup even if an earlier close fails; preserve/report the first failure and
 unknown quiescence. Repeated shutdown joins the same cleanup task, never returns
 false success. Existing extraction drains remain ordered before closing clients.
 
-Chat does not use this container: its existing lifecycle builder and
-`FrameworkAsyncClientLifecycle` gain optional keyword-only
-`ingestion_entry: IngestionEntry | None = None` and
-`document_converter: DocumentConverter | None = None`. A real-client composition
-passes the same entry/converter used by registry adapters. In the selected runtime.py
-assembly, move the lifecycle builder after embedding/memory wrappers and the
-inert converter are constructed. Pass entry=None until a destination is admitted;
-wrapper construction stays inert under the lazy-admission contract. Do not access a persistent store simply to register
-cleanup. Any operation needing an admitted destination creates/binds its entry
-after successful admission, with a retained owner ensuring failure cleanup; no
-eager placeholder entry is allowed. `close()` rejects new
-requests, drains entry then converter, then closes existing LLM clients, with the
-same retained-task/failure rules. Fake runtime constructs no worker.
+Chat does not use this container. Its existing builder and public
+`FrameworkAsyncClientLifecycle` preserve no-argument construction and `close`,
+adding optional keyword-only `ingestion_entry: IngestionEntry | None = None` and
+`document_converter: DocumentConverter | None = None`. Keep the public dataclass
+frozen if desired, but put mutable bindings/closing state/retained close tasks in
+a typed private `_OwnedIngestionState` holder declared in adapters.py, not in
+frozen fields. A short synchronous lock protects binding/closing transitions; no
+I/O or await occurs under it. Async cleanup awaits outside the lock. This adds no
+helper module and no repeated object.__setattr__ mutation of the frozen wrapper.
 
-For lazy Chat admission the lifecycle adds
+The lifecycle is constructed after inert wrappers, with both optional values None
+until needed. It does not resolve document settings or create a converter at boot.
+It adds `bind_document_converter(self, *, document_converter: DocumentConverter)
+-> None` for read-only/lazy ownership, and
 `bind_ingestion(self, *, entry: IngestionEntry,
-document_converter: DocumentConverter) -> None` with the same successful-transfer,
-same-pair idempotence and closing/rebinding refusal rules as Runtime DI. Its
-constructor keywords may remain None until first admitted use. Read-only sessions
-are tracked by the converter already owned through the constructor and create no
-entry; converter.aclose drains them even if entry remains None. The runtime/adapters own this binding,
-not app.py, so the existing app finally path remains source-unchanged.
+document_converter: DocumentConverter) -> None` for an admitted entry.
+Both synchronously reject closing/closed or different-object rebinds; repeating
+the same converter/pair is idempotent. Successful bind transfers cleanup ownership;
+a rejected bind leaves the caller responsible for its arguments. A later entry
+must use the already bound converter. The runtime/adapters factory resolves the
+document-specific settings only on a four-format request and registers the
+converter before open; no Memory entry is required for /read. An entry is created
+and bound only after its destination is admitted. This avoids both the old
+assembly-order problem and an eager placeholder entry or persistent-store access.
+
+`close()` rejects new requests, drains the entry if any, closes the converter and
+all its read-only sessions if any, then closes existing LLM clients, retaining the
+same shielded cleanup task across repeated cancellation and reporting failures
+honestly. Registration/request start and close are ordered by the holder state;
+no request can start after closing wins. Fake runtime owns no worker. These edits
+stay in selected adapters.py/runtime.py; the app.py finally path is unchanged.
 
 Renderer-free CLI/TUI composition can call these public factories and
 `friday_runtime.di.DIContainer.bind_ingestion`, or explicitly own the pair in
@@ -462,6 +572,16 @@ try/finally around the existing RuntimeKernel. RuntimeKernel, its private `_di`,
 its exports and existing CLI executable surfaces remain unchanged; this is a
 reusable public capability, not a new wired CLI/TUI command. No private-field
 access, RuntimeKernel patch or frontend-specific conversion engine is implied.
+
+For headless read-only use, call the public Tools settings resolver/factory
+with settings_path or the explicit environment snapshot, then
+`await converter.open(...)` and `await converter.aclose()` in try/finally. Runtime
+DI adds the same `bind_document_converter` method to register a converter alone;
+its shutdown closes it even if ingestion_entry stays None. Later bind_ingestion
+must reference that converter. No settings lookup occurs in default Runtime boot.
+For /ingest, compose this converter with the separately resolved LLM/Memory pieces
+below. Missing embedding manifests cannot prevent a correctly bound read-only
+conversion; missing document binding cannot prevent plain-text reads.
 
 For headless store composition, explicitly construct the already public
 `friday_memory.adapters.vector.ChromaVectorStore(collection_name=...,

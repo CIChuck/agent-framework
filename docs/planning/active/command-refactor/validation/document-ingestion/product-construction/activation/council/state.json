@@ -1,11 +1,11 @@
 {
   "version": 1,
   "workflow": "activation_package_council",
-  "maximum_rounds": 3,
-  "rounds_started": 3,
+  "maximum_rounds": 6,
+  "rounds_started": 4,
   "rounds_completed": 3,
-  "current_round": null,
-  "status": "stopped_for_maintainer_feedback",
+  "current_round": 4,
+  "status": "extension_pass1_round4_frozen_for_review",
   "instructions_approved": true,
   "history": [
     {
@@ -35,8 +35,13 @@
   ],
   "construction_approved": false,
   "effects_approved": false,
-  "active": false,
-  "gate_met": false,
-  "overall_result": "CHANGES_REQUESTED",
-  "remaining_rounds": 0
+  "active": true,
+  "gate_met": null,
+  "overall_result": "pending",
+  "remaining_rounds": 2,
+  "additional_rounds_authorized": 3,
+  "additional_rounds_started": 1,
+  "additional_rounds_completed": 0,
+  "extension": "extension-authorization.json",
+  "extension_sha256": "f16397daf645003799e78635eb1941aa88af56874180c7279cc0c34109c5df43"
 }

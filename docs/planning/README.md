@@ -43,7 +43,7 @@ Directory placement does not grant implementation authority.
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 14 | [Friday TUI](active/friday-tui/) | normal | design_only | local | review the active TUI vision and PRD; command refactor first; TUI construction requires command-refactor acceptance and separate authorization |
-| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | STOPPED for maintainer feedback after activation council round3/3. Final complete scores: Sol 9.53 VERIFIED; Astra 9.595 VERIFIED; Opus 9.27 CHANGES_REQUESTED with converter deployment-binding gap. The 9.5-per-seat/no-mandatory-findings gate is unmet. No further technical corrections, replacement/fourth round, product generation or live effects without new direction. Reviewed activation design remains frozen at fd7d9f5d. |
+| 36 | [Shared Friday command refactor](active/command-refactor/) | normal | granted | local | Activation council extension pass1/3, global round4/6, authorized by update per council recommendations and continue 3 more rounds. Review independent converter settings binding and final-council recommendations plus full unchanged Review A1–A8. Fresh Sol/Astra/Opus, complete 8/8, zero mandatory findings and overall>=9.5 each. Bounded planning corrections only; stop on success or after round6 for guidance. No construction, replacement/seventh round, vendor/model campaign or live effects. |
 
 ## Completed
 

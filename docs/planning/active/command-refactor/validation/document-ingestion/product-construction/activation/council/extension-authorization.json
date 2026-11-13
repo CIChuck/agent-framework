@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "date": "2026-11-13",
+  "maintainer": "Chuck Russell",
+  "request": "update per council recommendations  and continue 3 more rounds",
+  "scope": "Apply remaining converter binding and related final-round recommendations to planning documents; fresh read-only councils within unchanged shared ingestion scope.",
+  "original_rounds_completed": 3,
+  "additional_rounds_authorized": 3,
+  "global_rounds": [
+    4,
+    5,
+    6
+  ],
+  "maximum_global_rounds": 6,
+  "stop_when": "Stop early on every seat complete 8/8, VERIFIED, zero mandatory findings and overall>=9.5; otherwise stop after global round6 for guidance.",
+  "instructions": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/review-instructions.md",
+  "instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
+  "override": "Only original brief/authorization three-round limit is extended. No changed roster/weights/quality gate, replacement seat, broader project, code generation, installs or live effects.",
+  "roster": [
+    {
+      "seat": "sol",
+      "providerInstanceId": "codex",
+      "model": "gpt-6.1-sol",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "astra",
+      "providerInstanceId": "codex",
+      "model": "gpt-6-astra",
+      "options": {
+        "reasoningEffort": "high"
+      }
+    },
+    {
+      "seat": "opus",
+      "providerInstanceId": "claudeAgent",
+      "model": "claude-opus-5-5",
+      "options": {
+        "effort": "high"
+      }
+    }
+  ],
+  "construction_approved": false,
+  "effects_approved": false
+}

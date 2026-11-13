@@ -1,6 +1,6 @@
 # INGEST activation — current requirement dispositions
 
-Version 0.3, 2026-11-13. These are bounded applications of the recorded maintainer
+Version 0.4, 2026-11-13. These are bounded applications of the recorded maintainer
 [model decision](model-qualification-decision.md), [Office decision](office-visibility-decision.md)
 and [shared-worker decision](shared-worker-decision.md). No product or effects
 approval is supplied. Historical directive/REM/annex and evidence bytes stay in
@@ -43,3 +43,12 @@ It must be included in the final operator impact/guide and exact approval packag
 The model-decision record's older "no new council follows" describes that earlier
 preparation point; the later user-approved council authorization controls these
 three review rounds. No technical parent or historical record is rewritten.
+
+
+The current document settings binding is separate from the embedding manifest:
+explicit API path, then FRIDAY_DOCUMENT_CONVERSION_MANIFEST. It supplies only
+conversion assets/profile/scratch settings, can be used by /read with no Memory
+or embeddings, and is unnecessary for plain-text reads. I3-C1/C3 owns its resolver
+and composition, C4 its lifecycle, C5 installed/documentation acceptance. This
+closes a construction-settings omission without adding Runtime YAML, new source
+paths, asset downloads, vendor evaluation or serving-qualification gates.

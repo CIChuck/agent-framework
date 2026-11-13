@@ -1237,7 +1237,7 @@
         "DI-23",
         "DI-35"
       ],
-      "assertions": "Validate neutral values/protocol shape and old public interfaces; no Tools/Memory backend import and no actual smart_read/common plan claim.",
+      "assertions": "Validate neutral values/protocol shape and old public interfaces; no Tools/Memory backend import and no actual smart_read/common plan claim. Include pure DocumentConversionSettings validation with no directory/model side effects.",
       "status": "planned_not_executed"
     },
     {
@@ -1390,7 +1390,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit.",
+      "assertions": "Actual raw-tail default-handler parsing and genuine registry document\u2192common plan\u2192stored chunks, metadata/descriptions and zero-ingestion failures; preserve unrelated/custom handlers. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Default document /read awaits Chat-owned async adapter over Tools-owned job; read-only handle has no Memory admission and returns no late output after cancel/exit. Obtain four converter constructor values through the same public document settings binding, positive from provisioned local assets, missing/invalid refusal before worker. Plain text stays unaffected.",
       "status": "planned_not_executed"
     },
     {
@@ -1444,7 +1444,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success. Exercise lazy lifecycle bind after admission and read-only request owner without eager Memory construction.",
+      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success. Exercise lazy lifecycle bind after admission and read-only request owner without eager Memory construction. Lazy converter-only bind uses typed mutable holder under frozen wrapper; close and bind/start race is ordered, no worker after closing, no required entry.",
       "status": "planned_not_executed"
     },
     {
@@ -1475,7 +1475,7 @@
         "DI-24",
         "DI-33"
       ],
-      "assertions": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes.",
+      "assertions": "Actual candidate extra names/edges, clean installs/Certifi/origins, all positive format/provenance/storage and negative controls; authored docs and complete implementation map. Earlier positive claims remain for exact source, final candidate reviewed at AG. Repeat DI24/33 counter-boundary and representative existing-consumer B/N/R evidence in actual normal and optimized installed candidate lanes. Obtain four converter constructor values through the same public document settings binding, positive from provisioned local assets, missing/invalid refusal before worker. Plain text stays unaffected.",
       "status": "planned_not_executed"
     },
     {
@@ -1734,7 +1734,7 @@
         "DI-23",
         "DI-26"
       ],
-      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication. Launch the actual installed friday_tools.filesystem.readers.document_ingestion module from private request_root, verify installed origin and framed stdin/stdout exchange plus concurrent stderr flooding/drain; malformed/oversize/EOF, profile deadline defaults/overrides and no terminal output. Run in normal and optimized installed lanes.",
+      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication. Launch the actual installed friday_tools.filesystem.readers.document_ingestion module from private request_root, verify installed origin and framed stdin/stdout exchange plus concurrent stderr flooding/drain; malformed/oversize/EOF, profile deadline defaults/overrides and no terminal output. Run in normal and optimized installed lanes. Exercise v1 IPC message/state transitions, unknown/out-of-order frames and capability-record mutation before child counter creation. Parent package imports are silent/offline; count their time/RSS in limits; no shim/init-source edits.",
       "status": "planned_not_executed"
     },
     {
@@ -1745,7 +1745,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Construct public DIContainer; register exact entry/converter pair, same-pair idempotence and rejected different/reclosing pair preserve caller ownership. Shutdown closes entry then converter then MCP; repeated cancellation joins retained task, fails honestly on unknown reap. No RuntimeKernel private field or Chat import.",
+      "assertions": "Construct public DIContainer; register exact entry/converter pair, same-pair idempotence and rejected different/reclosing pair preserve caller ownership. Shutdown closes entry then converter then MCP; repeated cancellation joins retained task, fails honestly on unknown reap. No RuntimeKernel private field or Chat import. Converter-only registration drains without an entry; later entry uses the same converter; default boot performs no settings lookup.",
       "status": "planned_not_executed"
     },
     {
@@ -1772,7 +1772,56 @@
         "DI-14",
         "DI-35"
       ],
-      "assertions": "TM-A048 replacement: actual default /read extracts genuine PDF/DOCX/XLSX/PPTX source markers and metadata, rejects corrupt inputs; retains separate text/table/JSON dispatch assertions. Lifecycle cancellation/resource proof belongs to I3-C4.",
+      "assertions": "TM-A048 replacement: actual default /read extracts genuine PDF/DOCX/XLSX/PPTX source markers and metadata, rejects corrupt inputs; retains separate text/table/JSON dispatch assertions. Lifecycle cancellation/resource proof belongs to I3-C4. Obtain four converter constructor values through the same public document settings binding, positive from provisioned local assets, missing/invalid refusal before worker. Plain text stays unaffected.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-tools/tests_tools/test_document_ingestion.py::test_document_settings_resolver_is_strict_and_read_only",
+      "phase": "I3",
+      "exit": "I3-C1",
+      "requirements": [
+        "DI-01",
+        "DI-02",
+        "DI-29",
+        "DI-35"
+      ],
+      "assertions": "Explicit settings path wins over environment; valid provisioned local profile/assets bind exactly; invalid explicit never falls back. Unknown/duplicate keys, relative roots, hash/size/path escape and missing binding refuse before scratch creation, worker, Memory or embedding. No heavyweight import or asset fetch.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_document_ingestion.py::test_document_binding_refusal_preserves_plain_text_read",
+      "phase": "I3",
+      "exit": "I3-C3",
+      "requirements": [
+        "DI-11",
+        "DI-29",
+        "DI-35"
+      ],
+      "assertions": "Actual default /read plain text succeeds with document and embedding bindings absent. Genuine document /read uses provisioned document binding with poisoned/absent embedding manifest and no Memory/embedding initialization. Missing/invalid document binding gives actionable format-local refusal, zero worker/store effects; /ingest shares that binding.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_embedding_limits.py::test_embedding_manifest_resolution_is_strict_and_contained",
+      "phase": "I1",
+      "exit": "I1-C2",
+      "requirements": [
+        "DI-18",
+        "DI-24",
+        "DI-35"
+      ],
+      "assertions": "Named local resolver negatives for unknown/duplicate fields, relative/absent paths, size and route/record caps, record hash mismatch, traversal/escaping symlink. Pair each refusal with valid explicit/environment resolution, never provider/store I/O.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_embedding_limits.py::test_counter_factory_binds_exact_capability_record_bytes",
+      "phase": "I1",
+      "exit": "I1-C2",
+      "requirements": [
+        "DI-18",
+        "DI-24",
+        "DI-35"
+      ],
+      "assertions": "Resolved factory carries selected record digest; serialized roundtrip preserves it. Same bound bytes create counter; mutated record before create refuses without following a new manifest or embedding/store effects. I3 separately proves parent-to-worker transfer drift.",
       "status": "planned_not_executed"
     }
   ],
@@ -1911,7 +1960,7 @@
       "path": "tests/integration/ingest_installed_probe.py",
       "baseline_sha256": null,
       "phase": "I3",
-      "purpose": "Actual installed normal/-O public command/headless/guard proof, explicit require-style checks and no source fallback.",
+      "purpose": "Actual installed normal/-O public command/headless/guard proof, explicit require-style checks and no source fallback. Use the same public document binding and converter-only headless /read path; no direct test-only injection shortcut.",
       "execution_class": "offline_with_qualified_local_assets_and_deterministic_vectors"
     }
   ],

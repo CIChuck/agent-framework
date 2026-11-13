@@ -4350,3 +4350,17 @@ Only outcome/state/navigation metadata is added. The authorized three-round
 budget is exhausted: no further technical correction, replacement, fourth review,
 construction or effects. Await Chuck's guidance. Product source/tests/dependencies,
 production configuration, stores and preserved state remain unchanged.
+
+
+## 2026-11-13 — Maintainer authorizes INGEST council recommendations and extension
+
+Latest request: update per council recommendations and continue 3 more rounds.
+Recorded three additional global rounds4–6, stop early on all-seat >=9.5 with no
+mandatory gaps, otherwise stop after round6. Original instructions/weights/roster
+are unchanged; only the old cap is superseded. Applied the converter-settings
+binding and related record-drift, startup/IPC, lifecycle and test-selector
+recommendations in planning only. Old round3 results remain byte-exact. No new
+source path, product/test/guide code, dependency/install or model/store effect.
+Current activation and per-phase execution approvals remain incomplete. Fresh
+pass1/3 reviews the corrected stable package, then bounded iteration may continue
+within this extension only. No replacement or seventh round is authorized.

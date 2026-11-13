@@ -1,15 +1,15 @@
 {
-  "version": 1,
+  "version": 2,
   "date": "2026-11-13",
   "maintainer": "Chuck Russell",
   "request": "proceed with council",
   "reviewed_instruction_commit": "c054e079",
   "instructions": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/review-instructions.md",
   "instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
-  "instructions_status": "Approved as written by the latest proceed. Draft preface remains verbatim historical text; this authorization is the current launch state.",
+  "instructions_status": "Original user-reviewed common brief remains byte-identical; current maintainer extension overrides only its round3 stopping cap.",
   "target": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/README.md",
-  "maximum_rounds": 3,
-  "stop_when": "Every seat completes 8/8, VERIFIED, zero mandatory findings and overall>=9.5; otherwise stop after round3 for maintainer feedback.",
+  "maximum_rounds": 6,
+  "stop_when": "Stop early on every seat complete 8/8, VERIFIED, zero mandatory findings and overall>=9.5; otherwise stop after global round6 for guidance.",
   "bounded_corrections": "Planning-document corrections directly addressing review findings; stable new candidate and fresh seats per subsequent round. No source/test implementation, expanded project, effects or fourth/replacement round.",
   "roster": [
     {
@@ -38,5 +38,10 @@
     }
   ],
   "construction_approved": false,
-  "new_effects": false
+  "new_effects": false,
+  "original_maximum_rounds": 3,
+  "additional_rounds": 3,
+  "extension": "docs/planning/active/command-refactor/validation/document-ingestion/product-construction/activation/council/extension-authorization.json",
+  "extension_sha256": "f16397daf645003799e78635eb1941aa88af56874180c7279cc0c34109c5df43",
+  "latest_request": "update per council recommendations  and continue 3 more rounds"
 }

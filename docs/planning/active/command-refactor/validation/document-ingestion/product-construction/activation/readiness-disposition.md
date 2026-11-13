@@ -1,6 +1,6 @@
 # INGEST activation — readiness dispositions and remaining evidence
 
-Version 0.3, 2026-11-13. The [current reconciliation](requirement-reconciliation.md)
+Version 0.4, 2026-11-13. The [current reconciliation](requirement-reconciliation.md)
 controls removed model/parity and hidden-workbook obligations in older parents.
 This is planning, not another Docling evaluation or product validation receipt.
 No install, import, conversion, provider/model request or store operation ran.
@@ -12,7 +12,7 @@ No install, import, conversion, provider/model request or store operation ran.
 | RD-01 | Compatibility B01–08/FC01–14 and preserved Nomic end-to-end evidence; exact maps. | Separate actual-serving B/N/identity qualification removed. Bind configured capability/counter assets in I1/I2 and execute ordinary B/N/R positives/refusals at I2/I3/AG. No mandatory immutable hosted identity or model-name echo masquerading as attestation. |
 | RD-02 | Completed four-format/OCR behavior and genuine Office fixtures. | Hidden-row/column filtering is not required: reject the affected workbook before conversion/embedding/storage. I3-C1/C3 prove /ingest and /read refusal and hidden-sheet-only positive exclusion; other format/formula/notes requirements remain ordinary acceptance. |
 | RD-03 | Existing input/resource envelope and measured format inputs. | Build in I3-C1; prove exact process/IPC/resource/cancel/drain limits at I3-C4 before I3 acceptance, not before construction. No spike or pre-coding worker gate. Old harness results do not establish product-worker proof. |
-| RD-04 | Exact Core values, injected broker, public deployment-manifest resolver/discovery, lifecycle registration, hashes and strict v2 recovery. | Design approval and phase-local assets remain required. Product invariants are tested only after implementation at assigned exits. No serving evidence attachment prerequisite. |
+| RD-04 | Exact Core values, injected broker, public document/embedding settings resolver/discovery, lifecycle registration, hashes and strict v2 recovery. | Design approval and phase-local assets remain required. Product invariants are tested only after implementation at assigned exits. No serving evidence attachment prerequisite. |
 | RD-05 | Historical Nomic 768 dimensions/context 2048, persisted/reopened chunks; usage=0. | Separate serving identity/tokenizer parity campaign removed, without a replacement later campaign. Configured preparation/counter/capacity and full response/store guards remain. usage=0 proves no parity; records explicitly distinguish configured identity from attested immutable identity. |
 | RD-06 | Measured Docling 2.150.0/Core 2.106.0/RapidOCR 3.10.0, Certifi 2026.10.23, dateutil 2.9.0.post0. | Bind narrow intended dependencies/assets/licenses before phase use; product extras/lock and clean candidate installs are I1/I3/AG duties. Retain Certifi>=2026.10.19 and TLS verification. No unrelated upgrades or new package-resolution project. |
 | RD-07 | Frozen inventory reused, exact case map, offline/live exclusions and docs plan. | Approve exact exceptions/helper classes before their edits/execution. Final aggregate code council, authored guides and human UAT remain later duties. This document council does not supply those results. |
