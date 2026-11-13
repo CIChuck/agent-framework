@@ -402,6 +402,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Optional-converter bind_ingestion: own text entry alone, attach converter later, reject different objects atomically; drain entry then optional converter before existing MCP/LLM cleanup."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Implement minimal holder, entry-only bind/get-or-create and normal close needed by C3 text adoption; every entry gets same-capabilities counter_factory. Request-entry document environment snapshot, immutable reused converter and embedding service. C4 proves functional late attach/races/drain."
         }
       ]
     },
@@ -615,6 +620,11 @@
           "slice": "I3",
           "exit": "I3-C3",
           "purpose": "Lazily resolve/register one shared converter for four-format commands through the public Tools binding; no document settings resolution at startup/plain reads or Memory initialization for /read. Private typed mutable lifecycle holder is within adapters.py. C4 retains full cancel/drain proof."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C3",
+          "purpose": "Implement minimal holder, entry-only bind/get-or-create and normal close needed by C3 text adoption; every entry gets same-capabilities counter_factory. Request-entry document environment snapshot, immutable reused converter and embedding service. C4 proves functional late attach/races/drain."
         }
       ]
     },
@@ -753,6 +763,11 @@
           "slice": "I1",
           "exit": "I1-C1",
           "purpose": "Declare immutable DocumentConversionSettings, four absolute-root/profile/hash settings plus schema; no effects."
+        },
+        {
+          "slice": "I1",
+          "exit": "I1-C1",
+          "purpose": "Converted kind iff non-null profile hash SourceDocument invariant; keep immutable source equality usable for session admission. No conversion run in I1."
         }
       ]
     },
@@ -1113,6 +1128,11 @@
           "slice": "I3",
           "exit": "I3-C2",
           "purpose": "Exact create_ingestion_entry requires embedder; check spaces, preflight whole plan, await broker, validate full batch before any write; own active tasks and close."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C2",
+          "purpose": "Required counter_factory for every new entry; exact converted-source/matching-session admission and missing/foreign session refusal before plan/embed/store. No Tools/frontend imports."
         }
       ]
     },
@@ -1132,6 +1152,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Actual responsive event loop/admission, owned workers/no provider-store capabilities, cancellation before/during/after completion, stale success refusal and idempotent quiescence. Exercise separate read-only responsiveness/cancel/exit/shutdown witnesses without Memory admission or readiness, alongside retained ingestion admission/quiescence tests."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C2",
+          "purpose": "Required counter_factory for every new entry; exact converted-source/matching-session admission and missing/foreign session refusal before plan/embed/store. No Tools/frontend imports."
         }
       ]
     },
@@ -1508,6 +1533,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Optional-converter bind_ingestion: own text entry alone, attach converter later, reject different objects atomically; drain entry then optional converter before existing MCP/LLM cleanup."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Composition supplies required same-capabilities counter factory from entry creation; prove actual text then genuine document storage through the same late-attached entry/lifecycle, not ownership alone."
         }
       ]
     },
@@ -1585,6 +1615,11 @@
           "slice": "I3",
           "exit": "I3-C4",
           "purpose": "Chunked/yielding maximum-size source snapshot/hash and cancellation cleanup within heartbeat/deadline, plus explicit asset size mismatch identity error."
+        },
+        {
+          "slice": "I3",
+          "exit": "I3-C4",
+          "purpose": "Hold active slot until owned session close/reap/cleanup, including planned state; proof observes queue release and invalid session reuse."
         }
       ]
     },

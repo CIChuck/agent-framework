@@ -1,6 +1,6 @@
 # INGEST activation — current requirement dispositions
 
-Version 0.6, 2026-11-13. These are bounded applications of the recorded maintainer
+Version 0.7, 2026-11-13. These are bounded applications of the recorded maintainer
 [model decision](model-qualification-decision.md), [Office decision](office-visibility-decision.md)
 and [shared-worker decision](shared-worker-decision.md). No product or effects
 approval is supplied. Historical directive/REM/annex and evidence bytes stay in
@@ -69,3 +69,13 @@ converter attachment later without replacing an owned object. Document routes
 still require an owned converter/session. Dependency declarations precede first
 use (Tools/lock I3-C1, Chat edge/lock I3-C3); clean final installs remain I3-C5.
 The current exact maps control these narrower assignments over parent shorthand.
+
+
+Every new entry requires the counter factory from its resolved embedding
+capabilities from the outset. This has no document-settings dependency. The
+functional late-attach witness must ingest text then a genuine document through
+one entry/lifecycle. Current source/session admission, C3 minimal ownership,
+request-entry document snapshot and session-close slot release rules are exact;
+older registration-only descriptions are supplemented, not accepted as proof.
+The latest second extension authorizes global rounds7–9 and overrides prior caps
+only; unchanged scope/roster/weights/quality and no construction/effects remain.

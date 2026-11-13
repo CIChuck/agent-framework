@@ -1355,7 +1355,7 @@
         "DI-22",
         "DI-08"
       ],
-      "assertions": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply current DI24 offline asset integrity, final-input counting/preparation and overflow guards to the complete document plan; no actual-serving parity campaign or remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write.",
+      "assertions": "Real headless Memory factory \u2192 Core entry \u2192 smart_read text small/large/force_chunked/cache paths; raw chunks equal common plan, derived records unsplit, no Chat import and no second split. Apply current DI24 offline asset integrity, final-input counting/preparation and overflow guards to the complete document plan; no actual-serving parity campaign or remote per-split counting. DI22: execute once-only role spies for every source/derived caller this slice creates or restructures, and prove whole source/derived embedding batch validation before its first write. Create the entry with required counter_factory from the same resolved embedding capabilities used for parent counter/embedder; no document settings lookup for this factory.",
       "status": "planned_not_executed"
     },
     {
@@ -1373,7 +1373,7 @@
         "DI-22",
         "DI-08"
       ],
-      "assertions": "No Chat import: explicit Tools converter/session + LLM local counter and injected PreparedEmbeddingService + public Memory factory -> full plan -> one validated batch -> real disposable Chroma. Missing/mismatched broker space and invalid batch refuse before writes; same session converts once. Construct public admitted ChromaVectorStore, obtain read-only store.destination without RuntimeKernel internals and supply the exact factory dependencies.",
+      "assertions": "No Chat import: explicit Tools converter/session + LLM local counter and injected PreparedEmbeddingService + public Memory factory -> full plan -> one validated batch -> real disposable Chroma. Missing/mismatched broker space and invalid batch refuse before writes; same session converts once. Construct public admitted ChromaVectorStore, obtain read-only store.destination without RuntimeKernel internals and supply the exact factory dependencies. Create the entry with required counter_factory from the same resolved embedding capabilities used for parent counter/embedder; no document settings lookup for this factory.",
       "status": "planned_not_executed"
     },
     {
@@ -1445,7 +1445,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success. Exercise lazy lifecycle bind after admission and read-only request owner without eager Memory construction. Lazy converter-only bind uses typed mutable holder under frozen wrapper; close and bind/start race is ordered, no worker after closing, no required entry. Constructor kwargs seed the single holder; accessors reflect later bind; no stale frozen copies. Same optional-converter entry registration/late-attach/drain matrix in actual Chat lifecycle, constructor seeding and read-only conversion preserved.",
+      "assertions": "Cancel actual FridayChatApp.run; lifecycle closes retained request/session through permitted adapter/runtime seams before clients. app.py unchanged; unknown reap is reported, never success. Exercise lazy lifecycle bind after admission and read-only request owner without eager Memory construction. Lazy converter-only bind uses typed mutable holder under frozen wrapper; close and bind/start race is ordered, no worker after closing, no required entry. Constructor kwargs seed the single holder; accessors reflect later bind; no stale frozen copies. Same optional-converter entry registration/late-attach/drain matrix in actual Chat lifecycle, constructor seeding and read-only conversion preserved. Minimal C3 get-or-create reuses the bound entry; simultaneous creation loser is closed without touching shared clients, and cannot replace a closing/foreign entry.",
       "status": "planned_not_executed"
     },
     {
@@ -1735,7 +1735,7 @@
         "DI-23",
         "DI-26"
       ],
-      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication. Launch the actual installed friday_tools.filesystem.readers.document_ingestion module from private request_root, verify installed origin and framed stdin/stdout exchange plus concurrent stderr flooding/drain; malformed/oversize/EOF, profile deadline defaults/overrides and no terminal output. Run in normal and optimized installed lanes. Exercise v1 IPC message/state transitions, unknown/out-of-order frames and capability-record mutation before child counter creation. Parent package imports are silent/offline; count their time/RSS in limits; no shim/init-source edits. Explicit planned/closing/terminal transitions reject duplicate plans; sample RSS with bound psutil profile/PID identity, never treat denied/lost accounting as zero; report startup/conversion timing separately. Include bounded maximum-input snapshot copy/hash, cancellation between copy batches and before spawn, and partial snapshot cleanup under heartbeat/cold deadline.",
+      "assertions": "No frontend imports: exercise exact subprocess/IPC; real representative document and 100 ms heartbeat <=1 s gap, cold<=300 s/repeat<=180 s, RSS<=8 GiB; one active/one queued/third busy; queued and repeated active cancellation, timeout TERM/KILL/reap and failed-quiescence unhealthy service. No model/store capability in child or late publication. Launch the actual installed friday_tools.filesystem.readers.document_ingestion module from private request_root, verify installed origin and framed stdin/stdout exchange plus concurrent stderr flooding/drain; malformed/oversize/EOF, profile deadline defaults/overrides and no terminal output. Run in normal and optimized installed lanes. Exercise v1 IPC message/state transitions, unknown/out-of-order frames and capability-record mutation before child counter creation. Parent package imports are silent/offline; count their time/RSS in limits; no shim/init-source edits. Explicit planned/closing/terminal transitions reject duplicate plans; sample RSS with bound psutil profile/PID identity, never treat denied/lost accounting as zero; report startup/conversion timing separately. Include bounded maximum-input snapshot copy/hash, cancellation between copy batches and before spawn, and partial snapshot cleanup under heartbeat/cold deadline. Planned session retains active slot until aclose/reap/cleanup; queued request does not start at plan completion. Closed or duplicate-plan sessions never revive.",
       "status": "planned_not_executed"
     },
     {
@@ -1746,7 +1746,7 @@
         "DI-11",
         "DI-26"
       ],
-      "assertions": "Construct public DIContainer; register exact entry/converter pair, same-pair idempotence and rejected different/reclosing pair preserve caller ownership. Shutdown closes entry then converter then MCP; repeated cancellation joins retained task, fails honestly on unknown reap. No RuntimeKernel private field or Chat import. Converter-only registration drains without an entry; later entry uses the same converter; default boot performs no settings lookup. Matrix entry-only, converter-only and both: text entry registers with converter omitted, late attachment, same-object idempotence, different-object rejection and entry-then-optional-converter close order; no document settings lookup for text.",
+      "assertions": "Construct public DIContainer; register exact entry/converter pair, same-pair idempotence and rejected different/reclosing pair preserve caller ownership. Shutdown closes entry then converter then MCP; repeated cancellation joins retained task, fails honestly on unknown reap. No RuntimeKernel private field or Chat import. Converter-only registration drains without an entry; later entry uses the same converter; default boot performs no settings lookup. Matrix entry-only, converter-only and both: text entry registers with converter omitted, late attachment, same-object idempotence, different-object rejection and entry-then-optional-converter close order; no document settings lookup for text. In one actual lifecycle ingest text through E, attach converter later, then ingest a genuine document through the identical E and read back its complete stored plan. Ownership-only spies or separate lifecycles do not prove this. Every composition passes same-capabilities counter_factory initially.",
       "status": "planned_not_executed"
     },
     {
@@ -1798,7 +1798,7 @@
         "DI-29",
         "DI-35"
       ],
-      "assertions": "Actual default /read plain text succeeds with document and embedding bindings absent. Genuine document /read uses provisioned document binding with poisoned/absent embedding manifest and no Memory/embedding initialization. Missing/invalid document binding gives actionable format-local refusal, zero worker/store effects; /ingest shares that binding. Also invoke default handler with runtime=None: same factory/config, local try/finally ownership, no constructed runtime/Memory and unaffected plain text.",
+      "assertions": "Actual default /read plain text succeeds with document and embedding bindings absent. Genuine document /read uses provisioned document binding with poisoned/absent embedding manifest and no Memory/embedding initialization. Missing/invalid document binding gives actionable format-local refusal, zero worker/store effects; /ingest shares that binding. Also invoke default handler with runtime=None: same factory/config, local try/finally ownership, no constructed runtime/Memory and unaffected plain text. Runtime-backed and runtime=None paths use request-entry document environment snapshots; first late document binding can be resolved, existing converter settings remain immutable. Embedding capabilities do not refresh.",
       "status": "planned_not_executed"
     },
     {
@@ -1851,7 +1851,7 @@
         "DI-29",
         "DI-35"
       ],
-      "assertions": "Actual default plain-text /ingest stores the common plan with document binding absent, owns an entry alone and never calls document settings resolver/converter. Default document/512 chunking uses Memory non-Docling planner. Preserve source/description/listing and actual disposable-store readback. Four-format request without a bound converter/settings refuses readiness before embedding/storage.",
+      "assertions": "Actual default plain-text /ingest stores the common plan with document binding absent, owns an entry alone and never calls document settings resolver/converter. Default document/512 chunking uses Memory non-Docling planner. Preserve source/description/listing and actual disposable-store readback. Four-format request without a bound converter/settings refuses readiness before embedding/storage. Create the entry with required counter_factory from the same resolved embedding capabilities used for parent counter/embedder; no document settings lookup for this factory.",
       "status": "planned_not_executed"
     },
     {
@@ -1865,7 +1865,36 @@
         "DI-26",
         "DI-35"
       ],
-      "assertions": "Actual frozen-wrapper mutable-holder lifecycle: construct/bind entry only with no document settings; shutdown drains it and LLM clients without converter. Separately attach converter later, preserve it when omitted on repeat, reject mismatched entry/converter with no partial mutation, and drain entry then converter then clients under repeated cancel. Previously owned objects remain owned after refused bind.",
+      "assertions": "Actual frozen-wrapper mutable-holder lifecycle: construct/bind entry only with no document settings; shutdown drains it and LLM clients without converter. Separately attach converter later, preserve it when omitted on repeat, reject mismatched entry/converter with no partial mutation, and drain entry then converter then clients under repeated cancel. Previously owned objects remain owned after refused bind. In one actual lifecycle ingest text through E, attach converter later, then ingest a genuine document through the identical E and read back its complete stored plan. Ownership-only spies or separate lifecycles do not prove this. Every composition passes same-capabilities counter_factory initially.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "packages/friday-memory/tests_memory/test_document_ingestion.py::test_converted_source_requires_exact_matching_session",
+      "phase": "I3",
+      "exit": "I3-C2",
+      "requirements": [
+        "DI-11",
+        "DI-17",
+        "DI-23",
+        "DI-35"
+      ],
+      "assertions": "Core converted-kind/profile iff invariant. Valid converted source with missing or non-equal session refuses readiness before plan/embed/store; compare source_id/raw/content/profile hashes and full source value. Nonconverted text plus a session also refuses. Parent and child wrong-space plans still fail before writes; no fallback to text.",
+      "status": "planned_not_executed"
+    },
+    {
+      "node": "tests/integration/test_document_ingestion.py::test_same_entry_ingests_text_then_document_after_late_attach",
+      "phase": "I3",
+      "exit": "I3-C4",
+      "requirements": [
+        "DI-16",
+        "DI-17",
+        "DI-19",
+        "DI-23",
+        "DI-26",
+        "DI-29",
+        "DI-35"
+      ],
+      "assertions": "Actual public composition: same resolved capabilities creates required counter_factory, counter, embedder and E. Text /ingest succeeds with document binding absent. Publish binding before next request, resolve/attach C, then genuine PDF or Office ingestion succeeds through identical E without replacing it or re-resolving embeddings. Inspect actual complete stored chunks/provenance and final entry-then-converter drain. Run same transition in installed normal and optimized profiles, retaining separate no-document-stack text smoke as well.",
       "status": "planned_not_executed"
     }
   ],
@@ -2044,7 +2073,7 @@
       "path": "tests/integration/ingest_installed_probe.py",
       "baseline_sha256": null,
       "phase": "I3",
-      "purpose": "Actual installed normal/-O public command/headless/guard proof, explicit require-style checks and no source fallback. Use the same public document binding and converter-only headless /read path; no direct test-only injection shortcut. Include text entry-only positive and shutdown without document assets; retain separate real document positive through the public binding.",
+      "purpose": "Actual installed normal/-O public command/headless/guard proof, explicit require-style checks and no source fallback. Use the same public document binding and converter-only headless /read path; no direct test-only injection shortcut. Include text entry-only positive and shutdown without document assets; retain separate real document positive through the public binding. Mandatory same-entry/same-lifecycle text -> late converter attach -> genuine document storage transition in normal/-O; separate isolated positives do not satisfy it.",
       "execution_class": "offline_with_qualified_local_assets_and_deterministic_vectors"
     }
   ],

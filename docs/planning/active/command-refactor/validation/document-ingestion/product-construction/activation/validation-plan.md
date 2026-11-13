@@ -1,6 +1,6 @@
 # INGEST activation — validation execution plan
 
-Version 0.6, proposed A3/A5 plan. **No commands here were run as product validation.**
+Version 0.7, proposed A3/A5 plan. **No commands here were run as product validation.**
 Only execute a phase after its exact approval and prepared isolated interpreter,
 source snapshot, qualified assets and permitted effects have been bound. No
 working `.venv`, dirty configuration or user `.friday*` store is a test target.
@@ -108,3 +108,12 @@ entry-only registration with no document binding, late converter attachment,
 mismatch refusal and entry-then-optional-converter shutdown. Include maximum-size
 snapshot copy in responsiveness/cancel/deadline controls and .pptx in reader
 extension/format tests. Preserve TM-A049's text behavior without Docling setup.
+
+I3-C2 includes `test_converted_source_requires_exact_matching_session`. I3-C4 and
+the installed normal/-O probe must execute
+`test_same_entry_ingests_text_then_document_after_late_attach`: text, late converter
+attach and genuine complete document storage all use one immutable entry/lifecycle.
+Do not substitute separate fixtures/lifecycles or registration-only mocks. C3
+implements minimal ownership/get-or-create/normal close; C4 proves its contention
+and cancellation behavior. All roots supply the required same-capabilities counter
+factory from entry creation, independent of document configuration.

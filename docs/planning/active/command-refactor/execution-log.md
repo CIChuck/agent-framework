@@ -4393,3 +4393,17 @@ No product/test/guide/dependency implementation or effects occurred. Unchanged
 common brief and authorized roster/weights/gate apply. Round6 is final: stop for
 maintainer feedback afterwards regardless of outcome, no replacement/seventh
 round, further technical corrections, construction or live effects.
+
+
+## 2026-11-13 — New maintainer extension after round6; pass1/global round7
+
+Latest request again authorizes council recommendations and three more rounds.
+Recorded a distinct second extension for global rounds7–9; preserve the first
+extension and all original round6 reports/closing evidence. Gate remained unmet
+at6: Sol/Astra VERIFIED, Opus CHANGES_REQUESTED with counter-factory composition
+and functional late-attach gap. Bounded planning changes require that dependency
+at entry creation and prove actual text then real document storage through one
+entry/lifecycle. Related source/session, reuse, C3/C4 ownership, worker-slot and
+document environment rules are explicit. No product/test/guide/dependency code,
+install or model/store effect. Same common brief/roster/weights/9.5 gate; stop on
+success or after round9 for guidance, no replacement/tenth round or construction.

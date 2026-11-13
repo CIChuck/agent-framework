@@ -93,7 +93,7 @@ after pass2/4; no further round is launched. Reviewed technical/business bytes
 and budgets are unchanged. [Advisories](validation/document-ingestion/gate-a/correction-loop/pass2/results/advisory-disposition.md)
 remain visible for implementation/activation; none grants effects authority.
 
-**Next gate:** FINAL activation council extension pass3/3, global round6/6. Review optional-converter entry registration and text-ingest/drain positives, related declaration-before-use and bounded snapshot clarifications, then full unchanged Review A1–A8. Fresh Sol/Astra/Opus, complete 8/8, zero mandatory findings and overall>=9.5 each. STOP for maintainer feedback after this council regardless of outcome. No further correction/replacement/seventh round, product generation, vendor/model campaign or live effects.
+**Next gate:** Second activation council extension pass1/3, global round7/9, newly authorized after round6. Review required counter-factory composition and one-lifecycle text-to-document functionality, exact session/reuse/snapshot/slot semantics, then full unchanged Review A1–A8. Fresh Sol/Astra/Opus; complete 8/8, zero mandatory findings and overall>=9.5 each. Planning corrections only; stop on success or after round9 for guidance. No construction, replacement/tenth round, vendor/model campaign or live effects.
 
 [Measured end-to-end results](validation/document-ingestion/gate-a/end-to-end-evaluation/results.md)
 and [fresh independent closure](validation/document-ingestion/gate-a/end-to-end-evaluation/validation/round2/report.md)

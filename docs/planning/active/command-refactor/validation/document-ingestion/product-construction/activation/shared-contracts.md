@@ -1,6 +1,6 @@
 # INGEST activation appendix A2 — shared contracts
 
-Version 0.6, 2026-11-13. **Proposed exact design; not activated.** Prepared from
+Version 0.7, 2026-11-13. **Proposed exact design; not activated.** Prepared from
 `7a3e00bc9ef77adee25b61fc52ff91875e172738` and the unchanged
 [directive v0.7](../../../../directives/CD-CMD-INGEST-001-product.md).
 The directive, REM and compatibility annex control except for the explicit
@@ -37,7 +37,7 @@ No implicit whitespace/Unicode normalization applies to source or model text.
 | `TableStructure` | `table_id: str`, `header_spans: tuple[SourceSpan,...]`, `row_spans: tuple[SourceSpan,...]`, `cells: tuple[CellSpan,...]`; ordered, source-backed spans only. No CSV header inference. |
 | `SourceBlock` | `block_id: str`, `kind: Literal['text','heading','table','separator','label']`, `span: SourceSpan`, `heading_spans: tuple[SourceSpan,...]`, `table: TableStructure | None`; table populated only for declared structured tables. Labels/separators cannot establish meaningful source content. |
 | `CoverageWarning` | `code: str`, `unit_indices: tuple[int,...]`, `count: int | None`; codes are selected from the versioned format-profile allowlist. Human messages are sideband, not source text. |
-| `SourceDocument` | `source_id: Id`, `source_kind: Literal['text','markdown','code','json','yaml','csv','tsv','web_text','tool_text','pdf','docx','xlsx','pptx']`, `locator: str`, `raw_sha256: Digest`, `content: str`, `content_sha256: Digest`, `conversion_profile_sha256: Digest | None`, `units: tuple[SourceUnit,...]`, `blocks: tuple[SourceBlock,...]`, `warnings: tuple[CoverageWarning,...]`, `complete: Literal[True]`; content nonempty and contains actual meaningful source text. |
+| `SourceDocument` | `source_id: Id`, `source_kind: Literal['text','markdown','code','json','yaml','csv','tsv','web_text','tool_text','pdf','docx','xlsx','pptx']`, `locator: str`, `raw_sha256: Digest`, `content: str`, `content_sha256: Digest`, `conversion_profile_sha256: Digest | None`, `units: tuple[SourceUnit,...]`, `blocks: tuple[SourceBlock,...]`, `warnings: tuple[CoverageWarning,...]`, `complete: Literal[True]`; content nonempty and contains actual meaningful source text. `source_kind in {pdf,docx,xlsx,pptx}` iff conversion_profile_sha256 is non-null; all other source kinds require null. |
 | `DocumentConversionSettings` | `schema_version: Literal[1]`, `assets_root: Path`, `profile_id: str`, `asset_manifest_sha256: Digest`, `scratch_root: Path`; both roots absolute, profile ID matches `[A-Za-z0-9][A-Za-z0-9_.-]{0,63}`. Frozen neutral deployment value; no embedding, Memory or frontend reference and no filesystem effects in value construction. |
 | `EmbeddingSpaceIdentity` | `schema_version: Literal[1]`, `model_identity: str`, `artifact_identity: str`, `tokenizer_sha256: Digest`, `preparation_sha256: Digest`, `dimensions: int`, `normalization: Literal['none','l2']`, `metric: Literal['cosine','l2','ip']`; dimensions positive. Model/artifact identity records the configured space under section 3; a declared identity is never labelled immutable serving evidence. |
 | `PreparedInput` | `space_sha256: Digest`, `role: EmbeddingRole`, `input_sha256: Digest`, `prepared_sha256: Digest`, `text: str`, `token_count: int`; text is the exact wire payload; prepared_sha256 hashes effective formatted UTF-8 input after declared client/server preparation. Count includes special tokens. Never persist embedding preparation instead of source content. |
@@ -86,7 +86,7 @@ Signatures are exact; existing unrelated public methods remain unchanged.
 | Core `DocumentConverter` | `async aclose(self) -> None` cancels/drains owned sessions and rejects new work idempotently; `async open(self, path: Path, *, attempt_id: Id, observer: IngestionObserver | None = None) -> OwnedDocumentSession`; local conversion only. No counter needed for opening/read-only display. Source/vendor structure belongs to the owned session. |
 | Core `DocumentPlanner` | `async plan(self, source: SourceDocument, options: ResolvedChunkingOptions, *, counter: TokenCounter) -> ChunkPlan`; only non-Docling implementation runs directly in Memory. Converted documents use `OwnedDocumentSession.plan`, keeping vendor structure internal. |
 | Core `IngestionEntry` | `async ingest(self, source: SourceDocument, *, options: ChunkingOptions = ChunkingOptions(), description: str | None = None, document_session: OwnedDocumentSession | None = None, observer: IngestionObserver | None = None) -> IngestionResult`; Memory implements; converted document source/session identity must match. Caller owns admission and session lifetime. `async aclose(self) -> None` rejects new ingests, cancels/invalidate-and-joins active operations, and idempotently drains owned tasks before returning; shared clients/stores are not closed by this entry. |
-| Memory public factory | `create_ingestion_entry(*, destination: DestinationBinding, vector_store: PreparedVectorStore, counter: TokenCounter, embedder: PreparedEmbeddingService, defaults: ChunkingOptions = ChunkingOptions(), counter_factory: CounterFactory | None = None) -> IngestionEntry` in `friday_memory.ingestion`. No Tools/Chat import; converted-document planning requires the supplied pure counter factory. |
+| Memory public factory | `create_ingestion_entry(*, destination: DestinationBinding, vector_store: PreparedVectorStore, counter: TokenCounter, embedder: PreparedEmbeddingService, counter_factory: CounterFactory, defaults: ChunkingOptions = ChunkingOptions()) -> IngestionEntry` in `friday_memory.ingestion`. No Tools/Chat import. The new factory requires a non-null pure counter factory for every entry, including text-first entries; it is independent of document settings. |
 | Core `PreparedEmbeddingService` | Read-only `.space: EmbeddingSpaceIdentity`; `async embed_prepared(self, inputs: tuple[PreparedInput,...], timeout: float | None = None) -> PreparedBatch`. The LLM implementation owns provider I/O, once-only preparation validation and full response validation. No conversion/store dependency. |
 | Core `PreparedVectorStore` | Read-only `.destination: DestinationBinding` is exposed by the admitted Memory store; accessing it never creates/rebinds a namespace. `async write_prepared(self, *, texts: tuple[str,...], metadatas: tuple[tuple[tuple[str,Scalar],...],...], ids: tuple[str,...], batch: PreparedBatch) -> PreparedWriteResult`; validates all lengths, text digests and document roles before write. |
 | Core `PreparedWriteResult` | Frozen value `confirmed_ids: tuple[str,...]`, `unconfirmed_ids: tuple[str,...]`, `errors: tuple[IngestionFailure,...]`; every proposed ID appears exactly once in confirmed/unconfirmed; false/ambiguous backend outcomes cannot confirm IDs without readback. |
@@ -116,6 +116,40 @@ then calls `write_prepared`. No hidden client attribute, global broker or fronte
 import supplies the missing dependency. Embedding failure/timeout/cancellation
 causes no source-chunk write; partial backend effects remain truthful in the
 structured result. Closing an entry waits for all such eligibility decisions.
+
+### Counter-factory construction and functional late attachment
+
+Every Chat, Runtime, CLI/headless and other composition root builds a bindable
+entry from **one** ResolvedEmbeddingCapabilities: take its `counter_factory`,
+create the parent `counter` from that factory, construct/resolve `embedder` from
+the same capabilities, then call the required-argument Memory factory with both
+counter and counter_factory. Destination/counter/embedder space agreement remains
+mandatory. The counter factory's record/asset bindings are those already required
+for text embeddings; creating or passing it never resolves document settings,
+loads Docling or requires a converter. The optional parameter existed only in the
+unactivated draft, not an established product API; no existing method shape changes.
+Missing/None factory is refused at construction, not saved as a text-only entry.
+The child-created counter must match the entry's expected space, and complete
+plan/count/batch validation still precedes provider/storage effects.
+
+This ensures the immutable entry is ready for a later document session without
+being replaced or retrofitted. A text-only positive plus a separate document-only
+positive is insufficient: C4 and installed normal/-O acceptance must do text ingest,
+late converter attach, then genuine document ingest through the **same** entry,
+including stored common plans/readback and eventual ordered shutdown. Run that
+transition in an already document-capable installed profile; only its document
+settings are supplied late, never a mid-lifecycle dependency install. Separate
+text-only/headless profiles still prove operation without the document stack.
+
+For source/session admission, a converted source is exactly a valid SourceDocument
+whose kind is pdf/docx/xlsx/pptx and conversion_profile_sha256 is non-null. It needs
+a non-null owned session with `session.source == source` across every immutable
+field, including source_id, raw/content/profile hashes, units, blocks and warnings.
+Missing or mismatched session, or a nonconverted source with any supplied session,
+refuses readiness before planning, embedding or storage. No text fallback is used.
+A plan call on a closed/already-planned session also refuses; matching source data
+does not revive a consumed session. Parent source/plan identity validation remains
+independent. These rules are shared Memory/Core contracts, not frontend guesses.
 
 Core's existing vector `query` adds `PreparedVector` to the optional
 `query_embedding` annotation without changing positional order/defaults. Existing
@@ -529,6 +563,15 @@ late output is discarded. Cancellation and timeout signal the owned process grou
 then reap it before releasing admission. Separate processes avoid sharing the
 frontend GIL; they are not an OS sandbox.
 
+The service's one-active slot is held from admitted snapshot/preflight/open
+through conversion and planning until session.aclose has completed OS-confirmed
+reap and request cleanup. `planned` alone does not free it. Parent embedding and
+storage normally run while the caller still owns that planned session; their
+finally path closes it before publishing a result. /read closes immediately
+after obtaining its source. Queued work starts only after that confirmed release;
+failed quiescence keeps the service unhealthy/excluded. This is the explicit
+bounded default, not an unbounded throughput claim. C4 observes this release point.
+
 The bound `document-profiles/<profile-id>.json` supplies optional positive
 `conversion_timeout_seconds`, `planning_timeout_seconds` and
 `repeat_timeout_seconds`, default 300, 300 and 180. Values may reduce but never
@@ -643,6 +686,28 @@ owned document_session, otherwise readiness. Memory does not import Tools or
 consult frontend bindings. Non-document ingest requires neither converter nor
 session; its default document chunking strategy uses Memory's non-Docling planner.
 Register such entries for cleanup just like document entries.
+
+Chat obtains its entry by get-or-create for the admitted destination/space:
+reuse holder.ingestion_entry on later /ingest calls. Only an empty slot may create
+one, always with the same-capabilities counter factory above. Creation happens
+outside the short holder lock; registration atomically adopts the winner. A
+loser closes its still-unowned entry, then reuses the winner only if destination
+and space match and the holder is not closing. Closing or a foreign binding
+propagates refusal after loser cleanup, never leaks or replaces an entry. Shared
+clients/stores are not closed by loser entry.aclose. Minimal holder/registration/
+get-or-create and normal cleanup are implemented at I3-C3 for text adoption; C4
+then proves late document functionality, contention/repeated cancellation/drain.
+
+For runtime-backed Chat, capture one immutable environment snapshot at each
+file-command request entry, just as runtime=None does. If no converter is owned,
+its first document request resolves the document binding from that snapshot;
+a document binding added after an earlier text request can therefore work. Once
+a converter is owned, reuse its immutable settings; do not silently refresh it
+from later environment changes. Text requests do not resolve the document binding.
+Existing embedding/model credentials and ResolvedEmbeddingCapabilities retain
+their runtime-build/service-lifetime snapshot, so late document configuration
+cannot redirect or recreate the bound embedding service or counter factory.
+Headless callers pass their chosen explicit snapshot/path through the same APIs.
 
 `close()` rejects new requests, drains the entry if any, closes the converter and
 all its read-only sessions if any, then closes existing LLM clients, retaining the

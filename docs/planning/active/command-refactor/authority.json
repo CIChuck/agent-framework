@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "FINAL activation council extension pass3/3, global round6/6. Review optional-converter entry registration and text-ingest/drain positives, related declaration-before-use and bounded snapshot clarifications, then full unchanged Review A1\u2013A8. Fresh Sol/Astra/Opus, complete 8/8, zero mandatory findings and overall>=9.5 each. STOP for maintainer feedback after this council regardless of outcome. No further correction/replacement/seventh round, product generation, vendor/model campaign or live effects.",
+  "current_scope": "Second activation council extension pass1/3, global round7/9, newly authorized after round6. Review required counter-factory composition and one-lifecycle text-to-document functionality, exact session/reuse/snapshot/slot semantics, then full unchanged Review A1\u2013A8. Fresh Sol/Astra/Opus; complete 8/8, zero mandatory findings and overall>=9.5 each. Planning corrections only; stop on success or after round9 for guidance. No construction, replacement/tenth round, vendor/model campaign or live effects.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1894,7 +1894,7 @@
   },
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
-    "status": "activation_council_extension_in_review",
+    "status": "activation_council_second_extension_in_review",
     "execution_phase": "validation",
     "validation_state": "in_review",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "FINAL activation council extension pass3/3, global round6/6. Review optional-converter entry registration and text-ingest/drain positives, related declaration-before-use and bounded snapshot clarifications, then full unchanged Review A1\u2013A8. Fresh Sol/Astra/Opus, complete 8/8, zero mandatory findings and overall>=9.5 each. STOP for maintainer feedback after this council regardless of outcome. No further correction/replacement/seventh round, product generation, vendor/model campaign or live effects.",
+    "next_gate": "Second activation council extension pass1/3, global round7/9, newly authorized after round6. Review required counter-factory composition and one-lifecycle text-to-document functionality, exact session/reuse/snapshot/slot semantics, then full unchanged Review A1\u2013A8. Fresh Sol/Astra/Opus; complete 8/8, zero mandatory findings and overall>=9.5 each. Planning corrections only; stop on success or after round9 for guidance. No construction, replacement/tenth round, vendor/model campaign or live effects.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2954,7 +2954,7 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "activation_council_final_extension_pass3_global_round6",
+    "current_stage": "activation_council_second_extension_pass1_global_round7",
     "validation_scope": "New proposed exact appendices have structural checks only; focused directive remains independently VERIFIED at 0144c539, Q/activation open.",
     "large_document_corpus": {
       "state": "verified",
@@ -2971,7 +2971,7 @@
     },
     "product_construction_preparation": {
       "version": "0.7",
-      "status": "activation_council_extension_in_review",
+      "status": "activation_council_second_extension_in_review",
       "date": "2026-11-12",
       "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
       "files": {
@@ -3508,34 +3508,35 @@
       "activation_preparation": {
         "package": "validation/document-ingestion/product-construction/activation/README.md",
         "binding": "validation/document-ingestion/product-construction/activation/approval-binding.json",
-        "binding_sha256": "98f9d6fd5f5c6bd5a786d5debdd296184f8a5b83febc344b32525925a96977b7",
+        "binding_sha256": "b6fb070ca1ec94014f0019e9e8647fc773d930185cd3594e8d3d39520cca4b3c",
         "authority": "validation/document-ingestion/product-construction/activation/preparation-authorization.json",
         "status": "proposed_not_approved",
         "new_council_authorized": true,
         "construction_approved": false,
         "new_effects": false,
         "current_dispositions": "validation/document-ingestion/product-construction/activation/requirement-reconciliation.md",
-        "current_dispositions_sha256": "32dae93f40363c91bff411ea1fbb3b0416500a1b8c1386b6b267dc5f8c5427c5"
+        "current_dispositions_sha256": "f787e83ed84916264277013ab4e8097e9f3fcba90da502ea5ec1819630c71d55"
       },
       "activation_council": {
-        "status": "final_extension_pass3_round6_frozen_for_review",
+        "status": "second_extension_pass1_round7_frozen_for_review",
         "active": true,
-        "rounds_started": 6,
-        "maximum_rounds": 6,
+        "rounds_started": 7,
+        "maximum_rounds": 9,
         "instructions": "validation/document-ingestion/product-construction/activation/council/review-instructions.md",
         "instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
-        "rounds_completed": 5,
+        "rounds_completed": 6,
         "authorization": "validation/document-ingestion/product-construction/activation/council/authorization.json",
-        "authorization_sha256": "eae8cd1b757ee22b91420e49dcb492b308e81710850f46eb98618f1eea637aad",
+        "authorization_sha256": "c963bad985fb1a581c2ff6b307345d295519d335eef7bf305c070e2d301180d2",
         "state": "validation/document-ingestion/product-construction/activation/council/state.json",
-        "remaining_rounds": 0,
+        "remaining_rounds": 2,
         "gate_met": null,
         "overall_result": "pending",
-        "extension": "validation/document-ingestion/product-construction/activation/council/extension-authorization.json",
-        "extension_sha256": "f16397daf645003799e78635eb1941aa88af56874180c7279cc0c34109c5df43",
+        "extension": "validation/document-ingestion/product-construction/activation/council/extension2-authorization.json",
+        "extension_sha256": "9d468ca11029a8f3d9d4b2acf8ac8aeaa3debdf5c5e57e787d30d740d8bfbb05",
         "previous_result": "validation/document-ingestion/product-construction/activation/council/round3/results/report.md",
         "previous_result_sha256": "c6b77a8986584eca348253605a53a9e26a2614deaa8d5a461c6ddf0718837433",
-        "previous_reviewed_candidate": "fd7d9f5d429857906d53da8fc053dc85b901a635"
+        "previous_reviewed_candidate": "fd7d9f5d429857906d53da8fc053dc85b901a635",
+        "extension_ordinal": 2
       }
     },
     "model_qualification_prerequisite_decision": {
@@ -3573,7 +3574,7 @@
       "target": "validation/document-ingestion/product-construction/activation/README.md",
       "instructions": "validation/document-ingestion/product-construction/activation/council/review-instructions.md",
       "instructions_sha256": "784d0f97fe2faf5699ed583ed3f751471995b6362f8f5d890c576c5a923c2894",
-      "status": "final_extension_approved_round6",
+      "status": "second_extension_approved_round7",
       "reviewer_launch_permitted_now": true,
       "roster": [
         "gpt-6.1-sol",
@@ -3581,18 +3582,19 @@
         "claude-opus-5-5"
       ],
       "effort": "high",
-      "maximum_rounds": 6,
-      "rounds_started": 6,
-      "rounds_completed": 5,
+      "maximum_rounds": 9,
+      "rounds_started": 7,
+      "rounds_completed": 6,
       "overall_target_each": 9.5,
       "completion": "8 of 8 areas; zero mandatory findings; no separate numerical coverage grade",
       "bounded_corrections": "Planning-only findings within current scope between fresh rounds, after brief review/direction. No code, effects or fourth round.",
       "latest_authorization": "update per council recommendations  and continue 3 more rounds",
       "authorization": "validation/document-ingestion/product-construction/activation/council/authorization.json",
-      "authorization_sha256": "eae8cd1b757ee22b91420e49dcb492b308e81710850f46eb98618f1eea637aad",
-      "remaining_rounds": 0,
-      "extension": "validation/document-ingestion/product-construction/activation/council/extension-authorization.json",
-      "extension_sha256": "f16397daf645003799e78635eb1941aa88af56874180c7279cc0c34109c5df43"
+      "authorization_sha256": "c963bad985fb1a581c2ff6b307345d295519d335eef7bf305c070e2d301180d2",
+      "remaining_rounds": 2,
+      "extension": "validation/document-ingestion/product-construction/activation/council/extension2-authorization.json",
+      "extension_sha256": "9d468ca11029a8f3d9d4b2acf8ac8aeaa3debdf5c5e57e787d30d740d8bfbb05",
+      "extension_ordinal": 2
     }
   },
   "command_refactor_publication": {

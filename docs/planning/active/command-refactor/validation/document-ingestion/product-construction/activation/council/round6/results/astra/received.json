@@ -1,0 +1,17 @@
+{
+  "seat": "astra",
+  "round": 6,
+  "additional_pass": 3,
+  "candidate": "7cf8956012a9c66d15f959436c6e129cde8a86c5",
+  "report_sha256": "b839c5313edf1c5d8481d797b147b1c7efb15f45aee4c97c16167cf60a167351",
+  "verdict": "VERIFIED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.55,
+  "mandatory_findings": [],
+  "report_hash_verified": true,
+  "boundary_evidence": "Original boundary-summary and available entry/exit files retained.",
+  "repo_unchanged_by_collection": true,
+  "entry_exit_equal": true,
+  "summary_counts_match": true
+}

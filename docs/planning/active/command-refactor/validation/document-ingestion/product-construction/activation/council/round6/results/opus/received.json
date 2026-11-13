@@ -1,0 +1,17 @@
+{
+  "seat": "opus",
+  "round": 6,
+  "additional_pass": 3,
+  "candidate": "7cf8956012a9c66d15f959436c6e129cde8a86c5",
+  "report_sha256": "4ca4d55ef65cdc648107eb5033f4d2fbfa36433962f31bc51f50493027622300",
+  "verdict": "CHANGES_REQUESTED",
+  "assessment_complete": true,
+  "areas_assessed": 8,
+  "overall": 9.4,
+  "raw_total": 9.415,
+  "mandatory_findings": [
+    "M1 bound text entry may lack counter_factory needed after converter attach"
+  ],
+  "report_hash_verified": true,
+  "entry_exit_byte_identical": true
+}

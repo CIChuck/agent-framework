@@ -1,6 +1,6 @@
 # INGEST activation — readiness dispositions and remaining evidence
 
-Version 0.6, 2026-11-13. The [current reconciliation](requirement-reconciliation.md)
+Version 0.7, 2026-11-13. The [current reconciliation](requirement-reconciliation.md)
 controls removed model/parity and hidden-workbook obligations in older parents.
 This is planning, not another Docling evaluation or product validation receipt.
 No install, import, conversion, provider/model request or store operation ran.
