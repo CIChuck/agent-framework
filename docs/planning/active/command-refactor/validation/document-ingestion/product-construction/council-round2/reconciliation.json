@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "round": 2,
+  "maximum_authorized_rounds": 2,
+  "candidate": "be3aed3a9ba5629c548e36437e7e01a7333210d1",
+  "base": "5f43d424e3b695c3fb85227f74830a7d1dc895cf",
+  "target": "docs/planning/active/command-refactor/directives/CD-CMD-INGEST-001-product.md",
+  "target_sha256": "be9b6611d725740bff401464c3b4be6e51bb18396d3b631009f92501bba1ad8c",
+  "outcome": "BLOCKED",
+  "scope": "Aggregate council qualification blocked; unresolved candidate document finding also remains. No full construction/readiness result.",
+  "all_seats_terminal": true,
+  "formal_council_complete": true,
+  "threshold_each": 9.5,
+  "threshold_met_each": false,
+  "results": {
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "outcome": "BLOCKED",
+      "coverage": 8.0,
+      "overall": 8.3,
+      "scores_status": "provisional incomplete review; nonqualifying",
+      "qualifies_for_gate": false,
+      "report": "sol/report.md",
+      "report_sha256": "dc8c819fdc6749ef85139b4a379c0acca53f86514a7267a161fdefc0b5dc4b67",
+      "evidence_index": "sol/evidence-index.json",
+      "opening_closing_match": true,
+      "seven_admin_checks": "PASS"
+    },
+    "astra": {
+      "model": "gpt-6-astra",
+      "outcome": "VERIFIED",
+      "coverage": 9.4,
+      "overall": 9.4,
+      "scores_status": "completed conditional-document review; below requested threshold",
+      "qualifies_for_gate": false,
+      "report": "astra/report.md",
+      "report_sha256": "8f63c09776d6cc99982da5af61fae85ef8fa9f3af7a5a91c6b568d48a92900a7",
+      "evidence_index": "astra/evidence-index.json",
+      "opening_closing_match": true,
+      "seven_admin_checks": "PASS"
+    },
+    "opus": {
+      "model": "claude-opus-5-5",
+      "outcome": "CHANGES_REQUESTED",
+      "coverage": 9.1,
+      "overall": 8.75,
+      "scores_status": "completed review; below requested threshold with mandatory finding",
+      "qualifies_for_gate": false,
+      "report": "opus/report.md",
+      "report_sha256": "155478189d592ba2cd7e4178160a06826ae52cecf83a2b936dd9285fd37c342d",
+      "evidence_index": "opus/evidence-index.json",
+      "opening_closing_match": true,
+      "seven_admin_checks": "PASS"
+    }
+  },
+  "mandatory_candidate_findings": [
+    {
+      "id": "INGEST-PD-R2-OPUS-001",
+      "severity": "medium",
+      "requirement": "Retain explicit preconstruction qualification of N replacement scenarios, their identities/counters/dimensions/capacity and planned B/N/R bindings while candidate execution remains after build.",
+      "controller_disposition": "Retained as source-supported: annex N and approved assessment require qualified replacement-model feasibility; current Q column names selected deployment but not explicit N scenario qualification. Astra closure opinion does not waive this unresolved requirement. No disputed deterministic fixture is adopted as real serving qualification.",
+      "impacts": [
+        "main A1",
+        "readiness RD01/RD05 Q",
+        "phase-map Q and JSON",
+        "readiness materiality row"
+      ]
+    }
+  ],
+  "review_input_blockers": [
+    {
+      "id": "SOL-R2-B01",
+      "controller_responsibility": "Controller included a historical receipt with excluded dirty-YAML fragments in stdout. Sol stopped; no qualifying score or complete source closure can be claimed for that seat.",
+      "raw_source": "validation/document-ingestion/product-construction/preparation-checks.json",
+      "raw_sha256": "36682354102a4a11196883b7223d2c2a070370962b1d7918aab56f8ac4a889ed",
+      "source_pointer": "/administration/5/stdout",
+      "disposition": "Historical original preserved; safe future-input projection proposed only. No frozen packet edit or replacement review. Source-line fragments are not reproduced in this closeout."
+    }
+  ],
+  "correction_status": {
+    "INGEST-PD-R1-001": "Astra/Opus close at document level; Sol observed correction but source review incomplete.",
+    "INGEST-PD-R1-002": "Astra closes; Opus retains missing N qualification; controller keeps the unresolved requirement.",
+    "INGEST-PD-R1-003": "Astra/Opus close; Sol mechanical/document correction closes with incomplete aggregate source depth."
+  },
+  "advisories": {
+    "opus": [
+      "Complete or relabel phase path coverage",
+      "Align DI24/33 stage/exit references",
+      "Individually map named FC nodes",
+      "Define unchanged-scope regression blocking",
+      "Account for non-test helper modules",
+      "Resolve CLI raw-origin sentinel early"
+    ],
+    "astra": [
+      "Keep B02 first",
+      "Make future A2/A3 exact and complete",
+      "Preserve direct/public-unwired proof labels"
+    ]
+  },
+  "proposed_next_correction": "proposed-next-correction.md",
+  "no_automatic_third_round": true,
+  "construction_approval": false,
+  "gate_a_qualified": false,
+  "protected_state": "All three reviewers and controller closing boundary match frozen candidate before closeout metadata changes:18754 tracked files,26 symlinks,8 preserved entries,45 pins.",
+  "evidence_handling": "Formal reports retained verbatim; safe admin/boundary artifacts retained. Other detailed reviewer output payloads remain external and hash-bound to avoid duplicating the excluded receipt fragments."
+}

@@ -1,0 +1,86 @@
+{
+  "authority_sha256": "ef55cd6a6cf16a25b723b11f5532c90ee4ce461b59786f6b694529741ca7a9c0",
+  "initiative": "friday-command-refactor",
+  "branch": "feature/cmd-ingest-001",
+  "work_state": "started",
+  "delivery_state": "local",
+  "execution_phase": "validation",
+  "validation_state": "in_review",
+  "current_next_gate": "Corrected INGEST conditional directive v0.2: one fresh round2 Sol/Astra/Opus delta-first and full document review. Require each VERIFIED, zero mandatory findings and coverage/overall>=9.5. Q qualification and I/AG/UAT proofs remain distinct; no product/effect activation or automatic third round.",
+  "product_implementation_approval": "not_granted",
+  "whole_gate_a_threshold_met": false,
+  "council": {
+    "round": 2,
+    "maximum_authorized_rounds": 2,
+    "new_rounds_authorized": 1,
+    "previous_rounds_complete": 1,
+    "authorization": "validation/document-ingestion/product-construction/council-round2/authorization.json",
+    "authorization_sha256": "c593b36da42cb3897d7bb0bd272d28133e24321093aee27e7dda58534cc4ffbc",
+    "criteria": "validation/document-ingestion/product-construction/council-round2/criteria.md",
+    "criteria_sha256": "3e9f411962aa4b62d49df85ba014967aff394de213e068605bbcd2951c0dc02e",
+    "roster": "validation/document-ingestion/product-construction/council-round2/roster.json",
+    "status": "in_review",
+    "threshold_each": 9.5,
+    "scope": "Correction delta first, then full conditional document readiness/source feasibility only.",
+    "construction_authority": false,
+    "automatic_third_round": false
+  },
+  "corrected_draft_files": {
+    "ingest_directive": {
+      "path": "directives/CD-CMD-INGEST-001-product.md",
+      "sha256": "be9b6611d725740bff401464c3b4be6e51bb18396d3b631009f92501bba1ad8c"
+    },
+    "tools_directive": {
+      "path": "directives/CD-CMD-TOOLS-DOC-001-adoption.md",
+      "sha256": "456d280d1961b9d57ae9e94af0398253ac6e051a654a871deedc0d73d1b64707"
+    },
+    "readiness_decision": {
+      "path": "validation/document-ingestion/product-construction/readiness-decision.md",
+      "sha256": "db8f54c1e80173cf2e3bf8e8c9b09446222e2450170bb7e1bfbeffc8ca211859"
+    },
+    "authority_manifest": {
+      "path": "validation/document-ingestion/product-construction/authority-manifest.json",
+      "sha256": "eddaf8d712dbc2437c611aae6c8284b603205535bfe197c10dccdff80e377d00"
+    },
+    "baseline_test_inventory": {
+      "path": "validation/document-ingestion/product-construction/baseline-test-inventory.json.gz",
+      "sha256": "dd37f3d581a30fcfb17e44ca46481719ac4691fda38f8de7ab578e1e7db3d1c4"
+    },
+    "test_migration_seed": {
+      "path": "validation/document-ingestion/product-construction/test-migration-seed.json",
+      "sha256": "01b0e983af3ae77692e8daa59765bbd2a3d7f6f3cdfb86ec091c990382069601"
+    },
+    "preparation_authorization": {
+      "path": "validation/document-ingestion/product-construction/preparation-authorization.json",
+      "sha256": "d57c864b280230ae7f0a351a6bedae1bfe83c843b81176619758c838c0636e0d"
+    },
+    "phase_map": {
+      "path": "validation/document-ingestion/product-construction/phase-evidence-map.md",
+      "sha256": "48a87bde31574763352f44eb9f1beb20e0be545d309aefe3240a66dd52ca994e"
+    },
+    "phase_map_json": {
+      "path": "validation/document-ingestion/product-construction/phase-evidence-map.json",
+      "sha256": "e7350f7810e5d7d51c93aba0fa66e3541e464134d4f815d6ec2d81707e7e2af1"
+    },
+    "inventory_summary": {
+      "path": "validation/document-ingestion/product-construction/baseline-test-summary.json",
+      "sha256": "d0b8cddd06bddfd3a1b74924b3d4dc14bdad15ea200878ec348617a7676bbf5a"
+    }
+  },
+  "correction_groups": {
+    "INGEST-PD-R1-001": "corrected; independent closure pending",
+    "INGEST-PD-R1-002": "corrected; independent closure pending",
+    "INGEST-PD-R1-003": "corrected; independent closure pending"
+  },
+  "open_readiness_items": [
+    "RD-01",
+    "RD-02",
+    "RD-03",
+    "RD-04",
+    "RD-05",
+    "RD-06",
+    "RD-07"
+  ],
+  "test_exception_map_approved": false,
+  "construction_or_effects_authorized": false
+}

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "report": {
+    "path": "report.md",
+    "sha256": "8f63c09776d6cc99982da5af61fae85ef8fa9f3af7a5a91c6b568d48a92900a7",
+    "retention": "verbatim formal report"
+  },
+  "exact_safe_admin_commands": "admin-commands.json",
+  "raw_other_command_evidence": {
+    "source_path": "/private/tmp/ingest-astra-r2-Hjm4bF/SHA256SUMS",
+    "sha256": "ae3e17a7380abb40914dfdc46ecc2443b004f1d95a396fb5cda82a361a37459d",
+    "retention": "Original external reviewer artifact retained unchanged; raw captured source/output payloads are not duplicated into closeout or future review inputs."
+  },
+  "reviewer_artifact_hashes": {
+    "closing-integrity.json": "ea37e73aebca0dd6b2631d5f8db6164c12539fbfff58e06c81cb59701fc01218",
+    "base-CD-CMD-INGEST-001-product.md": "da911b7e6f052ab27b0e37ee939e52a0555ca177c047f84b475c9fc72b5414c1",
+    "base-readiness-decision.md": "c1c16e2cff874c64534e47e8286422583ec6e6af4969aef1680b972f5d81ae2c",
+    "admin-commands.json": "82305ccb02f32cb6a7fc758fa1fddd4bdeff55570cdd804bba30febae5dfe82d",
+    "report.md": "8f63c09776d6cc99982da5af61fae85ef8fa9f3af7a5a91c6b568d48a92900a7",
+    "static-evidence.json": "0866cff74f5311398cb0a29f6179e1d4d4cebd88b484197b8780a83343431ce4",
+    "opening-integrity.json": "ea37e73aebca0dd6b2631d5f8db6164c12539fbfff58e06c81cb59701fc01218",
+    "base-test-migration-seed.json": "e9408e0216892f5b165189b5e34eeee4502b12974f9e8e137a9b7c0d8f8f605c",
+    "archive-evidence.json": "2535e88c3457823ee3a356c7cda6faef965b226f6ff180620ae763566bd07fb9",
+    "source_audit.py": "48da83549a44f5792c946f5b9b5a7172a95bb715cdad935f200b7ead34d1bdf4",
+    "source-evidence.json": "9740e6526ccef502204122e3b4c2ecafdef175cfb4f8feae2885c4440415785b",
+    "base-baseline-test-summary.json": "a533842a436d17e6d680a7e07b88c32c12bfed81c3e24748c09ac4a9de0b305d",
+    "verify.py": "d8d7196f5088bc4221d5f46b873f62e1fdb754d06810f1599b09fae02861b555",
+    "SHA256SUMS": "ae3e17a7380abb40914dfdc46ecc2443b004f1d95a396fb5cda82a361a37459d",
+    "base-evidence.json": "8755d5f2be0582d478711385c3fa96eb8fd5dc64fc99904771f4401127c2cf51"
+  },
+  "retained_safe_file_hashes": {
+    "closing-integrity.json": "ea37e73aebca0dd6b2631d5f8db6164c12539fbfff58e06c81cb59701fc01218",
+    "admin-commands.json": "82305ccb02f32cb6a7fc758fa1fddd4bdeff55570cdd804bba30febae5dfe82d",
+    "report.md": "8f63c09776d6cc99982da5af61fae85ef8fa9f3af7a5a91c6b568d48a92900a7",
+    "opening-integrity.json": "ea37e73aebca0dd6b2631d5f8db6164c12539fbfff58e06c81cb59701fc01218"
+  },
+  "scope": "No product or model replay; static reports/boundaries/admin evidence only. Original detailed ledgers remain external and hash-bound; no archive is advertised as complete raw-output retention."
+}

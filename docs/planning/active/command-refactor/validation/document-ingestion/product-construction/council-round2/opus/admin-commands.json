@@ -1,0 +1,119 @@
+[
+  {
+    "name": "board",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout": "Development board validation passed: 36 tasks\n",
+    "stderr": ""
+  },
+  {
+    "name": "dashboard",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout": "Planning dashboard is current\n",
+    "stderr": ""
+  },
+  {
+    "name": "docs",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout": "Documentation lifecycle validation passed: 1137 Markdown files checked\n",
+    "stderr": ""
+  },
+  {
+    "name": "metadata",
+    "argv": [
+      "uv",
+      "run",
+      "--offline",
+      "--frozen",
+      "--no-sync",
+      "--no-python-downloads",
+      "python",
+      "-B",
+      "scripts/check-package-metadata.py"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout": "Validated 18 pyproject.toml files: version, license, authors, README, URLs, wheel package selection, and internal pins OK\n",
+    "stderr": ""
+  },
+  {
+    "name": "range-whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "5f43d424e3b695c3fb85227f74830a7d1dc895cf..be3aed3a9ba5629c548e36437e7e01a7333210d1",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "owned-whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "docs/planning"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "staged-whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

@@ -6,7 +6,7 @@
   "decision": "Parent command-refactor PR #15 is merged; INGEST-001 remains design-only on its scoped branch",
   "branch": "feature/cmd-ingest-001",
   "baseline": "c3426986",
-  "current_scope": "Corrected INGEST conditional directive v0.2: one fresh round2 Sol/Astra/Opus delta-first and full document review. Require each VERIFIED, zero mandatory findings and coverage/overall>=9.5. Q qualification and I/AG/UAT proofs remain distinct; no product/effect activation or automatic third round.",
+  "current_scope": "INGEST conditional directive council round2 is closed BLOCKED: Sol incomplete due to excluded receipt text, Astra below9.5, and Opus retains N replacement qualification finding. Chuck to disposition the bounded correction proposal and any further round; no automatic third round, product construction or new effects.",
   "product_code_authority": "INGEST-001 design_only: document/dependency-model readiness and exact approved construction directive required before code generation. Prior MAINT approval remains historical bounded authority, not INGEST implementation approval.",
   "working_home": "agent-framework",
   "source_planning_commit": "f6f018150391dcf0ffa870258250f254eb22d899",
@@ -1894,9 +1894,9 @@
   },
   "document_ingestion_remediation": {
     "unit": "REM-CMD-INGEST-001",
-    "status": "conditional_product_construction_draft",
+    "status": "product_directive_council_round2_blocked",
     "execution_phase": "validation",
-    "validation_state": "in_review",
+    "validation_state": "blocked",
     "baseline": "7ad916f2530f0417e6c9fc6e9774fc96d0844f2e",
     "document": "remediation/REM-CMD-INGEST-001-pdf-docx.md",
     "sha256": "4e428abd2b55752a41012dfd85828ee203139d32d96739702039884f8ccfd3bf",
@@ -1969,7 +1969,7 @@
     },
     "dependency_or_model_installation": "not_performed",
     "user_store_inspection_or_cleanup": "not_performed_or_authorized",
-    "next_gate": "Corrected INGEST conditional directive v0.2: one fresh round2 Sol/Astra/Opus delta-first and full document review. Require each VERIFIED, zero mandatory findings and coverage/overall>=9.5. Q qualification and I/AG/UAT proofs remain distinct; no product/effect activation or automatic third round.",
+    "next_gate": "INGEST conditional directive council round2 is closed BLOCKED: Sol incomplete due to excluded receipt text, Astra below9.5, and Opus retains N replacement qualification finding. Chuck to disposition the bounded correction proposal and any further round; no automatic third round, product construction or new effects.",
     "required_dependency_floor": {
       "certifi": ">=2026.10.19",
       "authority": "explicit maintainer instruction",
@@ -2954,8 +2954,8 @@
       "scope": "Harness directive and four aligned readiness contracts, loop authorization/criteria/location maps, current routing and evidence only; business parents and production untouched.",
       "validation": "Administrative/link/metadata/whitespace and preserved-byte/metadata checks."
     },
-    "current_stage": "corrected_product_directive_review",
-    "validation_scope": "Fresh three-group correction delta and full PD01\u201316/PD-R01\u201303 conditional document/source-feasibility review; no runtime conformance or whole Gate-A claim.",
+    "current_stage": "product_directive_council_round2_complete",
+    "validation_scope": "Round2 conditional document/source-feasibility council closed BLOCKED; no qualifying Sol aggregate review, one mandatory candidate gap and unmet all-seat9.5 gate. No runtime or whole Gate-A claim.",
     "large_document_corpus": {
       "state": "verified",
       "scope": "validation/document-ingestion/gate-a/large-documents-scope.md",
@@ -2971,7 +2971,7 @@
     },
     "product_construction_preparation": {
       "version": "0.2",
-      "status": "corrected_document_council_in_review",
+      "status": "council_round2_closed_blocked",
       "date": "2026-11-12",
       "source_test_baseline": "8c36d8e26c618032c1ff536004a582c07ec56a5b",
       "files": {
@@ -3017,7 +3017,7 @@
         }
       },
       "implementation_approval": "not_granted",
-      "council_active": true,
+      "council_active": false,
       "new_model_or_store_effects": false,
       "production_changes": false,
       "gate_a_threshold_met": false,
@@ -3042,11 +3042,59 @@
         "criteria": "validation/document-ingestion/product-construction/council-round2/criteria.md",
         "criteria_sha256": "3e9f411962aa4b62d49df85ba014967aff394de213e068605bbcd2951c0dc02e",
         "roster": "validation/document-ingestion/product-construction/council-round2/roster.json",
-        "status": "in_review",
+        "status": "closed_blocked",
         "threshold_each": 9.5,
         "scope": "Correction delta first, then full conditional document readiness/source feasibility only.",
         "construction_authority": false,
-        "automatic_third_round": false
+        "automatic_third_round": false,
+        "outcome": "BLOCKED",
+        "all_seats_terminal": true,
+        "formal_council_complete": true,
+        "reviewed_candidate": "be3aed3a9ba5629c548e36437e7e01a7333210d1",
+        "threshold_met_each": false,
+        "report": "validation/document-ingestion/product-construction/council-round2/report.md",
+        "report_sha256": "21ce8e9424ff86147fcd01423b18579e955fb1f571bfbf2cedd281e8781d708c",
+        "reconciliation": "validation/document-ingestion/product-construction/council-round2/reconciliation.json",
+        "reconciliation_sha256": "f29275ab558863b9e9bf44090d0a8d67a310c99fe859d34a7eb3364c92d20ef2",
+        "mandatory_finding_ids": [
+          "INGEST-PD-R2-OPUS-001"
+        ],
+        "review_input_blocker_ids": [
+          "SOL-R2-B01"
+        ],
+        "further_automatic_review": false,
+        "results": {
+          "sol": {
+            "model": "gpt-6.1-sol",
+            "outcome": "BLOCKED",
+            "coverage": 8.0,
+            "overall": 8.3,
+            "scores_status": "provisional incomplete review; nonqualifying",
+            "qualifies_for_gate": false,
+            "report_sha256": "dc8c819fdc6749ef85139b4a379c0acca53f86514a7267a161fdefc0b5dc4b67",
+            "report": "validation/document-ingestion/product-construction/council-round2/sol/report.md"
+          },
+          "astra": {
+            "model": "gpt-6-astra",
+            "outcome": "VERIFIED",
+            "coverage": 9.4,
+            "overall": 9.4,
+            "scores_status": "completed conditional-document review; below requested threshold",
+            "qualifies_for_gate": false,
+            "report_sha256": "8f63c09776d6cc99982da5af61fae85ef8fa9f3af7a5a91c6b568d48a92900a7",
+            "report": "validation/document-ingestion/product-construction/council-round2/astra/report.md"
+          },
+          "opus": {
+            "model": "claude-opus-5-5",
+            "outcome": "CHANGES_REQUESTED",
+            "coverage": 9.1,
+            "overall": 8.75,
+            "scores_status": "completed review; below requested threshold with mandatory finding",
+            "qualifies_for_gate": false,
+            "report_sha256": "155478189d592ba2cd7e4178160a06826ae52cecf83a2b936dd9285fd37c342d",
+            "report": "validation/document-ingestion/product-construction/council-round2/opus/report.md"
+          }
+        }
       },
       "council_history": [
         {
@@ -3109,10 +3157,13 @@
         }
       ],
       "correction_groups": {
-        "INGEST-PD-R1-001": "corrected; independent closure pending",
-        "INGEST-PD-R1-002": "corrected; independent closure pending",
-        "INGEST-PD-R1-003": "corrected; independent closure pending"
-      }
+        "INGEST-PD-R1-001": "Astra/Opus close at document level; Sol observed correction but source review incomplete.",
+        "INGEST-PD-R1-002": "Astra closes; Opus retains missing N qualification; controller keeps the unresolved requirement.",
+        "INGEST-PD-R1-003": "Astra/Opus close; Sol mechanical/document correction closes with incomplete aggregate source depth."
+      },
+      "next_correction_proposal": "validation/document-ingestion/product-construction/council-round2/proposed-next-correction.md",
+      "next_correction_proposal_sha256": "7f0c5fc5b3f0846ac59d0a337af7db8d6e17af0edf9b8f1464b4f0942cbc88b2",
+      "closeout_checks": "validation/document-ingestion/product-construction/council-round2/closeout-checks.json"
     }
   },
   "command_refactor_publication": {

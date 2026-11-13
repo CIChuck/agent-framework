@@ -3983,3 +3983,35 @@ DAG/proof-group partition, parent definitions, seed origins/tags and inventory
 sums. Approved REM/annex/assessment/migration/architecture/guide and all product
 bytes remain unchanged. Freeze current inputs for fresh independent delta-first
 then full review; whole Gate-A9.5 and construction approval remain open.
+
+
+## 2026-11-12 — INGEST product directive council round2 closed; gate unmet
+
+Candidate `be3aed3a` was reviewed after the authorized bounded document correction.
+[Round2 reconciliation](validation/document-ingestion/product-construction/council-round2/report.md)
+records Sol BLOCKED (8.0/8.3 provisional, incomplete/nonqualifying), Astra
+conditional VERIFIED (9.4/9.4), and Opus CHANGES_REQUESTED (9.1/8.75). The
+all-seat9.5 gate is unmet. Both authorized rounds are complete; no replacement,
+third round or product construction is activated.
+
+Opus retains INGEST-PD-R2-OPUS-001: the revised Q/implementation split does not
+explicitly qualify N replacement-model identities before construction. The
+controller retains this parent-backed requirement despite Astra's closure
+opinion. Candidate operations remain post-build; deterministic fixtures cannot
+be relabelled as actual serving qualification.
+
+The controller also supplied an unsafe historical preparation receipt: its old
+whitespace stdout included fragments of the explicitly excluded dirty YAML.
+Sol stopped on exposure (SOL-R2-B01); no complete result is claimed for that
+seat. Original receipt and YAML stay untouched. The proposed future input is a
+metadata-only projection with command/exit/output digests and no stdout/stderr
+payloads. It was not substituted into the frozen review. Formal reviewer reports
+are preserved verbatim; potentially exposed detailed raw ledgers remain external
+and hash-bound rather than copied into this packet.
+
+[The concrete next-correction proposal](validation/document-ingestion/product-construction/council-round2/proposed-next-correction.md)
+awaits Chuck's direction. Current routing records validation/blocked within the
+started/local initiative, without changing historical gates or reviewed technical
+bytes. Reviewer and controller frozen boundaries passed; closeout admin and
+non-planning preservation results are recorded separately. No product/test/guide/
+dependency/model/store operation, cleanup, push or acceptance occurred.

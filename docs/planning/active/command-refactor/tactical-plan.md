@@ -1,14 +1,14 @@
 # INGEST product construction drafts — maintainer review
 
-Execution phase: validation; validation state: in_review for corrected council round2.
+Execution phase: validation; validation state: blocked after closed council round2.
 [INGEST](directives/CD-CMD-INGEST-001-product.md) and
 [TOOLS-DOC](directives/CD-CMD-TOOLS-DOC-001-adoption.md) remain separately
 conditional, with [RD-01–07](validation/document-ingestion/product-construction/readiness-decision.md)
 activation requirements. Prior bounded evaluations remain verified at their
 frozen sources. Whole Gate-A9.5 and product construction approval remain open.
-The first [three-seat reconciliation](validation/document-ingestion/product-construction/council-round1/report.md) is historical. Chuck authorizes bounded correction and one fresh round2; no automatic third round or model/store/production effect is activated.
+The first [three-seat reconciliation](validation/document-ingestion/product-construction/council-round1/report.md) is historical. The [round2 reconciliation](validation/document-ingestion/product-construction/council-round2/report.md) records BLOCKED, an unmet all-seat9.5 gate and one remaining mandatory document finding. Both authorized rounds are complete. The [bounded correction proposal](validation/document-ingestion/product-construction/council-round2/proposed-next-correction.md) awaits Chuck's direction; no third round or model/store/production effect is activated.
 
-**Next gate:** Corrected INGEST conditional directive v0.2: one fresh round2 Sol/Astra/Opus delta-first and full document review. Require each VERIFIED, zero mandatory findings and coverage/overall>=9.5. Q qualification and I/AG/UAT proofs remain distinct; no product/effect activation or automatic third round.
+**Next gate:** INGEST conditional directive council round2 is closed BLOCKED: Sol incomplete due to excluded receipt text, Astra below9.5, and Opus retains N replacement qualification finding. Chuck to disposition the bounded correction proposal and any further round; no automatic third round, product construction or new effects.
 
 ## Separate MAINT closeout and historical checkpoints
 
